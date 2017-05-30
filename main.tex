@@ -1,0 +1,122 @@
+\documentclass[12pt,a4paper,twoside,ngerman,parskip=half*,bibtotoc]{scrbook}
+
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows, automata, calc, matrix}
+
+\usepackage{cite, xcolor}
+\definecolor{lgray}{gray}{0.7}
+
+\usepackage{paralist}
+
+\usepackage{lmodern}
+
+\addtokomafont{sectioning}{\rmfamily\boldmath}
+
+\newtheoremstyle{mythmstyle}% name of the style to be used
+  {5pt}% measure of space to leave above the theorem. E.g.: 3pt
+  {4pt}% measure of space to leave below the theorem. E.g.: 3pt
+  {\itshape}% name of font to use in the body of the theorem
+  {}% measure of space to indent
+  {\bfseries}% name of head font
+  {.}% punctuation between head and body
+  {0.5em}% space after theorem head; " " = normal interword space
+{\textbf{\thmname{#1}\thmnumber{ #2}\thmnote{ (\textit{#3})}}}% Manually specify head
+\theoremstyle{mythmstyle}
+\newtheorem{Def}{Definition}[chapter]
+\newtheorem{satz}[Def]{Satz}
+\newtheorem{bsp}[Def]{Beispiel}
+\newtheorem{lem}[Def]{Lemma}
+\newtheorem{kor}[Def]{Korollar}
+\newtheorem{prop}[Def]{Proposition}
+
+\newcommand{\oBdA}{oBdA}
+\newcommand{\OBdA}{OBdA}
+\newcommand{\EIO}{EIO}
+% \newcommand{\prune}{\ensuremath{\mathrm{prune}}}
+% \newcommand{\cont}{\ensuremath{\mathrm{cont}}}
+% \newcommand{\Sig}{\ensuremath{\mathrm{Sig}}}
+% \newcommand{\Synch}{\ensuremath{\mathrm{Synch}}}
+
+% \newcommand{\EBRel}{\ensuremath{\sqsubseteq _E^\mathrm{B}}}
+% \newcommand{\ECRel}{\ensuremath{\sqsubseteq _E^\mathrm{C}}}
+% \newcommand{\ERel}{\ensuremath{\sqsubseteq _E}}
+% \newcommand{\StET}{\ensuremath{StET}}
+% \newcommand{\PrET}{\ensuremath{PrET}}
+% \newcommand{\MIT}{\ensuremath{MIT}}
+% \newcommand{\ET}{\ensuremath{ET}}
+% \newcommand{\EL}{\ensuremath{EL}}
+
+% \newcommand{\QBRel}{\ensuremath{\sqsubseteq _{Qui}^\mathrm{B}}}
+% \newcommand{\QCRel}{\ensuremath{\sqsubseteq _{Qui}^\mathrm{C}}}
+% \newcommand{\QRel}{\ensuremath{\sqsubseteq _{Qui}}}
+% \newcommand{\StQT}{\ensuremath{StQT}}
+% \newcommand{\PrQT}{\ensuremath{PrQT}}
+% \newcommand{\QT}{\ensuremath{QET}}
+
+% \newcommand{\DBRel}{\ensuremath{\sqsubseteq _{Div}^\mathrm{B}}}
+% \newcommand{\DBaRel}{\ensuremath{\sqsubseteq _{Div_{\mathrm{alt}}}^\mathrm{B}}}
+% \newcommand{\DCRel}{\ensuremath{\sqsubseteq _{Div}^\mathrm{C}}}
+% \newcommand{\DCaRel}{\ensuremath{\sqsubseteq _{Div_{\mathrm{alt}}}^\mathrm{C}}}
+% \newcommand{\DRel}{\ensuremath{\sqsubseteq _{Div}}}
+% \newcommand{\DaRel}{\ensuremath{\sqsubseteq _{Div_{\mathrm{alt}}}}}
+% \newcommand{\StDT}{\ensuremath{StDT}}
+% \newcommand{\PrDT}{\ensuremath{PrDT}}
+% \newcommand{\EDT}{\ensuremath{EDT}}
+% \newcommand{\EDL}{\ensuremath{EDL}}
+% \newcommand{\QDT}{\ensuremath{QDT}}
+% \newcommand{\DT}{\ensuremath{DT}}
+
+\begin{document}
+
+\KOMAoptions{twoside = false}
+
+% \frontmatter
+
+% \input{titlepage.tex}
+
+% \KOMAoptions{twoside}
+
+% \clearpage
+% \thispagestyle{empty}
+
+% \tableofcontents{}
+
+\mainmatter{}
+
+% \input{einleitung.tex}
+
+% \clearpage
+% \thispagestyle{empty}
+
+% \input{definitionen.tex}
+
+% \clearpage
+% \thispagestyle{empty}
+
+% \input{error.tex}
+
+% \clearpage
+% \thispagestyle{empty}
+
+% \input{quiescents.tex}
+
+% \input{divergenz.tex}
+
+% \clearpage
+% \thispagestyle{empty}
+
+% \bibliographystyle{amsalphagar}
+% \bibliography{literatur}
+
+\end{document}
+
