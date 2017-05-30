@@ -1,0 +1,29 @@
+\chapter{Definitionen}
+\begin{Def}[Modal Interface Automat]
+  Ein \emph{Modal Interface Automat (MIA)} ist ein Tupel
+  $(P,I,O,\longrightarrow,\dashrightarrow,p_0,e)$ mit:
+  \begin{itemize}
+    \item $P$: Menge der Zustände
+    \item $p_0\in P$: Initialzustand/Startzustand \TODO{Bezeichnung überlegen}
+    \item $e\in P$: Universal-Zustand(Fehler-Zustand) \TODO{Bezeichnung
+      überlegen}
+    \item $I,O$: disjunkte Input- und Outputaktionen (-handlungen)
+      \TODO{Bezeichnung in BA nachschauen}
+    \item $A = I\cup O$: Alphabet
+    \item $\tau\notin A$: interne Aktion
+    \item $\longrightarrow{} \subseteq P\times (A\cup\{\tau\})\times
+      (\mathcal{P}(P)\backslash\emptyset )$\footnote{$\mathcal{P}(P)$
+      bezeichnet die Potenzmenge von $P$}: disjunktive
+      must-Transitions-Relation
+    \item $\dashrightarrow{} \subseteq P\times (A\cup\{\tau\})\times
+      P$: may-Transitions-Relation
+  \end{itemize}
+  Es werden die folgenden Eigenschaften vorausgesetzt:
+  \begin{enumerate}
+    \item $\forall\alpha\in A\cup\{\tau\}:p\overset{\alpha}{\longrightarrow}P
+      \Rightarrow\forall p'\in P:p\overset{\alpha}{\dashrightarrow}p'$
+      (syntaktische Konsistenz)
+    \item $e$ tritt nur als Zielzustand von Input may-Transitionen auf
+      (Senken-Voraussetzung) \TODO{Übersetzung überdenken}
+  \end{enumerate}
+\end{Def}

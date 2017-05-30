@@ -15,10 +15,15 @@
 
 \usepackage{cite, xcolor}
 \definecolor{lgray}{gray}{0.7}
+\definecolor{commentShadeColor}{rgb}{1.0,.9,.6}
+\definecolor{commentTextColor}{rgb}{.2,.2,.2}
+\definecolor{CommentFrameColor}{rgb}{.3,.3,.3}%
 
 \usepackage{paralist}
 
 \usepackage{lmodern}
+
+\usepackage{ifthen}
 
 \addtokomafont{sectioning}{\rmfamily\boldmath}
 
@@ -76,6 +81,11 @@
 % \newcommand{\QDT}{\ensuremath{QDT}}
 % \newcommand{\DT}{\ensuremath{DT}}
 
+ \newcommand{\TODO}[1]{{%
+      \fcolorbox{CommentFrameColor}{commentShadeColor}{%
+      \tiny T\!O\!D\!O: #1
+  }}}
+
 \begin{document}
 
 \KOMAoptions{twoside = false}
@@ -98,7 +108,7 @@
 % \clearpage
 % \thispagestyle{empty}
 
-% \input{definitionen.tex}
+\input{definitionen.tex}
 
 % \clearpage
 % \thispagestyle{empty}
