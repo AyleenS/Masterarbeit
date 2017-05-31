@@ -47,6 +47,18 @@
 \newcommand{\oBdA}{oBdA}
 \newcommand{\OBdA}{OBdA}
 \newcommand{\EIO}{EIO}
+\newcommand{\MIA}{MIA}
+
+\newcommand{\may}[1][\empty]{%
+  \ifthenelse{\equal{#1}{\empty}}{\ensuremath{\dashrightarrow}}
+  {\ensuremath{\overset{#1}{\dashrightarrow}}
+  }}
+
+\newcommand{\must}[1][\empty]{%
+  \ifthenelse{\equal{#1}{\empty}}{\ensuremath{\longrightarrow}}
+  {\ensuremath{\overset{#1}{\longrightarrow}}
+  }}
+
 % \newcommand{\prune}{\ensuremath{\mathrm{prune}}}
 % \newcommand{\cont}{\ensuremath{\mathrm{cont}}}
 % \newcommand{\Sig}{\ensuremath{\mathrm{Sig}}}
@@ -88,21 +100,21 @@
   \newcommand{\TODO}[1]{}
 }
 {% Kommentare werden hervorhoben
- \newcommand{\TODO}[1]{{%
+ \newcommand{\TODO}[1]{%
       \fcolorbox{CommentFrameColor}{commentShadeColor}{%
-      \tiny T\!O\!D\!O: #1
-  }}}
+      \scriptsize T\!O\!D\!O: #1
+  }}
 }
 
 \begin{document}
 
-\KOMAoptions{twoside = false}
+% \KOMAoptions{twoside = false}
 
 % \frontmatter
 
 % \input{titlepage.tex}
 
-% \KOMAoptions{twoside}
+\KOMAoptions{twoside}
 
 % \clearpage
 % \thispagestyle{empty}

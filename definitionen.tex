@@ -1,29 +1,72 @@
 \chapter{Definitionen}
+
 \begin{Def}[Modal Interface Automat]
-  Ein \emph{Modal Interface Automat (MIA)} ist ein Tupel
-  $(P,I,O,\longrightarrow,\dashrightarrow,p_0,e)$ mit:
+  Ein \emph{Modal Interface Automat (\MIA{})} ist ein Tupel
+  $(P,I,O,\must,\may,p_0,e)$ mit:
   \begin{itemize}
     \item $P$: Menge der Zustände
-    \item $p_0\in P$: Initialzustand/Startzustand \TODO{Bezeichnung überlegen}
-    \item $e\in P$: Universal-Zustand(Fehler-Zustand) \TODO{Bezeichnung
-      überlegen}
-    \item $I,O$: disjunkte Input- und Outputaktionen (-handlungen)
-      \TODO{Bezeichnung in BA nachschauen}
+    \item $p_0\in P$: Startzustand
+    \item $e\in P$: universeller Zustand
+    \item $I,O$: disjunkte Input- und Outputaktionen
     \item $A = I\cup O$: Alphabet
     \item $\tau\notin A$: interne Aktion
-    \item $\longrightarrow{} \subseteq P\times (A\cup\{\tau\})\times
+    \item $\must{} \subseteq P\times (A\cup\{\tau\})\times
       (\mathcal{P}(P)\backslash\emptyset )$\footnote{$\mathcal{P}(P)$
       bezeichnet die Potenzmenge von $P$}: disjunktive
       must-Transitions-Relation
-    \item $\dashrightarrow{} \subseteq P\times (A\cup\{\tau\})\times
+    \item $\may{} \subseteq P\times (A\cup\{\tau\})\times
       P$: may-Transitions-Relation
   \end{itemize}
   Es werden die folgenden Eigenschaften vorausgesetzt:
   \begin{enumerate}
-    \item $\forall\alpha\in A\cup\{\tau\}:p\overset{\alpha}{\longrightarrow}P
-      \Rightarrow\forall p'\in P:p\overset{\alpha}{\dashrightarrow}p'$
+    \item $\forall\alpha\in A\cup\{\tau\}:p\must[\alpha]P
+      \Rightarrow\forall p'\in P:p\may[\alpha]p'$
       (syntaktische Konsistenz)
     \item $e$ tritt nur als Zielzustand von Input may-Transitionen auf
       (Senken-Voraussetzung) \TODO{Übersetzung überdenken}
   \end{enumerate}
+\end{Def}
+
+Must-Transitionen sind Transitionen, die von einer Verfeinerung implementiert
+werden müssen. Die may-Transitionen sind hingegen die zulässigen Transitionen
+für eine Verfeinerung.\\
+Für beliebige Alphabete $I,O$ ist dann $P=(\{e\},I,O,\emptyset ,\emptyset,
+e,e)$ der universelle MIA, da in $e$ als universellen Zustand beliebiges
+Verhalten zulässig ist.\\
+\TODO{allgemeine Benennungen erklären}
+
+\begin{Def}[Parallelprodukt]
+  Zwei \MIA{}s $P_1,P_2$ sind \emph{komponierbar}, falls $O_1\cap
+  O_2=\emptyset$. Für solche \MIA{}s ist das Produkt $P_1\otimes
+  P_2=((P_1\times P_2)\cup \{e_{12}\}, I, O, \must, \may, (p_{01}, p_{02}),
+  e_{12})$ definiert mit:
+  \begin{itemize}
+    \item $e_{12}$: frischer universeller Zustand
+    \item $I=(I_1\cup I_2)\backslash (O_1\cup O_2)$
+    \item $O=(O_1\cup O_2)$
+    \item $\must, \may$: kleinste Relationen, die die
+      folgenden Regeln erfüllen:
+    \begin{itemize}
+      \item[(PMust1)] $(p_1,p_2)\must[\alpha] P_1'\times \{p_2\}$, falls
+        $p_1\must[\alpha] P_1'$ und $\alpha\notin A_2$
+      \item[(PMust2)] $(p_1,p_2)\must[\alpha] \{p_1\}\times P_2'$, falls
+        $p_2\must[\alpha] P_2'$ und $\alpha\notin A_1$
+      \item[(PMust3)] $(p_1,p_2)\must[a] P_1'\times P_2'$, falls
+        $p_1\must[a] P_1'$ und $p_2\must[a] P_2'$
+      \item[(PMay1)] $(p_1,p_2)\may[\alpha] P_1'\times \{p_2\}$, falls
+        $p_1\may[\alpha] P_1'$ und $\alpha\notin A_2$
+      \item[(PMay2)] $(p_1,p_2)\may[\alpha] \{p_1\}\times P_2'$, falls
+        $p_2\may[\alpha] P_2'$ und $\alpha\notin A_1$
+      \item[(PMay3)] $(p_1,p_2)\may[a] P_1'\times P_2'$, falls
+        $p_1\may[a] P_1'$ und $p_2\may[a] P_2'$
+    \end{itemize}
+  \end{itemize}
+\end{Def}
+
+\begin{Def}[Parallelkomposition]
+  Gegeben ein Parallelprodukt $P_1\otimes P_2$, ein Zustand $(p_1,p_2)$ ist ein
+  neuer Kommunikationsfehler, falls es ein $a\in A_1\cap A_2$ gibt, sodass:
+  \begin{itemize}
+    \item[(a)] $a\in O_1, p_1\may[a]$ und $p_2\not\must[a]$
+  \end{itemize}
 \end{Def}
