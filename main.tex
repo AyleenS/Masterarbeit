@@ -59,6 +59,14 @@
   {\ensuremath{\overset{#1}{\longrightarrow}}
   }}
 
+\newcommand{\nmay}[1][\empty]{%
+  \hspace{0.2cm}\not\hspace{-0.2cm}\may[#1]
+  }
+
+\newcommand{\nmust}[1][\empty]{%
+  \hspace{0.2cm}\not\hspace{-0.2cm}\must[#1]
+  }
+
 % \newcommand{\prune}{\ensuremath{\mathrm{prune}}}
 % \newcommand{\cont}{\ensuremath{\mathrm{cont}}}
 % \newcommand{\Sig}{\ensuremath{\mathrm{Sig}}}
@@ -108,13 +116,13 @@
 
 \begin{document}
 
-% \KOMAoptions{twoside = false}
+\KOMAoptions{twoside = false}
 
 % \frontmatter
 
 % \input{titlepage.tex}
 
-\KOMAoptions{twoside}
+% \KOMAoptions{twoside}
 
 % \clearpage
 % \thispagestyle{empty}

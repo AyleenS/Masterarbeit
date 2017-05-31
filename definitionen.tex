@@ -33,7 +33,7 @@ für eine Verfeinerung.\\
 Für beliebige Alphabete $I,O$ ist dann $P=(\{e\},I,O,\emptyset ,\emptyset,
 e,e)$ der universelle MIA, da in $e$ als universellen Zustand beliebiges
 Verhalten zulässig ist.\\
-\TODO{allgemeine Benennungen erklären}
+\TODO{allgemeine Benennungen erklären ($\alpha,a$)}
 
 \begin{Def}[Parallelprodukt]
   Zwei \MIA{}s $P_1,P_2$ sind \emph{komponierbar}, falls $O_1\cap
@@ -67,6 +67,28 @@ Verhalten zulässig ist.\\
   Gegeben ein Parallelprodukt $P_1\otimes P_2$, ein Zustand $(p_1,p_2)$ ist ein
   neuer Kommunikationsfehler, falls es ein $a\in A_1\cap A_2$ gibt, sodass:
   \begin{itemize}
-    \item[(a)] $a\in O_1, p_1\may[a]$ und $p_2\not\must[a]$
+    \item[(a)] $a\in O_1, p_1\may[a]$ und $p_2\nmust[a]$ oder
+    \item[(b)] $a\in O_2, p_2\may[a]$ und $p_1\nmust[a]$.
   \end{itemize}
+  $(p_1,p_2)$ ist ein geerbter Kommunikationsfehler, falls eine der Komponenten
+  ein universeller Zustand ist, d.h. $p_1=e_1\lor p_2=e_2$.\\
+  $E\subseteq P_1\times P_2$ ist die Menge der unzulässigen Zustände. Es gilt
+  $(p_1,p_2)\in E$, falls:
+  \begin{itemize}
+    \item[(i)] $(p_1,p_2)$ ist ein neuer oder geerbter Kommunikationsfehler,
+    \item[(ii)] $(p_1,p_2)\may[w] (p_1',p_2')$ und $(p_1',p_2')\in E$.
+      \TODO{$w\in O\cup \{\tau\}$ in Notation aufnehmen}
+  \end{itemize}
+  Falls der Startzustand ein unzulässiger Zustand ist, dann wird $e_{12}$
+  initial und somit der einzig erreichbare Zustand von $P_1||P_2$ ($P_1$ und
+  $P_2$ werden dann inkompatibel genannt).\\
+  Sonst erhält man $P_1||P_2$ durch das prunen/abschneiden \TODO{Übersetzung
+  überlegen} unzulässiger Zustände aus $P_1\otimes P_2$. Falls es einen Zustand
+  $(p_1,p_2)\notin E$ mit $(p_1,p_2)\may[i](p_1',p_2')\in E$ für ein $i\in I$
+  gibt, dann werden alle must- und may-Transitionen mit $i$ startend bei
+  $(p_1,p_2)$ entfernt und eine einzige Transition $(p_1,p_2)\may[i]e_{12}$
+  hinzugefügt. Zusätzlich werden alle Zustände aus $E$ und alle unerreichbaren
+  Zustände (außer $e_{12}$) und alle ihre eingehenden und ausgehenden
+  Transitionen gelöscht. Falls $(p_1,p_2)\in P_1||P_2$, schreiben wir
+  $p_1||p_2$ und nennen $p_1$ und $p_2$ kompatiebel.
 \end{Def}
