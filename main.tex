@@ -81,10 +81,18 @@
 % \newcommand{\QDT}{\ensuremath{QDT}}
 % \newcommand{\DT}{\ensuremath{DT}}
 
+\newcommand{\comments}{true} % auskommentieren um Kommentare zu entfernen
+
+\ifthenelse{\isundefined{\comments}}
+{% keine Kommentare
+  \newcommand{\TODO}[1]{}
+}
+{% Kommentare werden hervorhoben
  \newcommand{\TODO}[1]{{%
       \fcolorbox{CommentFrameColor}{commentShadeColor}{%
       \tiny T\!O\!D\!O: #1
   }}}
+}
 
 \begin{document}
 
