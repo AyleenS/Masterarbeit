@@ -67,6 +67,16 @@
   \hspace{0.2cm}\not\hspace{-0.2cm}\must[#1]
   }
 
+\newcommand{\weakmay}[1][\empty]{%
+  \ifthenelse{\equal{#1}{\empty}}{\ensuremath{=\Rightarrow}}
+  {\ensuremath{\overset{#1}{=\Rightarrow}}
+  }}
+
+\newcommand{\weakmust}[1][\empty]{%
+  \ifthenelse{\equal{#1}{\empty}}{\ensuremath{\Longrightarrow}}
+  {\ensuremath{\overset{#1}{\Longrightarrow}}
+  }}
+
 % \newcommand{\prune}{\ensuremath{\mathrm{prune}}}
 % \newcommand{\cont}{\ensuremath{\mathrm{cont}}}
 % \newcommand{\Sig}{\ensuremath{\mathrm{Sig}}}
@@ -150,11 +160,11 @@
 
 % \input{divergenz.tex}
 
-% \clearpage
-% \thispagestyle{empty}
+\clearpage
+\thispagestyle{empty}
 
-% \bibliographystyle{amsalphagar}
-% \bibliography{literatur}
+\bibliographystyle{amsalphagar}
+\bibliography{literatur}
 
 \end{document}
 

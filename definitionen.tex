@@ -1,4 +1,8 @@
 \chapter{Definitionen}
+{\large\textbf{Stand: \today{}}}\\
+
+Die folgenden vier Definitionen sind analog aus\cite{Vogler2016MIA3} übernommen
+worden.
 
 \begin{Def}[Modal Interface Automat]
   Ein \emph{Modal Interface Automat (\MIA{})} ist ein Tupel
@@ -33,13 +37,33 @@ für eine Verfeinerung.\\
 Für beliebige Alphabete $I,O$ ist dann $P=(\{e\},I,O,\emptyset ,\emptyset,
 e,e)$ der universelle MIA, da in $e$ als universellen Zustand beliebiges
 Verhalten zulässig ist.\\
-\TODO{allgemeine Benennungen erklären ($\alpha,a$)}
+\MIA{}s  werden in dieser Arbeit durch ihre Zustandsmenge (z.B.\ $P$)
+identifiziert und falls notwendig werden damit auch die Komponenten indiziert
+(z.B.\ $I_P$ anstatt $I$). Falls der \MIA{} selbst bereits einen Index hat
+(z.B.\ $P_1$) kann an der Komponente die Zustandsmenge als Index wegfallen und
+nur noch der Index des gesamten Automaten verwendet werden (z.B.\ $I_1$ anstatt
+$I_{P_1}$). Zusätzlich stehen $i,o,a,\omega$ und $\alpha$ für Buchstaben aus
+den Alphabeten $I,O,A,O\cup\{\tau\}$ und $A\cup\{\tau\}$. Es kann $A=I/O$
+geschrieben werden um die Inputs und Outputs eines Alphabets hervorzuheben. Im
+Zusammenhang mit schwachen Transitionen wird die Notation $\hat{\alpha}$
+verwendet, wobei gilt $\hat{\alpha}=_{\text{df}}a$, falls $\alpha =a\neq\tau$
+und $\hat{\alpha}=_{\text{df}}\varepsilon$, falls $\alpha =\tau$. Desweiteren
+werden Outputs und die interne Aktion \emph{lokale Aktionen} genannt, da sie
+lokal vom ausführenden \MIA{} kontrolliert sind. Um eine Erleichterung der
+Notation zu erhalten, soll gelten, dass $p\must[a]p', p\nmust[a]$ und
+$p\nmay[a]$ für $p\may[a]\{p'\}, \nexists P': p\may[a]P'$ und $\nexists p':
+p\may[a]p'$ stehen soll. In Graphiken wird eine Aktion $a$ als $a?$ notiert,
+falls $a\in I$ und $a!$, falls $a\in O$. Must-Transitionen (may-Transitionen)
+werden als durchgezogener, möglicherweise aufspaltender, Pfeil gezeichnet
+(gestrichelter Pfeil). Entsprechend der syntaktischen Konsistenz repräsentiert
+jede gezeichnete must-Transition auch gleichzeitig die zugrundeliegende
+may-Transitionen.
 
 \begin{Def}[Parallelprodukt]
   Zwei \MIA{}s $P_1,P_2$ sind \emph{komponierbar}, falls $O_1\cap
   O_2=\emptyset$. Für solche \MIA{}s ist das Produkt $P_1\otimes
-  P_2=((P_1\times P_2)\cup \{e_{12}\}, I, O, \must, \may, (p_{01}, p_{02}),
-  e_{12})$ definiert mit:
+  P_2=((P_1\times P_2)\cup \{e_{12}\}, I, O, {\must,} {\may,}$ $(p_{01}, p_{02}),
+  e_{12})$ definiert mit: \TODO{erzwungenen Zeilenumbruch kontrollieren}
   \begin{itemize}
     \item $e_{12}$: frischer universeller Zustand
     \item $I=(I_1\cup I_2)\backslash (O_1\cup O_2)$
@@ -66,29 +90,55 @@ Verhalten zulässig ist.\\
 \begin{Def}[Parallelkomposition]
   Gegeben ein Parallelprodukt $P_1\otimes P_2$, ein Zustand $(p_1,p_2)$ ist ein
   neuer Kommunikationsfehler, falls es ein $a\in A_1\cap A_2$ gibt, sodass:
-  \begin{itemize}
-    \item[(a)] $a\in O_1, p_1\may[a]$ und $p_2\nmust[a]$ oder
-    \item[(b)] $a\in O_2, p_2\may[a]$ und $p_1\nmust[a]$.
-  \end{itemize}
+  \begin{enumerate}[(a)]
+    \item $a\in O_1, p_1\may[a]$ und $p_2\nmust[a]$ oder
+    \item $a\in O_2, p_2\may[a]$ und $p_1\nmust[a]$.
+  \end{enumerate}
   $(p_1,p_2)$ ist ein geerbter Kommunikationsfehler, falls eine der Komponenten
   ein universeller Zustand ist, d.h. $p_1=e_1\lor p_2=e_2$.\\
   $E\subseteq P_1\times P_2$ ist die Menge der unzulässigen Zustände. Es gilt
   $(p_1,p_2)\in E$, falls:
-  \begin{itemize}
-    \item[(i)] $(p_1,p_2)$ ist ein neuer oder geerbter Kommunikationsfehler,
-    \item[(ii)] $(p_1,p_2)\may[w] (p_1',p_2')$ und $(p_1',p_2')\in E$.
+  \begin{enumerate}[(i)]
+    \item $(p_1,p_2)$ ist ein neuer oder geerbter Kommunikationsfehler,
+    \item $(p_1,p_2)\may[w] (p_1',p_2')$ und $(p_1',p_2')\in E$.
       \TODO{$w\in O\cup \{\tau\}$ in Notation aufnehmen}
-  \end{itemize}
+  \end{enumerate}
   Falls der Startzustand ein unzulässiger Zustand ist, dann wird $e_{12}$
   initial und somit der einzig erreichbare Zustand von $P_1||P_2$ ($P_1$ und
   $P_2$ werden dann inkompatibel genannt).\\
-  Sonst erhält man $P_1||P_2$ durch das prunen/abschneiden \TODO{Übersetzung
-  überlegen} unzulässiger Zustände aus $P_1\otimes P_2$. Falls es einen Zustand
-  $(p_1,p_2)\notin E$ mit $(p_1,p_2)\may[i](p_1',p_2')\in E$ für ein $i\in I$
-  gibt, dann werden alle must- und may-Transitionen mit $i$ startend bei
-  $(p_1,p_2)$ entfernt und eine einzige Transition $(p_1,p_2)\may[i]e_{12}$
-  hinzugefügt. Zusätzlich werden alle Zustände aus $E$ und alle unerreichbaren
-  Zustände (außer $e_{12}$) und alle ihre eingehenden und ausgehenden
-  Transitionen gelöscht. Falls $(p_1,p_2)\in P_1||P_2$, schreiben wir
-  $p_1||p_2$ und nennen $p_1$ und $p_2$ kompatiebel.
+  Sonst erhält man $P_1||P_2$ durch das entfernen unzulässiger Zustände aus
+  $P_1\otimes P_2$. Falls es einen Zustand $(p_1,p_2)\notin E$ mit
+  $(p_1,p_2)\may[i](p_1',p_2')\in E$ für ein $i\in I$ gibt, dann werden alle
+  must- und may-Transitionen mit $i$ startend bei $(p_1,p_2)$ entfernt und eine
+  einzige Transition $(p_1,p_2)\may[i]e_{12}$ hinzugefügt. Zusätzlich werden
+  alle Zustände aus $E$ und alle unerreichbaren Zustände (außer $e_{12}$) und
+  alle ihre eingehenden und ausgehenden Transitionen gelöscht. Falls
+  $(p_1,p_2)\in P_1||P_2$, schreiben wir $p_1||p_2$ und nennen $p_1$ und $p_2$
+  kompatibel.
+\end{Def}
+
+\TODO{weak Transitionen definieren}
+
+\begin{Def}[MIA Verfeinerunge]
+  Seien $P$ und $Q$ \MIA{}s mit gemeinsamen Input- und Output-Alphabeten. Dann
+  ist $\mathcal{R}\subseteq P\times Q$ eine \MIA{}-Verfeinerungs-Relation,
+  falls für alle $(p,q)\in\mathcal{R}$ mit $q\neq e_Q$ die folgenden
+  Eigenschaften erfüllt sind:
+  \begin{enumerate}[(i)]
+    \item $p\neq e_P$
+    \item $q\must[i]Q'\Rightarrow\exists P': p\must[i]\weakmust[\varepsilon]
+      P'$ und $\forall p'\in P'\exists q'\in Q':(p',q')\in\mathcal{R}$
+    \item $q\must[\omega]Q'\Rightarrow\exists P': p\weakmust[\hat{\omega}]
+      P'$ und $\forall p'\in P'\exists q'\in Q':(p',q')\in\mathcal{R}$
+    \item $p\may[i]p'\Rightarrow\exists q': a\may[i]\weakmay[\varepsilon]
+      q'$ und $(p',q')\in\mathcal{R}$
+    \item $p\may[\omega]p'\Rightarrow\exists q': q\weakmay[\hat{\omega}]
+      q'$ und $(p',q')\in\mathcal{R}$
+  \end{enumerate}
+  $p$ \MIA{}-verfeinert $q$ ($p\sqsubseteq q$), falls eine
+  \MIA{}-Verfeinerungs-Relation $\mathcal{R}$ existiert mit
+  $(p,q)\in\mathcal{R}$. Falls es auch in die umgekehrte Richtung eine
+  Verfeinerungsrelation gibt, sind die beiden Zustände äquivalent, was durch
+  $\sqsupseteq\sqsubseteq$ ausgedrückt wird. Für zwei \MIA{}s gilt $P\sqsubseteq Q$, falls
+  $p_0\sqsubseteq q_0$.
 \end{Def}
