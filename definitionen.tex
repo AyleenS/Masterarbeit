@@ -1,7 +1,7 @@
 \chapter{Definitionen}
 {\large\textbf{Stand: \today{}}}\\
 
-Die folgenden vier Definitionen sind analog aus\cite{Vogler2016MIA3} übernommen
+Die folgenden fünf Definitionen sind analog aus\cite{Vogler2016MIA3} übernommen
 worden.
 
 \begin{Def}[Modal Interface Automat]
@@ -101,7 +101,6 @@ may-Transitionen.
   \begin{enumerate}[(i)]
     \item $(p_1,p_2)$ ist ein neuer oder geerbter Kommunikationsfehler,
     \item $(p_1,p_2)\may[w] (p_1',p_2')$ und $(p_1',p_2')\in E$.
-      \TODO{$w\in O\cup \{\tau\}$ in Notation aufnehmen}
   \end{enumerate}
   Falls der Startzustand ein unzulässiger Zustand ist, dann wird $e_{12}$
   initial und somit der einzig erreichbare Zustand von $P_1||P_2$ ($P_1$ und
@@ -117,7 +116,30 @@ may-Transitionen.
   kompatibel.
 \end{Def}
 
-\TODO{weak Transitionen definieren}
+\begin{Def}[Schwache Transitionens-Relation]
+  Für einen beliebigen \MIA{} $P$, sind schwache must- (\weakmust) und
+  may-Transitions-Relationen (\weakmay) die kleinsten Relationen die die
+  folgenden Eigenschaften erfüllen, dabei ist $P'\weakmust[\hat{\alpha}]P''$
+  eine Abkürzung für $\forall p\in P'\exists P_p:p\weakmust[\hat{\alpha}]P_p$
+  und $P''=\underset{p\in P'}{\bigcup}P_p$:
+  \begin{enumerate}
+    \item $p\weakmust[\varepsilon]\{p\}\; \forall p\in P$,
+    \item $p\must[\tau]P'$ und $P'\weakmust[\hat{\alpha}]$ impliziert
+      $p\weakmust[\hat{\alpha}]P''$,
+    \item $p\must[a]P'$ und $P'\weakmust[\varepsilon]$ impliziert
+      $p\weakmust[a]P''$,
+    \item $p\weakmay[\varepsilon]p\; \forall p\in P$,
+    \item $p\weakmay[\varepsilon]p''\may[\tau]p'$ impliziert
+      $p\weakmay[\varepsilon]p$,
+    \item $p\weakmay[\varepsilon]p''\may[\alpha]p'''\weakmay[\varepsilon]$
+      impliziert $p\weakmay[\alpha]p$,
+  \end{enumerate}
+
+  Transitionen, die wie in Fall 3 aufgebaut sind, werden auch als
+  $\must[a]\weakmust[\varepsilon]$ notiert und schwach-endende must-Transition
+  \TODO{Übersetzung überlegen} genannt. Analog steht
+  $\may[a]\weakmay[\varepsilon]$ für eine schwach-endende may-Transition.
+\end{Def}
 
 \begin{Def}[MIA Verfeinerunge]
   Seien $P$ und $Q$ \MIA{}s mit gemeinsamen Input- und Output-Alphabeten. Dann
