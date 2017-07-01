@@ -1,8 +1,8 @@
 \chapter{Definitionen}
 {\large\textbf{Stand: \today{}}}\\
 
-Kombination aus \cite{Vogler2015FailSem} und \cite{Schinko2016BA} mit
-Einflüssen von \cite{Vogler2016MIA3}:
+Kombination aus~\cite{Vogler2015FailSem} und~\cite{Schinko2016BA} mit
+Einflüssen von~\cite{Vogler2016MIA3}:
 
 \begin{Def}[Modal Error-I/O-Transitionssystem]
   Ein \emph{Modal Error-I/O-Transitionssystem (\MEIO{})} ist ein Tupel
@@ -96,7 +96,8 @@ zugrundeliegende may-Transitionen.
       \Synch(P_1,P_2)\right\}
     \end{aligned}$
   \item $\begin{aligned}[t]
-      E & = (P_1\times E_2) \cup (E_1\times P_2) &&\text{geerbte Fehler}\\
+      E & = (P_1\times E_2) \cup (E_1\times P_2) &&\text{geerbte
+      Kommunikationsfehler}\\
         &\quad\left. \begin{aligned}
         &\cup \left\{(p_1,p_2) \mid \exists a \in O_1\cap I_2 : p_1
         \may[a]\land p_2\nmust[a]\right\}\\
@@ -117,8 +118,15 @@ zugrundeliegende may-Transitionen.
   \begin{enumerate}
     \item $p\must[\alpha] p'$ impliziert $q\must[\alpha] q'$ für ein $q'$ mit
       $pRq'$,
-    \item \TODO{$\may$}
+    \item $q\may[\alpha] q'$ impliziert $p\may[\alpha] p'$ für ein $p'$ mit
+      $pRq'$,
   \end{enumerate}
-  \TODO{Simulation als Grundlage für die Definition der Implementierung aus
-  \cite{Vogler2015FailSem}}
+  Die Vereinigung \asRel{} aller dieser Relationen wird als \emph{(starke)
+  as-Verfeinerung(-s Relation)} (auch modal Verfeinerung) bezeichnet. Es wird
+  $P\asRel Q$ geschrieben, falls $p_0\asRel q_0$ gilt, und $P$
+  \emph{as-verfeinert} $Q$ \emph{(stark)} oder $P$ ist eine \emph{(starke)
+  as-Verfeinerung} von $Q$.\\
+  Für einen \MEIO{} $Q$ und eine Implementierung mit $P$ mit $P\asRel{}Q$, ist
+  $P$ eine \emph{as-Implementierung} von $Q$ wund es wird $\asimp (Q)$ für die
+  Menge aller as-Implementierungen von $Q$ verwendet.
 \end{Def}

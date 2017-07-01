@@ -8,7 +8,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{amsmath,amssymb,amsthm,mathtools,graphicx}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows, automata, calc, matrix}
@@ -78,33 +78,48 @@
   {\ensuremath{\overset{#1}{\Longrightarrow}}
   }}
 
+% \newcommand{\maRel}{\ensuremath{}}
+
+\DeclareRobustCommand{\maRel}{\ensuremath{\text{\reflectbox{\rotatebox[origin=c]{180}{$\sqsubseteq$}}}}}
+
 % \newcommand{\prune}{\ensuremath{\mathrm{prune}}}
 % \newcommand{\cont}{\ensuremath{\mathrm{cont}}}
 % \newcommand{\Sig}{\ensuremath{\mathrm{Sig}}}
 \newcommand{\Synch}{\ensuremath{\mathrm{Synch}}}
+\newcommand{\asimp}{\ensuremath{as-impl}}
 
-% \newcommand{\EBRel}{\ensuremath{\sqsubseteq _E^\mathrm{B}}}
-% \newcommand{\ECRel}{\ensuremath{\sqsubseteq _E^\mathrm{C}}}
-% \newcommand{\ERel}{\ensuremath{\sqsubseteq _E}}
+\newcommand{\EBbaRel}{\ensuremath{\sqsubseteq _E^\mathrm{B}}}
+\newcommand{\ECbaRel}{\ensuremath{\sqsubseteq _E^\mathrm{C}}}
+\newcommand{\EbaRel}{\ensuremath{\sqsubseteq _E}}
+\newcommand{\EBRel}{\ensuremath{\maRel _E^\mathrm{B}}}
+\newcommand{\ECRel}{\ensuremath{\maRel _E^\mathrm{C}}}
+\newcommand{\ERel}{\ensuremath{\maRel _E}}
 % \newcommand{\StET}{\ensuremath{StET}}
 % \newcommand{\PrET}{\ensuremath{PrET}}
 % \newcommand{\MIT}{\ensuremath{MIT}}
 % \newcommand{\ET}{\ensuremath{ET}}
 % \newcommand{\EL}{\ensuremath{EL}}
 
-% \newcommand{\QBRel}{\ensuremath{\sqsubseteq _{Qui}^\mathrm{B}}}
-% \newcommand{\QCRel}{\ensuremath{\sqsubseteq _{Qui}^\mathrm{C}}}
-% \newcommand{\QRel}{\ensuremath{\sqsubseteq _{Qui}}}
+\newcommand{\QBbaRel}{\ensuremath{\sqsubseteq _{Qui}^\mathrm{B}}}
+\newcommand{\QCbaRel}{\ensuremath{\sqsubseteq _{Qui}^\mathrm{C}}}
+\newcommand{\QbaRel}{\ensuremath{\sqsubseteq _{Qui}}}
+\newcommand{\QBRel}{\ensuremath{\maRel _{Qui}^\mathrm{B}}}
+\newcommand{\QCRel}{\ensuremath{\maRel _{Qui}^\mathrm{C}}}
+\newcommand{\QRel}{\ensuremath{\maRel _{Qui}}}
 % \newcommand{\StQT}{\ensuremath{StQT}}
 % \newcommand{\PrQT}{\ensuremath{PrQT}}
 % \newcommand{\QT}{\ensuremath{QET}}
 
-% \newcommand{\DBRel}{\ensuremath{\sqsubseteq _{Div}^\mathrm{B}}}
+\newcommand{\DBbaRel}{\ensuremath{\sqsubseteq _{Div}^\mathrm{B}}}
+\newcommand{\DCbaRel}{\ensuremath{\sqsubseteq _{Div}^\mathrm{C}}}
+\newcommand{\DbaRel}{\ensuremath{\sqsubseteq _{Div}}}
+\newcommand{\DBRel}{\ensuremath{\maRel _{Div}^\mathrm{B}}}
+\newcommand{\DCRel}{\ensuremath{\maRel _{Div}^\mathrm{C}}}
+\newcommand{\DRel}{\ensuremath{\maRel _{Div}}}
 % \newcommand{\DBaRel}{\ensuremath{\sqsubseteq _{Div_{\mathrm{alt}}}^\mathrm{B}}}
-% \newcommand{\DCRel}{\ensuremath{\sqsubseteq _{Div}^\mathrm{C}}}
 % \newcommand{\DCaRel}{\ensuremath{\sqsubseteq _{Div_{\mathrm{alt}}}^\mathrm{C}}}
-% \newcommand{\DRel}{\ensuremath{\sqsubseteq _{Div}}}
 % \newcommand{\DaRel}{\ensuremath{\sqsubseteq _{Div_{\mathrm{alt}}}}}
+\newcommand{\asRel}{\ensuremath{\sqsubseteq _{as}}}
 % \newcommand{\StDT}{\ensuremath{StDT}}
 % \newcommand{\PrDT}{\ensuremath{PrDT}}
 % \newcommand{\EDT}{\ensuremath{EDT}}
@@ -152,7 +167,7 @@
 % \clearpage
 % \thispagestyle{empty}
 
-% \input{error.tex}
+\input{error.tex}
 
 % \clearpage
 % \thispagestyle{empty}

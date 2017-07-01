@@ -1,0 +1,26 @@
+\chapter{Verfeinerungen für Kommunikationsfehler-Freiheit}
+
+Dieses Kapitel versucht die Präkongruenz für Error bei \EIO{}s
+aus~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
+
+\begin{Def}[fehler-freie Kommunikation]
+  Ein Kommunikationsfehler-Zustand ist \emph{lokal erreichbar} in einer
+  Implementierung $P'$ eines \MEIO{} $P$, wenn ein $w\in O^*$ exsitiert mit
+  $p'_0 \weakmust[w]p'\in E'$.\\
+  Zwei \MEIO{}s $P_1$ und $P_2$ \emph{kommunizieren fehler-frei}, wenn alle
+  Implementierungen ihrer Parallelkomposition $P_{12}$ keine
+  Kommunikationsfehler-Zustände lokal erreichen können.
+\end{Def}
+
+\begin{Def}[Kommunikationsfehler-Verfeinerungs-Basirelation]
+  Für \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur \TODO{Signatur
+  definieren} wird $P_1\EBRel{} P_2$ geschrieben, wenn ein
+  Kommunikationsfehler-Zustand in einer Implementierung von $P_1$ nur dann
+  lokal erreichbar ist, wenn es auch eine Implementierung von $P_2$ gibt, in
+  der dieser Kommunikationsfehler-Zustand auch lokal erreichbar ist. Die
+  Basisrelation stellt eine \emph{Verfeinerung} bezüglich
+  \emph{Kommunikationsfehlern} dar.\\
+  \ECRel{} bezeichnet die \emph{vollständig abstrakte Präkongurenz} von
+  \EBRel{} bezüglich $\cdot\|\cdot$, d.h.\ die gröbste Präkongurenz bezüglich
+  $\cdot\|\cdot$, die in \EBRel{} enthalten ist.
+\end{Def}
