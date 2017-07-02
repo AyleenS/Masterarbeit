@@ -22,10 +22,13 @@ Einflüssen von~\cite{Vogler2016MIA3}:
   Konsistenz}) gilt.\\
   Das \emph{Alphabet} bzw.\ die Aktionsmenge eines \MEIO{} ist $\Sigma = I\cup
   O$. Die \emph{interne Aktion} $\tau$ ist nicht in $\Sigma$ enthalten. Jedoch
-  gilt $\Sigma_{\tau} := \Sigma \cup \{\tau\}$.\\
+  gilt $\Sigma_{\tau} := \Sigma \cup \{\tau\}$. Die \emph{Signatur} eines
+  \MEIO{}s entspricht $\Sig (S)=(I,O)$.\\
   Falls $\must =\may$ gilt, wird $P$ auch \emph{Implementierung} genannt.
 \end{Def}
 
+Implementierungen entsprechen den in~\cite{Schinko2016BA} behandelten
+\EIO{}s.\\
 Must-Transitionen sind Transitionen, die von einer Verfeinerung implementiert
 werden müssen. Die may-Transitionen sind hingegen die zulässigen Transitionen
 für eine Verfeinerung.\\
@@ -129,4 +132,18 @@ zugrundeliegende may-Transitionen.
   Für einen \MEIO{} $Q$ und eine Implementierung mit $P$ mit $P\asRel{}Q$, ist
   $P$ eine \emph{as-Implementierung} von $Q$ wund es wird $\asimp (Q)$ für die
   Menge aller as-Implementierungen von $Q$ verwendet.
+\end{Def}
+
+Die Funktionen \prune{} und \cont{} zum Abschneiden und Verlängern von Traces
+werden hier genauso verwendet, wie sie in~\cite{Schinko2016BA} definiert
+wurden. Man muss dazu nur \EIO{} in der Defintion durch \MEIO{} ersetzten.
+Ebenso wird die Parallelkomposition von Wörtern und Mengen von Wörtern bzw.\
+Sprachen analog übernommen.
+
+\begin{Def}[Sprache]
+  Die \emph{(minimale) Sprache} eines \MEIO{}s $P$ ist $L(P) := \left\{w\in
+  \Sigma ^* \mid \text{für alle Implementierungen von } P : p_0\weakmust[w]
+  \right\}$.\\
+  Für zwei komboinerbare \MEIO{}s $P_1$ und $P_2$ gilt: $L_{12} := L(P_{12}) =
+  L_1\|L_2$.
 \end{Def}

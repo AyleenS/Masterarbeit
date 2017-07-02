@@ -38,17 +38,17 @@
 {\textbf{\thmname{#1}\thmnumber{ #2}\thmnote{ (\textit{#3})}}}% Manually specify head
 \theoremstyle{mythmstyle}
 \newtheorem{Def}{Definition}[chapter]
-\newtheorem{satz}[Def]{Satz}
-\newtheorem{bsp}[Def]{Beispiel}
-\newtheorem{lem}[Def]{Lemma}
-\newtheorem{kor}[Def]{Korollar}
-\newtheorem{prop}[Def]{Proposition}
+\newtheorem{Satz}[Def]{Satz}
+\newtheorem{Bsp}[Def]{Beispiel}
+\newtheorem{Lem}[Def]{Lemma}
+\newtheorem{Kor}[Def]{Korollar}
+\newtheorem{Prop}[Def]{Proposition}
 
 \newcommand{\oBdA}{oBdA}
 \newcommand{\OBdA}{OBdA}
 \newcommand{\EIO}{EIO}
 \newcommand{\MIA}{MIA}
-\newcommand{\MEIO}{MEIO}
+\newcommand{\MEIO}{\mbox{MEIO}}
 
 \newcommand{\may}[1][\empty]{%
   \ifthenelse{\equal{#1}{\empty}}{\ensuremath{\dashrightarrow}}
@@ -82,11 +82,11 @@
 
 \DeclareRobustCommand{\maRel}{\ensuremath{\text{\reflectbox{\rotatebox[origin=c]{180}{$\sqsubseteq$}}}}}
 
-% \newcommand{\prune}{\ensuremath{\mathrm{prune}}}
-% \newcommand{\cont}{\ensuremath{\mathrm{cont}}}
-% \newcommand{\Sig}{\ensuremath{\mathrm{Sig}}}
+\newcommand{\prune}{\ensuremath{\mathrm{prune}}}
+\newcommand{\cont}{\ensuremath{\mathrm{cont}}}
+\newcommand{\Sig}{\ensuremath{\mathrm{Sig}}}
 \newcommand{\Synch}{\ensuremath{\mathrm{Synch}}}
-\newcommand{\asimp}{\ensuremath{as-impl}}
+\newcommand{\asimp}{\ensuremath{\mathrm{as}\text{-}\mathrm{impl}}}
 
 \newcommand{\EBbaRel}{\ensuremath{\sqsubseteq _E^\mathrm{B}}}
 \newcommand{\ECbaRel}{\ensuremath{\sqsubseteq _E^\mathrm{C}}}
@@ -94,11 +94,11 @@
 \newcommand{\EBRel}{\ensuremath{\maRel _E^\mathrm{B}}}
 \newcommand{\ECRel}{\ensuremath{\maRel _E^\mathrm{C}}}
 \newcommand{\ERel}{\ensuremath{\maRel _E}}
-% \newcommand{\StET}{\ensuremath{StET}}
-% \newcommand{\PrET}{\ensuremath{PrET}}
-% \newcommand{\MIT}{\ensuremath{MIT}}
-% \newcommand{\ET}{\ensuremath{ET}}
-% \newcommand{\EL}{\ensuremath{EL}}
+\newcommand{\StET}{\ensuremath{StET}}
+\newcommand{\PrET}{\ensuremath{PrET}}
+\newcommand{\MIT}{\ensuremath{MIT}}
+\newcommand{\ET}{\ensuremath{ET}}
+\newcommand{\EL}{\ensuremath{EL}}
 
 \newcommand{\QBbaRel}{\ensuremath{\sqsubseteq _{Qui}^\mathrm{B}}}
 \newcommand{\QCbaRel}{\ensuremath{\sqsubseteq _{Qui}^\mathrm{C}}}

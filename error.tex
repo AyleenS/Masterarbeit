@@ -3,24 +3,71 @@
 Dieses Kapitel versucht die Präkongruenz für Error bei \EIO{}s
 aus~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
 
-\begin{Def}[fehler-freie Kommunikation]
-  Ein Kommunikationsfehler-Zustand ist \emph{lokal erreichbar} in einer
-  Implementierung $P'$ eines \MEIO{} $P$, wenn ein $w\in O^*$ exsitiert mit
+\begin{Def}[Fehler-freie Kommunikation]
+  Ein Kommunikationsfehler"=Zustand ist \emph{lokal erreichbar} in einer
+  Implementierung $P'$ eines \MEIO{} $P$, wenn ein $w\in O^*$ existiert mit
   $p'_0 \weakmust[w]p'\in E'$.\\
-  Zwei \MEIO{}s $P_1$ und $P_2$ \emph{kommunizieren fehler-frei}, wenn alle
+  Zwei \MEIO{}s $P_1$ und $P_2$ \emph{kommunizieren Fehler-frei}, wenn alle
   Implementierungen ihrer Parallelkomposition $P_{12}$ keine
-  Kommunikationsfehler-Zustände lokal erreichen können.
+  Kommunikationsfehler"=Zustände lokal erreichen können.
 \end{Def}
 
 \begin{Def}[Kommunikationsfehler-Verfeinerungs-Basirelation]
-  Für \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur \TODO{Signatur
-  definieren} wird $P_1\EBRel{} P_2$ geschrieben, wenn ein
-  Kommunikationsfehler-Zustand in einer Implementierung von $P_1$ nur dann
-  lokal erreichbar ist, wenn es auch eine Implementierung von $P_2$ gibt, in
-  der dieser Kommunikationsfehler-Zustand auch lokal erreichbar ist. Die
-  Basisrelation stellt eine \emph{Verfeinerung} bezüglich
+  Für zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur wird $P_1\EBRel{} P_2$
+  geschrieben, wenn ein Kommunikationsfehler"=Zustand in einer Implementierung
+  von $P_1$ nur dann lokal erreichbar ist, wenn es auch eine Implementierung
+  von $P_2$ gibt, in der dieser Kommunikationsfehler"=Zustand auch lokal
+  erreichbar ist. Die Basisrelation stellt eine \emph{Verfeinerung} bezüglich
   \emph{Kommunikationsfehlern} dar.\\
-  \ECRel{} bezeichnet die \emph{vollständig abstrakte Präkongurenz} von
-  \EBRel{} bezüglich $\cdot\|\cdot$, d.h.\ die gröbste Präkongurenz bezüglich
+  \ECRel{} bezeichnet die \emph{vollständig abstrakte Präkongruenz} von
+  \EBRel{} bezüglich $\cdot\|\cdot$, d.h.\ die gröbste Präkongruenz bezüglich
   $\cdot\|\cdot$, die in \EBRel{} enthalten ist.
 \end{Def}
+
+Für $P_1$ und $P_2$ Implementierungen entspricht \EBRel{} der Relation
+\EBbaRel{} aus~\cite{Schinko2016BA}.
+
+Wie in~\cite{Schinko2016BA} werden die Fehler hier Trace basiert betrachtet. Da
+jedoch die Basisrelation über Implementierungen spricht, sind die Trace Mengen
+auch nicht für die \MEIO{}s mit may-Transitionen definiert sondern nur für die
+Menge der möglichen Implementierungen eines solchen \MEIO{}s.
+
+\begin{Def}[Kommunikationsfehler-Traces]
+  Für einen \MEIO{} $P$ wird definiert:
+  \begin{itemize}
+    \item \emph{strikte Kommunikationsfehler-Traces}: $\StET (P) := \left\{w\in\Sigma
+      ^* \mid \exists \text{Implementierung von } P: \phantom{\weakmust[w]}
+      \right.$ $\left.p_0 \weakmust[w] p \in E\right\}$
+    \item \emph{gekürzte Kommunikationsfehler-Traces}: $\PrET (P) := \left\{\prune (w)
+      \mid w\in\StET (P)\right\}$
+    \item \emph{Input-kritische-Traces}: $\MIT (P) := \left\{wa\in\Sigma ^* \mid
+      \exists \text{Implementierung von } P : p_0 \weakmust[w] p \;\land
+      \right.$ $\left. a\in I\land p\nmust[a] \right\}$
+  \end{itemize}
+\end{Def}
+
+\begin{Def}[Kommunikationsfehler-Semantik]
+  Sie $P$ ein \MEIO{}.
+  \begin{itemize}
+    \item Die Menge der \emph{Kommunikationsfehler-Traces} von $P$ ist $\ET (P)
+      := \cont (\PrET (P)) \cup\cont (\MIT (P))$.
+    \item Die \emph{Kommunikationsfehler-geflutete Sprache} von $P$ ist $\EL
+      (P) := L(P) \cup \ET (P)$.
+  \end{itemize}
+  Für zwei \MEIO{}s $P_1,P_2$ mit der gleichen Signatur wird $P_1\ERel P_2$
+  geschrieben, wenn $\ET _1\subseteq \ET _2$ und $\EL _1 \subseteq \EL _2$
+  gilt.
+\end{Def}
+
+Hierbei ist zu beachten, dass die Mengen \StET{}, \PrET{}, \MIT{}, \ET{} und
+\EL{} nur denen aus~\cite{Schinko2016BA} entsprechen, wenn $P$ bereits eine
+Implementierung ist.
+
+\begin{Satz}[Kommunikationsfehler-Semantik für Parallelkompositionen]
+  Für zwei komponierbare \MEIO{}s $P_1,P_2$ und ihre Komposition $P_{12}$ gilt:
+  \begin{enumerate}
+    \item $\ET _{12} = \cont (\prune ((\ET _1\|\EL _2) \cup (\EL _1\|\ET
+      _2)))$,
+    \item $\EL _{12} = (\EL _1\|\EL _2) \cup \ET _{12}$.
+  \end{enumerate}
+\end{Satz}
