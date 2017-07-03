@@ -23,7 +23,7 @@ Einflüssen von~\cite{Vogler2016MIA3}:
   Das \emph{Alphabet} bzw.\ die Aktionsmenge eines \MEIO{} ist $\Sigma = I\cup
   O$. Die \emph{interne Aktion} $\tau$ ist nicht in $\Sigma$ enthalten. Jedoch
   gilt $\Sigma_{\tau} := \Sigma \cup \{\tau\}$. Die \emph{Signatur} eines
-  \MEIO{}s entspricht $\Sig (S)=(I,O)$.\\
+  \MEIO{}s entspricht $\Sig (P)=(I,O)$.\\
   Falls $\must =\may$ gilt, wird $P$ auch \emph{Implementierung} genannt.
 \end{Def}
 
@@ -115,13 +115,27 @@ zugrundeliegende may-Transitionen.
   beibehalten.
 \end{Def}
 
+Ein neuer Kommunikationsfehler entsteht, wenn einer der \MEIO{}s die
+Möglichkeit für einen Output hat (may-Transition) und der andere \MEIO{} der
+passenden Input nicht erzwingt (keine must-Transition vorhanden). Es muss also
+in möglichen Implementierungen nicht wirklich zu diesem Kommunikationsfehler
+kommen, da die Output-Transition nicht zwingender maßen implementiert werden
+muss.\\
+Wie bereits in~\cite{Schinko2016BA} kann es durch die Synchronisation von
+Inputs zu keinen neuen Kommunikationsfehler kommen, da dies in beiden Automaten
+keine lokal kontrollierte Aktion ist. Falls jedoch nur einer der Automaten die
+Möglichkeit für einen Input hat, der synchronisiert wird, besteht diese
+Möglichkeit in der Parallelkomposition nicht mehr. Es kann also in der
+Kommunikation mit einem weiteren \MEIO{} dort zu einen neuen
+Kommunikationsfehler kommen.
+
 \begin{Def}[Simulation]
   Eine \emph{(starke) alternierende Simulation} ist eine Relation $R\subseteq P
   \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
   \begin{enumerate}
-    \item $p\must[\alpha] p'$ impliziert $q\must[\alpha] q'$ für ein $q'$ mit
+    \item $q\must[\alpha] q'$ impliziert $p\must[\alpha] p'$ für ein $q'$ mit
       $pRq'$,
-    \item $q\may[\alpha] q'$ impliziert $p\may[\alpha] p'$ für ein $p'$ mit
+    \item $p\may[\alpha] p'$ impliziert $q\may[\alpha] q'$ für ein $p'$ mit
       $pRq'$,
   \end{enumerate}
   Die Vereinigung \asRel{} aller dieser Relationen wird als \emph{(starke)
@@ -130,20 +144,20 @@ zugrundeliegende may-Transitionen.
   \emph{as-verfeinert} $Q$ \emph{(stark)} oder $P$ ist eine \emph{(starke)
   as-Verfeinerung} von $Q$.\\
   Für einen \MEIO{} $Q$ und eine Implementierung mit $P$ mit $P\asRel{}Q$, ist
-  $P$ eine \emph{as-Implementierung} von $Q$ wund es wird $\asimp (Q)$ für die
-  Menge aller as-Implementierungen von $Q$ verwendet.
+  $P$ eine \emph{as"=Implementierung} von $Q$ und es wird $\asimp (Q)$ für die
+  Menge aller as"=Implementierungen von $Q$ verwendet.
 \end{Def}
 
 Die Funktionen \prune{} und \cont{} zum Abschneiden und Verlängern von Traces
 werden hier genauso verwendet, wie sie in~\cite{Schinko2016BA} definiert
-wurden. Man muss dazu nur \EIO{} in der Defintion durch \MEIO{} ersetzten.
+wurden. Man muss dazu nur \EIO{} in der Definition durch \MEIO{} ersetzten.
 Ebenso wird die Parallelkomposition von Wörtern und Mengen von Wörtern bzw.\
 Sprachen analog übernommen.
 
 \begin{Def}[Sprache]
-  Die \emph{(minimale) Sprache} eines \MEIO{}s $P$ ist $L(P) := \left\{w\in
-  \Sigma ^* \mid \text{für alle Implementierungen von } P : p_0\weakmust[w]
+  Die \emph{(maximale) Sprache} eines \MEIO{}s $P$ ist $L(P) := \left\{w\in
+  \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]
   \right\}$.\\
-  Für zwei komboinerbare \MEIO{}s $P_1$ und $P_2$ gilt: $L_{12} := L(P_{12}) =
+  Für zwei komponierbare \MEIO{}s $P_1$ und $P_2$ gilt: $L_{12} := L(P_{12}) =
   L_1\|L_2$.
 \end{Def}
