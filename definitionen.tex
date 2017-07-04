@@ -67,6 +67,7 @@ repräsentiert jede gezeichnete must-Transition auch gleichzeitig die
 zugrundeliegende may-Transitionen.
 
 \begin{Def}[Parallelkomposition]
+  \label{ParallelDef}
   Zwei \MEIO{}s $P_1 = (P_1,I_1,O_1,{\must_1,}{\may_1,}$ $p_{01},E_1)$ und $P_2 =
   (P_2,I_2,O_2,\must_2,\may_2,p_{02},E_2)$ sind \emph{komponierbar}, falls
   $O_1\cap O_2=\emptyset$. Für solche \MEIO{}s ist die
@@ -130,6 +131,7 @@ Kommunikation mit einem weiteren \MEIO{} dort zu einen neuen
 Kommunikationsfehler kommen.
 
 \begin{Def}[Simulation]
+  \label{SimDef}
   Eine \emph{(starke) alternierende Simulation} ist eine Relation $R\subseteq P
   \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
   \begin{enumerate}
