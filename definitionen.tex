@@ -150,13 +150,41 @@ Kommunikationsfehler kommen.
   Menge aller as"=Implementierungen von $Q$ verwendet.
 \end{Def}
 
-Die Funktionen \prune{} und \cont{} zum Abschneiden und Verlängern von Traces
-werden hier genauso verwendet, wie sie in~\cite{Schinko2016BA} definiert
-wurden. Man muss dazu nur \EIO{} in der Definition durch \MEIO{} ersetzten.
-Ebenso wird die Parallelkomposition von Wörtern und Mengen von Wörtern bzw.\
-Sprachen analog übernommen.
+Die Parallelkomposition von Wörtern und Mengen kann aus~\cite{Schinko2016BA}
+übernommen werden.
+
+\begin{Def}[Parallelkomposition auf Traces]\mbox{}
+  \begin{itemize}
+    \item Für zwei Wörter $w_1\in\Sigma _1$ und $w_2\in\Sigma _2$ ist
+      deren Parallelkomposition definiert als: $w_1\| w_2:=\left\{w\in
+      (\Sigma _1\cup\Sigma _2)^*\mid w|_{\Sigma _1}=w_1\wedge w|_{\Sigma
+    _2}=w_2\right\}$.
+    \item Für zwei Mengen von Wörtern bzw. Sprachen $W_1\subseteq \Sigma
+      ^*_1$ und $W_2\subseteq \Sigma ^*_2$ ist deren Parallelkomposition
+      definiert als: $W_1\| W_2:=\bigcup\hspace{1pt}\left\{w_1\| w_2\mid
+      w_1\in W_1\wedge w_2\in W_2\right\}$.
+  \end{itemize}
+\end{Def}
+
+Ebenso können die Definitionen der Funktionen \prune{} und \cont{} zum
+Abschneiden und Verlängern von Traces aus~\cite{Schinko2016BA} übernommen
+werden.
+
+\begin{Def}[Pruning- und Fortsetzungs-Funktion]\mbox{}
+  \begin{itemize}
+    \item $\prune{}:\Sigma ^*\rightarrow\Sigma ^*, w\mapsto u$, mit $w=uv,
+      u=\varepsilon\footnotemark\vee u\in\Sigma ^*\cdot I$ und $v\in O^*$,
+    \footnotetext{$\varepsilon$ bezeichnet das leere Wort}
+    \item $\cont{}:\Sigma ^*\rightarrow\mathfrak{P}(\Sigma ^*)\footnotemark,
+      w\mapsto\left\{wu\mid u\in\Sigma ^*\right\}$,
+    \footnotetext{$\mathfrak{P}(M)$ bezeichnet die Potenzmenge der Menge $M$}
+    \item $\cont{}:\mathfrak{P}(\Sigma ^*)\rightarrow\mathfrak{P}(\Sigma ^*),
+      L\mapsto\bigcup\hspace{1pt}\left\{\cont{}(w)\mid w\in L\right\}$.
+  \end{itemize}
+\end{Def}
 
 \begin{Def}[Sprache]
+  \label{LDef}
   Die \emph{(maximale) Sprache} eines \MEIO{}s $P$ ist $L(P) := \left\{w\in
   \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]
   \right\}$.\\

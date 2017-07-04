@@ -1,6 +1,7 @@
 \chapter{allgemeine Folgerungen}
 
 \begin{Lem}[as-Implementierungen und Parallelkomposition]\mbox{}
+  \label{impParallelLem}
   \begin{enumerate}
     \item $P'_1\in\asimp (P_1) \land P'_2 \in\asimp (P_2) \Rightarrow
       (P'_1\|P'_2) \in\asimp (P_1\|P_2)$.
@@ -9,7 +10,7 @@
   \end{enumerate}
 \end{Lem}
 
-\begin{proof}
+\begin{proof}\mbox{}
   \begin{enumerate}
     \item Es gelte $i\in\{1,2\}$. Jede Transition ($\may '_i =\must '_i$) in
       $P'_i$ hat eine entsprechende may-Transition in $P_i$, da
