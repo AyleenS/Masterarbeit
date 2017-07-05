@@ -145,12 +145,13 @@ Kommunikationsfehler kommen.
   $P\asRel Q$ geschrieben, falls $p_0\asRel q_0$ gilt, und $P$
   \emph{as-verfeinert} $Q$ \emph{(stark)} oder $P$ ist eine \emph{(starke)
   as-Verfeinerung} von $Q$.\\
-  Für einen \MEIO{} $Q$ und eine Implementierung mit $P$ mit $P\asRel{}Q$, ist
+  Für einen \MEIO{} $Q$ und eine Implementierung $P$ mit $P\asRel{}Q$, ist
   $P$ eine \emph{as"=Implementierung} von $Q$ und es wird $\asimp (Q)$ für die
   Menge aller as"=Implementierungen von $Q$ verwendet.
 \end{Def}
 
 \begin{Def}[schwache Simulation]
+  \label{wSimDef}
   Eine \emph{schwache alternierende Simulation} ist eine Relation $R\subseteq P
   \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
   \begin{enumerate}
@@ -166,7 +167,10 @@ Kommunikationsfehler kommen.
   Wobei $i\in I$ und $\omega\in O\cup\{\tau\}$.\\
   Analog zur starken alternierenden Simulation, wird hier \wasRel{} als
   Relationssymbol verwendet und man kann auch entsprechend \emph{schwache
-  as"=Verfeinerung} betrachten.
+  as"=Verfeinerung} betrachten.\\
+  Ebenso kann für einen \MEIO{} Q une eine Implementierung $P$ mit $P\wasRel
+  Q$, ist $P$ eine \emph{w"=as"=Implementierung} von $Q$ und es wird $\wasimp
+  (Q)$ für die Menge aller w"=as"=Implementierungen von $Q$ verwendet.
 \end{Def}
 
 Die schwache Simulation erlaubt interne Aktionen beim \MEIO{}, der die

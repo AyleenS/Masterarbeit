@@ -17,17 +17,17 @@
       Definition~\ref{SimDef} 2.\ gilt. Aufgrund der Simulations
       Definition~\ref{SimDef}, haben $P_i$ und $P'_i$ die gleichen Signaturen
       und somit gilt $\Synch (P_1,P_2) =\Synch (P'_1,P'_2)$.\\
-      Daraus folgt, unter Verwendung das die Definitionen der must- und
-      may-Transitionen der Parallelkomposition in~\ref{ParallelDef} analog
+      Daraus folgt unter Verwendung, dass die Definitionen der must- und
+      may"=Transitionen der Parallelkomposition in~\ref{ParallelDef} analog
       formuliert sind, dass alle Transitionen, die in $P'_1\|P'_2$ enthalten
-      sind auch in $P_1\|P_2$ als may-Transitionen vorhanden sind. Es können
-      bei der Parallelkomposition von \MEIO{}s (Implementierungen), die die
-      gleichen must- und may-Transitionsmengen haben, keine may-Transitionen
+      sind auch in $P_1\|P_2$ als may"=Transitionen vorhanden sind. Es können
+      bei der Parallelkomposition von \MEIO{}s, die die gleichen must- und
+      may-Transitionsmengen haben (Implementierungen), keine may"=Transitionen
       entstehen, zu denen es keine passende must-Transition gibt (Definition
       von $\must _{12}$ und $\may _{12}$ in~\ref{ParallelDef}). $P'_1\|P'_2$
       ist also eine Implementierung.\\
-      $P_1\|P_2$ enthält nur must-Transitionen, wenn auch $P_1$ bzw.\ $P_2$
-      diese enthalten haben. $P'_1$ und $P'_2$ müssen diese must-Transitionen
+      $P_1\|P_2$ enthält nur must"=Transitionen, wenn auch $P_1$ bzw.\ $P_2$
+      diese enthalten haben. $P'_1$ und $P'_2$ müssen diese must"=Transitionen
       aufgrund von Definition~\ref{SimDef} 1.\ implementieren und somit enthält auch
       $P'_1\|P'_2$ die entsprechenden durch~\ref{SimDef} 1.\ geforderten
       Transitionen, um eine as"=Implementierung von $P_1\|P_2$ sein zu können.\\
@@ -45,15 +45,85 @@
       Transitionen implementierten, so dass $P'=P'_1\|P'_2$ gilt.\\
       Alle Transitionen, die in $P'$ aufgrund von Definition~\ref{SimDef} 1.\
       implementiert werden müssen, mussten auch bereits in $P_1$ bzw.\ $P_2$
-      als must-Transitionen vorhanden sein. Da $P'_1$ und $P'_2$
-      as"=Implementierungen von $P_1$ und $P_2$ sind müssen diese auch die
+      als must"=Transitionen vorhanden sein. Da $P'_1$ und $P'_2$
+      as"=Implementierungen von $P_1$ und $P_2$ sind, müssen diese auch die
       Simulations Definition (\ref{SimDef}) erfüllen und somit die
-      must-Transitionen aus $P_1$ bzw.\ $P_2$ implementieren.\\
-      Es kann nicht passieren, dass $P_1$ und $P_2$ must-Transitionen
+      must"=Transitionen aus $P_1$ bzw.\ $P_2$ implementieren.\\
+      Es kann nicht passieren, dass $P_1$ und $P_2$ must"=Transitionen
       enthalten, die $P'_1$ und $P'_2$ implementieren müssen und dann in
       $P'_1\|P'_2$ zu einer Transition führen, die $P'$ auf Basis der
       Definition~\ref{SimDef} 1.\ nicht ebenfalls implementieren muss ($\must
-      _{12}$ und $\may _{12}$ Definition in~\ref{ParallelDef}).\\
+      _{12}$ und $\may _{12}$ Definitionen in~\ref{ParallelDef}).\\
+      $\Rightarrow$ es gibt passende $P'_1$ und $P'_2$ mit $P'_1\in\asimp (P_1)
+      \land P'_2\in\asimp (P_2) \land P'=P'_1\|P'_2$.
+  \end{enumerate}
+\end{proof}
+
+\begin{Lem}[w-as-Implementierungen und Parallelkomposition]\mbox{}
+  \begin{enumerate}
+    \item $P'_1\in\wasimp (P_1) \land P'_2 \in\wasimp (P_2) \Rightarrow
+      (P'_1\|P'_2) \in\wasimp (P_1\|P_2)$.
+    \item $P' \in\wasimp (P_1\|P_2) \Rightarrow \exists P'_1,P'_2 : P'_1
+      \in\wasimp (P_1) \land P'_2 \in\wasimp (P_2) \land P'_1\|P'_2=P'$.
+  \end{enumerate}
+\end{Lem}
+
+\begin{proof}\mbox{}
+  \begin{enumerate}
+    \item Es gelte $i\in\{1,2\}$. Jede Transition ($\may '_i =\must '_i$) einer
+      sichtbaren Aktion in $P'_i$ hat eine entsprechende schwache
+      may-Transition in $P_i$, da Definition~\ref{wSimDef} 2.\ gilt. Aufgrund
+      der Simulations Definition~\ref{wSimDef}, haben $P_i$ und $P'_i$ die
+      gleichen Signaturen (bezieht sich nur auf sichtbare Aktionen) und somit
+      gilt $\Synch (P_1,P_2) = \Synch (P'_1,P'_2)$.\\
+      Daraus folgt unter Verwendung, dass die Definitionen der must- und
+      may"=Transitionen der Parallelkomposition in~\ref{ParallelDef} analog
+      formuliert sind, dass alle sichtbaren Transitionen, die in $P'_1\|P'_2$
+      enthalten sind auch in $P_1\|P_2$ als schwache may"=Transitionen
+      vorhanden sind. Hierzu ist noch anzumerken, dass die interne Aktion nie
+      in der Parallelkomposition synchronisiert wird und somit die \MEIO{}s
+      diese in der Komposition jeweils für ihre Komponente alleine ausführen.\\
+      $P'_1\|P'_2$ ist mit der gleichen Begründung wie im Beweis von
+      Satz~\ref{impParallelLem} 1.\ eine Implementierung.\\
+      $P_1\|P_2$ enthält nur must"=Transitionen, wenn auch $P_1$ bzw.\ $P_2$
+      diese enthalten haben. $P'_1$ und $P'_2$ müssen diese must"=Transitionen
+      aufgrund von Definition~\ref{SimDef} 1.\ schwach implementieren, d.h.\
+      bei Inputs können danach noch interne Aktionen möglich sein und bei
+      Outputs davor und danach und bei einen $\tau$ können beliebig viele
+      interne Aktionen implementiert werden (auch keine). Die durch $P_1\|P_2$
+      und~\ref{SimDef} 1.\ geforderten Implementierungen von must"=Transitionen
+      in $P'_1\|P'_2$ basieren auf den must"=Transitionen der einzelnen
+      \MEIO{}s, die schwach in deren w"=as"=Implementierungen implementiert
+      wurden. Die zusätzlichen $\tau$s, die dadurch entstehen, hindern
+      $P'_1\|P'_2$ in der Parallelkomposition nicht daran die
+      must"=Transitionen auch entsprechend schwach zu implementieren.\\
+      $\Rightarrow (P'_1\|P'_2)\in\wasimp (P_1\|P_2)$.
+    \item Wie im Beweis zu 1.\ muss jede sichtbare Transition aus $P'$ in
+      $P_1\|P_2$ als schwache may-Transition auftauchen
+      (Definition~\ref{wSimDef} 2.). Bei der Projektion auf die einzelnen
+      Transitionssysteme muss die schwache Transition im jeweiligen Automaten
+      erhalten bleiben. Wobei sich jedoch die Anzahl der $\tau$s auf die beiden
+      Systeme aufteilt. Die gleichen Signaturen von $P_i$ und $P'_i$ führen
+      ebenso wieder zu den gleichen Synchronisationsmengen.\\
+      $\Rightarrow$ Es kann $P'_1$ und $P'_2$ geben, die alle nötigen
+      Transitionen implementierten, so dass $P'=P'_1\|P'_2$ gilt.\\
+      Alle Transitionen, die in $P'$ aufgrund von Definition~\ref{SimDef} 1.\
+      schwach implementiert werden müssen, mussten auch bereits in $P_1$ bzw.\
+      $P_2$ als must"=Transitionen vorhanden sein. Da $P'_1$ und $P'_2$
+      w"=as"=Implementierungen von $P_1$ und $P_2$ sind, müssen diese auch die
+      Simulations Definition (\ref{SimDef}) erfüllen und somit die
+      must"=Transitionen aus $P_1$ bzw.\ $P_2$ schwach implementieren. Hierbei
+      muss auf die korrekte Anzahl an $\tau$s geachtet werden, die man dann in
+      der Parallelkomposition erhält.\\
+      Es kann nicht passieren, dass $P_1$ und $P_2$ must"=Transitionen
+      enthalten, die $P'_1$ und $P'_2$ schwach implementieren müssen und dann
+      in $P'_1\|P'_2$ zu einer mit einer sichtbaren Aktion beschriften
+      Transition führen, die $P'$ auf Basis der Definition~\ref{SimDef} 1.\
+      nicht ebenfalls implementieren muss ($\must _{12}$ und $\may _{12}$
+      Definitionen in~\ref{ParallelDef}). Natürlich kann es durch die internen
+      Aktionen zu Fehler kommen, da diese aber jedoch immer nur schwach
+      implementiert werden müssen, kann man dort die Anzahl entsprechend
+      regulieren um das gewünschte Ergebnis zu erhalten.\\
       $\Rightarrow$ es gibt passende $P'_1$ und $P'_2$ mit $P'_1\in\asimp (P_1)
       \land P'_2\in\asimp (P_2) \land P'=P'_1\|P'_2$.
   \end{enumerate}
