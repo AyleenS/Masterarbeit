@@ -135,9 +135,9 @@ Kommunikationsfehler kommen.
   Eine \emph{(starke) alternierende Simulation} ist eine Relation $R\subseteq P
   \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
   \begin{enumerate}
-    \item $q\must[\alpha] q'$ impliziert $p\must[\alpha] p'$ für ein $q'$ mit
+    \item $q\must[\alpha] q'$ impliziert $p\must[\alpha] p'$ für ein $p'$ mit
       $pRq'$,
-    \item $p\may[\alpha] p'$ impliziert $q\may[\alpha] q'$ für ein $p'$ mit
+    \item $p\may[\alpha] p'$ impliziert $q\may[\alpha] q'$ für ein $q'$ mit
       $pRq'$,
   \end{enumerate}
   Die Vereinigung \asRel{} aller dieser Relationen wird als \emph{(starke)
@@ -154,15 +154,28 @@ Kommunikationsfehler kommen.
   Eine \emph{schwache alternierende Simulation} ist eine Relation $R\subseteq P
   \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
   \begin{enumerate}
-    \item $q\must[\alpha] q'$ impliziert $p\weakmust[\hat{\alpha}] p'$ für ein
+    \item $q\must[i] q'$ impliziert $p\must[i]\weakmust[\varepsilon] p'$ für
+      ein $p'$ mit $pRq'$,
+    \item $q\must[\omega] q'$ impliziert $p\weakmust[\hat{\omega}] p'$ für ein
+      $p'$ mit $pRq'$,
+    \item $p\may[i] p'$ impliziert $q\may[i]\weakmay[\varepsilon] q'$ für ein
       $q'$ mit $pRq'$,
-    \item $p\may[\alpha] p'$ impliziert $q\weakmay[\alpha] q'$ für ein $p'$ mit
-      $pRq'$,
+    \item $p\may[\omega] p'$ impliziert $q\weakmay[\hat{\omega}] q'$ für ein
+      $q'$ mit $pRq'$,
   \end{enumerate}
+  Wobei $i\in I$ und $\omega\in O\cup\{\tau\}$.\\
   Analog zur starken alternierenden Simulation, wird hier \wasRel{} als
   Relationssymbol verwendet und man kann auch entsprechend \emph{schwache
   as"=Verfeinerung} betrachten.
 \end{Def}
+
+Die schwache Simulation erlaubt interne Aktionen beim \MEIO{}, der die
+entsprechende Aktion matchen muss. Jedoch ist es zwingen notwendig, dass ein
+Input sofort aufgeführt wird und erst dann interene Aktinen möglich sind. Da
+bei Input die Reaktion auf eine Aktion ist, die die Umwelt auslöst und die
+nicht auf den Automaten warten kann. Output hingeben können auch verzögert
+werden, da die Umgebung dies dann als Input aufnimmt und für diese somit nicht
+lokal konrolliert ist.
 
 Die Parallelkomposition von Wörtern und Mengen kann aus~\cite{Schinko2016BA}
 übernommen werden.
