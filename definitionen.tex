@@ -130,7 +130,7 @@ Möglichkeit in der Parallelkomposition nicht mehr. Es kann also in der
 Kommunikation mit einem weiteren \MEIO{} dort zu einen neuen
 Kommunikationsfehler kommen.
 
-\begin{Def}[Simulation]
+\begin{Def}[(starke) Simulation]
   \label{SimDef}
   Eine \emph{(starke) alternierende Simulation} ist eine Relation $R\subseteq P
   \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
@@ -148,6 +148,20 @@ Kommunikationsfehler kommen.
   Für einen \MEIO{} $Q$ und eine Implementierung mit $P$ mit $P\asRel{}Q$, ist
   $P$ eine \emph{as"=Implementierung} von $Q$ und es wird $\asimp (Q)$ für die
   Menge aller as"=Implementierungen von $Q$ verwendet.
+\end{Def}
+
+\begin{Def}[schwache Simulation]
+  Eine \emph{schwache alternierende Simulation} ist eine Relation $R\subseteq P
+  \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
+  \begin{enumerate}
+    \item $q\must[\alpha] q'$ impliziert $p\weakmust[\hat{\alpha}] p'$ für ein
+      $q'$ mit $pRq'$,
+    \item $p\may[\alpha] p'$ impliziert $q\weakmay[\alpha] q'$ für ein $p'$ mit
+      $pRq'$,
+  \end{enumerate}
+  Analog zur starken alternierenden Simulation, wird hier \wasRel{} als
+  Relationssymbol verwendet und man kann auch entsprechend \emph{schwache
+  as"=Verfeinerung} betrachten.
 \end{Def}
 
 Die Parallelkomposition von Wörtern und Mengen kann aus~\cite{Schinko2016BA}
