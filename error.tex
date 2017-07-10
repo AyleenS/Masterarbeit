@@ -160,6 +160,49 @@ Implementierung ist.
   \end{itemize}
 
   1. \glqq$\supseteq$\grqq{}:\\
+  Wegen der Abgeschlossenheit beider Seiten der Gleichung gegenüber \cont{}
+  wird auch in diesem Fall nur ein präfix-minimales Element $x\in\prune ((\ET
+  _1\|\EL _2)\cup (\EL _1\| \ET _2))$ betrachtet. Da $x$ durch die Anwendung
+  der \prune{}-Funktion entstanden ist, existiert ein $y\in O_{12} ^*$ mit
+  $xy\in (\ET _1\|\EL _2)\cup (\EL _1\| \ET _2)$. \OBdA{} wird davon
+  ausgegangen, dass $xy\in \ET _1\| \EL _2$ gilt, d.h.\ es gibt $w_1\in \ET _1$
+  und $w_2\in \EL _2$ mit $xy \in w_1\| w_2$.\\
+  Im Folgenden wird für alle Fälle von $xy$ gezeigt, dass es ein $v\in \PrET
+  _{12} \cup \MIT _{12}$ gibt, das ein Präfix von $xy$ ist und $v$ entweder auf
+  einen Input $I_{12}$ endet oder $v=\varepsilon$. Damit muss $v$ ein Präfix
+  von $x$ sein. $\varepsilon$ ist Präfix von jedem Wort und sobald $v$
+  mindestens einen Buchstaben enthält, muss das Ende von $v$ vor dem Anfang von
+  $y\in O_{12}^*$ liegen. Dadurch ist ein Präfix von $x$ in $\PrET _{12}\cup
+  \MIT _{12}$ entahlten und somit gilt $x\in \ET _{12}$, da \ET{} die
+  Fortsetzung der Mengenvereinigung aus \PrET{} und \MIT{} ist.\\
+  Sei $v_1$ das kürzeste Präfix von $w_1$ in $\PrET _1\cup \MIT _1$. Falls $w_2
+  \in L_2$, so sei $v_2=w_2$, sonst soll $v_2$ das kürzeste Präfix von $w_2$ in
+  $\PrET _2\cup \MIT _2$ sein. Jede Aktion in $v_1$ und $v_2$ hängt mit einer
+  aus $xy$ zusammen. Es kann nun davon ausgegangen werden, dass entweder $v_2 =
+  w_2\in L_2$ gilt oder die letzte Aktion von $v_1$ vor oder gleichzeitig mit
+  der letzten Aktion von $v_2$ statt findet. Ansonsten endet $v_2 \in \PrET
+  _2\cup \MIT _2$ vor $v_1$ und somit ist dieser Fall analog zu $v_1$ endet vor
+  $v_2$.
+  \begin{itemize}
+    \item Fall 1 ($v_1=\varepsilon$): Da $\varepsilon\in\PrET _1\cup \MIT _1$,
+      ist bereits in $P_1$ ein Kommunikationsfehler"=Zustand lokal erreichbar
+      (möglicherweise auch via may"=Trantistionen). $\varepsilon \in \MIT _1$
+      ist nicht möglich, da jedes Element aus \MIT{} nach Definition mindestens
+      die Länge $1$ haben muss. Mit der Wahl $v'_2=v'=\varepsilon$ ist $v'_2$
+      ein Präfix von $v_2$.
+    \item Fall 2 ($v_1\neq\varepsilon$): Aufgrund der Definitionen von \PrET{}
+      und \MIT{} endet $v_1$ auf ein $a\in I_1$, d.h.\ $v_1=v'_1a$. $v'$ sei
+      das Präfix von $xy$, das mit der letzten Aktion von $v_1$ endet, d.h.\
+      mit $a$ und $v'_2=v'|_{\Sigma _2}$. Falls $v_2=w_2\in L_2$, dann ist
+      $v'_2$ ein Präfix von $v_2$. Falls $v_2\in \PrET _2\cup \MIT _2$ gilt,
+      dann ist durch die Annahme, dass $v_2$ nicht vor $v_1$ endet, $v'_2$ ein
+      Präfix von $v_2$. Im Fall $v_2 \in \MIT _2$ zwei man zusätzlich, dass
+      $v_2$ auf $b\in I_2$ endet. Es kann jedoch $a=b$ gelten.
+  \end{itemize}
+  In allen Fällen erhält man $v'_2=v'|_{\Sigma _2}$ ist ein Präfix von $v_2$
+  und $v'\in v_1\|v'_2$ ist ein Präfix von $xy$. Es kann nur für die Fälle
+  $a\notin I_2$ gefolgert weden, dass $p_{02} \weakmust[v'_2]$ gilt.
+
   \TODO{beweisen}
 
   2.:\\
