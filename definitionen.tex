@@ -22,8 +22,8 @@ Einflüssen von~\cite{Vogler2016MIA3}:
   Konsistenz}) gilt.\\
   Das \emph{Alphabet} bzw.\ die Aktionsmenge eines \MEIO{} ist $\Sigma = I\cup
   O$. Die \emph{interne Aktion} $\tau$ ist nicht in $\Sigma$ enthalten. Jedoch
-  gilt $\Sigma_{\tau} := \Sigma \cup \{\tau\}$. Die \emph{Signatur} eines
-  \MEIO{}s entspricht $\Sig (P)=(I,O)$.\\
+  wird $\Sigma_{\tau} := \Sigma \cup \{\tau\}$ definiert. Die \emph{Signatur}
+  eines \MEIO{}s entspricht $\Sig (P)=(I,O)$.\\
   Falls $\must =\may$ gilt, wird $P$ auch \emph{Implementierung} genannt.
 \end{Def}
 
@@ -59,11 +59,16 @@ entsprechenden Relationen der must-Transition verwendet.\\
 Outputs und die interne Aktion werden \emph{lokale Aktionen} genannt, da sie
 lokal vom ausführenden \MEIO{} kontrolliert sind. Um eine Erleichterung der
 Notation zu erhalten, soll gelten, dass $p\nmust[a]$ und $p\nmay[a]$ für
-$\nexists p': p\must[a]p'$ und $\nexists p': p\may[a]p'$ stehen soll. In
-Graphiken wird eine Aktion $a$ als $a?$ notiert, falls $a\in I$ und $a!$, falls
-$a\in O$. Must-Transitionen (may-Transitionen) werden als durchgezogener Pfeil
-gezeichnet (gestrichelter Pfeil). Entsprechend der syntaktischen Konsistenz
-repräsentiert jede gezeichnete must-Transition auch gleichzeitig die
+$\nexists p': p\must[a]p'$ und $\nexists p': p\may[a]p'$ stehen soll.
+$p\must[a]\weakmust[\varepsilon]$ wird geschrieben, wenn sowohl ein $p'$ wie
+auch ein $p''$ existiert, so dass $p\must[a]p'\weakmust[\varepsilon]p''$ gilt.
+Diese Transition wird auch als \emph{anhängende-schwache must-Transition}
+bezeichnet. Entsprechen steht $\may[a]\weakmay[\varepsilon]$ für die
+\emph{anhängende-schwache may-Transition}.\\
+In Graphiken wird eine Aktion $a$ als $a?$ notiert, falls $a\in I$ und $a!$,
+falls $a\in O$. Must-Transitionen (may-Transitionen) werden als durchgezogener
+Pfeil gezeichnet (gestrichelter Pfeil). Entsprechend der syntaktischen
+Konsistenz repräsentiert jede gezeichnete must-Transition auch gleichzeitig die
 zugrundeliegende may-Transitionen.
 
 \begin{Def}[Parallelkomposition]
@@ -100,14 +105,14 @@ zugrundeliegende may-Transitionen.
       \Synch(P_1,P_2)\right\}
     \end{aligned}$
   \item $\begin{aligned}[t]
-      E & = (P_1\times E_2) \cup (E_1\times P_2) &&\text{geerbte
+      E & = (P_1\times E_2) \cup (E_1\times P_2) &&\hspace{-0.3cm}\text{geerbte
       Kommunikationsfehler}\\
         &\quad\left. \begin{aligned}
         &\cup \left\{(p_1,p_2) \mid \exists a \in O_1\cap I_2 : p_1
         \may[a]\land p_2\nmust[a]\right\}\\
         &\cup \left\{(p_1,p_2) \mid \exists a\in I_1\cap O_2 :
         p_1\nmust[a]\land p_2\may[a]\right\}
-        \end{aligned}\hspace{0.3cm}\right\} &&\text{neue Kommunikationsfehler}
+        \end{aligned}\hspace{0.2cm}\right\} &&\text{neue Kommunikationsfehler}
     \end{aligned}$
   \end{itemize}
   Dabei bezeichnet $\Synch(P_1,P_2)=(I_1\cap O_2)\cup (O_1\cap I_2)\cup
@@ -121,10 +126,13 @@ Möglichkeit für einen Output hat (may-Transition) und der andere \MEIO{} der
 passenden Input nicht erzwingt (keine must-Transition vorhanden). Es muss also
 in möglichen Implementierungen nicht wirklich zu diesem Kommunikationsfehler
 kommen, da die Output-Transition nicht zwingender maßen implementiert werden
-muss.\\
+muss und die Input-Transition durch eine may-Transition trotzdem erlaubt sein
+kann.\\
 Wie bereits in~\cite{Schinko2016BA} kann es durch die Synchronisation von
-Inputs zu keinen neuen Kommunikationsfehler kommen, da dies in beiden Automaten
-keine lokal kontrollierte Aktion ist. Falls jedoch nur einer der Automaten die
+Inputs zu keinen neuen Kommunikationsfehler kommen, da dies in beiden
+Transitionssystemen
+keine lokal kontrollierte Aktion ist. Falls jedoch nur eines der
+Transitionssysteme die
 Möglichkeit für einen Input hat, der synchronisiert wird, besteht diese
 Möglichkeit in der Parallelkomposition nicht mehr. Es kann also in der
 Kommunikation mit einem weiteren \MEIO{} dort zu einen neuen
@@ -170,18 +178,19 @@ Kommunikationsfehler kommen.
   Analog zur starken alternierenden Simulation, wird hier \wasRel{} als
   Relationssymbol verwendet und man kann auch entsprechend \emph{schwache
   as"=Verfeinerung} betrachten.\\
-  Ebenso kann für einen \MEIO{} Q une eine Implementierung $P$ mit $P\wasRel
-  Q$, ist $P$ eine \emph{w"=as"=Implementierung} von $Q$ und es wird $\wasimp
-  (Q)$ für die Menge aller w"=as"=Implementierungen von $Q$ verwendet.
+  Ebenso kann \wasRel{} für einen \MEIO{} Q und eine Implementierung $P$
+  definiert werden mit $P\wasRel Q$, ist $P$ eine \emph{w"=as"=Implementierung}
+  von $Q$ und es wird $\wasimp (Q)$ für die Menge aller
+  w"=as"=Implementierungen von $Q$ verwendet.
 \end{Def}
 
 Die schwache Simulation erlaubt interne Aktionen beim \MEIO{}, der die
 entsprechende Aktion matchen muss. Jedoch ist es zwingen notwendig, dass ein
-Input sofort aufgeführt wird und erst dann interene Aktinen möglich sind. Da
-bei Input die Reaktion auf eine Aktion ist, die die Umwelt auslöst und die
-nicht auf den Automaten warten kann. Output hingeben können auch verzögert
-werden, da die Umgebung dies dann als Input aufnimmt und für diese somit nicht
-lokal konrolliert ist.
+Input sofort aufgeführt wird und erst dann interne Aktinen möglich sind. Da
+ein Input die Reaktion auf eine Aktion ist, die die Umwelt auslöst und die
+nicht auf das Transitionssystem warten kann. Output hingeben können auch
+verzögert werden, da die Umgebung dies dann als Input aufnimmt und für diese
+somit nicht lokal kontrolliert ist.
 
 Die Parallelkomposition von Wörtern und Mengen kann aus~\cite{Schinko2016BA}
 übernommen werden.
@@ -215,6 +224,16 @@ werden.
       L\mapsto\bigcup\hspace{1pt}\left\{\cont{}(w)\mid w\in L\right\}$.
   \end{itemize}
 \end{Def}
+
+Die Sprache eines \MEIO{}s ist abhängig von den Sprachen seiner
+Implementierungen. Hier wird die Sprache eines \MEIO{}s als die Vereinigung
+aller Sprachen seiner Implementierungen definiert und dies ist somit die
+maximal mögliche Wort-Menge. Man könnte sich jedoch auch den Schnitt aller
+Sprachen seiner Implementierungen als sinnvolle Sprach-Definition vorstellen.\\
+Relevant ist jedoch, dass die Sprache eines \MEIO{}s nun nicht mehr nur über
+das vorliegende Transitionssystem spricht, sondern über alle möglichen daraus
+ableitbaren Implementierungen. Dieses Vorgehen wird auch später bei den Traces
+gewählt werden.
 
 \begin{Def}[Sprache]
   \label{LDef}

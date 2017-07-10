@@ -124,7 +124,19 @@
       Aktionen zu Fehler kommen, da diese aber jedoch immer nur schwach
       implementiert werden müssen, kann man dort die Anzahl entsprechend
       regulieren um das gewünschte Ergebnis zu erhalten.\\
-      $\Rightarrow$ es gibt passende $P'_1$ und $P'_2$ mit $P'_1\in\asimp (P_1)
-      \land P'_2\in\asimp (P_2) \land P'=P'_1\|P'_2$.
+      $\Rightarrow$ es gibt passende $P'_1$ und $P'_2$ mit $P'_1\in\wasimp (P_1)
+      \land P'_2\in\wasimp (P_2) \land P'=P'_1\|P'_2$.
   \end{enumerate}
 \end{proof}
+
+Ein neuer Kommunikationsfehler in einer Parallelkomposition muss in einer
+Implementierung (as oder w-as) nicht auftauchen, auch nicht in der
+Parallelkomposition von Implementierungen der einzelnen Komponenten. Dies liegt
+daran, dass für den Input nur gesagt wird, dass keine must"=Transition für die
+Synchronisation der Aktion vorhanden ist. Es kann trotzdem eine
+may"=Transition für den Input geben, die auch implementiert werden kann.
+Falls es aber in der Parallelkomposition zweier \MEIO{} zu einem neuen
+Kommunikationsfehler kommt, dann gibt es auch immer mindestens eine
+Implementierung, die diesen Kommunikationsfehler enthält und es gibt auch immer
+mindestens ein Implementierungs-Paar der Komponenten, in deren
+Parallelkomposition sich dieser Kommunikationsfehler ebenfalls zeigt.
