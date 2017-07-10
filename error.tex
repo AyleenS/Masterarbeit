@@ -87,8 +87,77 @@ Implementierung ist.
   1. \glqq$\subseteq$\grqq{}:\\
   Da beide Seiten der Gleichung unter der Fortsetzung \cont{} abgeschlossen
   sind, genügt es ein präfix-minimales Element $w$ von $\ET _{12}$ zu
-  betrachten.\\
-  \TODO{beweisen}
+  betrachten. Diese Element ist aufgrund der Definition der Menge der
+  Errortraces in $\MIT _{12}$ oder in $\PrET _{12}$ enthalten.
+  \begin{itemize}
+    \item Fall 1 ($w\in\MIT _{12}$): Aus der Definition von \MIT{} folgt, dass
+      es eine as"=Implementierung von $P_{12}$ gibt, in der eine Aufteilung
+      $w=xa$ existiert mit $(p_{01},p_{02}) \weakmust[x] (p_1,p_2) \land a
+      \in I_{12} \land (p_1,p_2) \nmust[a]$. Da $I_{12} = (I_1\cup I_2)
+      \backslash (O_1\cup O_2)$ ist, folgt $a\in (I_1\cup I_2)$ und $a\notin
+      (O_1\cup O_2)$. Es wird unterschieden, ob $a\in (I_1\cap I_2)$ oder $a\in
+      (I_1\cup I_2) \backslash (I_1\cap I_2)$ ist.
+    \begin{itemize}
+      \item Fall 1a) ($a\in (I_1\cap I_2)$): Der Ablauf der as"=Implementierung
+        der Komposition kann und auf as"=Implementierung der einzelnen
+        Transitionssysteme projiziert werden (Lemma~\ref{impParallelLem} 2.).
+        Man erhält dann \oBdA{} $p_{01}\weakmust[x_1] p_1\nmust[a]$ und
+        $p_{02}\weakmust[x_2] p_2\nmust[a]$ oder $p_{02}\weakmust[x_2]
+        p_2\must[a]$ mit $x\in x_1\|x_2$. Daraus kann $x_1a\in \cont (\MIT _1)
+        \subseteq \ET _1$ und $x_2a\in \EL _2$ ($x_2a\in \MIT _2$ oder $x_2a
+        \in L_2$) gefolgert werden. Damit folgt $w\in (x_1\|x_2) \cdot \{a\}
+        \subseteq (x_1a)\|(x_2a)\subseteq \ET _1\|\EL _2$, und somit ist $w$ in
+        der rechten Seite der Gleichung enthalten.
+      \item Fall 1b) ($a\in (I_1\cup I_2)\backslash (I_1\cap I_2)$): \OBdA{}
+        gilt $a\in I_1$. In der Projektion auf as"=Implementierungen erhält
+        man: $p_{01}\weakmust[x_1] p_1\nmust[a]$ und $p_{02}\weakmust[x_2]
+        p_2$ mit $x\in x_1\|x_2$. Daraus folgt $x_1a\in \cont (\MIT
+        _1)\subseteq \ET _1$ und $x_2\in L_2\subseteq \EL _2$. Somit gilt $w\in
+        (x_1\|x_2) \cdot \{a\} \subseteq (x_1a)\|x_2\subseteq \ET _1\|\EL _2$.
+        Dies ist eine Teilmenge der rechten Seite der Gleichung.
+    \end{itemize}
+  \item Fall 2 ($w\in\PrET _{12}$): Aus der Definition von \PrET{} und \prune{}
+    folgt, dass es eine as"=Implementierung und ein $v\in O_{12}^*$ gilt, so
+      dass $(p_{01},p_{02}) \weakmust{w} (p_1,p_2) \weakmust[v] (p'_1,p'_2)$
+      gilt mit $(p'_1,p'_2)\in E_{12}$ und $w=\prune (wv)$. Durch Projektion
+      auf entsprechende as"=Implementierung der Komponenten erhält man $p_{01}
+      \weakmust[w_1] p_1 \weakmust[v_1] p'_1$ und $p_{02} \weakmust[w_2] p_2
+      \weakmust[v_2] p'_2$ mit $w\in w_1\|w_2$ und $v\in v_1\|v_2$. Aus
+      $(p'_1,p'_2)\in\ET _{12}$ folgt, dass es sich entweder um einen geerbten
+      oder einen neuen Kommunikationsfehler handelt. Bei einem geerbten wäre
+      bereits einer der beiden Zustände $p'_1$ bzw.\ $p'_2$ ein
+      Kommunikationsfehler"=Zustand gewesen. Ein neuer Kommunikationsfehler
+      hingegen wäre durch das fehlen der Synchronisations-Erzwingung (fehlende
+      must"=Transition) in der Spezifikation einer der Komponenten entstanden.
+      Die Spezifikation würde es also zulassen, dass die Möglichkeit in einer
+      ihrer Implementierungen fehlt, eine synchronisierte Aktion auszuführen.
+    \begin{itemize}
+      \item Fall 2a) (geerbter Kommunikationsfehler): \OBdA{} gilt $p'_1\in
+        E_1$. Daraus folgt, $w_1v_1\in StET_1 \subseteq \cont (\PrET _1)
+        \subseteq \ET _1$. Da $p_{02} \weakmust{w_2v_2}$ gilt, erhält man
+        $w_2v_2\in L_2\subseteq \EL _2$. Dadurch ergibt sich $wv\in \ET _1\|\EL
+        _2$ mit $w=\prune (wv)$ und somit ist $w$ in der rechten Seite der
+        Gleichung enthalten.
+      \item Fall 2b) (neuer Kommunikationsfehler): \OBdA{} gilt $a\in I_1\cap
+        O_2$ mit $p'_1\nmust[a]\land p'_2\must[a]$ für zwei
+        as"=Implementierungen von $P_1$ und $P_2$, die in $P_{12}$ komponiert
+        wurden. Hierbei muss es sich nicht mehr um die passenden
+        as"=Implementierungen zu der betrachteten as"=Implementierung der
+        Komposition handeln. Da es möglich ist, dass $P_1$ die $a$-Transition
+        als may-Transition enthält und die passende Implementierung von $P_1$
+        diese implementiert und es somit in der Parallelkomposition der
+        Implementierungen gar nicht zu dem neuen Kommunikationsfehler kommen
+        muss. Damit es aber in der Parallelkomposition der Spezifikationen zu
+        den neuen Kommunikationsfehler kommt, darf die $a$-Transition in $P_1$
+        keine must"=Transition sein und somit muss es mindestens eine
+        as"=Implementierung von $P_1$ geben, die diese Transition nicht
+        implementiert.\\
+        Es folgt also $w_1v_1a\in \MIT _1 \subseteq \ET _1$ und $w_2v_2a\in L_2
+        \subseteq \EL _2$. Damit ergibt sich $wva\in \ET _1\|\EL_2$, da $a\in
+        O_1\subseteq O_{12}$ gilt $w=\prune (wva)$ und somit ist $w$ in der
+        rechten Seite der Gleichung enthalten.
+    \end{itemize}
+  \end{itemize}
 
   1. \glqq$\supseteq$\grqq{}:\\
   \TODO{beweisen}
@@ -98,15 +167,16 @@ Implementierung ist.
   _i\subseteq \EL _i$ gilt. Die Argumentation startet auf den rechten Seite der
   Gleichung:
   \begin{align*}
-    (\EL{}_1\| \EL{}_2)\cup \ET{}_{12}&\overset{\ref{KommFehlerSemDef}}{=}\left(\left(L_1\cup
-  \ET{}_1\right)\|\left(L_2\cup \ET{}_2\right)\right)\cup \ET{}_{12}\\
-    &=(L_1\|L_2) \cup \underset{\overset{1.}{\subseteq} \ET{}_{12}}{\underset{\subseteq
+    (\EL{}_1\| \EL{}_2)\cup
+    \ET{}_{12}&\overset{\ref{KommFehlerSemDef}}{=}\left(\left(L_1\cup
+    \ET{}_1\right)\|\left(L_2\cup \ET{}_2\right)\right)\cup \ET{}_{12}\\
+    &=(L_1\|L_2) \cup \underset{\overset{1.}{\subseteq}
+    \ET{}_{12}}{\underset{\subseteq
     (\EL{}_1\|\ET{}_2)}{\underbrace{(L_1\|\ET{}_2)}}} \cup
     \underset{\overset{1.}{\subseteq} \ET{}_{12}}{\underset{\subseteq
     (\ET{}_1\|\EL{}_2)}{\underbrace{(\ET{}_1\|L_2)}}} \cup
-     \underset{\overset{1.}{\subseteq}
-    \ET{}_{12}}{\underset{\subseteq (\EL{}_1\|\ET{}_2)}{\underbrace{(\ET{}_1\|\ET{}_2)}}} \cup
-    \ET{}_{12}\\
+    \underset{\overset{1.}{\subseteq} \ET{}_{12}}{\underset{\subseteq
+    (\EL{}_1\|\ET{}_2)}{\underbrace{(\ET{}_1\|\ET{}_2)}}} \cup \ET{}_{12}\\
     &=(L_1\|L_2) \cup \ET{}_{12}\\
     &\overset{\ref{LDef}}{=}L_{12}\cup \ET{}_{12}\\
     &\overset{\ref{KommFehlerSemDef}}{=}\EL{}_{12}.

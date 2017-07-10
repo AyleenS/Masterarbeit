@@ -136,9 +136,10 @@ Kommunikationsfehler kommen.
   \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
   \begin{enumerate}
     \item $q\must[\alpha] q'$ impliziert $p\must[\alpha] p'$ für ein $p'$ mit
-      $pRq'$,
+      $p'Rq'$,
     \item $p\may[\alpha] p'$ impliziert $q\may[\alpha] q'$ für ein $q'$ mit
-      $pRq'$,
+      $p'Rq'$,
+    \item $p\in E_P \Leftrightarrow q\in E_Q$.
   \end{enumerate}
   Die Vereinigung \asRel{} aller dieser Relationen wird als \emph{(starke)
   as-Verfeinerung(-s Relation)} (auch modal Verfeinerung) bezeichnet. Es wird
@@ -156,13 +157,14 @@ Kommunikationsfehler kommen.
   \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
   \begin{enumerate}
     \item $q\must[i] q'$ impliziert $p\must[i]\weakmust[\varepsilon] p'$ für
-      ein $p'$ mit $pRq'$,
+      ein $p'$ mit $p'Rq'$,
     \item $q\must[\omega] q'$ impliziert $p\weakmust[\hat{\omega}] p'$ für ein
-      $p'$ mit $pRq'$,
+      $p'$ mit $p'Rq'$,
     \item $p\may[i] p'$ impliziert $q\may[i]\weakmay[\varepsilon] q'$ für ein
-      $q'$ mit $pRq'$,
+      $q'$ mit $p'Rq'$,
     \item $p\may[\omega] p'$ impliziert $q\weakmay[\hat{\omega}] q'$ für ein
-      $q'$ mit $pRq'$,
+      $q'$ mit $p'Rq'$,
+    \item $p\in E_P \Leftrightarrow q\in E_Q$.
   \end{enumerate}
   Wobei $i\in I$ und $\omega\in O\cup\{\tau\}$.\\
   Analog zur starken alternierenden Simulation, wird hier \wasRel{} als
