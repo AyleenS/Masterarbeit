@@ -46,7 +46,7 @@ Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
 
 \begin{Prop}[Kommunikationsfehler-Traces und Implementierung]
   Für ein \MEIO{} $P$ gilt:
-  \begin{itemize}
+  \begin{enumerate}
     \item \emph{strikte Kommunikationsfehler-Traces}: $\StET (P) :=
       \left\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) :
       \phantom{\weakmust[w]} \right.$ $\left. p'_0 \weakmust[w] p' \in
@@ -55,11 +55,39 @@ Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
       \exists P' \in\asimp (P) : p'_0
       \weakmust[w] p' \land \right.$\linebreak $\left. a\in I\land p'\nmust[a]
       \right\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}
-  \end{itemize}
+  \end{enumerate}
 \end{Prop}
-
-\begin{proof}
-  \TODO{beweisen}
+\begin{proof}\mbox{}
+  \begin{enumerate}
+    \item Wie schon in Beweis zu~\ref{LImpProp} festgestellt, sind alle
+      Abläufe, die in $P$ via may"=Transitionen möglich ist in mindestens einer
+      as"=Implementierung von $P$ via must"=Transitionen möglich. Umgekehrt ist
+      auch jeder Ablauf, der in einer as"=Implementierung von $P$ möglich ist
+      auch in $P$ durch may"=Transitionen möglich.\\
+      Aufgrund des 3.\ Punktes der Definition~\ref{SimDef} kann jede
+      as"=Implementierung von $P$ nur Kommunikationsfehler-Zustände enthalten,
+      die auch $P$ enthält. Da alle möglichen Implementierungen von $P$ in
+      $\left\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) : p'_0 \weakmust[w]
+      p' \in E\right\}$ betrachtet werden, ist auch jeder in $P$ durch
+      may"=Transitionen erreichbare Kommunikationsfehler"=Zustand auch in
+      mindestens einer as"=Implementierung ebenfalls erreichbar, jedoch durch
+      must"=Transitionen.
+    \item Wegen Proposition~\ref{LImpProp} sind $p'$ Implementierungen von
+      ebenfalls mit $w$ erreichbaren Zuständen in $P$ und für jeden in $P$
+      erreichbaren Zustand gibt es auch eine Implementierung, die einen
+      analogen Zustand mit dem selben Wort erreichen kann.\\
+      Falls der entsprechende Zustand in $P$ keine ausgehende must"=Transition
+      für den Input $a$ hat, muss nicht jede seiner as"=Implementierungen eine
+      ausgehende $a$ Transitionen an dem entsprechenden Zustand haben
+      (\ref{SimDef} 1.). Es gibt also mindestens eine as"=Implementierung, die
+      den Input $a$ nach dem Wort $w$ nicht ausführen kann. Falls es
+      as"=Implementierungen gibt, die nach einem $w$ einen Input $a$ nicht
+      ausführen können, muss dies auch bereits in $P$ möglich gewesen sein,
+      dass dieser Input nicht implementiert werden muss bzw.\ nicht
+      implementiert werden darf, d.h.\ in $P$ darf die $a$ Transition nur als
+      may"=Transition auftauchen bzw.\ gar nicht vorhanden sein (\ref{SimDef}
+      1.).
+  \end{enumerate}
 \end{proof}
 
 \begin{Def}[Kommunikationsfehler-Semantik]
@@ -88,7 +116,6 @@ as"=Implementierung ist.
     \item $\EL _{12} = (\EL _1\|\EL _2) \cup \ET _{12}$.
   \end{enumerate}
 \end{Satz}
-
 \begin{proof}
   Da die Trace-Mengen und die Sprache alle nur über möglichen Traces in
   mindestens einer as"=Implementierung der betrachteten \MEIO{}s spricht, muss
@@ -253,7 +280,6 @@ as"=Implementierung ist.
 \begin{Kor}[Kommunikationsfehler-Präkongruenz]
   Die Relation \ERel{} ist eine Präkongruenz bezüglich $\cdot\|\cdot$.
 \end{Kor}
-
 \begin{proof}
   \TODO{beweisen}
 \end{proof}

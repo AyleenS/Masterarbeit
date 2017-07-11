@@ -1,18 +1,18 @@
 \chapter{allgemeine Folgerungen}
 
 \begin{Prop}[Sprache und Implementierung]
+  \label{LImpProp}
   Die \emph{(maximale) Sprache} eines \MEIO{}s $P$ ist $L(P) = \left\{w\in
   \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]
   \right\}$.
 \end{Prop}
-
 \begin{proof}
   Für ein $w\in L(P)$ gilt nach Definition~\ref{LDef} und den
-  Defintionen der Trantistions Notatin $\exists p_1,p_2,\dots,p_{n-1},p' \exists
+  Definitionen der Transitions-Notation $\exists p_1,p_2,\dots,p_{n-1},p' \exists
   w'\in\Sigma _{\tau} ^* : \hat{w'} = w \land w'=\alpha _1\alpha _2\dots\alpha
   _n \land p\may[\alpha _1]p_1\may[\alpha _2] \dots p_{n-1}\may[\alpha _n] p'$.
-  Aufgrund von Defintion~\ref{SimDef} 2. kann jedes Element aus $\asRel (P)$
-  nur die bereits in $P$ vorhandenen may-Trantitionen implementieren. Somit
+  Aufgrund von Definition~\ref{SimDef} 2. kann jedes Element aus $\asRel (P)$
+  nur die bereits in $P$ vorhandenen may-Transitionen implementieren. Somit
   gibt es für jedes $w$, dass in der Sprache einer as"=Implementierung von $P$
   enthalten ist auch ein entsprechendes $w$ mit einem Trace wie oben. Da in
   $\left\{w\in \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]
@@ -21,9 +21,9 @@
   as"=Implementierungen betrachtet. Deshalb sind auch alle Wörter, die in
   $L(P)$ enthalten sind in der Menge der Wörter alle Implementierungen
   enthalten.\\
-  Da für Implementierungen die must-Transitons-Relations-Menge die gleiche ist,
+  Da für Implementierungen die must-Transitions-Relations-Menge die gleiche ist,
   wie die Menge der may-Transitions-Relationen könnte man auch für die
-  as"=Implementierungen die Defintion~\ref{LDef} anwenden um die jeweilige
+  as"=Implementierungen die Definition~\ref{LDef} anwenden um die jeweilige
   Sprache zu bestimmen. Die Sprache eines \MEIO{} entspricht dann der
   Vereinigung der Sprachen seiner as"=Implementierungen.
 \end{proof}
@@ -32,9 +32,14 @@
   Für zwei komponierbare \MEIO{}s $P_1$ und $P_2$ gilt: $L_{12} := L(P_{12}) =
   L_1\|L_2$.
 \end{Prop}
-
 \begin{proof}
-  \TODO{beweisen oder entscheiden, dass kein Beweis notwendig ist}
+  Jedes Wort, dass in $L_{12}$ enthalten ist, kann auf $P_1$ und $P_2$
+  projiziert werden und die Projektionen sind dann in $L_1$ und $L_2$
+  enthalten. In einer Parallelkomposition werden die Wörter der beiden \MEIO{}s
+  gemeinsam ausgeführt, falls es sich um synchronisierte Aktionen handelt, und
+  verschränkt sequenziell, wenn es sich um unsynchronisierte Aktionen handelt.
+  Somit sind alle Wörter aus $L_1\|L_2$ auch Wörter der Parallelkomposition
+  $L(P_{12})$.
 \end{proof}
 
 \begin{Lem}[as-Implementierungen und Parallelkomposition]\mbox{}
