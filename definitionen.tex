@@ -34,9 +34,9 @@ werden müssen. Die may-Transitionen sind hingegen die zulässigen Transitionen
 für eine Verfeinerung.\\
 \MEIO{}s  werden in dieser Arbeit durch ihre Zustandsmenge (z.B.\ $P$)
 identifiziert und falls notwendig werden damit auch die Komponenten indiziert
-(z.B.\ $I_P$ anstatt $I$). Falls der \MEIO{} selbst bereits einen Index hat
+(z.B.\ $I_P$ anstatt $I$). Falls das \MEIO{} selbst bereits einen Index hat
 (z.B.\ $P_1$) kann an der Komponente die Zustandsmenge als Index wegfallen und
-nur noch der Index des gesamten Automaten verwendet werden (z.B.\ $I_1$ anstatt
+nur noch der Index des gesamten Transitionssystems verwendet werden (z.B.\ $I_1$ anstatt
 $I_{P_1}$). Zusätzlich stehen $i,o,a,\omega$ und $\alpha$ für Buchstaben aus
 den Alphabeten $I,O,\Sigma ,O\cup\{\tau\}$ und $\Sigma_\tau$.\\
 Es wir die Notation $p\may[\alpha] p'$ für $(p,\alpha,p')\in\may$ und
@@ -62,9 +62,9 @@ Notation zu erhalten, soll gelten, dass $p\nmust[a]$ und $p\nmay[a]$ für
 $\nexists p': p\must[a]p'$ und $\nexists p': p\may[a]p'$ stehen soll.
 $p\must[a]\weakmust[\varepsilon]$ wird geschrieben, wenn sowohl ein $p'$ wie
 auch ein $p''$ existiert, so dass $p\must[a]p'\weakmust[\varepsilon]p''$ gilt.
-Diese Transition wird auch als \emph{anhängende-schwache must-Transition}
+Diese Transition wird auch als \emph{schwache-nachlaufende must-Transition}
 bezeichnet. Entsprechen steht $\may[a]\weakmay[\varepsilon]$ für die
-\emph{anhängende-schwache may-Transition}.\\
+\emph{schwache-nachlaufende may-Transition}.\\
 In Graphiken wird eine Aktion $a$ als $a?$ notiert, falls $a\in I$ und $a!$,
 falls $a\in O$. Must-Transitionen (may-Transitionen) werden als durchgezogener
 Pfeil gezeichnet (gestrichelter Pfeil). Entsprechend der syntaktischen
@@ -121,11 +121,11 @@ zugrundeliegende may-Transitionen.
   beibehalten.
 \end{Def}
 
-Ein neuer Kommunikationsfehler entsteht, wenn einer der \MEIO{}s die
-Möglichkeit für einen Output hat (may-Transition) und der andere \MEIO{} der
+Ein neuer Kommunikationsfehler entsteht, wenn eines der \MEIO{}s die
+Möglichkeit für einen Output hat (may-Transition) und das andere \MEIO{} den
 passenden Input nicht erzwingt (keine must-Transition vorhanden). Es muss also
 in möglichen Implementierungen nicht wirklich zu diesem Kommunikationsfehler
-kommen, da die Output-Transition nicht zwingender maßen implementiert werden
+kommen, da die Output-Transition nicht zwingendermaßen implementiert werden
 muss und die Input-Transition durch eine may-Transition trotzdem erlaubt sein
 kann.\\
 Wie bereits in~\cite{Schinko2016BA} kann es durch die Synchronisation von
@@ -154,7 +154,7 @@ Kommunikationsfehler kommen.
   $P\asRel Q$ geschrieben, falls $p_0\asRel q_0$ gilt, und $P$
   \emph{as-verfeinert} $Q$ \emph{(stark)} oder $P$ ist eine \emph{(starke)
   as-Verfeinerung} von $Q$.\\
-  Für einen \MEIO{} $Q$ und eine Implementierung $P$ mit $P\asRel{}Q$, ist
+  Für ein \MEIO{} $Q$ und eine Implementierung $P$ mit $P\asRel{}Q$, ist
   $P$ eine \emph{as"=Implementierung} von $Q$ und es wird $\asimp (Q)$ für die
   Menge aller as"=Implementierungen von $Q$ verwendet.
 \end{Def}
@@ -178,13 +178,13 @@ Kommunikationsfehler kommen.
   Analog zur starken alternierenden Simulation, wird hier \wasRel{} als
   Relationssymbol verwendet und man kann auch entsprechend \emph{schwache
   as"=Verfeinerung} betrachten.\\
-  Ebenso kann \wasRel{} für einen \MEIO{} Q und eine Implementierung $P$
+  Ebenso kann \wasRel{} für ein \MEIO{} Q und eine Implementierung $P$
   definiert werden mit $P\wasRel Q$, ist $P$ eine \emph{w"=as"=Implementierung}
   von $Q$ und es wird $\wasimp (Q)$ für die Menge aller
   w"=as"=Implementierungen von $Q$ verwendet.
 \end{Def}
 
-Die schwache Simulation erlaubt interne Aktionen beim \MEIO{}, der die
+Die schwache Simulation erlaubt interne Aktionen beim \MEIO{}, das die
 entsprechende Aktion matchen muss. Jedoch ist es zwingen notwendig, dass ein
 Input sofort aufgeführt wird und erst dann interne Aktinen möglich sind. Da
 ein Input die Reaktion auf eine Aktion ist, die die Umwelt auslöst und die
@@ -210,16 +210,15 @@ Die Parallelkomposition von Wörtern und Mengen kann aus~\cite{Schinko2016BA}
 
 Ebenso können die Definitionen der Funktionen \prune{} und \cont{} zum
 Abschneiden und Verlängern von Traces aus~\cite{Schinko2016BA} übernommen
-werden.
+werden. Hierbei ist zu beachten, dass in dieser Arbeit $\varepsilon$ das leere
+Wort und $\mathfrak{P}(M)$ die Potenzmenge der Menge $M$ bezeichnet.
 
 \begin{Def}[Pruning- und Fortsetzungs-Funktion]\mbox{}
   \begin{itemize}
     \item $\prune{}:\Sigma ^*\rightarrow\Sigma ^*, w\mapsto u$, mit $w=uv,
       u=\varepsilon\footnotemark\vee u\in\Sigma ^*\cdot I$ und $v\in O^*$,
-    \footnotetext{$\varepsilon$ bezeichnet das leere Wort}
     \item $\cont{}:\Sigma ^*\rightarrow\mathfrak{P}(\Sigma ^*)\footnotemark,
       w\mapsto\left\{wu\mid u\in\Sigma ^*\right\}$,
-    \footnotetext{$\mathfrak{P}(M)$ bezeichnet die Potenzmenge der Menge $M$}
     \item $\cont{}:\mathfrak{P}(\Sigma ^*)\rightarrow\mathfrak{P}(\Sigma ^*),
       L\mapsto\bigcup\hspace{1pt}\left\{\cont{}(w)\mid w\in L\right\}$.
   \end{itemize}
@@ -237,6 +236,11 @@ gewählt werden.
 
 \begin{Def}[Sprache]
   \label{LDef}
+
+  \TODO{Sprache unabhängig von der Implementierung definieren} 
+
+  \TODO{dieses Definition als Proposition beweisen}
+
   Die \emph{(maximale) Sprache} eines \MEIO{}s $P$ ist $L(P) := \left\{w\in
   \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]
   \right\}$.\\

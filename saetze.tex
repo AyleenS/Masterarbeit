@@ -5,8 +5,13 @@
   \begin{enumerate}
     \item $P'_1\in\asimp (P_1) \land P'_2 \in\asimp (P_2) \Rightarrow
       (P'_1\|P'_2) \in\asimp (P_1\|P_2)$.
+
+      \TODO{ausführlicher beweisen (MIA3 als mögliche Vorlage für Konstruktion)}
+
     \item $P' \in\asimp (P_1\|P_2) \Rightarrow \exists P'_1,P'_2 : P'_1
       \in\asimp (P_1) \land P'_2 \in\asimp (P_2) \land P'_1\|P'_2=P'$.
+
+      \TODO{STIMMT NICHT: Gegenbeispiel einbauen und alternative überlegen}
   \end{enumerate}
 \end{Lem}
 
@@ -46,7 +51,7 @@
       Falls in $P'$ eine Transition mit einer Aktion aus $\Synch$ beschrifte
       ist muss diese auch als may-Transition in $P_1$ und $P_2$ vorhanden sein
       (Argumentation von oben und Definition~\ref{ParallelDef}). Bei Aktionen,
-      die nicht in $\Synch$ enthalten sind, muss nur der jeweilige \MEIO{}
+      die nicht in $\Synch$ enthalten sind, muss nur das jeweilige \MEIO{}
       $P_1$ bzw. $P_2$ die Transition als may-Transition enthalten.\\
       $\Rightarrow$ Es kann $P'_1$ und $P'_2$ geben, die alle nötigen
       Transitionen implementierten, so dass $P'=P'_1\|P'_2$ gilt.\\
@@ -76,6 +81,8 @@
 \end{proof}
 
 \begin{Lem}[w-as-Implementierungen und Parallelkomposition]\mbox{}
+
+  \TODO{entsprechend anpassen wie 1.2 oder löschen}
   \begin{enumerate}
     \item $P'_1\in\wasimp (P_1) \land P'_2 \in\wasimp (P_2) \Rightarrow
       (P'_1\|P'_2) \in\wasimp (P_1\|P_2)$.
