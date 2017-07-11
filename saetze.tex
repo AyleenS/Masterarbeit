@@ -1,5 +1,42 @@
 \chapter{allgemeine Folgerungen}
 
+\begin{Prop}[Sprache und Implementierung]
+  Die \emph{(maximale) Sprache} eines \MEIO{}s $P$ ist $L(P) = \left\{w\in
+  \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]
+  \right\}$.
+\end{Prop}
+
+\begin{proof}
+  Für ein $w\in L(P)$ gilt nach Definition~\ref{LDef} und den
+  Defintionen der Trantistions Notatin $\exists p_1,p_2,\dots,p_{n-1},p' \exists
+  w'\in\Sigma _{\tau} ^* : \hat{w'} = w \land w'=\alpha _1\alpha _2\dots\alpha
+  _n \land p\may[\alpha _1]p_1\may[\alpha _2] \dots p_{n-1}\may[\alpha _n] p'$.
+  Aufgrund von Defintion~\ref{SimDef} 2. kann jedes Element aus $\asRel (P)$
+  nur die bereits in $P$ vorhandenen may-Trantitionen implementieren. Somit
+  gibt es für jedes $w$, dass in der Sprache einer as"=Implementierung von $P$
+  enthalten ist auch ein entsprechendes $w$ mit einem Trace wie oben. Da in
+  $\left\{w\in \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]
+  \right\}$ alle Wörter enthalten sind, für dies es eine as"=Implementierung
+  gibt, die dieses Wort ausführen kann, werden somit auch alle möglichen
+  as"=Implementierungen betrachtet. Deshalb sind auch alle Wörter, die in
+  $L(P)$ enthalten sind in der Menge der Wörter alle Implementierungen
+  enthalten.\\
+  Da für Implementierungen die must-Transitons-Relations-Menge die gleiche ist,
+  wie die Menge der may-Transitions-Relationen könnte man auch für die
+  as"=Implementierungen die Defintion~\ref{LDef} anwenden um die jeweilige
+  Sprache zu bestimmen. Die Sprache eines \MEIO{} entspricht dann der
+  Vereinigung der Sprachen seiner as"=Implementierungen.
+\end{proof}
+
+\begin{Prop}[Sprache der Parallelkomposition]
+  Für zwei komponierbare \MEIO{}s $P_1$ und $P_2$ gilt: $L_{12} := L(P_{12}) =
+  L_1\|L_2$.
+\end{Prop}
+
+\begin{proof}
+  \TODO{beweisen oder entscheiden, dass kein Beweis notwendig ist}
+\end{proof}
+
 \begin{Lem}[as-Implementierungen und Parallelkomposition]\mbox{}
   \label{impParallelLem}
   \begin{enumerate}

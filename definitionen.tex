@@ -91,7 +91,7 @@ zugrundeliegende may-Transitionen.
       \Synch(P_1,P_2)\right\}\\
         &\cup \left\{\left((p_1,p_2),\alpha,(p_1',p_2')\right) \mid p_1
       \must[\alpha]_1 p_1', p_2 \must[\alpha]_2 p_2', \alpha\in
-      \Synch(P_1,P_2)\right\}
+      \Synch(P_1,P_2)\right\},
     \end{aligned}$
   \item $\begin{aligned}[t]
       \may_{12} & = \left\{\left((p_1,p_2),\alpha,(p_1',p_2)\right) \mid p_1
@@ -102,7 +102,7 @@ zugrundeliegende may-Transitionen.
       \Synch(P_1,P_2)\right\}\\
         &\cup \left\{\left((p_1,p_2),\alpha,(p_1',p_2')\right) \mid p_1
       \may[\alpha]_1 p_1', p_2 \may[\alpha]_2 p_2', \alpha\in
-      \Synch(P_1,P_2)\right\}
+      \Synch(P_1,P_2)\right\},
     \end{aligned}$
   \item $\begin{aligned}[t]
       E & = (P_1\times E_2) \cup (E_1\times P_2) &&\hspace{-0.3cm}\text{geerbte
@@ -112,7 +112,7 @@ zugrundeliegende may-Transitionen.
         \may[a]\land p_2\nmust[a]\right\}\\
         &\cup \left\{(p_1,p_2) \mid \exists a\in I_1\cap O_2 :
         p_1\nmust[a]\land p_2\may[a]\right\}
-        \end{aligned}\hspace{0.2cm}\right\} &&\text{neue Kommunikationsfehler}
+        \end{aligned}\hspace{0.2cm}\right\} &&\text{neue Kommunikationsfehler}.
     \end{aligned}$
   \end{itemize}
   Dabei bezeichnet $\Synch(P_1,P_2)=(I_1\cap O_2)\cup (O_1\cap I_2)\cup
@@ -224,26 +224,8 @@ Wort und $\mathfrak{P}(M)$ die Potenzmenge der Menge $M$ bezeichnet.
   \end{itemize}
 \end{Def}
 
-Die Sprache eines \MEIO{}s ist abhängig von den Sprachen seiner
-Implementierungen. Hier wird die Sprache eines \MEIO{}s als die Vereinigung
-aller Sprachen seiner Implementierungen definiert und dies ist somit die
-maximal mögliche Wort-Menge. Man könnte sich jedoch auch den Schnitt aller
-Sprachen seiner Implementierungen als sinnvolle Sprach-Definition vorstellen.\\
-Relevant ist jedoch, dass die Sprache eines \MEIO{}s nun nicht mehr nur über
-das vorliegende Transitionssystem spricht, sondern über alle möglichen daraus
-ableitbaren Implementierungen. Dieses Vorgehen wird auch später bei den Traces
-gewählt werden.
-
 \begin{Def}[Sprache]
   \label{LDef}
-
-  \TODO{Sprache unabhängig von der Implementierung definieren} 
-
-  \TODO{dieses Definition als Proposition beweisen}
-
-  Die \emph{(maximale) Sprache} eines \MEIO{}s $P$ ist $L(P) := \left\{w\in
-  \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]
-  \right\}$.\\
-  Für zwei komponierbare \MEIO{}s $P_1$ und $P_2$ gilt: $L_{12} := L(P_{12}) =
-  L_1\|L_2$.
+  Die \emph{Sprache} eines \MEIO{}s $P$ ist $L(P) := \left\{w\in \Sigma ^* \mid
+  p_0\weakmay[w]\right\}$.
 \end{Def}
