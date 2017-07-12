@@ -82,10 +82,10 @@
       aufgrund von Definition~\ref{SimDef} 1.\ implementieren und somit enthält auch
       $P'_1\|P'_2$ die entsprechenden durch~\ref{SimDef} 1.\ geforderten
       Transitionen, um eine as"=Implementierung von $P_1\|P_2$ sein zu können.\\
-      Die Kommunikationsfehler-Zustände, die $P'_1$ und $P'_2$ enthalten sind,
+      Die Fehler-Zustände, die $P'_1$ und $P'_2$ enthalten sind,
       müssten wegen Definition~\ref{SimDef} 3.\ auch in $P_1$ und $P_2$
       enthalten sein. Somit enthält $P_1\|P_2$ auch die entsprechend geerbten
-      Kommunikationsfehler, die dann durch $P'_1\|P'_2$ implementiert werden.
+      Fehler, die dann durch $P'_1\|P'_2$ implementiert werden.
       In $P'_1\|P'_2$ kann es nur zu neuen Kommunikationsfehlern kommen, wenn
       dies auch in $P_1\|P_2$ möglich war. Also ist auch~\ref{SimDef} 3.\ für
       $P'_1\|P'_2$ erfüllt.\\
@@ -112,7 +112,7 @@
       $P'_1\|P'_2$ zu einer Transition führen, die $P'$ auf Basis der
       Definition~\ref{SimDef} 1.\ nicht ebenfalls implementieren muss ($\must
       _{12}$ und $\may _{12}$ Definitionen in~\ref{ParallelDef}).\\
-      $P'$ kann nur Kommunikationsfehler-Zustände implementieren, die bereits
+      $P'$ kann nur Fehler-Zustände implementieren, die bereits
       in $P_1\|P_2$ möglich waren. Falls diese geerbt sind, sind die
       entsprechenden Fehler-Zustände auch schon in $P_1$ und $P_2$ möglich und
       können somit durch $P'_1$ und $P'_2$ implementiert werden. Die neuen
@@ -170,7 +170,7 @@
       analog zu der Argumentation für Definition~\ref{SimDef} 3.\ aus dem
       Beweis zu Punkt 1.\ aus dem Lemma~\ref{impParallelLem} übernommen werden.
       Die zusätzlichen $\tau$ Transitionen können nichts an geerbten und neuen
-      Kommunikationsfehlern verändern, was nicht auch in der
+      Fehlern verändern, was nicht auch in der
       Parallelkomposition zu analogen Veränderungen führt. Die zu möglichen
       neuen Kommunikationsfehlern führende Inputs müssen entweder sofort
       implementiert werden oder gar nicht.\\

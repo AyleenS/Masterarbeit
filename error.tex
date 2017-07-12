@@ -4,19 +4,19 @@ Dieses Kapitel versucht die Präkongruenz für Error bei \EIO{}s
 aus~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
 
 \begin{Def}[fehler-freie Kommunikation]
-  Ein Kommunikationsfehler"=Zustand ist \emph{lokal erreichbar} in einer
+  Ein Fehler"=Zustand ist \emph{lokal erreichbar} in einer
   as"=Implementierung $P'$ eines \MEIO{} $P$, wenn ein $w\in O^*$ existiert mit
   $p'_0 \weakmust[w]p'\in E'$.\\
-  Zwei \MEIO{}s $P_1$ und $P_2$ \emph{kommunizieren fehler-frei}, wenn alle
-  as"=Implementierungen ihrer Parallelkomposition $P_{12}$ keine
-  Kommunikationsfehler"=Zustände lokal erreichen können.
+  Zwei \MEIO{}s $P_1$ und $P_2$ \emph{kommunizieren fehler-frei}, wenn keine
+  as"=Implementierungen ihrer Parallelkomposition $P_{12}$ einen
+  Fehler"=Zustände lokal erreichen kann.
 \end{Def}
 
 \begin{Def}[Kommunikationsfehler-Verfeinerungs-Basirelation]
   Für zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur wird $P_1\EBRel{} P_2$
-  geschrieben, wenn ein Kommunikationsfehler"=Zustand in einer as"=Implementierung
+  geschrieben, wenn ein Fehler"=Zustand in einer as"=Implementierung
   von $P_1$ nur dann lokal erreichbar ist, wenn es auch eine as"=Implementierung
-  von $P_2$ gibt, in der dieser Kommunikationsfehler"=Zustand auch lokal
+  von $P_2$ gibt, in der dieser Fehler"=Zustand auch lokal
   erreichbar ist. Die Basisrelation stellt eine \emph{Verfeinerung} bezüglich
   \emph{Kommunikationsfehlern} dar.\\
   \ECRel{} bezeichnet die \emph{vollständig abstrakte Präkongruenz} von
@@ -64,11 +64,11 @@ Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
       auch jeder Ablauf, der in einer as"=Implementierung von $P$ möglich ist
       auch in $P$ durch may"=Transitionen möglich.\\
       Aufgrund des 3.\ Punktes der Definition~\ref{SimDef} kann jede
-      as"=Implementierung von $P$ nur Kommunikationsfehler-Zustände enthalten,
+      as"=Implementierung von $P$ nur Fehler-Zustände enthalten,
       die auch $P$ enthält. Da alle möglichen Implementierungen von $P$ in
       $\left\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) : p'_0 \weakmust[w]
       p' \in E\right\}$ betrachtet werden, ist auch jeder in $P$ durch
-      may"=Transitionen erreichbare Kommunikationsfehler"=Zustand auch in
+      may"=Transitionen erreichbare Fehler"=Zustand auch in
       mindestens einer as"=Implementierung ebenfalls erreichbar, jedoch durch
       must"=Transitionen.
     \item Für jedes $w$ in $L(P)$ gibt es mindestens eine as"=Implementierung
@@ -184,15 +184,15 @@ as"=Implementierung ist.
       \weakmust[w_1] p_1 \weakmust[v_1] p'_1$ und $p_{02} \weakmust[w_2] p_2
       \weakmust[v_2] p'_2$ mit $w\in w_1\|w_2$ und $v\in v_1\|v_2$. Aus
       $(p'_1,p'_2)\in\ET _{12}$ folgt, dass es sich entweder um einen geerbten
-      oder einen neuen Kommunikationsfehler handelt. Bei einem geerbten wäre
+      oder einen neuen Fehler handelt. Bei einem geerbten wäre
       bereits einer der beiden Zustände $p'_1$ bzw.\ $p'_2$ ein
-      Kommunikationsfehler"=Zustand gewesen. Ein neuer Kommunikationsfehler
+      Fehler"=Zustand gewesen. Ein neuer Kommunikationsfehler
       hingegen wäre durch das fehlen der Synchronisations-Erzwingung (fehlende
       must"=Transition) in der Spezifikation einer der Komponenten entstanden.
       Die Spezifikation würde es also zulassen, dass die Möglichkeit in einer
       ihrer Implementierungen fehlt, eine synchronisierte Aktion auszuführen.
     \begin{itemize}
-      \item Fall 2a) (geerbter Kommunikationsfehler): \OBdA{} gilt $p'_1\in
+      \item Fall 2a) (geerbter Fehler): \OBdA{} gilt $p'_1\in
         E_1$. Daraus folgt, $w_1v_1\in StET_1 \subseteq \cont (\PrET _1)
         \subseteq \ET _1$. Da $p_{02} \weakmust{w_2v_2}$ gilt, erhält man
         $w_2v_2\in L_2\subseteq \EL _2$. Dadurch ergibt sich $wv\in \ET _1\|\EL
@@ -245,7 +245,7 @@ as"=Implementierung ist.
   $v_2$.
   \begin{itemize}
     \item Fall 1 ($v_1=\varepsilon$): Da $\varepsilon\in\PrET _1\cup \MIT _1$,
-      ist bereits in $P_1$ ein Kommunikationsfehler"=Zustand lokal erreichbar
+      ist bereits in $P_1$ ein Fehler"=Zustand lokal erreichbar
       (möglicherweise auch via may"=Transitionen). $\varepsilon \in \MIT _1$
       ist nicht möglich, da jedes Element aus \MIT{} nach Definition mindestens
       die Länge $1$ haben muss. Mit der Wahl $v'_2=v'=\varepsilon$ ist $v'_2$
