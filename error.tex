@@ -47,14 +47,13 @@ Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
 \begin{Prop}[Kommunikationsfehler-Traces und Implementierung]
   Für ein \MEIO{} $P$ gilt:
   \begin{enumerate}
-    \item \emph{strikte Kommunikationsfehler-Traces}: $\StET (P) :=
+    \item \emph{strikte Kommunikationsfehler-Traces}: $\StET (P) =
       \left\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) :
       \phantom{\weakmust[w]} \right.$ $\left. p'_0 \weakmust[w] p' \in
       E\right\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}
-    \item \emph{Input-kritische-Traces}: $\MIT (P) := \left\{wa\in\Sigma ^* \mid
-      \exists P' \in\asimp (P) : p'_0
-      \weakmust[w] p' \land \right.$\linebreak $\left. a\in I\land p'\nmust[a]
-      \right\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}
+    \item \emph{Input-kritische-Traces}: $\MIT (P) = \left\{wa\in\Sigma ^* \mid
+      \exists P' \in\asimp (P) : p'_0 \weakmust[w] p' \land \right.$\linebreak
+      $\left. a\in I\land p'\nmust[a] \right\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}
   \end{enumerate}
 \end{Prop}
 \begin{proof}\mbox{}
@@ -72,21 +71,29 @@ Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
       may"=Transitionen erreichbare Kommunikationsfehler"=Zustand auch in
       mindestens einer as"=Implementierung ebenfalls erreichbar, jedoch durch
       must"=Transitionen.
-    \item Wegen Proposition~\ref{LImpProp} sind $p'$ Implementierungen von
-      ebenfalls mit $w$ erreichbaren Zuständen in $P$ und für jeden in $P$
-      erreichbaren Zustand gibt es auch eine Implementierung, die einen
-      analogen Zustand mit dem selben Wort erreichen kann.\\
-      Falls der entsprechende Zustand in $P$ keine ausgehende must"=Transition
-      für den Input $a$ hat, muss nicht jede seiner as"=Implementierungen eine
-      ausgehende $a$ Transitionen an dem entsprechenden Zustand haben
-      (\ref{SimDef} 1.). Es gibt also mindestens eine as"=Implementierung, die
-      den Input $a$ nach dem Wort $w$ nicht ausführen kann. Falls es
-      as"=Implementierungen gibt, die nach einem $w$ einen Input $a$ nicht
-      ausführen können, muss dies auch bereits in $P$ möglich gewesen sein,
-      dass dieser Input nicht implementiert werden muss bzw.\ nicht
-      implementiert werden darf, d.h.\ in $P$ darf die $a$ Transition nur als
-      may"=Transition auftauchen bzw.\ gar nicht vorhanden sein (\ref{SimDef}
-      1.).
+    \item Für jedes $w$ in $L(P)$ gibt es mindestens eine as"=Implementierung
+      von $P$, die dieses $w$ auch ausführen kann und umgekehrt (Beweis
+      von~\ref{LImpProp}). Falls in $\MIT (P)$ mindestens ein Element gibt,
+      gibt es in $P$ einen Trace von $w$, nach dem ein Input $a$ nicht
+      zwingendermaßen folgen muss. Die $a$ Transition also entweder eine
+      may"=Transition ist oder gar nicht existiert in $P$. Es muss also auch
+      einen $w$ Trace in einer as"=Implementierung geben, die in einem Zustand
+      endet, der mit dem Zustand aus $P$ in Relation steht, in dem das $a$
+      nicht erzwungen wird. Falls die Transition in $P$ nicht vorhanden ist,
+      muss jede as"=Implementierung, die so einen $w$ Trace enthält auch $wa$
+      als Input-kritischen-Trace haben. Andernfalls handelt es sich bei $a$ in
+      $P$ um eine may"=Transition, die von mindestens einer
+      as"=Implementierung, die den $w$ Trace enthält, nicht implementiert wird
+      und somit $wa$ auch als Input-kritischen-Trace enthält.\\
+      Für ein $wa\in \left\{wa\in\Sigma ^* \mid \exists P' \in\asimp (P) : p'_0
+      \weakmust[w] p' \land a\in I\land p'\nmust[a] \right\}$ muss es eine
+      as"=Implementierung von $P$ geben, die diesen Input-kritischen-Trace
+      implementiert. $P$ muss also auch das $w$ ausführen können zu einem
+      Zustand, in dem $P$ $a$ nicht als must"=Transition enthalten. Falls $P$
+      $a$ nach $w$ nur als must"=Transition enthalten würde, würde~\ref{SimDef}
+      1.\ die Implementierung von $a$ erzwingen würde und somit könnte für
+      keine as"=Implementierung von $P$ $wa$ ein Input-kritischer-Trace sein.
+      Es gilt also auch $wa\in\MIT (P)$.
   \end{enumerate}
 \end{proof}
 
@@ -117,6 +124,10 @@ as"=Implementierung ist.
   \end{enumerate}
 \end{Satz}
 \begin{proof}
+
+  \TODO{neuer Beweis auf Basis der Sprach/Trace-Definitionen ohne
+  Implementierungen}
+
   Da die Trace-Mengen und die Sprache alle nur über möglichen Traces in
   mindestens einer as"=Implementierung der betrachteten \MEIO{}s spricht, muss
   man zu jedem Element auch die passende as"=Implementierung betrachten. Wegen
