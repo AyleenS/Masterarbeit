@@ -48,9 +48,8 @@ Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
   Für ein \MEIO{} $P$ gilt:
   \begin{enumerate}
     \item \emph{strikte Kommunikationsfehler-Traces}: $\StET (P) =
-      \left\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) :
-      \phantom{\weakmust[w]} \right.$ $\left. p'_0 \weakmust[w] p' \in
-      E\right\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}
+      \big\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) :$ $p'_0 \weakmust[w]
+      p' \in E\big\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}
     \item \emph{Input-kritische-Traces}: $\MIT (P) = \left\{wa\in\Sigma ^* \mid
       \exists P' \in\asimp (P) : p'_0 \weakmust[w] p' \land \right.$\linebreak
       $\left. a\in I\land p'\nmust[a] \right\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}

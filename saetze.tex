@@ -255,7 +255,7 @@ Parallelkomposition mit der Implementierung $P_1$ $P'$ ergeben würde.
       synchronisierten oder aus einem unsynchronisierten $\omega$ entstanden.
       Entsprechend ist dann in einem oder beiden $P_j$ die Transitionen möglich
       und durch die Relationen $\mathcal{R}_j$ folgen die Transitionen $p'_j
-      \weakmust[\omega]_{P'_j} q'_j$ mit $(p'_j,q'-j)\in\mathcal{R}_j$. Durch
+      \weakmust[\omega]_{P'_j} q'_j$ mit $(q_j,q'_j)\in\mathcal{R}_j$. Durch
       die Parallelkomposition von $P'_1$ mit $P'_2$ folgt dann das zu zeigende.
     \item $(p'_1,p'_2)\may[i]_{P'_1\|P'_2}(q'_1,q'_2)$ impliziert $(p_1,p_2)
       \may[i]_{12} \weakmay[\varepsilon]_{12} (q_1,q_2)$ für ein $(q_1,q_2)$
@@ -270,9 +270,16 @@ Parallelkomposition mit der Implementierung $P_1$ $P'$ ergeben würde.
       Transition folgt dann $(p_1,p_2) \may[i]_{12} \weakmay[\varepsilon]_{12}
       (q_1,q_2)$ und mit Hilfe der Definition von $\mathcal{R}_{12}$ auch
       $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$.
-    \item \TODO{z.z.: $(p'_1,p'_2)\may[\omega]_{P'_1\|P'_2}(q'_1,q'_2)$
-      impliziert $(p_1,p_2) \weakmay[\hat{\omega}]_{12} (q_1,q_2)$ für ein
-      $(q_1,q_2)$ mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$}
+    \item Analog zu 3.\ kann für diesen Punkt
+      $(p'_1,p'_2)\may[\omega]_{P'_1\|P'_2}(q'_1,q'_2)$ impliziert $(p_1,p_2)
+      \weakmay[\hat{\omega}]_{12} (q_1,q_2)$ für ein $(q_1,q_2)$ mit
+      $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$ gezeigt werden.\\
+      Die $\omega$ Transition in $P'_1\|P'_2$ ist entweder aus einem
+      synchronisierten oder aus einem unsynchronisierten $\omega$ entstanden.
+      Entsprechend ist dann in einem oder beiden $P'_j$ die Transitionen
+      möglich und durch die Relationen $\mathcal{R}_j$ folgen die Transitionen
+      $p_j \weakmust[\omega]_j q_j$ mit $(q_j,q'_j)\in\mathcal{R}_j$. Durch
+      die Parallelkomposition von $P_1$ mit $P_2$ folgt dann das zu zeigende.
     \item Für diesen Punkt ist zu zeigen, dass aus $(p'_1,p'_2)\in
       E_{P'_1\|P'_2}$ $(p_1,p_2)\in E_{12}$ folgt.\\
       Falls $(p'_1,p'_2)\in E_{P'_1\|P'_2}$ ein geerbter Fehler ist, gilt
