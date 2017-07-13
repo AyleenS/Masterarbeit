@@ -55,7 +55,7 @@
 
 \begin{proof}
   Es gelte $j\in\{1,2\}$. Da $P'_j\in\asimp (P_j)$ gilt, gibt es nach
-  Definition~\ref{SimDef} eine as-Verfeinerungsrelation $\mathcal{R}_j$, die
+  Definition~\ref{SimDef} eine as-Verfeinerungs"=Relation $\mathcal{R}_j$, die
   beschreibt, wie $P'_j$ $P_j$ verfeinert. Die Parallelkomposition werden
   auf Basis von Definition~\ref{ParallelDef} gebildet. Die Zustände sind also
   Tupel der Zustände der Komponenten. In dem man aus den Zuständen, die die
@@ -66,7 +66,7 @@
   $\forall p'_1,p'_2,p_1,p_2: ((p'_1,p'_2),(p_1,p_2))\in\mathcal{R}_{12}
   \Leftrightarrow (p'_1,p_1)\in\mathcal{R}_1 \land (p'_2,p_2)\in\mathcal{R}_2$.
   Es bleibt nun zu zeigen, dass $\mathcal{R}_{12}$ eine zulässige
-  Verfeinerungsrelation nach Definition~\ref{SimDef} ist, da die
+  Verfeinerungs"=Relation nach Definition~\ref{SimDef} ist, da die
   Parallelkomposition von zwei Implementierungen auch immer eine
   Implementierung ist (\ref{ParallelDef}).
   \begin{enumerate}
@@ -199,17 +199,14 @@ Parallelkomposition mit der Implementierung $P_1$ $P'$ ergeben würde.
   \end{center}
 \end{figure}
 
-\begin{Lem}[w-as-Implementierungen und Parallelkomposition]\mbox{}
-
-  \TODO{entsprechend anpassen wie 2.3}
-
+\begin{Lem}[w-as-Implementierungen und Parallelkomposition]\mbox{}\\
   $P'_1\in\wasimp (P_1) \land P'_2 \in\wasimp (P_2) \Rightarrow (P'_1\|P'_2)
   \in\wasimp (P_1\|P_2)$.
 \end{Lem}
 
 \begin{proof}\mbox{}
   Es gelte $j\in\{1,2\}$. Da $P'_j\in\wasimp (P_j)$ gilt, gibt es nach
-  Definition~\ref{wSimDef} eine schwache as-Verfeinerungsrelation
+  Definition~\ref{wSimDef} eine schwache as-Verfeinerungs"=Relation
   $\mathcal{R}_j$, die beschreibt, wie $P'_j$ $P_j$ verfeinert. Analog zum
   Beweis von Lemma~\ref{impParallelLem} kann auch hier die neue schwache
   as"=Verfeinerungs"=Relation der Parallelkompositionen $\mathcal{R}_{12}$
@@ -217,7 +214,7 @@ Parallelkomposition mit der Implementierung $P_1$ $P'$ ergeben würde.
   ((p'_1,p'_2),(p_1,p_2))\in\mathcal{R}_{12} \Leftrightarrow
   (p'_1,p_1)\in\mathcal{R}_1 \land (p'_2,p_2)\in\mathcal{R}_2$. Es bleibt nun
   zu zeigen, dass $\mathcal{R}_{12}$ eine zulässige schwache
-  Verfeinerungsrelation nach Definition~\ref{wSimDef} ist, da die
+  Verfeinerungs"=Relation nach Definition~\ref{wSimDef} ist, da die
   Parallelkomposition von zwei Implementierungen auch immer eine
   Implementierung ist (\ref{ParallelDef}).
   \begin{enumerate}
@@ -231,19 +228,68 @@ Parallelkomposition mit der Implementierung $P_1$ $P'$ ergeben würde.
       dann gab es diese Transition auch bereits in $P_1$ und $P_2$ als
       must"=Transition. Somit verlangen bereits die schwachen
       as"=Verfeinerungs"=Relation $\mathcal{R}_1$ und $\mathcal{R}_2$, dass
-      $p'_j\must[i]_j\weakmay[\varepsilon]_jq'_j$ für $j=1$ und $j=2$ gilt.
-      \TODO{fertig beweisen}
-    \item \TODO{z.z.: $(p_1,p_2)\must[\omega]_{12}(q_1,q_2)$ impliziert
-      $(p'_1,p'_2) \weakmust[\hat{\omega}]_{P'_1\|P'_2} (q'_1,q'_2)$ für ein
-      $(q'_1,q'_2)$ mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$}
-    \item \TODO{z.z.: $(p'_1,p'_2)\may[i]_{P'_1\|P'_2}(q'_1,q'_2)$ impliziert
-      $(p_1,p_2) \may[i]_{12} \weakmay[\varepsilon]_{12} (q_1,q_2)$ für ein
-      $(q_1,q_2)$ mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$}
+      $p'_j\must[i]_{P'_j}\weakmust[\varepsilon]_{P'_j}q'_j$ für $j=1$ und
+      $j=2$ gilt. Wenn auf die \MEIO{}s mit diesen Transitionen die
+      Parallelkomposition angewendet wird, entstehen der Ablauf
+      $(p'_1,p'_2) \must[i]_{P'_1\|P'_2} \weakmust[\varepsilon]_{12}
+      (q'_1,q'_2)$. Die $q'_j$ müssen in der  Relation $\mathcal{R}_j$ mit dem
+      jeweiligen $q_j$ ein Tupel bilden. Somit gilt auch
+      $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$. Falls $i\notin\Synch
+      (P_1,P_2)$, ist die $i$ Transition in $P_1\|P_2$ nur aufgrund einer
+      entsprechenden Transition in einer Komponente möglich. \OBdA{} gilt $p_1
+      \must[i]_1 q_1$ und mit Definition~\ref{wSimDef} 1.\ gilt dann $p'_1
+      \must[i]_{P'_1} q'_1$ und $(q_1,q'_1)\in\mathcal{R}_1$. Da es sich um
+      eine unsynchronisierte Aktion von $P_1$ bzw. $P'_1$ handelt, muss für die
+      zweite Komponente $(p_2,q_2)=(p'_2,q'_2)\in\mathcal{R}_2$ gelten. Die
+      interne Aktion ist immer unsynchronisiert und $i$ in diesem Fall auch,
+      deshalb ist $(p'_1,p'_2)\must[i]_{P'_1\|P'_2}
+      \weakmust[\varepsilon]_{P'_1\|P'_2} (q'_1,q'_2)$ die in der
+      Parallelkomposition entstehende Transitionsfolge.
+      $(q_1,q_2)\mathcal{R}_{12}(q'_1,q'_2)$ gilt für den Fall des
+      unsynchronisierten $i$'s ebenfalls.
+    \item Analog zu 1.\ kann für diesen Punkt
+      $(p_1,p_2)\must[\omega]_{12}(q_1,q_2)$ impliziert $(p'_1,p'_2)
+      \weakmust[\hat{\omega}]_{P'_1\|P'_2} (q'_1,q'_2)$ für ein $(q'_1,q'_2)$
+      mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$ gezeigt werden.\\
+      Die $\omega$ Transition in $P_1\|P_2$ ist entweder aus einem
+      synchronisierten oder aus einem unsynchronisierten $\omega$ entstanden.
+      Entsprechend ist dann in einem oder beiden $P_j$ die Transitionen möglich
+      und durch die Relationen $\mathcal{R}_j$ folgen die Transitionen $p'_j
+      \weakmust[\omega]_{P'_j} q'_j$ mit $(p'_j,q'-j)\in\mathcal{R}_j$. Durch
+      die Parallelkomposition von $P'_1$ mit $P'_2$ folgt dann das zu zeigende.
+    \item $(p'_1,p'_2)\may[i]_{P'_1\|P'_2}(q'_1,q'_2)$ impliziert $(p_1,p_2)
+      \may[i]_{12} \weakmay[\varepsilon]_{12} (q_1,q_2)$ für ein $(q_1,q_2)$
+      mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$ ist die Voraussetzung
+      des 3.\ Punktes, um zu beweisen, dass $\mathcal{R}_{12}$ eine schwache
+      as"=Verfeinerungs"=Relation ist. Die Transition $i$ kann wiederum durch
+      Synchronisation von zwei Transitionen entstanden sein oder durch eine
+      Transition aus einer Komponenten und $i\notin\Synch (P'_1\|P'_2)$. In
+      beiden Fällen gilt für ein $j$ oder beide $p'_j\may[i]_{P'_j}q'_j$.
+      Daraus folgt mit $\mathcal{R}_j$ $p_j \may[i]_j \weakmay[\varepsilon]_j
+      q_j$ mit $(q_j,q'_j)$. Durch Synchronisation oder durch übernehmen der
+      Transition folgt dann $(p_1,p_2) \may[i]_{12} \weakmay[\varepsilon]_{12}
+      (q_1,q_2)$ und mit Hilfe der Definition von $\mathcal{R}_{12}$ auch
+      $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$.
     \item \TODO{z.z.: $(p'_1,p'_2)\may[\omega]_{P'_1\|P'_2}(q'_1,q'_2)$
       impliziert $(p_1,p_2) \weakmay[\hat{\omega}]_{12} (q_1,q_2)$ für ein
       $(q_1,q_2)$ mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$}
-    \item \TODO{z.z.: $(p'_1,p'_2)\in E_{P'_1\|P'_2} \Rightarrow (p_1,p_2)\in
-      E_{12}$}
+    \item Für diesen Punkt ist zu zeigen, dass aus $(p'_1,p'_2)\in
+      E_{P'_1\|P'_2}$ $(p_1,p_2)\in E_{12}$ folgt.\\
+      Falls $(p'_1,p'_2)\in E_{P'_1\|P'_2}$ ein geerbter Fehler ist, gilt
+      \oBdA{} $p'_1\in E_{P'_1}$ und $p'_2\in P'_2$. Mit
+      Definition~\ref{wSimDef} 5., die für $\mathcal{R}_1$ gilt, folgt $p_1\in
+      E_1$. $p_2$ steht mit $p'_2$ in der Relation $\mathcal{R}_2$. Durch die
+      Signatur folgt $p_2\in P_2$. Es gilt also in der Parallelkomposition
+      $P_1\|P_2$ $(p_1,p_2)\in E_{12}$ ist ein von $P_1$ geerbter Fehler.
+      $(p'_1,p'_2)$ kann jedoch in $P'_1\|P'_2$ auch ein neuer
+      Kommunikationsfehler sein. Dann gilt \oBdA{} $p'_1\nmust{a}$ und
+      $p'_2\may[a]$ für ein $a\in I_1\cap O_2$. Mit $\mathcal{R}_2$
+      und~\ref{wSimDef} 4.\ folgt die Gültigkeit von $p_2\weakmay{a}$ in $P_2$.
+      Da es für $p'_1$ keine ausgehende $a$ must"=Transition geben darf, darf
+      es auch in $P_1$ keine $a$ must"=Transition von $p_1$ aus geben,
+      ansonsten wäre~\ref{wSimDef} 1.\ für $\mathcal{R}_1$ verletzt.
+      $(q_1,q_2)$ ist also auch ein neuer Kommunikationsfehler und somit in
+      $E_{12}$ enthalten.
   \end{enumerate}
 
 
