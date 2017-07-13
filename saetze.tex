@@ -47,19 +47,19 @@
   $L(P_{12})$.
 \end{proof}
 
-\begin{Lem}[as-Implementierungen und Parallelkomposition]
+\begin{Lem}[as-Implementierungen und Parallelkomposition]\mbox{}\\
   \label{impParallelLem}
   $P'_1\in\asimp (P_1) \land P'_2 \in\asimp (P_2) \Rightarrow (P'_1\|P'_2)
   \in\asimp (P_1\|P_2)$.
 \end{Lem}
 
 \begin{proof}
-  Es gelte $i\in\{1,2\}$. Da $P'_i\in\asimp (P_i)$ gilt, gibt es nach
-  Definition~\ref{SimDef} eine as-Verfeinerungsrelation $\mathcal{R}_i$, die
-  die beschreibt, wie $P'_i$ $P_i$ verfeinert. Die Parallelkomposition werden
+  Es gelte $j\in\{1,2\}$. Da $P'_j\in\asimp (P_j)$ gilt, gibt es nach
+  Definition~\ref{SimDef} eine as-Verfeinerungsrelation $\mathcal{R}_j$, die
+  beschreibt, wie $P'_j$ $P_j$ verfeinert. Die Parallelkomposition werden
   auf Basis von Definition~\ref{ParallelDef} gebildet. Die Zustände sind also
   Tupel der Zustände der Komponenten. In dem man aus den Zuständen, die die
-  $\mathcal{R}_i$ in Relation setzt auch solche Tupel zusammensetzt, kann man
+  $\mathcal{R}_j$ in Relation setzt auch solche Tupel zusammensetzt, kann man
   auch eine neue as-Verfeinerungs-Relation für die Verfeinerung von $P_1\|P_2$
   durch $P'_1\|P'_2$ erstellen. Die neue as-Verfeinerungs-Relation soll
   $\mathcal{R}_{12}$ heißen und wie folgt definiert sein:
@@ -73,18 +73,14 @@
     \item Für diesen Punkt der Simulations-Definition~\ref{SimDef} ist
       folgendes zu zeigen: $(p_1,p_2)\must[\alpha]_{12}(q_1,q_2)$ impliziert
       $(p'_1,p'_2)\must[\alpha]_{P'_1\|P'_2}(q'_1,q'_2)$ für ein $(q'_1,q'_2)$
-      mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$. Dies kann man durch die
-      Definition von $\mathcal{R}_{12}$ umformuliert
-      zu: $(p_1,p_2)\must[\alpha]_{12}(q_1,q_2)$ impliziert
-      $(p'_1,p'_2)\must[\alpha]_{P'_1\|P'_2}(q'_1,q'_2)$ für ein $(q'_1,q'_2)$
-      mit $(q_1,q'_1)\in\mathcal{R}_1$ und $(q_2,q'_2)\in\mathcal{R}_2$.\\
+      mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$.\\
       $(p_1,p_2)\must[\alpha]_{12}(q_1,q_2)$ kann in $P_1\|P_2$ für ein
       $\alpha$ aus $\Synch (P_1,P_2)$ nur gelten, wenn in $P_1$ die
       $\alpha$-Transition zwischen $p_1$ und $q_1$ auch bereits eine
       must"=Transition war und analog für $p_2$ und $q_2$ in $P_2$. Somit
-      erzwingen die $\mathcal{R}_i$ für die Komponenten bereits die
+      erzwingen die $\mathcal{R}_j$ für die Komponenten bereits die
       Implementierung der must"=Transitionen, so dass es dann entsprechende
-      $(q_i,q'_i)\in\mathcal{R}_i$ gibt. Die Parallelkomposition der
+      $(q_j,q'_j)\in\mathcal{R}_j$ gibt. Die Parallelkomposition der
       implementierten must"=Transitionen aus $P'_1$ und $P'_2$ führt in
       $P'_1\|P'_2$ zu der geforderten Transition. Falls $\alpha$ keine
       synchronisiert Aktion ist, enthält die Parallelkomposition die Transition
@@ -95,7 +91,10 @@
       $q'_1$ eine must"=Transition und es gilt $(q_1,q'_1)\in\mathcal{R}_1$.
       $\alpha$ ist auch in der Parallelkomposition der as"=Implementierungen
       eine unsynchronisierte Aktion und somit entsteht die Transition dort auch
-      nur aus der Transition von $P'_1$ und es gilt $p'_2=q'_2$.
+      nur aus der Transition von $P'_1$ und es gilt $p'_2=q'_2$.\\
+      Da in beiden Fällen $(q_j,q'_j)\in \mathcal{R}_j$ für beide Werte von $i$
+      gilt, gilt nach der Definition von $\mathcal{R}_{12}$ auch
+      $((q_1,q_2),(q'_1,q'_2))\in \mathcal{R}_{12}$.
       $p_2\mathcal{R}_2p'_2$ musst nach Voraussetzung gelten und somit gilt
       wegen der Gleichheiten der Zustände auch $q_2\mathcal{R}_2q'_2$.
     \item Es ist $(p'_1,p'_2)\may[\alpha]_{P'_1\|P'_2}(q'_1,q'_2)$ impliziert
@@ -107,33 +106,34 @@
       auf das Ergebnis kommen, dass die eine Komponente oder beide die
       entsprechende may"=Transition ausführen können müssen, damit die
       Parallelkomposition dies auch kann. Es gilt also mindestens für eine der
-      Komponenten $p'_i\may[\alpha]_{P'_i}q'_i$ und durch die
+      Komponenten $p'_j\may[\alpha]_{P'_j}q'_j$ und durch die
       Definition~\ref{SimDef}, die für die entsprechende Relation
-      $\mathcal{R}_i$ gilt, muss es in $P_i$ die Transition
-      $p_i\may[\alpha]_iq_i$ geben, so dass dann $(q_i,q'_i)\in\mathcal{R}_i$
+      $\mathcal{R}_j$ gilt, muss es in $P_j$ die Transition
+      $p_j\may[\alpha]_jq_j$ geben, so dass dann $(q_j,q'_j)\in\mathcal{R}_j$
       gilt. Durch die Definition von $\may$ in~\ref{ParallelDef} werden die
       may"=Transitionen der Komponenten entsprechend in die Parallelkomposition
-      $P_1\|P_2$ aufgenommen und die Relation $\mathcal{R}_{12}$ gilt auch für
-      die entsprechenden Zustands-Tupel.
+      $P_1\|P_2$ aufgenommen und die Relation $\mathcal{R}_{12}$ gilt, mit den
+      analogen Begründungen wie in 1., auch für die entsprechenden
+      Zustands-Tupel.
     \item Hierfür muss gezeigt werden, wenn $(p'_1,p'_2)\in E_{P'_1\|P'_2}$
       gilt, dann ist auch $(p_1,p_2)$ in $P_1\|P_2$ ein Zustand, der in der
-      Menge der Fehler-Zustande $E_{12}$ enthalten ist. Falls $(p'_1,p'_2)$
-      ein geerbter Fehler ist, dann ist \oBdA $p'_1\in E_{P'_1}$ und $p'_2\in
-      P'_2$. Aufgrund von $\mathcal{R}_1$ und Definition~\ref{SimDef} 3.\ muss
-      dann auch $p_1\in E_1$ gelten. Für $p_2$ gilt durch die Signatur von
-      $\mathcal{R}_2$ $p_2\in P_2$. Zusammen in $P_1\|P_2$ ergibt das wieder
-      einen geerbten Fehler, also $(p_1,p_2)\in E_{12}$. $(p'_1,p'_2)$ kann
-      jedoch auch ein neuer Kommunikationsfehler sein, dann gilt \oBdA
-      $p'_1\nmust[a]_{P'_1}$ und $p'_2\may[a]_{P'_2}$ für ein $a$ aus $I_1\cap
-      O_2$. Aufgrund von Definition~\ref{SimDef} 2.\ muss dann auch
-      $p_2\may[a]_2$ gelten. Für $p_1$ kann nicht $p_1\must[a]_1$ gelten, da
-      sonst die Simulations Relation $\mathcal{R}_1$ die Implementierung dieser
-      Transition in $P'_1$ fordern würde (\ref{SimDef} 1.). Es gilt also
-      $p_1\nmust[a]_1$ und in der Parallelkomposition $P_1\|P_2$ ergibt sich
-      daraus ebenfalls ein neuer Kommunikationsfehler mit $(p_1,p_2)\in
-      E_{12}$.
+      Menge der Fehler-Zustande $E_{12}$ enthalten ist.\\
+      Falls $(p'_1,p'_2)$ ein geerbter Fehler ist, dann ist \oBdA{} $p'_1\in
+      E_{P'_1}$ und $p'_2\in P'_2$. Aufgrund von $\mathcal{R}_1$ und
+      Definition~\ref{SimDef} 3.\ muss dann auch $p_1\in E_1$ gelten. Für $p_2$
+      gilt durch die Signatur von $\mathcal{R}_2$ $p_2\in P_2$. Zusammen in
+      $P_1\|P_2$ ergibt das wieder  einen geerbten Fehler, also $(p_1,p_2)\in
+      E_{12}$. $(p'_1,p'_2)$ kann jedoch auch ein neuer Kommunikationsfehler
+      sein, dann gilt \oBdA{} $p'_1\nmust[a]_{P'_1}$ und $p'_2\may[a]_{P'_2}$
+      für ein $a$ aus $I_1\cap O_2$. Aufgrund von Definition~\ref{SimDef} 2.\
+      muss dann auch $p_2\may[a]_2$ gelten. Für $p_1$ kann nicht
+      $p_1\must[a]_1$ gelten, da sonst die Simulations Relation $\mathcal{R}_1$
+      die Implementierung dieser Transition in $P'_1$ fordern würde
+      (\ref{SimDef} 1.). Es gilt also $p_1\nmust[a]_1$ und in der
+      Parallelkomposition $P_1\|P_2$ ergibt sich daraus ebenfalls ein neuer
+      Kommunikationsfehler mit $(p_1,p_2)\in E_{12}$.
   \end{enumerate}
-    $\Rightarrow (P'_1\|P'_2)\in\asimp (P_1\|P_2)$.
+  $\Rightarrow (P'_1\|P'_2)\in\asimp (P_1\|P_2)$.
 \end{proof}
 
 Die entgegengesetzte Richtung von Lemma~\ref{impParallelLem} gilt im
@@ -201,49 +201,53 @@ Parallelkomposition mit der Implementierung $P_1$ $P'$ ergeben würde.
 
 \begin{Lem}[w-as-Implementierungen und Parallelkomposition]\mbox{}
 
-  \TODO{entsprechend anpassen wie 1.2 oder löschen}
+  \TODO{entsprechend anpassen wie 2.3}
 
   $P'_1\in\wasimp (P_1) \land P'_2 \in\wasimp (P_2) \Rightarrow (P'_1\|P'_2)
   \in\wasimp (P_1\|P_2)$.
 \end{Lem}
 
 \begin{proof}\mbox{}
-    Es gelte $i\in\{1,2\}$. Jede Transition ($\may '_i =\must '_i$) einer
-    sichtbaren Aktion in $P'_i$ hat eine entsprechende schwache
-    may-Transition in $P_i$, da Definition~\ref{wSimDef} 3./4.\ gilt. Aufgrund
-    der Simulations Definition~\ref{wSimDef}, haben $P_i$ und $P'_i$ die
-    gleichen Signaturen (bezieht sich nur auf sichtbare Aktionen) und somit
-    gilt $\Synch (P_1,P_2) = \Synch (P'_1,P'_2)$.\\
-    Daraus folgt unter Verwendung, dass die Definitionen der must- und
-    may"=Transitionen der Parallelkomposition in~\ref{ParallelDef} analog
-    formuliert sind, dass alle sichtbaren Transitionen, die in $P'_1\|P'_2$
-    enthalten sind auch in $P_1\|P_2$ als schwache may"=Transitionen
-    vorhanden sind. Hierzu ist noch anzumerken, dass die interne Aktion nie
-    in der Parallelkomposition synchronisiert wird und somit die \MEIO{}s
-    diese in der Komposition jeweils für ihre Komponente alleine ausführen.\\
-    $P'_1\|P'_2$ ist mit der gleichen Begründung wie im Beweis von
-    Satz~\ref{impParallelLem} 1.\ eine Implementierung.\\
-    $P_1\|P_2$ enthält nur must"=Transitionen, wenn auch $P_1$ bzw.\ $P_2$
-    diese enthalten haben. $P'_1$ und $P'_2$ müssen diese must"=Transitionen
-    aufgrund von Definition~\ref{wSimDef} 1./2.\ schwach implementieren, d.h.\
-    bei Inputs können danach noch interne Aktionen möglich sein und bei
-    Outputs davor und danach und bei einen $\tau$ können beliebig viele
-    interne Aktionen implementiert werden (auch keine). Die durch $P_1\|P_2$
-    und~\ref{wSimDef} 1./2.\ geforderten Implementierungen von must"=Transitionen
-    in $P'_1\|P'_2$ basieren auf den must"=Transitionen der einzelnen
-    \MEIO{}s, die schwach in deren w"=as"=Implementierungen implementiert
-    wurden. Die zusätzlichen $\tau$s, die dadurch entstehen, hindern
-    $P'_1\|P'_2$ in der Parallelkomposition nicht daran die
-    must"=Transitionen auch entsprechend schwach zu implementieren.\\
-    Die Argumentation, wieso Definition~\ref{wSimDef} 5.\ hier gilt, kann
-    analog zu der Argumentation für Definition~\ref{SimDef} 3.\ aus dem
-    Beweis zu Punkt 1.\ aus dem Lemma~\ref{impParallelLem} übernommen werden.
-    Die zusätzlichen $\tau$ Transitionen können nichts an geerbten und neuen
-    Fehlern verändern, was nicht auch in der
-    Parallelkomposition zu analogen Veränderungen führt. Die zu möglichen
-    neuen Kommunikationsfehlern führende Inputs müssen entweder sofort
-    implementiert werden oder gar nicht.\\
-    $\Rightarrow (P'_1\|P'_2)\in\wasimp (P_1\|P_2)$.
+  Es gelte $j\in\{1,2\}$. Da $P'_j\in\wasimp (P_j)$ gilt, gibt es nach
+  Definition~\ref{wSimDef} eine schwache as-Verfeinerungsrelation
+  $\mathcal{R}_j$, die beschreibt, wie $P'_j$ $P_j$ verfeinert. Analog zum
+  Beweis von Lemma~\ref{impParallelLem} kann auch hier die neue schwache
+  as"=Verfeinerungs"=Relation der Parallelkompositionen $\mathcal{R}_{12}$
+  auf Basis der $\mathcal{R}_j$ definiert werden: $\forall p'_1,p'_2,p_1,p_2:
+  ((p'_1,p'_2),(p_1,p_2))\in\mathcal{R}_{12} \Leftrightarrow
+  (p'_1,p_1)\in\mathcal{R}_1 \land (p'_2,p_2)\in\mathcal{R}_2$. Es bleibt nun
+  zu zeigen, dass $\mathcal{R}_{12}$ eine zulässige schwache
+  Verfeinerungsrelation nach Definition~\ref{wSimDef} ist, da die
+  Parallelkomposition von zwei Implementierungen auch immer eine
+  Implementierung ist (\ref{ParallelDef}).
+  \begin{enumerate}
+    \item Aus der schwache Simulations-Definition~\ref{wSimDef} folgt, dass für
+      den ersten Punkt folgendes zu zeigen ist:
+      $(p_1,p_2)\must[i]_{12}(q_1,q_2)$ impliziert $(p'_1,p'_2)
+      \must[i]_{P'_1\|P'_2} \weakmust[\varepsilon]_{P'_1\|P'_2} (q'_1,q'_2)$
+      für ein $(q'_1,q'_2)$ mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$.\\
+      Falls die Transition $(p_1,p_2)\must[i]_{12}(q_1,q_2)$ in der
+      Parallelkomposition $P_1\|P_2$ für ein $i\in\Synch(P_1,P_2)$ möglich ist,
+      dann gab es diese Transition auch bereits in $P_1$ und $P_2$ als
+      must"=Transition. Somit verlangen bereits die schwachen
+      as"=Verfeinerungs"=Relation $\mathcal{R}_1$ und $\mathcal{R}_2$, dass
+      $p'_j\must[i]_j\weakmay[\varepsilon]_jq'_j$ für $j=1$ und $j=2$ gilt.
+      \TODO{fertig beweisen}
+    \item \TODO{z.z.: $(p_1,p_2)\must[\omega]_{12}(q_1,q_2)$ impliziert
+      $(p'_1,p'_2) \weakmust[\hat{\omega}]_{P'_1\|P'_2} (q'_1,q'_2)$ für ein
+      $(q'_1,q'_2)$ mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$}
+    \item \TODO{z.z.: $(p'_1,p'_2)\may[i]_{P'_1\|P'_2}(q'_1,q'_2)$ impliziert
+      $(p_1,p_2) \may[i]_{12} \weakmay[\varepsilon]_{12} (q_1,q_2)$ für ein
+      $(q_1,q_2)$ mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$}
+    \item \TODO{z.z.: $(p'_1,p'_2)\may[\omega]_{P'_1\|P'_2}(q'_1,q'_2)$
+      impliziert $(p_1,p_2) \weakmay[\hat{\omega}]_{12} (q_1,q_2)$ für ein
+      $(q_1,q_2)$ mit $((q_1,q_2),(q'_1,q'_2))\in\mathcal{R}_{12}$}
+    \item \TODO{z.z.: $(p'_1,p'_2)\in E_{P'_1\|P'_2} \Rightarrow (p_1,p_2)\in
+      E_{12}$}
+  \end{enumerate}
+
+
+  $\Rightarrow (P'_1\|P'_2)\in\wasimp (P_1\|P_2)$.
 \end{proof}
 
 Ein neuer Kommunikationsfehler in einer Parallelkomposition muss in einer
