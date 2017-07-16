@@ -224,7 +224,30 @@ as"=Implementierung ist.
   und $v'\in v_1\|v'_2$ ist ein Präfix von $xy$. Es kann nur für die Fälle
   $a\notin I_2$ gefolgert werden, dass $p_{02} \weakmust[v'_2]$ gilt.
   \begin{itemize}
-    \item Fall I ($v_1\in\MIT _1$ und $v_1\neq \varepsilon$): \TODO{beweisen}
+    \item Fall I ($v_1\in\MIT _1$ und $v_1\neq \varepsilon$): Es gibt einen
+      Ablauf der Form $p_{01}\weakmay[v'_1]p_1\nmust[a]$ und es gilt $v'=v''a$.
+      \begin{itemize}
+        \item Fall Ia) ($a\notin\Sigma _2$): Es gilt $p_{02}\weakmay[v'_2]p_2$
+          mit $v''\in v'_1\|v'_2$. Dadurch erhält man $(p_{01},p_{02})
+          \weakmay{v''} (p_1,p_2) \nmust[a]$ mit $a\in I_{12}$. Somit wird $v
+          := v''a=v'\in\MIT _{12}$ gewählt.
+        \item Fall Ib) ($a\in I_2$ und $v'_2\in\MIT _2$): Es gilt $v'_2=v''_2a$
+          mit $p_{02}\weakmay[v''_2]\nmust[a]$ und $v''\in v'_1\|v''_2$. $a$
+          ist für $P_2$, ebenso wie für $P_1$, ein nicht erzwungener Input.
+          Daraus folgt, dass $(p_1,p_2)\nmust[a]$ gilt. Es wird ebenfalls $v :=
+          v''a=v'\in\MIT _{12}$ gewählt.
+        \item Fall Ic) ($a\in I_2$ und $v'_2\in L_2\backslash\MIT _2$): Es gilt
+          $p_{02}\weakmay[v''_2]p_2\must[a]$ mit $v'_2=v''_2a$. Da die
+          gemeinsamen Inputs synchronisiert werden, folgt $(p_1,p_2)\nmust[a]$
+          bereits aus $q_1\nmust[a]$. Somit kann hier nochmals $v:=v''a=v'\in
+          \MIT _{12}$ gewählt werden.
+        \item Fall Id) ($a\in O_2$): Es gilt $v'_2=v''_2a$ und $p_{02}
+          \weakmay[v'_2]$. Man erhält also $p_{02}\weakmay[v''_2]\may[a]$ mit
+          $v''\in v'_1\|v'_2$. Daraus ergibt sich $(p_{01},p_{02})
+          \weakmay[v''] (p_1,p_2)$ mit $p_1\nmust[a],a\in I_1$,$q_2\may[a]$ und
+          $a\in O_2$, somit gilt $(p_1,p_2)\in E_{12}$. Es wird $v:= \prune
+          (v'')\in\PrET _{12}$ gewählt.
+      \end{itemize}
     \item Fall II ($v_1\in\PrET _1$): \TODO{beweisen}
   \end{itemize}
 
