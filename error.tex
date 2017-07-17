@@ -493,10 +493,38 @@ as"=Implementierung ist.
       einen lokal erreichbaren Fehler-Zustand haben.
       \begin{itemize}
         \item Fall 2a) (neuer Fehler aufgrund von $x_i\in O_U$ und $p_{02}
-          \weakmay[x_1\dots x_{i-1}]q''\nmust[x_i]$): \TODO{beweisen}
-        \item Fall 2b) (neuer Fehler aufgrund von $a\in O=I_U$): \TODO{beweisen}
-        \item Fall 2c) (geerbter Fehler von $U$): \TODO{beweisen}
-        \item Fall 2d) (geerbter Fehler von $P_2$): \TODO{beweisen}
+          \weakmay[x_1\dots x_{i-1}]q''\nmust[x_i]$): Es gilt $x_1\dots x_i\in
+          \MIT _2$ und somit $w\in \EL_2$. Anzumerken ist, dass es nur auf
+          diesem Weg Outputs von $U$ möglich sind, deshalb gibt es keine
+          anderen Outputs von U, die zu einem neuen Fehler führen können.
+        \item Fall 2b) (neuer Fehler aufgrund von $a\in O=I_U$): Der einzige
+          Zustand, in dem $U$ nicht alle Input erlaubt sind, ist $p_n$, der
+          bereits ein Fehler-Zustand ist. Da in diesem Fall dieser Zustand in
+          $U\|P_2$ erreichbar ist, besitzt das komponierte \MEIO{} einen
+          geerbten Fehler und es gilt $w\in L_2\subseteq \EL _2$, wegen dem
+          folgenden Fall 2c).
+        \item Fall 2c) (geerbter Fehler von $U$): Da $p_n$ der enizige
+          Fehler-Zustand in $U$ ist und alle Aktionen synchonisiert sind, ist
+          dies nur möglich, wenn $p_{02} \weakmay[x_1\dots x_n]$ gilt. In
+          diesem Fall gilt $w\in L_2\subseteq \EL _2$.
+        \item Fall 2d) (geerbter Fehler von $P_2$): Es gilt dann $p_{02}
+          \weakmay{x_1\dots x_iu} p'\in E_2$ für $i\geq 0$ und $u\in O^*$.
+          Somit ist $x_1\dots x_iu\in\StET _2$ und damit $\prune (x_1\dots
+          x_iu) =\prune (x_1\dots x_i)\in\PrET _2\subseteq \EL _2$. Somit gilt
+          $w\in\EL _2$.
       \end{itemize}
   \end{itemize}
+\end{proof}
+
+Der folgende Satz sagt aus, dass \ERel{} die gröbste Präkongruenz ist, die
+charakterisiert werden soll, also gleich der vollständig abstrakten
+Präkongruenz \ECRel{}.
+
+\begin{Satz}[Vollständige Abstraktheit für Kommunikationsfehler-Semantik]
+  Für zwei \MEIO{}s $P_1$ und $P_2$ mit derselben Signatur gitl $P_1\ECRel
+  P_2\Leftrightarrow P_1\ERel{} P_2$.
+\end{Satz}
+
+\begin{proof}
+  \TODO{beweisen}
 \end{proof}
