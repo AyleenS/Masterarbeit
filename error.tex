@@ -13,6 +13,7 @@ aus~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
 \end{Def}
 
 \begin{Def}[Kommunikationsfehler-Verfeinerungs-Basirelation]
+  \label{EBRelDef}
   Für zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur wird $P_1\EBRel{} P_2$
   geschrieben, wenn ein Fehler"=Zustand in einer as"=Implementierung
   von $P_1$ nur dann lokal erreichbar ist, wenn es auch eine as"=Implementierung
@@ -45,6 +46,7 @@ Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
 \end{Def}
 
 \begin{Prop}[Kommunikationsfehler-Traces und Implementierung]
+  \label{KommTracesProp}
   Für ein \MEIO{} $P$ gilt:
   \begin{enumerate}
     \item \emph{strikte Kommunikationsfehler-Traces}: $\StET (P) =
@@ -252,7 +254,7 @@ as"=Implementierung ist.
       \weakmay[v_1] p_1 \weakmay[u_1] p'_1$ mit $p'_1\in E_1$. Im Fall $v'_1
       \neq\varepsilon$ kann das $a$, auf das $v_1$ endet, ebenfalls der letzte
       Buchstabe von $v_2$ sein. Im Fall von $v_2\in\MIT _2$ kann somit $a=b$
-      gelten, wodurch $v_2=v'_2$ gilt. Dieser Fall verläuft jedoch anlaog zu
+      gelten, wodurch $v_2=v'_2$ gilt. Dieser Fall verläuft jedoch analog zu
       Fall Ic) und wird hier nicht weiter betrachtet. Es gilt für alle anderen
       Fälle $p_{02}\weakmay[v'_2]p_2$ mit $(p_{01},p_{02}) \weakmay[v']
       (q_1,q_2)$.
@@ -263,13 +265,13 @@ as"=Implementierung ist.
           weiß man, dass $q_1\weakmay[u'_1]q''_1\may[c]$. Somit gilt $u'_1\in
           u'_1\|u_2$ und $(p_1,p_2)\weakmay[u'_1](q''_1,q'_2)\in E_{12}$, da
           für $P_2$ der entsprechende Input nicht erzwungen wird, der mit dem
-          $c$ Output von $P_1$ zu koppeln wäre. Es hendelt sich also um einen
+          $c$ Output von $P_1$ zu koppeln wäre. Es handelt sich also um einen
           neuen Kommunikationsfehler. Es wird $v := \prune (v'u'_1)\in \PrET
           _{12}$ gewählt, dies ist ein Präfix von $v'$, da $u_1\in O_1^*$.
         \item Fall IIb) \big($p_1\weakmust[u_2]p'_2$ mit $u_1=u_1|_{I_2}$\big): Es gilt
           $u_1\in u_1\|u_2$ und $(p_1,p_2)\weakmay[u_1](p'_1,p'_2)\in E_{12}$,
           da $p'_1\in E_1$ und somit handelt es sich in $P_{12}$ um einen
-          geerbten Fehler. Nun wird $v:=\prune (v'u_1)\in\PrET _{12}$ gewält,
+          geerbten Fehler. Nun wird $v:=\prune (v'u_1)\in\PrET _{12}$ gewählt,
           das wiederum ein Präfix von $v'$ ist.
       \end{itemize}
   \end{itemize}
@@ -296,6 +298,7 @@ as"=Implementierung ist.
 \end{proof}
 
 \begin{Kor}[Kommunikationsfehler-Präkongruenz]
+  \label{KommPräkonKor}
   Die Relation \ERel{} ist eine Präkongruenz bezüglich $\cdot\|\cdot$.
 \end{Kor}
 \begin{proof}
@@ -328,6 +331,7 @@ as"=Implementierung ist.
 \end{proof}
 
 \begin{Lem}[Verfeinerung mit Kommunikationsfehlern]
+  \label{KommVerfeinLem}
   Gegeben sind zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur. Wenn
   $U\|P_1\EBRel{} U\|P_2$ für alle Partner $U$ gilt, dann folgt daraus die
   Gültigkeit von $P_1\ERel{} P_2$.
@@ -400,13 +404,13 @@ as"=Implementierung ist.
         \item Fall 2a) ($w\in\MIT _1$): In $U\|P_1$ erhält man $(p_1,p_{01})
           \weakmay[x_1\dots x_n] (p_n,p')$ mit $p'\nmust[x_{n+1}]$ und
           $p_n\must[x_{n+1}]$. Deshalb gilt $(p_1,p')\in E_{U\|P_1}$. Da alle
-          Aktionen aus $w$ bis auf $x_{n+1}$ synchonisiert werden und $I\cap
+          Aktionen aus $w$ bis auf $x_{n+1}$ synchronisiert werden und $I\cap
           I_U=\emptyset$, gilt $x_1,\dots x_n\in O_{U\|P_1}$. Daraus ergibt
           sich dann $\varepsilon\in\PrET (U\|P_1)$.
         \item Fall 2b) ($w\in\PrET _1$): In $U\|P_1$ erhält man $(p_0,p_{01})
           \weakmay[w](p_{n+1},p'')\weakmay[u](p_{n+1},p')$ für $u\in O^*$ und
           $p'\in E_1$. Daraus folgt $(p_{n+1},p')\in E_{U\|P_1}$ und somit
-          $wu\in\StET (U\|P_1)$. Da alle Aktionen in $w$ synchonisiert werden
+          $wu\in\StET (U\|P_1)$. Da alle Aktionen in $w$ synchronisiert werden
           und $I\cap I_U=\emptyset$, gilt $x_1,\dots ,x_n,x_{n+1}\in
           O_{U\|P_1}$ und, da $u\in O^*$, folgt $u\in O_{U\|P_1}^*$. Somit
           ergibt sich $\varepsilon\in\PrET (U\|P_1)$.
@@ -421,13 +425,13 @@ as"=Implementierung ist.
           erreichbarer Fehler-Zustand der Form sein, dass ein Output $a\in O_U$
           von $U$ möglich ist, der nicht mit einem passenden Input aus $P_2$
           synchronisiert werden muss ($P_2$ enthält die entsprechende $a$
-          Transitonen nicht als must"=Transition). Durch die Konstruktion von
+          Transitionen nicht als must"=Transition). Durch die Konstruktion von
           $U$ sind in $p_{n+1}$ keine Outputs möglich. Ein neuer
           Kommunikationsfehler muss also die Form $(p_i,p')$ haben mit $i\leq
           n, p'\nmust[x_{i+1}]$ und $x_[i+1]\in O_U=I$. Durch Projektion erhält
           man dann $p_{02}\weakmay[x_1\dots x_i]p'\nmust[x_{i+1}]$ und damit
           gilt $x_1\dots x_{i+1}\in\MIT _2\subseteq \ET _2$. Somit ist ein
-          Präfix von $w$ in $\ET _2$ entahlten.
+          Präfix von $w$ in $\ET _2$ enthalten.
         \item Fall 2ii) (geerbter Fehler): $U$ hat $x_1\dots x_iu$ mit $u\in
           I_U^*=O^*$ ausgeführt und ebenso hat $P_2$ dieses Wort abgearbeitet.
           Durch dies hat $P_2$ einen Zustand $E_2$ erreicht, da von $U$ kleine
@@ -441,10 +445,10 @@ as"=Implementierung ist.
       \end{itemize}
   \end{itemize}
 
-  Um die andere Inklustion zu beweisen, reicht es aufgrund der ersten
-  Inklustion und der Defintion von \EL{} aus zu zeigen, dass $L_1\backslash\ET
+  Um die andere Inklusion zu beweisen, reicht es aufgrund der ersten
+  Inklusion und der Definition von \EL{} aus zu zeigen, dass $L_1\backslash\ET
   _1\subseteq \EL _2$ gilt.\\
-  Es wird dafür ein beliebiges $w\in L_1\backslash \ET _1$ gewält und gezeigt,
+  Es wird dafür ein beliebiges $w\in L_1\backslash \ET _1$ gewählt und gezeigt,
   dass es in $\EL _2$ enthalten ist.
   \begin{itemize}
     \item Fall 1 ($w=\varepsilon$): Da $\varepsilon$ immer in $\EL _2$
@@ -503,8 +507,8 @@ as"=Implementierung ist.
           $U\|P_2$ erreichbar ist, besitzt das komponierte \MEIO{} einen
           geerbten Fehler und es gilt $w\in L_2\subseteq \EL _2$, wegen dem
           folgenden Fall 2c).
-        \item Fall 2c) (geerbter Fehler von $U$): Da $p_n$ der enizige
-          Fehler-Zustand in $U$ ist und alle Aktionen synchonisiert sind, ist
+        \item Fall 2c) (geerbter Fehler von $U$): Da $p_n$ der einzige
+          Fehler-Zustand in $U$ ist und alle Aktionen synchronisiert sind, ist
           dies nur möglich, wenn $p_{02} \weakmay[x_1\dots x_n]$ gilt. In
           diesem Fall gilt $w\in L_2\subseteq \EL _2$.
         \item Fall 2d) (geerbter Fehler von $P_2$): Es gilt dann $p_{02}
@@ -521,10 +525,71 @@ charakterisiert werden soll, also gleich der vollständig abstrakten
 Präkongruenz \ECRel{}.
 
 \begin{Satz}[Vollständige Abstraktheit für Kommunikationsfehler-Semantik]
-  Für zwei \MEIO{}s $P_1$ und $P_2$ mit derselben Signatur gitl $P_1\ECRel
+  \label{KommVollAbstraktSatz}
+  Für zwei \MEIO{}s $P_1$ und $P_2$ mit derselben Signatur gilt $P_1\ECRel
   P_2\Leftrightarrow P_1\ERel{} P_2$.
 \end{Satz}
 
-\begin{proof}
-  \TODO{beweisen}
+\begin{proof}\mbox{}\\
+  \glqq$\Rightarrow$\grqq: Nach Definition gilt, genau dann wenn
+  $\varepsilon\in\ET (P)$, ist ein Fehler-Zustand lokal erreichbar in $P$. $P_1
+  \ERel P_2$ implementiert, dass $\varepsilon\in\ET _2$ gilt, wenn
+  $\varepsilon\in\ET _1$. Somit ist ein Fehler-Zustand ins $P_1$ nur dann lokal
+  erreichbar, wenn dieser auch in $P_2$ lokal erreichbar ist. Dadurch folgt,
+  dass $P_1\EBRel P_2$ gilt, da \EBRel{} in Definition~\ref{EBRelDef} über die
+  lokale Erregbarkeit der Fehler-Zustande in den as"=Implementierungen
+  definiert wurde und die \ET{}-Mengen von $P_1$ und $P_2$ auch durch die
+  Vereinigung der Traces ihrer as"=Implementierungen, wie in
+  Proposition~\ref{KommTracesProp}, ausgedrückt werden können. Es ist also
+  \ERel{} in \EBRel{} enthalten. Wie in Korollar~\ref{KommPräkonKor} gezeigt,
+  ist \ERel{} eine Präkongruenz bezüglich $\cdot\|\cdot$. Da \ECRel{} die
+  gröbste Präkongruenz bezüglich $\cdot\|\cdot$ sit, die in \EBRel{} enthalten
+  ist, muss \ERel{} in \ECRel{} enthalten sein. Es folgt also aus $P_1\ERel{}
+  P_2$, dass auch $P_1\ECRel{} P_2$ gilt.
+
+  \glqq$\Leftarrow$\grqq: Durch die Definition von \ECRel{} als Präkongruenz
+  in~\ref{EBRelDef} folgt aus $P_1\ECRel{} P_2$, dass $U\|P_1\ECRel U\|P_2$ für
+  alle \MEIO{}s $U$ gilt, die mit $P_1$ komponierbar sind. Da \ECRel{} nach
+  Definition auch in \EBRel{} enthalten sein soll, folgt aus $U\|P_1\ECRel{}
+  U\|P_2$ auch die Gültigkeit von $U\|P_1\EBRel{}U\|P_2$ für alle diese
+  \MEIO{}s $U$. Mit Lemma~\ref{KommVerfeinLem} folgt dann $P_1\ERel{} P_2$.
 \end{proof}
+
+Es wurde somit jetzt eine Kette an Folgerungen gezeigt, die sich zu einem Ring
+schließt. Dies ist in Abbildung~\ref{KommFolgerungskette} dargestellt.
+
+\begin{figure}[h!tbp]
+  \begin{center}
+    \begin{tikzpicture}[scale = 3]
+      \matrix (m) [matrix of math nodes,row sep=2cm,column sep=4cm]{%
+        P_1\ERel P_2 & P_1\ECRel P_2 \\
+        \substack{\forall~\mathrm{Partner}~U:\\U\|P_1\EBRel U\|P_2} &
+    \substack{\forall~\mathrm{komponierbaren}~U:\\U\|P_1\EBRel U\|P_2} \\};
+        \draw[-implies, double, double distance=1mm]
+          (m-1-1) -- node [above] {\glqq{}$\Leftarrow$\grqq{} von
+            Satz~\ref{KommVollAbstraktSatz}} (m-1-2);
+        \draw[-implies, double, double distance=1mm]
+          (m-1-2) -- node [right] {Definition von \ECRel{}
+          in~\ref{EBRelDef}} (m-2-2);
+        \draw[-implies, double, double distance=1mm]
+          (m-2-1) -- node [left]
+          {Lemma~\ref{KommVerfeinLem}} (m-1-1);
+        \draw[-implies, double, double distance=1mm]
+          (m-2-2) -- node [below]
+          {$\substack{U~\mathrm{Partner}\\\Downarrow\\ U~\mathrm{komponierbar}}$} (m-2-1);
+    \end{tikzpicture}
+    \caption{Folgerungskette der Kommunikationsfehler-Relationen}
+  \label{KommFolgerungskette}
+  \end{center}
+\end{figure}
+
+Angenommen man definiert, dass $P_1$ $P_2$ verfeinern soll, genau dann wenn für
+alle Partner \MEIO{}s $U$, für die $P_2$ fehler-frei mit $U$ kommuniziert,
+folgt, dass $P_1$ ebenfalls fehler-frei mit $U$ kommuniziert. Dann wird auch
+diese Verfeinerung durch \ERel{} charakterisiert.
+
+\begin{Kor}
+  Es gilt: $P_1\ERel P_2\Leftrightarrow U\|P_1\EBRel U\|P_2$ für alle Partner
+  $U$.
+\end{Kor}
+
