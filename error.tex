@@ -138,12 +138,11 @@ as"=Implementierung ist.
       = (I_1\cup I_2) \backslash (O_1\cup O_2)$ ist, folgt $a\in (I_1\cup I_2)$
       und $a\notin (O_1\cup O_2)$. Es wird unterschieden, ob $a\in (I_1\cap
       I_2)$ oder $a\in (I_1\cup I_2) \backslash (I_1\cap I_2)$ ist.
-      \TODO{ab hier Transitionen ihren Automaten zuordne}
     \begin{itemize}
       \item Fall 1a) ($a\in (I_1\cap I_2)$): Durch Projektion des Ablaufes auf
         die einzelnen Transitionssysteme erhält man \oBdA{}
-        $p_{01}\weakmay[x_1] p_1\nmust[a]$ und $p_{02}\weakmay[x_2]
-        p_2\nmust[a]$ oder $p_{02}\weakmay[x_2] p_2\must[a]$ mit $x\in
+        $p_{01}\weakmay[x_1]_1 p_1\nmust[a]_1$ und $p_{02}\weakmay[x_2]_2
+        p_2\nmust[a]_2$ oder $p_{02}\weakmay[x_2]_2 p_2\must[a]_2$ mit $x\in
         x_1\|x_2$. Daraus kann $x_1a\in \cont (\MIT _1) \subseteq \ET _1$ und
         $x_2a\in \EL _2$ ($x_2a\in \MIT _2$ oder $x_2a \in L_2$) gefolgert
         werden. Damit folgt $w\in (x_1\|x_2) \cdot \{a\} \subseteq
@@ -151,32 +150,32 @@ as"=Implementierung ist.
         rechten Seite der Gleichung enthalten.
       \item Fall 1b) ($a\in (I_1\cup I_2)\backslash (I_1\cap I_2)$): \OBdA{}
         gilt $a\in I_1$. Durch die Projektion auf die einzelnen Komponenten
-        erhält man: $p_{01}\weakmay[x_1] p_1\nmust[a]$ und $p_{02}\weakmay[x_2]
-        p_2$ mit $x\in x_1\|x_2$. Daraus folgt $x_1a\in \cont (\MIT _1)
-        \subseteq \ET _1$ und $x_2\in L_2\subseteq \EL _2$. Somit gilt $w\in
-        (x_1\|x_2) \cdot \{a\} \subseteq (x_1a)\|x_2\subseteq \ET _1\|\EL _2$.
-        Dies ist eine Teilmenge der rechten Seite der Gleichung.
+        erhält man: $p_{01}\weakmay[x_1]_1 p_1\nmust[a]_1$ und
+        $p_{02}\weakmay[x_2]_2 p_2$ mit $x\in x_1\|x_2$. Daraus folgt $x_1a\in
+        \cont (\MIT _1) \subseteq \ET _1$ und $x_2\in L_2\subseteq \EL _2$.
+        Somit gilt $w\in (x_1\|x_2) \cdot \{a\} \subseteq (x_1a)\|x_2\subseteq
+        \ET _1\|\EL _2$. Dies ist eine Teilmenge der rechten Seite der Gleichung.
     \end{itemize}
   \item Fall 2 ($w\in\PrET _{12}$): Aus der Definition von \PrET{} und \prune{}
-    folgt, dass ein $v\in O_{12}^*$ gilt, so dass $(p_{01},p_{02}) \weakmay[w]
-      (p_1,p_2) \weakmay[v] (p'_1,p'_2)$ gilt mit $(p'_1,p'_2)\in E_{12}$ und
-      $w=\prune (wv)$. Durch Projektion auf die Komponenten erhält man $p_{01}
-      \weakmay[w_1] p_1 \weakmay[v_1] p'_1$ und $p_{02} \weakmay[w_2] p_2
-      \weakmay[v_2] p'_2$ mit $w\in w_1\|w_2$ und $v\in v_1\|v_2$. Aus
-      $(p'_1,p'_2)\in\ET _{12}$ folgt, dass es sich entweder um einen geerbten
-      oder einen neuen Fehler handelt. Bei einem geerbten wäre bereits einer
-      der beiden Zustände $p'_1$ bzw.\ $p'_2$ ein Fehler"=Zustand gewesen. Ein
-      neuer Kommunikationsfehler hingegen wäre durch das fehlen der
-      Synchronisations-Erzwingung (fehlende must"=Transition) in einer der
-      Komponenten entstanden.
+    folgt, dass ein $v\in O_{12}^*$ gilt, so dass $(p_{01},p_{02})
+      \weakmay[w]_{12} (p_1,p_2) \weakmay[v]_{12} (p'_1,p'_2)$ gilt mit
+      $(p'_1,p'_2)\in E_{12}$ und $w=\prune (wv)$. Durch Projektion auf die
+      Komponenten erhält man $p_{01} \weakmay[w_1]_1 p_1 \weakmay[v_1]_1 p'_1$
+      und $p_{02} \weakmay[w_2]_2 p_2 \weakmay[v_2]_2 p'_2$ mit $w\in w_1\|w_2$
+      und $v\in v_1\|v_2$. Aus $(p'_1,p'_2)\in\ET _{12}$ folgt, dass es sich
+      entweder um einen geerbten oder einen neuen Fehler handelt. Bei einem
+      geerbten wäre bereits einer der beiden Zustände $p'_1$ bzw.\ $p'_2$ ein
+      Fehler"=Zustand gewesen. Ein neuer Kommunikationsfehler hingegen wäre
+      durch das fehlen der Synchronisations-Erzwingung (fehlende
+      must"=Transition) in einer der Komponenten entstanden.
     \begin{itemize}
       \item Fall 2a) (geerbter Fehler): \OBdA{} gilt $p'_1\in E_1$. Daraus
         folgt, $w_1v_1\in StET_1 \subseteq \cont (\PrET _1) \subseteq \ET _1$.
-        Da $p_{02} \weakmay[w_2v_2]$ gilt, erhält man $w_2v_2\in L_2\subseteq
+        Da $p_{02} \weakmay[w_2v_2]_2$ gilt, erhält man $w_2v_2\in L_2\subseteq
         \EL _2$. Dadurch ergibt sich $wv\in \ET _1\|\EL _2$ mit $w=\prune (wv)$
         und somit ist $w$ in der rechten Seite der Gleichung enthalten.
       \item Fall 2b) (neuer Kommunikationsfehler): \OBdA{} gilt $a\in I_1\cap
-        O_2$ mit $p'_1\nmust[a]\land p'_2\may[a]$. Daraus folgt $w_1v_1a\in
+        O_2$ mit $p'_1\nmust[a]_1\land p'_2\may[a]_1$. Daraus folgt $w_1v_1a\in
         \MIT _1 \subseteq \ET _1$ und $w_2v_2a\in L_2 \subseteq \EL _2$. Damit
         ergibt sich $wva\in \ET _1\|\EL_2$, da $a\in O_1\subseteq O_{12}$ gilt
         $w=\prune (wva)$ und somit ist $w$ in der rechten Seite der Gleichung
@@ -225,55 +224,57 @@ as"=Implementierung ist.
   \end{itemize}
   In allen Fällen erhält man $v'_2=v'|_{\Sigma _2}$ ist ein Präfix von $v_2$
   und $v'\in v_1\|v'_2$ ist ein Präfix von $xy$. Es kann nur für die Fälle
-  $a\notin I_2$ gefolgert werden, dass $p_{02} \weakmust[v'_2]$ gilt.
+  $a\notin I_2$ gefolgert werden, dass $p_{02} \weakmust[v'_2]_2$ gilt.
   \begin{itemize}
     \item Fall I ($v_1\in\MIT _1$ und $v_1\neq \varepsilon$): Es gibt einen
-      Ablauf der Form $p_{01}\weakmay[v'_1]p_1\nmust[a]$ und es gilt $v'=v''a$.
+      Ablauf der Form $p_{01}\weakmay[v'_1]_1p_1\nmust[a]_1$ und es gilt $v'=v''a$.
       \begin{itemize}
-        \item Fall Ia) ($a\notin\Sigma _2$): Es gilt $p_{02}\weakmay[v'_2]p_2$
-          mit $v''\in v'_1\|v'_2$. Dadurch erhält man $(p_{01},p_{02})
-          \weakmay{v''} (p_1,p_2) \nmust[a]$ mit $a\in I_{12}$. Somit wird $v
-          := v''a=v'\in\MIT _{12}$ gewählt.
+        \item Fall Ia) ($a\notin\Sigma _2$): Es gilt $p_{02}\weakmay[v'_2]_2
+          p_2$ mit $v''\in v'_1\|v'_2$. Dadurch erhält man $(p_{01},p_{02})
+          \weakmay[v'']_{12} (p_1,p_2) \nmust[a]_{12}$ mit $a\in I_{12}$. Somit
+          wird $v := v''a=v'\in\MIT _{12}$ gewählt.
         \item Fall Ib) ($a\in I_2$ und $v'_2\in\MIT _2$): Es gilt $v'_2=v''_2a$
-          mit $p_{02}\weakmay[v''_2]\nmust[a]$ und $v''\in v'_1\|v''_2$. $a$
+          mit $p_{02}\weakmay[v''_2]_2\nmust[a]_2$ und $v''\in v'_1\|v''_2$. $a$
           ist für $P_2$, ebenso wie für $P_1$, ein nicht erzwungener Input.
-          Daraus folgt, dass $(p_1,p_2)\nmust[a]$ gilt. Es wird ebenfalls $v :=
-          v''a=v'\in\MIT _{12}$ gewählt.
+          Daraus folgt, dass $(p_1,p_2)\nmust[a]_{12}$ gilt. Es wird ebenfalls
+          $v := v''a=v'\in\MIT _{12}$ gewählt.
         \item Fall Ic) ($a\in I_2$ und $v'_2\in L_2\backslash\MIT _2$): Es gilt
-          $p_{02}\weakmay[v''_2]p_2\must[a]$ mit $v'_2=v''_2a$. Da die
-          gemeinsamen Inputs synchronisiert werden, folgt $(p_1,p_2)\nmust[a]$
-          bereits aus $q_1\nmust[a]$. Somit kann hier nochmals $v:=v''a=v'\in
-          \MIT _{12}$ gewählt werden.
+          $p_{02}\weakmay[v''_2]_2p_2\must[a]_2$ mit $v'_2=v''_2a$. Da die
+          gemeinsamen Inputs synchronisiert werden, folgt
+          $(p_1,p_2)\nmust[a]_{12}$ bereits aus $q_1\nmust[a]_1$. Somit kann
+          hier nochmals $v:=v''a=v'\in \MIT _{12}$ gewählt werden.
         \item Fall Id) ($a\in O_2$): Es gilt $v'_2=v''_2a$ und $p_{02}
-          \weakmay[v'_2]$. Man erhält also $p_{02}\weakmay[v''_2]\may[a]$ mit
-          $v''\in v'_1\|v'_2$. Daraus ergibt sich $(p_{01},p_{02})
-          \weakmay[v''] (p_1,p_2)$ mit $p_1\nmust[a],a\in I_1$,$q_2\may[a]$ und
-          $a\in O_2$, somit gilt $(p_1,p_2)\in E_{12}$. Es wird $v:= \prune
-          (v'')\in\PrET _{12}$ gewählt.
+          \weakmay[v'_2]_2$. Man erhält also $p_{02}\weakmay[v''_2]_2\may[a]_2$
+          mit $v''\in v'_1\|v'_2$. Daraus ergibt sich $(p_{01},p_{02})
+          \weakmay[v'']_{12} (p_1,p_2)$ mit $p_1\nmust[a]_1,a\in
+          I_1$,$q_2\may[a]_1$ und $a\in O_2$, somit gilt $(p_1,p_2)\in E_{12}$.
+          Es wird $v:= \prune (v'')\in\PrET _{12}$ gewählt.
       \end{itemize}
     \item Fall II ($v_1\in\PrET _1$): $\exists u_1\in O_1^*: p_{01}
-      \weakmay[v_1] p_1 \weakmay[u_1] p'_1$ mit $p'_1\in E_1$. Im Fall $v'_1
+      \weakmay[v_1]_1 p_1 \weakmay[u_1]_1 p'_1$ mit $p'_1\in E_1$. Im Fall $v'_1
       \neq\varepsilon$ kann das $a$, auf das $v_1$ endet, ebenfalls der letzte
       Buchstabe von $v_2$ sein. Im Fall von $v_2\in\MIT _2$ kann somit $a=b$
       gelten, wodurch $v_2=v'_2$ gilt. Dieser Fall verläuft jedoch analog zu
       Fall Ic) und wird hier nicht weiter betrachtet. Es gilt für alle anderen
-      Fälle $p_{02}\weakmay[v'_2]p_2$ mit $(p_{01},p_{02}) \weakmay[v']
+      Fälle $p_{02}\weakmay[v'_2]_2p_2$ mit $(p_{01},p_{02}) \weakmay[v']_{12}
       (q_1,q_2)$.
       \begin{itemize}
         \item Fall IIa) \big($u_2\in (O_1\cap I_2)^*,c\in (O_1\cap I_2)$, sodass
-          $u_2c$ Präfix von $u_1|_{I_2}$ mit $p_2 \weakmust[u_2] p'_2
-          \nmust[c]$\big): Für das Präfix $u'_1c$ von $u_1$ mit $u'_1c|_{I_2}=u_2c$
-          weiß man, dass $q_1\weakmay[u'_1]q''_1\may[c]$. Somit gilt $u'_1\in
-          u'_1\|u_2$ und $(p_1,p_2)\weakmay[u'_1](q''_1,q'_2)\in E_{12}$, da
-          für $P_2$ der entsprechende Input nicht erzwungen wird, der mit dem
-          $c$ Output von $P_1$ zu koppeln wäre. Es handelt sich also um einen
-          neuen Kommunikationsfehler. Es wird $v := \prune (v'u'_1)\in \PrET
-          _{12}$ gewählt, dies ist ein Präfix von $v'$, da $u_1\in O_1^*$.
-        \item Fall IIb) \big($p_1\weakmust[u_2]p'_2$ mit $u_1=u_1|_{I_2}$\big): Es gilt
-          $u_1\in u_1\|u_2$ und $(p_1,p_2)\weakmay[u_1](p'_1,p'_2)\in E_{12}$,
-          da $p'_1\in E_1$ und somit handelt es sich in $P_{12}$ um einen
-          geerbten Fehler. Nun wird $v:=\prune (v'u_1)\in\PrET _{12}$ gewählt,
-          das wiederum ein Präfix von $v'$ ist.
+          $u_2c$ Präfix von $u_1|_{I_2}$ mit $p_2 \weakmust[u_2]_2 p'_2
+          \nmust[c]_2$\big): Für das Präfix $u'_1c$ von $u_1$ mit
+          $u'_1c|_{I_2}=u_2c$ weiß man, dass $q_1\weakmay[u'_1]_1 q''_1
+          \may[c]_1$. Somit gilt $u'_1\in u'_1\|u_2$ und $(p_1,p_2)
+          \weakmay[u'_1]_{12} (q''_1,q'_2)\in E_{12}$, der für $P_2$ der
+          entsprechende Input nicht erzwungen wird, der mit dem $c$ Output von
+          $P_1$ zu koppeln wäre. Es handelt sich also um einen neuen
+          Kommunikationsfehler. Es wird $v := \prune (v'u'_1)\in \PrET _{12}$
+          gewählt, dies ist ein Präfix von $v'$, da $u_1\in O_1^*$.
+        \item Fall IIb) \big($p_2\weakmust[u_2]_2p'_2$ mit
+          $u_2=u_1|_{I_2}$\big): Es gilt $u_1\in u_1\|u_2$ und $(p_1,p_2)
+          \weakmay[u_1]_{12} (p'_1,p'_2)\in E_{12}$, da $p'_1\in E_1$ und somit
+          handelt es sich in $P_{12}$ um einen geerbten Fehler. Nun wird
+          $v:=\prune (v'u_1)\in\PrET _{12}$ gewählt, das wiederum ein Präfix
+          von $v'$ ist.
       \end{itemize}
   \end{itemize}
 
@@ -406,21 +407,21 @@ as"=Implementierung ist.
       $\varepsilon\in\PrET(P')$.
       \begin{itemize}
         \item Fall 2a) ($w\in\MIT _1$): In $U\|P_1$ erhält man $(p_1,p_{01})
-          \weakmay[x_1\dots x_n] (p_n,p')$ mit $p'\nmust[x_{n+1}]$ und
-          $p_n\must[x_{n+1}]$. Deshalb gilt $(p_1,p')\in E_{U\|P_1}$. Da alle
-          Aktionen aus $w$ bis auf $x_{n+1}$ synchronisiert werden und $I\cap
-          I_U=\emptyset$, gilt $x_1,\dots x_n\in O_{U\|P_1}$. Da $(p_1,p')\in
-          E_{U\|P_1}$ gibt es mindestens eine as"=Implemnentierung $P'$ von
-          $U\|P_1$, die diesen Fehler-Zustand ebenfalls enthält. Daraus ergibt
-          sich dann $\varepsilon\in\PrET (P')$.
+          \lweakmay[x_1\dots x_n]_{U\|P_1} (p_n,p')$ mit $p'\nmust[x_{n+1}]_1$
+          und $p_n\must[x_{n+1}]_U$. Deshalb gilt $(p_1,p')\in E_{U\|P_1}$. Da
+          alle Aktionen aus $w$ bis auf $x_{n+1}$ synchronisiert werden und
+          $I\cap I_U=\emptyset$, gilt $x_1,\dots x_n\in O_{U\|P_1}$. Da
+          $(p_1,p')\in E_{U\|P_1}$ gibt es mindestens eine as"=Implemnentierung
+          $P'$ von $U\|P_1$, die diesen Fehler-Zustand ebenfalls enthält.
+          Daraus ergibt sich dann $\varepsilon\in\PrET (P')$.
           \TODO{ab hier Definitionen mit as-Implementierungen beachten}
         \item Fall 2b) ($w\in\PrET _1$): In $U\|P_1$ erhält man $(p_0,p_{01})
-          \weakmay[w](p_{n+1},p'')\weakmay[u](p_{n+1},p')$ für $u\in O^*$ und
-          $p'\in E_1$. Daraus folgt $(p_{n+1},p')\in E_{U\|P_1}$ und somit
-          $wu\in\StET (U\|P_1)$. Da alle Aktionen in $w$ synchronisiert werden
-          und $I\cap I_U=\emptyset$, gilt $x_1,\dots ,x_n,x_{n+1}\in
-          O_{U\|P_1}$ und, da $u\in O^*$, folgt $u\in O_{U\|P_1}^*$. Somit
-          ergibt sich $\varepsilon\in\PrET (U\|P_1)$.
+          \weakmay[w]_{U\|P_1}(p_{n+1},p'')\weakmay[u]_{U\|P_1}(p_{n+1},p')$
+          für $u\in O^*$ und $p'\in E_1$. Daraus folgt $(p_{n+1},p')\in
+          E_{U\|P_1}$ und somit $wu\in\StET (U\|P_1)$. Da alle Aktionen in $w$
+          synchronisiert werden und $I\cap I_U=\emptyset$, gilt $x_1,\dots
+          ,x_n,x_{n+1}\in O_{U\|P_1}$ und, da $u\in O^*$, folgt $u\in
+          O_{U\|P_1}^*$. Somit ergibt sich $\varepsilon\in\PrET (U\|P_1)$.
       \end{itemize}
       Da $\varepsilon\in\PrET (U\|P_1)$ gilt, kann durch $U\|P_1\EBRel U\|P_2$
       geschlossen werden, dass auch in $U\|P_2$ ein Fehler-Zustand lokal
@@ -435,10 +436,10 @@ as"=Implementierung ist.
           Transitionen nicht als must"=Transition). Durch die Konstruktion von
           $U$ sind in $p_{n+1}$ keine Outputs möglich. Ein neuer
           Kommunikationsfehler muss also die Form $(p_i,p')$ haben mit $i\leq
-          n, p'\nmust[x_{i+1}]$ und $x_[i+1]\in O_U=I$. Durch Projektion erhält
-          man dann $p_{02}\weakmay[x_1\dots x_i]p'\nmust[x_{i+1}]$ und damit
-          gilt $x_1\dots x_{i+1}\in\MIT _2\subseteq \ET _2$. Somit ist ein
-          Präfix von $w$ in $\ET _2$ enthalten.
+          n, p'\nmust[x_{i+1}]_2$ und $x_{i+1}\in O_U=I$. Durch Projektion
+          erhält man dann $p_{02}\lweakmay[x_1\dots x_i]_2p'\nmust[x_{i+1}]_2$
+          und damit gilt $x_1\dots x_{i+1}\in\MIT _2\subseteq \ET _2$. Somit
+          ist ein Präfix von $w$ in $\ET _2$ enthalten.
         \item Fall 2ii) (geerbter Fehler): $U$ hat $x_1\dots x_iu$ mit $u\in
           I_U^*=O^*$ ausgeführt und ebenso hat $P_2$ dieses Wort abgearbeitet.
           Durch dies hat $P_2$ einen Zustand $E_2$ erreicht, da von $U$ kleine
@@ -499,14 +500,14 @@ as"=Implementierung ist.
       \label{UmitE}
       \end{center}
       \end{figure}
-      Da $p_{01}\weakmay[w]p'$ gilt, kann man schließen, dass $U\|P_1$ einen
+      Da $p_{01}\weakmay[w]_1p'$ gilt, kann man schließen, dass $U\|P_1$ einen
       lokal erreichbaren geerbten Fehler hat. Somit muss $U\|P_2$ ebenfalls
       einen lokal erreichbaren Fehler-Zustand haben.
       \begin{itemize}
         \item Fall 2a) (neuer Fehler aufgrund von $x_i\in O_U$ und $p_{02}
-          \weakmay[x_1\dots x_{i-1}]q''\nmust[x_i]$): Es gilt $x_1\dots x_i\in
-          \MIT _2$ und somit $w\in \EL_2$. Anzumerken ist, dass es nur auf
-          diesem Weg Outputs von $U$ möglich sind, deshalb gibt es keine
+          \lweakmay[x_1\dots x_{i-1}]_2q''\nmust[x_i]_2$): Es gilt $x_1\dots
+          x_i\in \MIT _2$ und somit $w\in \EL_2$. Anzumerken ist, dass es nur
+          auf diesem Weg Outputs von $U$ möglich sind, deshalb gibt es keine
           anderen Outputs von U, die zu einem neuen Fehler führen können.
         \item Fall 2b) (neuer Fehler aufgrund von $a\in O=I_U$): Der einzige
           Zustand, in dem $U$ nicht alle Input erlaubt sind, ist $p_n$, der
@@ -516,10 +517,10 @@ as"=Implementierung ist.
           folgenden Fall 2c).
         \item Fall 2c) (geerbter Fehler von $U$): Da $p_n$ der einzige
           Fehler-Zustand in $U$ ist und alle Aktionen synchronisiert sind, ist
-          dies nur möglich, wenn $p_{02} \weakmay[x_1\dots x_n]$ gilt. In
+          dies nur möglich, wenn $p_{02} \lweakmay[x_1\dots x_n]_2$ gilt. In
           diesem Fall gilt $w\in L_2\subseteq \EL _2$.
         \item Fall 2d) (geerbter Fehler von $P_2$): Es gilt dann $p_{02}
-          \weakmay{x_1\dots x_iu} p'\in E_2$ für $i\geq 0$ und $u\in O^*$.
+          \lweakmay[x_1\dots x_iu]_2 p'\in E_2$ für $i\geq 0$ und $u\in O^*$.
           Somit ist $x_1\dots x_iu\in\StET _2$ und damit $\prune (x_1\dots
           x_iu) =\prune (x_1\dots x_i)\in\PrET _2\subseteq \EL _2$. Somit gilt
           $w\in\EL _2$.

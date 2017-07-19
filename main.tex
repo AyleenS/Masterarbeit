@@ -78,6 +78,11 @@
   {\ensuremath{\overset{#1}{\Longrightarrow}}
   }}
 
+\newcommand{\lweakmay}[1][\empty]{%
+  \ifthenelse{\equal{#1}{\empty}}{\ensuremath{==\Rightarrow}}
+  {\ensuremath{\overset{#1}{==\Rightarrow}}
+  }}
+
 % \newcommand{\maRel}{\ensuremath{}}
 
 \DeclareRobustCommand{\maRel}{\ensuremath{%\text{\reflectbox{\rotatebox[origin=c]{180}{$
