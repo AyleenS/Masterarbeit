@@ -109,9 +109,9 @@ zugrundeliegende may-Transitionen.
         Fehler}\\
         &\quad\left. \begin{aligned}
         &\cup \left\{(p_1,p_2) \mid \exists a \in O_1\cap I_2 : p_1
-        \may[a]\land p_2\nmust[a]\right\}\\
+        \may[a]_1\land p_2\nmust[a]_2\right\}\\
         &\cup \left\{(p_1,p_2) \mid \exists a\in I_1\cap O_2 :
-        p_1\nmust[a]\land p_2\may[a]\right\}
+        p_1\nmust[a]_1\land p_2\may[a]_2\right\}
         \end{aligned}\hspace{0.2cm}\right\} &&\text{neue Kommunikationsfehler}.
     \end{aligned}$
   \end{itemize}
@@ -146,9 +146,9 @@ Kommunikationsfehler kommen.
   Eine \emph{(starke) alternierende Simulation} ist eine Relation $R\subseteq P
   \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
   \begin{enumerate}
-    \item $q\must[\alpha] q'$ impliziert $p\must[\alpha] p'$ für ein $p'$ mit
-      $p'Rq'$,
-    \item $p\may[\alpha] p'$ impliziert $q\may[\alpha] q'$ für ein $q'$ mit
+    \item $q\must[\alpha]_Q q'$ impliziert $p\must[\alpha]_P p'$ für ein $p'$
+      mit $p'Rq'$,
+    \item $p\may[\alpha]_P p'$ impliziert $q\may[\alpha]_Q q'$ für ein $q'$ mit
       $p'Rq'$,
     \item $p\in E_P \Rightarrow q\in E_Q$.
   \end{enumerate}
@@ -167,14 +167,14 @@ Kommunikationsfehler kommen.
   Eine \emph{schwache alternierende Simulation} ist eine Relation $R\subseteq P
   \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
   \begin{enumerate}
-    \item $q\must[i] q'$ impliziert $p\must[i]\weakmust[\varepsilon] p'$ für
+    \item $q\must[i]_Q q'$ impliziert $p\must[i]_P\weakmust[\varepsilon]_P p'$
+      für ein $p'$ mit $p'Rq'$,
+    \item $q\must[\omega]_Q q'$ impliziert $p\weakmust[\hat{\omega}]_P p'$ für
       ein $p'$ mit $p'Rq'$,
-    \item $q\must[\omega] q'$ impliziert $p\weakmust[\hat{\omega}] p'$ für ein
-      $p'$ mit $p'Rq'$,
-    \item $p\may[i] p'$ impliziert $q\may[i]\weakmay[\varepsilon] q'$ für ein
-      $q'$ mit $p'Rq'$,
-    \item $p\may[\omega] p'$ impliziert $q\weakmay[\hat{\omega}] q'$ für ein
-      $q'$ mit $p'Rq'$,
+    \item $p\may[i]_P p'$ impliziert $q\may[i]_Q\weakmay[\varepsilon]_Q q'$ für
+      ein $q'$ mit $p'Rq'$,
+    \item $p\may[\omega]_P p'$ impliziert $q\weakmay[\hat{\omega}]_Q q'$ für
+      ein $q'$ mit $p'Rq'$,
     \item $p\in E_P \Rightarrow q\in E_Q$.
   \end{enumerate}
   Wobei $i\in I$ und $\omega\in O\cup\{\tau\}$.\\
@@ -230,5 +230,5 @@ Wort und $\mathfrak{P}(M)$ die Potenzmenge der Menge $M$ bezeichnet.
 \begin{Def}[Sprache]
   \label{LDef}
   Die \emph{Sprache} eines \MEIO{}s $P$ ist $L(P) := \left\{w\in \Sigma ^* \mid
-  p_0\weakmay[w]\right\}$.
+  p_0\weakmay[w]_P\right\}$.
 \end{Def}

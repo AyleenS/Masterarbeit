@@ -6,7 +6,7 @@ aus~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
 \begin{Def}[fehler-freie Kommunikation]
   Ein Fehler"=Zustand ist \emph{lokal erreichbar} in einer
   as"=Implementierung $P'$ eines \MEIO{} $P$, wenn ein $w\in O^*$ existiert mit
-  $p'_0 \weakmust[w]p'\in E'$.\\
+  $p'_0 \weakmust[w]_{P'} p'\in E'$.\\
   Zwei \MEIO{}s $P_1$ und $P_2$ \emph{kommunizieren fehler-frei}, wenn keine
   as"=Implementierungen ihrer Parallelkomposition $P_{12}$ einen
   Fehler"=Zustände lokal erreichen kann.
@@ -37,11 +37,11 @@ Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
   Für ein \MEIO{} $P$ wird definiert:
   \begin{itemize}
     \item \emph{strikte Kommunikationsfehler-Traces}: $\StET (P) :=
-      \left\{w\in\Sigma ^* \mid p_0 \weakmay[w] p \in E\right\}$,
+      \left\{w\in\Sigma ^* \mid p_0 \weakmay[w]_P p \in E\right\}$,
     \item \emph{gekürzte Kommunikationsfehler-Traces}: $\PrET (P) :=
       \left\{\prune (w) \mid w\in\StET (P)\right\}$,
     \item \emph{Input-kritische-Traces}: $\MIT (P) := \left\{wa\in\Sigma ^*
-      \mid p_0 \weakmay[w] p \land a\in I\land p\nmust[a] \right\}$.
+      \mid p_0 \weakmay[w]_P p \land a\in I\land p\nmust[a]_P \right\}$.
   \end{itemize}
 \end{Def}
 
@@ -50,11 +50,11 @@ Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
   Für ein \MEIO{} $P$ gilt:
   \begin{enumerate}
     \item \emph{strikte Kommunikationsfehler-Traces}: $\StET (P) =
-      \big\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) :$ $p'_0 \weakmust[w]
-      p' \in E\big\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}
+      \big\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) :$ $p'_0
+      \weakmust[w]_{P'} p' \in E\big\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}
     \item \emph{Input-kritische-Traces}: $\MIT (P) = \left\{wa\in\Sigma ^* \mid
-      \exists P' \in\asimp (P) : p'_0 \weakmust[w] p' \land \right.$\linebreak
-      $\left. a\in I\land p'\nmust[a] \right\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}
+      \exists P' \in\asimp (P) : p'_0 \weakmust[w]_{P'} p' \land
+      \right.$\linebreak $\left. a\in I\land p'\nmust[a]_{P'} \right\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}
   \end{enumerate}
 \end{Prop}
 \begin{proof}\mbox{}
@@ -67,9 +67,9 @@ Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
       Aufgrund des 3.\ Punktes der Definition~\ref{SimDef} kann jede
       as"=Implementierung von $P$ nur Fehler-Zustände enthalten,
       die auch $P$ enthält. Da alle möglichen Implementierungen von $P$ in
-      $\left\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) : p'_0 \weakmust[w]
-      p' \in E\right\}$ betrachtet werden, ist auch jeder in $P$ durch
-      may"=Transitionen erreichbare Fehler"=Zustand auch in
+      $\left\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) : p'_0
+      \weakmust[w]_{P'} p' \in E\right\}$ betrachtet werden, ist auch jeder in
+      $P$ durch may"=Transitionen erreichbare Fehler"=Zustand auch in
       mindestens einer as"=Implementierung ebenfalls erreichbar, jedoch durch
       must"=Transitionen.
     \item Für jedes $w$ in $L(P)$ gibt es mindestens eine as"=Implementierung
@@ -87,8 +87,8 @@ Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
       as"=Implementierung, die den $w$ Trace enthält, nicht implementiert wird
       und somit $wa$ auch als Input-kritischen-Trace enthält.\\
       Für ein $wa\in \left\{wa\in\Sigma ^* \mid \exists P' \in\asimp (P) : p'_0
-      \weakmust[w] p' \land a\in I\land p'\nmust[a] \right\}$ muss es eine
-      as"=Implementierung von $P$ geben, die diesen Input-kritischen-Trace
+      \weakmust[w]_{P'} p' \land a\in I\land p'\nmust[a]_{P'} \right\}$ muss es
+      eine as"=Implementierung von $P$ geben, die diesen Input-kritischen-Trace
       implementiert. $P$ muss also auch das $w$ ausführen können zu einem
       Zustand, in dem $P$ $a$ nicht als must"=Transition enthalten. Falls $P$
       $a$ nach $w$ nur als must"=Transition enthalten würde, würde~\ref{SimDef}
@@ -133,11 +133,12 @@ as"=Implementierung ist.
   Errortraces in $\MIT _{12}$ oder in $\PrET _{12}$ enthalten.
   \begin{itemize}
     \item Fall 1 ($w\in\MIT _{12}$): Aus der Definition von \MIT{} folgt, dass
-      es eine Aufteilung $w=xa$ gibt mit $(p_{01},p_{02}) \weakmay[x] (p_1,p_2)
-      \land a \in I_{12} \land (p_1,p_2) \nmust[a]$. Da $I_{12} = (I_1\cup I_2)
-      \backslash (O_1\cup O_2)$ ist, folgt $a\in (I_1\cup I_2)$ und $a\notin
-      (O_1\cup O_2)$. Es wird unterschieden, ob $a\in (I_1\cap I_2)$ oder $a\in
-      (I_1\cup I_2) \backslash (I_1\cap I_2)$ ist.
+      es eine Aufteilung $w=xa$ gibt mit $(p_{01},p_{02}) \weakmay[x]_{12}
+      (p_1,p_2) \land a \in I_{12} \land (p_1,p_2) \nmust[a]_{12}$. Da $I_{12}
+      = (I_1\cup I_2) \backslash (O_1\cup O_2)$ ist, folgt $a\in (I_1\cup I_2)$
+      und $a\notin (O_1\cup O_2)$. Es wird unterschieden, ob $a\in (I_1\cap
+      I_2)$ oder $a\in (I_1\cup I_2) \backslash (I_1\cap I_2)$ ist.
+      \TODO{ab hier Transitionen ihren Automaten zuordne}
     \begin{itemize}
       \item Fall 1a) ($a\in (I_1\cap I_2)$): Durch Projektion des Ablaufes auf
         die einzelnen Transitionssysteme erhält man \oBdA{}
@@ -354,11 +355,13 @@ as"=Implementierung ist.
       Fehler-Zustand in $P_1$. Für $U$ wird ein Transitionssystem verwendet,
       das nur aus dem Startzustand und einer must-Schleife für alle Inputs
       $x\in I_U$ besteht. Somit kann $P_1$ die im Prinzip gleichen
-      Fehler-Zustände lokal erreichen wie $U\|P_1$. Daraus folgt, dass auch
-      $U\|P_2$ einen lokal erreichbaren Fehler-Zustand haben muss. Durch die
-      Definition von $U$ kann dieser Fehler nur von $P_2$ geerbt sein. Es
-      muss also in $P_2$ ein Fehler-Zustand durch interne Aktionen und Outputs
-      erreichbar sein, d.h.\ es gilt $\varepsilon\in \PrET{}_2$.
+      Fehler-Zustände lokal erreichen wie alle möglichen as"=Implementierungen
+      von $U\|P_1$ zusammen. Daraus folgt, dass auch mindestens eine
+      as"=Implementierung von $U\|P_2$ einen lokal erreichbaren Fehler-Zustand
+      haben muss. Durch die Definition von $U$ kann dieser Fehler nur von $P_2$
+      geerbt sein. Es muss also in $P_2$ ein Fehler-Zustand durch interne
+      Aktionen und Outputs erreichbar sein, d.h.\ es gilt $\varepsilon\in
+      \PrET{}_2$.
     \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
       $x_{n+1}\in I = O_U$): Es wird der folgende Partner $U$ betrachtet (siehe
       auch Abbildung~\ref{UohneE}):
@@ -399,14 +402,18 @@ as"=Implementierung ist.
       \end{center}
       \end{figure}
       Für $w$ können nun zwei Fälle unterschieden werden. Aus beiden wird
-      folgen, dass $\varepsilon\in\PrET(U\|P_1)$.
+      folgen, dass für mindestens eine as"=Implementierung $P'$ von $U\|P_1$
+      $\varepsilon\in\PrET(P')$.
       \begin{itemize}
         \item Fall 2a) ($w\in\MIT _1$): In $U\|P_1$ erhält man $(p_1,p_{01})
           \weakmay[x_1\dots x_n] (p_n,p')$ mit $p'\nmust[x_{n+1}]$ und
           $p_n\must[x_{n+1}]$. Deshalb gilt $(p_1,p')\in E_{U\|P_1}$. Da alle
           Aktionen aus $w$ bis auf $x_{n+1}$ synchronisiert werden und $I\cap
-          I_U=\emptyset$, gilt $x_1,\dots x_n\in O_{U\|P_1}$. Daraus ergibt
-          sich dann $\varepsilon\in\PrET (U\|P_1)$.
+          I_U=\emptyset$, gilt $x_1,\dots x_n\in O_{U\|P_1}$. Da $(p_1,p')\in
+          E_{U\|P_1}$ gibt es mindestens eine as"=Implemnentierung $P'$ von
+          $U\|P_1$, die diesen Fehler-Zustand ebenfalls enthält. Daraus ergibt
+          sich dann $\varepsilon\in\PrET (P')$.
+          \TODO{ab hier Definitionen mit as-Implementierungen beachten}
         \item Fall 2b) ($w\in\PrET _1$): In $U\|P_1$ erhält man $(p_0,p_{01})
           \weakmay[w](p_{n+1},p'')\weakmay[u](p_{n+1},p')$ für $u\in O^*$ und
           $p'\in E_1$. Daraus folgt $(p_{n+1},p')\in E_{U\|P_1}$ und somit
@@ -531,6 +538,8 @@ Präkongruenz \ECRel{}.
 \end{Satz}
 
 \begin{proof}\mbox{}\\
+  \TODO{Beweis auf die Definitionen anpassen (as-Implementierungen!!!)}
+
   \glqq$\Rightarrow$\grqq: Nach Definition gilt, genau dann wenn
   $\varepsilon\in\ET (P)$, ist ein Fehler-Zustand lokal erreichbar in $P$. $P_1
   \ERel P_2$ implementiert, dass $\varepsilon\in\ET _2$ gilt, wenn

@@ -3,28 +3,27 @@
 \begin{Prop}[Sprache und Implementierung]
   \label{LImpProp}
   Die \emph{(maximale) Sprache} eines \MEIO{}s $P$ ist $L(P) = \left\{w\in
-  \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]
-  \right\}$.
+  \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]_{P'} \right\}$.
 \end{Prop}
 \begin{proof}
-  Für ein $w\in L(P)$ gilt nach Definition~\ref{LDef} und den
-  Definitionen der Transitions-Notation $\exists p_1,p_2,\dots,p_{n-1},p' \exists
-  w'\in\Sigma _{\tau} ^* : \hat{w'} = w \land w'=\alpha _1\alpha _2\dots\alpha
-  _n \land p_0\may[\alpha _1]p_1\may[\alpha _2] \dots p_{n-1}\may[\alpha _n]
+  Für ein $w\in L(P)$ gilt nach Definition~\ref{LDef} und den Definitionen der
+  Transitions-Notation $\exists p_1,p_2,\dots,p_{n-1},p' \exists w'\in\Sigma
+  _{\tau} ^* : \hat{w'} = w \land w'=\alpha _1\alpha _2\dots\alpha _n \land
+  p_0\may[\alpha _1]_P p_1\may[\alpha _2]_P \dots p_{n-1}\may[\alpha _n]_P
   p'$. Für ein $w$ aus $\left\{w\in \Sigma ^* \mid \exists P'\in\asimp (P) :
-  p'_0\weakmust[w] \right\}$ gilt, für ein $P'\in\asimp (P)$ das analoge nur
-  mit must- anstatt may"=Transitionen.\\
+  p'_0\weakmust[w]_{P'} \right\}$ gilt, für ein $P'\in\asimp (P)$ das analoge
+  nur mit must- anstatt may"=Transitionen.\\
   Aufgrund von Definition~\ref{SimDef} 2.\ kann jedes Element aus $\asimp (P)$
   nur die bereits in $P$ vorhandenen may-Transitionen implementieren. Somit
   gibt es für jedes $w$, dass in der Sprache einer as"=Implementierung von $P$
   enthalten ist auch ein entsprechendes $w\in L(P)$ mit einem Trace wie oben.\\
-  Da in $\left\{w\in \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]
-  \right\}$ alle Wörter enthalten sind, für dies es eine as"=Implementierung
-  gibt, die dieses Wort ausführen kann, werden somit auch alle möglichen
-  as"=Implementierungen betrachtet. Jede may"=Transition aus $P$ wird von
-  mindestens einem $P'\in\asimp (P)$ als must"=Transition implementiert.
-  Deshalb sind auch alle Wörter, die in $L(P)$ enthalten sind in der Menge der
-  Wörter alle as"=Implementierungen von $P$ enthalten.\\
+  Da in $\left\{w\in \Sigma ^* \mid \exists P'\in\asimp (P) :
+  p'_0\weakmust[w]_P' \right\}$ alle Wörter enthalten sind, für dies es eine
+  as"=Implementierung gibt, die dieses Wort ausführen kann, werden somit auch
+  alle möglichen as"=Implementierungen betrachtet. Jede may"=Transition aus $P$
+  wird von mindestens einem $P'\in\asimp (P)$ als must"=Transition
+  implementiert. Deshalb sind auch alle Wörter, die in $L(P)$ enthalten sind in
+  der Menge der Wörter alle as"=Implementierungen von $P$ enthalten.\\
   Da für Implementierungen die must-Transitions-Relations-Menge die gleiche ist,
   wie die Menge der may-Transitions-Relationen könnte man auch für die
   as"=Implementierungen die Definition~\ref{LDef} anwenden um die jeweilige
@@ -287,11 +286,11 @@ Parallelkomposition mit der Implementierung $P_1$ $P'$ ergeben würde.
       Signatur folgt $p_2\in P_2$. Es gilt also in der Parallelkomposition
       $P_1\|P_2$ $(p_1,p_2)\in E_{12}$ ist ein von $P_1$ geerbter Fehler.
       $(p'_1,p'_2)$ kann jedoch in $P'_1\|P'_2$ auch ein neuer
-      Kommunikationsfehler sein. Dann gilt \oBdA{} $p'_1\nmust{a}$ und
-      $p'_2\may[a]$ für ein $a\in I_1\cap O_2$. Mit $\mathcal{R}_2$
-      und~\ref{wSimDef} 4.\ folgt die Gültigkeit von $p_2\weakmay{a}$ in $P_2$.
-      Da es für $p'_1$ keine ausgehende $a$ must"=Transition geben darf, darf
-      es auch in $P_1$ keine $a$ must"=Transition von $p_1$ aus geben,
+      Kommunikationsfehler sein. Dann gilt \oBdA{} $p'_1\nmust[a]_{P'_1}$ und
+      $p'_2\may[a]_{P'_2}$ für ein $a\in I_0\cap O_2$. Mit $\mathcal{R}_2$
+      und~\ref{wSimDef} 4.\ folgt die Gültigkeit von $p_2\weakmay[a]_2$ in
+      $P_2$. Da es für $p'_1$ keine ausgehende $a$ must"=Transition geben darf,
+      darf es auch in $P_1$ keine $a$ must"=Transition von $p_1$ aus geben,
       ansonsten wäre~\ref{wSimDef} 1.\ für $\mathcal{R}_1$ verletzt.
       $(q_1,q_2)$ ist also auch ein neuer Kommunikationsfehler und somit in
       $E_{12}$ enthalten.
