@@ -4,9 +4,8 @@ Dieses Kapitel versucht die Präkongruenz für Error bei \EIO{}s
 aus~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
 
 \begin{Def}[fehler-freie Kommunikation]
-  Ein Fehler"=Zustand ist \emph{lokal erreichbar} in einer
-  as"=Implementierung $P'$ eines \MEIO{} $P$, wenn ein $w\in O^*$ existiert mit
-  $p'_0 \weakmust[w]_{P'} p'\in E'$.\\
+  Ein Fehler"=Zustand ist \emph{lokal erreichbar} in einem \MEIO{} $P$, wenn
+  ein $w\in O^*$ existiert mit $p_0 \weakmay[w]_{P} p\in E$.\\
   Zwei \MEIO{}s $P_1$ und $P_2$ \emph{kommunizieren fehler-frei}, wenn keine
   as"=Implementierungen ihrer Parallelkomposition $P_{12}$ einen
   Fehler"=Zustände lokal erreichen kann.
@@ -411,21 +410,25 @@ as"=Implementierung ist.
           und $p_n\must[x_{n+1}]_U$. Deshalb gilt $(p_1,p')\in E_{U\|P_1}$. Da
           alle Aktionen aus $w$ bis auf $x_{n+1}$ synchronisiert werden und
           $I\cap I_U=\emptyset$, gilt $x_1,\dots x_n\in O_{U\|P_1}$. Da
-          $(p_1,p')\in E_{U\|P_1}$ gibt es mindestens eine as"=Implemnentierung
-          $P'$ von $U\|P_1$, die diesen Fehler-Zustand ebenfalls enthält.
-          Daraus ergibt sich dann $\varepsilon\in\PrET (P')$.
-          \TODO{ab hier Definitionen mit as-Implementierungen beachten}
+          $(p_1,p')\in E_{U\|P_1}$ gibt es mindestens ein $P'$ in $\asimp
+          (U\|P_1)$, die diesen Fehler-Zustand ebenfalls enthält. Daraus ergibt
+          sich dann $\varepsilon\in\PrET (P')$.
         \item Fall 2b) ($w\in\PrET _1$): In $U\|P_1$ erhält man $(p_0,p_{01})
           \weakmay[w]_{U\|P_1}(p_{n+1},p'')\weakmay[u]_{U\|P_1}(p_{n+1},p')$
           für $u\in O^*$ und $p'\in E_1$. Daraus folgt $(p_{n+1},p')\in
           E_{U\|P_1}$ und somit $wu\in\StET (U\|P_1)$. Da alle Aktionen in $w$
           synchronisiert werden und $I\cap I_U=\emptyset$, gilt $x_1,\dots
           ,x_n,x_{n+1}\in O_{U\|P_1}$ und, da $u\in O^*$, folgt $u\in
-          O_{U\|P_1}^*$. Somit ergibt sich $\varepsilon\in\PrET (U\|P_1)$.
+          O_{U\|P_1}^*$. Somit ergibt sich für eine as"=Implementierung von
+          $U\|P_1$ $\varepsilon\in\PrET (P')$.
       \end{itemize}
-      Da $\varepsilon\in\PrET (U\|P_1)$ gilt, kann durch $U\|P_1\EBRel U\|P_2$
-      geschlossen werden, dass auch in $U\|P_2$ ein Fehler-Zustand lokal
-      erreichbar sein muss.\\
+      Da $\varepsilon\in\PrET (P')$ für ein $P'$ aus $\asimp (U\|P_1)$ gilt,
+      kann durch $U\|P_1\EBRel U\|P_2$ geschlossen werden, dass auch in
+      mindestens einer as"=Implementierung von $U\|P_2$ ein Fehler-Zustand
+      lokal erreichbar sein muss. Da as"=Implementierungen die
+      Definition~\ref{SimDef} erfüllen müssen, muss jeder in einer
+      as"=Implementierung von $U\|P_2$ lokal erreichbare Fehler auch in
+      $U\|P_2$ lokal erreichbar sein.\\
       Dieser Fehler kann geerbt oder neu sein.
       \begin{itemize}
         \item Fall 2i) (neuer Fehler): Da jeder Zustand von $U$ alle Inputs
@@ -501,8 +504,12 @@ as"=Implementierung ist.
       \end{center}
       \end{figure}
       Da $p_{01}\weakmay[w]_1p'$ gilt, kann man schließen, dass $U\|P_1$ einen
-      lokal erreichbaren geerbten Fehler hat. Somit muss $U\|P_2$ ebenfalls
-      einen lokal erreichbaren Fehler-Zustand haben.
+      lokal erreichbaren geerbten Fehler hat. Es gibt also auch mindestens eine
+      Implementierung in $\asimp (U\|P_1)$, die diesen lokal erreichbaren
+      Fehler implementiert. Somit muss es eine as"=Implementierung von $U\|P_2$
+      geben, die ebenfalls einen lokal erreichbaren Fehler-Zustand hat.
+      Aufgrund von Definition~\ref{SimDef} 3. muss dieser Fehler-Zustand auch
+      in $U\|P_2$ lokal erreichbar sein.
       \begin{itemize}
         \item Fall 2a) (neuer Fehler aufgrund von $x_i\in O_U$ und $p_{02}
           \lweakmay[x_1\dots x_{i-1}]_2q''\nmust[x_i]_2$): Es gilt $x_1\dots
@@ -539,13 +546,14 @@ Präkongruenz \ECRel{}.
 \end{Satz}
 
 \begin{proof}\mbox{}\\
-  \TODO{Beweis auf die Definitionen anpassen (as-Implementierungen!!!)}
-
   \glqq$\Rightarrow$\grqq: Nach Definition gilt, genau dann wenn
   $\varepsilon\in\ET (P)$, ist ein Fehler-Zustand lokal erreichbar in $P$. $P_1
-  \ERel P_2$ implementiert, dass $\varepsilon\in\ET _2$ gilt, wenn
+  \ERel P_2$ impliziert, dass $\varepsilon\in\ET _2$ gilt, wenn
   $\varepsilon\in\ET _1$. Somit ist ein Fehler-Zustand ins $P_1$ nur dann lokal
-  erreichbar, wenn dieser auch in $P_2$ lokal erreichbar ist. Dadurch folgt,
+  erreichbar, wenn dieser auch in $P_2$ lokal erreichbar ist. Falls es also
+  eine as"=Implementierung von $P_1$ gibt, in der ein Fehler-Zustand lokal
+  erreichbar ist, dann gibt es auch mindestens eine as"=Implementierung von
+  $P_2$, die einen Fehler-Zustand lokal erreichen kann. Dadurch folgt,
   dass $P_1\EBRel P_2$ gilt, da \EBRel{} in Definition~\ref{EBRelDef} über die
   lokale Erregbarkeit der Fehler-Zustande in den as"=Implementierungen
   definiert wurde und die \ET{}-Mengen von $P_1$ und $P_2$ auch durch die
@@ -553,7 +561,7 @@ Präkongruenz \ECRel{}.
   Proposition~\ref{KommTracesProp}, ausgedrückt werden können. Es ist also
   \ERel{} in \EBRel{} enthalten. Wie in Korollar~\ref{KommPräkonKor} gezeigt,
   ist \ERel{} eine Präkongruenz bezüglich $\cdot\|\cdot$. Da \ECRel{} die
-  gröbste Präkongruenz bezüglich $\cdot\|\cdot$ sit, die in \EBRel{} enthalten
+  gröbste Präkongruenz bezüglich $\cdot\|\cdot$ ist, die in \EBRel{} enthalten
   ist, muss \ERel{} in \ECRel{} enthalten sein. Es folgt also aus $P_1\ERel{}
   P_2$, dass auch $P_1\ECRel{} P_2$ gilt.
 

@@ -78,6 +78,10 @@
   {\ensuremath{\overset{#1}{\Longrightarrow}}
   }}
 
+\newcommand{\nweakmust}[1][\empty]{%
+  \ensuremath{\hspace{0.2cm}\not\hspace{-0.2cm}\weakmust[#1]}
+  }
+
 \newcommand{\lweakmay}[1][\empty]{%
   \ifthenelse{\equal{#1}{\empty}}{\ensuremath{==\Rightarrow}}
   {\ensuremath{\overset{#1}{==\Rightarrow}}
@@ -114,9 +118,8 @@
 \newcommand{\QBRel}{\ensuremath{\maRel _{Qui}^\mathrm{B}}}
 \newcommand{\QCRel}{\ensuremath{\maRel _{Qui}^\mathrm{C}}}
 \newcommand{\QRel}{\ensuremath{\maRel _{Qui}}}
-% \newcommand{\StQT}{\ensuremath{StQT}}
-% \newcommand{\PrQT}{\ensuremath{PrQT}}
-% \newcommand{\QT}{\ensuremath{QET}}
+\newcommand{\StQT}{\ensuremath{StQT}}
+\newcommand{\QET}{\ensuremath{QET}}
 
 \newcommand{\DBbaRel}{\ensuremath{\sqsubseteq _{Div}^\mathrm{B}}}
 \newcommand{\DCbaRel}{\ensuremath{\sqsubseteq _{Div}^\mathrm{C}}}
@@ -185,7 +188,7 @@
 % \clearpage
 % \thispagestyle{empty}
 
-% \input{quiescents.tex}
+\input{quiescents.tex}
 
 % \input{divergenz.tex}
 

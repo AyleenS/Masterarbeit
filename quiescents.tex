@@ -1,0 +1,126 @@
+\chapter{Verfeinerungen für Kommunikationsfehler und Ruhe-Freiheit}
+
+In diesem Kapitel wird die Menge der betrachteten Zustandsmengen von den
+Kommunikations-basierten Fehlern im letzten Kapitel erweitert um
+Ruhe-Zustände.\\
+Zustände, die keine Outputs ohne einen Input ausführen können in Form einer
+must"=Transition, werden als in einer Art Verklemmung angesehen, da sie ohne
+Zutun von Außen den Zustand nicht mehr verlassen können, falls möglicherweise
+vorhandener may"=Output nicht implementiert wird. So ein Zustand hat also keine
+must"=Transitions"=Möglichkeiten für einen Output. Falls dieser Zustand die
+Möglichkeit für eine interne Aktion via einer must"=Transition hat, darf durch
+die $\tau$s niemals ein Zustand erreicht werden, von dem aus ein Output in
+Implementierungen erzwungen wird. Ein Zustand, der keine Outputs und $\tau$s
+via must"=Transitionen ausführen kann, ist also ein Deadlock-Zustand, in denen
+das System nichts mehr tun können muss ohne einen Input. Wenn man eine
+Erweiterung um $\tau$s zu Zuständen ohne must"=Outputs zulässt, hat man
+zusätzlich noch Verklemmungen der Art Livelock, da diese Zustände
+möglicherweise beliebig viele interne Aktionen ausführen können, jedoch nie aus
+eigener Kraft einen wirklichen Fortschritt in Form eines Outputs bewirken
+können müssen. Die Menge der Zustände, die sich in einer Verklemmung
+befinden, würde also durch $\left\{p\in P\mid \forall a\in O: p\nweakmust[a]
+\right\}$ beschrieben werden. Somit wären dies alle Zustände, die keine
+Möglichkeit haben ohne einen Input von Außen oder eine implementierte
+may"=Output"=Transition je weider einen Output machen zu können. Falls man
+diese Definition verwenden würde, müsste man immer alle Zustände betrachten,
+die durch $\tau$s erreichbar sind. Dies würde einige Betrachtungen deutlich
+aufwendiger machen und soll deshalb hier nicht behandelt werden. Die Definition
+für die betrachteten Verklemmungen, hier Ruhe genannt, beschränkt sich auf
+Zustände, die keine Outputs und $\tau$s ausführen können.
+
+\begin{Def}[Ruhe]
+  Ein \emph{Ruhe-Zustand} ist ein Zustand in einem \MEIO{} $P$, der keine
+  Outputs und kein $\tau$ zulässt.\
+  Somit ist die Menge der Ruhe-Zustände in einem \MEIO{} $P$ wie folgt formal
+  definiert: $Qui(P):=\left\{p\in P\mid \forall\alpha\in (O\cup\{\tau\}):p
+  \nmust[\alpha]\right\}$.
+\end{Def}
+
+\TODO{Proposition Ruhe-Zustände eines \MEIO{}s via seiner as-Implementierungen}
+
+Für die Erreichbarkeit wird wie im letzten Kapitel ein optimistischer Anzahl
+der lokalen Erreichbarkeit für die Fehler-Zustände, der Kommunikationsfehler,
+verwendet. Ruhe ist kein unabwendbarer Fehler, sondern kann durch einen Input
+repariert werden oder im Fall von vorhandenen may"=Output"=Transitionen, durch
+eine Implementierung dieses Outputs. Daraus ergibt sich, dass Ruhe im Vergleich
+zu Kommunikationsfehler als weniger \glqq schlimmer Fehler\grqq{} anzusehen
+ist. Somit ist ein Ruhe-Zustand ebenso wie ein Fehler-Zustand erreichbar,
+sobald er durch Outputs und $\tau$s erreicht werden kann, jedoch it nicht jede
+beliebige Fortsetzung eines Traces, das durch lokale Aktionen zu einem
+Ruhe-Zustand führt ein Ruhe"=Trace.
+
+\begin{Def}[fehler- und ruhe-freie Kommunikation]
+  Zwei \MEIO{}s $P_1$ und $P_2$ \emph{kommunizieren fehler- und ruhe-frei},
+  wenn keine as"=Implementierung ihrer Parallelkomposition $P_{12}$ einen
+  Fehler- oder Ruhe-Zustand lokal erreichbaren kann.
+\end{Def}
+
+\begin{Def}[Ruhe-Verfeinerungs-Basisrelation]
+  Für \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur wird $P_1\QBRel P_2$
+  geschrieben, wenn ein Fehler- oder Ruhe-Zustand in einer as"=Implementierung
+  von $P_1$ nur dann lokal erreichbar ist, wenn es auch eine
+  as"=Implementierung von $P_2$ gibt, in der ein solcher lokal erreichbar ist.
+  Diese \emph{Basisrelation} stellt eine \emph{Verfeinerung} bezüglich
+  \emph{Kommunikationsfehlern} und \emph{Ruhe} dar.\\
+  \QCRel{} bezeichnet die \emph{vollständig abstrakte Präkongruenz} von
+  \QBRel{} bezüglich $\cdot\|\cdot$.
+\end{Def}
+
+Um eine genauere Auseinandersetzung mit den Präkongruenzen zu ermöglichen,
+benötigt man wie im letzten Kapitel die Definition von Traces auf der Struktur.
+Dadurch erhält man die Möglichkeit die gröbste Präkongruenz charakterisieren zu
+können. Wie bereits oben erwähnt, ist Ruhe ein reparierbarer Fehler im
+Gegensatz zu Kommunikationsfehlern. Es genügt deshalb für Ruhe die strikten
+Traces ohne Kürzung zu betrachten.
+
+\begin{Def}[Ruhe-Traces]
+  Sei $P$ ein \MEIO{} und definiere:
+  \begin{itemize}
+    \item strikte Ruhe-Traces: $\StQT (P) := \left\{w\in\Sigma ^*\mid p_0
+      \weakmay[w] p\in Qui(P)\right\}$.
+  \end{itemize}
+\end{Def}
+
+\TODO{Proposition Ruhe-Traces via as-Implementierungen}
+
+Für \ET{} und \EL{} gelten die Definitionen aus dem letzten Kapitel. Es wir nur
+für Ruhe eine neue Semantik definiert.
+
+\begin{Def}[Ruhe-Semantik]
+  Sei $P$ ein \MEIO{}.
+  \begin{itemize}
+    \item Die Menge der \emph{fehler-gefluteten Ruhe-Traces} von $P$ ist $\QET
+      (P):= \StQT (P)\cup\ET (P)$.
+  \end{itemize}
+  Für zwei \MEIO{}s $P_1,P_2$ mit der gleichen Signatur wird $P_1\QRel{} P_2$
+  geschrieben, wenn $P_1\ERel{} P_2$ und $\QET _1\subseteq \QET _2$ gilt.
+\end{Def}
+
+\begin{Lem}[Ruhe-Zustände unter Parallelkomposition]
+  \begin{enumerate}
+    \item Ein Zustand $(p_1,p_2)$ aus der Parallelkomposition $P_{12}$ ist
+      ruhig, wenn es auch die Zustände $p_1$ und $p_2$ in $P_1$ bzw. $P_2$
+      sind.
+    \item Wenn der Zustand $(p_1,p_2)$ ruhig ist und nicht in $E_{12}$
+      enthalten ist, dann sind auch die auf die Teilsysteme projizierten
+      Zustände $p_1$ und $p_2$ ruhig.
+  \end{enumerate}
+\end{Lem}
+
+\begin{proof}
+  \TODO{zu beweisen}
+\end{proof}
+
+\begin{Satz}[Kommunikationsfehler- und Ruhe-Semantik für Parallelkompositionen]
+  Für zwei komponierbare \MEIO{}s $P_1,P_2$ und ihre Komposition $P_{12}$ gilt:
+  \begin{enumerate}
+    \item $\ET _{12}=\cont (\prune ((\ET _1\|\EL _2)\cup (\EL _1\|\ET _2)))$,
+    \item $\QET _{12}=(\QET _1\|\QET _2)\cup\ET _{12}$,
+    \item $\EL _{12}=(\EL _1\|\EL _2)\cup\ET _{12}$.
+  \end{enumerate}
+\end{Satz}
+
+\begin{proof}
+  Es wird nur der 2. Punkt beweisen.\\
+  \TODO{zu beweisen}
+\end{proof}
