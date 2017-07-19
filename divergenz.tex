@@ -1,0 +1,119 @@
+\chapter{Verfeinerungen für Kommunikationsfehler-, Ruhe- und Divergenz-Freiheit}
+
+In diesem Kapitel soll die Menge der betrachteten Zustände noch einmal
+erweitert werden. Somit werden dann Fehler-, Ruhe- und Divergenz-Zustände
+betrachtet.
+
+\begin{Def}[Divergenz]
+  Ein \emph{Divergenz-Zustand} ist ein Zustand in einem \MEIO{} $P$, der eine
+  unendliche Folge an $\tau$s ausführen kann.\\
+  Die Menge $Div(P)$ besteht aus all diesen divergenten Zuständen des \MEIO{}s
+  $P$.
+\end{Def}
+
+\TODO{Proposition Divergenz-Zustände eines \MEIO{}s via seiner
+as-Implementierung}
+
+Die unendliche Folge an $\tau$s kann durch eine Schleife an einem durch $\tau$s
+erreichbaren Zustand ausführbar sein oder durch einen Weg, der mit $\tau$s
+ausführbar ist, mit dem unendliche viele Zustände durchlaufen werden. Es ist
+jedoch zu beachten, dass ein Zustand, von dem aus unendlich viele Zustände
+durch $\tau$s  erreichbar sind, nicht divergent sein muss. Es ist auch möglich,
+dass dieser Zustand eine unendliche Verzweigung hat und somit keine unendlichen
+Folgen an $\tau$s ausführen kann.\\
+Als Erreichbarkeitsbegriff wird wieder die lokale Erreichbarkeit verwendet. Da
+das Divergieren eines Systems nicht mehr verhindert werden kann, sobald ein
+divergenter Zustand lokal erreicht werden kann, ist Divergenz als ähnlich \glqq
+schlimm\grqq{} zu bewerten wie ein Fehler-Zustand des Types
+Kommunikationsfehler.
+
+\begin{Def}[fehler-, ruhe- und divergenz-freie Kommunikation]
+  Zwei \MEIO{}s $P_1$ und $P_2$ kommunizieren \emph{fehler-, ruhe- und
+  divergenz-frei}, wenn keine as"=Implementierung ihrer Parallelkomposition
+  $P_{12}$ einen Fehler-, Ruhe- oder Divergenz-Zustand lokal erreichen kann.
+\end{Def}
+
+\begin{Def}[Divergenz-Verfeinerungs-Basisrelation]
+  Für \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur wird $P_1\DBRel{} P_2$
+  geschrieben, wenn ein Fehler-, Ruhe- oder Divergenz-Zustand in einer
+  as"=Implementierung von $P_1$ nur dann lokal erreichbar ist, wenn es auch
+  eine as"=Implementierung von $P_2$ gibt, in der ein solcher lokal erreichbar
+  ist. Die \emph{Basisrelation} stell eine \emph{Verfeinerung} bezüglich
+  \emph{Fehler}, \emph{Ruhe} und \emph{Divergenz} dar.\\
+  \DCRel{} bezeichnet die \emph{vollständig abstrakte Präkongruenz} von
+  \DBRel{} bezüglich $\cdot\|\cdot$.
+\end{Def}
+
+Da nun die grundlegenden Definitionen für Divergenz festgehalten sind, kann man
+sich einen Begriff für die Traces zu divergenten Zuständen bilden. Da oben
+bereits festgestellt wurde, dass Divergenz als ähnlich „schlimmer Fehler“
+anzusehen ist wie Kommunikationsfehler und dass das Divergieren eines Systems
+nicht mehr verhinderbar ist, sobald ein divergenter Zustand lokal erreichbar
+ist, kommt für die Divergenztraces wieder die prune-Funktion zu Einsatz. Ein
+System, das unendliche viele $\tau$s ausführen kann, ist von außen nicht von so
+einem System zu unterscheiden, das einen Fehler-Zustand der Art
+Kommunikationsfehler erreicht. Somit wird in den Trace-Mengen auch nicht
+zwischen Kommunikationsfehler"=Traces und Divergenz-Traces explizit
+unterschieden. Dadurch genügt es nicht mehr nur mit den
+Kommunikationsfehler"=Traces die Sprache fluten, sondern es muss sowohl mit den
+Kommunikationsfehler"=Traces wie auch den Divergenz"=Traces geflutet werden.
+Ebenso werden die strikten Ruhe"=Traces mit diesen beiden Trace-Mengen
+geflutet.
+
+\begin{Def}[Divergenz-Traces]
+  Sei $P$ ein \MEIO{} und definiere:
+  \begin{itemize}
+    \item \emph{strikte Divergenz-Traces}: $\StDT (P) := \left\{w\in\Sigma
+      ^*\mid p_0\weakmay[w]_P p\in Div\right\}$,
+    \item \emph{gekürzte Divergenz-Traces}: $\PrDT (P) := \bigcup\left\{\prune
+      (w)\mid w\in\StDT (P)\right\}$.
+  \end{itemize}
+\end{Def}
+
+\TODO{Proposition Divergenz-Traces via as-Implementierung}
+
+Da die Ruhe"=Traces mit den Kommunikationsfehler- und Divergenz"=Traces
+geflutet werden sollen, kann die Ruhe"=Semantik nicht aus dem letzten Kapitel
+übernommen werden auch die geflutete Sprache aus dem
+Kommunikationsfehler-Kapitel kann nicht übernommen werden. Nur die
+Kommunikationsfehler"=Traces \ET{} können ohne Veränderung auch in diesem
+Kapitel verwendet werden. Jedoch werden diese Traces im weiteren Verlauf nur
+innerhalb der größeren Trace-Menge \EDT{} relevant sein.
+
+\begin{Def}[Kommunikationsfehler-, Ruhe- und Divergenz-Semantik]
+  Sei $P$ ein \MEIO{}.
+  \begin{itemize}
+    \item Die Menge der \emph{Divergenz-Traces} von $P$ ist $\DT (P) := \cont
+      (\PrDT (P))$.
+    \item Die Menge der \emph{Fehler-Divergenz-Traces} von $P$ ist $\EDT (P) :=
+      \ET (P)\cup\DT (P)$.
+    \item Die Menge der \emph{fehler-divergenz-gefluteten Ruhe-Traces} von $P$
+      ist $\QDT (P) := \StQT (P)\cup\EDT (P)$.
+    \item Die Menge der \emph{fehler-divergenz-gefluteten Sprache} von $P$ ist
+      $\EDL (P) := L(P)\cup\EDT (P)$.
+  \end{itemize}
+  Für zwei \MEIO{}s $P_1,P_2$ mit der gleichen Signatur schreibt man $P_1\DRel
+  P_2$, wenn $\EDT _1\subseteq \EDT _2, \QDT _1\subseteq \QDT _2$ und $\EDL
+  _1\subseteq \EDL _2$ gilt.
+\end{Def}
+
+\DRel{} ist somit keine Einschränkung von \ERel{} so wie \QRel{}. Es können
+Systeme mit einem Kommunikationsfehler nicht von Systemen mit Divergenz
+unterschieden werden. Da die Basisrelation zwischen diesen Fehler-Arten auch
+keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
+übernehmen, so wie \DRel{} dies tut.
+
+\begin{Satz}[Kommunikationsfehler-, Ruhe- und Divergenz-Semantik für
+  Parallelkompositionen]
+  Für zwei komponierbare \MEIO{}s $P_1,P_2$ und ihre Komposition $P_{12}$ gilt:
+  \begin{enumerate}
+    \item $\EDT _{12} =\cont (\prune ((\EDT _1\|\EDL _2)\cup (\EDL _1\|\EDT
+      _2)))$,
+    \item $\QDT _{12} =(\QDT _1\|\QDT _2)\cup \EDT _{12}$,
+    \item $\EDL _{12} =(\EDL _1\|\EDL _2)\cup \EDT _{12}$.
+  \end{enumerate}
+\end{Satz}
+
+\begin{proof}
+  \TODO{zu beweisen}
+\end{proof}
