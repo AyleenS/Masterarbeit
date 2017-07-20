@@ -40,7 +40,6 @@ Zustände, die keine Outputs und $\tau$s ausführen können.
   Für ein \MEIO{} $P$ gilt: $Qui(P) = \left\{p'\in P'\mid P'\in\asimp (P)\land
   \forall\alpha\in (O\cup\{\tau\}):p' \nmust[\alpha]_{P'}\right\}$.
 \end{Prop}
-
 \begin{proof}
   Da für alle $P'\in\asimp (P)$ $\must_{P'} =\may_{P'}$ gilt, dürfen alle $p'$
   keine ausgehenden Transitionen haben. Nach Definition~\ref{SimDef} dürfen zu
@@ -107,7 +106,6 @@ Traces ohne Kürzung zu betrachten.
   Für ein \MEIO{} $P$ gilt $\StQT (P) = \left\{w\in\Sigma ^*\mid \exists
   P'\in\asimp (P): p'_0 \weakmust[w]_{P'} p'\in Qui(P')\right\}$.
 \end{Prop}
-
 \begin{proof}
   Da $P'$ einen mit $w$ beschrifteten must"=Trace enthält und $P'$ eine
   as"=Implementierung von $P$ ist, muss $w$ als may"=Trace bereits in $P$
@@ -145,13 +143,48 @@ für Ruhe eine neue Semantik definiert.
       sind.
     \item Wenn der Zustand $(p_1,p_2)$ ruhig ist und nicht in $E_{12}$
       enthalten ist, dann sind auch die auf die Teilsysteme projizierten
-      Zustände $p_1$ und $p_2$ ruhig.
+      Zustände $p_1$ und $p_2$ ruhig.\\
+      \TODO{anpassen (nur einer muss ruhig sein, der andere kann
+      must-Transitionen für synchronisierte Outputs haben)}
   \end{enumerate}
 \end{Lem}
-
 \begin{proof}\mbox{}
   \begin{enumerate}
-    \item \TODO{zu beweisen}
+    \item Da $p_1\in Qui_1$ und $p_2\in Qui_2$ gilt, haben diese beiden
+      Zustände jeweils höchstens die Möglichkeit für Input Transitionen oder
+      Output und $\tau$ may"=Transitionen, jedoch keine Möglichkeit für Outputs
+      oder $\tau$s als must"=Transitionen.\\
+      Angenommen der Zustand, der durch die Parallelkomposition aus den
+      Zuständen $p_1$ und $p_2$ entsteht, ist nicht ruhig, d.h.\ er hat eine
+      ausgehende must"=Transition für einen Output oder ein $\tau$.
+      \begin{itemize}
+        \item Fall 1 \big($(p_1,p_2)\must[\tau]$\big): Ein $\tau$ ist eine interne
+          Aktion und kann in der Parallelkomposition nicht durch das Verbergen
+          von Aktionen bei der Synchronisation entstehen. Ein $\tau$ in der
+          Parallelkomposition ist also auch nur möglich, wenn dies bereits für
+          einen der beiden Zustände als must"=Transition im der einzelnen
+          Komponente möglich war für einen der Zustände, aus denen $(p_1,p_2)$
+          zusammensetzt ist. Jedoch verbietet die Voraussetzung, dass $p_1$
+          oder $p_2$ eine ausgehende $\tau$ must"=Transition haben, deshalb
+          kann auch $(p_1,p_2)$ keine solche Transition besitzen.
+        \item Fall 2 \big($(p_1,p_2)\must[a]$ mit $a\in O_{12}\backslash
+          \Synch(P_1,P_2)$\big): Da es sich bei $a$ um einen Output handelt, der
+          nicht in $\Synch (P_1,P_2)$ enthalten ist, kann dieser nicht aus der
+          Synchronisation von zwei Aktionen entstanden sein, sondern muss
+          bereits für $P_1$ oder $P_2$ als must"=Transition ausführbar gewesen
+          sein. Es gilt also \oBdA{} $p_1\must[a]$ mit $a\in O_1$. Dies ist
+          jedoch aufgrund der Voraussetzung nicht möglich. Somit kann die
+          Parallelkomposition diese Transition für $(p_1,p_2)$ ebenfalls nicht
+          als must"=Transition enthalten.
+        \item Fall 3 \big($(p_1,p_2)\must[a]$ mit $a\in O\cap\Synch
+          (P_1,P_2)$\big): Der Output $a$ ist in diesem Fall durch
+          Synchronisation von einem Output mit einem Input entstanden. \OBdA{}
+          gilt $a\in O_1\cap I_2$. Für die einzelnen Systeme muss also gelten,
+          dass $p_1\must[a]$ und $p_2\must[a]$. Die Transition für das System
+          $P_1$ ist jedoch in der Voraussetzung ausgeschlossen worden. Somit
+          ist es nicht möglich, dass $P_{12}$ diese in diesem Fall angenommene
+          must"=Transition für den Zustand $(p_1,p_2)$ ausführen kann.
+      \end{itemize}
     \item \TODO{zu beweisen}
   \end{enumerate}
 \end{proof}
@@ -164,7 +197,6 @@ für Ruhe eine neue Semantik definiert.
     \item $\EL _{12}=(\EL _1\|\EL _2)\cup\ET _{12}$.
   \end{enumerate}
 \end{Satz}
-
 \begin{proof}
   Es wird nur der 2. Punkt beweisen.\\
   \TODO{zu beweisen}
