@@ -158,32 +158,33 @@ für Ruhe eine neue Semantik definiert.
       Zuständen $p_1$ und $p_2$ entsteht, ist nicht ruhig, d.h.\ er hat eine
       ausgehende must"=Transition für einen Output oder ein $\tau$.
       \begin{itemize}
-        \item Fall 1 \big($(p_1,p_2)\must[\tau]$\big): Ein $\tau$ ist eine interne
-          Aktion und kann in der Parallelkomposition nicht durch das Verbergen
-          von Aktionen bei der Synchronisation entstehen. Ein $\tau$ in der
-          Parallelkomposition ist also auch nur möglich, wenn dies bereits für
-          einen der beiden Zustände als must"=Transition im der einzelnen
-          Komponente möglich war für einen der Zustände, aus denen $(p_1,p_2)$
-          zusammensetzt ist. Jedoch verbietet die Voraussetzung, dass $p_1$
-          oder $p_2$ eine ausgehende $\tau$ must"=Transition haben, deshalb
-          kann auch $(p_1,p_2)$ keine solche Transition besitzen.
-        \item Fall 2 \big($(p_1,p_2)\must[a]$ mit $a\in O_{12}\backslash
+        \item Fall 1 \big($(p_1,p_2)\must[\tau]_{12}$\big): Ein $\tau$ ist eine
+          interne Aktion und kann in der Parallelkomposition nicht durch das
+          Verbergen von Aktionen bei der Synchronisation entstehen. Ein $\tau$
+          in der Parallelkomposition ist also auch nur möglich, wenn dies
+          bereits für einen der beiden Zustände als must"=Transition im der
+          einzelnen Komponente möglich war für einen der Zustände, aus denen
+          $(p_1,p_2)$ zusammensetzt ist. Jedoch verbietet die Voraussetzung,
+          dass $p_1$ oder $p_2$ eine ausgehende $\tau$ must"=Transition haben,
+          deshalb kann auch $(p_1,p_2)$ keine solche Transition besitzen.
+        \item Fall 2 \big($(p_1,p_2)\must[a]_{12}$ mit $a\in O_{12}\backslash
           \Synch(P_1,P_2)$\big): Da es sich bei $a$ um einen Output handelt, der
           nicht in $\Synch (P_1,P_2)$ enthalten ist, kann dieser nicht aus der
           Synchronisation von zwei Aktionen entstanden sein, sondern muss
           bereits für $P_1$ oder $P_2$ als must"=Transition ausführbar gewesen
-          sein. Es gilt also \oBdA{} $p_1\must[a]$ mit $a\in O_1$. Dies ist
+          sein. Es gilt also \oBdA{} $p_1\must[a]_1$ mit $a\in O_1$. Dies ist
           jedoch aufgrund der Voraussetzung nicht möglich. Somit kann die
           Parallelkomposition diese Transition für $(p_1,p_2)$ ebenfalls nicht
           als must"=Transition enthalten.
-        \item Fall 3 \big($(p_1,p_2)\must[a]$ mit $a\in O\cap\Synch
+        \item Fall 3 \big($(p_1,p_2)\must[a]_{12}$ mit $a\in O\cap\Synch
           (P_1,P_2)$\big): Der Output $a$ ist in diesem Fall durch
           Synchronisation von einem Output mit einem Input entstanden. \OBdA{}
           gilt $a\in O_1\cap I_2$. Für die einzelnen Systeme muss also gelten,
-          dass $p_1\must[a]$ und $p_2\must[a]$. Die Transition für das System
-          $P_1$ ist jedoch in der Voraussetzung ausgeschlossen worden. Somit
-          ist es nicht möglich, dass $P_{12}$ diese in diesem Fall angenommene
-          must"=Transition für den Zustand $(p_1,p_2)$ ausführen kann.
+          dass $p_1\must[a]_1$ und $p_2\must[a]_2$. Die Transition für das
+          System $P_1$ ist jedoch in der Voraussetzung ausgeschlossen worden.
+          Somit ist es nicht möglich, dass $P_{12}$ diese in diesem Fall
+          angenommene must"=Transition für den Zustand $(p_1,p_2)$ ausführen
+          kann.
       \end{itemize}
       Da alle diese Fälle zu einem Widerspruch mit der Voraussetzung führen
       folgt, dass bereits die Annahme, dass der Zustand $(p_1,p_2)$ nicht ruhig
@@ -195,25 +196,26 @@ für Ruhe eine neue Semantik definiert.
       Angenommen $p_1\notin Qui _1$, dann ist für $p_1$ entweder eine
       $\tau$"=must"=Transition oder eine Output"=must"=Transition möglich.
       \begin{itemize}
-        \item Fall 1 \big($p_1\must[\tau]$\big): Da die Transition für $P_1$
+        \item Fall 1 \big($p_1\must[\tau]_1$\big): Da die Transition für $P_1$
           möglich ist, hat auch $P_{12}$ die Möglichkeit für eine
           $\tau$"=must"=Transition. Dies ist jedoch durch die Voraussetzung
           verboten und somit kann dieser Fall nicht eintreten.
-        \item Fall 2 \big($p_1\must[a]$ mit $a\in O_1\backslash
+        \item Fall 2 \big($p_1\must[a]_1$ mit $a\in O_1\backslash
           \Synch(P_1,P_2)$\big): Da es sich bei $a$ um einen must"=Output
           handelt, der nicht zu synchronisieren ist, wird dieser einfach in die
-          Parallelkomposition übernommen. Es müsste alle $(p_1,p_2)\must[a]$
-          mit $a\in O_{12}$ gelten, was jedoch verboten ist. Somit kann die
-          Transition für $P_1$ in diesem Fall nicht möglich sein.
-        \item Fall 3 \big($p_1\must[a]$ mit $a\in O_1\cap\Synch(P_1,P_2)$ und
-          $p_2\must[a]$\big): In diesem Fall ist die Synchronisation des
+          Parallelkomposition übernommen. Es müsste alle $(p_1,p_2)
+          \must[a]_{12}$ mit $a\in O_{12}$ gelten, was jedoch verboten ist.
+          Somit kann die Transition für $P_1$ in diesem Fall nicht möglich
+          sein.
+        \item Fall 3 \big($p_1\must[a]_1$ mit $a\in O_1\cap\Synch(P_1,P_2)$ und
+          $p_2\must[a]_2$\big): In diesem Fall ist die Synchronisation des
           Outputs $a$ von $P_1$ mit dem Input $a$ von $P_2$ möglich, so dass in
           der Parallelkomposition der Output $a$ als must"=Transition für
           $(p_1,p_2)$ entsteht. Diese must"=Transition ist jedoch für $P_{12}$
           nach Voraussetzung nicht erlaubt. Es folgt also auch, dass dieser
           Fall nicht eintreten kann.
-        \item Fall 4 \big($p_1\must[a]$ mit $a\in O_1\cap\Synch(P_1,P_2)$ und
-          $p_2\nmust[a]$\big): Da $P_2$ die $a$ Transition nicht als
+        \item Fall 4 \big($p_1\must[a]_1$ mit $a\in O_1\cap\Synch(P_1,P_2)$ und
+          $p_2\nmust[a]_2$\big): Da $P_2$ die $a$ Transition nicht als
           must"=Transition enthält, handelt es sich hier um einen neuen
           Kommunikationsfehler. Der neue Kommunikationsfehler kann dadurch
           entstehen, dass die Synchronisation des Outputs $a$ von $P_1$ mit dem
@@ -238,6 +240,7 @@ In dem folgenden Satz sind die Punkte 1.\ und 3.\ nur zur Vollständigkeit
 aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
 
 \begin{Satz}[Kommunikationsfehler- und Ruhe-Semantik für Parallelkompositionen]
+  \label{RuheSemSatz}
   Für zwei komponierbare \MEIO{}s $P_1,P_2$ und ihre Komposition $P_{12}$ gilt:
   \begin{enumerate}
     \item $\ET _{12}=\cont (\prune ((\ET _1\|\EL _2)\cup (\EL _1\|\ET _2)))$,
@@ -254,9 +257,9 @@ aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
   $w\in\StQT _{12}\backslash\ET _{12}$ betrachtet und es wird versuch dessen
   Zugehörigkeit zur rechten Menge zu zeigen. Aufgrund von
   Definition~\ref{RuheTraceDef} weiß man, dass
-  $(p_{01},p_{02})\weakmay[w](p_1,p_2)$ gilt mit $(p_1,p_2)\in
-  Qui_{12}\backslash E_{12}$. Durch Projektion erhält man $p_{01}\weakmay[w_1]
-  p_1$ und $p_{02}\weakmay[w_2]p_2$ mit $w\in w_1\|w_2$. Aus $(p_1,p_2)\in
+  $(p_{01},p_{02})\weakmay[w]_{12}(p_1,p_2)$ gilt mit $(p_1,p_2)\in Qui_{12}
+  \backslash E_{12}$. Durch Projektion erhält man $p_{01} \weakmay[w_1]_1
+  p_1$ und $p_{02}\weakmay[w_2]_2p_2$ mit $w\in w_1\|w_2$. Aus $(p_1,p_2)\in
   Qui_{12}\backslash E_{12}$ kann mit dem zweiten Punkt von
   Lemma~\ref{RuheZustLem} gefolgert werden, dass bereits $q_1\in Qui_1$ und
   $q_2\in Qui_2$ gilt. Somit gilt $w_1\in\StQT _1\subseteq \QET _1$ und $w_2\in
@@ -264,5 +267,70 @@ aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
   somit ist $w$ in der rechten Seite der Gleichung enthalten.
 
   \glqq$\supseteq$\grqq{}:\\
+  Es muss wieder danach unterscheiden werden aus welcher Menge das betrachtete
+  Element stammt. Falls $w\in\ET _{12}$ gilt, so kann die Zugehörigkeit zur
+  linken Seite direkt gefolgert werden. Somit wird für den weiteren Beweis
+  dieser Inklusionsrichtung ein Element $s\in\QET _1\|\QET _2$ betrachtet und
+  gezeigt, dass es in der linken Menge enthalten ist. Da $\QET _i=\StQT _i\cup
+  \ET _i$ gilt, existiert für $w_1$ und $w_2$ mit $w\in w_1\|w_2$
+  unterschiedliche Möglichkeiten:
+  \begin{itemize}
+    \item Fall 1 ($w_1\in\ET _1\lor w_2\in\ET _2$): \OBdA{} gilt $w_1\in\ET
+      _1$. Nun kann $w_2\in\StQT _2\subseteq L_2$ oder $w_2\in\ET _2$ gelten
+      und somit ist auf jeden Fall $w_2$ in $\EL _2$ enthalten. Daraus kann
+      dann mit dem ersten Punkt von Satz~\ref{KommFehlerSemSatz} gefolgert
+      werden, dass $w\in\ET _{12}$ gilt und damit ist $w$ in der linken Seite
+      der Gleichung enthalten.
+    \item Fall 2 ($w_1\in\StQT _1\backslash\ET _1\land w_2\in\StQT _2\backslash
+      \ET _2$): Es gilt in diesem Fall $p_{01} \weakmay[w_1]_1 p_1\in Qui_1$
+      und $p_{02} \weakmay[w_2]_2 p_2\in Qui_2$. Da $p_1$ und $p_2$ in der
+      jeweiligen Ruhe-Menge enthalten sind, ist auch der Zustand, der aus ihnen
+      zusammengesetzt ist, in der Parallelkomposition ruhig, wie bereits im
+      ersten Punkt von Lemma~\ref{RuheZustLem} gezeigt. Es gilt also für die
+      Komposition $(p_{01},p_{02}) \weakmay[w]_{12} (p_1,p_2)\in Qui_{12}$ und
+      dadurch ist $w$ in der linken Seite der Gleichung enthalten, da $w\in
+      \StQT _{12}\subseteq \QET _{12}$ gilt.
+  \end{itemize}
+\end{proof}
+
+\begin{Kor}[Ruhe-Präkongruenz]
+  Die Relation \QRel{} ist eine Präkongruenz bezüglich $\cdot\|\cdot$.
+\end{Kor}
+
+\begin{proof}
+  Es muss gezeigt werden: Wenn $P_1\QRel P_2$ gilt, so auch $P_{31}\QRel
+  P_{32}$ für jedes komponierbare System $P_3$. D.h.\ es ist zu zeigen, dass
+  aus $P_1\ERel P_2$ und $\QET{}_1\subseteq \QET{}_2$ sowohl $P_{31}\ERel
+  P_{32}$ als auch $\QET{}_{31}\subseteq \QET{}_{32}$ folgt. Dies ergibt sich,
+  wie im Beweis zu Korollar~\ref{KommPraekonKor}, aus der Monotonie von
+  $\cdot\|\cdot$ auf Sprachen wie folgt:
+  \begin{itemize}
+    \item $\begin{aligned}[t]
+        P_{31} \overset{\mathrm{Korollar}~\ref{KommPraekonKor}}{
+          \overset{\mathrm{und}}{\overset{P_1\ERel P_2}{\ERel}}}
+        P_{32},
+    \end{aligned}$
+    \item $\begin{aligned}[t]
+        \QET{}_{31} &\overset{\ref{RuheSemSatz}~2.}{=}
+        (\QET{}_3\|\QET{}_1)\cup \ET{}_{31}\\
+        &\hspace{-0.6cm}\overset{\ET{}_{31}\subseteq
+      \ET{}_{32}}{\overset{\mathrm{und}}{\overset{\QET{}_1\subseteq
+      \QET{}_2}{\subseteq}}} (\QET{}_3\|\QET{}_2) \cup \ET{}_{32}\\
+        &\overset{\ref{RuheSemSatz}~2.}{=} \QET{}_{32}.
+    \end{aligned}$
+  \vspace*{-0.7cm}
+  \end{itemize}
+\end{proof}
+
+Im nächsten Lemma soll eine Verfeinerung bezüglich guter Kommunikation mit
+Partner im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
+
+\begin{Lem}[Verfeinerung mit Ruhe-Zuständen]
+  Gegeben sind zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur. Wenn
+  $U\|P_1\QBRel U\|P_2$ für alle Partner $U$ gilt, dann folgt daraus $P_1\QRel
+  P_2$.
+\end{Lem}
+
+\begin{proof}
   \TODO{zu beweisen}
 \end{proof}
