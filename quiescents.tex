@@ -94,6 +94,7 @@ Gegensatz zu Kommunikationsfehlern. Es genügt deshalb für Ruhe die strikten
 Traces ohne Kürzung zu betrachten.
 
 \begin{Def}[Ruhe-Traces]
+  \label{RuheTraceDef}
   Sei $P$ ein \MEIO{} und definiere:
   \begin{itemize}
     \item \emph{strikte Ruhe-Traces}: $\StQT (P) := \left\{w\in\Sigma ^*\mid
@@ -137,15 +138,14 @@ für Ruhe eine neue Semantik definiert.
 \end{Def}
 
 \begin{Lem}[Ruhe-Zustände unter Parallelkomposition]\mbox{}
+  \label{RuheZustLem}
   \begin{enumerate}
     \item Ein Zustand $(p_1,p_2)$ aus der Parallelkomposition $P_{12}$ ist
       ruhig, wenn es auch die Zustände $p_1$ und $p_2$ in $P_1$ bzw. $P_2$
       sind.
     \item Wenn der Zustand $(p_1,p_2)$ ruhig ist und nicht in $E_{12}$
       enthalten ist, dann sind auch die auf die Teilsysteme projizierten
-      Zustände $p_1$ und $p_2$ ruhig.\\
-      \TODO{anpassen (nur einer muss ruhig sein, der andere kann
-      must-Transitionen für synchronisierte Outputs haben)}
+      Zustände $p_1$ und $p_2$ ruhig.
   \end{enumerate}
 \end{Lem}
 \begin{proof}\mbox{}
@@ -185,9 +185,57 @@ für Ruhe eine neue Semantik definiert.
           ist es nicht möglich, dass $P_{12}$ diese in diesem Fall angenommene
           must"=Transition für den Zustand $(p_1,p_2)$ ausführen kann.
       \end{itemize}
-    \item \TODO{zu beweisen}
+      Da alle diese Fälle zu einem Widerspruch mit der Voraussetzung führen
+      folgt, dass bereits die Annahme, dass der Zustand $(p_1,p_2)$ nicht ruhig
+      ist, falsch war. Es gilt also, dass aus $p_i\in Qui_i$ für $i\in\{1,2\}$
+      $(p_1,p_2)\in Qui_{12}$ folgt.
+    \item Es gilt $(p_1,p_2)\in Qui_{12}\backslash E_{12}$, somit hat dieser
+      Zustand allenfalls die Möglichkeit für must"=Transitionen, die mit Inputs
+      beschriftet sind.\\
+      Angenommen $p_1\notin Qui _1$, dann ist für $p_1$ entweder eine
+      $\tau$"=must"=Transition oder eine Output"=must"=Transition möglich.
+      \begin{itemize}
+        \item Fall 1 \big($p_1\must[\tau]$\big): Da die Transition für $P_1$
+          möglich ist, hat auch $P_{12}$ die Möglichkeit für eine
+          $\tau$"=must"=Transition. Dies ist jedoch durch die Voraussetzung
+          verboten und somit kann dieser Fall nicht eintreten.
+        \item Fall 2 \big($p_1\must[a]$ mit $a\in O_1\backslash
+          \Synch(P_1,P_2)$\big): Da es sich bei $a$ um einen must"=Output
+          handelt, der nicht zu synchronisieren ist, wird dieser einfach in die
+          Parallelkomposition übernommen. Es müsste alle $(p_1,p_2)\must[a]$
+          mit $a\in O_{12}$ gelten, was jedoch verboten ist. Somit kann die
+          Transition für $P_1$ in diesem Fall nicht möglich sein.
+        \item Fall 3 \big($p_1\must[a]$ mit $a\in O_1\cap\Synch(P_1,P_2)$ und
+          $p_2\must[a]$\big): In diesem Fall ist die Synchronisation des
+          Outputs $a$ von $P_1$ mit dem Input $a$ von $P_2$ möglich, so dass in
+          der Parallelkomposition der Output $a$ als must"=Transition für
+          $(p_1,p_2)$ entsteht. Diese must"=Transition ist jedoch für $P_{12}$
+          nach Voraussetzung nicht erlaubt. Es folgt also auch, dass dieser
+          Fall nicht eintreten kann.
+        \item Fall 4 \big($p_1\must[a]$ mit $a\in O_1\cap\Synch(P_1,P_2)$ und
+          $p_2\nmust[a]$\big): Da $P_2$ die $a$ Transition nicht als
+          must"=Transition enthält, handelt es sich hier um einen neuen
+          Kommunikationsfehler. Der neue Kommunikationsfehler kann dadurch
+          entstehen, dass die Synchronisation des Outputs $a$ von $P_1$ mit dem
+          Input $a$ von $P_2$ an dieser Stelle nicht möglich ist, oder da der
+          Input $a$ für $p_2$ nur als may"=Transition vorliegt und somit die
+          Gefahr besteht, dass dieser in einer Implementierung nicht vorhanden
+          ist. Im zweiten Fall synchronisieren die beiden Transitionen zu einer
+          $a$ Output"=may"=Transition, die in $P_{12}$ zulässig wäre. Jedoch
+          wird der Zustand $(p_1,p_2)$ in beiden Fällen in die Menge $E_{12}$
+          der Parallelkomposition eingefügt (Definition~\ref{ParallelDef}).
+          Dies wurde in der Voraussetzung für den Zustand ausgeschlossen und
+          dieser Fall ist somit nicht möglich.
+      \end{itemize}
+      Alle aufgeführten Fälle führen zu einem Widerspruch mit der
+      Voraussetzung, somit folgt, dass die Annahme bereits falsch war und
+      $p_1\in Qui_1$ gelten muss. Analog kann für $p_2$ argumentiert werden, so
+      dass dann auch $p_2\in Qui_2$ folgt.
   \end{enumerate}
 \end{proof}
+
+In dem folgenden Satz sind die Punkte 1.\ und 3.\ nur zur Vollständigkeit
+aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
 
 \begin{Satz}[Kommunikationsfehler- und Ruhe-Semantik für Parallelkompositionen]
   Für zwei komponierbare \MEIO{}s $P_1,P_2$ und ihre Komposition $P_{12}$ gilt:
@@ -199,5 +247,22 @@ für Ruhe eine neue Semantik definiert.
 \end{Satz}
 \begin{proof}
   Es wird nur der 2. Punkt beweisen.\\
+  \glqq$\subseteq$\grqq{}:\\
+  Hie muss unterschieden werden, ob ein $w\in\StQT _{12}\backslash\ET _{12}$
+  oder ein $w\in\ET _{12}$ betrachtet wird. Im zweiten Fall ist das $w$
+  offensichtlich in der rechten Seite enthalten. Somit wird ab jetzt ein
+  $w\in\StQT _{12}\backslash\ET _{12}$ betrachtet und es wird versuch dessen
+  Zugehörigkeit zur rechten Menge zu zeigen. Aufgrund von
+  Definition~\ref{RuheTraceDef} weiß man, dass
+  $(p_{01},p_{02})\weakmay[w](p_1,p_2)$ gilt mit $(p_1,p_2)\in
+  Qui_{12}\backslash E_{12}$. Durch Projektion erhält man $p_{01}\weakmay[w_1]
+  p_1$ und $p_{02}\weakmay[w_2]p_2$ mit $w\in w_1\|w_2$. Aus $(p_1,p_2)\in
+  Qui_{12}\backslash E_{12}$ kann mit dem zweiten Punkt von
+  Lemma~\ref{RuheZustLem} gefolgert werden, dass bereits $q_1\in Qui_1$ und
+  $q_2\in Qui_2$ gilt. Somit gilt $w_1\in\StQT _1\subseteq \QET _1$ und $w_2\in
+  \StQT _2\subseteq\QET _2$. Daraus folgt dann $w\in \QET _1\|\QET _2$ und
+  somit ist $w$ in der rechten Seite der Gleichung enthalten.
+
+  \glqq$\supseteq$\grqq{}:\\
   \TODO{zu beweisen}
 \end{proof}
