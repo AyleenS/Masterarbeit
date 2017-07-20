@@ -18,7 +18,7 @@ zusätzlich noch Verklemmungen der Art Livelock, da diese Zustände
 möglicherweise beliebig viele interne Aktionen ausführen können, jedoch nie aus
 eigener Kraft einen wirklichen Fortschritt in Form eines Outputs bewirken
 können müssen. Die Menge der Zustände, die sich in einer Verklemmung
-befinden, würde also durch $\left\{p\in P\mid \forall a\in O: p\nweakmust[a]
+befinden, würde also durch $\left\{p\in P\mid \forall a\in O: p\nweakmust[a]_P
 \right\}$ beschrieben werden. Somit wären dies alle Zustände, die keine
 Möglichkeit haben ohne einen Input von Außen oder eine implementierte
 may"=Output"=Transition je weider einen Output machen zu können. Falls man
@@ -30,13 +30,34 @@ Zustände, die keine Outputs und $\tau$s ausführen können.
 
 \begin{Def}[Ruhe]
   Ein \emph{Ruhe-Zustand} ist ein Zustand in einem \MEIO{} $P$, der keine
-  Outputs und kein $\tau$ zulässt.\
+  Outputs und kein $\tau$ zulässt via must"=Transitionen.\\
   Somit ist die Menge der Ruhe-Zustände in einem \MEIO{} $P$ wie folgt formal
   definiert: $Qui(P):=\left\{p\in P\mid \forall\alpha\in (O\cup\{\tau\}):p
-  \nmust[\alpha]\right\}$.
+  \nmust[\alpha]_P\right\}$.
 \end{Def}
 
-\TODO{Proposition Ruhe-Zustände eines \MEIO{}s via seiner as-Implementierungen}
+\begin{Prop}[Ruhe und Implementierung]
+  Für ein \MEIO{} $P$ gilt: $Qui(P) = \left\{p'\in P'\mid P'\in\asimp (P)\land
+  \forall\alpha\in (O\cup\{\tau\}):p' \nmust[\alpha]_{P'}\right\}$.
+\end{Prop}
+
+\begin{proof}
+  Da für alle $P'\in\asimp (P)$ $\must_{P'} =\may_{P'}$ gilt, dürfen alle $p'$
+  keine ausgehenden Transitionen haben. Nach Definition~\ref{SimDef} dürfen zu
+  $p'$ in Relation stehenden Zustände $p$ in $P$ keine ausgehenden
+  must"=Transitionen haben, da $p'$ diese sonst implementieren müsste. Somit
+  sind alle $p'$, die die Forderung dieser Proposition enthalten auch in $Qui
+  (P)$ enthalten. Für alle $p$, die in $Qui (P)$ enthalten sind, gibt es keine
+  ausgehenden must"=Transitionen für Outputs oder die interne Aktion $\tau$,
+  somit können diese Aktionen entweder keine ausgehende Transition von $p$ sein
+  oder nur als may"=Transition von $p$ zu einem möglicherweise anderen Zustand
+  führen. Nicht vorhandenen Transitionen in $P$ sind auch in keiner
+  as"=Implementierung von $P$ enthalten und es gibt mindestens eine
+  Implementierung in $\asimp (P)$, die alle ausgehenden may"=Transitionen der
+  lokalen Aktionen von $p$ nicht implementiert, somit sind alle $p$ aus $Qui
+  (P)$ auch in $\left\{p'\in P'\mid P'\in\asimp (P)\land \forall\alpha\in
+  (O\cup\{\tau\}):p' \nmust[\alpha]_{P'}\right\}$ enthalten.
+\end{proof}
 
 Für die Erreichbarkeit wird wie im letzten Kapitel ein optimistischer Anzahl
 der lokalen Erreichbarkeit für die Fehler-Zustände, der Kommunikationsfehler,
@@ -76,12 +97,33 @@ Traces ohne Kürzung zu betrachten.
 \begin{Def}[Ruhe-Traces]
   Sei $P$ ein \MEIO{} und definiere:
   \begin{itemize}
-    \item strikte Ruhe-Traces: $\StQT (P) := \left\{w\in\Sigma ^*\mid p_0
-      \weakmay[w] p\in Qui(P)\right\}$.
+    \item \emph{strikte Ruhe-Traces}: $\StQT (P) := \left\{w\in\Sigma ^*\mid
+      p_0 \weakmay[w]_P p\in Qui(P)\right\}$.
   \end{itemize}
 \end{Def}
 
-\TODO{Proposition Ruhe-Traces via as-Implementierungen}
+\begin{Prop}[Ruhe-Traces und Implementierung]
+  \label{QuiTraceProp}
+  Für ein \MEIO{} $P$ gilt $\StQT (P) = \left\{w\in\Sigma ^*\mid \exists
+  P'\in\asimp (P): p'_0 \weakmust[w]_{P'} p'\in Qui(P')\right\}$.
+\end{Prop}
+
+\begin{proof}
+  Da $P'$ einen mit $w$ beschrifteten must"=Trace enthält und $P'$ eine
+  as"=Implementierung von $P$ ist, muss $w$ als may"=Trace bereits in $P$
+  möglich gewesen sein (Definition~\ref{SimDef}). Der Zustand $p'$ kann in $P'$
+  auch nur ruhig sein, wenn der entsprechende in Relation stehende Zustand aus
+  $P$ auch bereits ruhig war. Alle $w$ aus $\big\{w\in\Sigma ^*\mid \exists
+  P'\in\asimp (P):$ $p'_0 \weakmust[w]_{P'} p'\in Qui(P')\big\}$ sind somit also
+  auch in $\StQT (P)$ enthalten. Jeder may"=Trace aus $P$ kann implementiert
+  werden durch eine as"=Implementierung. Die Menge $\asimp (P)$ enthält alle
+  as"=Implementierungen von $P$, also auch eine, die den $w$ may"=Trace aus
+  $\StQT (P)$ zu einem mit in $p$ Relation stehenden Zustand implementiert. $p$
+  enthält keine ausgehenden Transitionen für lokale Aktionen, also gibt es
+  unter den as"=Implementierungen, die $w$ entsprechend als must"=Trace
+  enthalten auch mindestens eine, die keine ausgehende lokale Aktion an dem zu
+  $p$ in Relation stehenden Zustand implementiert. Die Behauptung gilt also.
+\end{proof}
 
 Für \ET{} und \EL{} gelten die Definitionen aus dem letzten Kapitel. Es wir nur
 für Ruhe eine neue Semantik definiert.
@@ -96,7 +138,7 @@ für Ruhe eine neue Semantik definiert.
   geschrieben, wenn $P_1\ERel{} P_2$ und $\QET _1\subseteq \QET _2$ gilt.
 \end{Def}
 
-\begin{Lem}[Ruhe-Zustände unter Parallelkomposition]
+\begin{Lem}[Ruhe-Zustände unter Parallelkomposition]\mbox{}
   \begin{enumerate}
     \item Ein Zustand $(p_1,p_2)$ aus der Parallelkomposition $P_{12}$ ist
       ruhig, wenn es auch die Zustände $p_1$ und $p_2$ in $P_1$ bzw. $P_2$
@@ -107,8 +149,11 @@ für Ruhe eine neue Semantik definiert.
   \end{enumerate}
 \end{Lem}
 
-\begin{proof}
-  \TODO{zu beweisen}
+\begin{proof}\mbox{}
+  \begin{enumerate}
+    \item \TODO{zu beweisen}
+    \item \TODO{zu beweisen}
+  \end{enumerate}
 \end{proof}
 
 \begin{Satz}[Kommunikationsfehler- und Ruhe-Semantik für Parallelkompositionen]
