@@ -332,5 +332,241 @@ Partner im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
 \end{Lem}
 
 \begin{proof}
-  \TODO{zu beweisen}
+  Da $P_1$ und $P_2$ die gleiche Signatur haben, wird $I:=I_1=I_2$ und
+  $O:=O_1=O_2$ definiert. Für jeden Partner $U$ gilt $I_U=O$ und $O_U=I$.\\
+  Um zu zeigen, dass die Relation $P_1\QRel P_2$ gilt, müssen die folgenden
+  Punkte nachgewiesen werden:
+  \begin{itemize}
+    \item $P_1\ERel P_2$,
+    \item $\QET _1\subseteq \QET _2$.
+  \end{itemize}
+  In Lemma~\ref{KommVerfeinLem} wurde bereits etwas Ähnliches gezeigt, jedoch
+  wurde dort als Voraussetzung $U\|P_1\EBRel U\|P_2$ für alle Partner $U$
+  verwendet und hier dieselbe Aussage mit der Basisrelation der Ruhe. Dadurch
+  dass die hier verwendetet Basisrelation nichts über die Art des erreichbaren
+  Fehlers in der Komponente aussagt, kann der Beweis aus
+  Lemma~\ref{KommVerfeinLem} nicht verwendet werden. Es kann also aus der
+  lokalen Erreichbarkeit eines Fehler-Zustands der Art Kommunikationsfehler in
+  $P'_1$ und dem relationalen Zusammenhang von $P'_1\QBRel P'_2$ nur
+  geschlossen werden, dass in $P'_2$ auch ein Fehler lokal erreichbar ist,
+  jedoch kann dieser Fehler ein Kommunikationsfehler oder Ruhe sein. Analog
+  verhält es sich, wenn in $P'_1$ ein Ruhe-Zustand lokal erreichbar ist.\\
+  Es muss also für den ersten Punkt noch folgendes nachgewiesen werden:
+  \begin{itemize}
+    \item $\ET _1\subseteq\ET _2$,
+    \item $\EL _1\subseteq\EL _2$.
+  \end{itemize}
+  Es wird nun damit begonnen, den ersten Unterpunkt des ersten Beweispunktes zu
+  zeigen, d.h.\ es wird unter der Voraussetzung $U\|P_1\QBRel U\|P_2$ gezeigt,
+  dass $\ET _1\subseteq\ET _2$ gilt. Da beide \ET{}-Mengen unter \cont{}
+  abgeschlossen sind, reicht es ein präfix-minimales Element $w\in\ET _1$ zu
+  betrachten und zu zeigen, dass dieses $w$ oder eines seiner Präfixe in $\ET
+  _2$ enthalten ist.
+  \begin{itemize}
+    \item Fall 1 ($w=\varepsilon$): Es handelt sich um einen lokal erreichbaren
+      Fehler-Zustand in $P_1$. Für $U$ wird ein Transitionssystem verwendet,
+      das nur aus dem Startzustand, einer Schleife für alle Inputs $x\in I_U$
+      und einer Schlinge für $\tau$ besteht. Somit kann $P_1$ die im Prinzip
+      gleichen Fehler-Zustände der Art Kommunikationsfehler lokal erreichen wie
+      $U\|P_1$. Es gibt also einen lokal erreichbaren Zustand von $U\|P_1$, der
+      in $E_{U\|P_1}$ enthalten ist. Mindestens eine as"=Implementierung von
+      $U\|P_1$ wird diesen Kommunikationsfehler implementieren und somit muss
+      es auch mindestens eine as"=Implementierung von $U\|P_2$ geben, die
+      ebenfalls einen lokal erreichbaren Fehler hat. Dieser Fehler kann jedoch
+      sowohl an der fehlenden Möglichkeit für lokale Aktionen in einem Zustand
+      liegen, wie an einem Zustand, der in $E _{U\|P_2}$ enthalten ist. Falls
+      es sich in der as"=Implementierung um lokal erreichbare Ruhe handelt,
+      dürfen in dem in Relation stehenden Zustand in $U\|P_2$ die lokalen
+      Aktionen keine must"=Transitionen gewesen sein, da dies sonst einen
+      Widerspruch zu Definition~\ref{SimDef} 1.\ darstellen würde. Ein lokal
+      erreichbarer Kommunikationsfehler in der as"=Implementierung würde
+      hingegen durch Definition~\ref{SimDef} ebenfalls zu einem lokal
+      erreichbaren Kommunikationsfehler in $U\|P_2$ führen. Es muss also in
+      allen Fällen ein Fehler in $U\|P_2$ lokal erreichbar sein. Hierbei kann
+      es sich jedoch nur um einen lokal erreichbaren Kommunikationsfehler
+      handeln, da es in der Komposition mit $U$ keine Ruhe-Zustände geben kann.
+      Da $U$ keinen Fehler-Zustand und auch keine fehlenden Input-Möglichkeiten
+      enthält, kann der Kommunikationsfehler nur von $P_2$ geerbt sein. Somit
+      muss in $S_2$ ein Fehler-Zustand lokal erreichbar sein, d.h.\ es gilt
+      $\varepsilon\in\PrET _2\subseteq \ET _2$.
+    \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
+      $x_{n+1}\in I$): Es wird der folgende Partner $U$ betrachtet (siehe auch
+      Abbildung~\ref{UohneEmitTau}):
+      \begin{itemize}
+        \item $U=\{p_0,p_1,\dots ,p_{n+1}\}$,
+        \item $p_{0U}=p_0$,
+        \item $\begin{aligned}[t]
+            \must _U=&\{(p_i,x_{i+1},p_{i+1})\mid  0\leq i\leq n\}\\
+            &\cup\{(p_i,x,p_{n+1})\mid  x\in I_U\backslash\{x_{i+1}\}, 0\leq
+            i\leq n\}\\
+            &\cup\{(p_{n+1},x,p_{n+1})\mid  x\in I_U\}\\
+            &\cup\{(p_i,\tau,p_i)\mid 0\leq i\leq n+1\},
+        \end{aligned}$
+        \item $E_U=\emptyset$.
+      \end{itemize}
+      \begin{figure} [h!tbp]
+      \begin{center}
+        \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+          \node (0) {$p_0$};
+          \node (1) [right of=0] {$p_1$};
+          \node (dots) [right of=1] {$\dots$};
+          \node (n) [right of=dots] {$p_n$};
+          \node (n1) at ($(1)!0.5!(dots) + (0,-3)$) {$p_{n+1}$};
+
+          \path ($ (0) + (-1,0) $) edge (0)
+                (0) edge node {$x_1$} (1)
+                    edge [bend right] node [below, sloped] {$x?\neq x_1$} (n1)
+                    edge [loop above] node {$\tau$} (0)
+                (1) edge node {$x_2$} (dots)
+                    edge node [below, sloped] {$x?\neq x_2$} (n1)
+                    edge [loop above] node {$\tau$} (1)
+                (dots) edge node {$x_n$} (n)
+                       edge [dashed] (n1)
+                (n) edge node [above, sloped] {$x?\in I_U$} (n1)
+                    edge [bend left] node [sloped] {$x_{n+1}$!} (n1)
+                    edge [loop above] node {$\tau$} (n)
+                (n1) edge [loop below] node {$x?\in I_U, \tau$} (n1);
+        \end{tikzpicture}
+        \caption{$x?\neq x_i$ steht für alle $x\in I_U\backslash\{x_i\}$}
+      \label{UohneEmitTau}
+      \end{center}
+      \end{figure}
+      Die Menge der Ruhe-Zustände der hier betrachteten $U$s ist leer. Da im
+      Vergleich zum Transitionssystem in Abbildung~\ref{UohneE} nur die
+      $\tau$-Schlingen ergänzt wurden, ändert sich nicht an den Fällen 2a) und
+      2b). Die Begründungen, wieso in den beiden Fällen $\varepsilon\in\PrET
+      (U\|P_1)$ gilt, bleibt also analog zum Beweis des ersten Punktes von
+      Lemma~\ref{KommVerfeinLem}. Durch die $\tau$-Schlingen wurde, genau wie
+      im letzten Fall nur erreicht, das in einer Parallelkomposition mit $U$
+      keine Ruhe-Zustände möglich sind. Es kann also auch hier aus der lokalen
+      Erreichbarkeit eines Kommunikationsfehler in $U\|P_1$ auf die lokale
+      Erreichbarkeit eines Fehler-Zustandes der Art Kommunikationsfehler in
+      $U\|P_2$ geschlossen werden. Die weitere Argumentation verläuft dann
+      analog zu Fall 2, derselben Inklusion im Beweis zu
+      Lemma~\ref{KommVerfeinLem}. Da $\tau$s nur interne Aktionen einer
+      einzelnen Komponente sind, verändert sich auch nichts an den Traces über
+      die argumentiert wird. Es können zwar möglicherweise $\tau$-Transitionen
+      ausgeführt werden, diese können jedoch werde zu einem Fehler führen och
+      beeinflussen, dass ein anderer Trace nicht ausgeführt werden kann.
+  \end{itemize}
+
+  Nun wird mit dem zweiten Unterpunkt des ersten Beweispunktes begonnen. Genau
+  wie im Beweis zu~\ref{KommVerfeinLem} ist hier jedoch aufgrund des bereits
+  geführten Beweisteils nur noch $L_1\backslash\ET _1\subseteq\EL _2$ zu
+  zeigen. Es wird also für ein beliebig gewähltes $w\in L_1\backslash\ET _1$
+  gezeigt, dass dieses auch in $\EL _2$ enthalten ist.
+  \begin{itemize}
+    \item Fall 1 ($w=\varepsilon$): Ebenso wie in~\ref{KommVerfeinLem} gilt
+      auch hier, dass $\varepsilon$ immer in $\EL _2$ enthalten ist.
+    \item Fall 2 ($w=x_1\dots x_n$ mit $n\geq 1$): Die Konstruktion des
+      Partners $U$ weicht wie im letzten Beweisteil nur durch die
+      $\tau$-Schleifen an den Zuständen des Transitionssystems vom Beweis des
+      zweiten Punktes aus Lemma~\ref{KommVerfeinLem} ab. Somit ist der Partner
+      $U$ dann wie folgt definiert (siehe dazu auch Abbildung~\ref{UmitEundTau}):
+      \begin{itemize}
+        \item $U=\{p_0,p_1,\dots ,p_n,p\}$,
+        \item $p_{0U}=p_0$,
+        \item $\begin{aligned}[t]
+            \must _U=&\{(p_i,x_{i+1},p_{i+1})\mid 0\leq i< n\}\\
+            &\cup\{(p_i,x,p)\mid x\in I_U\backslash\{x_{i+1}\},0\leq i < n\}\\
+            &\cup\{(p_i,\tau ,p_i)\mid 0\leq i\leq n\}\\
+            &\cup\{(p,\alpha ,p)\mid \alpha\in I_U\cup \{\tau\}\},
+              \end{aligned}$
+        \item $E_U=\{p_n\}$.
+      \end{itemize}
+      \begin{figure} [h!tbp]
+      \begin{center}
+        \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+
+          \node (0) {$p_0$};
+          \node (1) [right of=0] {$p_1$};
+          \node (dots) [right of=1] {$\dots$};
+          \node (n1) [right of=dots] {$p_{n-1}$};
+          \node (n) [right of=n1, rectangle, draw] {$p_n\in E_U$};
+          \node (q) at ($(1)!0.5!(dots) + (0,-3)$) {$p$};
+
+          \path ($ (0) + (-1,0) $) edge (0)
+                (0) edge node {$x_1$} (1)
+                    edge [bend right] node [below, sloped] {$x?\neq x_1$} (q)
+                    edge [loop above] node {$\tau$} (0)
+                (1) edge node {$x_2$} (dots)
+                    edge node [below, sloped] {$x?\neq x_2$} (q)
+                    edge [loop above] node {$\tau$} (1)
+                (dots) edge node {$x_{n-1}$} (n1)
+                       edge [dashed] (q)
+                (n1) edge node {$x_n$} (n)
+                     edge [bend left] node [below, sloped] {$x?\neq x_n$} (q)
+                     edge [loop above] node {$\tau$} (n1)
+                (q) edge [loop below] node {$x?\in I_U, \tau$} (q)
+                (n) edge [loop above] node {$\tau$} (n);
+        \end{tikzpicture}
+        \caption{$x?\neq x_i$ steht für alle $x\in I_U\backslash\{x_i\}$, $p_n$
+          ist der einzige Error-Zustand}
+      \label{UmitEundTau}
+      \end{center}
+      \end{figure}
+      Da durch die $\tau$-Schlingen an den Zuständen wie oben vermieden wird,
+      dass es in einer Komposition mit $U$ und auch in $U$ selbst Ruhe-Zustände
+      gibt, verläuft der Rest des Beweises dieses Punktes analog zum Beweis der
+      selben Inklusionsrichtung von Lemma~\ref{KommVerfeinLem}. Und somit gilt
+      für alle Fälle (2a) bis 2d)), dass $w$ in $\EL _2$ enthalten ist.
+  \end{itemize}
+
+  So bleibt nur noch der letzt Beweispunkt zu zeigen, d.h.\ die Inklusion $\QET
+  _1\subseteq\QET _2$. Die Inklusion kann jedoch, analog zum Beweis der
+  Inklusion der Kommunikationsfehler-gefluteten Sprache, noch weiter
+  eingeschränkt werden. Da bereits bekannt ist, dass $\ET _1\subseteq\ET _2$
+  gilt, muss nur noch $\StQT _1\backslash\ET _1\subseteq\QET _2$ gezeigt
+  werden.\\
+  Es wird ein $w\in\StQT _1\backslash\ET _1$ gewählt und gezeigt, dass dieses
+  auch in $\QET _2$ enthalten ist.\\
+  Durch die Wahl des $w$s wird vom Startzustand von $P_1$ durch das Wort $w$
+  ein ruhiger Zustand erreichbar. Dies hat nur Auswirkungen auf die
+  Parallelkomposition $U\|P_1$, wenn in $U$ ebenfalls ein Ruhe-Zustand durch
+  $w$ erreichbar ist.\\
+  Das betrachtete $w$ hat also die Form $w=x_1\dots x_n\in\Sigma ^*$ mit $n\geq
+  0$. Es wird der folgende Partner $U$ betrachtet (siehe auch
+  Abbildung~\ref{UohneEmitI}):
+  \begin{itemize}
+    \item $U=\{p_0,p_1,\dots ,p_n, p\}$,
+    \item $p_{0U}=p_0$,
+    \item $\begin{aligned}[t]
+        \must _U=&\{(p_i,x_{i+1},p_{i+1})\mid  0\leq i< n\}\\
+        &\cup\{(p_i,x,p)\mid  x\in I_U\backslash\{x_{i+1}\}, 0\leq i< n\}\\
+        &\cup\{(p_i,\tau,p_i)\mid 0\leq i< n\}\\
+        &\cup\{(p_n,x,p)\mid x\in I_U\}\\
+        &\cup\{(p,\alpha,p)\mid \alpha\in I_U\cup\{\tau\}\},
+    \end{aligned}$
+    \item $E_U=\emptyset$.
+  \end{itemize}
+  \begin{figure} [h!tbp]
+  \begin{center}
+    \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+      \node (0) {$p_0$};
+      \node (1) [right of=0] {$p_1$};
+      \node (dots) [right of=1] {$\dots$};
+      \node (n) [right of=dots, rectangle, dotted, draw] {$p_n\in Qui_U$};
+      \node (q) at ($(1)!0.5!(dots) + (0,-3)$) {$p$};
+
+      \path ($ (0) + (-1,0) $) edge (0)
+            (0) edge node {$x_1$} (1)
+                edge [loop above] node {$\tau$} (0)
+                edge [bend right] node [below, sloped] {$x?\neq x_1$} (q)
+            (1) edge node {$x_2$} (dots)
+                edge [loop above] node {$\tau$} (1)
+                edge [below, sloped] node {$x?\neq x_2$} (q)
+            (dots) edge node {$x_n$} (n)
+                   edge [dashed] (q)
+            (n) edge [bend left] node [below,sloped] {$x?\in I_U$} (q)
+            (q) edge [loop below] node {$x?\in I_U, \tau$} (q);
+    \end{tikzpicture}
+    \caption{$x?\neq x_i$ steht für alle $x\in I_U\backslash\{x_i\}$, $p_n$
+    ist der einzige Ruhe-Zustand}
+  \label{UohneEmitI}
+  \end{center}
+  \end{figure}
+  Falls für das betrachtete $w=\varepsilon$ gilt, reduziert sich der Partner
+  $U$ auf den Zustand $p_n=p_0$ und den Zustand $p$. Es ist also in diesem Fall
+  der Startzustand gleich dem ruhigen Zustand.\\
+  \TODO{fertig beweisen}
 \end{proof}
