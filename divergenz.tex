@@ -109,6 +109,7 @@ Kapitel verwendet werden. Jedoch werden diese Traces im weiteren Verlauf nur
 innerhalb der größeren Trace-Menge \EDT{} relevant sein.
 
 \begin{Def}[Kommunikationsfehler-, Ruhe- und Divergenz-Semantik]
+  \label{DivSemDef}
   Sei $P$ ein \MEIO{}.
   \begin{itemize}
     \item Die Menge der \emph{Divergenz-Traces} von $P$ ist $\DT (P) := \cont
@@ -141,6 +142,83 @@ keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
     \item $\EDL _{12} =(\EDL _1\|\EDL _2)\cup \EDT _{12}$.
   \end{enumerate}
 \end{Satz}
-\begin{proof}
+\begin{proof}\mbox{}\\
+  1. \glqq$\subseteq$\grqq{}:\\
+  Da beide Seiten der Gleichung unter \cont{} abgeschlossen sind, genügt es ein
+  präfix-minimales Element $w$ zu betrachten. Es muss hier unterschieden
+  werden, ob $w\in\ET _{12}$ oder $w\in\DT _{12}\backslash\ET _{12}$ betrachtet
+  wird. Im ersten Fall ist das $w$ in der rechten Seite der Gleichung enthalten
+  wegen des Beweises des ersten Punktes von Satz~\ref{KommFehlerSemSatz} und da
+  $\ET (P)\subseteq \EDT (P)$ und $\EL (P)\subseteq \EDL (P)$ gilt. Deshalb
+  wird im weiteren Verlauf dieses Beweises davon ausgegangen, dass $w\in\DT
+  _{12}\backslash\ET _{12}$ gilt und es wird versuch zu zeigen, dass dieses $w$
+  ebenfalls in der rechten Seite enthalten ist. Da das betrachtete $w$
+  präfix-minimal ist, gilt $w\in\PrDT _{12}\backslash\ET _{12}$. Aus der
+  Definition~\ref{DivSemDef} weiß man, dass ein $v\in O^*_{12}$ existiert,
+  sodass $(p_{01},p_{02})\weakmay[w]_{12} (p_1,p_2)\weakmay[v]_{12}
+  (p'_1,p'_2)$ gilt mit $(p'_1,p'_2)\in Div _{12}$. Durch die Projektion auf die
+  Transitionssysteme $P_1$ und $P_2$ erhält man $p_{01}\weakmay[w_1]_1 p_1
+  \weakmay[v_1]_1 p'_1$ und $p_{02}\weakmay[w_2]_2 p_2\weakmay[v_2]_2 p'_2$ mit
+  $w\in w_1\|w_2$ und $v\in v_1\|v_2$. Aus $(p'_1,p'_2)\in Div _{12}$ folgt,
+  dass \oBdA{} $p'_1\in Div _1$ gilt, d.h.\ $w_1v_2\in\StDT _1\subseteq\EDT
+  _1$. Da $p_{02}\weakmay[w_2v_2]_2$ gilt, erhält man $w_2v_2\in\EDL _2$. Somit
+  gilt insgesamt $wv\in\EDT _1\|\EDL _2$ und da $v\in O^*_{12}$, ist $w$ in der
+  rechten Seite der Gleichung enthalten und es folgt insgesamt $\prune (wv) =
+  \prune (w)$.
+
+  1. \glqq$\supseteq$\grqq{}:\\
+  Es wird ebenso wie oben nur ein präfix-minimales $x$ betrachtet wegen des
+  Abschlusses beider Seiten der Gleichung unter \cont{}. Es wird also für ein
+  beliebiges $x\in\prune ((\EDT _1\|$ $\EDL _2)\cup (\EDL _1\|\EDT _2))$ gezeigt,
+  dass dieses oder eines seiner Präfixe auch in $\EDT _{12}$ enthalten ist. Da
+  das $x$ aus der \prune{}-Funktion entstanden ist, lässt sich ein $y$ aus
+  $O^*_{12}$ finden, sodass $xy\in (\EDT _1\|\EDL _2)\cup (\EDL _1\|\EDT _2)$.
+  Es wird nun noch vorausgesetzt, dass \oBdA{} $xy\in \EDT _1\|\EDL _2$ gilt,
+  d.h.\ es existiert $w_1\in\EDT _1$ und $w_2\in\EDL _2$ mit $xy\in
+  w_1\|w_2$.\\
+  \TODO{erzwungenen Zeilenumbruch kontrollieren}\\
+  Die folgende Argumentation läuft analog zu der im Beweis der Inklusion $\ET
+  _{12} \supseteq \cont($ $\prune ((\ET _1\|\EL _2)\cup (\EL _1\|\ET _2)))$ aus
+  Satz~\ref{KommFehlerSemSatz}. Es muss dazu nur jeweils an den Stellen, an
+  denen $\PrET (P)\cup\MIT (P)$ steht auch noch eine Vereinigung mit $\PrDT
+  (P)$ vorgenommen werden. Für Fall I und II aus dem Beweis der oben genannten
+  Inklusion von Satz~\ref{KommFehlerSemSatz} ist jeweils kein weiterer
+  Unterfall für $v'_2$ notwendig da, wenn $v'_2$ nicht ausführbar ist, bereits
+  ein Fehler-Zustand der Art Kommunikationsfehler in der Parallelkomposition
+  entsteht. Somit ist egal, ob auch noch Divergenz vorlag. Falls $v'_2$
+  ausführbar, ist nicht relevant, ob eine Divergenz-Möglichkeit bestanden hat,
+  da diese nicht an der Ausführbarkeit ändert. Am Ende ist ein zusätzlicher
+  Fall für $v_1\in\PrDT _1$ zu ergänzen:
+  \TODO{erzwungenen Zeilenumbruch kontrollieren}
+  \begin{itemize}
+    \item Fall III ($v_1\in\PrDT _1$):
+    \TODO{zu beweisen}
+  \end{itemize}
+
+  2. \glqq$\subseteq$\grqq{}:\\
   \TODO{zu beweisen}
+
+  2. \glqq$\supseteq$\grqq{}:\\
+  \TODO{zu beweisen}
+
+  3.:\\
+  Durch die Definition~\ref{DivSemDef} ist klar, dass $L_i\subseteq\EDL _i$ und
+  $\EDT _i\subseteq\EDL _i$ gilt. Die Argumentation wird von der rechten Seite
+  der Gleichung aus begonnen:
+  \begin{align*}
+    (\EDL _1\| \EDL _2)\cup \EDT _{12}
+    &\overset{\ref{DivSemDef}}{=}\left(\left(L _1\cup \EDT _1\right)\|\left(L
+    _2\cup \EDT _2\right)\right)\cup \EDT _{12}\\
+    &=(L _1\|L _2) \cup \underset{\overset{1.}{\subseteq} \EDT
+    _{12}}{\underset{\subseteq (\EDL _1\|\EDT _2)}{\underbrace{(L _1\|\EDT
+    _2)}}} \cup \underset{\overset{1.}{\subseteq} \EDT
+    _{12}}{\underset{\subseteq (\EDT _1\|\EDL _2)}{\underbrace{(\EDT _1\|L
+    _2)}}}\\
+    &\quad\quad\cup \underset{\overset{1.}{\subseteq} \EDT
+    _{12}}{\underset{\subseteq (\EDL _1\|\EDT _2)}{\underbrace{(\EDT _1\|\EDT
+    _2)}}} \cup \EDT _{12}\\
+    &=(L _1\|L _2) \cup \EDT _{12}\\
+    &\overset{\ref{LParallelProp}}{=}L _{12}\cup \EDT _{12}\\
+    &\overset{\ref{DivSemDef}}{=}\EDL _{12}.
+  \end{align*}
 \end{proof}
