@@ -191,8 +191,33 @@ keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
   Fall für $v_1\in\PrDT _1$ zu ergänzen:
   \TODO{erzwungenen Zeilenumbruch kontrollieren}
   \begin{itemize}
-    \item Fall III ($v_1\in\PrDT _1$):
-    \TODO{zu beweisen}
+    \item Fall III ($v_1\in\PrDT _1$): Es existiert ein $u_1$ aus $O^*_1$,
+      sodass $p_{01}\weakmay[v_1]_1 p_1\weakmay[u_1]_1 p'_1$ mit $p'_1\in Div
+      _1$ gilt. Da es hier keine Inputmengen gibt kann das $a$, auf das $v_1$
+      im Fall $v_1=\varepsilon$ endet, ebenfalls der letzte Buchstabe von $v_2$
+      sein. Im Fall von $v_2\in\MIT _2$ kann somit $a=b$ gelten und damit wäre
+      $v_2=v'_2$. Dieser Fall verläuft jedoch analog zu Fall Ic) aus dem Beweis
+     der oben genannten Inklusion von Satz~\ref{KommFehlerSemSatz} und wird
+      somit hier nicht weiter betrachtet. Deshalb gilt für alle im folgenden
+      betrachteten Fälle $p_{02}\weakmay[v'_2]_2 p_2$ mit $(p_{01},p_{02})
+      \weakmay[v']_2$.
+      \begin{itemize}
+        \item Fall IIIa) \big($u_2\in (O_1\cap I_2)^*,c\in (O_1\cap I_2)$,
+          sodass $u_2c$ ein Präfix von $u_1|_{I_2}$ mit $p_2\weakmay[u_2]_2
+          p'_2 \nmust[c]_2$\big): Für ein Präfix von $u'_1c$ von $u_1$ mit
+          $(u'_1c)|_{I_2}=u_2c$ weiß man, dass $p_1\weakmay[u'_1]_1 p''_1
+          \may[c]_1$. Somit gilt $u'_1\in u'_1\|u_2$ und $(p_1,p_2)
+          \weakmay[u'_1]_{12} (p''_1,p'_2)\in E_{12}$, da für $P_2$ der
+          entsprechende Input fehlt, der mit dem Output von $c$ von $P_1$ zu
+          koppeln wäre. Es handelt sich also um einen neuen
+          Kommunikationsfehler. Es wird $v:=\prune (v'u'_1) \in\PrET _{12}$
+          gewählt, dies it ein Präfix von $v'$, da $u_1\in O^*_1$.
+        \item Fall IIIb) \big($p_2\weakmay[u_2]_2 p'_2$ mit $u_2=u_1|_{I_2}$
+          \big): Somit ist $u_1\in u_1\|u_2$ und $(p_1,p_2)\weakmay[u_1]_{12}
+          (p'_1,p'_2)\in Div _{12}$, da $p_1\in Div _1$. $P_{12}$ hat also die
+          Divergenz von $P_1$ geerbt. Es wird nun $v:=\prune (v'u_1)\in\PrDT
+          _{12}$ gewählt, das wiederum ein Präfix von $v'$ ist.
+      \end{itemize}
   \end{itemize}
 
   2. \glqq$\subseteq$\grqq{}:\\
