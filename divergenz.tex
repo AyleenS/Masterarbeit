@@ -221,10 +221,36 @@ keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
   \end{itemize}
 
   2. \glqq$\subseteq$\grqq{}:\\
-  \TODO{zu beweisen}
+  Diese Inklusionsrichtung kann analog zum Beweis derselben Inklusionsrichtung
+  des zweiten Punktes von Satz~\ref{RuheSemSatz} gezeigt werden. Es muss dabei
+  nur in der Argumentation die Menge $\ET _{12}$ durch die Menge $\EDT _{12}$
+  und die Mengen $\QET (P)$ durch die Mengen $\QDT (P)$ für die entsprechenden
+  Transitionssysteme $P$ ersetzt werden. Dadurch kann ebenso gefolgert werden,
+  dass im Fall $w\in\StQT _{12}\backslash\EDT _{12}$ der erreichte Zustand
+  $(p_1,p_2)$ kein Kommunikatiosfehler sein kann, da $\ET _{12}\subseteq\EDT
+  _{12}$ gilt und somit lässt sich auch hier der zweite Punkt von
+  Lemma~\ref{RuheZustLem} anwenden.
 
   2. \glqq$\supseteq$\grqq{}:\\
-  \TODO{zu beweisen}
+  Es muss wieder danach unterschieden werden, aus welcher Menge das betrachtete
+  Element stammt. Falls $w$ ein Element von $\EDT _{12}$ ist, folgt die
+  Zugehörigkeit zur linken Seite der Gleichung direkt. Somit wird für den
+  weiteren Verlauf dieses Beweises davon ausgegangen, dass $w\in\QDT _1\|\QDT
+  _2$ gilt. Für dieses $w$ soll dann gezeigt werden, dass es auch in $\QDT
+  _{12}$ enthalten ist. Da $\QDT _i=\StQT _i\cup\EDT _i$ gilt, existierten für
+  $w_1$ und $w_2$ mit $w\in w_1\|w_2$ unterschiedliche Möglichkeiten:
+  \begin{itemize}
+    \item Fall 1 ($w_1\in\EDT _1\lor w_2\in\EDT _2$): \OBdA{} gilt $w_1\in\EDT
+      _1$. Es kann nun $w_2\in\StQT _2\subseteq L_2$ gelten oder $w_2\in\EDT
+      _2\subseteq \EDL _2$ und somit gilt auf jeden Fall $w_2\in\EDL _2$.
+      Daraus kann mit dem ersten Punkt dieses Satztes gefolgert werden, dass
+      $w\in\EDT _{12}$ gilt und somit $w$ in der linken Seite der Gleichung
+      enthalten ist.
+    \item Fall 2 ($w_1\in\StQT _1\backslash\EDT _1\land w_2\in\StQT
+      _2\backslash\EDT _2$): Dieser Fall läft analog zu Fall 2 derselben
+      Inkulusionsrighung des Beweises von Satz~\ref{RuheSemSatz}. Hierfür muss
+      die Menge $\QET _{12}$ durch $\QDT _{12}$ ersetzt werden.
+  \end{itemize}
 
   3.:\\
   Durch die Definition~\ref{DivSemDef} ist klar, dass $L_i\subseteq\EDL _i$ und
