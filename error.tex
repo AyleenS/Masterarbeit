@@ -27,10 +27,7 @@ aus~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
 Für as"=Implementierungen $P_1$ und $P_2$ entspricht \EBRel{} der Relation
 \EBbaRel{} aus~\cite{Schinko2016BA}.
 
-Wie in~\cite{Schinko2016BA} werden die Fehler hier Trace-basiert betrachtet. Da
-jedoch die Basisrelation über as"=Implementierungen spricht, sind die
-Trace-Mengen auch nicht für die \MEIO{}s mit may-Transitionen definiert sondern
-nur für die Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
+Wie in~\cite{Schinko2016BA} werden die Fehler hier Trace-basiert betrachtet.
 
 \begin{Def}[Kommunikationsfehler-Traces]
   Für ein \MEIO{} $P$ wird definiert:
@@ -43,6 +40,13 @@ nur für die Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
       \mid p_0 \weakmay[w]_P p \land a\in I\land p\nmust[a]_P \right\}$.
   \end{itemize}
 \end{Def}
+
+Da die Basisrelation über as"=Implementierungen spricht, ist es wichtig bereits
+in den Trace-Mengen eine Beziehung zwischen der allgemeinen Definition für
+\MEIO{}s und deren as"=Implementierungen herzustellen. Deshalb wird in der
+folgenden Proposition eine alternative Sichtweise auf die Trace-Definitionen
+dargestellt. Die Traces eines \MEIO{}s entsprechen somit der Vereinigung der
+Traces alle seiner as"=Implementierungen.
 
 \begin{Prop}[Kommunikationsfehler-Traces und Implementierung]
   \label{KommTracesProp}
@@ -60,7 +64,7 @@ nur für die Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
 \begin{proof}\mbox{}
   \begin{enumerate}
     \item Wie schon in Beweis zu~\ref{LImpProp} festgestellt, sind alle
-      Abläufe, die in $P$ via may"=Transitionen möglich ist in mindestens einer
+      Abläufe, die in $P$ via may"=Transitionen möglich sind in mindestens einer
       as"=Implementierung von $P$ via must"=Transitionen möglich. Umgekehrt ist
       auch jeder Ablauf, der in einer as"=Implementierung von $P$ möglich ist
       auch in $P$ durch may"=Transitionen möglich.\\
@@ -78,21 +82,21 @@ nur für die Menge der möglichen as"=Implementierungen eines solchen \MEIO{}s.
       gibt es in $P$ einen Trace von $w$, nach dem ein Input $a$ nicht
       zwingendermaßen folgen muss. Die $a$ Transition also entweder eine
       may"=Transition ist oder gar nicht existiert in $P$. Es muss also auch
-      einen $w$ Trace in einer as"=Implementierung geben, die in einem Zustand
+      einen $w$-Trace in einer as"=Implementierung geben, die in einem Zustand
       endet, der mit dem Zustand aus $P$ in Relation steht, in dem das $a$
       nicht erzwungen wird. Falls die Transition in $P$ nicht vorhanden ist,
-      muss jede as"=Implementierung, die so einen $w$ Trace enthält auch $wa$
+      muss jede as"=Implementierung, die so einen $w$-Trace enthält auch $wa$
       als Input-kritischen-Trace haben. Andernfalls handelt es sich bei $a$ in
       $P$ um eine may"=Transition, die von mindestens einer
-      as"=Implementierung, die den $w$ Trace enthält, nicht implementiert wird
-      und somit $wa$ auch als Input-kritischen-Trace enthält.\\
+      as"=Implementierung, die den $w$"=Trace enthält, nicht implementiert wird
+      und somit $wa$ auch als Input"=kritischen"=Trace enthält.\\
       Für ein $wa\in \left\{wa\in\Sigma ^* \mid \exists P' \in\asimp (P) : p'_0
       \weakmust[w]_{P'} p' \land a\in I\land p'\nmust[a]_{P'} \right\}$ muss es
       eine as"=Implementierung von $P$ geben, die diesen Input-kritischen-Trace
       implementiert. $P$ muss also auch das $w$ ausführen können zu einem
       Zustand, in dem $P$ $a$ nicht als must"=Transition enthalten. Falls $P$
       $a$ nach $w$ nur als must"=Transition enthalten würde, würde~\ref{SimDef}
-      1.\ die Implementierung von $a$ erzwingen würde und somit könnte für
+      1.\ die Implementierung von $a$ erzwingen und somit könnte für
       keine as"=Implementierung von $P$ $wa$ ein Input-kritischer-Trace sein.
       Es gilt also auch $wa\in\MIT (P)$.
   \end{enumerate}
@@ -130,7 +134,7 @@ as"=Implementierung ist.
   Da beide Seiten der Gleichung unter der Fortsetzung \cont{} abgeschlossen
   sind, genügt es ein präfix-minimales Element $w$ von $\ET _{12}$ zu
   betrachten. Diese Element ist aufgrund der Definition der Menge der
-  Errortraces in $\MIT _{12}$ oder in $\PrET _{12}$ enthalten.
+  Kommunikationsfehler-Traces in $\MIT _{12}$ oder in $\PrET _{12}$ enthalten.
   \begin{itemize}
     \item Fall 1 ($w\in\MIT _{12}$): Aus der Definition von \MIT{} folgt, dass
       es eine Aufteilung $w=xa$ gibt mit $(p_{01},p_{02}) \weakmay[x]_{12}
@@ -157,7 +161,7 @@ as"=Implementierung ist.
         \ET _1\|\EL _2$. Dies ist eine Teilmenge der rechten Seite der Gleichung.
     \end{itemize}
   \item Fall 2 ($w\in\PrET _{12}$): Aus der Definition von \PrET{} und \prune{}
-    folgt, dass ein $v\in O_{12}^*$ gilt, so dass $(p_{01},p_{02})
+    folgt, dass ein $v\in O_{12}^*$ gibt, so dass $(p_{01},p_{02})
       \weakmay[w]_{12} (p_1,p_2) \weakmay[v]_{12} (p'_1,p'_2)$ gilt mit
       $(p'_1,p'_2)\in E_{12}$ und $w=\prune (wv)$. Durch Projektion auf die
       Komponenten erhält man $p_{01} \weakmay[w_1]_1 p_1 \weakmay[v_1]_1 p'_1$
@@ -244,10 +248,10 @@ as"=Implementierung ist.
           $(p_1,p_2)\nmust[a]_{12}$ bereits aus $q_1\nmust[a]_1$. Somit kann
           hier nochmals $v:=v''a=v'\in \MIT _{12}$ gewählt werden.
         \item Fall Id) ($a\in O_2$): Es gilt $v'_2=v''_2a$ und $p_{02}
-          \weakmay[v'_2]_2$. Man erhält also $p_{02}\weakmay[v''_2]_2\may[a]_2$
-          mit $v''\in v'_1\|v'_2$. Daraus ergibt sich $(p_{01},p_{02})
-          \weakmay[v'']_{12} (p_1,p_2)$ mit $p_1\nmust[a]_1,a\in
-          I_1$,$q_2\may[a]_1$ und $a\in O_2$, somit gilt $(p_1,p_2)\in E_{12}$.
+          \weakmay[v'_2]_2$. Man erhält also $p_{02}\weakmay[v''_2]_2 p_2 \may[a]_2$
+          mit $v''\in v'_1\|v''_2$. Daraus ergibt sich $(p_{01},p_{02})
+          \weakmay[v'']_{12} (p_1,p_2)$ mit $p_2\may[a]_1$, $p_1\nmust[a]_1,
+          a\in I_1$ und $a\in O_2$, somit gilt $(p_1,p_2)\in E_{12}$.
           Es wird $v:= \prune (v'')\in\PrET _{12}$ gewählt.
       \end{itemize}
     \item Fall II ($v_1\in\PrET _1$): $\exists u_1\in O_1^*: p_{01}
@@ -257,12 +261,12 @@ as"=Implementierung ist.
       gelten, wodurch $v_2=v'_2$ gilt. Dieser Fall verläuft jedoch analog zu
       Fall Ic) und wird hier nicht weiter betrachtet. Es gilt für alle anderen
       Fälle $p_{02}\weakmay[v'_2]_2p_2$ mit $(p_{01},p_{02}) \weakmay[v']_{12}
-      (q_1,q_2)$.
+      (p_1,p_2)$.
       \begin{itemize}
         \item Fall IIa) \big($u_2\in (O_1\cap I_2)^*,c\in (O_1\cap I_2)$, sodass
           $u_2c$ Präfix von $u_1|_{I_2}$ mit $p_2 \weakmust[u_2]_2 p'_2
           \nmust[c]_2$\big): Für das Präfix $u'_1c$ von $u_1$ mit
-          $u'_1c|_{I_2}=u_2c$ weiß man, dass $q_1\weakmay[u'_1]_1 q''_1
+          $(u'_1c)|_{I_2}=u_2c$ weiß man, dass $q_1\weakmay[u'_1]_1 q''_1
           \may[c]_1$. Somit gilt $u'_1\in u'_1\|u_2$ und $(p_1,p_2)
           \weakmay[u'_1]_{12} (q''_1,q'_2)\in E_{12}$, der für $P_2$ der
           entsprechende Input nicht erzwungen wird, der mit dem $c$ Output von
@@ -419,7 +423,7 @@ as"=Implementierung ist.
           E_{U\|P_1}$ und somit $wu\in\StET (U\|P_1)$. Da alle Aktionen in $w$
           synchronisiert werden und $I\cap I_U=\emptyset$, gilt $x_1,\dots
           ,x_n,x_{n+1}\in O_{U\|P_1}$ und, da $u\in O^*$, folgt $u\in
-          O_{U\|P_1}^*$. Somit ergibt sich für eine as"=Implementierung von
+          O_{U\|P_1}^*$. Somit ergibt sich für eine as"=Implementierung $P'$ von
           $U\|P_1$ $\varepsilon\in\PrET (P')$.
       \end{itemize}
       Da $\varepsilon\in\PrET (P')$ für ein $P'$ aus $\asimp (U\|P_1)$ gilt,
@@ -463,7 +467,7 @@ as"=Implementierung ist.
   dass es in $\EL _2$ enthalten ist.
   \begin{itemize}
     \item Fall 1 ($w=\varepsilon$): Da $\varepsilon$ immer in $\EL _2$
-      enthalten ist, muss hier nicht gezeigt werden.
+      enthalten ist, muss hier nichts gezeigt werden.
     \item Fall 2 ($w=x_1\dots x_n$ mit $n\geq 1$): Es wird ein Partner $U$ wir
       folgt konstruiert (siehe dazu auch Abbildung~\ref{UmitE})
       \begin{itemize}
@@ -515,7 +519,7 @@ as"=Implementierung ist.
           \lweakmay[x_1\dots x_{i-1}]_2q''\nmust[x_i]_2$): Es gilt $x_1\dots
           x_i\in \MIT _2$ und somit $w\in \EL_2$. Anzumerken ist, dass es nur
           auf diesem Weg Outputs von $U$ möglich sind, deshalb gibt es keine
-          anderen Outputs von U, die zu einem neuen Fehler führen können.
+          anderen Outputs von $U$, die zu einem neuen Fehler führen können.
         \item Fall 2b) (neuer Fehler aufgrund von $a\in O=I_U$): Der einzige
           Zustand, in dem $U$ nicht alle Input erlaubt sind, ist $p_n$, der
           bereits ein Fehler-Zustand ist. Da in diesem Fall dieser Zustand in
@@ -534,6 +538,8 @@ as"=Implementierung ist.
       \end{itemize}
   \end{itemize}
 \end{proof}
+
+\TODO{ab hier weiter durchlesen}
 
 Der folgende Satz sagt aus, dass \ERel{} die gröbste Präkongruenz ist, die
 charakterisiert werden soll, also gleich der vollständig abstrakten
