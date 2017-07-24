@@ -134,6 +134,7 @@ keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
 
 \begin{Satz}[Kommunikationsfehler-, Ruhe- und Divergenz-Semantik für
   Parallelkompositionen]
+  \label{DivSemSatz}
   Für zwei komponierbare \MEIO{}s $P_1,P_2$ und ihre Komposition $P_{12}$ gilt:
   \begin{enumerate}
     \item $\EDT _{12} =\cont (\prune ((\EDT _1\|\EDL _2)\cup (\EDL _1\|\EDT
@@ -227,7 +228,7 @@ keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
   und die Mengen $\QET (P)$ durch die Mengen $\QDT (P)$ für die entsprechenden
   Transitionssysteme $P$ ersetzt werden. Dadurch kann ebenso gefolgert werden,
   dass im Fall $w\in\StQT _{12}\backslash\EDT _{12}$ der erreichte Zustand
-  $(p_1,p_2)$ kein Kommunikatiosfehler sein kann, da $\ET _{12}\subseteq\EDT
+  $(p_1,p_2)$ kein Kommunikationsfehler sein kann, da $\ET _{12}\subseteq\EDT
   _{12}$ gilt und somit lässt sich auch hier der zweite Punkt von
   Lemma~\ref{RuheZustLem} anwenden.
 
@@ -243,12 +244,12 @@ keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
     \item Fall 1 ($w_1\in\EDT _1\lor w_2\in\EDT _2$): \OBdA{} gilt $w_1\in\EDT
       _1$. Es kann nun $w_2\in\StQT _2\subseteq L_2$ gelten oder $w_2\in\EDT
       _2\subseteq \EDL _2$ und somit gilt auf jeden Fall $w_2\in\EDL _2$.
-      Daraus kann mit dem ersten Punkt dieses Satztes gefolgert werden, dass
+      Daraus kann mit dem ersten Punkt dieses Satzes gefolgert werden, dass
       $w\in\EDT _{12}$ gilt und somit $w$ in der linken Seite der Gleichung
       enthalten ist.
     \item Fall 2 ($w_1\in\StQT _1\backslash\EDT _1\land w_2\in\StQT
-      _2\backslash\EDT _2$): Dieser Fall läft analog zu Fall 2 derselben
-      Inkulusionsrighung des Beweises von Satz~\ref{RuheSemSatz}. Hierfür muss
+      _2\backslash\EDT _2$): Dieser Fall läuft analog zu Fall 2 derselben
+      Inklusionsrichtung des Beweises von Satz~\ref{RuheSemSatz}. Hierfür muss
       die Menge $\QET _{12}$ durch $\QDT _{12}$ ersetzt werden.
   \end{itemize}
 
@@ -272,4 +273,64 @@ keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
     &\overset{\ref{LParallelProp}}{=}L _{12}\cup \EDT _{12}\\
     &\overset{\ref{DivSemDef}}{=}\EDL _{12}.
   \end{align*}
+\end{proof}
+
+\begin{Kor}[Divergenz-Präkongruenz]
+  Die Relation \DRel{} ist eine Präkongruenz bezüglich $\cdot\|\cdot$.
+\end{Kor}
+
+\begin{proof}
+  Um zu zeigen, dass es sich bei \DRel{} um eine Präkongruenz handelt, muss
+  nachgewiesen werden, dass auch $P_1\DRel P_2$ auch $P_{31}\DRel P_{32}$ für
+  jedes komponierbare System $P_3$ folgt. D.h.\ es ist zu zeigen, dass aus
+  $\EDT _1\subseteq\EDT _2, \QDT _1\subseteq\QDT _2$ und $\EDL _1\subseteq\EDL
+  _2$, sowohl $\EDT _{31} \subseteq \EDT _{32}, \QDT _{31} \subseteq \QDT
+  _{32}$ als auch $\EDL _{31}\subseteq\EDL _{32}$ folgt. Dies ergibt sich, wie
+  in den Beweisen zu den Korollaren~\ref{KommPraekonKor}
+  und~\ref{RuhePraekonKor}, aus der Monotonie von \cont{}, \prune{} und
+  $\cdot\|\cdot$ auf Sprachen wie folgt:
+  \begin{itemize}
+    \item $\begin{aligned}[t]
+        \EDT{}_{31} &\overset{\ref{DivSemSatz}~1.}{=}
+        \cont{}\left(\prune{}\left(\left(\EDT{}_3\|\EDL{}_1\right) \cup
+        \left(\EDL{}_3\|\EDT{}_1\right)\right)\right)\\
+        &\hspace{-0.6cm}\overset{\EDT{}_1\subseteq
+      \EDT{}_2}{\overset{\mathrm{und}}{\overset{\EDL{}_1\subseteq
+    \EDL{}_2}{\subseteq}}}
+    \cont{}\left(\prune{}\left(\left(\EDT{}_3\|\EDL{}_2\right) \cup
+        \left(\EDL{}_3\|\EDT{}_2\right)\right)\right)\\
+      &\overset{\ref{DivSemSatz}~1.}{=} \EDT{}_{32},
+    \end{aligned}$
+    \item $\begin{aligned}[t]
+        \QDT{}_{31} &\overset{\ref{DivSemSatz}~2.}{=} (\QDT{}_3\|\QDT{}_1)
+        \cup \EDT{}_{31}\\
+        &\hspace{-0.8cm}\overset{\EDT{}_{31}\subseteq
+      \EDT{}_{32},}{\overset{\mathrm{und}}{\overset{\QDT{}_1\subseteq
+      \QDT{}_2}{\subseteq}}} (\QDT{}_3\|\QDT{}_2) \cup \EDT{}_{32}\\
+      &\overset{\ref{DivSemSatz}~2.}{=} \QDT{}_{32}.
+    \end{aligned}$
+    \item $\begin{aligned}[t]
+        \EDL{}_{31} &\overset{\ref{DivSemSatz}~3.}{=} (\EDL{}_3\|\EDL{}_1)
+        \cup \EDT{}_{31}\\
+        &\hspace{-0.8cm}\overset{\EDT{}_{31}\subseteq
+      \EDT{}_{32},}{\overset{\mathrm{und}}{\overset{\EDL{}_1\subseteq
+      \EDL{}_2}{\subseteq}}} (\EDL{}_3\|\EDL{}_2) \cup \EDT{}_{32}\\
+      &\overset{\ref{DivSemSatz}~3.}{=} \EDL{}_{32}.
+    \end{aligned}$
+  \end{itemize}
+\end{proof}
+
+\begin{Def}[$\omega$-Partner]
+  Ein \MEIO{} $P_1$ ist ein $\omega$-Partner von einem \MEIO{} $P_2$, wenn
+  $I_1=O_2$ und $O_1=I_2\cup\{\omega\}$ mit $\omega\notin I_2\cup O_2$ gilt.
+\end{Def}
+
+\begin{Lem}[Verfeinerung mit Divergenz-Zuständen]
+  Gegeben sind zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur. Wenn
+  $U\|P_1\DBRel U\|P_2$ für alle $\omega$-Partner $U$ gilt, dann folgt daraus
+  $P_1\DRel P_2$.
+\end{Lem}
+
+\begin{proof}
+  \textbf{TODO zu beweisen}
 \end{proof}
