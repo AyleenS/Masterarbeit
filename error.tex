@@ -551,7 +551,7 @@ Präkongruenz \ECRel{}.
   P_2\Leftrightarrow P_1\ERel{} P_2$.
 \end{Satz}
 \begin{proof}\mbox{}\\
-  \glqq$\Rightarrow$\grqq: Nach Definition gilt, genau dann wenn
+  \glqq$\Leftarrow$\grqq: Nach Definition gilt, genau dann wenn
   $\varepsilon\in\ET (P)$, ist ein Fehler-Zustand lokal erreichbar in $P$. $P_1
   \ERel P_2$ impliziert, dass $\varepsilon\in\ET _2$ gilt, wenn
   $\varepsilon\in\ET _1$. Somit ist ein Fehler-Zustand ins $P_1$ nur dann lokal
@@ -564,13 +564,13 @@ Präkongruenz \ECRel{}.
   definiert wurde und die \ET{}-Mengen von $P_1$ und $P_2$ auch durch die
   Vereinigung der Traces ihrer as"=Implementierungen, wie in
   Proposition~\ref{KommTracesProp}, ausgedrückt werden können. Es ist also
-  \ERel{} in \EBRel{} enthalten. Wie in Korollar~\ref{KommPräkonKor} gezeigt,
+  \ERel{} in \EBRel{} enthalten. Wie in Korollar~\ref{KommPraekonKor} gezeigt,
   ist \ERel{} eine Präkongruenz bezüglich $\cdot\|\cdot$. Da \ECRel{} die
   gröbste Präkongruenz bezüglich $\cdot\|\cdot$ ist, die in \EBRel{} enthalten
   ist, muss \ERel{} in \ECRel{} enthalten sein. Es folgt also aus $P_1\ERel{}
   P_2$, dass auch $P_1\ECRel{} P_2$ gilt.
 
-  \glqq$\Leftarrow$\grqq: Durch die Definition von \ECRel{} als Präkongruenz
+  \glqq$\Rightarrow$\grqq: Durch die Definition von \ECRel{} als Präkongruenz
   in~\ref{EBRelDef} folgt aus $P_1\ECRel{} P_2$, dass $U\|P_1\ECRel U\|P_2$ für
   alle \MEIO{}s $U$ gilt, die mit $P_1$ komponierbar sind. Da \ECRel{} nach
   Definition auch in \EBRel{} enthalten sein soll, folgt aus $U\|P_1\ECRel{}

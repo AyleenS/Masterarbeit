@@ -18,7 +18,7 @@ betrachtet.
   \text{s ausführen} \right\}$.
 \end{Prop}
 \begin{proof}
-  Falls von einem $p'$ in einem $P'\in\asimp (P)$ eine unendliche $\tau$ Folge
+  Falls von einem $p'$ in einem $P'\in\asimp (P)$ eine unendliche $\tau$-Folge
   ausführbar ist, dann ist dies via must"=Transitionen möglich. Diese
   Transitionen müssen jedoch aus möglichen may"=Transitionen in $P$ folgen.
   Deshalb war auch der Zustand, der zu $p'$ in Simulations-Relation nach
@@ -56,7 +56,7 @@ Kommunikationsfehler.
   geschrieben, wenn ein Fehler-, Ruhe- oder Divergenz-Zustand in einer
   as"=Implementierung von $P_1$ nur dann lokal erreichbar ist, wenn es auch
   eine as"=Implementierung von $P_2$ gibt, in der ein solcher lokal erreichbar
-  ist. Die \emph{Basisrelation} stell eine \emph{Verfeinerung} bezüglich
+  ist. Die \emph{Basisrelation} stellt eine \emph{Verfeinerung} bezüglich
   \emph{Fehler}, \emph{Ruhe} und \emph{Divergenz} dar.\\
   \DCRel{} bezeichnet die \emph{vollständig abstrakte Präkongruenz} von
   \DBRel{} bezüglich $\cdot\|\cdot$.
@@ -67,13 +67,13 @@ sich einen Begriff für die Traces zu divergenten Zuständen bilden. Da oben
 bereits festgestellt wurde, dass Divergenz als ähnlich „schlimmer Fehler“
 anzusehen ist wie Kommunikationsfehler und dass das Divergieren eines Systems
 nicht mehr verhinderbar ist, sobald ein divergenter Zustand lokal erreichbar
-ist, kommt für die Divergenztraces wieder die prune-Funktion zu Einsatz. Ein
+ist, kommt für die Divergenz-Traces wieder die \prune{}-Funktion zum Einsatz. Ein
 System, das unendliche viele $\tau$s ausführen kann, ist von außen nicht von so
 einem System zu unterscheiden, das einen Fehler-Zustand der Art
 Kommunikationsfehler erreicht. Somit wird in den Trace-Mengen auch nicht
 zwischen Kommunikationsfehler"=Traces und Divergenz-Traces explizit
 unterschieden. Dadurch genügt es nicht mehr nur mit den
-Kommunikationsfehler"=Traces die Sprache fluten, sondern es muss sowohl mit den
+Kommunikationsfehler"=Traces die Sprache zu fluten, sondern es muss sowohl mit den
 Kommunikationsfehler"=Traces wie auch den Divergenz"=Traces geflutet werden.
 Ebenso werden die strikten Ruhe"=Traces mit diesen beiden Trace-Mengen
 geflutet.
@@ -91,7 +91,7 @@ geflutet.
 Analog zu den Propositionen~\ref{KommTracesProp} und~\ref{QuiTraceProp} gibt es
 hier auch eine Proposition, die die Divergenz-Traces eines \MEIO{}s mit den
 Divergenz-Traces seiner as"=Implementierungen verbindet. Die Begründung würde
-analog wie zu den beiden Propositionen der vorrangige nahten Kapitel laufen, in
+analog wie die der beiden Propositionen der vorangegangenen Kapitel laufen, in
 Kombination mit den Argumenten des Beweises zur Proposition~\ref{DivProp} in
 diesem Kapitel.
 
@@ -116,10 +116,10 @@ innerhalb der größeren Trace-Menge \EDT{} relevant sein.
       (\PrDT (P))$.
     \item Die Menge der \emph{Fehler-Divergenz-Traces} von $P$ ist $\EDT (P) :=
       \ET (P)\cup\DT (P)$.
-    \item Die Menge der \emph{fehler-divergenz-gefluteten Ruhe-Traces} von $P$
-      ist $\QDT (P) := \StQT (P)\cup\EDT (P)$.
-    \item Die Menge der \emph{fehler-divergenz-gefluteten Sprache} von $P$ ist
-      $\EDL (P) := L(P)\cup\EDT (P)$.
+    \item Die Menge der \emph{Kommunikationsfehler-divergenz-gefluteten
+      Ruhe-Traces} von $P$ ist $\QDT (P) := \StQT (P)\cup\EDT (P)$.
+    \item Die Menge der \emph{Kommunikationsfehler-divergenz-gefluteten
+      Sprache} von $P$ ist $\EDL (P) := L(P)\cup\EDT (P)$.
   \end{itemize}
   Für zwei \MEIO{}s $P_1,P_2$ mit der gleichen Signatur schreibt man $P_1\DRel
   P_2$, wenn $\EDT _1\subseteq \EDT _2, \QDT _1\subseteq \QDT _2$ und $\EDL
@@ -194,8 +194,8 @@ keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
   \begin{itemize}
     \item Fall III ($v_1\in\PrDT _1$): Es existiert ein $u_1$ aus $O^*_1$,
       sodass $p_{01}\weakmay[v_1]_1 p_1\weakmay[u_1]_1 p'_1$ mit $p'_1\in Div
-      _1$ gilt. Da es hier keine Inputmengen gibt kann das $a$, auf das $v_1$
-      im Fall $v_1=\varepsilon$ endet, ebenfalls der letzte Buchstabe von $v_2$
+      _1$ gilt. Da es hier keine disjunkten Inputmengen gibt kann das $a$, auf das $v_1$
+      im Fall $v_1\neq\varepsilon$ endet, ebenfalls der letzte Buchstabe von $v_2$
       sein. Im Fall von $v_2\in\MIT _2$ kann somit $a=b$ gelten und damit wäre
       $v_2=v'_2$. Dieser Fall verläuft jedoch analog zu Fall Ic) aus dem Beweis
      der oben genannten Inklusion von Satz~\ref{KommFehlerSemSatz} und wird
@@ -204,7 +204,7 @@ keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
       \weakmay[v']_2$.
       \begin{itemize}
         \item Fall IIIa) \big($u_2\in (O_1\cap I_2)^*,c\in (O_1\cap I_2)$,
-          sodass $u_2c$ ein Präfix von $u_1|_{I_2}$ mit $p_2\weakmay[u_2]_2
+          sodass $u_2c$ ein Präfix von $u_1|_{I_2}$ mit $p_2\weakmust[u_2]_2
           p'_2 \nmust[c]_2$\big): Für ein Präfix von $u'_1c$ von $u_1$ mit
           $(u'_1c)|_{I_2}=u_2c$ weiß man, dass $p_1\weakmay[u'_1]_1 p''_1
           \may[c]_1$. Somit gilt $u'_1\in u'_1\|u_2$ und $(p_1,p_2)
@@ -212,8 +212,8 @@ keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
           entsprechende Input fehlt, der mit dem Output von $c$ von $P_1$ zu
           koppeln wäre. Es handelt sich also um einen neuen
           Kommunikationsfehler. Es wird $v:=\prune (v'u'_1) \in\PrET _{12}$
-          gewählt, dies it ein Präfix von $v'$, da $u_1\in O^*_1$.
-        \item Fall IIIb) \big($p_2\weakmay[u_2]_2 p'_2$ mit $u_2=u_1|_{I_2}$
+          gewählt, dies ist ein Präfix von $v'$, da $u_1\in O^*_1$.
+        \item Fall IIIb) \big($p_2\weakmust[u_2]_2 p'_2$ mit $u_2=u_1|_{I_2}$
           \big): Somit ist $u_1\in u_1\|u_2$ und $(p_1,p_2)\weakmay[u_1]_{12}
           (p'_1,p'_2)\in Div _{12}$, da $p_1\in Div _1$. $P_{12}$ hat also die
           Divergenz von $P_1$ geerbt. Es wird nun $v:=\prune (v'u_1)\in\PrDT
@@ -280,7 +280,7 @@ keine Unterscheidung kennt, muss eine sinnvolle Relation dies Eigenschaft auch
 \end{Kor}
 \begin{proof}
   Um zu zeigen, dass es sich bei \DRel{} um eine Präkongruenz handelt, muss
-  nachgewiesen werden, dass auch $P_1\DRel P_2$ auch $P_{31}\DRel P_{32}$ für
+  nachgewiesen werden, dass aus $P_1\DRel P_2$ auch $P_{31}\DRel P_{32}$ für
   jedes komponierbare System $P_3$ folgt. D.h.\ es ist zu zeigen, dass aus
   $\EDT _1\subseteq\EDT _2, \QDT _1\subseteq\QDT _2$ und $\EDL _1\subseteq\EDL
   _2$, sowohl $\EDT _{31} \subseteq \EDT _{32}, \QDT _{31} \subseteq \QDT

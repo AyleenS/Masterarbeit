@@ -1,11 +1,11 @@
 \chapter{Verfeinerungen für Kommunikationsfehler- und Ruhe-Freiheit}
 
 In diesem Kapitel wird die Menge der betrachteten Zustandsmengen von den
-Kommunikations-basierten Fehlern im letzten Kapitel erweitert um
+Kommunikations"=basierten Fehlern im letzten Kapitel erweitert um
 Ruhe-Zustände.\\
 Zustände, die keine Outputs ohne einen Input ausführen können in Form einer
 must"=Transition, werden als in einer Art Verklemmung angesehen, da sie ohne
-Zutun von Außen den Zustand nicht mehr verlassen können, falls möglicherweise
+Zutun von Außen den Zustand nicht mehr verlassen können, falls ein möglicherweise
 vorhandener may"=Output nicht implementiert wird. So ein Zustand hat also keine
 must"=Transitions"=Möglichkeiten für einen Output. Falls dieser Zustand die
 Möglichkeit für eine interne Aktion via einer must"=Transition hat, darf durch
@@ -21,7 +21,7 @@ können müssen. Die Menge der Zustände, die sich in einer Verklemmung
 befinden, würde also durch $\left\{p\in P\mid \forall a\in O: p\nweakmust[a]_P
 \right\}$ beschrieben werden. Somit wären dies alle Zustände, die keine
 Möglichkeit haben ohne einen Input von Außen oder eine implementierte
-may"=Output"=Transition je weider einen Output machen zu können. Falls man
+may"=Output"=Transition je wieder einen Output machen zu können. Falls man
 diese Definition verwenden würde, müsste man immer alle Zustände betrachten,
 die durch $\tau$s erreichbar sind. Dies würde einige Betrachtungen deutlich
 aufwendiger machen und soll deshalb hier nicht behandelt werden. Die Definition
@@ -44,8 +44,8 @@ Zustände, die keine Outputs und $\tau$s ausführen können.
   Da für alle $P'\in\asimp (P)$ $\must_{P'} =\may_{P'}$ gilt, dürfen alle $p'$
   keine ausgehenden Transitionen haben. Nach Definition~\ref{SimDef} dürfen zu
   $p'$ in Relation stehenden Zustände $p$ in $P$ keine ausgehenden
-  must"=Transitionen haben, da $p'$ diese sonst implementieren müsste. Somit
-  sind alle $p'$, die die Forderung dieser Proposition enthalten auch in $Qui
+  must"=Transitionen für lokale Aktionen haben, da $p'$ diese sonst implementieren müsste. Somit
+  sind alle $p'$, die die Forderung dieser Proposition erfüllen auch in $Qui
   (P)$ enthalten. Für alle $p$, die in $Qui (P)$ enthalten sind, gibt es keine
   ausgehenden must"=Transitionen für Outputs oder die interne Aktion $\tau$,
   somit können diese Aktionen entweder keine ausgehende Transition von $p$ sein
@@ -61,8 +61,9 @@ Zustände, die keine Outputs und $\tau$s ausführen können.
 Für die Erreichbarkeit wird wie im letzten Kapitel ein optimistischer Anzahl
 der lokalen Erreichbarkeit für die Fehler-Zustände, der Kommunikationsfehler,
 verwendet. Ruhe ist kein unabwendbarer Fehler, sondern kann durch einen Input
-repariert werden oder im Fall von vorhandenen may"=Output"=Transitionen, durch
-eine Implementierung dieses Outputs. Daraus ergibt sich, dass Ruhe im Vergleich
+repariert werden oder im Fall von vorhandenen may"=Output"=Transitionen oder
+may"=$\tau$"=Transitionen, durch eine Implementierung dieses Outputs oder des
+$\tau$s. Daraus ergibt sich, dass Ruhe im Vergleich
 zu Kommunikationsfehler als weniger \glqq schlimmer Fehler\grqq{} anzusehen
 ist. Somit ist ein Ruhe-Zustand ebenso wie ein Fehler-Zustand erreichbar,
 sobald er durch Outputs und $\tau$s erreicht werden kann, jedoch ist nicht jede
@@ -119,10 +120,11 @@ Traces ohne Kürzung zu betrachten.
   werden durch eine as"=Implementierung. Die Menge $\asimp (P)$ enthält alle
   as"=Implementierungen von $P$, also auch eine, die den $w$ may"=Trace aus
   $\StQT (P)$ zu einem mit in $p$ Relation stehenden Zustand implementiert. $p$
-  enthält keine ausgehenden Transitionen für lokale Aktionen, also gibt es
+  besitzt keine ausgehenden must"=Transitionen für lokale Aktionen, also gibt es
   unter den as"=Implementierungen, die $w$ entsprechend als must"=Trace
   enthalten auch mindestens eine, die keine ausgehende lokale Aktion an dem zu
-  $p$ in Relation stehenden Zustand implementiert. Die Behauptung gilt also.
+  $p$ in Relation stehenden Zustand implementiert. Die Behauptung der hier zu
+  beweisenden Proposition gilt.
 \end{proof}
 
 Für \ET{} und \EL{} gelten die Definitionen aus dem letzten Kapitel. Es wir nur
@@ -152,8 +154,8 @@ für Ruhe eine neue Semantik definiert.
 \begin{proof}\mbox{}
   \begin{enumerate}
     \item Da $p_1\in Qui_1$ und $p_2\in Qui_2$ gilt, haben diese beiden
-      Zustände jeweils höchstens die Möglichkeit für Input Transitionen oder
-      Output und $\tau$ may"=Transitionen, jedoch keine Möglichkeit für Outputs
+      Zustände jeweils höchstens die Möglichkeit für Input-Transitionen oder
+      Output- und $\tau$-may"=Transitionen, jedoch keine Möglichkeit für Outputs
       oder $\tau$s als must"=Transitionen.\\
       Angenommen der Zustand, der durch die Parallelkomposition aus den
       Zuständen $p_1$ und $p_2$ entsteht, ist nicht ruhig, d.h.\ er hat eine
@@ -177,7 +179,7 @@ für Ruhe eine neue Semantik definiert.
           jedoch aufgrund der Voraussetzung nicht möglich. Somit kann die
           Parallelkomposition diese Transition für $(p_1,p_2)$ ebenfalls nicht
           als must"=Transition enthalten.
-        \item Fall 3 \big($(p_1,p_2)\must[a]_{12}$ mit $a\in O\cap\Synch
+        \item Fall 3 \big($(p_1,p_2)\must[a]_{12}$ mit $a\in O_{12}\cap\Synch
           (P_1,P_2)$\big): Der Output $a$ ist in diesem Fall durch
           Synchronisation von einem Output mit einem Input entstanden. \OBdA{}
           gilt $a\in O_1\cap I_2$. Für die einzelnen Systeme muss also gelten,
@@ -204,7 +206,7 @@ für Ruhe eine neue Semantik definiert.
         \item Fall 2 \big($p_1\must[a]_1$ mit $a\in O_1\backslash
           \Synch(P_1,P_2)$\big): Da es sich bei $a$ um einen must"=Output
           handelt, der nicht zu synchronisieren ist, wird dieser einfach in die
-          Parallelkomposition übernommen. Es müsste alle $(p_1,p_2)
+          Parallelkomposition übernommen. Es müsste also $(p_1,p_2)
           \must[a]_{12}$ mit $a\in O_{12}$ gelten, was jedoch verboten ist.
           Somit kann die Transition für $P_1$ in diesem Fall nicht möglich
           sein.
@@ -218,7 +220,8 @@ für Ruhe eine neue Semantik definiert.
         \item Fall 4 \big($p_1\must[a]_1$ mit $a\in O_1\cap\Synch(P_1,P_2)$ und
           $p_2\nmust[a]_2$\big): Da $P_2$ die $a$ Transition nicht als
           must"=Transition enthält, handelt es sich hier um einen neuen
-          Kommunikationsfehler. Der neue Kommunikationsfehler kann dadurch
+          Kommunikationsfehler. Das $a$ kann für $P_2$ kein Output sein, da
+          sonst $P_1$ und $P_2$ nicht komponierbar wäre. Der neue Kommunikationsfehler kann dadurch
           entstehen, dass die Synchronisation des Outputs $a$ von $P_1$ mit dem
           Input $a$ von $P_2$ an dieser Stelle nicht möglich ist, oder da der
           Input $a$ für $p_2$ nur als may"=Transition vorliegt und somit die
@@ -252,10 +255,10 @@ aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
 \begin{proof}
   Es wird nur der 2. Punkt beweisen.\\
   \glqq$\subseteq$\grqq{}:\\
-  Hie muss unterschieden werden, ob ein $w\in\StQT _{12}\backslash\ET _{12}$
+  Hier muss unterschieden werden, ob ein $w\in\StQT _{12}\backslash\ET _{12}$
   oder ein $w\in\ET _{12}$ betrachtet wird. Im zweiten Fall ist das $w$
   offensichtlich in der rechten Seite enthalten. Somit wird ab jetzt ein
-  $w\in\StQT _{12}\backslash\ET _{12}$ betrachtet und es wird versuch dessen
+  $w\in\StQT _{12}\backslash\ET _{12}$ betrachtet und es wird versucht dessen
   Zugehörigkeit zur rechten Menge zu zeigen. Aufgrund von
   Definition~\ref{RuheTraceDef} weiß man, dass
   $(p_{01},p_{02})\weakmay[w]_{12}(p_1,p_2)$ gilt mit $(p_1,p_2)\in Qui_{12}
@@ -271,9 +274,9 @@ aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
   Es muss wieder danach unterscheiden werden aus welcher Menge das betrachtete
   Element stammt. Falls $w\in\ET _{12}$ gilt, so kann die Zugehörigkeit zur
   linken Seite direkt gefolgert werden. Somit wird für den weiteren Beweis
-  dieser Inklusionsrichtung ein Element $s\in\QET _1\|\QET _2$ betrachtet und
+  dieser Inklusionsrichtung ein Element $w\in\QET _1\|\QET _2$ betrachtet und
   gezeigt, dass es in der linken Menge enthalten ist. Da $\QET _i=\StQT _i\cup
-  \ET _i$ gilt, existiert für $w_1$ und $w_2$ mit $w\in w_1\|w_2$
+  \ET _i$ gilt, existieren für $w_1$ und $w_2$ mit $w\in w_1\|w_2$
   unterschiedliche Möglichkeiten:
   \begin{itemize}
     \item Fall 1 ($w_1\in\ET _1\lor w_2\in\ET _2$): \OBdA{} gilt $w_1\in\ET
@@ -324,7 +327,7 @@ aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
 \end{proof}
 
 Im nächsten Lemma soll eine Verfeinerung bezüglich guter Kommunikation mit
-Partner im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
+Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
 
 \begin{Lem}[Verfeinerung mit Ruhe-Zuständen]
   \label{RuheVerfeinLem}
@@ -366,8 +369,8 @@ Partner im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
   \begin{itemize}
     \item Fall 1 ($w=\varepsilon$): Es handelt sich um einen lokal erreichbaren
       Fehler-Zustand in $P_1$. Für $U$ wird ein Transitionssystem verwendet,
-      das nur aus dem Startzustand, einer Schleife für alle Inputs $x\in I_U$
-      und einer Schlinge für $\tau$ besteht. Somit kann $P_1$ die im Prinzip
+      das nur aus dem Startzustand, einer must-Schleife für alle Inputs $x\in I_U$
+      und einer must-Schlinge für $\tau$ besteht. Somit kann $P_1$ die im Prinzip
       gleichen Fehler-Zustände der Art Kommunikationsfehler lokal erreichen wie
       $U\|P_1$. Es gibt also einen lokal erreichbaren Zustand von $U\|P_1$, der
       in $E_{U\|P_1}$ enthalten ist. Mindestens eine as"=Implementierung von
@@ -434,21 +437,23 @@ Partner im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
       \end{figure}
       Die Menge der Ruhe-Zustände der hier betrachteten $U$s ist leer. Da im
       Vergleich zum Transitionssystem in Abbildung~\ref{UohneE} nur die
-      $\tau$-Schlingen ergänzt wurden, ändert sich nicht an den Fällen 2a) und
+      $\tau$-Schlingen ergänzt wurden, ändert sich nichts an den Fällen 2a) und
       2b). Die Begründungen, wieso in den beiden Fällen $\varepsilon\in\PrET
-      (U\|P_1)$ gilt, bleibt also analog zum Beweis des ersten Punktes von
-      Lemma~\ref{KommVerfeinLem}. Durch die $\tau$-Schlingen wurde, genau wie
-      im letzten Fall nur erreicht, das in einer Parallelkomposition mit $U$
-      keine Ruhe-Zustände möglich sind. Es kann also auch hier aus der lokalen
-      Erreichbarkeit eines Kommunikationsfehler in $U\|P_1$ auf die lokale
-      Erreichbarkeit eines Fehler-Zustandes der Art Kommunikationsfehler in
-      $U\|P_2$ geschlossen werden. Die weitere Argumentation verläuft dann
-      analog zu Fall 2, derselben Inklusion im Beweis zu
-      Lemma~\ref{KommVerfeinLem}. Da $\tau$s nur interne Aktionen einer
-      einzelnen Komponente sind, verändert sich auch nichts an den Traces über
-      die argumentiert wird. Es können zwar möglicherweise $\tau$-Transitionen
-      ausgeführt werden, diese können jedoch werde zu einem Fehler führen och
-      beeinflussen, dass ein anderer Trace nicht ausgeführt werden kann.
+      (P')$ für ein $P'$ aus $\asimp (U\|P_1)$ gilt, bleibt also analog zum
+      Beweis des ersten Punktes von Lemma~\ref{KommVerfeinLem}. Durch die
+      must-$\tau$-Schlingen wurde, genau wie im letzten Fall nur erreicht, das
+      in einer Parallelkomposition mit $U$ keine Ruhe-Zustände möglich sind. Es
+      kann also auch hier aus der lokalen Erreichbarkeit eines
+      Kommunikationsfehler in einer as"=Implementierung von $U\|P_1$ auf die
+      lokale Erreichbarkeit eines Fehler-Zustandes der Art Kommunikationsfehler
+      in einer as"=Implementierung von $U\|P_2$ und somit auch in $U\|P_2$
+      geschlossen werden. Die weitere Argumentation verläuft dann analog zu
+      Fall 2, derselben Inklusion im Beweis zu Lemma~\ref{KommVerfeinLem}. Da
+      $\tau$s nur interne Aktionen einer einzelnen Komponente sind, verändert
+      sich auch nichts an den Traces über die argumentiert wird. Es können zwar
+      möglicherweise $\tau$-Transitionen ausgeführt werden, diese können jedoch
+      weder zu einem Fehler führen noch beeinflussen, dass ein anderer Trace
+      nicht ausgeführt werden kann.
   \end{itemize}
 
   Nun wird mit dem zweiten Unterpunkt des ersten Beweispunktes begonnen. Genau
@@ -461,7 +466,7 @@ Partner im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
       auch hier, dass $\varepsilon$ immer in $\EL _2$ enthalten ist.
     \item Fall 2 ($w=x_1\dots x_n$ mit $n\geq 1$): Die Konstruktion des
       Partners $U$ weicht wie im letzten Beweisteil nur durch die
-      $\tau$-Schleifen an den Zuständen des Transitionssystems vom Beweis des
+      $\tau$-must-Schleifen an den Zuständen des Transitionssystems vom Beweis des
       zweiten Punktes aus Lemma~\ref{KommVerfeinLem} ab. Somit ist der Partner
       $U$ dann wie folgt definiert (siehe dazu auch Abbildung~\ref{UmitEundTau}):
       \begin{itemize}
@@ -506,7 +511,7 @@ Partner im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
       \label{UmitEundTau}
       \end{center}
       \end{figure}
-      Da durch die $\tau$-Schlingen an den Zuständen wie oben vermieden wird,
+      Da durch die $\tau$-must-Schlingen an den Zuständen wie oben vermieden wird,
       dass es in einer Komposition mit $U$ und auch in $U$ selbst Ruhe-Zustände
       gibt, verläuft der Rest des Beweises dieses Punktes analog zum Beweis der
       selben Inklusionsrichtung von Lemma~\ref{KommVerfeinLem}. Und somit gilt
@@ -576,12 +581,12 @@ Partner im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
   handelt und $I_U\cap I=\emptyset$, folgt $w\in O_{U\|P_1}$ und $w\in\StQT
   (U\|P_1)$. Es kann also in der Parallelkomposition durch $w$ ein Ruhe-Zustand
   lokal erreicht werden. Da $w\notin\ET _1$ gilt, kann auf dem Weg, der mit $w$
-  im Transitionssystem $P_1$ zurück gelegt wird, kein Kommunikationsfehler
+  im Transitionssystem $P_1$ zurückgelegt wird, kein Kommunikationsfehler
   lokal erreicht werden. Es kann also weder von $P_1$ noch von $U$ ein
   Kommunikationsfehler auf diesem Weg geerbt werden und durch den Aufbau von
   $U$ kann auch kein neuer Kommunikationsfehler in der Parallelkomposition
   beider Systeme entstehen. Da ein Ruhe-Zustand in $U\|P_1$ lokal erreichbar
-  ist, muss dies auch ein einer as"=Implementierung von $U\|P_1$ der Fall sein.
+  ist, muss dies auch in einer as"=Implementierung von $U\|P_1$ der Fall sein.
   Daraus folgt mit der Relation \QBRel{}, dass es auch ein Element aus $\asimp
   (U\|P_2)$ geben muss bei dem ein Fehler lokal erreichbar ist. Mit der
   Begründung aus der ersten Inklusion in diesem Beweis muss also der
@@ -599,7 +604,7 @@ Partner im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
       also, dass bereits in $P_2$ ein Präfix von $w$ in $\ET _2$ enthalten ist,
       wegen des Beweises des ersten Punktes aus Lemma~\ref{KommVerfeinLem} und
       das $U$ nur neue Kommunikationsfehler auf dem Trace $w$ zulässt. Da die
-      Menge \ET{} under \cont{} abgeschlossen ist, gilt also auch $w\in\ET
+      Menge \ET{} unter \cont{} abgeschlossen ist, gilt also auch $w\in\ET
       _2\subseteq\QET _2$.
     \item Fall b) (Ruhe-Zustand lokal erreichbar in $U\|P_2$ und
       $\varepsilon\notin\ET (U\|P_2)$): Da in $U$ nur durch $w$ ein ruhiger
@@ -628,7 +633,7 @@ enthalten ist
   oder ein Fehler-Zustand nur dann in $P_1$ lokal erreichbar, wenn auch ein
   solcher in $P_2$ lokal erreichbar ist. Daraus folgt, dass es
   as"=Implementierungen von $P_1$ und $P_2$ gibt, die die analogen Fehler lokal
-  erreichen. Somit gilt $P_1\QBRel P_2$. Es sit also \QRel{} in \QBRel{}
+  erreichen. Somit gilt $P_1\QBRel P_2$. Es ist also \QRel{} in \QBRel{}
   enthalten. Im Korollar~\ref{RuhePraekonKor} wurde festgestellt, dass \QRel{}
   eine Präkongruenz ist. Da jedoch \QCRel{} nach Definition~\ref{QBRelDef} die
   gröbste Präkongruenz bezüglich $\cdot\|\cdot$ ist, die in \QBRel{} enthalten
@@ -642,9 +647,6 @@ enthalten ist
   $U\|P_1\QBRel U\|P_2$ für alle diese \MEIO{}s $U$. Mit
   Lemma~\ref{RuheVerfeinLem} folgt dann $P_1\QRel P_2$.
 \end{proof}
-
-Es wurde somit, wie im letzten Kapitel, eine Kette an Folgerungen gezeigt, die
-sich zu einem Ring schließen
 
 Es wurde somit, wie im letzten Kapitel, eine Kette an Folgerungen gezeigt, die
 sich zu einem Ring schließen. Dies ist in Abbildung~\ref{FolgerungsketteQui}
