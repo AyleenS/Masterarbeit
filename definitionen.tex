@@ -144,13 +144,14 @@ Kommunikationsfehler kommen.
 \begin{Def}[(starke) Simulation]
   \label{SimDef}
   Eine \emph{(starke) alternierende Simulation} ist eine Relation $R\subseteq P
-  \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
+  \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ mit
+  $q\notin E_Q$ gilt:
   \begin{enumerate}
+    \item $p\notin E_P$,
     \item $q\must[\alpha]_Q q'$ impliziert $p\must[\alpha]_P p'$ für ein $p'$
       mit $p'Rq'$,
     \item $p\may[\alpha]_P p'$ impliziert $q\may[\alpha]_Q q'$ für ein $q'$ mit
-      $p'Rq'$,
-    \item $p\in E_P \Rightarrow q\in E_Q$.
+      $p'Rq'$.
   \end{enumerate}
   Die Vereinigung \asRel{} aller dieser Relationen wird als \emph{(starke)
   as-Verfeinerung(-s Relation)} (auch modal Verfeinerung) bezeichnet. Es wird
@@ -162,11 +163,18 @@ Kommunikationsfehler kommen.
   Menge aller as"=Implementierungen von $Q$ verwendet.
 \end{Def}
 
+Da für zwei \MEIO{}s $P$ und $Q$ und alle möglichen Zustands-Tupel $(p,q)$ in
+einer alternierenden Simulationen $\mathcal{R}$ gelten muss, dass aus $q\notin
+E_Q$ folgt, dass auch $p$ nicht in $E_P$ enthalten ist, gilt auch die
+Implikation $p\in E_P\Rightarrow q\in E_Q$.
+
 \begin{Def}[schwache Simulation]
   \label{wSimDef}
   Eine \emph{schwache alternierende Simulation} ist eine Relation $R\subseteq P
-  \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ gilt:
+  \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ mit
+  $q\notin E_Q$ gilt:
   \begin{enumerate}
+    \item $p\notin E_P$,
     \item $q\must[i]_Q q'$ impliziert $p\must[i]_P\weakmust[\varepsilon]_P p'$
       für ein $p'$ mit $p'Rq'$,
     \item $q\must[\omega]_Q q'$ impliziert $p\weakmust[\hat{\omega}]_P p'$ für
@@ -174,8 +182,7 @@ Kommunikationsfehler kommen.
     \item $p\may[i]_P p'$ impliziert $q\may[i]_Q\weakmay[\varepsilon]_Q q'$ für
       ein $q'$ mit $p'Rq'$,
     \item $p\may[\omega]_P p'$ impliziert $q\weakmay[\hat{\omega}]_Q q'$ für
-      ein $q'$ mit $p'Rq'$,
-    \item $p\in E_P \Rightarrow q\in E_Q$.
+      ein $q'$ mit $p'Rq'$.
   \end{enumerate}
   Wobei $i\in I$ und $\omega\in O\cup\{\tau\}$.\\
   Analog zur starken alternierenden Simulation, wird hier \wasRel{} als
@@ -193,7 +200,9 @@ Input sofort aufgeführt wird und erst dann interne Aktinen möglich sind. Da
 ein Input die Reaktion auf eine Aktion ist, die die Umwelt auslöst und die
 nicht auf das Transitionssystem warten kann. Outputs hingegen können auch
 verzögert werden, da die Umgebung dies dann als Inputs aufnimmt und für diese
-somit nicht lokal kontrolliert ist.
+somit nicht lokal kontrolliert ist.\\
+Auch für alle Tupel $(p,q)$ in einer schwach alternierenden
+Simulations-Relation $\mathcal{R}$ gilt $p\in E_P\Rightarrow q\in E_Q$.
 
 Die Parallelkomposition von Wörtern und Mengen kann aus~\cite{Schinko2016BA}
 übernommen werden.
@@ -227,8 +236,19 @@ Wort und $\mathfrak{P}(M)$ die Potenzmenge der Menge $M$ bezeichnet.
   \end{itemize}
 \end{Def}
 
+\begin{Def}[strikte Kommunikationsfehler-Traces]
+  \label{strikteKommTracesDef}
+  Für ein \MEIO{} $P$ wird definiert:
+  \begin{itemize}
+    \item \emph{strikte Kommunikationsfehler-Traces}: $\StET (P) :=
+      \left\{w\in\Sigma ^* \mid p_0 \weakmay[w]_P p \in E\right\}$.
+  \end{itemize}
+\end{Def}
+
 \begin{Def}[Sprache]
   \label{LDef}
-  Die \emph{Sprache} eines \MEIO{}s $P$ ist $L(P) := \left\{w\in \Sigma ^* \mid
-  p_0\weakmay[w]_P\right\}$.
+  Die \emph{Sprache} eines \MEIO{}s $P$ sind alle ausführbaren Traces aus $P$
+  und alle möglichen Verlängerungen von Traces, die einen Fehler-Zustand
+  erreichen: $L(P) := \left\{w\in \Sigma ^* \mid
+  p_0\weakmay[w]_P p\notin E\right\} \cup \cont (\StET (P))$.
 \end{Def}
