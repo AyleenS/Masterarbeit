@@ -236,17 +236,41 @@ Wort und $\mathfrak{P}(M)$ die Potenzmenge der Menge $M$ bezeichnet.
   \end{itemize}
 \end{Def}
 
-\begin{Def}[strikte Kommunikationsfehler-Traces]
-  \label{strikteKommTracesDef}
-  Für ein \MEIO{} $P$ sind die \emph{strikte Kommunikationsfehler-Traces} wie
-  folgt definierte Wort-Menge: $\StET (P) := \left\{w\in\Sigma ^* \mid p_0 \weakmay[w]_P p
-  \in E\right\}$.
-\end{Def}
+\TODO{Kommentare nach Gespräch löschen}
+
+% \begin{Def}[strikte Kommunikationsfehler-Traces]
+%   \label{strikteKommTracesDef}
+%   Für ein \MEIO{} $P$ sind die \emph{strikte Kommunikationsfehler-Traces} wie
+%   folgt definierte Wort-Menge: $\StET (P) := \left\{w\in\Sigma ^* \mid p_0 \weakmay[w]_P p
+%   \in E\right\}$.
+% \end{Def}
 
 \begin{Def}[Sprache]
   \label{LDef}
-  Die \emph{Sprache} eines \MEIO{}s $P$ sind alle ausführbaren Traces aus $P$
-  und alle möglichen Verlängerungen von Traces, die einen Fehler-Zustand
-  erreichen: $L(P) := \left\{w\in \Sigma ^* \mid
-  p_0\weakmay[w]_P p\notin E\right\} \cup \cont (\StET (P))$.
+  Die \emph{Sprache} eines \MEIO{}s $P$ %sind alle ausführbaren Traces aus $P$
+  %und alle möglichen Verlängerungen von Traces, die einen Fehler-Zustand
+  %erreichen: 
+  ist $L(P) := \left\{w\in \Sigma ^* \mid p_0\weakmay[w]_P %p\notin E
+  \right\}$.
+  %\cup \cont (\StET (P))$.
 \end{Def}
+
+Somit entspricht die Sprache eines \MEIO{}s, das eine Implementierung ist der
+Definition aus~\cite{Schinko2016BA} für \EIO{}s. Jedoch muss die Sprache einer
+as"=Verfeinerung eine \MEIO{}s nicht mehr Teilmenge der Sprache des
+\MEIO{}s sein, da Definition~\ref{SimDef} beliebiges Verhalten nach einem
+Fehler-Zustand in dem zu verfeinernden \MEIO{} zulässt. Falls jedoch der
+\MEIO{} bereits fehler frei ist, ist seine Sprache die Vereinigung der Sprachen
+all seine möglichen as"=Implementierungen.\\
+Von der Sprache einer as"=Verfeinerung eines \MEIO{}s kann man keine
+Rückschlüsse mehr auf die ursprüngliche Sprache ziehen, da man nicht weiß,
+welche Fehler-Zustände in der Verfeinerung übernommen wurden und welche als
+normale Zustände mit beliebigen Verhalten umgesetzt wurden. Es kann also im
+Allgemeinen kein Zusammenhang zwischen den Sprachen der as"=Implementierungen
+eines \MEIO{}s und der Sprache des \MEIO{}s hergestellt werden.\\
+Man hätte alternativ der Sprache eines \MEIO{}s anders definieren können um
+weiterhin einen Zusammenhang zwischen dieser und den Sprachen der
+as"=Implementierungen zu haben, jedoch wäre dann die Äquivalenz zur \EIO{}
+Sprach-Definition in~\cite{Schinko2016BA} verloren gegangen. Eine
+Implementierung mit Fehler-Zuständen hätte dann auch eine Sprache mit Wörtern,
+die sie nicht mal ausführen können muss.

@@ -1,61 +1,63 @@
 \chapter{allgemeine Folgerungen}
 
-\begin{Prop}[Sprache und Implementierung]
-  \label{LImpProp}
-  Die Sprache eines \MEIO{}s $P$ entspricht $L(P) = \left\{w\in
-  \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]_{P'} \right\}$.
-\end{Prop}
-\begin{proof}\mbox{}\\
-  \glqq$\supset$\grqq{}: Für ein $w\in \left\{w\in \Sigma ^* \mid \exists
-  P'\in\asimp (P) : p'_0\weakmust[w]_{P'} \right\}$ gibt es ein
-  as"=Implementierung $P'$ von $P$, für die $\exists
-  p'_1,p'_2,\dots,p'_{n-1},p'_n \exists w'\in\Sigma _{\tau} ^* : \hat{w'} = w
-  \land w'=\alpha _1\alpha _2\dots\alpha _n \land p'_0\must[\alpha _1]_{P'}
-  p'_1\must[\alpha _2]_{P'} \dots p'_{n-1}\must[\alpha _n]_{P'} p'_n$ nach
-  der Definition der Transitions-Notation gilt. $P'$ muss als
-  as"=Implementierung von $P$ in der straken Verfeinerungsrelation \asRel{} mit
-  $P$ stehen. Es gilt also $p'_0\asRel p_0$. Somit folgt für alle $0\leq j <
-  n$, falls $p_j$ nicht in $E_P$ enthalten ist, mit Definition~\ref{SimDef} 3.
-  $p'_{j+1}\asRel p_{j+1}$ mit $p_j \may[\alpha_{j+1}]_P p_{j+1}$. Falls $p_j$
-  bis $j = n-1$ nicht in $E_P$ enthalten war, folgt dadurch, dass eine
-  Transitionsfolge in $P$ ausführbar ist, die Aktionen ausführt, die sich zu
-  dem sichtbaren Wort $w$ zusammenfügen. Es ist jedoch möglicherweise nur ein
-  Präfix von $w$ als Trace in $P$ enthalten, falls bereits für ein $j < n-1$
-  $p_j\in E_P$ gilt. Jedoch gilt dann für das Präfix $\hat{v}$ von $w$
-  $\hat{v}\in \StET (P)$ mit $v=\alpha _1\alpha _2\dots\alpha _j$. $w$ ist dann
-  in $\cont (\StET (P))$ enthalten. In beiden Fällen gilt $w\in \left\{w\in
-  \Sigma ^* \mid p_0\weakmay[w]_P p\notin E\right\} \cup \cont (\StET (P)) =
-  L(P)$.
+\TODO{Kommentare nach Gespräch löschen}
 
-  \glqq$\subset$\grqq{}: Sei $P'$ die as-Implementierung von $P$, die alle may-
-  und must-Transitionen von $P$ implementiert und die zusätzlich an alle
-  Zustände aus $E_P$ eine Schleife für alle Aktionen aus $\Sigma _P$ anfügt.
-  Die Definition von $P'$ lautet dann:
-  \begin{itemize}
-    \item $P'=P$ für die Menge der Zustände,
-    \item $p'_0=p_0$,
-    \item $I_{P'}=I_P$ und $O_{P'}=O_P$,
-    \item $\must _{P'} =\may _{P'} =\may _P \cup \{(e,a,e)\mid e\in E_P,
-      a\in\Sigma _P\}$,
-    \item $E_P'=\emptyset$.
-  \end{itemize}
-  Für alle $p\in P$ gilt $p\asRel p'$ wegen~\ref{SimDef} 3.\ für entsprechenden
-  $p'$ in $P'$, die durch die analogen Transitionen erreichbar sind. Da $P'$
-  alle Transitionen von $P$ implementiert, gilt~\ref{SimDef} 2.\ bereits durch
-  die Tupel, die durch~\ref{SimDef} 3.\ in $\asRel$ enthalten sein müssen. Der
-  erste Punkt von~\ref{SimDef} gilt, da $E_P'$ leer ist. Für alle $w\in L(P) =
-  \left\{w\in \Sigma ^* \mid p_0\weakmay[w]_P p\notin E\right\} \cup \cont
-  (\StET (P))$ folgt nun $w\in L(P') = \left\{w\in \Sigma ^* \mid
-  p'_0\weakmust[w]_{P'}\right\}$. Für Wörter $w$ aus $\left\{w\in \Sigma ^*
-  \mid\right.$ $\left.p_0\weakmay[w]_P p\notin E\right\}$ folgt dies direkt aus
-  der Implementierung aller may"=Transitionen von $P$ in $P'$. Falls jedoch ein
-  Präfix von $w$ in $\StET (P)$ enthalten ist, ist dies Präfix aufgrund der
-  Transitions"=Implementierungen in $P'$ ausführbar. Jede beliebige Verlängerung
-  dies Präfixes ist in $P'$ ausführbar, da an jeden Fehler-Zustand von $P$ in
-  $P'$ eine Schleife für alle Aktionen der Signatur von $P$ angefügt wurde.
-  Somit ist also ein $w$ aus $\cont (\StET (P))$ in $P'$ als Trace ausführbar.
-  \TODO{erzwungenen Zeilenumbruch kontrollieren}
-\end{proof}
+% \begin{Prop}[Sprache und Implementierung]
+%   \label{LImpProp}
+%   Die Sprache eines \MEIO{}s $P$ entspricht $L(P) = \left\{w\in
+%   \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]_{P'} \right\}$.
+% \end{Prop}
+% \begin{proof}\mbox{}\\
+%   \glqq$\supset$\grqq{}: Für ein $w\in \left\{w\in \Sigma ^* \mid \exists
+%   P'\in\asimp (P) : p'_0\weakmust[w]_{P'} \right\}$ gibt es ein
+%   as"=Implementierung $P'$ von $P$, für die $\exists
+%   p'_1,p'_2,\dots,p'_{n-1},p'_n \exists w'\in\Sigma _{\tau} ^* : \hat{w'} = w
+%   \land w'=\alpha _1\alpha _2\dots\alpha _n \land p'_0\must[\alpha _1]_{P'}
+%   p'_1\must[\alpha _2]_{P'} \dots p'_{n-1}\must[\alpha _n]_{P'} p'_n$ nach
+%   der Definition der Transitions-Notation gilt. $P'$ muss als
+%   as"=Implementierung von $P$ in der straken Verfeinerungsrelation \asRel{} mit
+%   $P$ stehen. Es gilt also $p'_0\asRel p_0$. Somit folgt für alle $0\leq j <
+%   n$, falls $p_j$ nicht in $E_P$ enthalten ist, mit Definition~\ref{SimDef} 3.
+%   $p'_{j+1}\asRel p_{j+1}$ mit $p_j \may[\alpha_{j+1}]_P p_{j+1}$. Falls $p_j$
+%   bis $j = n-1$ nicht in $E_P$ enthalten war, folgt dadurch, dass eine
+%   Transitionsfolge in $P$ ausführbar ist, die Aktionen ausführt, die sich zu
+%   dem sichtbaren Wort $w$ zusammenfügen. Es ist jedoch möglicherweise nur ein
+%   Präfix von $w$ als Trace in $P$ enthalten, falls bereits für ein $j < n-1$
+%   $p_j\in E_P$ gilt. Jedoch gilt dann für das Präfix $\hat{v}$ von $w$
+%   $\hat{v}\in \StET (P)$ mit $v=\alpha _1\alpha _2\dots\alpha _j$. $w$ ist dann
+%   in $\cont (\StET (P))$ enthalten. In beiden Fällen gilt $w\in \left\{w\in
+%   \Sigma ^* \mid p_0\weakmay[w]_P p\notin E\right\} \cup \cont (\StET (P)) =
+%   L(P)$.
+
+%   \glqq$\subset$\grqq{}: Sei $P'$ die as-Implementierung von $P$, die alle may-
+%   und must-Transitionen von $P$ implementiert und die zusätzlich an alle
+%   Zustände aus $E_P$ eine Schleife für alle Aktionen aus $\Sigma _P$ anfügt.
+%   Die Definition von $P'$ lautet dann:
+%   \begin{itemize}
+%     \item $P'=P$ für die Menge der Zustände,
+%     \item $p'_0=p_0$,
+%     \item $I_{P'}=I_P$ und $O_{P'}=O_P$,
+%     \item $\must _{P'} =\may _{P'} =\may _P \cup \{(e,a,e)\mid e\in E_P,
+%       a\in\Sigma _P\}$,
+%     \item $E_P'=\emptyset$.
+%   \end{itemize}
+%   Für alle $p\in P$ gilt $p\asRel p'$ wegen~\ref{SimDef} 3.\ für entsprechenden
+%   $p'$ in $P'$, die durch die analogen Transitionen erreichbar sind. Da $P'$
+%   alle Transitionen von $P$ implementiert, gilt~\ref{SimDef} 2.\ bereits durch
+%   die Tupel, die durch~\ref{SimDef} 3.\ in $\asRel$ enthalten sein müssen. Der
+%   erste Punkt von~\ref{SimDef} gilt, da $E_P'$ leer ist. Für alle $w\in L(P) =
+%   \left\{w\in \Sigma ^* \mid p_0\weakmay[w]_P p\notin E\right\} \cup \cont
+%   (\StET (P))$ folgt nun $w\in L(P') = \left\{w\in \Sigma ^* \mid
+%   p'_0\weakmust[w]_{P'}\right\}$. Für Wörter $w$ aus $\left\{w\in \Sigma ^*
+%   \mid\right.$ $\left.p_0\weakmay[w]_P p\notin E\right\}$ folgt dies direkt aus
+%   der Implementierung aller may"=Transitionen von $P$ in $P'$. Falls jedoch ein
+%   Präfix von $w$ in $\StET (P)$ enthalten ist, ist dies Präfix aufgrund der
+%   Transitions"=Implementierungen in $P'$ ausführbar. Jede beliebige Verlängerung
+%   dies Präfixes ist in $P'$ ausführbar, da an jeden Fehler-Zustand von $P$ in
+%   $P'$ eine Schleife für alle Aktionen der Signatur von $P$ angefügt wurde.
+%   Somit ist also ein $w$ aus $\cont (\StET (P))$ in $P'$ als Trace ausführbar.
+%   \TODO{erzwungenen Zeilenumbruch kontrollieren}
+% \end{proof}
 
 \begin{Prop}[Sprache der Parallelkomposition]
   \label{LParallelProp}

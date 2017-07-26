@@ -27,11 +27,12 @@ aus~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
 Für as"=Implementierungen $P_1$ und $P_2$ entspricht \EBRel{} der Relation
 \EBbaRel{} aus~\cite{Schinko2016BA}.
 
-Wie in~\cite{Schinko2016BA} werden die Fehler hier Trace-basiert betrachtet. Um
-die Sprache eines \MEIO{}s definieren zu können, wurden die strikten Traces
-bereits in Definition~\ref{strikteKommTracesDef} ausgeführt. Da es jedoch in
-diesem Kapitel speziell um die Kommunikationsfehler geht, werden sie in der
-nachstehenden Definition noch einmal mit aufgeführt.
+Wie in~\cite{Schinko2016BA} werden die Fehler hier Trace-basiert betrachtet.
+% Um
+% die Sprache eines \MEIO{}s definieren zu können, wurden die strikten Traces
+% bereits in Definition~\ref{strikteKommTracesDef} ausgeführt. Da es jedoch in
+% diesem Kapitel speziell um die Kommunikationsfehler geht, werden sie in der
+% nachstehenden Definition noch einmal mit aufgeführt.
 
 \begin{Def}[Kommunikationsfehler-Traces]
   Für ein \MEIO{} $P$ wird definiert:
@@ -55,6 +56,11 @@ Traces alle seiner as"=Implementierungen.
 \begin{Prop}[Kommunikationsfehler-Traces und Implementierung]
   \label{KommTracesProp}
   Für ein \MEIO{} $P$ gilt:
+
+  \TODO{überlegen, was von dieser Proposition noch gilt:}\\
+  \TODO{\ET{} wahrscheinlich nur noch für $\cont (\PrET (P))$,}\\
+  \TODO{\MIT{} nur noch auf fehler-freien Traces}
+
   \begin{enumerate}
     \item strikte Kommunikationsfehler-Traces: $\StET (P) =
       \big\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) :$ $p'_0
