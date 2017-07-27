@@ -59,16 +59,15 @@ Zustände, die keine Outputs und $\tau$s ausführen können.
 \end{proof}
 
 Für die Erreichbarkeit wird wie im letzten Kapitel ein optimistischer Anzahl
-der lokalen Erreichbarkeit für die Fehler-Zustände, der Kommunikationsfehler,
-verwendet. Ruhe ist kein unabwendbarer Fehler, sondern kann durch einen Input
-repariert werden oder im Fall von vorhandenen may"=Output"=Transitionen oder
+der lokalen Erreichbarkeit für die Fehler-Zustände verwendet. Ruhe ist kein
+unabwendbare \glqq Fehler-Art\grqq{}, sondern kann durch einen Input repariert
+werden oder im Fall von vorhandenen may"=Output"=Transitionen oder
 may"=$\tau$"=Transitionen, durch eine Implementierung dieses Outputs oder des
-$\tau$s. Daraus ergibt sich, dass Ruhe im Vergleich
-zu Kommunikationsfehler als weniger \glqq schlimmer Fehler\grqq{} anzusehen
-ist. Somit ist ein Ruhe-Zustand ebenso wie ein Fehler-Zustand erreichbar,
-sobald er durch Outputs und $\tau$s erreicht werden kann, jedoch ist nicht jede
-beliebige Fortsetzung eines Traces, das durch lokale Aktionen zu einem
-Ruhe-Zustand führt ein Ruhe"=Trace.
+$\tau$s. Daraus ergibt sich, dass Ruhe im Vergleich zu Fehler als weniger \glqq
+schlimmer Fehler\grqq{} anzusehen ist. Somit ist ein Ruhe-Zustand ebenso wie
+ein Fehler-Zustand erreichbar, sobald er durch Outputs und $\tau$s erreicht
+werden kann, jedoch ist nicht jede beliebige Fortsetzung eines Traces, das
+durch lokale Aktionen zu einem Ruhe-Zustand führt ein Ruhe"=Trace.
 
 \begin{Def}[fehler- und ruhe-freie Kommunikation]
   Zwei \MEIO{}s $P_1$ und $P_2$ \emph{kommunizieren fehler- und ruhe-frei},
@@ -83,7 +82,7 @@ Ruhe-Zustand führt ein Ruhe"=Trace.
   von $P_1$ nur dann lokal erreichbar ist, wenn es auch eine
   as"=Implementierung von $P_2$ gibt, in der ein solcher lokal erreichbar ist.
   Diese \emph{Basisrelation} stellt eine \emph{Verfeinerung} bezüglich
-  \emph{Kommunikationsfehlern} und \emph{Ruhe} dar.\\
+  \emph{Fehlern} und \emph{Ruhe} dar.\\
   \QCRel{} bezeichnet die \emph{vollständig abstrakte Präkongruenz} von
   \QBRel{} bezüglich $\cdot\|\cdot$.
 \end{Def}
@@ -91,8 +90,8 @@ Ruhe-Zustand führt ein Ruhe"=Trace.
 Um eine genauere Auseinandersetzung mit den Präkongruenzen zu ermöglichen,
 benötigt man wie im letzten Kapitel die Definition von Traces auf der Struktur.
 Dadurch erhält man die Möglichkeit die gröbste Präkongruenz charakterisieren zu
-können. Wie bereits oben erwähnt, ist Ruhe ein reparierbarer Fehler im
-Gegensatz zu Kommunikationsfehlern. Es genügt deshalb für Ruhe die strikten
+können. Wie bereits oben erwähnt, ist Ruhe ein reparierbarer \glqq
+Fehler\grqq{} im Gegensatz zu Fehlern. Es genügt deshalb für Ruhe die strikten
 Traces ohne Kürzung zu betrachten.
 
 \begin{Def}[Ruhe-Traces]
@@ -220,8 +219,8 @@ für Ruhe eine neue Semantik definiert.
         \item Fall 4 \big($p_1\must[a]_1$ mit $a\in O_1\cap\Synch(P_1,P_2)$ und
           $p_2\nmust[a]_2$\big): Da $P_2$ die $a$ Transition nicht als
           must"=Transition enthält, handelt es sich hier um einen neuen
-          Kommunikationsfehler. Das $a$ kann für $P_2$ kein Output sein, da
-          sonst $P_1$ und $P_2$ nicht komponierbar wäre. Der neue Kommunikationsfehler kann dadurch
+          Fehler. Das $a$ kann für $P_2$ kein Output sein, da sonst $P_1$ und
+          $P_2$ nicht komponierbar wäre. Der neue Fehler kann dadurch
           entstehen, dass die Synchronisation des Outputs $a$ von $P_1$ mit dem
           Input $a$ von $P_2$ an dieser Stelle nicht möglich ist, oder da der
           Input $a$ für $p_2$ nur als may"=Transition vorliegt und somit die
@@ -350,11 +349,11 @@ Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
   dass die hier verwendetet Basisrelation nichts über die Art des erreichbaren
   Fehlers in der Komponente aussagt, kann der Beweis aus
   Lemma~\ref{KommVerfeinLem} nicht verwendet werden. Es kann also aus der
-  lokalen Erreichbarkeit eines Fehler-Zustands der Art Kommunikationsfehler in
+  lokalen Erreichbarkeit eines Fehler-Zustands in
   $P'_1$ und dem relationalen Zusammenhang von $P'_1\QBRel P'_2$ nur
-  geschlossen werden, dass in $P'_2$ auch ein Fehler lokal erreichbar ist,
-  jedoch kann dieser Fehler ein Kommunikationsfehler oder Ruhe sein. Analog
-  verhält es sich, wenn in $P'_1$ ein Ruhe-Zustand lokal erreichbar ist.
+  geschlossen werden, dass in $P'_2$ auch ein \glqq Fehler\grqq{} lokal
+  erreichbar ist, jedoch kann dieser \glqq Fehler\grqq{} ein Fehler oder Ruhe
+  sein. Analog verhält es sich, wenn in $P'_1$ ein Ruhe-Zustand lokal erreichbar ist.
   \TODO{Fehlererreichbarkeit Aufgrund von \QBRel{} genauer erläutern}\\
   Es muss also für den ersten Punkt noch folgendes nachgewiesen werden:
   \begin{itemize}
@@ -372,10 +371,10 @@ Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
       Fehler-Zustand in $P_1$. Für $U$ wird ein Transitionssystem verwendet,
       das nur aus dem Startzustand, einer must-Schleife für alle Inputs $x\in I_U$
       und einer must-Schlinge für $\tau$ besteht. Somit kann $P_1$ die im Prinzip
-      gleichen Fehler-Zustände der Art Kommunikationsfehler lokal erreichen wie
+      gleichen Fehler-Zustände lokal erreichen wie
       $U\|P_1$. Es gibt also einen lokal erreichbaren Zustand von $U\|P_1$, der
       in $E_{U\|P_1}$ enthalten ist. Mindestens eine as"=Implementierung von
-      $U\|P_1$ wird diesen Kommunikationsfehler implementieren und somit muss
+      $U\|P_1$ wird diesen Fehler implementieren und somit muss
       es auch mindestens eine as"=Implementierung von $U\|P_2$ geben, die
       ebenfalls einen lokal erreichbaren Fehler hat. Dieser Fehler kann jedoch
       sowohl an der fehlenden Möglichkeit für lokale Aktionen in einem Zustand
@@ -384,14 +383,14 @@ Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
       dürfen in dem in Relation stehenden Zustand in $U\|P_2$ die lokalen
       Aktionen keine must"=Transitionen gewesen sein, da dies sonst einen
       Widerspruch zu Definition~\ref{SimDef} 1.\ darstellen würde. Ein lokal
-      erreichbarer Kommunikationsfehler in der as"=Implementierung würde
+      erreichbarer Fehler in der as"=Implementierung würde
       hingegen durch Definition~\ref{SimDef} ebenfalls zu einem lokal
-      erreichbaren Kommunikationsfehler in $U\|P_2$ führen. Es muss also in
+      erreichbaren Fehler in $U\|P_2$ führen. Es muss also in
       allen Fällen ein Fehler in $U\|P_2$ lokal erreichbar sein. Hierbei kann
-      es sich jedoch nur um einen lokal erreichbaren Kommunikationsfehler
+      es sich jedoch nur um einen lokal erreichbaren Fehler
       handeln, da es in der Komposition mit $U$ keine Ruhe-Zustände geben kann.
       Da $U$ keinen Fehler-Zustand und auch keine fehlenden Input-Möglichkeiten
-      enthält, kann der Kommunikationsfehler nur von $P_2$ geerbt sein. Somit
+      enthält, kann der Fehler nur von $P_2$ geerbt sein. Somit
       muss in $S_2$ ein Fehler-Zustand lokal erreichbar sein, d.h.\ es gilt
       $\varepsilon\in\PrET _2\subseteq \ET _2$.
     \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
@@ -445,8 +444,8 @@ Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
       must-$\tau$-Schlingen wurde, genau wie im letzten Fall nur erreicht, das
       in einer Parallelkomposition mit $U$ keine Ruhe-Zustände möglich sind. Es
       kann also auch hier aus der lokalen Erreichbarkeit eines
-      Kommunikationsfehler in einer as"=Implementierung von $U\|P_1$ auf die
-      lokale Erreichbarkeit eines Fehler-Zustandes der Art Kommunikationsfehler
+      Fehler in einer as"=Implementierung von $U\|P_1$ auf die
+      lokale Erreichbarkeit eines Fehler-Zustandes
       in einer as"=Implementierung von $U\|P_2$ und somit auch in $U\|P_2$
       geschlossen werden. Die weitere Argumentation verläuft dann analog zu
       Fall 2, derselben Inklusion im Beweis zu Lemma~\ref{KommVerfeinLem}. Da
@@ -521,7 +520,7 @@ Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
 
   So bleibt nur noch der letzt Beweispunkt zu zeigen, d.h.\ die Inklusion $\QET
   _1\subseteq\QET _2$. Die Inklusion kann jedoch, analog zum Beweis der
-  Inklusion der Kommunikationsfehler-gefluteten Sprache, noch weiter
+  Inklusion der Fehler-gefluteten Sprache, noch weiter
   eingeschränkt werden. Da bereits bekannt ist, dass $\ET _1\subseteq\ET _2$
   gilt, muss nur noch $\StQT _1\backslash\ET _1\subseteq\QET _2$ gezeigt
   werden.\\
@@ -582,10 +581,10 @@ Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
   handelt und $I_U\cap I=\emptyset$, folgt $w\in O_{U\|P_1}$ und $w\in\StQT
   (U\|P_1)$. Es kann also in der Parallelkomposition durch $w$ ein Ruhe-Zustand
   lokal erreicht werden. Da $w\notin\ET _1$ gilt, kann auf dem Weg, der mit $w$
-  im Transitionssystem $P_1$ zurückgelegt wird, kein Kommunikationsfehler
+  im Transitionssystem $P_1$ zurückgelegt wird, kein Fehler
   lokal erreicht werden. Es kann also weder von $P_1$ noch von $U$ ein
-  Kommunikationsfehler auf diesem Weg geerbt werden und durch den Aufbau von
-  $U$ kann auch kein neuer Kommunikationsfehler in der Parallelkomposition
+  Fehler auf diesem Weg geerbt werden und durch den Aufbau von
+  $U$ kann auch kein neuer Fehler in der Parallelkomposition
   beider Systeme entstehen. Da ein Ruhe-Zustand in $U\|P_1$ lokal erreichbar
   ist, muss dies auch in einer as"=Implementierung von $U\|P_1$ der Fall sein.
   Daraus folgt mit der Relation \QBRel{}, dass es auch ein Element aus $\asimp
@@ -594,17 +593,17 @@ Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
   entsprechende Fehler aus der as"=Implementierung auf einen in $U\|P_2$
   zurückführbar sein und somit auch dort lokal erreichbar sein. Jedoch kann
   zunächst keine Aussage getroffen werden, ob das $w$ in $U\|P_2$ ausführbar
-  ist und ob es sich bei dem Fehler um Ruhe oder einen Kommunikationsfehler
+  ist und ob es sich bei dem Fehler um Ruhe oder einen Fehler
   handelt.
   \begin{itemize}
     \item Fall a) ($\varepsilon\in\ET (U\|P_2)$): Es handelt sich bei dem lokal
-      erreichbaren Fehler um einen Kommunikationsfehler. Es ist somit nicht
+      erreichbaren \glqq Fehler\grqq{} um einen Fehler. Es ist somit nicht
       relevant, ob $w$ ausführbar ist. Der Fehler-Zustand kann sowohl von $P_2$
       geerbt sein, wie auch durch fehlende Input"=must"=Transitionen als neuer
-      Kommunikationsfehler in der Parallelkomposition entstanden sein. Es gilt
+      Fehler in der Parallelkomposition entstanden sein. Es gilt
       also, dass bereits in $P_2$ ein Präfix von $w$ in $\ET _2$ enthalten ist,
       wegen des Beweises des ersten Punktes aus Lemma~\ref{KommVerfeinLem} und
-      das $U$ nur neue Kommunikationsfehler auf dem Trace $w$ zulässt. Da die
+      das $U$ nur neue Fehler auf dem Trace $w$ zulässt. Da die
       Menge \ET{} unter \cont{} abgeschlossen ist, gilt also auch $w\in\ET
       _2\subseteq\QET _2$.
     \item Fall b) (Ruhe-Zustand lokal erreichbar in $U\|P_2$ und
@@ -628,8 +627,8 @@ enthalten ist
 \end{Satz}
 \begin{proof}\mbox{}\\
   \glqq$\Leftarrow$\grqq{}: Nach Definition gilt $w\in\QET (P)$ mit $w\in
-  O(P)^*$ genau dann, wenn in $P$ ein Ruhe-Zustand oder ein Fehler-Zustand der
-  Art Kommunikationsfehler lokal erreichbar ist. $P_1\QRel P_2$ impliziert,
+  O(P)^*$ genau dann, wenn in $P$ ein Ruhe-Zustand oder ein Fehler-Zustand
+  lokal erreichbar ist. $P_1\QRel P_2$ impliziert,
   dass $w\in\QET _2$ gilt, wenn $w\in\QET _1$ gilt. Somit ist ein Ruhe-Zustand
   oder ein Fehler-Zustand nur dann in $P_1$ lokal erreichbar, wenn auch ein
   solcher in $P_2$ lokal erreichbar ist. Daraus folgt, dass es

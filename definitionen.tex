@@ -39,16 +39,16 @@ identifiziert und falls notwendig werden damit auch die Komponenten indiziert
 nur noch der Index des gesamten Transitionssystems verwendet werden (z.B.\ $I_1$ anstatt
 $I_{P_1}$). Zusätzlich stehen $i,o,a,\omega$ und $\alpha$ für Buchstaben aus
 den Alphabeten $I,O,\Sigma ,O\cup\{\tau\}$ und $\Sigma_\tau$.\\
-Es wir die Notation $p\may[\alpha] p'$ für $(p,\alpha,p')\in\may$ und
+Es wird die Notation $p\may[\alpha] p'$ für $(p,\alpha,p')\in\may$ und
 $p\may[\alpha]$ für $\exists p':(p,\alpha,p')\in\may$ verwendet. Dies kann
-entsprechend auf Buchstaben-Sequenzen $w\in\Sigma_{\tau}^*$ erweitert werden zu
-$p\may[w]p'$ ($p\may[w]$) steht für die Existenz eines Laufes $p\may[\alpha _1]
-p_1\may[\alpha _2]\dots p_{n-1}\may[\alpha _n] p'$ ($p\may[\alpha _1]
-p_1\may[\alpha _2]\dots p_{n-1}\may[\alpha _n]$) mit $w=\alpha _1\dots \alpha
+entsprechend auf Buchstaben-Sequenzen $w\in\Sigma_{\tau}^*$ erweitert werden:
+für $p\may[w]p'$ ($p\may[w]$) steht für die Existenz eines Laufes $p\may[\alpha
+_1]p_1\may[\alpha _2]\dots p_{n-1}\may[\alpha _n] p'$ ($p\may[\alpha _1] p_1
+\may[\alpha _2]\dots p_{n-1}\may[\alpha _n]$) mit $w=\alpha _1\dots \alpha
 _n$.\\
 Desweiteren soll $w|_B$ die Aktions-Sequenz bezeichnen, die man erhält, wenn
 man aus $w$ alle Aktionen löscht, die nicht in $B\subseteq\Sigma$ enthalten
-sind. $\widehat{w}$ steht für $w|_{\Sigma}$. Es wir $p\weakmay[w] p'$
+sind. $\widehat{w}$ steht für $w|_{\Sigma}$. Es wird $p\weakmay[w] p'$
 für ein $w\in\Sigma ^*$ geschrieben, falls $\exists
 w'\in\Sigma_{\tau}^*:\widehat{w'}=w\land p\may[w']p'$, und $p\weakmay[w]$,
 falls $p\weakmay[w] p'$ für ein beliebiges $p'$ gilt. Falls $p_0\weakmay[w] p$
@@ -59,12 +59,12 @@ entsprechenden Relationen der must-Transition verwendet.\\
 Outputs und die interne Aktion werden \emph{lokale Aktionen} genannt, da sie
 lokal vom ausführenden \MEIO{} kontrolliert sind. Um eine Erleichterung der
 Notation zu erhalten, soll gelten, dass $p\nmust[a]$ und $p\nmay[a]$ für
-$\nexists p': p\must[a]p'$ und $\nexists p': p\may[a]p'$ stehen soll.
-$p\must[a]\weakmust[\varepsilon]$ wird geschrieben, wenn sowohl ein $p'$ wie
-auch ein $p''$ existiert, so dass $p\must[a]p'\weakmust[\varepsilon]p''$ gilt.
-Diese Transition wird auch als \emph{schwache-nachlaufende must-Transition}
-bezeichnet. Entsprechen steht $\may[a]\weakmay[\varepsilon]$ für die
-\emph{schwache-nachlaufende may-Transition}.\\
+$\neg\exists p': p\must[a]p'$ und $\neg\exists p': p\may[a]p'$ stehen soll.
+$p\must[a]\weakmust[\varepsilon]p'$ wird geschrieben, wenn $p''$ existiert, so
+dass $p\must[a]p''\weakmust[\varepsilon]p'$ gilt. Diese Transition wird auch
+als \emph{schwach-nachlaufende must-Transition} bezeichnet. Entsprechend steht
+$\may[a]\weakmay[\varepsilon]$ für die \emph{schwach-nachlaufende
+may-Transition}.\\
 In Graphiken wird eine Aktion $a$ als $a?$ notiert, falls $a\in I$ und $a!$,
 falls $a\in O$. Must-Transitionen (may-Transitionen) werden als durchgezogener
 Pfeil gezeichnet (gestrichelter Pfeil). Entsprechend der syntaktischen
@@ -117,47 +117,47 @@ zugrundeliegende may-Transitionen.
   \end{itemize}
   Dabei bezeichnet $\Synch(P_1,P_2)=(I_1\cap O_2)\cup (O_1\cap I_2)\cup
   (I_1\cap I_2)$ die Menge der zu \emph{synchronisierenden Aktionen}. Die
-  synchronisierten Aktionen werden als Output bzw. Input der Komposition
-  beibehalten.\\
+  synchronisierten Aktionen werden als Inputs, in dem Fall $(I_1\cap I_2)$, bzw.
+  Outputs, in allen anderen Fällen, der Komposition beibehalten.\\
   $P_1$ wird \emph{Partner} von $P_2$ genannt, wenn die Parallelkomposition von
-  $P_1$ und $P_2$ geschlossenen ist, d.h.\ sie duale Signaturen $\Sig
-  (P_1)=(I,O)$ und $\Sig (P_2)=(O,I)$ haben.
+  $P_1$ und $P_2$ geschlossen ist. Eine Parallelkomposition von zwei \MEIO{}s
+  $P_1$ und $P_2$ ist \emph{geschlossen}, wenn $P_1$ und $P_2$ duale Signaturen
+  $\Sig (P_1)=(I,O)$ und $\Sig (P_2)=(O,I)$ haben.
 \end{Def}
 
-Ein neuer Kommunikationsfehler entsteht, wenn eines der \MEIO{}s die
+Ein neuer Fehler entsteht, wenn eines der \MEIO{}s die
 Möglichkeit für einen Output hat (may-Transition) und das andere \MEIO{} den
-passenden Input nicht erzwingt (keine must-Transition vorhanden). Es muss also
-in möglichen Implementierungen nicht wirklich zu diesem Kommunikationsfehler
-kommen, da die Output-Transition nicht zwingendermaßen implementiert werden
-muss und die Input-Transition durch eine may-Transition trotzdem erlaubt sein
+passenden Input nicht sicher stellt (keine must-Transition vorhanden). Es muss
+also in möglichen Implementierungen nicht wirklich zu diesem
+Fehler kommen, da die Output"=Transition nicht zwingendermaßen
+implementiert werden muss und die may"=Input"=Transition trotzdem erlaubt sein
 kann.\\
 Wie bereits in~\cite{Schinko2016BA} kann es durch die Synchronisation von
-Inputs zu keinen neuen Kommunikationsfehler kommen, da dies in beiden
-Transitionssystemen
-keine lokal kontrollierte Aktion ist. Falls jedoch nur eines der
-Transitionssysteme die
-Möglichkeit für einen Input hat, der synchronisiert wird, besteht diese
-Möglichkeit in der Parallelkomposition nicht mehr. Es kann also in der
-Kommunikation mit einem weiteren \MEIO{} dort zu einen neuen
-Kommunikationsfehler kommen.
+Inputs zu keinen neuen Fehler kommen, da die Inputs in beiden
+Transitionssystemen keine lokal kontrollierten Aktionen sind. Falls jedoch nur
+eines der Transitionssysteme die Möglichkeit für einen Input hat, der
+synchronisiert wird, besteht diese Möglichkeit in der Parallelkomposition nicht
+mehr. Es kann also in der Kommunikation mit einem weiteren \MEIO{} dort zu
+einem neuen Fehler kommen.
 
-\begin{Def}[(starke) Simulation]
+\begin{Def}[alternierende Simulation]
   \label{SimDef}
-  Eine \emph{(starke) alternierende Simulation} ist eine Relation $R\subseteq P
-  \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ mit
-  $q\notin E_Q$ gilt:
+  Eine \emph{(starke) alternierende Simulation} ist eine Relation
+  $\mathcal{R}\subseteq P \times Q$ auf zwei \MEIO{}s $P$ und $Q$, wenn für
+  alle $(p,q)\in \mathcal{R}$ mit $q\notin E_Q$ und $\alpha\in\Sigma _\tau$
+  gilt:
   \begin{enumerate}
     \item $p\notin E_P$,
     \item $q\must[\alpha]_Q q'$ impliziert $p\must[\alpha]_P p'$ für ein $p'$
-      mit $p'Rq'$,
+      mit $p'\mathcal{R}q'$,
     \item $p\may[\alpha]_P p'$ impliziert $q\may[\alpha]_Q q'$ für ein $q'$ mit
-      $p'Rq'$.
+      $p'\mathcal{R}q'$.
   \end{enumerate}
   Die Vereinigung \asRel{} aller dieser Relationen wird als \emph{(starke)
   as-Verfeinerung(-s Relation)} (auch modal Verfeinerung) bezeichnet. Es wird
-  $P\asRel Q$ geschrieben, falls $p_0\asRel q_0$ gilt, und $P$
-  \emph{as-verfeinert} $Q$ \emph{(stark)} oder $P$ ist eine \emph{(starke)
-  as-Verfeinerung} von $Q$.\\
+  $P\asRel Q$ geschrieben, falls $p_0\asRel q_0$ gilt. $P\asRel Q$ steht dabei
+  dafür, dass $P$ $Q$ \emph{(stark) as-verfeinert} oder dass $P$ eine
+  \emph{(starke) as-Verfeinerung} von $Q$ ist.\\
   Für ein \MEIO{} $Q$ und eine Implementierung $P$ mit $P\asRel{}Q$, ist
   $P$ eine \emph{as"=Implementierung} von $Q$ und es wird $\asimp (Q)$ für die
   Menge aller as"=Implementierungen von $Q$ verwendet.
@@ -170,21 +170,21 @@ Implikation $p\in E_P\Rightarrow q\in E_Q$.
 
 \begin{Def}[schwache Simulation]
   \label{wSimDef}
-  Eine \emph{schwache alternierende Simulation} ist eine Relation $R\subseteq P
-  \times Q$ auf zwei \MEIO{}s $P$ und $Q$, falls für alle $(p,q)\in R$ mit
-  $q\notin E_Q$ gilt:
+  Eine \emph{schwache alternierende Simulation} ist eine Relation $\mathcal{R}
+  \subseteq P  \times Q$ auf zwei \MEIO{}s $P$ und $Q$, wenn für alle $(p,q)
+  \in \mathcal{R}$ mit $q\notin E_Q$ und $i\in I$ und $\omega\in O\cup\{\tau\}$
+  gilt:
   \begin{enumerate}
     \item $p\notin E_P$,
     \item $q\must[i]_Q q'$ impliziert $p\must[i]_P\weakmust[\varepsilon]_P p'$
-      für ein $p'$ mit $p'Rq'$,
+      für ein $p'$ mit $p'\mathcal{R}q'$,
     \item $q\must[\omega]_Q q'$ impliziert $p\weakmust[\hat{\omega}]_P p'$ für
-      ein $p'$ mit $p'Rq'$,
+      ein $p'$ mit $p'\mathcal{R}q'$,
     \item $p\may[i]_P p'$ impliziert $q\may[i]_Q\weakmay[\varepsilon]_Q q'$ für
-      ein $q'$ mit $p'Rq'$,
+      ein $q'$ mit $p'\mathcal{R}q'$,
     \item $p\may[\omega]_P p'$ impliziert $q\weakmay[\hat{\omega}]_Q q'$ für
-      ein $q'$ mit $p'Rq'$.
+      ein $q'$ mit $p'\mathcal{R}q'$.
   \end{enumerate}
-  Wobei $i\in I$ und $\omega\in O\cup\{\tau\}$.\\
   Analog zur starken alternierenden Simulation, wird hier \wasRel{} als
   Relationssymbol verwendet und man kann auch entsprechend \emph{schwache
   as"=Verfeinerung} betrachten.\\
@@ -204,8 +204,8 @@ somit nicht lokal kontrolliert ist.\\
 Auch für alle Tupel $(p,q)$ in einer schwach alternierenden
 Simulations-Relation $\mathcal{R}$ gilt $p\in E_P\Rightarrow q\in E_Q$.
 
-Die Parallelkomposition von Wörtern und Mengen kann aus~\cite{Schinko2016BA}
-übernommen werden.
+Die Parallelkomposition von Wörtern und Mengen kann z.B.\
+aus~\cite{Vogler2014EIO} übernommen werden.
 
 \begin{Def}[Parallelkomposition auf Traces]\mbox{}
   \begin{itemize}
@@ -236,23 +236,12 @@ Wort und $\mathfrak{P}(M)$ die Potenzmenge der Menge $M$ bezeichnet.
   \end{itemize}
 \end{Def}
 
-\TODO{Kommentare nach Gespräch löschen}
-
-% \begin{Def}[strikte Kommunikationsfehler-Traces]
-%   \label{strikteKommTracesDef}
-%   Für ein \MEIO{} $P$ sind die \emph{strikte Kommunikationsfehler-Traces} wie
-%   folgt definierte Wort-Menge: $\StET (P) := \left\{w\in\Sigma ^* \mid p_0 \weakmay[w]_P p
-%   \in E\right\}$.
-% \end{Def}
+\vspace{0.2cm}
 
 \begin{Def}[Sprache]
   \label{LDef}
-  Die \emph{Sprache} eines \MEIO{}s $P$ %sind alle ausführbaren Traces aus $P$
-  %und alle möglichen Verlängerungen von Traces, die einen Fehler-Zustand
-  %erreichen: 
-  ist $L(P) := \left\{w\in \Sigma ^* \mid p_0\weakmay[w]_P %p\notin E
-  \right\}$.
-  %\cup \cont (\StET (P))$.
+  Die \emph{Sprache} eines \MEIO{}s $P$ ist $L(P) := \left\{w\in \Sigma ^* \mid
+  p_0\weakmay[w]_P \right\}$.
 \end{Def}
 
 Somit entspricht die Sprache eines \MEIO{}s, das eine Implementierung ist der

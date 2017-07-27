@@ -11,14 +11,16 @@ aus~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
   Fehler"=Zustände lokal erreichen kann.
 \end{Def}
 
+\vspace{0.2cm}
+
 \begin{Def}[Kommunikationsfehler-Verfeinerungs-Basirelation]
   \label{EBRelDef}
   Für zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur wird $P_1\EBRel{}
-  P_2$ geschrieben, wenn ein Fehler"=Zustand in einer as"=Implementierung
-  von $P_1$ nur dann lokal erreichbar ist, wenn es auch eine as"=Implementierung
-  von $P_2$ gibt, in der dieser Fehler"=Zustand auch lokal
-  erreichbar ist. Die Basisrelation stellt eine \emph{Verfeinerung} bezüglich
-  \emph{Kommunikationsfehlern} dar.\\
+  P_2$ geschrieben, wenn nur dann ein Fehler"=Zustand in einer
+  as"=Implementierung von $P_1$ lokal erreichbar ist, wenn es auch eine
+  as"=Implementierung von $P_2$ gibt, in der ein Fehler"=Zustand auch lokal
+  erreichbar ist. Die Basisrelation stellt eine \emph{Verfeinerung-Relation}
+  bezüglich \emph{Kommunikationsfehler"=Freiheit} dar.\\
   \ECRel{} bezeichnet die \emph{vollständig abstrakte Präkongruenz} von
   \EBRel{} bezüglich $\cdot\|\cdot$, d.h.\ die gröbste Präkongruenz bezüglich
   $\cdot\|\cdot$, die in \EBRel{} enthalten ist.
@@ -28,18 +30,13 @@ Für as"=Implementierungen $P_1$ und $P_2$ entspricht \EBRel{} der Relation
 \EBbaRel{} aus~\cite{Schinko2016BA}.
 
 Wie in~\cite{Schinko2016BA} werden die Fehler hier Trace-basiert betrachtet.
-% Um
-% die Sprache eines \MEIO{}s definieren zu können, wurden die strikten Traces
-% bereits in Definition~\ref{strikteKommTracesDef} ausgeführt. Da es jedoch in
-% diesem Kapitel speziell um die Kommunikationsfehler geht, werden sie in der
-% nachstehenden Definition noch einmal mit aufgeführt.
 
 \begin{Def}[Kommunikationsfehler-Traces]
   Für ein \MEIO{} $P$ wird definiert:
   \begin{itemize}
-    \item \emph{strikte Kommunikationsfehler-Traces}: $\StET (P) :=
+    \item \emph{strikte Fehler-Traces}: $\StET (P) :=
       \left\{w\in\Sigma ^* \mid p_0 \weakmay[w]_P p \in E\right\}$,
-    \item \emph{gekürzte Kommunikationsfehler-Traces}: $\PrET (P) :=
+    \item \emph{gekürzte Fehler-Traces}: $\PrET (P) :=
       \left\{\prune (w) \mid w\in\StET (P)\right\}$,
     \item \emph{Input-kritische-Traces}: $\MIT (P) := \left\{wa\in\Sigma ^*
       \mid p_0 \weakmay[w]_P p \land a\in I\land p\nmust[a]_P \right\}$.
@@ -51,7 +48,7 @@ in den Trace-Mengen eine Beziehung zwischen der allgemeinen Definition für
 \MEIO{}s und deren as"=Implementierungen herzustellen. Deshalb wird in der
 folgenden Proposition eine alternative Sichtweise auf die Trace-Definitionen
 dargestellt. Die Traces eines \MEIO{}s entsprechen somit der Vereinigung der
-Traces alle seiner as"=Implementierungen.
+Traces aller seiner as"=Implementierungen.
 
 \begin{Prop}[Kommunikationsfehler-Traces und Implementierung]
   \label{KommTracesProp}
@@ -62,16 +59,20 @@ Traces alle seiner as"=Implementierungen.
   \TODO{\MIT{} nur noch auf fehler-freien Traces}
 
   \begin{enumerate}
-    \item strikte Kommunikationsfehler-Traces: $\StET (P) =
-      \big\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) :$ $p'_0
-      \weakmust[w]_{P'} p' \in E\big\}$ \TODO{erzwungen Zeilenumbruch kontrollieren}
+    \item strikte Fehler-Traces: $\StET (P) =
+      \left\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) : p'_0
+      \weakmust[w]_{P'} p' \in E\right\}$,
     \item Input-kritische-Traces: $\MIT (P) = \left\{wa\in\Sigma ^* \mid
       \exists P' \in\asimp (P) : p'_0 \weakmust[w]_{P'} p' \land
-      \right.$\linebreak $\left. a\in I\land p'\nmust[a]_{P'} \right\}$
+      \right.$\linebreak $\left. a\in I\land p'\nmust[a]_{P'} \right\}$.
       \TODO{erzwungen Zeilenumbruch kontrollieren}
   \end{enumerate}
 \end{Prop}
 \begin{proof}\mbox{}
+
+  \TODO{Relationen explizit angeben bzw.\ auch die entspreche Implementierung
+  und die Inklusionsrichtungen explizit trennen}
+
   \begin{enumerate}
     \item Wie schon in Beweis zu~\ref{LImpProp} festgestellt, sind alle
       Abläufe, die in $P$ via may"=Transitionen möglich sind in mindestens einer
@@ -116,9 +117,9 @@ Traces alle seiner as"=Implementierungen.
   \label{KommFehlerSemDef}
   Sei $P$ ein \MEIO{}.
   \begin{itemize}
-    \item Die Menge der \emph{Kommunikationsfehler-Traces} von $P$ ist $\ET (P)
+    \item Die Menge der \emph{Fehler-Traces} von $P$ ist $\ET (P)
       := \cont (\PrET (P)) \cup\cont (\MIT (P))$.
-    \item Die \emph{Kommunikationsfehler-geflutete Sprache} von $P$ ist $\EL
+    \item Die \emph{Fehler-geflutete Sprache} von $P$ ist $\EL
       (P) := L(P) \cup \ET (P)$.
   \end{itemize}
   Für zwei \MEIO{}s $P_1,P_2$ mit der gleichen Signatur wird $P_1\ERel P_2$
@@ -144,7 +145,7 @@ as"=Implementierung ist.
   Da beide Seiten der Gleichung unter der Fortsetzung \cont{} abgeschlossen
   sind, genügt es ein präfix-minimales Element $w$ von $\ET _{12}$ zu
   betrachten. Diese Element ist aufgrund der Definition der Menge der
-  Kommunikationsfehler-Traces in $\MIT _{12}$ oder in $\PrET _{12}$ enthalten.
+  Fehler-Traces in $\MIT _{12}$ oder in $\PrET _{12}$ enthalten.
   \begin{itemize}
     \item Fall 1 ($w\in\MIT _{12}$): Aus der Definition von \MIT{} folgt, dass
       es eine Aufteilung $w=xa$ gibt mit $(p_{01},p_{02}) \weakmay[x]_{12}
@@ -179,7 +180,7 @@ as"=Implementierung ist.
       und $v\in v_1\|v_2$. Aus $(p'_1,p'_2)\in\ET _{12}$ folgt, dass es sich
       entweder um einen geerbten oder einen neuen Fehler handelt. Bei einem
       geerbten wäre bereits einer der beiden Zustände $p'_1$ bzw.\ $p'_2$ ein
-      Fehler"=Zustand gewesen. Ein neuer Kommunikationsfehler hingegen wäre
+      Fehler"=Zustand gewesen. Ein neuer Fehler hingegen wäre
       durch das fehlen der Synchronisations-Erzwingung (fehlende
       must"=Transition) in einer der Komponenten entstanden.
     \begin{itemize}
@@ -188,7 +189,7 @@ as"=Implementierung ist.
         Da $p_{02} \weakmay[w_2v_2]_2$ gilt, erhält man $w_2v_2\in L_2\subseteq
         \EL _2$. Dadurch ergibt sich $wv\in \ET _1\|\EL _2$ mit $w=\prune (wv)$
         und somit ist $w$ in der rechten Seite der Gleichung enthalten.
-      \item Fall 2b) (neuer Kommunikationsfehler): \OBdA{} gilt $a\in I_1\cap
+      \item Fall 2b) (neuer Fehler): \OBdA{} gilt $a\in I_1\cap
         O_2$ mit $p'_1\nmust[a]_1\land p'_2\may[a]_1$. Daraus folgt $w_1v_1a\in
         \MIT _1 \subseteq \ET _1$ und $w_2v_2a\in L_2 \subseteq \EL _2$. Damit
         ergibt sich $wva\in \ET _1\|\EL_2$, da $a\in O_1\subseteq O_{12}$ gilt
@@ -281,7 +282,7 @@ as"=Implementierung ist.
           \weakmay[u'_1]_{12} (q''_1,q'_2)\in E_{12}$, der für $P_2$ der
           entsprechende Input nicht erzwungen wird, der mit dem $c$ Output von
           $P_1$ zu koppeln wäre. Es handelt sich also um einen neuen
-          Kommunikationsfehler. Es wird $v := \prune (v'u'_1)\in \PrET _{12}$
+          Fehler. Es wird $v := \prune (v'u'_1)\in \PrET _{12}$
           gewählt, dies ist ein Präfix von $v'$, da $u_1\in O_1^*$.
         \item Fall IIb) \big($p_2\weakmust[u_2]_2p'_2$ mit
           $u_2=u_1|_{I_2}$\big): Es gilt $u_1\in u_1\|u_2$ und $(p_1,p_2)
@@ -452,7 +453,7 @@ as"=Implementierung ist.
           synchronisiert werden muss ($P_2$ enthält die entsprechende $a$
           Transitionen nicht als must"=Transition). Durch die Konstruktion von
           $U$ sind in $p_{n+1}$ keine Outputs möglich. Ein neuer
-          Kommunikationsfehler muss also die Form $(p_i,p')$ haben mit $i\leq
+          Fehler muss also die Form $(p_i,p')$ haben mit $i\leq
           n, p'\nmust[x_{i+1}]_2$ und $x_{i+1}\in O_U=I$. Durch Projektion
           erhält man dann $p_{02}\lweakmay[x_1\dots x_i]_2p'\nmust[x_{i+1}]_2$
           und damit gilt $x_1\dots x_{i+1}\in\MIT _2\subseteq \ET _2$. Somit
@@ -465,7 +466,7 @@ as"=Implementierung ist.
           ein Präfix von $w$ ist, führt in diesem Fall eine Verlängerung um
           lokale Aktionen von einem Präfix von $w$ zu einem Fehler-Zustand. Da
           \ET{} der Menge aller Verlängerungen von gekürzten
-          Kommunikationsfehler-Traces entspricht, ist $x_1\dots x_i$ in $\ET
+          Fehler-Traces entspricht, ist $x_1\dots x_i$ in $\ET
           _2$ enthalten und somit ist ein Präfix von $w$ in $\ET _2$ enthalten.
       \end{itemize}
   \end{itemize}
@@ -522,7 +523,7 @@ as"=Implementierung ist.
       Implementierung in $\asimp (U\|P_1)$, die diesen lokal erreichbaren
       Fehler implementiert. Somit muss es eine as"=Implementierung von $U\|P_2$
       geben, die ebenfalls einen lokal erreichbaren Fehler-Zustand hat.
-      Aufgrund von Definition~\ref{SimDef} 3. muss dieser Fehler-Zustand auch
+      Aufgrund von Definition~\ref{SimDef} 3.\ muss dieser Fehler-Zustand auch
       in $U\|P_2$ lokal erreichbar sein.
       \begin{itemize}
         \item Fall 2a) (neuer Fehler aufgrund von $x_i\in O_U$ und $p_{02}
@@ -609,7 +610,7 @@ schließt. Dies ist in Abbildung~\ref{KommFolgerungskette} dargestellt.
           (m-2-2) -- node [below]
           {$\substack{U~\mathrm{Partner}\\\Downarrow\\ U~\mathrm{komponierbar}}$} (m-2-1);
     \end{tikzpicture}
-    \caption{Folgerungskette der Kommunikationsfehler-Relationen}
+    \caption{Folgerungskette der Fehler-Relationen}
   \label{KommFolgerungskette}
   \end{center}
 \end{figure}
