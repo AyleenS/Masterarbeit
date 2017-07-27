@@ -1,5 +1,7 @@
 \chapter{Verfeinerungen für Kommunikationsfehler-Freiheit}
 
+\section{Erweiterungs-Ansatz}
+
 Dieses Kapitel versucht die Präkongruenz für Error bei \EIO{}s
 aus~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
 
@@ -32,6 +34,7 @@ Für as"=Implementierungen $P_1$ und $P_2$ entspricht \EBRel{} der Relation
 Wie in~\cite{Schinko2016BA} werden die Fehler hier Trace-basiert betrachtet.
 
 \begin{Def}[Kommunikationsfehler-Traces]
+  \label{KommTracesDef}
   Für ein \MEIO{} $P$ wird definiert:
   \begin{itemize}
     \item \emph{strikte Fehler-Traces}: $\StET (P) :=
@@ -54,9 +57,8 @@ Traces aller seiner as"=Implementierungen.
   \label{KommTracesProp}
   Für ein \MEIO{} $P$ gilt:
 
-  \TODO{überlegen, was von dieser Proposition noch gilt:}\\
-  \TODO{\ET{} wahrscheinlich nur noch für $\cont (\PrET (P))$,}\\
-  \TODO{\MIT{} nur noch auf fehler-freien Traces}
+  \TODO{überlegen, was von dieser Proposition noch gilt: wahrscheinlich nur
+  noch $\subseteq$}
 
   \begin{enumerate}
     \item strikte Fehler-Traces: $\StET (P) =
@@ -624,4 +626,35 @@ diese Verfeinerung durch \ERel{} charakterisiert.
   Es gilt: $P_1\ERel P_2\Leftrightarrow U\|P_1\EBRel U\|P_2$ für alle Partner
   $U$.
 \end{Kor}
+
+\section{Testing-Ansatz}
+
+Der Testing-Ansatz stützt auf den Ansatz, der in~\cite{Vogler2015FailSem}
+angewendet wurde. Jedoch sind Tests hier Tupel aus einer Implementierung und
+einer Menge an Aktionen, über denen synchronisiert werden soll, da die
+\MEIO{}s, die Komponiert werden die Menge $\Synch$ an Aktionen automatisch
+synchronisieren. Es wird hier im Gegensatz zu~\cite{Vogler2015FailSem} mit
+Inputs und Outputs gearbeitet und dadurch scheint der Ansatz die gemeinsamen
+Aktionen zu synchronisieren natürlicher, wie eine Menge vorzugeben.\\
+Die Definition von lokaler Erreichbarkeit eines Fehler-Zustandes soll aus dem
+Erweiterungs-Ansatz übernommen werden. Hier ist vor allem wichtig, dass für
+Implementierungen ein $w\in O^*$ existieren muss mit $p_0\weakmust[w] p\in E$,
+falls in der Implementierung ein Fehler lokal erreichbar ist.
+
+\begin{Def}[Test und Verfeinerung]
+  Ein \emph{Test} $T$ ist eine Fehler-frei Implementierung, d.h.\ $T$ enthält
+  keine Fehler-Zustände und $T$ ist Input-enabled. Ein \MEIO{} $P$
+  \emph{as-erfüllt} einen Test $T$, falls $S\|T$ fehler-frei ist für $S\in
+  \asimp (P)$. Es wird dann $P \satAs T$ geschrieben.\\
+  Ein \MEIO{} $P$ verfeinert $P'$, falls für alle Tests $T$: $P'\satAs T
+  \Rightarrow P\satAs T$.
+  \TODO{besseres Wort für Input-enabled im Deutschen finden}
+\end{Def}
+
+Die Definition~\ref{KommTracesDef} der Kommunikationsfehler-Traces eines
+\MEIO{}s $P$ kann aus dem Erweiterungs-Ansatz übernommen werden. Ebenso wie die
+Definition der Kommunikationsfehler"=Semantik aus
+Definition~\ref{KommFehlerSemDef}. Daraus kann dann auch in diesem Ansatz der
+Satz~\ref{KommFehlerSemSatz} und das Korollar~\ref{KommPraekonKor} beweisen
+werden.
 
