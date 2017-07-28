@@ -55,40 +55,69 @@ Traces aller seiner as"=Implementierungen.
 
 \begin{Prop}[Kommunikationsfehler-Traces und Implementierung]
   \label{KommTracesProp}
-  Für ein \MEIO{} $P$ gilt:
-
-  \TODO{überlegen, was von dieser Proposition noch gilt: wahrscheinlich nur
-  noch $\subseteq$}
-
+  Sei $P$ ein \MEIO{}.
   \begin{enumerate}
-    \item strikte Fehler-Traces: $\StET (P) =
-      \left\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) : p'_0
-      \weakmust[w]_{P'} p' \in E\right\}$,
-    \item Input-kritische-Traces: $\MIT (P) = \left\{wa\in\Sigma ^* \mid
-      \exists P' \in\asimp (P) : p'_0 \weakmust[w]_{P'} p' \land
-      \right.$\linebreak $\left. a\in I\land p'\nmust[a]_{P'} \right\}$.
+    \item Für die strikten Fehler-Traces von $P$ gilt: $\StET (P) \subseteq
+      \big\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) :$ $p'_0
+      \weakmust[w]_{P'} p' \in E\big\} = \underset{P' \in\asimp (P)}{\bigcup}
+      \StET (P')$.
+      \TODO{erzwungen Zeilenumbruch kontrollieren}
+    \item Für die gekürzten Fehler-Traces von $P$ gilt: $\PrET (P) \subseteq
+      \{\prune (w) \mid \exists P' \in$\linebreak $\asimp (P) : w\in\StET (P')
+      \} = \underset{P' \in\asimp (P)}{\bigcup} \PrET (P')$,
+      \TODO{erzwungen Zeilenumbruch kontrollieren}
+    \item Für Input-kritischen-Traces von $P$ gilt: $\MIT (P) \subseteq
+      \big\{wa\in\Sigma ^* \mid \exists P' \in\asimp (P) :$ $p'_0
+      \weakmust[w]_{P'} p' \land a\in I\land p'\nmust[a]_{P'} \big\} =
+      \underset{P' \in\asimp (P)}{\bigcup} \MIT (P')$.
       \TODO{erzwungen Zeilenumbruch kontrollieren}
   \end{enumerate}
 \end{Prop}
 \begin{proof}\mbox{}
+  \begin{enumerate}
+    \item Um die Inklusion zu zeigen wird eine Implementierung $P'$ angegeben,
+      die die strickten Fehler-Traces von $P$ implementiert und zusätzlich auch
+      noch eine passende as"=Verfeinerungs"=Relation zwischen den beiden
+      Transitionssystemen. $P'$ implementiert wie im Beweis zu
+      Proposition~\ref{LImpProp} alle Transitionen von $P$. Das $P'$ wird hier
+      jedoch im Gegensatz zu Beweis von~\ref{LImpProp} auch noch alle
+      Fehler-Zustände aus $P$ implementieren. Die entsprechende
+      as"=Verfeinerungs"=Relation ist jedoch hier ebenfalls wieder die
+      Identitätsabbildung zwischen den Zuständen der Transitionssysteme. Die
+      Definition von $P'$ lautet also:
+      \begin{itemize}
+        \item $P'=P$ für die Menge der Zustände,
+        \item $p'_0=p_0$,
+        \item $I_{P'}=I_P$ und $O_{P'}=O_P$,
+        \item $\must _{P'} =\may _{P'} = \may _P$,
+        \item $E_P'=E_P$.
+      \end{itemize}
+      Die Tupel, die von~\ref{SimDef}~2.\ und 3.\ gefordert werden, dass sie in
+      der as"=Verfeinerungs"Relation enthalten sind, werden bereits durch die
+      Identitätsabbildung garantiert, wie im Beweis~\ref{LImpProp}.
+      Für~\ref{SimDef}~1.\ muss für jedes in der as"=Verfeinerungs"=Relation
+      enthaltene Zustands-Paar gelten, wenn der Zustand aus $P$ kein
+      Fehler-Zustand ist, dann ist auch der Zustand aus $P'$ keiner, die folgt
+      aus der Gleichheit der Mengen $E_P$ und $E_P'$. Jeder Trace aus $\StET
+      (P)$ ist via may"=Transitionen in $P$ ausführbar und führt dort zu einem
+      Fehler-Zustand. Der analoge Trace ist auch in $P'$ möglich, da alle
+      may"=Transitionen aus $P$ in $P'$ als must"=Transitionen implementiert
+      wurden. Der dabei erreichte Zustand steht mit dem Fehler-Zustand in $P$
+      in der Identitätsabbildung, die Zustände entsprechen sich also. Es gilt
+      also mit $E_P'=E_P$, dass auch der in $P'$ erreichte Zustand ein
+      Fehler-Zustand ist. Für die as"=Implementierung $P'$ von $P$ und der
+      Identitätsabbildung als starke as"=Verfeinerungs"=Relation zwischen den
+      Transitionssystemen gilt also $\StET (P) =\StET (P')$.
+    \item Da der erste Punkt dieser Proposition bereits beweisen wurde, gilt
+      bereits, dass alle strikten Fehler-Traces von $P$ in der Vereinigung
+      aller strikten Fehler-Traces der as"=Implementierungen von $P$ enthalten
+      sind. Wenn auf alle Wörter in beiden Mengen die \prune{}-Funktion
+      angewendet wird, gilt die Inklusion der daraus entstanden Mengen
+      weiterhin. Dies entspricht der Behauptung dies Punktes.
 
   \TODO{Relationen explizit angeben bzw.\ auch die entspreche Implementierung
   und die Inklusionsrichtungen explizit trennen}
 
-  \begin{enumerate}
-    \item Wie schon in Beweis zu~\ref{LImpProp} festgestellt, sind alle
-      Abläufe, die in $P$ via may"=Transitionen möglich sind in mindestens einer
-      as"=Implementierung von $P$ via must"=Transitionen möglich. Umgekehrt ist
-      auch jeder Ablauf, der in einer as"=Implementierung von $P$ möglich ist
-      auch in $P$ durch may"=Transitionen möglich.\\
-      Aufgrund des 3.\ Punktes der Definition~\ref{SimDef} kann jede
-      as"=Implementierung von $P$ nur Fehler-Zustände enthalten,
-      die auch $P$ enthält. Da alle möglichen Implementierungen von $P$ in
-      $\left\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) : p'_0
-      \weakmust[w]_{P'} p' \in E\right\}$ betrachtet werden, ist auch jeder in
-      $P$ durch may"=Transitionen erreichbare Fehler"=Zustand auch in
-      mindestens einer as"=Implementierung ebenfalls erreichbar, jedoch durch
-      must"=Transitionen.
     \item Für jedes $w$ in $L(P)$ gibt es mindestens eine as"=Implementierung
       von $P$, die dieses $w$ auch ausführen kann und umgekehrt (Beweis
       von~\ref{LImpProp}). Falls in $\MIT (P)$ mindestens ein Element gibt,

@@ -3,7 +3,8 @@
 \begin{Prop}[Sprache und Implementierungen]
   \label{LImpProp}
   Für die Sprache eines \MEIO{}s $P$ gilt $L(P) \subseteq \left\{w\in
-  \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]_{P'} \right\}$.
+  \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]_{P'} \right\} =
+  \underset{P'\in\asimp (P)}{\bigcup} L(P')$.
 \end{Prop}
 \begin{proof}\mbox{}\\
   Sei $P'$ die as-Implementierung von $P$, die alle may-
@@ -19,11 +20,11 @@
     \item $E_P'=\emptyset$.
   \end{itemize}
   Für alle $p\in P$, die auch von nicht Fehler-Zuständen aus erreichbar sind,
-  muss $p\asRel p'$ wegen~\ref{SimDef} 3.\ für entsprechenden $p'$ in $P'$, die
+  muss $p\asRel p'$ wegen~\ref{SimDef}~3.\ für entsprechenden $p'$ in $P'$, die
   durch die analogen Transitionen erreichbar sind. Diese Tupel sind bereits in
   der Identitätsabbildung, die als as"=Verfeinerungs"=Relation vorausgesetzt
   wurde, enthalten. Da $P'$ alle Transitionen von $P$ implementiert,
-  gilt~\ref{SimDef} 2.\ bereits durch die Tupel, die durch die
+  gilt~\ref{SimDef}~2.\ bereits durch die Tupel, die durch die
   Identitätsabbildung in $\asRel$ enthalten sein müssen. Der erste Punkt
   von~\ref{SimDef} gilt, da $E_P'$ leer ist. Für alle $w\in L(P) = \left\{w\in
   \Sigma ^* \mid p_0\weakmay[w]_P\right\}$ folgt nun $w\in L(P') = \left\{w\in
