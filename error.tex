@@ -114,33 +114,54 @@ Traces aller seiner as"=Implementierungen.
       sind. Wenn auf alle Wörter in beiden Mengen die \prune{}-Funktion
       angewendet wird, gilt die Inklusion der daraus entstanden Mengen
       weiterhin. Dies entspricht der Behauptung dies Punktes.
-
-  \TODO{Relationen explizit angeben bzw.\ auch die entspreche Implementierung
-  und die Inklusionsrichtungen explizit trennen}
-
-    \item Für jedes $w$ in $L(P)$ gibt es mindestens eine as"=Implementierung
-      von $P$, die dieses $w$ auch ausführen kann und umgekehrt (Beweis
-      von~\ref{LImpProp}). Falls in $\MIT (P)$ mindestens ein Element gibt,
-      gibt es in $P$ einen Trace von $w$, nach dem ein Input $a$ nicht
-      zwingendermaßen folgen muss. Die $a$ Transition also entweder eine
-      may"=Transition ist oder gar nicht existiert in $P$. Es muss also auch
-      einen $w$-Trace in einer as"=Implementierung geben, die in einem Zustand
-      endet, der mit dem Zustand aus $P$ in Relation steht, in dem das $a$
-      nicht erzwungen wird. Falls die Transition in $P$ nicht vorhanden ist,
-      muss jede as"=Implementierung, die so einen $w$-Trace enthält auch $wa$
-      als Input-kritischen-Trace haben. Andernfalls handelt es sich bei $a$ in
-      $P$ um eine may"=Transition, die von mindestens einer
-      as"=Implementierung, die den $w$"=Trace enthält, nicht implementiert wird
-      und somit $wa$ auch als Input"=kritischen"=Trace enthält.\\
-      Für ein $wa\in \left\{wa\in\Sigma ^* \mid \exists P' \in\asimp (P) : p'_0
-      \weakmust[w]_{P'} p' \land a\in I\land p'\nmust[a]_{P'} \right\}$ muss es
-      eine as"=Implementierung von $P$ geben, die diesen Input-kritischen-Trace
-      implementiert. $P$ muss also auch das $w$ ausführen können zu einem
-      Zustand, in dem $P$ $a$ nicht als must"=Transition enthalten. Falls $P$
-      $a$ nach $w$ nur als must"=Transition enthalten würde, würde~\ref{SimDef}
-      1.\ die Implementierung von $a$ erzwingen und somit könnte für
-      keine as"=Implementierung von $P$ $wa$ ein Input-kritischer-Trace sein.
-      Es gilt also auch $wa\in\MIT (P)$.
+    \item Auch für diese Inklusion wird eine starke as"=Verfeinerungs"=Relation
+      und eine Implementierung $P'$ angegeben. Jedoch werden nicht wie bei 1.\
+      alle Transitionen von $P$ in $P'$ implementiert. Es wird auch für alle
+      $wa$ aus $\MIT (P)$ eine eigene Implementierung $P'$ geben und nicht eine
+      für alle. Es werden alle must"=Transitionen aus $P$ in $P'$ implementiert
+      und zusätzlich die may"=Transitionen, die zum Ausführen von $w$ benötigt
+      werden, so dass das $a$ danach in $P$ nicht gefordert wird. Es kann
+      aufgrund von Schleifen in $P$ auch nicht mehr die Identitätsabbildung als
+      as"=Verfeinerungs"=Relation gewählt werden. Der $w$ Trace wird
+      entsprechend seiner Länge abgewickelt, so dass sicher gestellt wird, dass
+      der Zustand am Ende dieses Traces wirklich ruhig ist und nicht Teil einer
+      Schlinge in $w$. Für das Abwickeln werden die Zustände entsprechend ihrer
+      Position in $w$ durchnummeriert. Für ein $w$, für das $wa\in\MIT (P)$,
+      gilt :$\exists w'\in\Sigma _{\tau} ^*, \exists \alpha _1,\alpha _2,\dots
+      ,\alpha _n, \exists p_1,p_2,\dots ,p_n: \hat{w'} = w\land w'=\alpha
+      _1\alpha _2\dots \alpha _n\land p_0 \may[\alpha _1] p_1 \may[\alpha _2]
+      \dots p_{n-1}\may[\alpha _n] p_n$. Die starke as"=Verfeinerungs"=Relation
+      $\mathcal{R}$ enthält in diesem Fall Tupel $((p,j),p)$ für alle $0\leq j
+      \leq n$. Die entsprechende Definition für das $P'$, das $wa$ als
+      Input-kritischen-Trace enthalten soll lautet:
+      \begin{itemize}
+        \item $P'=P\times \{0,1,\dots n\}$,
+        \item $p'_0=(p_0,0)$,
+        \item $I_P'=I_P$ und $O_P'=O_P$,
+        \item $\begin{aligned}[t]
+            \must _P'=\may _P'&= \left\{((p,j),\alpha ,(p',j+1))\mid p
+            \may[\alpha]_P p', 0\leq j < n\right\}\\
+            &\quad\cup\left\{((p,j),\alpha ,(p',j))\mid p\must[\alpha]_P p',
+            0\leq j \leq n\right\},
+        \end{aligned}$
+        \item $E_P'=\emptyset$.
+      \end{itemize}
+      Der Ablauf von $w$ aus $P$ wird in $P'$ durch $(p_0,0) \must[\alpha _1]
+      (p_1,1) \must[\alpha _1]\dots (p_{n-1},n-1) \must[\alpha _n] (p_n,n)$
+      simuliert. $w$ ist also in $P'$ ausführbar. $a$ ist für $(p_n,n)$ nicht
+      ausführbar, da in $P$ für $p_n$ $p_n\nmust[a]$ gilt und für die Zustände
+      mit der Nummer $n$ in $P'$ nur die must"=Transitionen implementiert
+      werden. Die implementierten Transitionen in $P'$ haben nach Definition
+      alle zugrundeliegende may"=Transitionen in $P$ an den in Relation
+      $\mathcal{R}$ stehenden Zuständen. Es werden alle durch die zweite Menge
+      der Transitions-Definition von $P'$ sind alle must"=Transitionen aus $P$
+      entsprechend in $P'$ implementiert an den Zuständen, die in der starken
+      as"=Verfeinerungs"=Relation stehen. Da die Menge $E_P'$ leer ist, gelten
+      alle Bedingungen, damit $\mathcal{R}$ eine as"=Verfeinerungs"=Relation
+      zwischen $P'$ und $P$ ist. Mit der Begründung von oben folgt auch $wa\in
+      \MIT (P')$. Da für alle $wa$ aus $\MIT (P)$ eine entsprechende
+      Implementierung mit as"=Verfeinerungs"=Relation angegeben werden kann,
+      gilt die Inklusion.
   \end{enumerate}
 \end{proof}
 
