@@ -53,7 +53,7 @@ folgenden Proposition eine alternative Sichtweise auf die Trace-Definitionen
 dargestellt. Die Traces eines \MEIO{}s entsprechen somit der Vereinigung der
 Traces aller seiner as"=Implementierungen.
 
-\begin{Prop}[Kommunikationsfehler-Traces und Implementierung]
+\begin{Prop}[Kommunikationsfehler-Traces und Implementierungen]
   \label{KommTracesProp}
   Sei $P$ ein \MEIO{}.
   \begin{enumerate}
@@ -181,7 +181,57 @@ Traces aller seiner as"=Implementierungen.
 
 Hierbei ist zu beachten, dass die Mengen \StET{}, \PrET{}, \MIT{}, \ET{} und
 \EL{} nur denen aus~\cite{Schinko2016BA} entsprechen, wenn $P$ bereits eine
-as"=Implementierung ist.
+as"=Implementierung ist.\\
+Aus den Propositionen für die Sprache und die Traces konnte für die Vereinigung
+der gleichen Mengen über die Implementierungen immer nur eine
+Inklusionsrichtung gefolgert werden, da die Definition~\ref{SimDef} nach einen
+Fehler-Zustand in $P$ beliebiges Verhalten ins dessen Implementierungen
+zulässt. Mit dem Einsatz der \cont{}-Funktion zum beliebigen fortsetzten der
+Traces kann dies ausgeglichen werden. Somit gilt wie der nächsten Proposition
+behauptet für die Fehler-Traces und die Fehler-geflutete Sprache Gleichheit
+und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
+
+\begin{Prop}[Kommunikationsfehler-Semantik und Implementierungen]
+  Sie $P$ ein \MEIO{}.
+  \begin{enumerate}
+    \item Für die Menge der Fehler-Traces von $P$ gilt $\ET (P) =
+      \underset{P'\in\asimp (P)}{\bigcup} \ET (P')$.
+    \item Für die Fehler-geflutete Sprache von $P$ gilt $\EL (P) =
+      \underset{P'\in\asimp (P)}{\bigcup} \EL (P')$.
+  \end{enumerate}
+\end{Prop}
+\begin{proof}\mbox{}\\
+  1. \glqq$\subseteq$\grqq{}:
+  \begin{align*}
+    \ET (P)&\overset{\ref{KommFehlerSemDef}}{=} \cont (\PrET (P))\cup (\MIT
+    (P))\\
+    &\overset{\ref{KommTracesProp}}{\subseteq} \cont
+    \left(\underset{P'\in\asimp (P)}{\bigcup} \PrET (P')\right)\cup \cont
+    \left(\underset{P'\in\asimp (P)}{\bigcup} \MIT (P')\right)\\
+    &\overset{\cont}{\overset{\text{monoton}}{=}} \underset{P'\in\asimp
+    (P)}{\bigcup} \cont (\PrET (P'))\cup (\MIT (P'))\\
+    &\overset{\ref{KommFehlerSemDef}}{=} \underset{P'\in\asimp
+    (P)}{\bigcup} \ET (P').\\
+  \end{align*}
+
+  1. \glqq$\supseteq$\grqq{}:\\
+  \TODO{beweisen}
+
+  2. \glqq$\subseteq$\grqq{}:\\
+  \begin{align*}
+    \EL (P)&\overset{\ref{KommFehlerSemDef}}{=} L(P)\cup \ET (P)\\
+    &\overset{\ref{LImpProp}}{\subseteq} \left(\underset{P'\in\asimp
+    (P)}{\bigcup} L (P')\right)\cup \ET (P)\\
+    &\overset{1.}{=} \left(\underset{P'\in\asimp (P)}{\bigcup} L
+    (P')\right)\cup \left(\underset{P'\in\asimp (P)}{\bigcup} \ET (P')\right)\\
+    &= \underset{P'\in\asimp (P)}{\bigcup} L (P')\cup \ET (P')\\
+    &\overset{\ref{KommFehlerSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup}
+    \EL (P').\\
+  \end{align*}
+
+  2. \glqq$\supseteq$\grqq{}:\\
+  \TODO{beweisen}
+\end{proof}
 
 \begin{Satz}[Kommunikationsfehler-Semantik für Parallelkompositionen]
   \label{KommFehlerSemSatz}
