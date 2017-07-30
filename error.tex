@@ -215,9 +215,58 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
   \end{align*}
 
   1. \glqq$\supseteq$\grqq{}:\\
-  \TODO{beweisen}
+  Da für $P$ $\ET (P) = \cont (\PrET (P)) \cup \cont (\MIT (P))$ gilt und für
+  alle as"=Implementierungen $P'$ von $P$ analog, genügt es ein
+  präfix-minimales $w$ aus $\ET (P')$ für eine as"=Implementierung $P'$ von $P$
+  zu betrachten. Da $w$ präfix-minimal ist für $P'$ ist entweder vollständig
+  oder bis auf den letzten Buchstaben in $P'$ ausführbar. Dies hängt davon ab,
+  ob $w\in \PrET (P')$ oder $w\in \MIT (P')$ gilt. Für $P$ muss jedoch nicht
+  mal das Präfix von $w$ ohne den letzten Buchstaben von $w$ ausführbar sein.
+  Für den weiteren Teil dieses Beweises soll gelten $w=va$ für $a\in\Sigma$ und
+  $v\in\Sigma ^*$.
+  \begin{itemize}
+    \item Fall 1 ($v\notin L (P)$): Das $v$ kann in $P$ nicht ausgeführt
+      werden. Dies kann nur den Fall sein, wenn ein Präfix von $v$ zu einem
+      Fehler-Zustand in $P$ führt, da sonst~\ref{SimDef}~3.\ verletzt wäre. Es
+      ist also ein Präfix von $w$ in $\StET (P)$ enthalten und somit gilt wegen
+      der \cont{}-Funktion $w\in\ET (P)$.
+    \item Fall 2 ($v\in L (P)$ und $w\in\PrET (P')$): In diesem Fall kann das
+      Wort $v$ in $P$ ausgeführt werden. Falls $a$ in $P$ nicht ausgeführt
+      werden kann, ist $w$ aufgrund der gleichen Argumentation wie im 1.\ Fall
+      in $\ET (P)$ enthalten. Es wird also davon ausgegangen, dass $w\in L(P)$
+      gilt. Die Definition~\ref{SimDef} fordert, dass alle Zustände $p_j$ und
+      $p'_j$ aus $P$ bzw. $P'$ auf dem $w$-Trace in der starken
+      as"=Verfeinerungs"=Relation $\mathcal{R}$ stehen. In $P'$ existiert eine
+      Verlängerung $v\in O^*$ von $w$, so dass $wv\in\StET (P')$. Diese
+      Verlängerung kann in $P$ möglicherweise nicht ausführbar sein, dann ist
+      jedoch analog zu Fall 1 ein Präfix von $wv$ in $\StET (P)$ enthalten. Da
+      $v$ nur aus Outputs besteht gilt $\prune (wv) = \prune (w)$. Es folgt
+      also für ein Präfix von $w$ die Zugehörigkeit zur Menge $\PrET (P)$.
+      Somit ist $w$ in $\ET (P)$ enthalten. Falls jedoch $wv$ in $P$
+      ausführbar, kann immer noch ein echtes Präfix von $wv$ in $P$ zu einem
+      Fehler-Zustand führen, wodurch wieder $w\in \ET (P)$ folgt. Falls jedoch
+      alle Zustände (bis auf den letzten), die im Trace $wv$ auftauchen keine
+      Fehler-Zustände sind, gilt für $p$ und $p'$ mit $p_0 \weakmay[wv]_P p$
+      und $p'_0 \weakmust[wv]_{P'} p'$ $(p',p)\in\mathcal{R}$. Da $wv\in\StET
+      (P')$ gilt, muss $p'\in E_{P'}$ gelten. Daraus folgt mit~\ref{SimDef}~1.,
+      dass $p$ in $E_P$ enthalten sein muss. Es gilt also $wv\in\StET(P)$. Mit
+      $\prune (w)=\prune (wv)$ folgt daraus $w\in\ET (P)$.
+    \item Fall 3 ($v\in L (P)$ und $w\in\MIT (P')$): Da $w$ in $\MIT (P')$
+      enthalten ist, $a\in I$. Falls ein Präfix von $v$ oder $v$ selbst in $P$
+      zu einem Fehler Zustand führt, gilt wie in den beiden vorangegangen
+      Fällen $w\in\ET (P)$. Es wird also davon ausgegangen, das auf dem $v$
+      Trace in $P$ kein Fehler-Zustand erreicht wird. Es gilt also $p_0
+      \weakmay[v]_P p$ und $p'_0 \weakmust[v]_P' p'$ mit $(p',p) \in
+      \mathcal{R}$. Wobei $\mathcal{R}$ die as"=Verfeinerungs"=Relation ist,
+      die $P'$ zu einer as"=Implementierung von $P$ macht. Falls $a$ für $p$
+      eine ausgehende must"=Transition wäre, würde~\ref{SimDef}~2.\ auch für
+      $p'$ die Implementierung der $a$ Transition fordern und somit würde nicht
+      $wa\in\MIT (P')$ gelten. Somit gilt $p\nmust[a]$ und $va\in\MIT (P)$.
+      Daraus ergibt sich direkt $w\in\ET (P)$.
+  \end{itemize}
 
-  2. \glqq$\subseteq$\grqq{}:\\
+  2. \glqq$\subseteq$\grqq{}:
+  {\allowdisplaybreaks
   \begin{align*}
     \EL (P)&\overset{\ref{KommFehlerSemDef}}{=} L(P)\cup \ET (P)\\
     &\overset{\ref{LImpProp}}{\subseteq} \left(\underset{P'\in\asimp
@@ -227,10 +276,19 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
     &= \underset{P'\in\asimp (P)}{\bigcup} L (P')\cup \ET (P')\\
     &\overset{\ref{KommFehlerSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup}
     \EL (P').\\
-  \end{align*}
+  \end{align*}}
 
   2. \glqq$\supseteq$\grqq{}:\\
-  \TODO{beweisen}
+  Da der erste Punkt dieser Proposition bereits beweisen ist, reicht es aus für
+  diesen Punkt zu zeigen, dass $\underset{P'\in\asimp (P)}{\bigcup} \EL
+  (P')\backslash \ET (P')$ eine Teilmenge von $\EL (P)$ ist. Die Menge $\EL
+  (P')\backslash \ET (P')$ entspricht $L (P') \backslash \ET (P')$. Es musst
+  also ein Wort $w$ aus der Sprache einer as"=Implementierung von $P$
+  betrachtet werden, dass nicht in den Fehler-Traces dieser as"=Implementierung
+  enthalten ist. Das Wort $w$ ist also in $P'$ ausführbar. Falls das $w$ in $P$
+  jedoch nicht ausführbar ist, folgt wiederum $w\in\ET (P)\subseteq \EL (P)$,
+  da ein Präfix von $w$ in $P$ zu einem Fehler-Zustand führen musst. Falls $w$
+  jedoch ausführbar ist in $P$ gilt $w\in L(P)\subseteq \EL (P)$.
 \end{proof}
 
 \begin{Satz}[Kommunikationsfehler-Semantik für Parallelkompositionen]
