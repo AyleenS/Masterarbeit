@@ -36,28 +36,6 @@ Zustände, die keine Outputs und $\tau$s ausführen können.
   \nmust[\alpha]_P\right\}$.
 \end{Def}
 
-\begin{Prop}[Ruhe und Implementierung]
-  Für ein \MEIO{} $P$ gilt: $Qui(P) = \left\{p'\in P'\mid P'\in\asimp (P)\land
-  \forall\alpha\in (O\cup\{\tau\}):p' \nmust[\alpha]_{P'}\right\}$.
-\end{Prop}
-\begin{proof}
-  Da für alle $P'\in\asimp (P)$ $\must_{P'} =\may_{P'}$ gilt, dürfen alle $p'$
-  keine ausgehenden Transitionen haben. Nach Definition~\ref{SimDef} dürfen zu
-  $p'$ in Relation stehenden Zustände $p$ in $P$ keine ausgehenden
-  must"=Transitionen für lokale Aktionen haben, da $p'$ diese sonst implementieren müsste. Somit
-  sind alle $p'$, die die Forderung dieser Proposition erfüllen auch in $Qui
-  (P)$ enthalten. Für alle $p$, die in $Qui (P)$ enthalten sind, gibt es keine
-  ausgehenden must"=Transitionen für Outputs oder die interne Aktion $\tau$,
-  somit können diese Aktionen entweder keine ausgehende Transition von $p$ sein
-  oder nur als may"=Transition von $p$ zu einem möglicherweise anderen Zustand
-  führen. Nicht vorhandenen Transitionen in $P$ sind auch in keiner
-  as"=Implementierung von $P$ enthalten und es gibt mindestens eine
-  Implementierung in $\asimp (P)$, die alle ausgehenden may"=Transitionen der
-  lokalen Aktionen von $p$ nicht implementiert, somit sind alle $p$ aus $Qui
-  (P)$ auch in $\left\{p'\in P'\mid P'\in\asimp (P)\land \forall\alpha\in
-  (O\cup\{\tau\}):p' \nmust[\alpha]_{P'}\right\}$ enthalten.
-\end{proof}
-
 Für die Erreichbarkeit wird wie im letzten Kapitel ein optimistischer Anzahl
 der lokalen Erreichbarkeit für die Fehler-Zustände verwendet. Ruhe ist kein
 unabwendbare \glqq Fehler-Art\grqq{}, sondern kann durch einen Input repariert
@@ -103,12 +81,14 @@ Traces ohne Kürzung zu betrachten.
   \end{itemize}
 \end{Def}
 
-\begin{Prop}[Ruhe-Traces und Implementierung]
+\begin{Prop}[Ruhe-Traces und Implementierungen]
   \label{QuiTraceProp}
-  Für ein \MEIO{} $P$ gilt $\StQT (P) = \left\{w\in\Sigma ^*\mid \exists
-  P'\in\asimp (P): p'_0 \weakmust[w]_{P'} p'\in Qui(P')\right\}$.
+  Für ein \MEIO{} $P$ gilt $\StQT (P) \subseteq \left\{w\in\Sigma ^*\mid
+  \exists P'\in\asimp (P): p'_0 \weakmust[w]_{P'} p'\in Qui(P')\right\} =
+  \underset{P'\in\asimp (P)}{\bigcup} \StQT (P')$.
 \end{Prop}
 \begin{proof}
+  \TODO{Beweis anpassen (Tafelbild)}
   Da $P'$ einen mit $w$ beschrifteten must"=Trace enthält und $P'$ eine
   as"=Implementierung von $P$ ist, muss $w$ als may"=Trace bereits in $P$
   möglich gewesen sein (Definition~\ref{SimDef}). Der Zustand $p'$ kann in $P'$
@@ -138,6 +118,14 @@ für Ruhe eine neue Semantik definiert.
   Für zwei \MEIO{}s $P_1,P_2$ mit der gleichen Signatur wird $P_1\QRel{} P_2$
   geschrieben, wenn $P_1\ERel{} P_2$ und $\QET _1\subseteq \QET _2$ gilt.
 \end{Def}
+
+\begin{Prop}[Ruhe-Semanik und Implementierungen]
+  Für die Menge der fehler-gefluteten Ruhe-Traces von $P$ gilt $\QET (P) =
+  \underset{P'\in\asimp (P)}{\bigcup} \QET (P')$.
+\end{Prop}
+\begin{proof}
+  \TODO{zu beweisen}
+\end{proof}
 
 \begin{Lem}[Ruhe-Zustände unter Parallelkomposition]\mbox{}
   \label{RuheZustLem}
