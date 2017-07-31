@@ -724,7 +724,7 @@ Präkongruenz \ECRel{}.
   \glqq$\Leftarrow$\grqq: Nach Definition gilt, genau dann wenn
   $\varepsilon\in\ET (P)$, ist ein Fehler-Zustand lokal erreichbar in $P$. $P_1
   \ERel P_2$ impliziert, dass $\varepsilon\in\ET _2$ gilt, wenn
-  $\varepsilon\in\ET _1$. Somit ist ein Fehler-Zustand ins $P_1$ nur dann lokal
+  $\varepsilon\in\ET _1$. Somit ist ein Fehler-Zustand in $P_1$ nur dann lokal
   erreichbar, wenn dieser auch in $P_2$ lokal erreichbar ist. Falls es also
   eine as"=Implementierung von $P_1$ gibt, in der ein Fehler-Zustand lokal
   erreichbar ist, dann gibt es auch mindestens eine as"=Implementierung von
@@ -801,10 +801,11 @@ Implementierungen ein $w\in O^*$ existieren muss mit $p_0\weakmust[w] p\in E$,
 falls in der Implementierung ein Fehler lokal erreichbar ist.
 
 \begin{Def}[Test und Verfeinerung]
+  \label{KommTestDef}
   Ein \emph{Test} $T$ ist eine Implementierung. Ein \MEIO{} $P$
   \emph{as-erfüllt} einen Test $T$, falls $S\|T$ fehler-frei ist für $S\in
   \asimp (P)$. Es wird dann $P \satAs T$ geschrieben.\\
-  Ein \MEIO{} $P$ verfeinert $P'$, falls für alle Tests $T$: $P'\satAs T
+  Ein \MEIO{} $P$ \emph{verfeinert} $P'$, falls für alle Tests $T$: $P'\satAs T
   \Rightarrow P\satAs T$.
 \end{Def}
 
@@ -819,6 +820,7 @@ somit kann das Lemma~\ref{KommVerfeinLem} nicht in dieser Art formuliert
 werden. Jedoch kann hier jetzt mit Test gearbeitet werden.
 
 \begin{Lem}[Testing-Verfeinerung mit Kommunikationsfehlern]
+  \label{KommTestVerfeinLem}
   Gegeben sind zwei \MEIO{}a $P_1$ und $P_2$ mit der gleichen Signatur. Wenn
   für alle Test $T$, die Partner von $P_1$ bzw. $P_2$ sind, $P_2\satAs T
   \Rightarrow P_1\satAs T$ gilt, dann folgt daraus die Gültigkeit von $P_1\ERel
@@ -981,3 +983,55 @@ werden. Jedoch kann hier jetzt mit Test gearbeitet werden.
   \end{itemize}
 \end{proof}
 
+\begin{Satz}
+  \label{KommTestVerfSatz}
+  Falls $P_1\ERel P_2$ gilt folgt draus auch, dass $P_1$ $P_2$ verfeinert.
+\end{Satz}
+\begin{proof}
+  Nach Definition gilt, genau dann wenn $\varepsilon\in \ET (P)$, ist ein
+  Fehler-Zustand lokal erreichbar in $P$. $P_1\ERel P_2$ impliziert, dass
+  $\varepsilon\in\ET _2$ gilt, wenn $\varepsilon\in\ET _1$. Somit ist ein
+  Fehler-Zustand in $P_1$ nur dann lokal erreichbar, wenn dieser auch in $P_2$
+  lokal erreichbar ist. Aufgrund von Proposition~\ref{KommSemProp} gibt es dann
+  auch entsprechende as"=Implementierungen $P'_1$ und $P'_2$ für $P_1$ bzw.
+  $P_2$, die ebenfalls Fehler-Zustände lokal erreichen können, wenn dies in
+  $P_1$ bzw. $P_2$ möglich ist. Für einen entsprechenden Test $T$ gilt dann
+  auch, dass $P'_j\|T$ für $j\in\{1,2\}$ einen lokal erreichbaren Fehler hat,
+  wenn $P'_j$ einen solchen hat. Falls also $P_1$ einen lokal erreichbaren
+  Fehler-Zustand enthält, dann zeigt sich dies Verhalten auch in einer
+  as"=Implementierungen und auch in der Parallelkomposition der
+  as"=Implementierung mit einem Test $T$. Aus einem lokal erreichbaren Fehler
+  in $P_1$ folgt auch ein lokal erreichbarer Fehler-Zustand in $P_2$ und somit
+  auch ein lokal erreichbarer Fehler-Zustand in der Parallelkomposition einer
+  as"=Implementierung von $P_2$ mit einem Test $T$. Aus $P_1\ERel P_2$ folgt
+  also die Implikation $\neg P_1 \satAs T \Rightarrow \neg P_2 \satAs T$ für
+  alle Test $T$. Wenn man die Negationen entfernt, ergibt sich für alle Tests
+  $T$: $P_2\satAs T\Rightarrow P_1\satAs T$. Dies entspricht der Definition von
+  $P_1$ verfeinert $P_2$.
+\end{proof}
+
+Auch die in diesem Abschnitt gezeigten Folgerungen schließen sich zu einem
+Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
+
+\begin{figure}[h!tbp]
+  \begin{center}
+    \begin{tikzpicture}[scale = 3]
+      \matrix (m) [matrix of math nodes,row sep=2cm,column sep=4cm]{%
+        P_1\ERel P_2 & P_1 \text{ verfeinert } P_2 \\
+        \substack{\forall \text{ Test Partner } T:\\P_2\satAs T\Rightarrow P_1\satAs T} &
+    \substack{\forall \text{ Tests } T:\\P_2\satAs T\Rightarrow P_1\satAs T} \\};
+        \draw[-implies, double, double distance=1mm]
+          (m-1-1) -- node [above] {Satz~\ref{KommTestVerfSatz}} (m-1-2);
+        \draw[-implies, double, double distance=1mm]
+          (m-1-2) -- node [right] {Definition~\ref{KommTestDef}} (m-2-2);
+        \draw[-implies, double, double distance=1mm]
+          (m-2-1) -- node [left]
+          {Lemma~\ref{KommTestVerfeinLem}} (m-1-1);
+        \draw[-implies, double, double distance=1mm]
+          (m-2-2) -- node [below]
+          {$\substack{T \text{ Test Partner}\\\Downarrow\\ T \text{ Test}}$} (m-2-1);
+    \end{tikzpicture}
+    \caption{Folgerungskette der Testing-Verfeinerung und Fehler-Relation}
+  \label{KommTestFolgerungskette}
+  \end{center}
+\end{figure}
