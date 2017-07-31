@@ -583,10 +583,10 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
       \begin{itemize}
         \item Fall 2a) ($w\in\MIT _1$): In $U\|P_1$ erhält man $(p_0,p_{01})
           \lweakmay[x_1\dots x_n]_{U\|P_1} (p_n,p')$ mit $p'\nmust[x_{n+1}]_1$
-          und $p_n\must[x_{n+1}]_U$. Deshalb gilt $(p_1,p')\in E_{U\|P_1}$. Da
+          und $p_n\must[x_{n+1}]_U$. Deshalb gilt $(p_n,p')\in E_{U\|P_1}$. Da
           alle Aktionen aus $w$ bis auf $x_{n+1}$ synchronisiert werden und
-          $I\cap I_U=\emptyset$, gilt $x_1,\dots x_n\in O_{U\|P_1}$. Da
-          $(p_1,p')\in E_{U\|P_1}$ gibt es mindestens ein $P'$ in $\asimp
+          $I\cap I_U=\emptyset$, gilt $x_1,\dots , x_n\in O_{U\|P_1}$. Da
+          $(p_n,p')\in E_{U\|P_1}$ gibt es mindestens ein $P'$ in $\asimp
           (U\|P_1)$, die diesen Fehler-Zustand ebenfalls enthält. Daraus ergibt
           sich dann $\varepsilon\in\PrET (P')$.
         \item Fall 2b) ($w\in\PrET _1$): In $U\|P_1$ erhält man $(p_0,p_{01})
@@ -621,12 +621,12 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
           ist ein Präfix von $w$ in $\ET _2$ enthalten.
         \item Fall 2ii) (geerbter Fehler): $U$ hat $x_1\dots x_iu$ mit $u\in
           I_U^*=O^*$ ausgeführt und ebenso hat $P_2$ dieses Wort abgearbeitet.
-          Durch dies hat $P_2$ einen Zustand $E_2$ erreicht, da von $U$ kleine
-          Fehler geerbt werden können. Es gilt dann $\prune (x_1\dots x_iu) =
-          \prune (x_1\dots x_i)\in\PrET _2\subseteq \ET _2$. Da $x_1\dots x_i$
-          ein Präfix von $w$ ist, führt in diesem Fall eine Verlängerung um
-          lokale Aktionen von einem Präfix von $w$ zu einem Fehler-Zustand. Da
-          \ET{} der Menge aller Verlängerungen von gekürzten
+          Durch dies hat $P_2$ einen Zustand  in $E_2$ erreicht, da von $U$
+          keine Fehler geerbt werden können. Es gilt dann $\prune (x_1\dots
+          x_iu) = \prune (x_1\dots x_i)\in\PrET _2\subseteq \ET _2$. Da
+          $x_1\dots x_i$ ein Präfix von $w$ ist, führt in diesem Fall eine
+          Verlängerung um lokale Aktionen von einem Präfix von $w$ zu einem
+          Fehler-Zustand. Da \ET{} der Menge aller Verlängerungen von gekürzten
           Fehler-Traces entspricht, ist $x_1\dots x_i$ in $\ET
           _2$ enthalten und somit ist ein Präfix von $w$ in $\ET _2$ enthalten.
       \end{itemize}
@@ -640,8 +640,8 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
   \begin{itemize}
     \item Fall 1 ($w=\varepsilon$): Da $\varepsilon$ immer in $\EL _2$
       enthalten ist, muss hier nichts gezeigt werden.
-    \item Fall 2 ($w=x_1\dots x_n$ mit $n\geq 1$): Es wird ein Partner $U$ wir
-      folgt konstruiert (siehe dazu auch Abbildung~\ref{UmitE})
+    \item Fall 2 ($w=x_1\dots x_n$ mit $n\geq 1$): Es wird ein Partner $U$ wie
+      folgt konstruiert (siehe dazu auch Abbildung~\ref{UmitE}):
       \begin{itemize}
         \item $U=\{p_0,p_1,\dots ,p_n,p\}$,
         \item $p_{0U}=p_0$,
@@ -688,12 +688,12 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
       in $U\|P_2$ lokal erreichbar sein.
       \begin{itemize}
         \item Fall 2a) (neuer Fehler aufgrund von $x_i\in O_U$ und $p_{02}
-          \lweakmay[x_1\dots x_{i-1}]_2q''\nmust[x_i]_2$): Es gilt $x_1\dots
+          \lweakmay[x_1\dots x_{i-1}]_2p''\nmust[x_i]_2$): Es gilt $x_1\dots
           x_i\in \MIT _2$ und somit $w\in \EL_2$. Anzumerken ist, dass es nur
           auf diesem Weg Outputs von $U$ möglich sind, deshalb gibt es keine
           anderen Outputs von $U$, die zu einem neuen Fehler führen können.
         \item Fall 2b) (neuer Fehler aufgrund von $a\in O=I_U$): Der einzige
-          Zustand, in dem $U$ nicht alle Input erlaubt sind, ist $p_n$, der
+          Zustand, in dem $U$ nicht alle Inputs erlaubt sind, ist $p_n$, der
           bereits ein Fehler-Zustand ist. Da in diesem Fall dieser Zustand in
           $U\|P_2$ erreichbar ist, besitzt das komponierte \MEIO{} einen
           geerbten Fehler und es gilt $w\in L_2\subseteq \EL _2$, wegen dem
@@ -821,7 +821,7 @@ werden. Jedoch kann hier jetzt mit Test gearbeitet werden.
 \begin{Lem}[Testing-Verfeinerung mit Kommunikationsfehlern]
   Gegeben sind zwei \MEIO{}a $P_1$ und $P_2$ mit der gleichen Signatur. Wenn
   für alle Test $T$, die Partner von $P_1$ bzw. $P_2$ sind, $P_2\satAs T
-  \Rightarrow P_2\satAs T$ gilt, dann folgt daraus die Gültigkeit von $P_1\ERel
+  \Rightarrow P_1\satAs T$ gilt, dann folgt daraus die Gültigkeit von $P_1\ERel
   P_2$.
 \end{Lem}
 \begin{proof}
@@ -847,7 +847,7 @@ werden. Jedoch kann hier jetzt mit Test gearbeitet werden.
       erreichen wie $P'_1\|T$. $P'_1$ ist in Parallelkomposition mit $T$ nicht
       fehler-frei somit gilt $P_1\satAs T$ nicht. Es muss also auch $P_2$ den
       Test $T$ nicht as"=erfüllen, wegen der Implikation $P_2\satAs T
-      \Rightarrow P_2\satAs T$. Damit $P_2$ $T$ nicht as"=erfüllt muss es eine
+      \Rightarrow P_1\satAs T$. Damit $P_2$ $T$ nicht as"=erfüllt muss es eine
       as"=Implementierungen $P'_2$ geben, die in Parallelkomposition mit $T$
       nicht fehler-frei ist. Da $T$ ein Partner von $P'_2$ ist, gibt es in der
       Parallelkomposition nur lokale Aktionen. Somit muss in $P'_2\|T$ ein
@@ -879,10 +879,105 @@ werden. Jedoch kann hier jetzt mit Test gearbeitet werden.
         \item Fall 2a) ($w\in\MIT _{P'_1}$): In $P'_1\|T$ erhält man
           $(p'_{01},p_0) \lweakmay[x_1\dots x_n]_{P'_1\|T} (p',p_n)$ mit $p'
           \nmust[x_{n+1}]_{P'_1}$ und $p_n\must[x_{n+1}]_T$. Deshalb gilt
-          \TODO{Fehler-Zustand in anderem Beweis überprüfen}
-        \item Fall 2b) ($w\in\PrET _{P'_1}$):
+          $(p',p_n)\in E_{P'_1\|T}$. Da alle Aktionen aus $w$ bis auf $x_{n+1}$
+          synchronisiert werden und $I\cap I_T=\emptyset$, gilt $x_1,\dots ,
+          x_n\in O_{P'_1\|T}$. Es gilt also $\varepsilon\in \PrET (P'_1\|T)$.
+        \item Fall 2b) ($w\in\PrET _{P'_1}$): In $P'_1\|T$ erhält man
+          $(p_{01},p_0) \weakmay[w]_{P'_1\|T} (p'',p_{n+1})
+          \weakmay[u]_{P'_1\|T} (p',p_{n+1})$ für $u\in O^*$ und $p'\in
+          E_{P'_1}$. Daraus folgt $(p',p_{n+1})\in E_{P'_1\|T}$ und somit
+          $wu\in\StET (P'_1\|T)$. Da alle Aktionen in $w$ synchronisiert werden
+          und $I\cap I_T = \emptyset$, gilt $x_1,\dots , x_n, x_{n+1}\in
+          O_{P'_1\|T}$ und, da $u\in O^*$, folgt $u\in O^*_{P'_1\|T}$. Somit
+          ergibt sich $\varepsilon \in \PrET (P'_1\|T)$.
+      \end{itemize}
+      Da $\varepsilon\in\PrET (P'_1\|T)$ gilt, kann durch $P_2\satAs T
+      \Rightarrow P_1\satAs T$ geschlossen werden, dass auch $P_2\satAs T$
+      nicht gelten kann. Die Relation gilt für $P_2$ nicht, da es eine
+      as"=Implementierung $P'_2$ von $P_2$ gibt, so dass $P'_2\|T$ nicht
+      fehler-frei ist. Da es nur lokale Aktionen in $P'_2\|T$ gibt, muss der
+      Fehler-Zustand lokal erreichbar sein.\\
+      Der Fehler kann geerbt oder neu sein.
+      \begin{itemize}
+        \item Fall 2i) (neuer Fehler): Da jeder Zustand von $T$ alle Inputs
+          $x\in O=I_T$ zulässt, muss ein lokal erreichbarer Fehler-Zustand der
+          Form sein, dass ein Outputs $a\in O_T$ von $T$ möglich ist, der nicht
+          mit einem passenden Input aus $P'_2$ synchronisiert werden werden
+          kann. Durch die Konstruktion von $T$ sind in $p_{n+1}$ keine Outputs
+          möglich. Ein neuer Fehler muss also die Form $(p',p_i)$ haben mit
+          $i\leq n$, $p'\nmust[x_{i+1}]_{P'_2}$ und $x_{i+1}\in O_U=I$. Durch
+          Projektion erhält man dann $p_{02} \lweakmay[x_1\dots x_i]_{P'_2} p'
+          \nmust[x_{i+1}]_{P'_2}$ und damit gilt $x_1\dots x_{i+1}\in\MIT
+          _{P'_2} \subseteq \ET _{P'_2}$. Es ist also ein Präfix von $w$ in
+          $\ET _{P'_2}$ enthalten und mit Proposition~\ref{KommSemProp} auch in
+          $\ET _2$.
+        \item Fall 2ii) (geerbter Fehler): $T$ hat $x_1\dots x_i u$ mit $u\in
+          I^*_T =O^*$ ausgeführt und ebenso hat $P'_2$ dieses Wort
+          abgearbeitet. Durch dies hat $P'_2$ einen Zustand in $E _{P'_2}$
+          erreicht, da von $T$ keine Fehler geerbt werden können. Es gilt dann
+          $\prune (x_1\dots x_iu) = \prune (x_1\dots x_i)\in\PrET _{P'_2}
+          \subseteq \ET _{P'_2}$. Da $x_1\dots x_i$ ein Präfix von $w$ ist,
+          führt in diesem Fall eine Verlängerung um lokale Aktionen von einem
+          Präfix von $w$ zu einem Fehler-Zustand. Da \ET{} der Menge aller
+          Verlängerungen von gekürzten Fehler-Traces entspricht, ist $x_1\dots
+          x_i$ in $\ET _{P'_2}$ enthalten und somit ist mit
+          Proposition~\ref{KommSemProp} ein Präfix von $w$ in $\ET _2$
+          enthalten.
       \end{itemize}
   \end{itemize}
-  \TODO{zu beweisen}
+  Um die andere Inklusion zu beweisen, reich es aufgrund der ersten Inklusion
+  und der Definition von \EL{} aus zu zeigen, dass $L_1\backslash \ET
+  _1\subseteq \EL _1$ gilt.\\
+  Es wird dafür ein beliebiges $w\in L_1\backslash \ET _1$ gewählt und gezeigt,
+  dass es in $\EL _2$ enthalten ist. Das $w$ ist wegen der
+  Propositionen~\ref{LImpProp} und~\ref{KommSemProp} auch für eine
+  as"=Implementierung $P'_1$ von $P_1$ in $L_{P'_1}\backslash \ET _{P'_1}$
+  enthalten.
+  \begin{itemize}
+    \item Fall 1 ($w=\varepsilon$): Da $\varepsilon$ immer in $\EL _2$ muss
+      hier nichts gezeigt werden.
+    \item Fall 2 ($w=x_1\dots x_n$ mit $n\geq 1$): Es wird ein Partner $T$ wie
+      folgt konstruiert ($T$ entspricht dabei $U$ aus Abbildung~\ref{UmitE} bis
+      auf die Benennung der Mengen):
+      \begin{itemize}
+        \item $T=\{p_0,p_1,\dots ,p_n,p\}$,
+        \item $p_{0T}=p_0$,
+        \item $\begin{aligned}[t]
+            \must _T=&\{(p_i,x_{i+1},p_{i+1})\mid 0\leq i< n\}\\
+            &\cup\{(p_i,x,p)\mid x\in I_T\backslash\{x_{i+1}\},0\leq i< n\}\\
+            &\cup\{(p,x,p)\mid x\in I_T\},
+        \end{aligned}$
+        \item $E_T=\{p_n\}$.
+      \end{itemize}
+      Da $p_{01} \weakmay[w]_{P'_1} p'$ gilt, kann man schließen, dass
+      $P'_1\|T$ ein lokal erreichbaren geerbten Fehler hat. Es muss also auch
+      eine as"=Implementierung $P'_2$ von $P_2$ geben, für die $P'_2\|T$ einen
+      lokal erreichbaren Fehler-Zustand hat.
+      \begin{itemize}
+        \item Fall 2a) (neuer Fehler aufgrund von $x_i\in O_T$ und $p_{02}
+          \lweakmay[x_1\dots x_{i-1}]_{P'_2}p''\nmust[x_i]_{P'_2}$): Es gilt
+          $x_1\dots x_i\in\MIT _{P'_2}$ und somit $w\in\EL _{P'_2}$. Anzumerken
+          ist, dass es nur auf diesem Weg Outputs von $T$ möglich sind, deshalb
+          gibt es keine anderen Outputs von $T$, die zu einem neuen Fehler
+          führen können. Es gilt $w\in\EL _2$ wegen
+          Proposition~\ref{KommSemProp}.
+        \item Fall 2b) (neuer Fehler aufgrund von $a\in O=I_T$): Der einzige
+          Zustand, in dem $T$ nicht alle Inputs erlaubt sind, ist $p_n$, der
+          bereits ein Fehler-Zustand ist. Da in dieser Zustand in $P'_2\|T$
+          erreichbar ist, besitzt der komponierte \MEIO{} einen geerbten Fehler
+          und es gilt $w\in L_2\subseteq \EL _2$, wegen dem folgenden Fall 2c).
+        \item Fall 2c) (geerbter Fehler von $T$): Da $p_n$ der einzige
+          Fehler-Zustand in $T$ ist und alle Aktionen synchronisiert sind, ist
+          dies nur möglich, wenn $p_{02} \lweakmay[x_1\dots x_n]_{P'_2}$ gilt.
+          In diesem Fall gilt $w\in L_{P'_2}\subseteq \EL _{P'_2}$. Daraus
+          folgt mit Proposition~\ref{KommSemProp} $w\in\EL _2$.
+        \item Fall 2d) (geerbter Fehler von $P'_2$): Es gilt dann $p_{02}
+          \lweakmay[x_1\dots x_n]_{P'_2} p'\in E_{P'_2}$ für $i\geq 0$ und
+          $u\in O^*$. Somit ist $x_1\dots x_i u\in\StET _{P'_2}$ und damit
+          $\prune (x_1\dots x_iu) =\prune (x_1\dots x_i)\in\PrET
+          _{P'_2}\subseteq \EL _{P'_2}$. Somit gilt mit Hilfe von
+          Proposition~\ref{KommSemProp} $w\in\EL _{P'_2}\subseteq \EL _2$.
+      \end{itemize}
+  \end{itemize}
 \end{proof}
 
