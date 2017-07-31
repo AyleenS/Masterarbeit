@@ -88,7 +88,44 @@ Traces ohne Kürzung zu betrachten.
   \underset{P'\in\asimp (P)}{\bigcup} \StQT (P')$.
 \end{Prop}
 \begin{proof}
+  Analog zu den Propositionen~\ref{LImpProp} und~\ref{KommTracesProp} ist die
+  Inklusion am Besten mit einer as"=Implementierung zu zeigen und der
+  entsprechenden as"=Verfeinerungs"=Relation. Falls $\varepsilon$ zu einem
+  Ruhe-Zustand führt in $P$, muss man zwei as"=Implementierungen betrachten,
+  ansonsten genügt es eine für alle $w$ aus $\StQT (P)$ anzugeben.\\
+  Die as"=Implementierung $P'$ für den Fall $\varepsilon\in\StQT (P)$
+  implementiert alle must"=Transitionen, keine may"=Transitionen und keine
+  Fehler-Zustände von $P$ und hat die Identitätsabbildung als starke
+  as"=Verfeinerungs"=Relation. Für alle $a\in\Sigma$ gilt somit, wenn in $P$
+  für einen Zustand $p$ $p\nmust[a]$ galt auch in $P'$ $p'\nmust[a]$ für den
+  Zustand, der mit $p$ in Relation steht. Der Startzustand von $P'$ ist mit
+  $\varepsilon$ erreichbar und auch ruhig. Es gilt also $\varepsilon\in\StQT
+  (P')$. Der 2.\ Punkt der Definition~\ref{SimDef} ist für die
+  Identitätsabbildung als as"=Verfeinerungs"=Relation erfüllt, da alle
+  must"=Transitionen aus $P$ entsprechend in $P'$ umgesetzt wurden. Alle
+  must"=Transitionen in $P$ müssen gleichzeitig auch als may"=Transitionen dort
+  existieren, somit gilt auch 3.\ von~\ref{SimDef}. Der 1.\ Punkt der
+  Definition ist auch erfüllt, da $E_{P'}=\emptyset$ gilt, wenn keine
+  Fehler-Zustände implementiert werden.\\
+  Für alle $w\neq \varepsilon$ mit $w\in\StQT (P)$ kann $P'$ als die folgende
+  as"=Implementierung gewählt werden:
+  \begin{itemize}
+    \item $P'= \{q\mid p\in P\} \cup \{q'\mid p\in P\}$,
+    \item $p'_0=q_0$,
+    \item $I_{P'}=I_P$ und $O_P'=O_P$,
+    \item $\must _{P'}=\may _{P'} =$\TODO{aus Bild einfügen},
+    \item $E_{P'}=\emptyset$.
+  \end{itemize}
+  Als as"=Verfeinerungs"=Relation zwischen $P$ und $P'$ wird die Relation
+  $\mathcal{R}=\{(q_i,p_i)\mid p_i\in P\} \cup \{(q'_i,p_i)\mid p_i\in P\}$
+  verwendet.
+
+
+
   \TODO{Beweis anpassen (Tafelbild)}
+
+
+
   Da $P'$ einen mit $w$ beschrifteten must"=Trace enthält und $P'$ eine
   as"=Implementierung von $P$ ist, muss $w$ als may"=Trace bereits in $P$
   möglich gewesen sein (Definition~\ref{SimDef}). Der Zustand $p'$ kann in $P'$
