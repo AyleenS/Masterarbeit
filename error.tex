@@ -141,7 +141,7 @@ Traces aller seiner as"=Implementierungen.
         \item $\begin{aligned}[t]
             \must _P'=\may _P'&= \left\{((p,j),\alpha ,(p',j+1))\mid p
             \may[\alpha]_P p', 0\leq j < n\right\}\\
-            &\quad\cup\left\{((p,j),\alpha ,(p',j))\mid p\must[\alpha]_P p',
+            &\cup\left\{((p,j),\alpha ,(p',j))\mid p\must[\alpha]_P p',
             0\leq j \leq n\right\},
         \end{aligned}$
         \item $E_P'=\emptyset$.
@@ -209,7 +209,7 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
     &\overset{\ref{KommTracesProp}}{\subseteq} \cont
     \left(\underset{P'\in\asimp (P)}{\bigcup} \PrET (P')\right)\cup \cont
     \left(\underset{P'\in\asimp (P)}{\bigcup} \MIT (P')\right)\\
-    &\overset{\cont}{\overset{\text{monoton}}{=}} \underset{P'\in\asimp
+    &\hspace{-0.4cm}\overset{\cont}{\overset{\text{monoton}}{=}} \underset{P'\in\asimp
     (P)}{\bigcup} \cont (\PrET (P'))\cup (\MIT (P'))\\
     &\overset{\ref{KommFehlerSemDef}}{=} \underset{P'\in\asimp
     (P)}{\bigcup} \ET (P').\\
@@ -545,7 +545,7 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
         \item $U=\{p_0,p_1,\dots ,p_{n+1}\}$,
         \item $p_{0U}=p_0$,
         \item $\begin{aligned}[t]
-            \must _U=&\{(p_i,x_{i+1},p_{i+1})\mid  0\leq i\leq n\}\\
+            \must _U&=\{(p_i,x_{i+1},p_{i+1})\mid  0\leq i\leq n\}\\
             &\cup\{(p_i,x,p_{n+1})\mid  x\in I_U\backslash\{x_{i+1}\}, 0\leq
             i\leq n\}\\
             &\cup\{(p_{n+1},x,p_{n+1})\mid  x\in I_U\},
@@ -646,7 +646,7 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
         \item $U=\{p_0,p_1,\dots ,p_n,p\}$,
         \item $p_{0U}=p_0$,
         \item $\begin{aligned}[t]
-            \must _U=&\{(p_i,x_{i+1},p_{i+1})\mid 0\leq i< n\}\\
+            \must _U&=\{(p_i,x_{i+1},p_{i+1})\mid 0\leq i< n\}\\
             &\cup\{(p_i,x,p)\mid x\in I_U\backslash\{x_{i+1}\},0\leq i< n\}\\
             &\cup\{(p,x,p)\mid x\in I_U\},
         \end{aligned}$
@@ -868,7 +868,7 @@ werden. Jedoch kann hier jetzt mit Test gearbeitet werden.
         \item $T=\{p_0,p_1,\dots ,p_{n+1}\}$,
         \item $p_{0T}=p_0$,
         \item $\begin{aligned}[t]
-            \must _T=&\{(p_i,x_{i+1},p_{i+1})\mid  0\leq i\leq n\}\\
+            \must _T&=\{(p_i,x_{i+1},p_{i+1})\mid  0\leq i\leq n\}\\
             &\cup\{(p_i,x,p_{n+1})\mid  x\in I_T\backslash\{x_{i+1}\}, 0\leq
             i\leq n\}\\
             &\cup\{(p_{n+1},x,p_{n+1})\mid  x\in I_T\},
@@ -945,7 +945,7 @@ werden. Jedoch kann hier jetzt mit Test gearbeitet werden.
         \item $T=\{p_0,p_1,\dots ,p_n,p\}$,
         \item $p_{0T}=p_0$,
         \item $\begin{aligned}[t]
-            \must _T=&\{(p_i,x_{i+1},p_{i+1})\mid 0\leq i< n\}\\
+            \must _T&=\{(p_i,x_{i+1},p_{i+1})\mid 0\leq i< n\}\\
             &\cup\{(p_i,x,p)\mid x\in I_T\backslash\{x_{i+1}\},0\leq i< n\}\\
             &\cup\{(p,x,p)\mid x\in I_T\},
         \end{aligned}$

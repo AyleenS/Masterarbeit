@@ -113,34 +113,53 @@ Traces ohne Kürzung zu betrachten.
     \item $P'= \{q\mid p\in P\} \cup \{q'\mid p\in P\}$,
     \item $p'_0=q_0$,
     \item $I_{P'}=I_P$ und $O_P'=O_P$,
-    \item $\must _{P'}=\may _{P'} =$\TODO{aus Bild einfügen},
+    \item $\begin{aligned}[t] \must _{P'}=\may _{P'} &=
+        \left\{(q_0,\alpha,q_j)\mid p_0\may[\alpha] p_j\right\}\\
+        &\cup \left\{(q_0,\alpha,q'_j)\mid p_0\may[\alpha] p_j,
+        p_0\nmay[\alpha] p_j\right\}\\
+        &\cup \left\{(q_j,\alpha ,q_k)\mid p_j\must[\alpha] p_k\right\}\\
+        &\cup \left\{(q'_j,\alpha ,q'_k)\mid p_j\must[\alpha] p_k\right\}\\
+        &\cup \left\{(q'_j,\alpha ,q_k)\mid j\neq 0, p_j\may[\alpha] p_k,
+        p_j\nmust[\alpha] p_k\right\}\\
+        &\cup \left\{(q'_j,\alpha ,q'_k)\mid j\neq 0, p_j\may[\alpha] p_k,
+        p_j\nmust[\alpha] p_k\right\},
+    \end{aligned}$
     \item $E_{P'}=\emptyset$.
   \end{itemize}
   Als as"=Verfeinerungs"=Relation zwischen $P$ und $P'$ wird die Relation
-  $\mathcal{R}=\{(q_i,p_i)\mid p_i\in P\} \cup \{(q'_i,p_i)\mid p_i\in P\}$
-  verwendet.
-
-
-
-  \TODO{Beweis anpassen (Tafelbild)}
-
-
-
-  Da $P'$ einen mit $w$ beschrifteten must"=Trace enthält und $P'$ eine
-  as"=Implementierung von $P$ ist, muss $w$ als may"=Trace bereits in $P$
-  möglich gewesen sein (Definition~\ref{SimDef}). Der Zustand $p'$ kann in $P'$
-  auch nur ruhig sein, wenn der entsprechende in Relation stehende Zustand aus
-  $P$ auch bereits ruhig war. Alle $w$ aus $\big\{w\in\Sigma ^*\mid \exists
-  P'\in\asimp (P):$ $p'_0 \weakmust[w]_{P'} p'\in Qui(P')\big\}$ sind somit also
-  auch in $\StQT (P)$ enthalten. Jeder may"=Trace aus $P$ kann implementiert
-  werden durch eine as"=Implementierung. Die Menge $\asimp (P)$ enthält alle
-  as"=Implementierungen von $P$, also auch eine, die den $w$ may"=Trace aus
-  $\StQT (P)$ zu einem mit in $p$ Relation stehenden Zustand implementiert. $p$
-  besitzt keine ausgehenden must"=Transitionen für lokale Aktionen, also gibt es
-  unter den as"=Implementierungen, die $w$ entsprechend als must"=Trace
-  enthalten auch mindestens eine, die keine ausgehende lokale Aktion an dem zu
-  $p$ in Relation stehenden Zustand implementiert. Die Behauptung der hier zu
-  beweisenden Proposition gilt.
+  $\mathcal{R}=\{(q_j,p_j)\mid p_j\in P\} \cup \{(q'_j,p_j)\mid p_j\in P\}$
+  verwendet. Es werden in $P'$ für die ungestrichenen Zustände $q$ nur die
+  must"=Transitionen und für die gestrichenen Zustände $q'$ werden die must-
+  und may"=Transitionen implementiert. Die must"=Transitionen werden nur zu den
+  Zuständen der \glqq gleichen Sorte\grqq{} umgesetzt, wohingegen die
+  may"=Transitionen, zu denen es keine entsprechende must"=Transition in $P$
+  gibt, von den Zuständen $q'$ zu dem entsprechenden ungestrichenen
+  und gestrichenen Zustand implementiert wird. Da die Menge der Fehler-Zustände
+  leer ist, gilt~\ref{SimDef}~1.\ für $\mathcal{R}$. Die must"=Transitionen
+  werden für die ungestrichenen und gestrichenen Zustände umgesetzt, dies
+  erfüllt somit mit $\mathcal{R}$ die Definition~\ref{SimDef}~2. Ebenso wird
+  der dritte Punkt dieser Definition erfüllt, da sowohl die gestrichenen wie
+  auch die ungestrichenen Zustände mit den entsprechenden Zuständen aus $P$ in
+  der Relation $\mathcal{R}$ stehen. $\mathcal{R}$ ist also eine starke
+  alternierende Simulations-Relation auf $P'$ und $P$. Falls ein Zustand $p_j$
+  in $P$ ruhig war, ist es auch der entsprechenden Zustand $q_j$ in $P'$, da
+  für $q_j$ alle ausgehenden must"=Transitionen von $p_j$ implementiert wurden,
+  aber keine einzige may"=Transition, die keine der must"=Transitionen
+  entspricht. Wenn also für $p_j$ keine Outputs und kein $\tau$ möglich waren
+  via must"=Transitionen, dann ist es dies auch für $q_j$ nicht. $q_j$ ist in
+  $P'$ mit den selben Traces erreichbar wie $p_j$ in $P$, da jeder
+  ungestrichene und gestrichene Zustand in $P'$ die selben eingehenden
+  Transitionen hat wie der entsprechende Zustand in $P$. Falls der Trace zu
+  $p_j$ may"=Transitionen ohne entsprechende must"=Transitionen enthält, kann
+  der entsprechende Trace in $P'$ ausgeführt werden, in dem von $q_0$ aus der
+  Trace über die gestrichenen Zustände genommen wird bis zur letzten
+  Transition, die zu den ungestrichenen Zuständen führt in dem auszuführenden
+  Wort. Ab da hat der Trace in $P$ nur must"=Transitionen genommen und kann
+  somit in den ungestrichenen Zuständen in $P'$ nachgefolgt werden. Falls der
+  Trace in $P$ insgesamt nur aus must"=Transitionen bestanden hat, ist direkt
+  von $q_0$ aus der Weg über ungestrichene Zustände zu $q_j$ möglich. Es gilt
+  also $\StQT (P)\backslash \{\varepsilon\} = \StQT (P')\backslash
+  \{\varepsilon\}$.
 \end{proof}
 
 Für \ET{} und \EL{} gelten die Definitionen aus dem letzten Kapitel. Es wir nur
@@ -425,7 +444,7 @@ Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
         \item $U=\{p_0,p_1,\dots ,p_{n+1}\}$,
         \item $p_{0U}=p_0$,
         \item $\begin{aligned}[t]
-            \must _U=&\{(p_i,x_{i+1},p_{i+1})\mid  0\leq i\leq n\}\\
+            \must _U&=\{(p_i,x_{i+1},p_{i+1})\mid  0\leq i\leq n\}\\
             &\cup\{(p_i,x,p_{n+1})\mid  x\in I_U\backslash\{x_{i+1}\}, 0\leq
             i\leq n\}\\
             &\cup\{(p_{n+1},x,p_{n+1})\mid  x\in I_U\}\\
@@ -498,7 +517,7 @@ Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
         \item $U=\{p_0,p_1,\dots ,p_n,p\}$,
         \item $p_{0U}=p_0$,
         \item $\begin{aligned}[t]
-            \must _U=&\{(p_i,x_{i+1},p_{i+1})\mid 0\leq i< n\}\\
+            \must _U&=\{(p_i,x_{i+1},p_{i+1})\mid 0\leq i< n\}\\
             &\cup\{(p_i,x,p)\mid x\in I_U\backslash\{x_{i+1}\},0\leq i < n\}\\
             &\cup\{(p_i,\tau ,p_i)\mid 0\leq i\leq n\}\\
             &\cup\{(p,\alpha ,p)\mid \alpha\in I_U\cup \{\tau\}\},
@@ -562,7 +581,7 @@ Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
     \item $U=\{p_0,p_1,\dots ,p_n, p\}$,
     \item $p_{0U}=p_0$,
     \item $\begin{aligned}[t]
-        \must _U=&\{(p_i,x_{i+1},p_{i+1})\mid  0\leq i< n\}\\
+        \must _U&=\{(p_i,x_{i+1},p_{i+1})\mid  0\leq i< n\}\\
         &\cup\{(p_i,x,p)\mid  x\in I_U\backslash\{x_{i+1}\}, 0\leq i< n\}\\
         &\cup\{(p_i,\tau,p_i)\mid 0\leq i< n\}\\
         &\cup\{(p_n,x,p)\mid x\in I_U\}\\
