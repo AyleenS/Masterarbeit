@@ -82,7 +82,7 @@ Traces ohne Kürzung zu betrachten.
 \end{Def}
 
 \begin{Prop}[Ruhe-Traces und Implementierungen]
-  \label{QuiTraceProp}
+  \label{RuheTraceProp}
   Für ein \MEIO{} $P$ gilt $\StQT (P) \subseteq \left\{w\in\Sigma ^*\mid
   \exists P'\in\asimp (P): p'_0 \weakmust[w]_{P'} p'\in Qui(P')\right\} =
   \underset{P'\in\asimp (P)}{\bigcup} \StQT (P')$.
@@ -166,6 +166,7 @@ Für \ET{} und \EL{} gelten die Definitionen aus dem letzten Kapitel. Es wir nur
 für Ruhe eine neue Semantik definiert.
 
 \begin{Def}[Ruhe-Semantik]
+  \label{RuheSemDef}
   Sei $P$ ein \MEIO{}.
   \begin{itemize}
     \item Die Menge der \emph{fehler-gefluteten Ruhe-Traces} von $P$ ist $\QET
@@ -179,8 +180,43 @@ für Ruhe eine neue Semantik definiert.
   Für die Menge der fehler-gefluteten Ruhe-Traces von $P$ gilt $\QET (P) =
   \underset{P'\in\asimp (P)}{\bigcup} \QET (P')$.
 \end{Prop}
-\begin{proof}
-  \TODO{zu beweisen}
+\begin{proof}\mbox{}\\
+  $\subseteq$:
+  \begin{align*}
+    \QET (P)&\overset{\ref{RuheSemDef}}{=} \StQT (P) \cup \ET (P)\\
+    &\overset{\ref{RuheTraceProp}}{\subseteq} \left(\underset{P'\in\asimp
+    (P)}{\bigcup} \StET (P')\right)\cup \ET (P)\\
+    &\overset{\ref{KommSemProp}}{=} \left(\underset{P'\in\asimp
+    (P)}{\bigcup} \StET (P')\right)\cup \left(\underset{P'\in\asimp
+    (P)}{\bigcup} \ET (P')\right)\\
+    &= \underset{P'\in\asimp (P)}{\bigcup} \StQT (P') \cup \ET (P')\\
+    &\overset{\ref{RuheSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \QET
+    (P').\\
+  \end{align*}
+
+  $\supseteq$:\\
+  Es wird hier für ein $w\in \QET (P')$ einer beliebigen as"=Implementierung
+  $P'$ von $P$ gezeigt, dass das Wort $w$ auch in $\QET (P)$ enthalten ist. Es
+  kann danach unterschieden werden, ob $w$ aus $\StQT (P')$ stammt oder aus
+  $\ET (P')$. Falls $w\in\ET (P')$ gilt, folgt mit
+  Proposition~\ref{KommSemProp} bereits, dass $w\in \ET (P) \subseteq \QET (P)$
+  gilt. Somit wird für den Rest des Beweises davon ausgegangen, dass $w\in\StQT
+  (P')\backslash \ET (P')$ ist. $w$ führt in $P'$ also nur zu einem ruhigen
+  Zustand und hat nichts mit Fehler-Zuständen in $P'$ zu tun. Da es eine
+  as"=Verfeinerungs"=Relation geben muss, die beweist, dass $P'$ $P$
+  as"=verfeinert, muss es ein Präfix von $w$ geben, dass auch in $P$ ausführbar
+  ist. Falls $w$ nicht vollständig ausführbar ist in $P$, muss auf dem Weg, auf
+  dem das Präfix von $w$ ausgeführt wird ein Zustand liegen, der ein
+  Fehler-Zustand ist. Es gilt dann $w\in \ET (P)\subseteq \QET (P)$. Falls
+  jedoch $w$ in $P$ ausführbar ist ohne einen Fehler-Zustand zu erreichen,
+  musst der dadurch erreichte Zustand $p$ mit dem Zustand $p'$, der in $P'$
+  durch $w$ erreicht wird, in der starken as"=Verfeinerungs"=Relation stehen.
+  $p'$ ist ruhig, nach Voraussetzung, dass $w\in\StQT (P')$ enthalten ist. Es
+  gilt also für alle Outputs und $\tau$ $p'\nmust[\omega]$. Da $p'$ und $p$ in
+  Relation stehen und beide keine Fehler-Zustände sind, muss auch
+  $p\nmust[\omega]$ für alle $\omega\in O\cup \{\tau\}$ gelten, da
+  sonst~\ref{SimDef}~2.\ verletzt würde. Es gilt also in diesem Fall $w\in\StQT
+  (P)\subseteq\QET (P)$.
 \end{proof}
 
 \begin{Lem}[Ruhe-Zustände unter Parallelkomposition]\mbox{}
@@ -394,11 +430,15 @@ Partnern im Sinne von fehler- und ruhe-freier Kommunikation betrachtet werden.
   Fehlers in der Komponente aussagt, kann der Beweis aus
   Lemma~\ref{KommVerfeinLem} nicht verwendet werden. Es kann also aus der
   lokalen Erreichbarkeit eines Fehler-Zustands in
-  $P'_1$ und dem relationalen Zusammenhang von $P'_1\QBRel P'_2$ nur
-  geschlossen werden, dass in $P'_2$ auch ein \glqq Fehler\grqq{} lokal
-  erreichbar ist, jedoch kann dieser \glqq Fehler\grqq{} ein Fehler oder Ruhe
-  sein. Analog verhält es sich, wenn in $P'_1$ ein Ruhe-Zustand lokal erreichbar ist.
-  \TODO{Fehlererreichbarkeit Aufgrund von \QBRel{} genauer erläutern}\\
+  $P'_1$ geschlossen werden, dass es eine as"=Implementierung von $P'_1$ gibt,
+  die ebenfalls diesen Fehler-Zustand lokal erreichen kann. Zusätzlich mit dem
+  relationalen Zusammenhang von $P'_1\QBRel P'_2$ daraus dann geschlossen
+  werden, dass es eine Implementierung von $P'_2$ gibt, die irgendeine Art von
+  \glqq Fehler\grqq{} lokal erreichen kann, jedoch kann dieser \glqq
+  Fehler\grqq{} ein Fehler oder Ruhe sein. Da die as"=Implementierung eine
+  \glqq Fehler\grqq{} hat, musst auch $P'_2$ einen \glqq Fehler\grqq{}
+  enthalten, dieser kann dort als Fehler oder als Ruhe auftretten. Analog
+  verhält es sich, wenn in $P'_1$ ein Ruhe-Zustand lokal erreichbar ist.\\
   Es muss also für den ersten Punkt noch folgendes nachgewiesen werden:
   \begin{itemize}
     \item $\ET _1\subseteq\ET _2$,
