@@ -933,7 +933,7 @@ werden. Jedoch kann hier jetzt mit Tests gearbeitet werden.
   \end{itemize}
   Um die andere Inklusion zu beweisen, reich es aufgrund der ersten Inklusion
   und der Definition von \EL{} aus zu zeigen, dass $L_1\backslash \ET
-  _1\subseteq \EL _1$ gilt.\\
+  _1\subseteq \EL _2$ gilt.\\
   Es wird dafür ein beliebiges $w\in L_1\backslash \ET _1$ gewählt und gezeigt,
   dass es in $\EL _2$ enthalten ist. Das $w$ ist wegen der
   Propositionen~\ref{LImpProp} und~\ref{KommSemProp} auch für eine
@@ -971,7 +971,8 @@ werden. Jedoch kann hier jetzt mit Tests gearbeitet werden.
           Zustand, in dem $T$ nicht alle Inputs erlaubt sind, ist $p_n$, der
           bereits ein Fehler-Zustand ist. Da dieser Zustand in $P'_2\|T$
           erreichbar ist, besitzt der komponierte \MEIO{} einen geerbten Fehler
-          und es gilt $w\in L_2\subseteq \EL _2$, wegen dem folgenden Fall 2c).
+          und es gilt $w\in L_{P'_2}\subseteq \EL _2$, wegen dem folgenden Fall
+          2c).
         \item Fall 2c) (geerbter Fehler von $T$): Da $p_n$ der einzige
           Fehler-Zustand in $T$ ist und alle Aktionen synchronisiert sind, ist
           dies nur möglich, wenn $p_{02} \lweakmay[x_1\dots x_n]_{P'_2}$ gilt.
