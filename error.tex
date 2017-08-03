@@ -223,48 +223,54 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
   $P'$ ist $w$ entweder vollständig oder bis auf den letzten Buchstaben in $P'$
   ausführbar. Dies hängt davon ab, ob $w\in \PrET (P')$ oder $w\in \MIT (P')$
   gilt. Für $P$ muss jedoch nicht mal das Präfix von $w$ ohne den letzten
-  Buchstaben von $w$ ausführbar sein. Für den weiteren Teil dieses Beweises
-  soll gelten $w=va$ für $a\in\Sigma$ und $v\in\Sigma ^*$.
+  Buchstaben von $w$ ausführbar sein.
   \begin{itemize}
-    \item Fall 1 ($v\notin L (P)$): Das $v$ kann in $P$ nicht ausgeführt
-      werden. Dies kann nur der Fall sein, wenn ein Präfix von $v$ zu einem
-      Fehler-Zustand in $P$ führt, da sonst~\ref{SimDef}~3.\ verletzt wäre. Es
-      ist also ein Präfix von $w$ in $\StET (P)$ enthalten und somit gilt wegen
-      der \cont{}-Funktion $w\in\ET (P)$.
-    \item Fall 2 ($v\in L (P)$ und $w\in\PrET (P')$): In diesem Fall kann das
-      Wort $v$ in $P$ ausgeführt werden. Falls $a$ in $P$ nicht ausgeführt
-      werden kann, ist $w$ aufgrund der gleichen Argumentation wie im 1.\ Fall
-      in $\ET (P)$ enthalten. Es wird also davon ausgegangen, dass $w\in L(P)$
-      gilt. Die Definition~\ref{SimDef} fordert, dass alle Zustände $p_j$ und
-      $p'_j$ aus $P$ bzw. $P'$ auf dem $w$-Trace in der starken
-      as"=Verfeinerungs"=Relation $\mathcal{R}$ stehen. In $P'$ existiert eine
-      Verlängerung $v\in O^*$ von $w$, so dass $wv\in\StET (P')$. Diese
-      Verlängerung kann in $P$ möglicherweise nicht ausführbar sein, dann ist
-      jedoch analog zu Fall 1 ein Präfix von $wv$ in $\StET (P)$ enthalten. Da
-      $v$ nur aus Outputs besteht gilt $\prune (wv) = \prune (w)$. Es folgt
-      also für ein Präfix von $w$ die Zugehörigkeit zur Menge $\PrET (P)$.
-      Somit ist $w$ in $\ET (P)$ enthalten. Falls jedoch $wv$ in $P$
-      ausführbar, kann immer noch ein echtes Präfix von $wv$ in $P$ zu einem
-      Fehler-Zustand führen, wodurch wieder $w\in \ET (P)$ folgt. Falls jedoch
-      alle Zustände (bis auf den letzten), die im Trace $wv$ auftauchen keine
-      Fehler-Zustände sind, gilt für $p$ und $p'$ mit $p_0 \weakmay[wv]_P p$
-      und $p'_0 \weakmust[wv]_{P'} p'$ $(p',p)\in\mathcal{R}$. Da $wv\in\StET
-      (P')$ gilt, muss $p'\in E_{P'}$ gelten. Daraus folgt mit~\ref{SimDef}~1.,
-      dass $p$ in $E_P$ enthalten sein muss. Es gilt also $wv\in\StET(P)$. Mit
-      $\prune (w)=\prune (wv)$ folgt daraus $w\in\ET (P)$.
-    \item Fall 3 ($v\in L (P)$ und $w\in\MIT (P')$): Da $w$ in $\MIT (P')$
-      enthalten ist, $a\in I$. Falls ein Präfix von $v$ oder $v$ selbst in $P$
-      zu einem Fehler Zustand führt, gilt wie in den beiden vorangegangen
-      Fällen $w\in\ET (P)$. Es wird also davon ausgegangen, das auf dem $v$
-      Trace in $P$ kein Fehler-Zustand erreicht wird auch der durch $v$
-      erreichte Zustand $p$ in $P$ soll nicht in $E_P$ enthalten sein. Es gilt
-      also $p_0 \weakmay[v]_P p$ und $p'_0 \weakmust[v]_P' p'$ mit $(p',p) \in
-      \mathcal{R}$. Wobei $\mathcal{R}$ die as"=Verfeinerungs"=Relation ist,
-      die $P'$ zu einer as"=Implementierung von $P$ macht. Falls $a$ für $p$
+    \item Fall 1 ($w\in\PrET (P')$): In $P'$ existiert eine Verlängerung $v\in
+      O^*$ von $w$, so dass $wv\in\StET (P')$ gilt. Es gibt also Zustände
+      $p'_1, p'_2,\dots ,p'_n$ in $P'$ und ein Wort $w'$ für das $\hat{w'}=wv$
+      und $w'=\alpha _1\alpha _2\dots \alpha _n$ gilt. Aus diesen Bausteinen
+      ist der strikte Fehler-Trace $p'_0 \must[\alpha _1]_{P'} p'_1
+      \must[\alpha _2]_{P'} \dots p'_{n-1} \must[\alpha _n]_{P'} p'_n \in
+      E_{P'}$ aufgebaut. Es kann \oBdA{} davon ausgegangen werden, dass für
+      alle Zustände außer $p'_n$ gilt, dass sie keine Fehler-Zustände sind. Da
+      $P'$ eine as"=Implementierung von $P$ ist, muss für die Startzustände der
+      beiden Transitionssysteme $p'_0\asRel p_0$ gelten. Es wird nun versucht
+      via Induktion zu zeigen, dass man den strikten Fehler-Trace in $P$
+      nachmachen kann. Es soll dafür beweisen werden, falls $p_j\notin E_P$
+      gilt und $p'_j\asRel p_j$ bereits nachgewiesen wurde, dass auch
+      $p'_{j+1}\asRel p_{j+1}$ gelten muss für ein $p_{j+1}\in P$ und $0\leq j
+      < n$. Für $j=0$ gilt bereits $p'_j\asRel p_j$ wie oben beschrieben wurde.
+      Falls ein $p_j$ vor $p_n$ in $E_P$ enthalten ist, dann ist ein Präfix von
+      $wv$ ein strikter Fehler-Trace in $P$ und mit $\prune(w)=\prune(wv)$ ist
+      somit ein Präfix von $w$ in $\ET (P)$ enthalten. Da \ET{} unter
+      Fortsetzung der Traces abgeschlossen ist, gilt auch $w\in \ET (P)$. Es
+      wird im Folgenden also davon ausgegangen, dass für alle $p_j$ mit $j < n$
+      gilt $p_j\notin E_P$. Es gelten somit alle Voraussetzungen für die
+      Induktion und in $P'$ gibt es die Transition $p'_j \may[\alpha _{j}]_{P'}
+      p'_{j+1}$. Mit Definition~\ref{SimDef}~3.\ folgt draus, dass es auch eine
+      Transition $p_j \may[\alpha _{j}]_P p_{j+1}$ in $P$ geben muss, so dass
+      $p'_{j+1}\asRel p_{j+1}$ gilt. Aus dieses Induktion kann nun gefolgert
+      werden, dass $p'_n\asRel p_n$ gelten muss. Da $p'_n\in E_{P'}$ gilt,
+      folgt draus mit~\ref{SimDef}~1., dass bereits $p_n$ in $E_P$ enthalten
+      sein muss. Es gilt also $wv\in\StET (P)$ und mit der Argumentation von
+      oben folgt daraus $w\in\ET (P)$.
+    \item Fall 2 ($w\in\MIT (P')\backslash\PrET (P')$): Da $w$ in $\MIT (P')$
+      enthalten ist, gibt es ein $a\in I$ für das $w=va$ gilt mit $v\in\Sigma
+      ^*$. Analog zu Fall 1 kann man auch den Input-kritischen Trace in $P'$
+      darstellen als $p'_0 \must[\alpha _1]_{P'_1} p'_1 \must[\alpha _2]_{P'_1}
+      \dots p'_{n-1} \nmust[\alpha _n]_{P'_1}$ wobei $w = (\alpha _1\alpha _2
+      \dots \alpha _n)|_{\Sigma}$ und $a=\alpha _n$ gilt. Mit einer analogen
+      Induktion wie im letzten Fall für $0\leq j < n-1$ kann $p'_{n-1}\asRel
+      p_{n-1}$ für einen Zustand $p_{n-1}$ in $P$ gefolgert werden, falls nicht
+      davor ein $p_j$ in der Induktion auftaucht, für das $p_j\in E_P$ gilt.
+      Falls eines der $p_j$ mit $0\leq j \leq n-1$ ein Fehler-Zustand ist, gilt
+      $w\in\ET (P)$ mit der analogen Argumentation wie oben. Es wird im
+      folgenden davon ausgegangen, dass $p_{n-1}$ mit $p'_{n-1}$ in Relation
+      steht und keine Fehler-Zustände aufgetreten sind. Falls $a$ für $p_{n-1}$
       eine ausgehende must"=Transition wäre, würde~\ref{SimDef}~2.\ auch für
-      $p'$ die Implementierung der $a$ Transition fordern und somit würde nicht
-      $wa\in\MIT (P')$ gelten. Es gilt also $p\nmust[a]$ und $va\in\MIT (P)$.
-      Daraus ergibt sich direkt $w\in\ET (P)$.
+      $p'_{n-1}$ die Implementierung der $a$ Transition fordern und somit würde
+      nicht $va\in\MIT (P')$ gelten. Es gilt also $p\nmust[a]$ und $va\in\MIT
+      (P)$. Daraus ergibt sich direkt $w\in\ET (P)$.
   \end{itemize}
 
   2. \glqq$\subseteq$\grqq{}:
