@@ -801,13 +801,14 @@ eine Menge beim Test vorzugeben.\\
 Die Definition von lokaler Erreichbarkeit eines Fehler-Zustandes soll aus dem
 Erweiterungs"=Ansatz übernommen werden.
 
-\begin{Def}[Test und Verfeinerung]
+\begin{Def}[Test und Verfeinerung für Kommunikationsfehler]
   \label{KommTestDef}
   Ein \emph{Test} $T$ ist eine Implementierung. Ein \MEIO{} $P$
-  \emph{as-erfüllt} einen Test $T$, falls $S\|T$ fehler-frei ist für alle $S\in
-  \asimp (P)$. Es wird dann $P \satAs T$ geschrieben.\\
-  Ein \MEIO{} $P$ \emph{verfeinert} $P'$, falls für alle Tests $T$: $P'\satAs T
-  \Rightarrow P\satAs T$.
+  \emph{as-erfüllt} einen Kommunikationsfehler-Test $T$, falls $S\|T$
+  fehler-frei ist für alle $S\in \asimp (P)$. Es wird dann $P \EsatAs T$
+  geschrieben.\\
+  Ein \MEIO{} $P$ \emph{verfeinert} $P'$, falls für alle Tests $T$: $P'\EsatAs
+  T \Rightarrow P\EsatAs T$.
 \end{Def}
 
 Die Definition~\ref{KommTracesDef} der Kommunikationsfehler-Traces eines
@@ -823,8 +824,8 @@ werden. Jedoch kann hier jetzt mit Tests gearbeitet werden.
 \begin{Lem}[Testing-Verfeinerung mit Kommunikationsfehlern]
   \label{KommTestVerfeinLem}
   Gegeben sind zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur. Wenn
-  für alle Tests $T$, die Partner von $P_1$ bzw. $P_2$ sind, $P_2\satAs T
-  \Rightarrow P_1\satAs T$ gilt, dann folgt daraus die Gültigkeit von $P_1\ERel
+  für alle Tests $T$, die Partner von $P_1$ bzw. $P_2$ sind, $P_2\EsatAs T
+  \Rightarrow P_1\EsatAs T$ gilt, dann folgt daraus die Gültigkeit von $P_1\ERel
   P_2$.
 \end{Lem}
 \begin{proof}
@@ -848,9 +849,9 @@ werden. Jedoch kann hier jetzt mit Tests gearbeitet werden.
       Startzustand und einer must"=Schleife für alle Inputs $x\in I_T$ besteht.
       Somit kann $P'_1$ die im Prinzip gleichen Fehler-Zustände lokal
       erreichen wie $P'_1\|T$. $P'_1$ ist in Parallelkomposition mit $T$ nicht
-      fehler-frei somit gilt $P_1\satAs T$ nicht. Es darf also auch $P_2$ den
-      Test $T$ nicht as"=erfüllen, wegen der Implikation $P_2\satAs T
-      \Rightarrow P_1\satAs T$. Damit $P_2$ $T$ nicht as"=erfüllt muss es eine
+      fehler-frei somit gilt $P_1\EsatAs T$ nicht. Es darf also auch $P_2$ den
+      Test $T$ nicht as"=erfüllen, wegen der Implikation $P_2\EsatAs T
+      \Rightarrow P_1\EsatAs T$. Damit $P_2$ $T$ nicht as"=erfüllt muss es eine
       as"=Implementierungen $P'_2$ geben, die in Parallelkomposition mit $T$ zu
       einem nicht fehler-freien System führt. Da $T$ ein Partner von $P'_2$
       ist, gibt es in der Parallelkomposition nur lokale Aktionen. Somit muss
@@ -896,8 +897,8 @@ werden. Jedoch kann hier jetzt mit Tests gearbeitet werden.
           $u\in O^*$, folgt $u\in O^*_{P'_1\|T}$. Somit ergibt sich
           $\varepsilon \in \PrET (P'_1\|T)$.
       \end{itemize}
-      Da $\varepsilon\in\PrET (P'_1\|T)$ gilt, kann durch $P_2\satAs T
-      \Rightarrow P_1\satAs T$ geschlossen werden, dass auch $P_2\satAs T$
+      Da $\varepsilon\in\PrET (P'_1\|T)$ gilt, kann durch $P_2\EsatAs T
+      \Rightarrow P_1\EsatAs T$ geschlossen werden, dass auch $P_2\EsatAs T$
       nicht gelten kann. Die Relation gilt für $P_2$ nicht, da es eine
       as"=Implementierung $P'_2$ von $P_2$ gibt, so dass $P'_2\|T$ nicht
       fehler-frei ist. Da es nur lokale Aktionen in $P'_2\|T$ gibt, muss der
@@ -1007,10 +1008,10 @@ werden. Jedoch kann hier jetzt mit Tests gearbeitet werden.
   in $P_1$ folgt auch ein lokal erreichbarer Fehler-Zustand in $P_2$ und somit
   auch ein lokal erreichbarer Fehler-Zustand in der Parallelkomposition einer
   as"=Implementierung von $P_2$ mit einem Test $T$. Aus $P_1\ERel P_2$ folgt
-  also die Implikation $\neg P_1 \satAs T \Rightarrow \neg P_2 \satAs T$ für
+  also die Implikation $\neg P_1 \EsatAs T \Rightarrow \neg P_2 \EsatAs T$ für
   alle Test $T$. Wenn man die Negationen entfernt, ergibt sich für alle Tests
-  $T$: $P_2\satAs T\Rightarrow P_1\satAs T$. Dies entspricht der Definition von
-  $P_1$ verfeinert $P_2$.
+  $T$: $P_2\EsatAs T\Rightarrow P_1\EsatAs T$. Dies entspricht der Definition
+  von $P_1$ verfeinert $P_2$.
 \end{proof}
 
 Auch die in diesem Abschnitt gezeigten Folgerungen schließen sich zu einem
@@ -1021,8 +1022,9 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
     \begin{tikzpicture}[scale = 3]
       \matrix (m) [matrix of math nodes,row sep=2cm,column sep=4cm]{%
         P_1\ERel P_2 & P_1 \text{ verfeinert } P_2 \\
-        \substack{\forall \text{ Test Partner } T:\\P_2\satAs T\Rightarrow P_1\satAs T} &
-    \substack{\forall \text{ Tests } T:\\P_2\satAs T\Rightarrow P_1\satAs T} \\};
+        \substack{\forall \text{ Test Partner } T:\\P_2\EsatAs T\Rightarrow
+        P_1\EsatAs T} &
+    \substack{\forall \text{ Tests } T:\\P_2\EsatAs T\Rightarrow P_1\EsatAs T} \\};
         \draw[-implies, double, double distance=1mm]
           (m-1-1) -- node [above] {Satz~\ref{KommTestVerfSatz}} (m-1-2);
         \draw[-implies, double, double distance=1mm]
