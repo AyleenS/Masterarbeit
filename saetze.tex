@@ -83,8 +83,58 @@
       schwache Ausführbarkeit des Outputs $a$ in $P_2$, d.h.\ $p_2
       \weakmay[a]_2$. Da dieser Output nur schwach ausführbar sein muss, kann
       es in der Parallelkomposition von $P'_1\|P'_2$ zu einem neuen
-      Kommunikationsfehler kommen, der in $P_1\|P_2$ keiner ist.
-      \\ \TODO{Gegenbeispiel einfügen}
+      Kommunikationsfehler kommen, der in $P_1\|P_2$ keiner ist.\\
+      Ein Gegenbeispiel dafür ist in Abbildung~\ref{bsp1wSim} dargestellt.
+      Hierfür soll $a$ in Schnitt der Inputs $I_1$ von $P_1$ bzw.\ $P'_1$ und
+      der Outputs $O_2$ von $P_2$ bzw.\ $P'_2$ enthalten sein. Die Relation
+      $\mathcal{R}_1$ enthält das Zustands-Tupel $(p'_{01},p_{01})$ und die
+      $\mathcal{R}_2$ die Tupel $(p'_{02},p_{02})$ und $(p'_2,p_2)$. Somit ist
+      $((p'_{01},p'_{02}),(p_{01},p_{02}))$ in $\mathcal{R}_{12}$ enthalten und
+      es gilt $(p_{01},p_{02})\notin E_{12}$. Jedoch ist $(p'_{01},p'_{02})$
+      trotzdem ein Fehler-Zustand in der Parallelkomposition von $P'_1$ und
+      $P'_2$.
+
+    \begin{figure}[htbp]
+      \begin{center}
+        \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+          \node [initial,initial text=$P'_1$:] (p'01) at (0,0) {$p'_{01}$};
+
+          \node [initial,initial text=$P'_2$:] (p'02) at (7.8,0) {$p'_{02}$};
+          \node (p'2) [right of=p'02] {$p'_2$};
+
+          \path[->]
+          (p'02) edge node{$a!$} (p'2)
+          ;
+
+          \node [initial, rectangle, draw, initial text=$P'_1\|P'_2$:] (p'0102)
+          at (4,-1) {$p'_{01}\|p'_{02} \in E_{P'_1\|P'_2}$};
+
+          \node [initial,initial text=$P_1$:] (p01) at (0,-2.5) {$p_{01}$};
+
+          \node [initial,initial text=$P_2$:] (p02) at (7.8,-2.5) {$p_{02}$};
+          \node (p) [right of=p02] {$p$};
+          \node (p2) [right of=p] {$p_2$};
+
+          \path[->]
+          (p02) edge[dashed] node{$\tau$} (p)
+          (p) edge[dashed] node{$a!$} (p2)
+          ;
+
+          \node [initial,initial text=$P_1\|P_2$:] (p0102) at (2.6,-3.5)
+          {$p_{01}\|p_{02}$};
+          \node (p01p) [rectangle, draw, right of=p0102] {$p_{01}\|p \in
+          E_{12}$};
+
+          \path[->]
+          (p0102) edge[dashed] node{$\tau$} (p01p)
+          ;
+        \end{tikzpicture}
+        \caption{Gegenbeispiel für 1.\ von $\mathcal{R}_{12}$ bzgl.\
+        Definition~\ref{SimDef}}
+        \label{bsp1wSim}
+      \end{center}
+    \end{figure}
+
     \item Aus der Definition der schwachen alternierenden
       Simulation in~\ref{wSimDef} folgt, dass für diesen Punkt zu zeigen ist:
       $(p_1,p_2)\must[i]_{12}(q_1,q_2)$ impliziert $(p'_1,p'_2)
