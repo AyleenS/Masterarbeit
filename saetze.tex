@@ -7,11 +7,8 @@
   \underset{P'\in\asimp (P)}{\bigcup} L(P')$.
 \end{Prop}
 \begin{proof}\mbox{}\\
-  Sei $P'$ die as-Implementierung von $P$, die alle may-
-  und must-Transitionen von $P$ implementiert. Die entsprechende starke
-  as"=Verfeinerungs"=Relation $\mathcal{R}$, die zwischen $P'$ und $P$ gilt,
-  ist die Identitäts-Relation zwischen den Zuständen der Transitionssysteme. Die
-  Definition von $P'$ lautet dann:
+  Sei $P'$ die as-Implementierung von $P$, die alle may- und must-Transitionen
+  von $P$ implementiert. Die Definition von $P'$ lautet dann:
   \begin{itemize}
     \item $P'=P$,
     \item $p'_0=p_0$,
@@ -19,17 +16,20 @@
     \item $\must _{P'} =\may _{P'} = \may _P$,
     \item $E_P'=\emptyset$.
   \end{itemize}
-  Für alle $p\in P$, die auch von nicht Fehler-Zuständen aus erreichbar sind,
-  muss $p\mathcal{R} p'$ wegen~\ref{SimDef}~3.\ für entsprechenden $p'$ in
-  $P'$, die durch die analogen Transitionen erreichbar sind. Diese Tupel sind
-  bereits in der Identitäts-Relation, die als as"=Verfeinerungs"=Relation
-  vorausgesetzt wurde, enthalten. Da $P'$ alle Transitionen von $P$
-  implementiert, gilt~\ref{SimDef}~2.\ bereits durch die Tupel, die durch die
-  Identitäts-Relation in $\mathcal{R}$ enthalten sein müssen. Der erste Punkt
-  von~\ref{SimDef} gilt, da $E_P'$ leer ist. Für alle $w\in L(P) = \left\{w\in
-  \Sigma ^* \mid p_0\weakmay[w]_P\right\}$ folgt nun $w\in L(P') = \left\{w\in
-  \Sigma ^* \mid p'_0\weakmust[w]_{P'}\right\}$, da alle Transitionen von $P$
-  in $P'$ implementiert werden.
+  Die entsprechende starke as"=Verfeinerungs"=Relation $\mathcal{R}$, die
+  zwischen $P'$ und $P$ gilt, ist die Identitäts-Relation zwischen den
+  Zuständen der Transitionssysteme. Für~\ref{SimDef}~3.\ betrachten wir $(p,p)
+  \in\mathcal{R}$ und $p\may[\alpha]_{P'} p'$ in $P'$. Diese Transition muss
+  auch in $P$ existieren und da $\mathcal{R}$ die Identitäts-Relation ist auch
+  $(p',p')\in\mathcal{R}$ gelten. Alle must"=Transitionen in $P$ haben zugrunde
+  liegende may"=Transitionen. Es gibt also zu jeder must"=Transition $p
+  \must[\alpha]_P p'$ in $P$ auch die Transition $p\must[\alpha]_{P'} p'$, wenn
+  $(p,p)$ in $\mathcal{R}$ enthalten ist. Es folgt dann auch $(p',p') \in
+  \mathcal{R}$ und dadurch ist auch~\ref{SimDef}~2.\ erfüllt. Der erste Punkt
+  von~\ref{SimDef} gilt, da $E_P'$ leer ist.\\
+  Für alle $w\in L(P) = \left\{w\in \Sigma ^* \mid p_0\weakmay[w]_P\right\}$
+  gilt $w\in L(P') = \left\{w\in \Sigma ^* \mid p'_0 \weakmust[w]_{P'}
+  \right\}$, da alle Transitionen von $P$ in $P'$ implementiert werden.
 \end{proof}
 
 \begin{Prop}[Sprache der Parallelkomposition]
@@ -59,6 +59,8 @@
   $(p'_2,p_2)\in\mathcal{R}_2$ für die schwachen as"=Verfeinerungs"=Relationen
   von $P'_j$ auf $P_j$ für $j\in\{1,2\}$, dann sind für $\mathcal{R}_{12}$ die
   Punkte 2.\ bis 5.\ aus der Definition~\ref{wSimDef} erfüllt.
+  \\ \TODO{falls Zeit: in Lemma mit nur einer Verfeinerung umformulieren
+  (andere folgt wegen Kommutativität)}
 \end{Lem}
 \begin{proof}
   Für alle folgenden Fälle wird $((p'_1,p'_2),(p_1,p_2))\in\mathcal{R}_{12}$
@@ -93,6 +95,7 @@
       es gilt $(p_{01},p_{02})\notin E_{12}$. Jedoch ist $(p'_{01},p'_{02})$
       trotzdem ein Fehler-Zustand in der Parallelkomposition von $P'_1$ und
       $P'_2$.
+      \\ \TODO{auch für Implementierung (siehe Notizen)}
 
     \begin{figure}[htbp]
       \begin{center}
@@ -152,27 +155,26 @@
           $P'_1$ $i$ als schwache Transition in der Form $p'_1\must[i]_{P'_1}
           \weakmust[\varepsilon]_{P'_1}q'_1$ ausführbar sein musst und $q'_1
           \mathcal{R}_1q_1$ gelten muss. $p_2=q_2$ muss gelten, da $i$ nicht in
-          $\Sigma _2$ enthalten ist. Aus der Voraussetzung folgt $(p'_2,p_2) =
-          (q'_2,q_2) \in \mathcal{R}_2$, da $i$ wenn es kein Element der
-          Aktionen von $P_2$ ist auch keine Aktion der schwachen
-          as"=Verfeinerung $P'_2$ sein kann. Mit der Definition von
-          $\mathcal{R}_{12}$ kann dann daraus $((q'_1,q'_2),(q_1,q_2)) \in
-          \mathcal{R}_{12}$ gefolgert werden. In der Parallelkomposition von
-          $P'_1$ und $P'_2$ entsteht die Transitionsfolge
-          $(p'_1,p'_2)\must[i]_{P'_1\|P'_2} \weakmust[\varepsilon]_{P'_1\|P'_2}
-          (q'_1,q'_2)$.
+          $\Sigma _2$ enthalten ist. Da $i$ wenn es kein Element der Aktionen
+          von $P_2$ ist auch keine Aktion der schwachen as"=Verfeinerung $P'_2$
+          sein kann entsteht mit $q'_2=p'_2$ die Transitionsfolge $(p'_1,p'_2)
+          \must[i]_{P'_1\|P'_2} \weakmust[\varepsilon]_{P'_1\|P'_2}
+          (q'_1,q'_2)$. Aus der Voraussetzung folgt $(p'_2,p_2) = (q'_2,q_2)
+          \in \mathcal{R}_2$. Mit der Definition von $\mathcal{R}_{12}$ kann
+          dann daraus $((q'_1,q'_2),(q_1,q_2)) \in \mathcal{R}_{12}$ gefolgert
+          werden.
         \item Fall 2 ($i\in\Synch (P_1\|P_2)$): Damit $i$ auch in $P_1\|P_2$
           ein Input ist, muss $i\in I_1\cap I_2$ gelten. Um die Transition
           $(p_1,p_2)\must[i]_{12}(q_1,q_2)$ in der Komposition möglich zu
           machen, muss in beiden $P_j$'s $p_j\must[i]_j q_j$ gelten. Durch
           $\mathcal{R}_j$ und die Definition~\ref{wSimDef}~2.\ folgt für beide
-          $j$ Werte $p'_j\must[i]_{P'_j} \weakmust[\varepsilon]_{P'_j}q'_j$ mit
+          $j$-Werte $p'_j\must[i]_{P'_j} \weakmust[\varepsilon]_{P'_j}q'_j$ mit
           $(q'_j,q_j)\in\mathcal{R}_j$. Daraus ergibt sich
           $((q'_1,q'_2),(q_1,q_2)) \in \mathcal{R}_{12}$ mit der Definition von
           $\mathcal{R}_{12}$. Durch die Synchronisation der $i$-Inputs in der
-          Komposition von $P'_1$ und $P'_2$ gilt $(p'_1,p'_2)
-          \must[i]_{P'_1\|P'_2} \weakmust[\varepsilon]_{P'_1\|P'_2}
-          (q'_1,q'_2)$.
+          Komposition von $P'_1$ und $P'_2$ und Verschränkung der
+          $\tau$-Transitionen gilt $(p'_1,p'_2) \must[i]_{P'_1\|P'_2}
+          \weakmust[\varepsilon]_{P'_1\|P'_2} (q'_1,q'_2)$.
       \end{itemize}
     \item Analog zu 2.\ kann für diesen Punkt $(p_1,p_2) \must[\omega]_{12}
       (q_1,q_2)$ impliziert $(p'_1,p'_2) \weakmust[\hat{\omega}]_{P'_1\|P'_2}
@@ -181,18 +183,18 @@
       Die $\omega$ Transition in $P_1\|P_2$ ist entweder aus einem
       synchronisierten oder aus einem unsynchronisierten $\omega$ entstanden.
       \begin{itemize}
-        \item Fall 1 ($\omega\notin\Synch (P_1\|P_2)$): \OBdA{} ist $\omega$ in
-          $O_1\cup\{\tau\}$ enthalten. Um in der Komposition $P_1\|P_2$ die
-          must"=Transition zu erhalten muss bereits für die Transition in $P_1$
-          $p_1 \must[\omega]_1 q_1$ gelten. Mit~\ref{wSimDef}~3.\ kann für
-          $\mathcal{R}_1$ gefolgert werden, dass $p'_1
-          \weakmust[\hat{\omega}]_{P'_1} q'_1$ mit $(q'_1,q_1)\in\mathcal{R}_1$
-          gilt. In der Komposition folgt dann $(p'_1,p'_2)
-          \weakmust[\hat{\omega}]_{P'_1\|P'_2} (q'_1,q'_2)$, da $\omega\notin
-          \Sigma _2$ ist und somit $(p'_2,p_2)=(q'_2,q_2)\in\mathcal{R}_2$
-          gilt. Es folgt insgesamt auch noch die Zugehörigkeit des
-          Zustands-Tupels $((q'_1,q'_2),(q_1,q_2))$ zur Relation
-          $\mathcal{R}_{12}$.
+        \item Fall 1 ($\omega\notin\Synch (P_1\|P_2)$): \OBdA{} sei $\omega$
+          eine Output- oder interen Aktion von $P_1$. Um in der Komposition
+          $P_1\|P_2$ die must"=Transition zu erhalten muss bereits für die
+          Transition in $P_1$ $p_1 \must[\omega]_1 q_1$ gelten sowie $p_2 =
+          q_2$ in $P_2$. Mit~\ref{wSimDef}~3.\ kann für $\mathcal{R}_1$
+          gefolgert werden, dass $p'_1 \weakmust[\hat{\omega}]_{P'_1} q'_1$ mit
+          $(q'_1,q_1)\in\mathcal{R}_1$ gilt. In der Komposition folgt dann mit
+          $p'_2=q'_2$ $(p'_1,p'_2) \weakmust[\hat{\omega}]_{P'_1\|P'_2}
+          (q'_1,q'_2)$, da $\omega\notin \Sigma _2$ ist und somit $(p'_2,p_2) =
+          (q'_2,q_2)\in\mathcal{R}_2$ gilt. Es folgt insgesamt auch noch die
+          Zugehörigkeit des Zustands-Tupels $((q'_1,q'_2),(q_1,q_2))$ zur
+          Relation $\mathcal{R}_{12}$.
         \item Fall 2 ($\omega\in\Synch (P_1\|P_2)$): Da in der Menge $\Synch
           (P_1\|P_2)$ nur Inputs und Outputs enthalten sein können, muss in
           diesem Fall $\omega\neq\tau$ gelten. Um einen Output $\omega$ in der
@@ -201,8 +203,8 @@
           q_1$ mit $\omega\in I_1$ und $p_2\must[\omega]_2 q_2$ mit $\omega\in
           O_2$ für die einzeln Transitionssysteme. Mit $\mathcal{R}_1$
           und~\ref{wSimDef}~2.\ folgt $p'_1\must[\omega]_{P'_1}
-          \weakmust[\varepsilon]_{P'_1} q'_1$ und $q'_1\mathcal{R}_1 q_1$. Wenn
-          man $\mathcal{R}_2$ mit~\ref{wSimDef}~3.\ angewendet erhält man $p'_2
+          \weakmust[\varepsilon]_{P'_1} q'_1$ und $q'_1\mathcal{R}_1 q_1$. Für
+          $\mathcal{R}_2$ gilt~\ref{wSimDef}~3.\, man erhält dadurch $p'_2
           \weakmust[\omega]_{P'_2} q'_2$ mit $q'_2\mathcal{R}_2 q_2$. Da
           $\omega$ in $P'_2$ ein Output ist, gilt $\omega =\hat{\omega}$. In
           der Parallelkomposition von $P'_1$ und $P'_2$ werden zuerst die
@@ -299,9 +301,9 @@
 \begin{proof}
   Falls die Relationen $\mathcal{R}_1$ und $\mathcal{R}_2$ aus dem
   Lemma~\ref{schwVerfParallelLem} keine schwachen as"=Verfeinerungs"=Relationen
-  sondern starke as"=Verfeinerungs"=Relation sind, ist auch $\mathcal{R}_{12}$
-  eine starke as"=Verfeinerungs"=Relation zwischen $P'_1\|P'_2$ und $P_1\|P_2$.
-  Es ist also nur zu zeigen, wie aus den einzelnen Beweispunkten des Beweises
+  sondern starke as"=Verfeinerungs"=Relation sind, ist $\mathcal{R}_{12}$ eine
+  as"=Verfeinerungs"=Relation zwischen $P'_1\|P'_2$ und $P_1\|P_2$. Es ist also
+  nur zu zeigen, wie aus den einzelnen Beweispunkten des Beweises
   von~\ref{schwVerfParallelLem} folgt, dass $\mathcal{R}_{12}$ eine starke
   as"=Verfeinerungs"=Relation ist und zusätzlich, dass hier der erste Punkt
   gilt. Es wird hier ebenso für alle Punkte vorausgesetzt, dass
@@ -380,13 +382,9 @@ weggelassen werden. Somit kommt es in $P'$ zu dem Problem, dass keine
 as"=Verfeinerung von $P_2$ (entweder keine Transition oder die $o'$ Transition
 wird als may- oder must-Transition ausgeführt) in Parallelkomposition mit der
 Implementierung $P_1$ $P'$ ergeben würde.\\
-Da jede as"=Verfeinerungs"=Relation auch eine schwache
-as"=Verfeinerungs"=Relation ist, folgt draus auch, dass die entgegengesetzt
-Richtung von Lemma~\ref{schwVerfParallelLem} ebenfalls nicht gelten kann. Auch
-im Spezialfall von as"=Implementierungen bzw. w-as"=Implementierungen kann das
-Gegenbeispiel angewendet werden, da $P'$ auch eine Implementierung von
-$P_1\|P_2$ ist und es auch keine passende as"=Implementierung bzw.
-w-as"=Implementierung von $P_2$ geben kann, wenn es schon keine passende
+Auch im Spezialfall von as"=Implementierungen kann das Gegenbeispiel angewendet
+werden, da $P'$ auch eine Implementierung von $P_1\|P_2$ ist und es auch keine
+passende as"=Implementierung von $P_2$ geben kann, wenn es schon keine passende
 Verfeinerung gibt.
 
 \begin{figure}[htbp]
