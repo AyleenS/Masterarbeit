@@ -711,36 +711,28 @@ in~\ref{RuheTestDef}.
   Fals $P_1\QRel P_2$ gilt folgt draus auch, dass $P_1$ $P_2$ verfeinert.
 \end{Satz}
 \begin{proof}
-  \TODO{zu beweisen}
+  Nach Definition gilt $w\in\QET (P)$ mit $w\in
+  O(P)^*$ genau dann, wenn in $P$ ein Ruhe-Zustand oder ein Fehler-Zustand
+  lokal erreichbar ist. $P_1\QRel P_2$ impliziert, dass $w\in\QET _2$ gilt,
+  wenn $w\in\QET _1$ gilt. Somit ist ein Ruhe-Zustand oder ein Fehler-Zustand
+  nur dann in $P_1$ lokal erreichbar, wenn auch ein solcher in $P_2$ lokal
+  erreichbar ist. Daraus folgt, dass es as"=Implementierungen $P'_1$ und $P'_2$
+  von $P_1$ bzw.\ $P_2$ gibt, die analoge Fehler lokal erreichen. Es gilt dann
+  auch, dass $P'_j\|T$ einen lokal erreichbaren Fehler oder lokal erreichbare
+  Ruhe hat, wenn $P'_j$ dies hat, für $j\in\{1,2\}$ und einen Test $T$. Falls
+  $P_1$ einen \glqq fehlerhaften Zustand\grqq{} lokal erreicht, dann zeigt sich
+  auch in einer as"=Implenetierung von $P_1$ dieser durch einen Fehler-Zustand
+  oder einen Ruhe-Zustand. Auch in der Parallelkomposition der
+  as"=Implenetierung mit einem Test $T$ tritt der \glqq fehlerhafte
+  Zustand\grqq{} auf. Mit der Relation \ERel{} gibt es auch in $P_2$ einen
+  lokal erreichbaren \glqq fehlerhaften Zustand\grqq{}, wenn es in $P_1$ einen
+  solchen gibt. Es tritt dann auch in einer as"=Implementierung Ruhe oder ein
+  Fehler auf, dies zeigt sich dann auch in der Parallelkomposition mit einem
+  Test $T$. Es gilt also $\neg P_1 \EsatAs T \Rightarrow \neg P_2 \EsatAs T$
+  für alle Tests $T$ unter der Voraussetzung. Daraus ergibt sich für alle Tests
+  $T$ die Implikation $P_2 \EsatAs T \Rightarrow P_1 \EsatAs T$ und somit
+  verfeinert $P_1$ $P_2$.
 \end{proof}
-
-% \begin{Satz}[Vollständige Abstraktheit für Ruhe-Semantik]
-%   \label{RuheVollAbstraktSatz}
-%   Seien $P_1$ und $P_2$ zwei \MEIO{}s mit der selben Signatur. Dann gilt
-%   $P_1\QCRel P_2\Leftrightarrow P_1\QRel P_2$.
-% \end{Satz}
-% \begin{proof}\mbox{}\\
-%   \glqq$\Leftarrow$\grqq{}: Nach Definition gilt $w\in\QET (P)$ mit $w\in
-%   O(P)^*$ genau dann, wenn in $P$ ein Ruhe-Zustand oder ein Fehler-Zustand
-%   lokal erreichbar ist. $P_1\QRel P_2$ impliziert,
-%   dass $w\in\QET _2$ gilt, wenn $w\in\QET _1$ gilt. Somit ist ein Ruhe-Zustand
-%   oder ein Fehler-Zustand nur dann in $P_1$ lokal erreichbar, wenn auch ein
-%   solcher in $P_2$ lokal erreichbar ist. Daraus folgt, dass es
-%   as"=Implementierungen von $P_1$ und $P_2$ gibt, die analoge Fehler lokal
-%   erreichen. Somit gilt $P_1\QBRel P_2$. Es ist also \QRel{} in \QBRel{}
-%   enthalten. Im Korollar~\ref{RuhePraekonKor} wurde festgestellt, dass \QRel{}
-%   eine Präkongruenz ist. Da jedoch \QCRel{} nach Definition~\ref{QBRelDef} die
-%   gröbste Präkongruenz bezüglich $\cdot\|\cdot$ ist, die in \QBRel{} enthalten
-%   ist, muss \QRel{} in \QCRel{} enthalten sein. Es folgt also aus $P_1\QRel
-%   P_2$, dass auch $P_1\QCRel P_2$ gilt.
-
-%   \glqq$\Rightarrow$\grqq{}: Durch die Definition von \QCRel{} als Präkongruenz
-%   in~\ref{QBRelDef} folgt aus $P_1\QCRel P_2$, dass $U\|P_1\QCRel U\|P_2$ für
-%   alle \MEIO{}s $U$ gilt, die mit $P_1$ komponierbar sind. Da \QCRel{} nach
-%   Definition in \QBRel{} enthalten ist, folgt auch die Gültigkeit von
-%   $U\|P_1\QBRel U\|P_2$ für alle diese \MEIO{}s $U$. Mit
-%   Lemma~\ref{RuheVerfeinLem} folgt dann $P_1\QRel P_2$.
-% \end{proof}
 
 Es wurde somit, wie im letzten Kapitel, eine Kette an Folgerungen gezeigt, die
 sich zu einem Ring schließen. Dies ist in Abbildung~\ref{FolgerungsketteQui}
@@ -769,6 +761,3 @@ dargestellt.
   \label{FolgerungsketteQui}
   \end{center}
 \end{figure}
-
-\TODO{Verfeinerung auf Basis des Testing-Ansatzes}
-
