@@ -205,8 +205,8 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
 \begin{proof}\mbox{}\\
   1. \glqq$\subseteq$\grqq{}:
   \begin{align*}
-    \ET (P)&\overset{\ref{KommFehlerSemDef}}{=} \cont (\PrET (P))\cup (\MIT
-    (P))\\
+    \ET (P)&\overset{\ref{KommFehlerSemDef}}{=} \cont (\PrET (P))\cup \cont
+    (\MIT (P))\\
     &\overset{\ref{KommTracesProp}}{\subseteq} \cont
     \left(\underset{P'\in\asimp (P)}{\bigcup} \PrET (P')\right)\cup \cont
     \left(\underset{P'\in\asimp (P)}{\bigcup} \MIT (P')\right)\\
@@ -309,12 +309,12 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
     \item Falls für zwei \MEIO{}s $P_1\EBRel P_2$ gilt und in $P_1$ ein Fehler
       lokal erreichbar ist, dann ist auch in $P_2$ ein Fehler lokal erreichbar.
   \end{enumerate}
-  \TODO{in spätere Argumentaion als Verkürzung aufnehmen}
+  \TODO{in spätere Argumentation als Verkürzung aufnehmen}
 \end{Kor}
 \begin{proof}\mbox{}\\
   $(i) \Rightarrow$:\\
   Da ein Fehler in $P$ lokal erreichbar ist, gilt $\varepsilon \in\PrET _P
-  \subseteq \ET _P$. Es muss aufgrund von Proposition~\ref{KommSemProp}~1.
+  \subseteq \ET _P$. Es muss aufgrund von Proposition~\ref{KommSemProp}~1.\
   mindestens ein $P'\in\asimp (P)$ geben, für dass $\varepsilon \in \ET _{P'}$
   gilt. Dies kann auch nur der Fall sein, wenn durch lokale Aktionen in $P'$
   ein Fehler-Zustand erreicht werden kann. Es ist also auch ein der
@@ -1098,3 +1098,65 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
 
 \TODO{evtl. $\EBRel$-Normalisierung, nur ein $e$ mit may-Schleife für alle
 $i$'s und $o$'s}
+
+\section{Zusammenhänge der Relationen}
+
+\begin{Satz}[Zusammenhand der Verfeinerungs-Relationen mit der Fehler-Relation]
+  Es gilt $\asRel \Rightarrow \wasRel \Rightarrow \ERel$. Die Implikationen in
+  die andere Richtung gelten jedoch nicht.
+\end{Satz}
+\begin{proof}\mbox{}\\
+  $\asRel \Rightarrow \wasRel$:\\
+  Um diese Implikation zu zeigen, muss man nachweisen, dass jede starke
+  as"=Verfeinerungs"=Relation auch die Definition~\ref{wSimDef} der schwachen
+  as"=Verfeinerungs"=Relation erfüllt. In beiden Simulations-Definitionen
+  (\ref{SimDef} und~\ref{wSimDef}) müssen die Punkte für alle $(p,q) \in
+  \mathcal{R}$ mit $q\notin E_Q$ gelten. Sei $\mathcal{R}$ nur eine
+  as"=Verfeinerungs"=Relation. Es gilt also mit~\ref{SimDef}~1.\, dass $p$ kein
+  Fehler-Zustand von $P$ ist. Somit ist auch bereits 1.\ von~\ref{wSimDef}
+  erfüllt. Für alle $\alpha\in\Sigma _{\tau}$ impliziert $q\must[\alpha]_Q q'$
+  $p\must[\alpha]_P p'$ für ein $p'$ mit $p'\mathcal{R} q'$. Da $\Sigma
+  _{\tau} = I \cup O \cup \{\tau\}$ gilt, sind dadurch 2.\ und 3.\ der
+  Definition~\ref{wSimDef} erfüllt. Die schwache $\varepsilon$-Transition aus
+  2.\ führt keine echten Transitionen aus, sondern bleibt beim Zustand $p'$ und
+  Die schwache $\hat{\omega}$-Transition aus 3.\ entspricht in $\mathcal{R}$
+  nur einer einzigen Transition für $\omega$. Die Punkte 4.\ und 5.\ aus
+  Definition~\ref{wSimDef} werden durch~\ref{SimDef}~3.\ erfüllt. Es gilt für
+  $\mathcal{R}$ die Implikation $p\may[\alpha]_P p'$ impliziert $q
+  \may[\alpha]_Q q'$ für ein $q'$ mit $p'\mathcal{R}q'$. Die in~\ref{wSimDef}
+  geforderten schwachen may"=Transitionen werden hier jeweils stark umgesetzt
+  durch eine einzige Transition. $\mathcal{R}$ ist also auch eine schwache
+  as"=Verfeinerungs"=Relation.
+
+  $\wasRel \Rightarrow \ERel$:\\
+  Um diese Implikation zu beweisen wird gezeigt, dass für eine beliebige
+  schwache as"=Verfeinerungs"=Relation $\mathcal{R}$ zwischen \MEIO{}s $P$ und
+  $Q$ auch die Eigenschaften für $\ERel$ erfüllt sind. Es ist also
+  nachzuweisen, dass $\ET _P \subseteq \ET _Q$ und $\EL _P \subseteq \EL _Q$
+  gilt, wenn $P\mathcal{R}Q$ vorausgesetzt ist.\\
+  Für den ersten Punkt wird ein beliebiges $w$ aus $\ET _P$ betrachtet und
+  gezeigt, dass dieses auch in $\ET _Q$ enthalten ist. Es kann davon
+  ausgegangen werden, dass $w$ präfix-minimal ist, da beide \ET{}-Mengen unter
+  \cont{} abgeschlossen sind. $w$ kann ein Element aus $\PrET (P)$ sein oder
+  ein Element aus $\MIT (P)\backslash \PrET (P)$.
+  \begin{itemize}
+    \item Fall 1 ($w\in\PrET (P)$): Es gibt ein $v\in O_P$, sodass $wv$ in $P$
+      einen Fehler-Zustand erreicht. Es gibt also eine Transitionsfolge in $P$,
+      deren Beschriftung $wv$ entspricht bis auch interne Aktionen. Da $P$ ein
+      \MEIO{} ist, gilt $\must _P\subseteq\may _P$. Wegen~\ref{wSimDef}~4.\
+      und~5.\ müssen die Transitionen aus $P$ in $Q$ ebenfalls schwach
+      ausführbar sein, solange kein $q\in E_Q$ erreicht wird. \TODO{fertig
+      beweisen}
+    \item Fall 2 ($w\in\MIT (P)\backslash \PrET (P)$): \TODO{zu beweisen}
+  \end{itemize}
+  Für den zweiten Punkt kann man sich auf die Inklusion $\EL _P\backslash\ET _P
+  \subseteq \EL _Q$ einschränken, da der erste Punkt bereits vorausgesetzt
+  werden kann.
+  \TODO{zu beweisen}
+
+  $\wasRel \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow \asRel$:\\
+  \TODO{zu beweisen}
+
+  $\ERel \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow \wasRel$:\\
+  \TODO{zu beweisen}
+\end{proof}
