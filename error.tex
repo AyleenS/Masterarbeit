@@ -130,8 +130,8 @@ Traces seiner as"=Implementierungen dar.
       durchnummeriert. Für ein $w$, für das $wa\in\MIT (P)$, gilt: $\exists
       w'\in\Sigma _{\tau} ^*, \exists \alpha _1,\alpha _2,\dots ,\alpha _n,
       \exists p_1,p_2,\dots ,p_n: \hat{w'} = w\land w'=\alpha _1\alpha _2\dots
-      \alpha _n\land p_0 \may[\alpha _1] p_1 \may[\alpha _2] \dots
-      p_{n-1}\may[\alpha _n] p_n \nmust[a]$.
+      \alpha _n\land p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots
+      p_{n-1}\may[\alpha _n]_P p_n \nmust[a]_P$.
       Die starke as"=Verfeinerungs"=Relation $\mathcal{R}$ enthält in diesem
       Fall Tupel $((p,j),p)$ für alle $0\leq j \leq n$. Die entsprechende
       Definition für das $P'$, das $wa$ als Input-kritischen-Trace enthalten
@@ -148,21 +148,21 @@ Traces seiner as"=Implementierungen dar.
         \end{aligned}$
         \item $E_P'=\emptyset$.
       \end{itemize}
-      Der Ablauf von $w$ aus $P$ wird in $P'$ durch $(p_0,0) \must[\alpha _1]
-      (p_1,1) \must[\alpha _1]\dots (p_{n-1},n-1) \must[\alpha _n] (p_n,n)$
-      simuliert. $w$ ist also in $P'$ ausführbar. $a$ ist für $(p_n,n)$ nicht
-      ausführbar, da in $P$ für $p_n$ $p_n\nmust[a]$ gilt und für die Zustände
-      mit der Nummer $n$ in $P'$ nur die must"=Transitionen implementiert
-      werden. Die Transitionen $p\must{\alpha}_P p'$ aus $P$ werden in $P'$
-      durch die Transitionen $(p,j)\must[alpha]_{P'} (p',j)$ gematched. Für die
-      may-Transitionen $(p,j)\may[\alpha]_{P'} (p',j+1)$ (bzw. $(p',j)$) in
-      $P'$ sind die entsprechenden matchenden Transitionen in $P$ die
-      Transition $p \may[\alpha]_P p'$. Da die Menge $E_P'$ leer ist, gelten
-      alle Bedingungen, damit $\mathcal{R}$ eine as"=Verfeinerungs"=Relation
-      zwischen $P'$ und $P$ ist. Mit der Begründung von oben folgt auch $wa\in
-      \MIT (P')$. Da für alle $wa$ aus $\MIT (P)$ eine entsprechende
-      Implementierung mit as"=Verfeinerungs"=Relation $\mathcal{R}$ angegeben
-      werden kann, gilt die Inklusion.
+      Der Ablauf von $w$ aus $P$ wird in $P'$ durch $(p_0,0) \must[\alpha
+      _1]_{P'} (p_1,1) \must[\alpha _2]_{P'} \dots (p_{n-1},n-1) \must[\alpha
+      _n]_{P'} (p_n,n)$ simuliert. $w$ ist also in $P'$ ausführbar. $a$ ist für
+      $(p_n,n)$ nicht ausführbar, da in $P$ für $p_n$ $p_n\nmust[a]_P$ gilt und
+      für die Zustände mit der Nummer $n$ in $P'$ nur die must"=Transitionen
+      implementiert werden. Die Transitionen $p\must[\alpha]_P p'$ aus $P$
+      werden in $P'$ durch die Transitionen $(p,j)\must[\alpha]_{P'} (p',j)$
+      gematched. Für die may-Transitionen $(p,j)\may[\alpha]_{P'} (p',j+1)$
+      (bzw. $(p',j)$) in $P'$ sind die entsprechenden matchenden Transitionen
+      in $P$ die Transition $p \may[\alpha]_P p'$. Da die Menge $E_P'$ leer
+      ist, gelten alle Bedingungen, damit $\mathcal{R}$ eine
+      as"=Verfeinerungs"=Relation zwischen $P'$ und $P$ ist. Mit der Begründung
+      von oben folgt auch $wa\in \MIT (P')$. Da für alle $wa$ aus $\MIT (P)$
+      eine entsprechende Implementierung mit as"=Verfeinerungs"=Relation
+      $\mathcal{R}$ angegeben, werden kann, gilt die Inklusion.
   \end{enumerate}
 \end{proof}
 
@@ -1133,30 +1133,75 @@ $i$'s und $o$'s}
   schwache as"=Verfeinerungs"=Relation $\mathcal{R}$ zwischen \MEIO{}s $P$ und
   $Q$ auch die Eigenschaften für $\ERel$ erfüllt sind. Es ist also
   nachzuweisen, dass $\ET _P \subseteq \ET _Q$ und $\EL _P \subseteq \EL _Q$
-  gilt, wenn $P\mathcal{R}Q$ vorausgesetzt ist.\\
+  gilt, wenn $\mathcal{R}$ als alternierenden Simulation zwischen $P$ und $Q$
+  vorausgesetzt ist.\\
   Für den ersten Punkt wird ein beliebiges $w$ aus $\ET _P$ betrachtet und
   gezeigt, dass dieses auch in $\ET _Q$ enthalten ist. Es kann davon
   ausgegangen werden, dass $w$ präfix-minimal ist, da beide \ET{}-Mengen unter
   \cont{} abgeschlossen sind. $w$ kann ein Element aus $\PrET (P)$ sein oder
   ein Element aus $\MIT (P)\backslash \PrET (P)$.
   \begin{itemize}
-    \item Fall 1 ($w\in\PrET (P)$): Es gibt ein $v\in O_P$, sodass $wv$ in $P$
-      einen Fehler-Zustand erreicht. Es gibt also eine Transitionsfolge in $P$,
-      deren Beschriftung $wv$ entspricht bis auch interne Aktionen. Da $P$ ein
-      \MEIO{} ist, gilt $\must _P\subseteq\may _P$. Wegen~\ref{wSimDef}~4.\
-      und~5.\ müssen die Transitionen aus $P$ in $Q$ ebenfalls schwach
-      ausführbar sein, solange kein $q\in E_Q$ erreicht wird. \TODO{fertig
-      beweisen}
-    \item Fall 2 ($w\in\MIT (P)\backslash \PrET (P)$): \TODO{zu beweisen}
+    \item Fall 1 ($w\in\PrET (P)$): Es existiert ein $v\in O_P$, sodass das
+      Wort $wv$ in $P$ einen Fehler-Zustand erreicht. Für die entsprechende
+      Transitionsfolge existieren Zustände $p_1, p_2,\dots , p_n$ in $P$ und
+      Aktionen $\alpha _1, \alpha _2,\dots , \alpha _n$, die zusammengesetzt
+      ein Wort $w'=\alpha _1 \alpha _2 \dots \alpha _n$ bilden, dass ohne die
+      internen Aktionen $wv$ entspricht. Die entsprechende Transitionsfolge ist
+      dann $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
+      \may[\alpha _n]_P p_n \in E_P$. Da $w$ präfix-minimal ist, kann $v$ so
+      gewählt werden, dass auf den Trace von $w'$ alle Zustände außer $p_n$
+      nicht in $E_P$ enthalten sind. Da $\mathcal{R}$ eine
+      as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ ist, muss
+      $p_0\mathcal{R}q_0$ gelten. Abhängig davon, ob $\alpha _j$ ein Input oder
+      eine lokale Aktion ist, kann mit \ref{wSimDef}~4.\ bzw.~5.\ argumentiert
+      werden, dass das jeweilige $\alpha _j$ auch in $Q$ schwach ausführbar
+      ist, solange der entsprechende Zustand $q_{j-1}$ kein Fehler-Zustand ist
+      für $j\in \{1,2,\dots n\}$. Falls ein $q_j$ für $j < n$ in $E_Q$
+      enthalten ist, wurde bis dort ein Präfix von $wv$ ausgeführt. Es gilt
+      also mit $w=\prune (wv)$ und dem Abschluss unter \cont{} von \ET{}
+      $w\in\ET _Q$. Ansonsten gibt es in $Q$ einen Trace $q_0 \weakmay[\alpha
+      _1]_Q q_1 \weakmay[\alpha _2]_Q \dots q_{n-1} \weakmay[\alpha _n]_Q q_n$,
+      wobei $p_j \mathcal{R} q_j$ für alle $0 \leq j \leq n$ gilt.
+      Mit~\ref{wSimDef}~1.\ folgt, dass $q_n\in E_Q$ gelten muss und somit auch
+      $w\in\ET _Q$ mit der Begründung von oben.
+    \item Fall 2 ($w\in\MIT (P)\backslash \PrET (P)$): $w$ ist in $P$ ein
+      Input-kritischer Trace, der jedoch nicht zu einem Fehler-Zustand führen
+      kann. Man kann $w$ also aufteilen in $va$ mit $v\in \Sigma ^*$ und $a\in
+      I$. Der Trace in $P$ kann wie folgt dargestellt werden: $\exists v'\in
+      \Sigma _{\tau}^*, \exists p_1, p_2, \dots , p_n, \exists \alpha _1,
+      \alpha _2, \dots , \alpha _n: \hat{v'}=v \land v'=\alpha _1 \alpha _2
+      \dots \alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots
+      p_{n-1} \may[\alpha _n]_P p_n \nmust[a]_P$. Basierend
+      auf~\ref{wSimDef}~4.\ bzw.~5.\ kann daraus Schritt für Schritt gefolgert
+      werden, dass die $\alpha _j$ auch schwach ausführbar sind in $Q$, falls
+      kein $p_{j-1}$ angetroffen wird, dass in $E_Q$ enthalten inst für $j\in
+      \{1,2,\dots n\}$. Falls eines der $p_j$ mit $0 \leq j \leq n$ ein
+      Fehler-Zustand ist, dann ist $w$ in $\ET _Q$ enthalten, da ein Präfix von
+      $w$ ein strikter Fehler-Trace in $Q$ ist. Falls alle $q_j$ nicht in $E_Q$
+      enthalten sind, gilt $q_0 \weakmay[\alpha _1]_Q q_1 \weakmay[\alpha _2]_Q
+      \dots q_{n-1} \weakmay[\alpha _n]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$
+      für alle $j\in \{0,1, \dots , n\}$. Da $a$ für $p_n$ in $P$ keine
+      ausgehende must"=Transition sein kann, gilt mit~\ref{wSimDef}~2.\ auch
+      $q_n \nmust[a]$. Es gilt dann also $w\in\MIT _Q \subseteq \ET _Q$.
   \end{itemize}
   Für den zweiten Punkt kann man sich auf die Inklusion $\EL _P\backslash\ET _P
   \subseteq \EL _Q$ einschränken, da der erste Punkt bereits vorausgesetzt
-  werden kann.
+  werden kann. $\EL _P\backslash\ET _P$ entspricht $L _P\backslash\ET _P$.
+  Somit ist ein $w\in L_P\backslash \ET _P$ in $P$ ausführbar. Es gibt also
+  einen Trace $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
+  \may[\alpha _n]_P p_n$ in $P$, wobei $w$ $\alpha _1\alpha _2 \dots \alpha _n$
+  entspricht bis auf die internen Aktionen. Erneut können
+  hier~\ref{wSimDef}~4.\ und~5.\ dazu verwendet werden einen analogen Trace in
+  $Q$ zu finden. Falls ein $q_j$ für $0 \leq j \leq n$ in $E_Q$ enthalten ist,
+  gilt $w\in\ET _Q \subseteq \EL _Q$. Es wird also für die folgende Begründung
+  davon ausgegangen, dass kein $q_j$ ein Fehler-Zustand ist, damit gilt $q_0
+  \weakmay[\alpha _1]_Q q_1 \weakmay[\alpha _2]_Q \dots q_{n-1} \weakmay[\alpha
+  _n]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$ für $0 \leq j \leq n$ und somit
+  $w\in L _Q\subseteq \EL _Q$.
+
+  $\asRel \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow \wasRel$:\\
   \TODO{zu beweisen}
 
-  $\wasRel \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow \asRel$:\\
-  \TODO{zu beweisen}
-
-  $\ERel \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow \wasRel$:\\
+  $\wasRel \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow \ERel$:\\
   \TODO{zu beweisen}
 \end{proof}
