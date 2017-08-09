@@ -86,26 +86,28 @@ strikten Traces ohne Kürzung zu betrachten.
 \begin{proof}
   Analog zu den Propositionen~\ref{LImpProp} und~\ref{KommTracesProp} ist die
   Inklusion am Besten mit einer as"=Implementierung zu zeigen und der
-  entsprechenden as"=Verfeinerungs"=Relation $\mathcal{R}$. Falls $\varepsilon$
-  zu einem Ruhe-Zustand führt in $P$, muss man zwei as"=Implementierungen
-  betrachten, ansonsten genügt es eine für alle $w$ aus $\StQT (P)$
-  anzugeben.\\
-  Die as"=Implementierung $P'$ für den Fall $\varepsilon\in\StQT (P)$
-  implementiert alle must"=Transitionen, keine may"=Transitionen und keine
-  Fehler-Zustände von $P$ und hat die Identitäts-Relation als starke
-  as"=Verfeinerungs"=Relation $\mathcal{R}$. Für alle $a\in\Sigma$ gilt somit,
-  wenn in $P$ für einen Zustand $p$ $p\nmust[a]$ galt auch in $P'$ $p'
-  \nmust[a]$ für den Zustand, der mit $p$ in Relation steht. Der Startzustand
-  von $P'$ ist mit $\varepsilon$ erreichbar und auch ruhig. Es gilt also
-  $\varepsilon\in\StQT (P')$. Der 2.\ Punkt der Definition~\ref{SimDef} ist für
-  die Identitäts-Relation als as"=Verfeinerungs"=Relation $\mathcal{R}$
-  erfüllt, da alle must"=Transitionen aus $P$ entsprechend in $P'$ umgesetzt
-  wurden. Alle must"=Transitionen in $P$ müssen zugrundeliegende
-  may"=Transitionen haben, somit gilt auch 3.\ von~\ref{SimDef}. Der 1.\ Punkt
-  der Definition ist auch erfüllt, da $E_{P'}=\emptyset$ gilt, wenn keine
-  Fehler-Zustände implementiert werden.\\
-  Für alle $w\neq \varepsilon$ mit $w\in\StQT (P)$ kann $P'$ als die folgende
-  as"=Implementierung gewählt werden:
+  entsprechenden as"=Verfeinerungs"=Relation $\mathcal{R}$. Falls der
+  Startzustand $p_0$ von $P$ ein Ruhe-Zustand ist, muss man zwei
+  as"=Implementierungen betrachten, ansonsten genügt es eine für alle $w$ aus
+  $\StQT (P)$ anzugeben, wobei $w$ möglicherweise nicht $\varepsilon$
+  entsprechend darf.\\
+  Die as"=Implementierung $P'$ für den Fall $p_0\in Qui (P)$ implementiert alle
+  must"=Transitionen, keine may"=Transitionen und keine Fehler-Zustände von $P$
+  und hat die Identitäts-Relation als starke as"=Verfeinerungs"=Relation
+  $\mathcal{R}$. In diesem Fall gilt $\varepsilon\in\StQT (P)$. Für alle
+  $a\in\Sigma$ gilt somit, wenn in $P$ für einen Zustand $p$ $p\nmust[a]$, gilt
+  auch in $P'$ $p' \nmust[a]$ für den Zustand, der mit $p$ in Relation steht.
+  Der Startzustand von $P'$ ist mit $\varepsilon$ erreichbar und ebenfalls
+  ruhig. Es gilt also $p'_0\in Qui (P')$ und $\varepsilon\in\StQT (P')$. Der
+  2.\ Punkt der Definition~\ref{SimDef} ist für die Identitäts-Relation als
+  as"=Verfeinerungs"=Relation $\mathcal{R}$ erfüllt, da alle must"=Transitionen
+  aus $P$ entsprechend in $P'$ umgesetzt wurden. Alle must"=Transitionen in $P$
+  müssen zugrundeliegende may"=Transitionen haben, somit gilt auch 3.\
+  von~\ref{SimDef}. Der 1.\ Punkt der Definition ist auch erfüllt, da
+  $E_{P'}=\emptyset$ gilt, wenn keine Fehler-Zustände implementiert werden.\\
+  Für alle $w\neq \varepsilon$ und für $w = \varepsilon$, dass zu einem anderen
+  ruhigen Zustand führt wie $p_0$, mit $w\in\StQT (P)$ kann $P'$ als die
+  folgende as"=Implementierung gewählt werden:
   \begin{itemize}
     \item $P'= \{q\mid p\in P\} \cup \{q'\mid p\in P\}$,
     \item $p'_0=q_0$,
@@ -134,17 +136,17 @@ strikten Traces ohne Kürzung zu betrachten.
   leer ist, gilt~\ref{SimDef}~1.\ für $\mathcal{R}$. Die must"=Transitionen
   werden für die ungestrichenen und gestrichenen Zustände umgesetzt, dies
   erfüllt zusammen mit $\mathcal{R}$ die Definition~\ref{SimDef}~2. Ebenso wird
-  der dritte Punkt dieser Definition erfüllt, da sowohl die gestrichenen wie
-  auch die ungestrichenen Zustände mit den entsprechenden Zuständen aus $P$ in
-  der Relation $\mathcal{R}$ stehen. $\mathcal{R}$ ist also eine starke
-  alternierende Simulations-Relation auf $P'$ und $P$. Falls ein Zustand $p_j$
-  in $P$ ruhig war, ist es auch der entsprechenden Zustand $q_j$ in $P'$, da
-  für $q_j$ alle ausgehenden must"=Transitionen von $p_j$ implementiert wurden,
-  aber keine einzige may"=Transition, die keine der must"=Transitionen
-  entspricht. Wenn also für $p_j$ keine Outputs und kein $\tau$ möglich waren
-  via must"=Transitionen, dann ist es dies auch für $q_j$ nicht. $q_j$ ist in
-  $P'$ mit den selben Traces erreichbar wie $p_j$ in $P$, da jeder
-  ungestrichene und gestrichene Zustand in $P'$ die selben eingehenden
+  der dritte Punkt der Definition~\ref{SimDef} erfüllt, da sowohl die
+  gestrichenen wie auch die ungestrichenen Zustände mit den entsprechenden
+  Zuständen aus $P$ in der Relation $\mathcal{R}$ stehen. $\mathcal{R}$ ist
+  also eine starke alternierende Simulations-Relation auf $P'$ und $P$. Falls
+  ein Zustand $p_j$ in $P$ ruhig war, ist es auch der entsprechenden Zustand
+  $q_j$ in $P'$, da für $q_j$ alle ausgehenden must"=Transitionen von $p_j$
+  implementiert wurden, aber keine einzige may"=Transition, die keine der
+  must"=Transitionen entspricht. Wenn also für $p_j$ keine Outputs und kein
+  $\tau$ möglich waren via must"=Transitionen, dann ist es dies auch für $q_j$
+  nicht. $q_j$ ist in $P'$ mit den selben Traces erreichbar wie $p_j$ in $P$,
+  da jeder ungestrichene und gestrichene Zustand in $P'$ die selben eingehenden
   Transitionen hat wie der entsprechende Zustand in $P$. Falls der Trace zu
   $p_j$ may"=Transitionen ohne entsprechende must"=Transitionen enthält, kann
   der entsprechende Trace in $P'$ ausgeführt werden, in dem von $q_0$ aus der
@@ -155,9 +157,10 @@ strikten Traces ohne Kürzung zu betrachten.
   Trace in $P$ insgesamt nur aus must"=Transitionen bestanden hat, ist direkt
   von $q_0$ aus der Weg über ungestrichene Zustände zu $q_j$ möglich. Es gilt
   also $\StQT (P)\backslash \{\varepsilon\} = \StQT (P')\backslash
-  \{\varepsilon\}$.
-  \TODO{auf Problem eingehen, dass $\varepsilon$ hier $p_0$ also Ruhe-Zustand
-  entspricht $\tau$s, die zu einem führen werden so nicht berücksichtigt}
+  \{\varepsilon\}$. Falls $\varepsilon$ zu einem Ruhe-Zustand $p \neq p_0$ in
+  $P$ geführt hat, gilt sogar $\StQT(P) = \StQT (P')$, da ein Trace aus
+  internen Aktionen in $P$ und $P'$ zu dem entsprechenden ruhigen Zustand $p$
+  bzw.\ $q$ führt.
 \end{proof}
 
 Für \ET{} und \EL{} gelten die Definitionen aus dem letzten Kapitel. Es wir nur
