@@ -1102,16 +1102,16 @@ $i$'s und $o$'s}
 \section{Zusammenhänge der Relationen}
 
 \begin{Satz}[Zusammenhand der Verfeinerungs-Relationen mit der Fehler-Relation]
-  Es gilt $\asRel \Rightarrow \wasRel \Rightarrow \ERel$. Die Implikationen in
-  die andere Richtung gelten jedoch nicht.
+  Es für \MEIO{}s $P$ und $Q$ gilt $P\asRel Q\Rightarrow P\wasRel Q\Rightarrow
+  P\ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht.
 \end{Satz}
 \begin{proof}\mbox{}\\
-  $\asRel \Rightarrow \wasRel$:\\
+  $P\asRel Q\Rightarrow P\wasRel Q$:\\
   Um diese Implikation zu zeigen, muss man nachweisen, dass jede starke
   as"=Verfeinerungs"=Relation auch die Definition~\ref{wSimDef} der schwachen
   as"=Verfeinerungs"=Relation erfüllt. In beiden Simulations-Definitionen
   (\ref{SimDef} und~\ref{wSimDef}) müssen die Punkte für alle $(p,q) \in
-  \mathcal{R}$ mit $q\notin E_Q$ gelten. Sei $\mathcal{R}$ nur eine
+  \mathcal{R}$ mit $q\notin E_Q$ gelten. Sei $\mathcal{R}$ nun eine
   as"=Verfeinerungs"=Relation. Es gilt also mit~\ref{SimDef}~1.\, dass $p$ kein
   Fehler-Zustand von $P$ ist. Somit ist auch bereits 1.\ von~\ref{wSimDef}
   erfüllt. Für alle $\alpha\in\Sigma _{\tau}$ impliziert $q\must[\alpha]_Q q'$
@@ -1124,16 +1124,16 @@ $i$'s und $o$'s}
   Definition~\ref{wSimDef} werden durch~\ref{SimDef}~3.\ erfüllt. Es gilt für
   $\mathcal{R}$ die Implikation $p\may[\alpha]_P p'$ impliziert $q
   \may[\alpha]_Q q'$ für ein $q'$ mit $p'\mathcal{R}q'$. Die in~\ref{wSimDef}
-  geforderten schwachen may"=Transitionen werden hier jeweils stark umgesetzt
-  durch eine einzige Transition. $\mathcal{R}$ ist also auch eine schwache
+  geforderten schwachen may"=Transitionen werden hier jeweils stark durch eine
+  einzige Transition umgesetzt. $\mathcal{R}$ ist also auch eine schwache
   as"=Verfeinerungs"=Relation.
 
-  $\wasRel \Rightarrow \ERel$:\\
+  $P\wasRel Q\Rightarrow P\ERel Q$:\\
   Um diese Implikation zu beweisen wird gezeigt, dass für eine beliebige
-  schwache as"=Verfeinerungs"=Relation $\mathcal{R}$ zwischen \MEIO{}s $P$ und
-  $Q$ auch die Eigenschaften für $\ERel$ erfüllt sind. Es ist also
-  nachzuweisen, dass $\ET _P \subseteq \ET _Q$ und $\EL _P \subseteq \EL _Q$
-  gilt, wenn $\mathcal{R}$ als alternierenden Simulation zwischen $P$ und $Q$
+  schwache as"=Verfeinerungs"=Relation $\mathcal{R}$ zwischen $P$ und $Q$ auch
+  die Eigenschaften für $\ERel$ erfüllt sind. Es ist also nachzuweisen, dass
+  $\ET _P \subseteq \ET _Q$ und $\EL _P \subseteq \EL _Q$ gilt, wenn
+  $\mathcal{R}$ als alternierenden Simulation zwischen $P$ und $Q$
   vorausgesetzt ist.\\
   Für den ersten Punkt wird ein beliebiges $w$ aus $\ET _P$ betrachtet und
   gezeigt, dass dieses auch in $\ET _Q$ enthalten ist. Es kann davon
@@ -1174,7 +1174,7 @@ $i$'s und $o$'s}
       p_{n-1} \may[\alpha _n]_P p_n \nmust[a]_P$. Basierend
       auf~\ref{wSimDef}~4.\ bzw.~5.\ kann daraus Schritt für Schritt gefolgert
       werden, dass die $\alpha _j$ auch schwach ausführbar sind in $Q$, falls
-      kein $p_{j-1}$ angetroffen wird, dass in $E_Q$ enthalten inst für $j\in
+      kein $p_{j-1}$ angetroffen wird, dass in $E_Q$ enthalten ist für $j\in
       \{1,2,\dots n\}$. Falls eines der $p_j$ mit $0 \leq j \leq n$ ein
       Fehler-Zustand ist, dann ist $w$ in $\ET _Q$ enthalten, da ein Präfix von
       $w$ ein strikter Fehler-Trace in $Q$ ist. Falls alle $q_j$ nicht in $E_Q$
@@ -1199,7 +1199,7 @@ $i$'s und $o$'s}
   _n]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$ für $0 \leq j \leq n$ und somit
   $w\in L _Q\subseteq \EL _Q$.
 
-  $\asRel \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow \wasRel$:\\
+  $P\asRel Q\hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P\wasRel Q$:\\
   Im Abbildung~\ref{asWasGegenBsp} wird ein Gegenbeispiel dargestellt mit einem
   \MEIO{} $Q$ und einer schwachen as"=Verfeinerung $P$ von $Q$, die jedoch
   keine starke as"=Verfeinerung von $Q$ ist. Die starke
@@ -1265,7 +1265,7 @@ $i$'s und $o$'s}
     \end{center}
   \end{figure}
 
-  $\wasRel \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow \ERel$:\\
+  $P\wasRel Q\hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P\ERel Q$:\\
   Die nicht Gültigkeit dieser Implikation beruht darauf, dass Simulationen
   strenger sind wie Sprach Inklusion. Das Gegenbeispiel hier ist also so
   aufgebaut, dass $\ET (P) =\ET (Q) = \emptyset$ und $L(P) \subseteq L(Q)$
@@ -1279,12 +1279,13 @@ $i$'s und $o$'s}
   \{\varepsilon , o\}$.\\
   Angenommen es gibt eine schwache as"=Verfeinerungs"=Relation $\mathcal{R}$
   zwischen $P$ und $Q$. Dafür muss $(p_0,q_0)\in \mathcal{R}$ gelten. Die
-  Punkte 1., 2., 4.\ und 5.\ stellen keine Forderungen an die Relation
-  $\mathcal{R}$. Da jedoch die Transition $q_0 \must[o]_Q q_1$ in $Q$ vorhanden
-  ist, wird die Verfeinerung dieser in $P$ gefordert es müsste also auch eine
-  must"=Output"=Transition geben. Da diese nicht vorhanden ist, stellt dies
-  einen Widerspruch zur Annahme her und deshalb folgt, dass es keine schwache
-  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ geben kann.
+  Punkte 1., 2., 4.\ und 5.\ der Definition~\ref{wSimDef} stellen keine
+  Forderungen an die Relation $\mathcal{R}$. Da jedoch die Transition $q_0
+  \must[o]_Q q_1$ in $Q$ vorhanden ist, wird die Verfeinerung dieser in $P$
+  gefordert es müsste also auch eine must"=Output"=Transition geben. Da diese
+  nicht vorhanden ist, stellt dies einen Widerspruch zur Annahme dar und es
+  folgt, dass es keine schwache as"=Verfeinerungs"=Relation zwischen $P$ und
+  $Q$ geben kann.
 
   \begin{figure}[htbp]
     \begin{center}
