@@ -94,8 +94,24 @@
       $((p'_{01},p'_{02}),(p_{01},p_{02}))$ in $\mathcal{R}_{12}$ enthalten und
       es gilt $(p_{01},p_{02})\notin E_{12}$. Jedoch ist $(p'_{01},p'_{02})$
       trotzdem ein Fehler-Zustand in der Parallelkomposition von $P'_1$ und
-      $P'_2$.
-      \\ \TODO{auch für Implementierung (siehe Notizen)}
+      $P'_2$.\\
+      Es wäre auch möglich, dass $P_2$ ebenfalls eine Implementierung ist. Die
+      must"=$\tau$-Transition würde dann eine schwache Implementierung fordern,
+      jedoch muss es dafür keine echte Transition in $P'_2$ geben, da $\tau$
+      die interne Aktion ist. Die Implementierung von $a$ würde schwach
+      gefordert werden, ist jedoch bereits stark vorhanden. $P_1\|P_2$ würde
+      mit der must"=$\tau$"=Transition dann ebenfalls zu einer Implementierung
+      werden. Die must"=$a$"=Transition in $P'_2$ könnte auch eine
+      may"=Transition sein, solange die $a$-Transition in $P_2$ keine
+      must"=Transition ist.\\
+      Um dieses Problem zu lösen könnte man auch die Definition der
+      Parallelkomposition verändern. Es wäre denkbar, dass alle Zustände, die
+      lokal Fehler-Zustände erreichen können bereits als solche angesehen
+      werden. Jedoch stellt dies eine stärkere Forderung, die zumindest auf
+      Implementierungen stärkere wäre, wie die auf \EIO{}s in
+      z.B.~\cite{Schinko2016BA}. Dieser Ansatz käme jedoch dem Vorgehen des
+      Abschneidens der Fehler-Zustände mit ihren lokalen Vorgängern
+      in~\cite{Vogler2016MIA3} näher.
 
     \begin{figure}[htbp]
       \begin{center}

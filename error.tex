@@ -839,6 +839,16 @@ diese Verfeinerung durch \ERel{} charakterisiert.
 
 \section{Testing-Ansatz}
 
+Der Erweiterungs-Ansatz aus dem letzten Teil stützt sich auf die
+Parallelkomposition von \MEIO{}s, die wie im bereits
+in~\ref{schwVerfParallelLem}~1. erwähnt auch anders gestaltet hätte werden
+können. Spezielle bei neuen Fehler ist dort gezeigt worden, dass es zu einem
+ungewöhnlichen Verfeinerungs-Verhalten kommen kann, das möglicherweise gar
+nicht so gewollt ist. Deshalb ist es sinnvoll sich nur auf die Definition der
+Parallelkomposition von \EIO{} zu stützen, die hier für die Implementierungen
+gilt. Dies führt zu dem in diesem Teil behandelten Testing-Ansatz. Dieser lässt
+jedoch wiederum keine Aussage zu mit gröbster Präkongruenz, wie das im letzen
+Teil möglich war.\\
 Der Testing-Ansatz stützt sich auf den Ansatz, der in~\cite{Vogler2015FailSem}
 angewendet wurde. Jedoch sind Tests dort Tupel aus einer Implementierung und
 einer Menge an Aktionen, über denen synchronisiert werden soll. Die \MEIO{}s,
@@ -1096,16 +1106,14 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
   \end{center}
 \end{figure}
 
-\TODO{evtl. $\EBRel$-Normalisierung, nur ein $e$ mit may-Schleife für alle
-$i$'s und $o$'s}
+\section{Zusammenhänge}
 
-\section{Zusammenhänge der Relationen}
-
-\begin{Satz}[Zusammenhand der Verfeinerungs-Relationen mit der Fehler-Relation]
+\begin{Satz}[Zusammenhang der Verfeinerungs-Relationen mit der Fehler-Relation]
   Es für \MEIO{}s $P$ und $Q$ gilt $P\asRel Q\Rightarrow P\wasRel Q\Rightarrow
   P\ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht.
 \end{Satz}
 \begin{proof}\mbox{}\\
+  \TODO{auf mögliche Kürzungen überprüfen}\\
   $P\asRel Q\Rightarrow P\wasRel Q$:\\
   Um diese Implikation zu zeigen, muss man nachweisen, dass jede starke
   as"=Verfeinerungs"=Relation auch die Definition~\ref{wSimDef} der schwachen
@@ -1202,32 +1210,29 @@ $i$'s und $o$'s}
   $P\asRel Q\hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P\wasRel Q$:\\
   Im Abbildung~\ref{asWasGegenBsp} wird ein Gegenbeispiel dargestellt mit einem
   \MEIO{} $Q$ und einer schwachen as"=Verfeinerung $P$ von $Q$, die jedoch
-  keine starke as"=Verfeinerung von $Q$ ist. Die starke
+  keine starke as"=Verfeinerung von $Q$ ist. Die schwache
   as"=Verfeinerungs"=Relationen $\mathcal{R}$ zwischen $P$ und $Q$ enthält die
-  Tupel $(p_0,q_0)$ und $(p_1,q_{12})$. Es sind keine Fehler-Zustände in $Q$
-  und $P$ enthalten, somit ist 1.\ der Definition~\ref{wSimDef} bereits
-  erfüllt. $q_{11} \must[\tau]_Q q_{12}$ ist die einzige must"=Transition in
-  $Q$, da jedoch kein Zustand in $P$ existiert, der mit $q_{11}$ in der
-  Relation $\mathcal{R}$ steht, fordert~\ref{wSimDef}~3.\ nichts. Der zweite
-  Punkt von~\ref{wSimDef} ist erfüllt, da $Q$ keine must"=Input"=Transitionen
-  enthält. Damit $\mathcal{R}$ eine schwache Simulations"=Relation zwischen
-  $P$ und $Q$ sein kann, die auch die Verfeinerung sicher stellt, müssen die
-  Startzustände in Relation stehen. Dies ist durch das $(p_0,q_0)\in
-  \mathcal{R}$ erfüllt. Falls $\alpha$ ein Input ist, fordert
-  dann~\ref{wSimDef}~4., dass die Transition $p_0 \may[\alpha]_P p_1$ in $Q$
-  schwach ausführbar ist in der Form $q_0 \may[\alpha]_Q
-  \weakmay[\varepsilon]_Q q$ als entsprechendes $q$ kommen $q_{11}$ und
-  $q_{12}$ in Frage. Da $p_1 \mathcal{R} q_{12}$ gilt, ist die Forderung
-  von~\ref{wSimDef}~4.\ erfüllt. Falls $\alpha$ eine lokale Aktion ist, würde
-  die Forderung $q_0 \weakmay[\hat{\alpha}]_Q q$ für $Q$ lauten und es würden
-  wieder $q_{11}$ und $q_{12}$ als mögliche Zustände für $q$ in Frage kommen,
-  im Fall von $\alpha = \tau$ wäre auch $q = q_0$ möglich. Die Forderung ist
-  jedoch nicht stärker, wie die von~\ref{wSimDef}~4.\ im Falle eines Inputs,
-  somit ist auch~\ref{wSimDef}~5.\ im Falle einer lokalen Aktion erfüllt. Falls
-  4.\ wegen eines Inputs erfüllt ist, ist 5.\ auf jeden Fall erfüllt, da dann
-  $\alpha \notin O \cup \{\tau\}$ gilt und umgekehrt, ist 4.\ für $\alpha \in O
-  \cup \{\tau\}$ auf jeden Fall erfüllt. $\mathcal{R}$ ist also eine schwache
-  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$.\\
+  Tupel $(p_0,q_0)$ und $(p_1,q_{12})$. Damit $\mathcal{R}$ eine schwache
+  Simulations"=Relation zwischen $P$ und $Q$ sein kann müssen die Startzustände
+  in Relation stehen. Dies ist durch das $(p_0,q_0)\in \mathcal{R}$ erfüllt.
+  Es sind keine Fehler-Zustände in $Q$ und $P$ enthalten, somit ist 1.\ der
+  Definition~\ref{wSimDef} bereits erfüllt. $q_{11} \must[\tau]_Q q_{12}$ ist
+  die einzige must"=Transition in $Q$, da jedoch kein Zustand in $P$ existiert,
+  der mit $q_{11}$ in der Relation $\mathcal{R}$ steht,
+  fordert~\ref{wSimDef}~3.\ nichts. Der zweite Punkt von~\ref{wSimDef} ist
+  erfüllt, da $Q$ keine must"=Input"=Transitionen enthält. Falls $\alpha$ ein
+  Input ist, fordert dann~\ref{wSimDef}~4., dass die Transition $p_0
+  \may[\alpha]_P p_1$ in $Q$ schwach ausführbar ist in der Form $q_0
+  \may[\alpha]_Q \weakmay[\varepsilon]_Q q$ als entsprechendes $q$ kommen
+  $q_{11}$ und $q_{12}$ in Frage. Da $p_1 \mathcal{R} q_{12}$ gilt, ist die
+  Forderung von~\ref{wSimDef}~4.\ erfüllt. Falls $\alpha$ eine lokale Aktion
+  ist, würde die Forderung $q_0 \weakmay[\hat{\alpha}]_Q q$ für $Q$ lauten und
+  es würden wieder $q_{11}$ und $q_{12}$ als mögliche Zustände für $q$ in Frage
+  kommen, im Fall von $\alpha = \tau$ wäre auch $q = q_0$ möglich. Die
+  Forderung ist jedoch nicht stärker, wie die von~\ref{wSimDef}~4.\ im Falle
+  eines Inputs, somit ist auch~\ref{wSimDef}~5.\ im Falle einer lokalen Aktion
+  erfüllt. $\mathcal{R}$ ist also eine schwache as"=Verfeinerungs"=Relation
+  zwischen $P$ und $Q$.\\
   Angenommen es gibt auch eine starke as"=Verfeinerungs"=Relation
   $\mathcal{R}'$ zwischen $P$ und $Q$, dann muss $p_0 \mathcal{R}' Q_0$
   gelten. Mit~\ref{SimDef}~3.\ wird gefordert, dass die Transition $p_0
@@ -1278,8 +1283,9 @@ $i$'s und $o$'s}
   $o$ somit gilt für die Sprachen $\{\varepsilon\} = L(P) \subset L(Q) =
   \{\varepsilon , o\}$.\\
   Angenommen es gibt eine schwache as"=Verfeinerungs"=Relation $\mathcal{R}$
-  zwischen $P$ und $Q$. Dafür muss $(p_0,q_0)\in \mathcal{R}$ gelten. Die
-  Punkte 1., 2., 4.\ und 5.\ der Definition~\ref{wSimDef} stellen keine
+  zwischen $P$ und $Q$. Dafür muss $(p_0,q_0)\in \mathcal{R}$ gelten. Da es
+  keine Fehler-Zustände in $P$ gibt, ist~\ref{wSimDef}~1. erfüllt. Die
+  Punkte 2., 4.\ und 5.\ der Definition~\ref{wSimDef} stellen keine
   Forderungen an die Relation $\mathcal{R}$. Da jedoch die Transition $q_0
   \must[o]_Q q_1$ in $Q$ vorhanden ist, wird die Verfeinerung dieser in $P$
   gefordert es müsste also auch eine must"=Output"=Transition geben. Da diese
@@ -1304,3 +1310,41 @@ $i$'s und $o$'s}
     \end{center}
   \end{figure}
 \end{proof}
+
+In dieser Arbeit werden im Gegensatz zu~\cite{Vogler2016MIA3} die Fehler bei
+einer Parallelkomposition beibehalten bzw.\ aus dieser entstehend angesehen. Es
+werden dabei alle Transitionen, die nicht durch fehlende
+Synchronisations-Möglichkeiten wegfallen, der einzelnen Systeme übernommen.
+In~\cite{Vogler2016MIA3} hingegen wird der Ansatz verfolgt alle Fehler zu
+entfernen und durch einen universal Zustand zu ersetzten, der nur eingehende
+may"=Input"=Transitionen zulässt. Auf diese Normierung wurde hier mit Absicht
+verzichtete um sehen zu können, dass die Fehler einen Ursprung haben, den man
+später auch noch einsehen kann. Jedoch gibt es trotzdem einen Zusammenhand
+zwischen diesen beiden Ansätzen.\\
+Die Unterscheidung, die die Basisrelation \EBRel{} hier herbei führt, würde
+dort der Unterscheidung zwischen Transitionensystemen, die den universal
+Zustand $e$ als Startzustand haben und denen, die einen Startzustand ungleich
+$e$ besitzen, entsprechen. Falls hier in einer as"=Implementierung von $P$ ein
+Fehler lokal erreichbar ist, dann muss auch in $P$ ein Fehler-Zustand lokal
+erreichbar sein, wegen~\ref{KommSemProp}~1. (Fall 1). Dies entspricht
+$\varepsilon \in \PrET (P)$. Das abschneiden den lokalen Aktionen wird hier nur
+in der Trace Menge praktiziert, in~\cite{Vogler2016MIA3} jedoch direkt auf den
+Transitionssystemen. Im Fall der lokalen Fehler-Erreichbarkeit wird bleibt also
+nur noch der Zustand $e$ als universal Zustand übrig, für den jedes Verhalten
+zulässig ist. Falls man hier diese Prunning mit beligigem Verhalten nachmachen
+wollen würde, müsste man an den Zustand $e$ noch eine may-Schleife für alle
+Aktionen aus $I$ und $O$ hinzufügen.\\
+Da auch der Testing-Ansatz die lokale Fehler-Erreichbarkeit verwendet,
+existiert der Zusammenhang auch dort für die Parallelkomposition mit dem
+entsprechenden Test.\\
+Falls es keine Input-kritischen Traces gibt, entspicht \ERel{} der Relation
+$\sqsubseteq$ aus~\cite{Vogler2016MIA3}, falls auf die \MEIO{}s das
+entsprechende abschneiden der Fehler-Traces angewendet würde und diese dann
+durch einen universal Zustand mit may"=Schleife für alle Inputs und Outputs
+ersetzt würden. Falle es jedoch in $Q$ Input-kritische Traces gibt, würde $P
+\ERel Q$ zulassen, dass $P$ einen gekürzten Fehler-Trace anstatt dessen
+besitzt. Diese Art der Verfeinerung lässt $\sqsubseteq$ nicht zu. Jedoch sind
+die Input-kritischen Traces auch dort die potentiellen Auslöser für neue
+Fehler-Zustände in einer Parallelkomposition. Diese Problem basiert auf dem
+Problem, dass \ERel{} keine schwache as"=Verfeinerungs"=Relation sein muss, die
+in \wasRel{} enthalten ist.

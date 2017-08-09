@@ -168,7 +168,19 @@ weiteren \MEIO{} dort zu einem neuen Fehler kommen.
 Da für zwei \MEIO{}s $P$ und $Q$ und alle möglichen Zustands-Tupel $(p,q)$ in
 einer alternierenden Simulations-Relation $\mathcal{R}$ gelten muss, dass aus
 $q\notin E_Q$ folgt, dass auch $p$ nicht in $E_P$ enthalten ist, gilt auch die
-Implikation $p\in E_P\Rightarrow q\in E_Q$.
+Implikation $p\in E_P\Rightarrow q\in E_Q$.\\
+Für LTS, die nach Definition keine Modalitäten und keine Fehler-Zustände
+enthalten, entspricht die as"=Verfeinerung einer Bisimulation. Dafür müssen die
+Transitionen eines LTS als must"=Transitionen aufgefasst werden. Man kann also
+auf LTS mit einer as"=Verfeinerungs"=Relation zwischen zwei Systemen deren
+Äquivalenz beweisen.\\
+Auf den \EIO{}, die z.B.\ in~\cite{Schinko2016BA} betrachtet wurden, lässt die
+as"=Verfeinerungs"=Relation jedoch zu, dass es in einer Verfeinerung
+möglicherweise weniger Fehler gibt und zusätzliches Verhalten, dass die
+Spezifikation nicht hatte. Die \EIO{} entsprechend Implementierungen von
+\MEIO{}s, es ist also möglich, eine Implementierung mit Fehler durch eine
+andere as zu verfeinern, die keine Fehler enthält, aber potentiell zusätzliches
+Verhalten aufweist.
 
 \begin{Def}[schwache alternierende Simulation]
   \label{wSimDef}
