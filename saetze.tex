@@ -14,7 +14,7 @@
     \item $p'_0=p_0$,
     \item $I_{P'}=I_P$ und $O_{P'}=O_P$,
     \item $\must _{P'} =\may _{P'} = \may _P$,
-    \item $E_P'=\emptyset$.
+    \item $E_{P'}=\emptyset$.
   \end{itemize}
   Die entsprechende starke as"=Verfeinerungs"=Relation $\mathcal{R}$, die
   zwischen $P'$ und $P$ gilt, ist die Identitäts-Relation zwischen den
@@ -26,7 +26,7 @@
   \must[\alpha]_P p'$ in $P$ auch die Transition $p\must[\alpha]_{P'} p'$, wenn
   $(p,p)$ in $\mathcal{R}$ enthalten ist. Es folgt dann auch $(p',p') \in
   \mathcal{R}$ und dadurch ist auch~\ref{SimDef}~2.\ erfüllt. Der erste Punkt
-  von~\ref{SimDef} gilt, da $E_P'$ leer ist.\\
+  von~\ref{SimDef} gilt, da $E_{P'}$ leer ist.\\
   Für alle $w\in L(P) = \left\{w\in \Sigma ^* \mid p_0\weakmay[w]_P\right\}$
   gilt $w\in L(P') = \left\{w\in \Sigma ^* \mid p'_0 \weakmust[w]_{P'}
   \right\}$, da alle Transitionen von $P$ in $P'$ implementiert werden.
@@ -72,7 +72,7 @@
       $P_1\|P_2$ sein.\\
       Dies folgt direkt aus der Voraussetzung, dass $(p_1,p_2)\notin
       E_{P_1\|P_2}$ für das Tupel $((p'_1,p'_2),(p_1,p_2))$ aus
-      $\mathcal{R}_{12}$ gilt. In dem man auf das $\mathcal{R}_{12}$ die
+      $\mathcal{R}_{12}$ gilt. Indem man auf $\mathcal{R}_{12}$ die
       Definition von oben anwendet, erhält man $(p'_j,p_j)\in\mathcal{R}_j$ für
       beide $j$ Werte. Die $p_j$ dürfen beide keine Fehler-Zustände sein, da
       sonst auch $(p_1,p_2)$ ein solcher wäre. Somit folgt mit
@@ -96,19 +96,19 @@
       trotzdem ein Fehler-Zustand in der Parallelkomposition von $P'_1$ und
       $P'_2$.\\
       Es wäre auch möglich, dass $P_2$ ebenfalls eine Implementierung ist. Die
-      must"=$\tau$-Transition würde dann eine schwache Implementierung fordern,
-      jedoch muss es dafür keine echte Transition in $P'_2$ geben, da $\tau$
-      die interne Aktion ist. Die Implementierung von $a$ würde schwach
-      gefordert werden, ist jedoch bereits stark vorhanden. $P_1\|P_2$ würde
-      mit der must"=$\tau$"=Transition dann ebenfalls zu einer Implementierung
-      werden. Die must"=$a$"=Transition in $P'_2$ könnte auch eine
-      may"=Transition sein, solange die $a$-Transition in $P_2$ keine
-      must"=Transition ist.\\
+      must"=$\tau$-Transition würde dann eine schwache Implementierung in
+      $P'_2$ fordern, jedoch muss es dafür keine echte Transition in $P'_2$
+      geben, da $\tau$ die interne Aktion ist. Die Implementierung von $a$
+      würde ebenfalls schwach gefordert werden, ist jedoch bereits stark
+      vorhanden. $P_1\|P_2$ würde mit der must"=$\tau$"=Transition dann
+      ebenfalls zu einer Implementierung werden. Die must"=$a$"=Transition in
+      $P'_2$ könnte auch eine may"=Transition sein, solange die $a$-Transition
+      in $P_2$ keine must"=Transition ist.\\
       Um dieses Problem zu lösen könnte man auch die Definition der
       Parallelkomposition verändern. Es wäre denkbar, dass alle Zustände, die
       lokal Fehler-Zustände erreichen können bereits als solche angesehen
-      werden. Jedoch stellt dies eine stärkere Forderung, die zumindest auf
-      Implementierungen stärkere wäre, wie die auf \EIO{}s in
+      werden. Jedoch stellt dies eine stärkere Forderung. Auf Implementierungen
+      ist die Forderung stärkere, wie die auf \EIO{}s in
       z.B.~\cite{Schinko2016BA}. Dieser Ansatz käme jedoch dem Vorgehen des
       Abschneidens der Fehler-Zustände mit ihren lokalen Vorgängern
       in~\cite{Vogler2016MIA3} näher.
@@ -170,15 +170,15 @@
           der Relation $\mathcal{R}_1$ und~\ref{wSimDef}~2.\ folgt, dass in
           $P'_1$ $i$ als schwache Transition in der Form $p'_1\must[i]_{P'_1}
           \weakmust[\varepsilon]_{P'_1}q'_1$ ausführbar sein musst und $q'_1
-          \mathcal{R}_1q_1$ gelten muss. $p_2=q_2$ muss gelten, da $i$ nicht in
-          $\Sigma _2$ enthalten ist. Da $i$ wenn es kein Element der Aktionen
-          von $P_2$ ist auch keine Aktion der schwachen as"=Verfeinerung $P'_2$
-          sein kann entsteht mit $q'_2=p'_2$ die Transitionsfolge $(p'_1,p'_2)
-          \must[i]_{P'_1\|P'_2} \weakmust[\varepsilon]_{P'_1\|P'_2}
-          (q'_1,q'_2)$. Aus der Voraussetzung folgt $(p'_2,p_2) = (q'_2,q_2)
-          \in \mathcal{R}_2$. Mit der Definition von $\mathcal{R}_{12}$ kann
-          dann daraus $((q'_1,q'_2),(q_1,q_2)) \in \mathcal{R}_{12}$ gefolgert
-          werden.
+          \mathcal{R}_1q_1$ gelten muss. $p_2=q_2$ muss erfüllt sein, da $i$
+          nicht in $\Sigma _2$ enthalten ist. Da $i$ wenn es kein Element der
+          Aktionen von $P_2$ ist auch keine Aktion der schwachen
+          as"=Verfeinerung $P'_2$ sein kann entsteht mit $q'_2=p'_2$ die
+          Transitionsfolge $(p'_1,p'_2) \must[i]_{P'_1\|P'_2}
+          \weakmust[\varepsilon]_{P'_1\|P'_2} (q'_1,q'_2)$. Aus der
+          Voraussetzung folgt $(p'_2,p_2) = (q'_2,q_2) \in \mathcal{R}_2$. Mit
+          der Definition von $\mathcal{R}_{12}$ kann dann daraus
+          $((q'_1,q'_2),(q_1,q_2)) \in \mathcal{R}_{12}$ gefolgert werden.
         \item Fall 2 ($i\in\Synch (P_1\|P_2)$): Damit $i$ auch in $P_1\|P_2$
           ein Input ist, muss $i\in I_1\cap I_2$ gelten. Um die Transition
           $(p_1,p_2)\must[i]_{12}(q_1,q_2)$ in der Komposition möglich zu
@@ -187,9 +187,9 @@
           $j$-Werte $p'_j\must[i]_{P'_j} \weakmust[\varepsilon]_{P'_j}q'_j$ mit
           $(q'_j,q_j)\in\mathcal{R}_j$. Daraus ergibt sich
           $((q'_1,q'_2),(q_1,q_2)) \in \mathcal{R}_{12}$ mit der Definition von
-          $\mathcal{R}_{12}$. Durch die Synchronisation der $i$-Inputs in der
-          Komposition von $P'_1$ und $P'_2$ und Verschränkung der
-          $\tau$-Transitionen gilt $(p'_1,p'_2) \must[i]_{P'_1\|P'_2}
+          $\mathcal{R}_{12}$. Durch die Synchronisation der $i$-Inputs und
+          Verschränkung der $\tau$-Transitionen in der Komposition von $P'_1$
+          und $P'_2$ gilt $(p'_1,p'_2) \must[i]_{P'_1\|P'_2}
           \weakmust[\varepsilon]_{P'_1\|P'_2} (q'_1,q'_2)$.
       \end{itemize}
     \item Analog zu 2.\ kann für diesen Punkt $(p_1,p_2) \must[\omega]_{12}
@@ -226,10 +226,10 @@
           der Parallelkomposition von $P'_1$ und $P'_2$ werden zuerst die
           internen Aktionen von $P'_2$ ausgeführt, bis dort der Output erreicht
           ist, dann wird $\omega$ synchronisiert und danach werden die internen
-          Aktionen beider Komponenten ausgeführt, bis man bei den Zuständen
-          $q'_1$ und $q'_2$ angekommen ist. Es folgt also die Transitionsfolge
-          $(p'_1,p'_2) \weakmust[\hat{\omega}]_{P'_1\|P'_2} (q'_1,q'_2)$ und
-          das Tupel $((q'_1,q'_2),(q_1,q_2))$ in der Relation
+          Aktionen beider Komponenten verschränkt ausgeführt, bis man bei den
+          Zuständen $q'_1$ und $q'_2$ angekommen ist. Es folgt also die
+          Transitionsfolge $(p'_1,p'_2) \weakmust[\hat{\omega}]_{P'_1\|P'_2}
+          (q'_1,q'_2)$ und das Tupel $((q'_1,q'_2),(q_1,q_2))$ in der Relation
           $\mathcal{R}_{12}$.
       \end{itemize}
     \item $(p'_1,p'_2)\may[i]_{P'_1\|P'_2}(q'_1,q'_2)$ impliziert $(p_1,p_2)
@@ -277,20 +277,21 @@
       synchronisierten oder aus einem unsynchronisierten $\omega$ entstanden.
       \begin{itemize}
         \item Fall 1 ($\omega\notin\Synch (P'_1\|P'_2)$): \OBdA{} ist $\omega$
-          in $O_1\cup\{\tau\}$ enthalten. Um in $P'_1\|P'_2$ die
-          may"=Transition zu erhalten muss bereits in $P'_1$ die Transition
-          $p'_1 \may[\omega]_{P'_1} q'_1$ möglich gewesen sein.
-          Mit~\ref{wSimDef}~5.\ kann für $\mathcal{R}_1$ gefolgert werden, dass
-          $p_1 \weakmay[\hat{\omega}]_1 q_1$ mit $(q'_1,q_1)\in\mathcal{R}_1$
-          gilt. In der Komposition folgt dann $(p_1,p_2)
-          \weakmay[\hat{\omega}]_{12} (q_1,q_2)$, da $\omega\notin \Sigma _2$
-          ist und somit $(p'_2,p_2)=(q'_2,q_2)\in\mathcal{R}_2$ gilt. Es folgt
-          insgesamt auch noch die Zugehörigkeit des Zustands-Tupels
-          $((q'_1,q'_2),(q_1,q_2))$ zur Relation $\mathcal{R}_{12}$.
+          in $O_1$ enthalten oder eine interne Aktion, die von $P'_1$ geerbt
+          wurde. Um in $P'_1\|P'_2$ die may"=Transition zu erhalten muss
+          bereits in $P'_1$ die Transition $p'_1 \may[\omega]_{P'_1} q'_1$
+          möglich gewesen sein. Mit~\ref{wSimDef}~5.\ kann für $\mathcal{R}_1$
+          gefolgert werden, dass $p_1 \weakmay[\hat{\omega}]_1 q_1$ mit
+          $(q'_1,q_1) \in \mathcal{R}_1$ gilt. In der Komposition folgt dann
+          $(p_1,p_2) \weakmay[\hat{\omega}]_{12} (q_1,q_2)$, da $\omega\notin
+          \Sigma _2$ ist und somit $(p'_2,p_2)=(q'_2,q_2)\in\mathcal{R}_2$
+          gilt. Es folgt insgesamt auch noch die Zugehörigkeit des
+          Zustands-Tupels $((q'_1,q'_2),(q_1,q_2))$ zur Relation
+          $\mathcal{R}_{12}$.
         \item Fall 2 ($\omega\in\Synch (P'_1\|P'_2)$): Es muss $\omega\neq\tau$
-          gelten und somit muss \oBdA{} $\omega\in I_1\cap O_2$ gelten. Es
-          folgt also $p'_1\may[\omega]_{P'_1} q'_1$ mit $\omega\in I_1$ und
-          $p'_2\may[\omega]_{P'_2} q'_2$ mit $\omega\in O_2$ für die einzeln
+          gelten und somit muss \oBdA{} $\omega\in I_1\cap O_2$. Es folgt also
+          $p'_1\may[\omega]_{P'_1} q'_1$ mit $\omega\in I_1$ und $p'_2
+          \may[\omega]_{P'_2} q'_2$ mit $\omega\in O_2$ für die einzeln
           Transitionssysteme. Mit $\mathcal{R}_1$ und~\ref{wSimDef}~4.\ folgt
           $p_1\may[\omega]_1 \weakmay[\varepsilon]_1 q_1$ und $q'_1
           \mathcal{R}_1 q_1$. Wenn man $\mathcal{R}_2$ mit~\ref{wSimDef}~5.\
@@ -299,11 +300,11 @@
           $\omega =\hat{\omega}$. In der Parallelkomposition von $P_1$ und
           $P_2$ werden zuerst die internen Aktionen von $P_2$ ausgeführt, bis
           dort der Output erreicht ist, dann wird $\omega$ synchronisiert und
-          danach werden die internen Aktionen beider Komponenten ausgeführt,
-          bis man bei den Zuständen $q_1$ und $q_2$ angekommen ist. Es folgt
-          also die Transitionsfolge $(p_1,p_2) \weakmay[\hat{\omega}]_{12}
-          (q_1,q_2)$ und das Tupel $((q'_1,q'_2),(q_1,q_2))$ in der Relation
-          $\mathcal{R}_{12}$.
+          danach werden die internen Aktionen beider Komponenten verschränkt
+          ausgeführt, bis man bei den Zuständen $q_1$ und $q_2$ angekommen ist.
+          Es folgt also die Transitionsfolge $(p_1,p_2)
+          \weakmay[\hat{\omega}]_{12} (q_1,q_2)$ und das Tupel
+          $((q'_1,q'_2),(q_1,q_2))$ in der Relation $\mathcal{R}_{12}$.
       \end{itemize}
   \end{enumerate}
 \end{proof}
@@ -322,7 +323,7 @@
   nur zu zeigen, wie aus den einzelnen Beweispunkten des Beweises
   von~\ref{schwVerfParallelLem} folgt, dass $\mathcal{R}_{12}$ eine starke
   as"=Verfeinerungs"=Relation ist und zusätzlich, dass hier der erste Punkt
-  gilt. Es wird hier ebenso für alle Punkte vorausgesetzt, dass
+  erfüllt ist. Es wird hier ebenso für alle Punkte vorausgesetzt, dass
   $((p'_1,p'_2),(p_1,p_2))\in\mathcal{R}_{12}$ mit $(p_1,p_2)\notin E_{12}$
   gilt.
   \begin{enumerate}
@@ -334,7 +335,7 @@
       Dies folgt direkt aus der Voraussetzung, dass $(p_1,p_2)\notin
       E_{P_1\|P_2}$ für das Tupel $((p'_1,p'_2),(p_1,p_2))$ aus
       $\mathcal{R}_{12}$ gilt. In dem man auf das $\mathcal{R}_{12}$ die
-      Definition von oben anwendet, erhält man $(p'_j,p_j)\in\mathcal{R}_j$ für
+      Definition anwendet, erhält man $(p'_j,p_j)\in\mathcal{R}_j$ für
       beide $j$ Werte. Die $p_j$ dürfen beide keine Fehler-Zustände sein, da
       sonst auch $(p_1,p_2)$ ein solcher wäre. Somit folgt mit
       Definition~\ref{SimDef}~1.\ $p'_j\notin E_j$ für beide $j$ Werte. Die
@@ -347,8 +348,8 @@
       Mit~\ref{SimDef}~2.\ von $\mathcal{R}_1$ folgt $p_1 \nmust[a]_1$. Somit
       müsste auch $(p_1,p_2)\in E_{12}$ gelten, was ein Widerspruch zur
       Voraussetzung wäre. $(p'_1,p'_2)$ kann also weder ein geerbter noch ein
-      neuer Fehler-Zustand in $P'_1\|P'_2$ sein und deshalb gilt
-      $(p'_1,p'_2)\notin E_{P'_1\|P'_2}$.
+      neuer Fehler in $P'_1\|P'_2$ sein und deshalb gilt $(p'_1,p'_2) \notin
+      E_{P'_1\|P'_2}$.
     \item $\alpha$ kann sowohl Input, Output wie auch interen Aktion sein. Um
       diesen Punkt zu beweisen muss man 2.\ und 3.\ aus dem Beweis von
       Lemma~\ref{schwVerfParallelLem} kombinieren. Da die $\mathcal{R}_j$ für
@@ -356,8 +357,8 @@
       $\tau$-Transitionen fordern, entstehen in den einzelnen Komponenten keine
       schwachen Transitionen für die $\alpha$s und somit ist $\alpha$ auch in
       der Parallelkomposition $P'_1\|P'_2$ eine direkte Transition ohne
-      zusätzliche $\tau$s. Es folgt also das zu zeigende für diesen die strake
-      as"=Verfeinerungs"=Relation für diesen Punkt.
+      zusätzliche $\tau$s. Es folgt das $\mathcal{R}_{12}$ die Forderungen für
+      die strake as"=Verfeinerungs"=Relation dieses Punktes erfüllt.
     \item Hierfür werden die Punkte 3.\ und 4.\ aus dem Beweis des
       Lemmas~\ref{schwVerfParallelLem} kombiniert. Analog wie bei 2.\ diese
       Beweises fallen die zusätzlichen $\tau$-Transitionen durch die stärkere
@@ -367,6 +368,7 @@
 \end{proof}
 
 \begin{Kor}[as-Implementierungen und Parallelkomposition]
+  \label{ImpParallelKor}
   Für zwei komponierbare \MEIO{}s $P_1$ und $P_2$ gilt:
   $P'_1\in\asimp (P_1) \land P'_2 \in\asimp (P_2) \Rightarrow (P'_1\|P'_2)
   \in\asimp (P_1\|P_2)$.
@@ -376,7 +378,7 @@
   as"=Verfeinerungen von $P_1$ bzw.\ $P_2$. Somit ist die Parallelkomposition
   $P'_1\|P'_2$ auch eine starke as"=Verfeinerung von $P_1\|P_2$, wegen
   Korollar~\ref{verfParallelKor}. Für Implementierungen gilt $\must =\may$.
-  Durch die Definition der Parallelkomposition in~\ref{ParallelDef} können aus
+  Durch die Definition der Parallelkomposition in~\ref{ParallelDef} können
   aus zwei komponierbaren Implementierungen in der Komposition keine
   may"=Transitionen ohne zugehörige must"=Transitionen entstehen. Es gilt also
   auch $\must _{P'_1\|P'_2} =\may _{P'_1\|P'_2}$ und somit ist $P'_1\|P'_2$
@@ -385,6 +387,9 @@
   $(P'_1\|P'_2)\in\asimp (P_1\|P_2)$ gilt.
 \end{proof}
 
+Für schwache as"=Implementierungen kann kein analoges Korollar
+zur~\ref{ImpParallelKor} gegen, da die Verfeinerung bereits scheitert
+(Lemma~\ref{schwVerfParallelLem}).\\
 Die entgegengesetzte Richtung von Korollar~\ref{verfParallelKor} gilt im
 allgemeinen nicht, d.h.\ es muss zu einer as"=Verfeinerung $P'$ einer
 Parallelkomposition $P_1\|P_2$ keine as"=Verfeinerungen $P'_1$ bzw.\

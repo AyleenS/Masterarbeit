@@ -173,14 +173,16 @@ Für LTS, die nach Definition keine Modalitäten und keine Fehler-Zustände
 enthalten, entspricht die as"=Verfeinerung einer Bisimulation. Dafür müssen die
 Transitionen eines LTS als must"=Transitionen aufgefasst werden. Man kann also
 auf LTS mit einer as"=Verfeinerungs"=Relation zwischen zwei Systemen deren
-Äquivalenz beweisen.\\
+Äquivalenz beweisen.\\ \TODO{falls möglich passendes Quellen Beispiel einfügen}\\
 Auf den \EIO{}, die z.B.\ in~\cite{Schinko2016BA} betrachtet wurden, lässt die
-as"=Verfeinerungs"=Relation jedoch zu, dass es in einer Verfeinerung
-möglicherweise weniger Fehler gibt und zusätzliches Verhalten, dass die
-Spezifikation nicht hatte. Die \EIO{} entsprechend Implementierungen von
-\MEIO{}s, es ist also möglich, eine Implementierung mit Fehler durch eine
-andere as zu verfeinern, die keine Fehler enthält, aber potentiell zusätzliches
-Verhalten aufweist.
+as"=Verfeinerungs"=Relation zu, dass es in einer Verfeinerung möglicherweise
+weniger Fehler gibt und zusätzliches Verhalten, dass die Spezifikation nicht
+hatte kann auftreten. Die \EIO{} entsprechen Implementierungen von \MEIO{}s, es
+ist also möglich, eine Implementierung mit Fehler durch eine andere as zu
+verfeinern, die keine Fehler enthält, aber potentiell zusätzliches Verhalten
+aufweist. Falls eine Implementierung bereits fehler-frei ist, entspricht sie
+einem LTS und kann somit nur noch duch äquivalente Implementierungen \glqq
+verfeiner\grqq{} werden.
 
 \begin{Def}[schwache alternierende Simulation]
   \label{wSimDef}
@@ -209,7 +211,7 @@ Verhalten aufweist.
 \end{Def}
 
 Die schwache Simulation erlaubt interne Aktionen beim \MEIO{}, das die
-entsprechende Aktion matchen muss. Jedoch ist es zwingen notwendig, dass ein
+entsprechende Aktion matchen muss. Jedoch ist es zwingend notwendig, dass ein
 Input sofort aufgeführt wird und erst dann interne Aktinen möglich sind. Da
 ein Input die Reaktion auf eine Aktion ist, die die Umwelt auslöst und die
 nicht auf das Transitionssystem warten kann. Outputs hingegen können auch
@@ -273,5 +275,5 @@ Man hätte alternativ die Sprache eines \MEIO{}s anders definieren können um
 weiterhin einen eindeutigen Zusammenhang zwischen dieser und den Sprachen der
 as"=Implementierungen zu haben, jedoch wäre dann die Äquivalenz zur \EIO{}
 Sprach-Definition in~\cite{Schinko2016BA} verloren gegangen. Eine
-Implementierung mit Fehler-Zuständen hätte dann auch eine Sprache mit Wörtern,
-die sie nicht mal ausführen können muss.
+Implementierung mit Fehler-Zuständen hätte dann eine Sprache mit Wörtern, die
+sie nicht mal ausführen können muss.
