@@ -830,26 +830,29 @@ diese Verfeinerung durch \ERel{} charakterisiert.
 
 \section{Testing-Ansatz}
 
-Der Erweiterungs-Ansatz aus dem letzten Teil stützt sich auf die
+Der gröbste Präkongruenz-Ansatz aus dem letzten Teil stützt sich auf die
 Parallelkomposition von \MEIO{}s, die wie im bereits
-in~\ref{schwVerfParallelLem}~1. erwähnt auch anders gestaltet hätte werden
+in~\ref{schwVerfParallelLem}~1.\ erwähnt auch anders gestaltet hätte werden
 können. Spezielle bei neuen Fehler ist dort gezeigt worden, dass es zu einem
 ungewöhnlichen Verfeinerungs-Verhalten kommen kann, das möglicherweise gar
 nicht so gewollt ist. Deshalb ist es sinnvoll sich nur auf die Definition der
 Parallelkomposition von \EIO{} zu stützen, die hier für die Implementierungen
 gilt. Dies führt zu dem in diesem Teil behandelten Testing-Ansatz. Dieser lässt
-jedoch wiederum keine Aussage zu mit gröbster Präkongruenz, wie das im letzen
-Teil möglich war.\\
-Der Testing-Ansatz stützt sich auf den Ansatz, der in~\cite{Vogler2015FailSem}
-angewendet wurde. Jedoch sind Tests dort Tupel aus einer Implementierung und
-einer Menge an Aktionen, über denen synchronisiert werden soll. Die \MEIO{}s,
-die hier komponiert werden bringen die Menge $\Synch$ an Aktionen, die
-synchronisiert werden bereits mit. Es wird im Gegensatz
-zu~\cite{Vogler2015FailSem} mit Inputs und Outputs gearbeitet und dadurch
-scheint der Ansatz die gemeinsamen Aktionen zu synchronisieren natürlicher, wie
-eine Menge beim Test vorzugeben.\\
+jedoch wiederum keine Aussage zu gröbste Präkongruenz zu bestimmen, wie das im
+letzen Teil möglich war. Der Test ersetzt also die Basisrelation als
+grundlegende Definition für den Ansatz.\\
+Der Testing-Ansatz stützt sich auf das Vorgehen, das
+in~\cite{Vogler2015FailSem} angewendet wurde. Jedoch sind Tests dort Tupel aus
+einer Implementierung und einer Menge an Aktionen, über denen synchronisiert
+werden soll. Die \MEIO{}s, die hier komponiert werden bringen die Menge
+$\Synch$ an Aktionen, die synchronisiert werden bereits mit. Es wird im
+Gegensatz zu~\cite{Vogler2015FailSem} mit Inputs und Outputs gearbeitet und
+dadurch scheint der Ansatz die gemeinsamen Aktionen zu synchronisieren
+natürlicher, wie eine Menge an Aktionen beim Test vorzugeben.\\
 Die Definition von lokaler Erreichbarkeit eines Fehler-Zustandes soll aus dem
-Erweiterungs"=Ansatz übernommen werden.
+Erweiterungs"=Ansatz übernommen werden. Es wird also trotzdem noch
+optimistisch davon ausgegangen, dass Fehler erst zu Problemen führen, wenn eine
+hilfreiche Umgebung dies nicht mehr verhindern kann.
 
 \begin{Def}[Test und Verfeinerung für Kommunikationsfehler]
   \label{KommTestDef}
@@ -865,9 +868,10 @@ Erweiterungs"=Ansatz übernommen werden.
 Abgesehen von Korollar~\ref{lokalFehlerErrKor}~(ii) erweisen sich
 Definition~\ref{KommTracesDef} bis Korollar~\ref{KommPraekonKor} auch hier als
 nützlich.\\
-Die Basisrelation aus dem Erweiterungs-Ansatz gibt es in diesem Ansatz nicht,
-somit kann das Lemma~\ref{KommVerfeinLem} nicht in dieser Art formuliert
-werden. Jedoch kann hier jetzt mit Tests gearbeitet werden.
+Die Basisrelation aus dem gröbsten Präkongruenz-Ansatz gibt es in diesem Teil
+nicht, somit kann das Lemma~\ref{KommVerfeinLem} nicht in dieser Art formuliert
+werden. Jedoch kann hier mit Tests gearbeitet werden und unter deren
+zuhilfenahme ein ähnliches Lemma formuliert werden.
 
 \begin{Lem}[Testing-Verfeinerung mit Kommunikationsfehlern]
   \label{KommTestVerfeinLem}
@@ -901,16 +905,15 @@ werden. Jedoch kann hier jetzt mit Tests gearbeitet werden.
       Test $T$ nicht as"=erfüllen, wegen der Implikation $P_2\EsatAs T
       \Rightarrow P_1\EsatAs T$. Damit $P_2$ $T$ nicht as"=erfüllt muss es eine
       as"=Implementierungen $P'_2$ geben, die in Parallelkomposition mit $T$ zu
-      einem nicht fehler-freien System führt. Da $T$ ein Partner von $P'_2$
-      ist, gibt es in der Parallelkomposition nur lokale Aktionen. Somit muss
-      in $P'_2\|T$ ein Fehler lokal erreichbar sein. Durch die Definition von
-      $T$ kann dieser Fehler nur von $P'_2$ geerbt sein. In $P'_2$ kann dieser
-      Fehler-Zustand nur durch interen Aktionen und Outputs erreichbar sein, da
-      $T$ keine Outputs besitzt, die man mit Inputs aus $P'_2$ synchronisieren
-      könnte und unsynchronisierte Aktionen sind in einer Parallelkomposition
-      von Partner nicht möglich. Somit gilt $\varepsilon\in \PrET
-      _{P'_2}\subseteq \ET _{P'_2}$. Mit Proposition~\ref{KommSemProp} folgt
-      daraus $\varepsilon\in \ET _2$.
+      einem nicht fehler-freien System führt. Es muss also in $P'_2\|T$ ein
+      Fehler lokal erreichbar sein. Durch die Definition von $T$ kann dieser
+      Fehler nur von $P'_2$ geerbt sein. In $P'_2$ kann dieser Fehler-Zustand
+      nur durch interen Aktionen und Outputs erreichbar sein, da $T$ keine
+      Outputs besitzt, die man mit Inputs aus $P'_2$ synchronisieren könnte und
+      unsynchronisierte Aktionen sind in einer Parallelkomposition von Partner
+      nicht möglich. Somit gilt $\varepsilon\in \PrET _{P'_2}\subseteq \ET
+      _{P'_2}$. Mit Proposition~\ref{KommSemProp} folgt daraus $\varepsilon\in
+      \ET _2$.
     \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
       $x_{n+1}\in I=O_T$): Es wird der folgende Partner $T$ betrachtet (dieser
       entspricht bis auf die Benennung der Mengen dem Transitionssystem $U$
@@ -949,9 +952,8 @@ werden. Jedoch kann hier jetzt mit Tests gearbeitet werden.
       \Rightarrow P_1\EsatAs T$ geschlossen werden, dass auch $P_2\EsatAs T$
       nicht gelten kann. Die Relation gilt für $P_2$ nicht, da es eine
       as"=Implementierung $P'_2$ von $P_2$ gibt, so dass $P'_2\|T$ nicht
-      fehler-frei ist. Da es nur lokale Aktionen in $P'_2\|T$ gibt, muss der
-      Fehler-Zustand lokal erreichbar sein.\\
-      Der Fehler kann geerbt oder neu sein.
+      fehler-frei ist.\\
+      Der lokal erreichbar Fehler in $P'_2\|T$ kann geerbt oder neu sein.
       \begin{itemize}
         \item Fall 2i) (neuer Fehler): Da jeder Zustand von $T$ alle Inputs
           $x\in O=I_T$ zulässt, muss ein lokal erreichbarer Fehler-Zustand der
@@ -988,8 +990,8 @@ werden. Jedoch kann hier jetzt mit Tests gearbeitet werden.
   as"=Implementierung $P'_1$ von $P_1$ in $L_{P'_1}\backslash \ET _{P'_1}$
   enthalten.
   \begin{itemize}
-    \item Fall 1 ($w=\varepsilon$): Da $\varepsilon$ immer in $\EL _2$ muss
-      hier nichts gezeigt werden.
+    \item Fall 1 ($w=\varepsilon$): Da $\varepsilon$ immer in $\EL _2$
+      enthalten ist, muss hier nichts gezeigt werden.
     \item Fall 2 ($w=x_1\dots x_n$ mit $n\geq 1$): Es wird ein Partner $T$ wie
       folgt konstruiert ($T$ entspricht dabei $U$ aus Abbildung~\ref{UmitE} bis
       auf die Benennung der Mengen):
@@ -1017,57 +1019,59 @@ werden. Jedoch kann hier jetzt mit Tests gearbeitet werden.
           Proposition~\ref{KommSemProp}.
         \item Fall 2b) (neuer Fehler aufgrund von $a\in O=I_T$): Der einzige
           Zustand, in dem $T$ nicht alle Inputs erlaubt sind, ist $p_n$, der
-          bereits ein Fehler-Zustand ist. Da dieser Zustand in $P'_2\|T$
-          erreichbar ist, besitzt der komponierte \MEIO{} einen geerbten Fehler
-          und es gilt $w\in L_{P'_2}\subseteq \EL _2$, wegen dem folgenden Fall
-          2c).
+          bereits ein Fehler-Zustand ist. Da in diesem Fall der Fehler"=Zustand
+          in $P'_2\|T$ erreichbar ist, besitzt der komponierte \MEIO{} einen
+          geerbten Fehler und es gilt $w\in L_{P'_2}\subseteq \EL _2$, wegen
+          dem folgenden Fall 2c).
         \item Fall 2c) (geerbter Fehler von $T$): Da $p_n$ der einzige
           Fehler-Zustand in $T$ ist und alle Aktionen synchronisiert sind, ist
           dies nur möglich, wenn $p_{02} \lweakmay[x_1\dots x_n]_{P'_2}$ gilt.
-          In diesem Fall gilt $w\in L_{P'_2}\subseteq \EL _{P'_2}$. Daraus
+          In diesem Fall ist $w\in L_{P'_2}\subseteq \EL _{P'_2}$. Daraus
           folgt mit Proposition~\ref{KommSemProp} $w\in\EL _2$.
-        \item Fall 2d) (geerbter Fehler von $P'_2$): Es gilt dann $p_{02}
-          \lweakmay[x_1\dots x_n]_{P'_2} p'\in E_{P'_2}$ für $i\geq 0$ und
+        \item Fall 2d) (geerbter Fehler von $P'_2$): Es gilt $p_{02}
+          \lweakmay[x_1\dots x_n]_{P'_2} p'\in E_{P'_2}$ für ein $i\geq 0$ und
           $u\in O^*$. Somit ist $x_1\dots x_i u\in\StET _{P'_2}$ und damit
           $\prune (x_1\dots x_iu) =\prune (x_1\dots x_i)\in\PrET
-          _{P'_2}\subseteq \EL _{P'_2}$. Somit gilt mit Hilfe von
-          Proposition~\ref{KommSemProp} $w\in\EL _{P'_2}\subseteq \EL _2$.
+          _{P'_2}\subseteq \EL _{P'_2}$. Mit Hilfe von
+          Proposition~\ref{KommSemProp} folgt $w\in\EL _{P'_2}\subseteq \EL
+          _2$.
       \end{itemize}
   \end{itemize}
 \end{proof}
 
 \begin{Satz}
   \label{KommTestVerfSatz}
-  Falls $P_1\ERel P_2$ gilt folgt draus auch, dass $P_1$ $P_2$
+  Falls $P_1\ERel P_2$ gilt folgt draus, dass $P_1$ $P_2$
   Fehler-verfeinert.
 \end{Satz}
 \begin{proof}
-  Nach Definition gilt, genau dann wenn $\varepsilon\in \ET (P)$, ist ein
+  Nach Definition gilt genau dann, wenn $\varepsilon\in \ET (P)$, ist ein
   Fehler-Zustand lokal erreichbar in $P$. $P_1\ERel P_2$ impliziert, dass
   $\varepsilon\in\ET _2$ gilt, wenn $\varepsilon\in\ET _1$. Somit ist ein
   Fehler-Zustand in $P_1$ nur dann lokal erreichbar, wenn dieser auch in $P_2$
   lokal erreichbar ist. Aufgrund von Proposition~\ref{lokalFehlerErrKor}~(i)
   gibt es dann auch entsprechende as"=Implementierungen $P'_1$ und $P'_2$ für
   $P_1$ bzw. $P_2$, die ebenfalls Fehler-Zustände lokal erreichen können, wenn
-  dies in $P_1$ bzw. $P_2$ möglich ist. Für alle Tests $T$ gilt dann auch, dass
-  $P'_j\|T$ für $j\in\{1,2\}$ einen lokal erreichbaren Fehler hat, wenn $P'_j$
-  einen solchen hat. Dies Schlussfolgerung ist möglich, da
+  dies in $P_1$ bzw. $P_2$ möglich ist. Für alle Tests $T$ gilt, dass $P'_j\|T$
+  für $j\in\{1,2\}$ einen lokal erreichbaren Fehler hat, wenn $P'_j$ einen
+  solchen hat. Dies Schlussfolgerung ist möglich, da
   Satz~\ref{KommFehlerSemSatz}~1.\ aussagt, dass die Parallelkomposition von
   einem Fehler-Trace aus $\ET _{P'_j}$ mit einem Wort aus $\EL _T$ in den
-  Fehler-Traces von $\ET _{P'_j\|T}$ enthalten ist. Es gilt $\varepsilon\in \ET
-  _{P'_j}$, da ein Fehler lokal erreichbar ist und $\varepsilon\in\EL _T$ gilt
-  für alle Test $T$ und somit folgt $\varepsilon\in \ET _{P'_j\|T}$. Dies
-  impliziert die lokal Fehler Erreichbarkeit in $P'_j\|T$. Falls also $P_1$
-  einen lokal erreichbaren Fehler-Zustand enthält, dann zeigt sich dies
-  Verhalten auch in einer as"=Implementierungen und auch in der
-  Parallelkomposition der as"=Implementierung mit allen Tests $T$. Aus einem
-  lokal erreichbaren Fehler in $P_1$ folgt auch ein lokal erreichbarer
-  Fehler-Zustand in $P_2$ und somit auch ein lokal erreichbarer Fehler-Zustand
-  in der Parallelkomposition einer as"=Implementierung von $P_2$ mit allen
-  Tests $T$. Aus $P_1\ERel P_2$ folgt also die Implikation $\neg P_1 \EsatAs T
-  \Rightarrow \neg P_2 \EsatAs T$ für alle Test $T$. Wenn man die Negationen
-  entfernt, ergibt sich für alle Tests $T$: $P_2\EsatAs T\Rightarrow P_1\EsatAs
-  T$. Dies entspricht der Definition von $P_1$ Fehler-verfeinert $P_2$.
+  Fehler-Traces von $\ET _{P'_j\|T}$ enthalten ist. $\varepsilon$ ist ein
+  Element von $\ET _{P'_j}$, da ein Fehler lokal erreichbar ist und
+  $\varepsilon \in \EL _T$ gilt  für alle Test $T$ und somit folgt $\varepsilon
+  \in \ET _{P'_j\|T}$. Dies impliziert die lokal Fehler Erreichbarkeit in
+  $P'_j\|T$. Falls also $P_1$ einen lokal erreichbaren Fehler-Zustand enthält,
+  dann zeigt sich dies Verhalten auch in einer as"=Implementierungen und
+  ebenfalls in der Parallelkomposition der as"=Implementierung mit allen Tests
+  $T$. Aus einem lokal erreichbaren Fehler in $P_1$ folgt auch ein lokal
+  erreichbarer Fehler-Zustand in $P_2$ und somit auch ein lokal erreichbarer
+  Fehler-Zustand in der Parallelkomposition einer as"=Implementierung von $P_2$
+  mit allen Tests $T$. Aus $P_1\ERel P_2$ folgt also die Implikation $\neg P_1
+  \EsatAs T \Rightarrow \neg P_2 \EsatAs T$ für alle Test $T$. Wenn man die
+  Negationen entfernt, ergibt sich für alle Tests $T$: $P_2\EsatAs T\Rightarrow
+  P_1\EsatAs T$. Dies entspricht der Definition von $P_1$ Fehler-verfeinert
+  $P_2$.
 \end{proof}
 
 Auch die in diesem Abschnitt gezeigten Folgerungen schließen sich zu einem
@@ -1100,11 +1104,10 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
 \section{Zusammenhänge}
 
 \begin{Satz}[Zusammenhang der Verfeinerungs-Relationen mit der Fehler-Relation]
-  Es für \MEIO{}s $P$ und $Q$ gilt $P\asRel Q\Rightarrow P\wasRel Q\Rightarrow
+  Für \MEIO{}s $P$ und $Q$ gilt $P\asRel Q\Rightarrow P\wasRel Q\Rightarrow
   P\ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht.
 \end{Satz}
 \begin{proof}\mbox{}\\
-  \TODO{auf mögliche Kürzungen überprüfen}\\
   $P\asRel Q\Rightarrow P\wasRel Q$:\\
   Um diese Implikation zu zeigen, muss man nachweisen, dass jede starke
   as"=Verfeinerungs"=Relation auch die Definition~\ref{wSimDef} der schwachen
@@ -1112,91 +1115,90 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
   (\ref{SimDef} und~\ref{wSimDef}) müssen die Punkte für alle $(p,q) \in
   \mathcal{R}$ mit $q\notin E_Q$ gelten. Sei $\mathcal{R}$ nun eine
   as"=Verfeinerungs"=Relation. Es gilt also mit~\ref{SimDef}~1.\, dass $p$ kein
-  Fehler-Zustand von $P$ ist. Somit ist auch bereits 1.\ von~\ref{wSimDef}
-  erfüllt. Für alle $\alpha\in\Sigma _{\tau}$ impliziert $q\must[\alpha]_Q q'$
-  $p\must[\alpha]_P p'$ für ein $p'$ mit $p'\mathcal{R} q'$. Da $\Sigma
+  Fehler-Zustand von $P$ ist. Somit ist auch 1.\ von~\ref{wSimDef} erfüllt. Für
+  alle $\alpha\in\Sigma _{\tau}$ impliziert~\ref{SimDef}~2. $q \must[\alpha]_Q
+  q'$ $p\must[\alpha]_P p'$ für ein $p'$ mit $p'\mathcal{R} q'$. Da $\Sigma
   _{\tau} = I \cup O \cup \{\tau\}$ gilt, sind dadurch 2.\ und 3.\ der
   Definition~\ref{wSimDef} erfüllt. Die schwache $\varepsilon$-Transition aus
-  2.\ führt keine echten Transitionen aus, sondern bleibt beim Zustand $p'$ und
+  2.\ führt keine echten Transitionen aus, sondern bleibt beim Zustand $p'$.
   Die schwache $\hat{\omega}$-Transition aus 3.\ entspricht in $\mathcal{R}$
   nur einer einzigen Transition für $\omega$. Die Punkte 4.\ und 5.\ aus
   Definition~\ref{wSimDef} werden durch~\ref{SimDef}~3.\ erfüllt. Es gilt für
-  $\mathcal{R}$ die Implikation $p\may[\alpha]_P p'$ impliziert $q
-  \may[\alpha]_Q q'$ für ein $q'$ mit $p'\mathcal{R}q'$. Die in~\ref{wSimDef}
-  geforderten schwachen may"=Transitionen werden hier jeweils stark durch eine
-  einzige Transition umgesetzt. $\mathcal{R}$ ist also auch eine schwache
+  $\mathcal{R}$ $p\may[\alpha]_P p'$ impliziert $q \may[\alpha]_Q q'$ für ein
+  $q'$ mit $p'\mathcal{R}q'$. Die in~\ref{wSimDef} geforderten schwachen
+  may"=Transitionen werden hier jeweils stark durch eine einzige Transition
+  umgesetzt. $\mathcal{R}$ ist also auch eine schwache
   as"=Verfeinerungs"=Relation.
 
   $P\wasRel Q\Rightarrow P\ERel Q$:\\
-  Um diese Implikation zu beweisen wird gezeigt, dass für eine beliebige
+  Um diese Implikation zu beweisen wird gezeigt, dass eine beliebige
   schwache as"=Verfeinerungs"=Relation $\mathcal{R}$ zwischen $P$ und $Q$ auch
-  die Eigenschaften für $\ERel$ erfüllt sind. Es ist also nachzuweisen, dass
-  $\ET _P \subseteq \ET _Q$ und $\EL _P \subseteq \EL _Q$ gilt, wenn
-  $\mathcal{R}$ als alternierenden Simulation zwischen $P$ und $Q$
-  vorausgesetzt ist.\\
+  die Eigenschaften der Relation $\ERel$ erfüllt. Da $\mathcal{R}$ eine
+  schwache as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ ist, muss $p_0
+  \mathcal{R} q_0$ gelten. Es sind die folgenden Punkte nachzuweisen:
+  \begin{itemize}
+    \item $\ET _P \subseteq \ET _Q$,
+    \item $\EL _P \subseteq \EL _Q$.
+  \end{itemize}
   Für den ersten Punkt wird ein beliebiges $w$ aus $\ET _P$ betrachtet und
   gezeigt, dass dieses auch in $\ET _Q$ enthalten ist. Es kann davon
   ausgegangen werden, dass $w$ präfix-minimal ist, da beide \ET{}-Mengen unter
   \cont{} abgeschlossen sind. $w$ kann ein Element aus $\PrET (P)$ sein oder
-  ein Element aus $\MIT (P)\backslash \PrET (P)$.
+  ein Element aus $\MIT (P)$.
   \begin{itemize}
     \item Fall 1 ($w\in\PrET (P)$): Es existiert ein $v\in O_P$, sodass das
       Wort $wv$ in $P$ einen Fehler-Zustand erreicht. Für die entsprechende
       Transitionsfolge existieren Zustände $p_1, p_2,\dots , p_n$ in $P$ und
       Aktionen $\alpha _1, \alpha _2,\dots , \alpha _n$, die zusammengesetzt
       ein Wort $w'=\alpha _1 \alpha _2 \dots \alpha _n$ bilden, dass ohne die
-      internen Aktionen $wv$ entspricht. Die entsprechende Transitionsfolge ist
-      dann $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
-      \may[\alpha _n]_P p_n \in E_P$. Da $w$ präfix-minimal ist, kann $v$ so
-      gewählt werden, dass auf den Trace von $w'$ alle Zustände außer $p_n$
-      nicht in $E_P$ enthalten sind. Da $\mathcal{R}$ eine
-      as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ ist, muss
-      $p_0\mathcal{R}q_0$ gelten. Abhängig davon, ob $\alpha _j$ ein Input oder
-      eine lokale Aktion ist, kann mit \ref{wSimDef}~4.\ bzw.~5.\ argumentiert
-      werden, dass das jeweilige $\alpha _j$ auch in $Q$ schwach ausführbar
-      ist, solange der entsprechende Zustand $q_{j-1}$ kein Fehler-Zustand ist
-      für $j\in \{1,2,\dots n\}$. Falls ein $q_j$ für $j < n$ in $E_Q$
-      enthalten ist, wurde bis dort ein Präfix von $wv$ ausgeführt. Es gilt
-      also mit $w=\prune (wv)$ und dem Abschluss unter \cont{} von \ET{}
-      $w\in\ET _Q$. Ansonsten gibt es in $Q$ einen Trace $q_0 \weakmay[\alpha
-      _1]_Q q_1 \weakmay[\alpha _2]_Q \dots q_{n-1} \weakmay[\alpha _n]_Q q_n$,
-      wobei $p_j \mathcal{R} q_j$ für alle $0 \leq j \leq n$ gilt.
+      internen Aktionen $wv$ entspricht. Die entsprechende Transitionsfolge in
+      $P$ ist dann $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
+      \may[\alpha _n]_P p_n \in E_P$. Abhängig davon, ob $\alpha _j$ ein Input
+      oder eine lokale Aktion ist, kann mit~\ref{wSimDef}~4.\ bzw.~5.\
+      argumentiert werden, dass das jeweilige $\alpha _j$ auch in $Q$ schwach
+      ausführbar ist, solange der entsprechende Zustand $q_{j-1}$ kein
+      Fehler-Zustand ist für $j\in \{1,2,\dots n\}$. Falls ein $q_j$ für $j <
+      n$ in $E_Q$ enthalten ist, wurde bis dort ein Präfix von $wv$ ausgeführt.
+      Dieses Präfix ist in $\StET _Q$ enthalten. Es gilt also mit $w=\prune
+      (wv)$ und dem Abschluss von \ET{} unter \cont{} $w\in\ET _Q$. Ansonsten
+      gibt es in $Q$ einen Trace $q_0 \weakmay[\widehat{\alpha _1}]_Q q_1
+      \weakmay[\widehat{\alpha _2}]_Q \dots q_{n-1} \weakmay[\widehat{\alpha
+      _n}]_Q q_n$, wobei $p_j \mathcal{R} q_j$ für alle $0 \leq j \leq n$ gilt.
       Mit~\ref{wSimDef}~1.\ folgt, dass $q_n\in E_Q$ gelten muss und somit auch
       $w\in\ET _Q$ mit der Begründung von oben.
-    \item Fall 2 ($w\in\MIT (P)\backslash \PrET (P)$): $w$ ist in $P$ ein
-      Input-kritischer Trace, der jedoch nicht zu einem Fehler-Zustand führen
-      kann. Man kann $w$ also aufteilen in $va$ mit $v\in \Sigma ^*$ und $a\in
-      I$. Der Trace in $P$ kann wie folgt dargestellt werden: $\exists v'\in
-      \Sigma _{\tau}^*, \exists p_1, p_2, \dots , p_n, \exists \alpha _1,
-      \alpha _2, \dots , \alpha _n: \hat{v'}=v \land v'=\alpha _1 \alpha _2
-      \dots \alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots
-      p_{n-1} \may[\alpha _n]_P p_n \nmust[a]_P$. Basierend
-      auf~\ref{wSimDef}~4.\ bzw.~5.\ kann daraus Schritt für Schritt gefolgert
-      werden, dass die $\alpha _j$ auch schwach ausführbar sind in $Q$, falls
-      kein $p_{j-1}$ angetroffen wird, dass in $E_Q$ enthalten ist für $j\in
-      \{1,2,\dots n\}$. Falls eines der $p_j$ mit $0 \leq j \leq n$ ein
-      Fehler-Zustand ist, dann ist $w$ in $\ET _Q$ enthalten, da ein Präfix von
-      $w$ ein strikter Fehler-Trace in $Q$ ist. Falls alle $q_j$ nicht in $E_Q$
-      enthalten sind, gilt $q_0 \weakmay[\alpha _1]_Q q_1 \weakmay[\alpha _2]_Q
-      \dots q_{n-1} \weakmay[\alpha _n]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$
-      für alle $j\in \{0,1, \dots , n\}$. Da $a$ für $p_n$ in $P$ keine
-      ausgehende must"=Transition sein kann, gilt mit~\ref{wSimDef}~2.\ auch
-      $q_n \nmust[a]$. Es gilt dann also $w\in\MIT _Q \subseteq \ET _Q$.
+    \item Fall 2 ($w\in\MIT (P)$): $w$ ist in $P$ ein Input-kritischer Trace.
+      Es existiert also eine Aufteilung von $w$ in $va$ mit $v\in \Sigma ^*$
+      und $a\in I$. Der Trace in $P$ kann wie folgt dargestellt werden:
+      $\exists v'\in \Sigma _{\tau}^*, \exists p_1, p_2, \dots , p_n, \exists
+      \alpha _1, \alpha _2, \dots , \alpha _n: \hat{v'}=v \land v'=\alpha _1
+      \alpha _2 \dots \alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha
+      _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n \nmust[a]_P$. Basierend
+      auf~\ref{wSimDef}~4.\ bzw.~5.\ kann daraus gefolgert werden, dass die
+      $\alpha _j$ auch schwach ausführbar sind in $Q$, falls kein $p_{j-1}$
+      angetroffen wird, dass in $E_Q$ enthalten ist für $j\in \{1,2,\dots n\}$.
+      Falls eines der $p_j$ mit $0 \leq j \leq n$ ein Fehler-Zustand ist, dann
+      ist $w$ in $\ET _Q$ enthalten, da ein Präfix von $w$ ein strikter
+      Fehler-Trace in $Q$ ist. Ansonsten gilt $q_0 \weakmay[\widehat{\alpha
+      _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots q_{n-1}
+      \weakmay[\widehat{\alpha _n}]_Q q_n$ mit $p_j \mathcal{R} q_j$ für alle
+      $j\in \{0,1, \dots , n\}$. Da $a$ für $p_n$ in $P$ keine ausgehende
+      must"=Transition sein kann, gilt mit~\ref{wSimDef}~2.\ auch $q_n
+      \nmust[a]$. $w$ ist in $\MIT _Q \subseteq \ET _Q$ enthalten.
   \end{itemize}
   Für den zweiten Punkt kann man sich auf die Inklusion $\EL _P\backslash\ET _P
   \subseteq \EL _Q$ einschränken, da der erste Punkt bereits vorausgesetzt
-  werden kann. $\EL _P\backslash\ET _P$ entspricht $L _P\backslash\ET _P$.
-  Somit ist ein $w\in L_P\backslash \ET _P$ in $P$ ausführbar. Es gibt also
-  einen Trace $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
-  \may[\alpha _n]_P p_n$ in $P$, wobei $w$ $\alpha _1\alpha _2 \dots \alpha _n$
-  entspricht bis auf die internen Aktionen. Erneut können
-  hier~\ref{wSimDef}~4.\ und~5.\ dazu verwendet werden einen analogen Trace in
-  $Q$ zu finden. Falls ein $q_j$ für $0 \leq j \leq n$ in $E_Q$ enthalten ist,
-  gilt $w\in\ET _Q \subseteq \EL _Q$. Es wird also für die folgende Begründung
-  davon ausgegangen, dass kein $q_j$ ein Fehler-Zustand ist, damit gilt $q_0
-  \weakmay[\alpha _1]_Q q_1 \weakmay[\alpha _2]_Q \dots q_{n-1} \weakmay[\alpha
-  _n]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$ für $0 \leq j \leq n$ und somit
-  $w\in L _Q\subseteq \EL _Q$.
+  werden kann. $\EL _P\backslash\ET _P$ ist eine Teilmenge der Sprache $L _P$.
+  Somit ist ein $w$ in $P$ ausführbar. Es gibt also einen Trace $p_0
+  \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n$
+  in $P$, wobei $w$ $\alpha _1\alpha _2 \dots \alpha _n$ entspricht bis auf die
+  internen Aktionen. Erneut können hier~\ref{wSimDef}~4.\ und~5.\ dazu
+  verwendet werden einen analogen Trace in $Q$ zu finden. Falls ein $q_j$ für
+  $0 \leq j \leq n$ in $E_Q$ enthalten ist, gilt $w\in\ET _Q \subseteq \EL _Q$.
+  Es wird also im Folgenden davon ausgegangen, dass kein $q_j$ ein
+  Fehler-Zustand ist. Es gilt dann $q_0 \weakmay[\widehat{\alpha _1}]_Q q_1
+  \weakmay[\widehat{\alpha _2}]_Q \dots q_{n-1} \weakmay[\widehat{\alpha _n}]_Q
+  q_n$ in $Q$ mit $p_j \mathcal{R} q_j$ für $0 \leq j \leq n$ und somit $w\in L
+  _Q\subseteq \EL _Q$.
 
   $P\asRel Q\hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P\wasRel Q$:\\
   Im Abbildung~\ref{asWasGegenBsp} wird ein Gegenbeispiel dargestellt mit einem
@@ -1207,22 +1209,18 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
   Simulations"=Relation zwischen $P$ und $Q$ sein kann müssen die Startzustände
   in Relation stehen. Dies ist durch das $(p_0,q_0)\in \mathcal{R}$ erfüllt.
   Es sind keine Fehler-Zustände in $Q$ und $P$ enthalten, somit ist 1.\ der
-  Definition~\ref{wSimDef} bereits erfüllt. $q_{11} \must[\tau]_Q q_{12}$ ist
-  die einzige must"=Transition in $Q$, da jedoch kein Zustand in $P$ existiert,
-  der mit $q_{11}$ in der Relation $\mathcal{R}$ steht,
-  fordert~\ref{wSimDef}~3.\ nichts. Der zweite Punkt von~\ref{wSimDef} ist
-  erfüllt, da $Q$ keine must"=Input"=Transitionen enthält. Falls $\alpha$ ein
-  Input ist, fordert dann~\ref{wSimDef}~4., dass die Transition $p_0
-  \may[\alpha]_P p_1$ in $Q$ schwach ausführbar ist in der Form $q_0
-  \may[\alpha]_Q \weakmay[\varepsilon]_Q q$ als entsprechendes $q$ kommen
-  $q_{11}$ und $q_{12}$ in Frage. Da $p_1 \mathcal{R} q_{12}$ gilt, ist die
-  Forderung von~\ref{wSimDef}~4.\ erfüllt. Falls $\alpha$ eine lokale Aktion
-  ist, würde die Forderung $q_0 \weakmay[\hat{\alpha}]_Q q$ für $Q$ lauten und
-  es würden wieder $q_{11}$ und $q_{12}$ als mögliche Zustände für $q$ in Frage
-  kommen, im Fall von $\alpha = \tau$ wäre auch $q = q_0$ möglich. Die
-  Forderung ist jedoch nicht stärker, wie die von~\ref{wSimDef}~4.\ im Falle
-  eines Inputs, somit ist auch~\ref{wSimDef}~5.\ im Falle einer lokalen Aktion
-  erfüllt. $\mathcal{R}$ ist also eine schwache as"=Verfeinerungs"=Relation
+  Definition~\ref{wSimDef} bereits für beide Zustands-Tupel erfüllt. Für das
+  Tupel $(p_1,q_{12})$ sind auch 2.-5.\ von~\ref{wSimDef} erfüllt, da weder
+  $p_1$ noch $q_{12}$ ausgehende Transitionen besitzen. Für $(p_0,q_0)\in
+  \mathcal{R}$ gibt es keine ausgehende must"=Transitionen. Also ist 2.\ und
+  3.\ von~\ref{wSimDef} bereits erfüllt. Falls $\alpha$ ein Input ist,
+  fordert~\ref{wSimDef}~4., dass die Transition $p_0 \may[\alpha]_P p_1$ in $Q$
+  schwach ausführbar ist in der Form $q_0 \may[\alpha]_Q
+  \weakmay[\varepsilon]_Q q$. Ein entsprechendes $q$ ist in diesem Fall
+  $q_{12}$ und es gilt $p_1 \mathcal{R} q_{12}$. Falls $\alpha$ eine lokale
+  Aktion ist, lautet die Forderung $q_0 \weakmay[\hat{\alpha}]_Q q$ für $Q$ und
+  $q_{12}$ ist wieder der passende Zustand für $q$, der mit $p_1$ in Relation
+  stehen. $\mathcal{R}$ ist also eine schwache as"=Verfeinerungs"=Relation
   zwischen $P$ und $Q$.\\
   Angenommen es gibt auch eine starke as"=Verfeinerungs"=Relation
   $\mathcal{R}'$ zwischen $P$ und $Q$, dann muss $p_0 \mathcal{R}' Q_0$
@@ -1233,7 +1231,7 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
   zweite Punkt der Definition~\ref{SimDef} fordert, dass die
   $\tau$-must"=Transition aus $Q$ auch in $P$ auftauchen muss. Es müsste also
   ein $p$ geben, für dass $p_1 \must[\tau]_P p$ gilt und das Tupel $(p,q_{12})$
-  müsste in $\mathcal{R}$ enthalten sein. Da es diese Transition nicht gibt,
+  müsste in $\mathcal{R}$ enthalten sein. Da es keine solche Transition gibt,
   tritt ein Widerspruch zur Annahme auf. Es kann also keine starke
   as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ geben.
 
@@ -1269,19 +1267,19 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
   existieren kann. $Q$ und $P$ sind in der Abbildung~\ref{WasEGegenBsp}
   dargestellt. Damit $\ET (P) =\ET (Q) = \emptyset$ gilt, dürfen keine der
   Zustände Fehler-Zustände sein und es muss gefordert werden, dass die Menge
-  $I$ der Inputs für die \MEIO{} leer ist, ansonsten würde es Input-kritische
+  $I$ der Inputs für die \MEIO{}s leer ist, ansonsten würde es Input-kritische
   Traces gegen. $P$ kann keine Aktionen ausführen und $Q$ nur die Output Aktion
   $o$ somit gilt für die Sprachen $\{\varepsilon\} = L(P) \subset L(Q) =
   \{\varepsilon , o\}$.\\
   Angenommen es gibt eine schwache as"=Verfeinerungs"=Relation $\mathcal{R}$
   zwischen $P$ und $Q$. Dafür muss $(p_0,q_0)\in \mathcal{R}$ gelten. Da es
-  keine Fehler-Zustände in $P$ gibt, ist~\ref{wSimDef}~1. erfüllt. Die
+  keine Fehler-Zustände in $P$ gibt, ist~\ref{wSimDef}~1.\ erfüllt. Die
   Punkte 2., 4.\ und 5.\ der Definition~\ref{wSimDef} stellen keine
   Forderungen an die Relation $\mathcal{R}$. Da jedoch die Transition $q_0
   \must[o]_Q q_1$ in $Q$ vorhanden ist, wird die Verfeinerung dieser in $P$
-  gefordert es müsste also auch eine must"=Output"=Transition geben. Da diese
-  nicht vorhanden ist, stellt dies einen Widerspruch zur Annahme dar und es
-  folgt, dass es keine schwache as"=Verfeinerungs"=Relation zwischen $P$ und
+  gefordert es müsste also auch eine must"=Output"=Transition in $P$ geben. Da
+  diese nicht vorhanden ist, stellt dies einen Widerspruch zur Annahme dar und
+  es folgt, dass es keine schwache as"=Verfeinerungs"=Relation zwischen $P$ und
   $Q$ geben kann.
 
   \begin{figure}[htbp]
@@ -1305,32 +1303,32 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
 In dieser Arbeit werden im Gegensatz zu~\cite{Vogler2016MIA3} die Fehler bei
 einer Parallelkomposition beibehalten bzw.\ aus dieser entstehend angesehen. Es
 werden dabei alle Transitionen, die nicht durch fehlende
-Synchronisations-Möglichkeiten wegfallen, der einzelnen Systeme übernommen.
-In~\cite{Vogler2016MIA3} hingegen wird der Ansatz verfolgt alle Fehler zu
-entfernen und durch einen universal Zustand zu ersetzten, der nur eingehende
-may"=Input"=Transitionen zulässt. Auf diese Normierung wurde hier mit Absicht
-verzichtete um sehen zu können, dass die Fehler einen Ursprung haben, den man
-später auch noch einsehen kann. Jedoch gibt es trotzdem einen Zusammenhand
-zwischen diesen beiden Ansätzen.\\
+Synchronisations"=Möglichkeiten wegfallen, übernommen. In~\cite{Vogler2016MIA3}
+hingegen wird der Ansatz verfolgt alle Fehler zu entfernen und durch einen
+universal Zustand zu ersetzten, der nur eingehende may"=Input"=Transitionen
+zulässt. Auf diese Normierung wurde hier mit Absicht verzichtete um sehen zu
+können, dass die Fehler einen Ursprung haben, den man später auch noch einsehen
+kann. Jedoch gibt es trotzdem einen Zusammenhang zwischen diesen beiden
+Ansätzen.\\
 Die Unterscheidung, die die Basisrelation \EBRel{} hier herbei führt, würde
-dort der Unterscheidung zwischen Transitionensystemen, die den universal
+dort der Unterscheidung zwischen Transitionssystemen, die den universal
 Zustand $e$ als Startzustand haben und denen, die einen Startzustand ungleich
 $e$ besitzen, entsprechen. Falls hier in einer as"=Implementierung von $P$ ein
 Fehler lokal erreichbar ist, dann muss auch in $P$ ein Fehler-Zustand lokal
-erreichbar sein, wegen~\ref{KommSemProp}~1. (Fall 1). Dies entspricht
-$\varepsilon \in \PrET (P)$. Das abschneiden den lokalen Aktionen wird hier nur
+erreichbar sein, wegen~\ref{lokalFehlerErrKor}~(i). Dies entspricht
+$\varepsilon \in \PrET (P)$. Das Abschneiden den lokalen Aktionen wird hier nur
 in der Trace Menge praktiziert, in~\cite{Vogler2016MIA3} jedoch direkt auf den
-Transitionssystemen. Im Fall der lokalen Fehler-Erreichbarkeit wird bleibt also
+Transitionssystemen. Im Fall der lokalen Fehler-Erreichbarkeit bleibt also
 nur noch der Zustand $e$ als universal Zustand übrig, für den jedes Verhalten
-zulässig ist. Falls man hier diese Prunning mit beligigem Verhalten nachmachen
+zulässig ist. Falls man hier diese Pruning mit beliebigem Verhalten nachmachen
 wollen würde, müsste man an den Zustand $e$ noch eine may-Schleife für alle
 Aktionen aus $I$ und $O$ hinzufügen.\\
 Da auch der Testing-Ansatz die lokale Fehler-Erreichbarkeit verwendet,
 existiert der Zusammenhang auch dort für die Parallelkomposition mit dem
 entsprechenden Test.\\
-Falls es keine Input-kritischen Traces gibt, entspicht \ERel{} der Relation
+Falls es keine Input-kritischen Traces gibt, entspricht \ERel{} der Relation
 $\sqsubseteq$ aus~\cite{Vogler2016MIA3}, falls auf die \MEIO{}s das
-entsprechende abschneiden der Fehler-Traces angewendet würde und diese dann
+entsprechende Abschneiden der Fehler-Traces angewendet würde und diese dann
 durch einen universal Zustand mit may"=Schleife für alle Inputs und Outputs
 ersetzt würden. Falle es jedoch in $Q$ Input-kritische Traces gibt, würde $P
 \ERel Q$ zulassen, dass $P$ einen gekürzten Fehler-Trace anstatt dessen
