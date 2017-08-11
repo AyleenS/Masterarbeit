@@ -1,6 +1,6 @@
 \chapter{Verfeinerungen für Kommunikationsfehler-Freiheit}
 
-\section{Erweiterungs-Ansatz}
+\section{gröbster Präkongruenz-Ansatz}
 
 Dieses Kapitel versucht die Präkongruenz für Error bei \EIO{}s aus
 z.B.~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
@@ -20,15 +20,16 @@ z.B.~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
   Für zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur wird $P_1\EBRel{}
   P_2$ geschrieben, wenn nur dann ein Fehler"=Zustand in einer
   as"=Implementierung von $P_1$ lokal erreichbar ist, wenn es auch eine
-  as"=Implementierung von $P_2$ gibt, in der ein Fehler"=Zustand auch lokal
-  erreichbar ist. Die Basisrelation stellt eine \emph{Verfeinerung-Relation}
-  bezüglich \emph{Kommunikationsfehler"=Freiheit} dar.\\
+  as"=Implementierung von $P_2$ gibt, in der ein Fehler"=Zustand ebenfalls
+  lokal erreichbar ist. Die Basisrelation stellt eine
+  \emph{Verfeinerungs-Relation} bezüglich \emph{Kommunikationsfehler"=Freiheit}
+  dar.\\
   \ECRel{} bezeichnet die \emph{vollständig abstrakte Präkongruenz} von
   \EBRel{} bezüglich $\cdot\|\cdot$, d.h.\ die gröbste Präkongruenz bezüglich
   $\cdot\|\cdot$, die in \EBRel{} enthalten ist.
 \end{Def}
 
-Für as"=Implementierungen $P_1$ und $P_2$ entspricht \EBRel{} der Relation
+Für as"=Implementierungen $P_1$ und $P_2$ entspricht \EBRel{} der Basisrelation
 \EBbaRel{} aus~\cite{Schinko2016BA}.
 
 Wie z.B.\ in~\cite{Schinko2016BA} werden die Fehler hier Trace-basiert
@@ -76,36 +77,37 @@ Traces seiner as"=Implementierungen dar.
 \begin{proof}\mbox{}
   \begin{enumerate}
     \item Um die Inklusion zu zeigen wird eine Implementierung $P'$ angegeben,
-      die die strickten Fehler-Traces von $P$ implementiert und zusätzlich auch
+      die die strikten Fehler-Traces von $P$ implementiert und zusätzlich auch
       noch eine passende as"=Verfeinerungs"=Relation $\mathcal{R}$ zwischen den
       beiden Transitionssystemen. $P'$ implementiert wie im Beweis zu
       Proposition~\ref{LImpProp} alle Transitionen von $P$. Das $P'$ wird hier
       jedoch im Gegensatz zu Beweis von~\ref{LImpProp} auch noch alle
       Fehler-Zustände aus $P$ implementieren. Die entsprechende
-      as"=Verfeinerungs"=Relation $\mathcal{R}$ ist jedoch hier ebenfalls
-      wieder die Identitäts-Relation zwischen den Zuständen der
-      Transitionssysteme. Die Definition von $P'$ lautet also:
+      as"=Verfeinerungs"=Relation $\mathcal{R}$ ist hier ebenfalls wieder die
+      Identitäts-Relation zwischen den Zuständen der Transitionssysteme. Die
+      Definition von $P'$ lautet:
       \begin{itemize}
         \item $P'=P$,
         \item $p'_0=p_0$,
         \item $I_{P'}=I_P$ und $O_{P'}=O_P$,
         \item $\must _{P'} =\may _{P'} = \may _P$,
-        \item $E_P'=E_P$.
+        \item $E_{P'}=E_P$.
       \end{itemize}
       Die Tupel, die von~\ref{SimDef}~2.\ und 3.\ als Elemente der
       as"=Verfeinerungs"=Relation $\mathcal{R}$ gefordert werden, sind bereits
-      durch die Identitäts"=Relation garantiert. Wie im Beweis~\ref{LImpProp}.
-      Für~\ref{SimDef}~1.\ muss für jedes in der as"=Verfeinerungs"=Relation
-      $\mathcal{R}$ enthaltene Zustands-Paar gelten, wenn der Zustand aus $P$
-      kein Fehler-Zustand ist, dann ist auch der Zustand aus $P'$ keiner, dies
-      folgt aus der Gleichheit der Mengen $E_P$ und $E_P'$. Jeder Trace aus
-      $\StET (P)$ ist via may"=Transitionen in $P$ ausführbar und führt dort zu
-      einem Fehler-Zustand. Der analoge Trace ist auch in $P'$ möglich, da alle
-      may"=Transitionen aus $P$ in $P'$ als must"=Transitionen implementiert
-      wurden. Der dabei erreichte Zustand steht mit dem Fehler-Zustand in $P$
-      in der Identitäts"=Relation $\mathcal{R}$, die Zustände entsprechen sich
-      also. Es gilt mit $E_P'=E_P$, dass auch der in $P'$ erreichte Zustand ein
-      Fehler-Zustand ist. Für die as"=Implementierung $P'$ von $P$ und der
+      durch die Identitäts"=Relation garantiert, wie im Beweis
+      von~\ref{LImpProp}. Für~\ref{SimDef}~1.\ muss für jedes in der
+      as"=Verfeinerungs"=Relation $\mathcal{R}$ enthaltene Zustands-Paar
+      gelten, wenn der Zustand aus $P$ kein Fehler-Zustand ist, dann ist auch
+      der Zustand aus $P'$ keiner. Dies folgt aus der Gleichheit der Mengen
+      $E_P$ und $E_{P'}$. Jeder Trace aus $\StET (P)$ ist via may"=Transitionen
+      in $P$ ausführbar und führt dort zu einem Fehler-Zustand. Der analoge
+      Trace ist auch in $P'$ möglich, da alle may"=Transitionen aus $P$ in $P'$
+      als must"=Transitionen implementiert wurden. Der dabei erreichte Zustand
+      steht mit dem Fehler-Zustand in $P$ in der Identitäts"=Relation
+      $\mathcal{R}$, die Zustände entsprechen sich also. Es gilt mit
+      $E_{P'}=E_P$, dass auch der in $P'$ erreichte Zustand ein Fehler-Zustand
+      ist. Für die as"=Implementierung $P'$ von $P$ und der
       Identitäts"=Relation $\mathcal{R}$ als starke as"=Verfeinerungs"=Relation
       zwischen den Transitionssystemen gilt also $\StET (P) =\StET (P')$.
     \item Da der erste Punkt dieser Proposition bereits beweisen wurde, gilt
@@ -146,7 +148,7 @@ Traces seiner as"=Implementierungen dar.
             &\cup\left\{((p,j),\alpha ,(p',j))\mid p\must[\alpha]_P p',
             0\leq j \leq n\right\},
         \end{aligned}$
-        \item $E_P'=\emptyset$.
+      \item $E_{P'}=\emptyset$.
       \end{itemize}
       Der Ablauf von $w$ aus $P$ wird in $P'$ durch $(p_0,0) \must[\alpha
       _1]_{P'} (p_1,1) \must[\alpha _2]_{P'} \dots (p_{n-1},n-1) \must[\alpha
@@ -157,7 +159,7 @@ Traces seiner as"=Implementierungen dar.
       werden in $P'$ durch die Transitionen $(p,j)\must[\alpha]_{P'} (p',j)$
       gematched. Für die may-Transitionen $(p,j)\may[\alpha]_{P'} (p',j+1)$
       (bzw. $(p',j)$) in $P'$ sind die entsprechenden matchenden Transitionen
-      in $P$ die Transition $p \may[\alpha]_P p'$. Da die Menge $E_P'$ leer
+      in $P$ die Transition $p \may[\alpha]_P p'$. Da die Menge $E_{P'}$ leer
       ist, gelten alle Bedingungen, damit $\mathcal{R}$ eine
       as"=Verfeinerungs"=Relation zwischen $P'$ und $P$ ist. Mit der Begründung
       von oben folgt auch $wa\in \MIT (P')$. Da für alle $wa$ aus $\MIT (P)$
@@ -186,7 +188,7 @@ as"=Implementierung ist.\\
 Aus den Propositionen für die Sprache und die Traces konnte für die Vereinigung
 der gleichen Mengen über die Implementierungen immer nur eine
 Inklusionsrichtung gefolgert werden, da die Definition~\ref{SimDef} nach einen
-Fehler-Zustand in $P$ beliebiges Verhalten ins dessen as"=Implementierungen
+Fehler-Zustand in $P$ beliebiges Verhalten in dessen as"=Implementierungen
 zulässt. Mit dem Einsatz der \cont{}-Funktion zum beliebigen fortsetzten der
 Traces kann dies ausgeglichen werden. Somit gilt wie die nächsten Proposition
 behauptet für die Fehler-Traces und die Fehler-geflutete Sprache Gleichheit
@@ -250,7 +252,7 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
       Induktion und in $P'$ gibt es die Transition $p'_j \may[\alpha _{j}]_{P'}
       p'_{j+1}$. Mit Definition~\ref{SimDef}~3.\ folgt draus, dass es auch eine
       Transition $p_j \may[\alpha _{j}]_P p_{j+1}$ in $P$ geben muss, so dass
-      $p'_{j+1}\asRel p_{j+1}$ gilt. Aus dieses Induktion kann nun gefolgert
+      $p'_{j+1}\asRel p_{j+1}$ gilt. Aus der Induktion kann nun gefolgert
       werden, dass $p'_n\asRel p_n$ gelten muss. Da $p'_n\in E_{P'}$ gilt,
       folgt draus mit~\ref{SimDef}~1., dass bereits $p_n$ in $E_P$ enthalten
       sein muss. Es gilt also $wv\in\StET (P)$ und mit der Argumentation von
@@ -309,21 +311,22 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
     \item Falls für zwei \MEIO{}s $P_1\EBRel P_2$ gilt und in $P_1$ ein Fehler
       lokal erreichbar ist, dann ist auch in $P_2$ ein Fehler lokal erreichbar.
   \end{enumerate}
-  \TODO{in spätere Argumentation als Verkürzung aufnehmen}
 \end{Kor}
 \begin{proof}\mbox{}\\
   $(i) \Rightarrow$:\\
   Da ein Fehler in $P$ lokal erreichbar ist, gilt $\varepsilon \in\PrET _P
   \subseteq \ET _P$. Es muss aufgrund von Proposition~\ref{KommSemProp}~1.\
   mindestens ein $P'\in\asimp (P)$ geben, für dass $\varepsilon \in \ET _{P'}$
-  gilt. Dies kann auch nur der Fall sein, wenn durch lokale Aktionen in $P'$
+  gilt. Dies kann nur der Fall sein, wenn durch lokale Aktionen in $P'$
   ein Fehler-Zustand erreicht werden kann. Es ist also auch ein der
-  as"=Implikation $P'$ ein Fehler lokal erreichbar.
+  as"=Implikation $P'$ ein Fehler lokal erreichbar, da \ET{} die Fortsetzungen
+  von \PrET{} und \MIT{} enthält und Elemente aus \MIT{} mindestens die Länge 1
+  haben müssen.
 
   $(i) \Leftarrow$:\\
-  Sie $P'$ die as"=Implementierung von $P$, in der ein Fehler lokal erreichbar
+  Sei $P'$ die as"=Implementierung von $P$, in der ein Fehler lokal erreichbar
   ist. Es gilt dann $\varepsilon\in \PrET (P') \subseteq \ET _{P'}$. Mit
-  Proposition~\ref{KommSemProp}~1. folgt daraus $\varepsilon \in\ET _P$. Es
+  Proposition~\ref{KommSemProp}~1.\ folgt daraus $\varepsilon \in\ET _P$. Es
   muss also auch in $P$ ein Fehler-Zustand lokal erreichbar sein.
 
   $(ii)$:\\
@@ -348,7 +351,7 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
 \begin{proof}\mbox{}\\
   1. \glqq$\subseteq$\grqq{}:\\
   Da beide Seiten der Gleichung unter der Fortsetzung \cont{} abgeschlossen
-  sind, genügt es ein präfix-minimales Element $w$ von $\ET _{12}$ zu
+  sind, genügt es ein präfix-minimales Element $w$ aus $\ET _{12}$ zu
   betrachten. Diese Element ist aufgrund der Definition der Menge der
   Fehler-Traces in $\MIT _{12}$ oder in $\PrET _{12}$ enthalten.
   \begin{itemize}
@@ -363,7 +366,7 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
         die einzelnen Transitionssysteme erhält man \oBdA{}
         $p_{01}\weakmay[x_1]_1 p_1\nmust[a]_1$ und $p_{02}\weakmay[x_2]_2
         p_2\nmust[a]_2$ oder $p_{02}\weakmay[x_2]_2 p_2\must[a]_2$ mit $x\in
-        x_1\|x_2$. Daraus kann $x_1a\in \cont (\MIT _1) \subseteq \ET _1$ und
+        x_1\|x_2$. Daraus kann $x_1a\in MIT _1 \subseteq \ET _1$ und
         $x_2a\in \EL _2$ ($x_2a\in \MIT _2$ oder $x_2a \in L_2$) gefolgert
         werden. Damit folgt $w\in (x_1\|x_2) \cdot \{a\} =
         (x_1a)\|(x_2a)\subseteq \ET _1\|\EL _2$, und somit ist $w$ in der
@@ -386,7 +389,7 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
       entweder um einen geerbten oder einen neuen Fehler handelt. Bei einem
       geerbten wäre bereits einer der beiden Zustände $p'_1$ bzw.\ $p'_2$ ein
       Fehler"=Zustand gewesen. Ein neuer Fehler hingegen wäre
-      durch das fehlen fehlende Sicherstellen der Synchronisation (fehlende
+      durch das fehlende Sicherstellen der Synchronisation (fehlende
       must"=Transition) in einer der Komponenten entstanden.
     \begin{itemize}
       \item Fall 2a) (geerbter Fehler): \OBdA{} gilt $p'_1\in E_1$. Daraus
@@ -445,12 +448,12 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
   In den beiden vorangegangen Fällen erhält man $v'_2=v'|_{\Sigma _2}$ ist ein
   Präfix von $v_2$ und $v'\in v_1\|v'_2$ ist ein Präfix von $xy$. Es kann nur
   für die Fälle $a\notin I_2$ gefolgert werden, dass $p_{02} \weakmay[v'_2]_2$
-  gilt. Falls $p_{02} \may[v_2]$ nicht gilt, ist $v'_2=v_2\in\MIT _2$ und
+  gilt. Falls $p_{02} \weakmay[v'_2]$ nicht gilt, ist $v'_2=v_2\in\MIT _2$ und
   $v'_2$ endet auf $a\in I_2$.
   \begin{itemize}
-    \item Fall I ($v_1\in\MIT _1$ und $v_1\neq \varepsilon$): Es gibt einen
-      Ablauf der Form $p_{01}\weakmay[v'_1]_1p_1\nmust[a]_1$ und es gilt
-      $v'=v''a$.
+    \item Fall I ($v_1\in\MIT _1$): Da $v_1\in\MIT _1$ gilt, muss $v_1$
+      ungleich $\varepsilon$ sein. Es gibt einen Ablauf der Form
+      $p_{01}\weakmay[v'_1]_1p_1\nmust[a]_1$ und es gilt $v'=v''a$.
       \begin{itemize}
         \item Fall Ia) ($a\notin\Sigma _2$): Es gilt $p_{02}\weakmay[v'_2]_2
           p_2$ mit $v''\in v'_1\|v'_2$. Dadurch erhält man $(p_{01},p_{02})
@@ -461,7 +464,7 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
           v'_1\|v''_2$. $a$ ist für $P_2$, ebenso wie für $P_1$, ein nicht
           sichergestellter Input. Daraus folgt, dass $(p_1,p_2)\nmust[a]_{12}$
           gilt. Es wird ebenfalls $v := v''a=v'\in\MIT _{12}$ gewählt.
-        \item Fall Ic) ($a\in I_2$ und $v'_2\notin \backslash\MIT _2$): Es gilt
+        \item Fall Ic) ($a\in I_2$ und $v'_2\notin\MIT _2$): Es gilt
           $p_{02}\weakmay[v''_2]_2p_2\must[a]_2$ mit $v'_2=v''_2a \in L_2$. Da
           die gemeinsamen Inputs synchronisiert werden, folgt $(p_1,p_2)
           \nmust[a]_{12}$ bereits aus $q_1\nmust[a]_1$. Somit kann hier
@@ -502,8 +505,8 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
   \end{itemize}
 
   2.:\\
-  Durch die Definitionen ist klar, dass $L_i\subseteq \EL _i$ und $\ET
-  _i\subseteq \EL _i$ gilt. Die Argumentation startet auf den rechten Seite der
+  Durch die Definitionen ist klar, dass $L_j\subseteq \EL _j$ und $\ET
+  _j\subseteq \EL _j$ gilt. Die Argumentation startet auf den rechten Seite der
   Gleichung:
   \begin{align*}
     (\EL{}_1\| \EL{}_2)\cup
@@ -579,11 +582,8 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
       das nur aus dem Startzustand und einer must-Schleife für alle Inputs
       $x\in I_U$ besteht. Somit kann $P_1$ die im Prinzip gleichen
       Fehler-Zustände lokal erreichen wie $U\|P_1$.
-      Wegen~\ref{lokalFehlerErrKor}~(i) erreicht auch eine as"=Implementierung
-      von $U\|P_1$ lokal einen Fehler-Zustand und daher muss auch mindestens
-      eine as"=Implementierung von $U\|P_2$ einen lokal erreichbaren Fehler
-      haben. Dies gilt wegen wegen~\ref{lokalFehlerErrKor}~(i) auch für
-      $U\|P_2$ und durch die Definition von $U$ kann dieser Fehler nur von
+      Wegen~\ref{lokalFehlerErrKor}~(ii) erreicht auch $U\|P_2$ lokal einen
+      Fehler-Zustand. Durch die Definition von $U$ kann dieser Fehler nur von
       $P_2$ geerbt sein. Es muss also in $P_2$ ein Fehler-Zustand durch interne
       Aktionen und Outputs erreichbar sein, d.h.\ es gilt $\varepsilon\in
       \PrET{}_2$.
@@ -627,44 +627,37 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
       \end{center}
       \end{figure}
       Für $w$ können nun zwei Fälle unterschieden werden. Aus beiden wird
-      folgen, dass für mindestens eine as"=Implementierung $P'$ von $U\|P_1$
-      $\varepsilon\in\PrET(P')$ gilt.
+      folgen, dass für $U\|P_1$ $\varepsilon\in\PrET(U\|P_1)$ gilt.
       \begin{itemize}
         \item Fall 2a) ($w\in\MIT _1$): In $U\|P_1$ erhält man $(p_0,p_{01})
           \lweakmay[x_1\dots x_n]_{U\|P_1} (p_n,p')$ mit $p'\nmust[x_{n+1}]_1$
           und $p_n\must[x_{n+1}]_U$. Deshalb gilt $(p_n,p')\in E_{U\|P_1}$. Da
           alle Aktionen aus $w$ bis auf $x_{n+1}$ synchronisiert werden und
           $I\cap I_U=\emptyset$, gilt $x_1,\dots , x_n\in O_{U\|P_1}$. Da
-          $(p_n,p')\in E_{U\|P_1}$ in $U\|P_1$ lokal erreichbar ist gibt es
-          mindestens ein $P'$ in $\asimp (U\|P_1)$, das ebenfalls einen lokal
-          erreichbaren Fehler-Zustand enthält, wegen~\ref{lokalFehlerErrKor}.
-          Daraus ergibt sich dann $\varepsilon\in\PrET (P')$.
+          $(p_n,p')\in E_{U\|P_1}$ in $U\|P_1$ lokal erreichbar ist gilt
+          $\varepsilon\in\PrET (U\|P_1)$.
         \item Fall 2b) ($w\in\PrET _1$): In der Parallelkomposition von $U$ und
           $P_1$ erhält man $(p_0,p_{01}) \weakmay[w]_{U\|P_1} (p_{n+1},p'')
           \weakmay[u]_{U\|P_1} (p_{n+1},p')$ für $u\in O^*$ und $p'\in E_1$.
           Daraus folgt $(p_{n+1},p')\in E_{U\|P_1}$ und somit $wu\in\StET
           (U\|P_1)$. Da alle Aktionen in $w$ synchronisiert werden und $I\cap
           I_U=\emptyset$, gilt $x_1,\dots ,x_n,x_{n+1}\in O_{U\|P_1}$ und, da
-          $u\in O^*$, folgt $u\in O_{U\|P_1}^*$. Somit ergibt sich für eine
-          as"=Implementierung $P'$ von $U\|P_1$ $\varepsilon\in\PrET (P')$.
+          $u\in O^*$, folgt $u\in O_{U\|P_1}^*$. Somit ergibt sich
+          $\varepsilon\in\PrET (U\|P_1)$.
       \end{itemize}
-      Da $\varepsilon\in\PrET (P')$ für ein $P'$ aus $\asimp (U\|P_1)$ gilt,
-      kann durch $U\|P_1\EBRel U\|P_2$ geschlossen werden, dass auch in
-      mindestens einer as"=Implementierung von $U\|P_2$ ein Fehler-Zustand
-      lokal erreichbar sein muss. Da as"=Implementierungen die
-      Definition~\ref{SimDef} erfüllen müssen, muss falls in einer
-      as"=Implementierung von $U\|P_2$ ein Fehler lokal erreichbare ist auch in
-      $U\|P_2$ ein Fehler-Zustand lokal erreichbar sein.\\
+      Da $\varepsilon\in\PrET (U\|P_1)$ gilt, kann durch $U\|P_1\EBRel U\|P_2$
+      unter zuhilfenahme von~\ref{lokalFehlerErrKor}~(ii) geschlossen werden,
+      dass auch in $U\|P_2$ ein Fehler-Zustand lokal erreichbar sein muss.\\
       Der in $U\|P_2$ erreichbare Fehler kann geerbt oder neu sein.
       \begin{itemize}
         \item Fall 2i) (neuer Fehler): Da jeder Zustand von $U$ alle Inputs
           $x\in O=I_U$ durch must"=Transitionen sicherstellt, muss ein lokal
           erreichbarer Fehler-Zustand der Form sein, dass ein Output $a\in O_U$
-          von $U$ möglich ist, der nicht mit einem passenden Input aus $P_2$
-          synchronisiert werden muss ($P_2$ enthält die entsprechende $a$
-          Transitionen nicht als must"=Transition). Durch die Konstruktion von
-          $U$ sind in $p_{n+1}$ keine Outputs möglich. Ein neuer
-          Fehler muss also die Form $(p_i,p')$ haben mit $i\leq
+          von $U$ möglich ist, dessen Synchronisation in $P_2$ mit einem
+          passenden Input nicht sichergestellt ist ($P_2$ enthält die
+          entsprechende $a$ Transitionen nicht als must"=Transition). Durch die
+          Konstruktion von $U$ sind in $p_{n+1}$ keine Outputs möglich. Ein
+          neuer Fehler muss also die Form $(p_i,p')$ haben mit $i\leq
           n, p'\nmust[x_{i+1}]_2$ und $x_{i+1}\in O_U=I$. Durch Projektion
           erhält man dann $p_{02}\lweakmay[x_1\dots x_i]_2p'\nmust[x_{i+1}]_2$
           und damit gilt $x_1\dots x_{i+1}\in\MIT _2\subseteq \ET _2$. Somit
@@ -678,7 +671,7 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
           Verlängerung um lokale Aktionen von einem Präfix von $w$ zu einem
           Fehler-Zustand. Da \ET{} der Menge aller Verlängerungen von gekürzten
           Fehler-Traces entspricht, ist $x_1\dots x_i$ in $\ET
-          _2$ enthalten und somit ist ein Präfix von $w$ in $\ET _2$ enthalten.
+          _2$ enthalten und somit auch $w$ in $\ET _2$ enthalten.
       \end{itemize}
   \end{itemize}
 
@@ -730,33 +723,31 @@ und nicht nur die Inklusion, die aus den Propositionen vorher bereits folgt.
       \end{center}
       \end{figure}
       Da $p_{01}\weakmay[w]_1p'$ gilt, kann man schließen, dass $U\|P_1$ einen
-      lokal erreichbaren geerbten Fehler hat. Es gibt also auch mindestens eine
-      as"=Implementierung in der Menge $\asimp (U\|P_1)$, die diesen lokal
-      erreichbaren Fehler implementiert. Somit muss es eine as"=Implementierung
-      von $U\|P_2$ geben, die ebenfalls einen lokal erreichbaren Fehler-Zustand
-      hat. Aufgrund von Definition~\ref{SimDef}~3.\ muss dann ebenfalls ein
-      Fehler-Zustand in $U\|P_2$ lokal erreichbar sein.
+      lokal erreichbaren geerbten Fehler hat. Aufgrund von
+      Korollar~\ref{lokalFehlerErrKor}~(ii) muss ebenfalls ein Fehler-Zustand
+      in $U\|P_2$ lokal erreichbar sein.
       \begin{itemize}
         \item Fall 2a) (neuer Fehler aufgrund von $x_i\in O_U$ und $p_{02}
           \lweakmay[x_1\dots x_{i-1}]_2p''\nmust[x_i]_2$): Es gilt $x_1\dots
           x_i\in \MIT _2$ und somit $w\in \EL_2$. Anzumerken ist, dass es nur
           auf diesem Weg Outputs von $U$ möglich sind, deshalb gibt es keine
-          anderen Outputs von $U$, die zu einem neuen Fehler führen können.
+          anderen Outputs von $U$, die zu einem neuen Fehler führen könnten.
         \item Fall 2b) (neuer Fehler aufgrund von $a\in O=I_U$): Der einzige
           Zustand, in dem $U$ nicht alle Inputs erlaubt sind, ist $p_n$, der
-          bereits ein Fehler-Zustand ist. Da in diesem Fall dieser Zustand in
-          $U\|P_2$ erreichbar ist, besitzt das komponierte \MEIO{} einen
+          bereits ein Fehler-Zustand ist. Da in diesem Fall der Fehler-Zustand
+          in $U\|P_2$ erreichbar ist, besitzt das komponierte \MEIO{} einen
           geerbten Fehler und es gilt $w\in L_2\subseteq \EL _2$, wegen dem
           folgenden Fall 2c).
         \item Fall 2c) (geerbter Fehler von $U$): Da $p_n$ der einzige
           Fehler-Zustand in $U$ ist und alle Aktionen synchronisiert sind, ist
           dies nur möglich, wenn $p_{02} \lweakmay[x_1\dots x_n]_2$ gilt. In
-          diesem Fall gilt $w\in L_2\subseteq \EL _2$.
-        \item Fall 2d) (geerbter Fehler von $P_2$): Es gilt dann $p_{02}
-          \lweakmay[x_1\dots x_iu]_2 p'\in E_2$ für $i\geq 0$ und $u\in O^*$.
-          Somit ist $x_1\dots x_iu\in\StET _2$ und damit $\prune (x_1\dots
-          x_iu) =\prune (x_1\dots x_i)\in\PrET _2\subseteq \EL _2$. Es gilt
-          also $w\in\EL _2$.
+          diesem Fall ist $w$ ausführbar und es gilt $w\in L_2\subseteq \EL
+          _2$.
+        \item Fall 2d) (geerbter Fehler von $P_2$): Es gilt $p_{02}
+          \lweakmay[x_1\dots x_iu]_2 p'\in E_2$ für ein $i\geq 0$ und $u\in
+          O^*$. Somit ist $x_1\dots x_iu\in\StET _2$ und damit $\prune
+          (x_1\dots x_iu) =\prune (x_1\dots x_i)\in\PrET _2\subseteq \EL _2$.
+          Es gilt also $w\in\EL _2$.
       \end{itemize}
   \end{itemize}
 \end{proof}
@@ -771,24 +762,24 @@ Präkongruenz \ECRel{}.
   P_2\Leftrightarrow P_1\ERel{} P_2$.
 \end{Satz}
 \begin{proof}\mbox{}\\
-  \glqq$\Leftarrow$\grqq: Nach Definition gilt, genau dann wenn
+  \glqq$\Leftarrow$\grqq: Nach Definition gilt genau dann, wenn
   $\varepsilon\in\ET (P)$, ist ein Fehler-Zustand lokal erreichbar in $P$. $P_1
   \ERel P_2$ impliziert, dass $\varepsilon\in\ET _2$ gilt, wenn
   $\varepsilon\in\ET _1$. Somit ist ein Fehler-Zustand in $P_1$ nur dann lokal
   erreichbar, wenn dieser auch in $P_2$ lokal erreichbar ist. Falls es also
   eine as"=Implementierung von $P_1$ gibt, in der ein Fehler-Zustand lokal
   erreichbar ist, dann gibt es auch mindestens eine as"=Implementierung von
-  $P_2$, die einen Fehler-Zustand lokal erreichen kann. Dadurch folgt,
+  $P_2$, die einen Fehler-Zustand lokal erreichen kann. Diese
+  as"=Implementierung muss es geben, wenn $P_1$ und $P_2$ lokal erreichbare
+  Fehler enthalten, wegen Korollar~\ref{lokalFehlerErrKor}~(i). Dadurch folgt,
   dass $P_1\EBRel P_2$ gilt, da \EBRel{} in Definition~\ref{EBRelDef} über die
   lokale Erreichbarkeit der Fehler-Zustande in den as"=Implementierungen
-  definiert wurde und die \ET{}-Mengen von $P_1$ und $P_2$ auch in der
-  Vereinigung der Traces ihrer as"=Implementierungen enthalten sind, wie in
-  Proposition~\ref{KommSemProp}, ausgedrückt werden können. Es ist also
-  \ERel{} in \EBRel{} enthalten. Wie in Korollar~\ref{KommPraekonKor} gezeigt,
-  ist \ERel{} eine Präkongruenz bezüglich $\cdot\|\cdot$. Da \ECRel{} die
-  gröbste Präkongruenz bezüglich $\cdot\|\cdot$ ist, die in \EBRel{} enthalten
-  ist, muss \ERel{} in \ECRel{} enthalten sein. Es folgt also aus $P_1\ERel{}
-  P_2$, dass auch $P_1\ECRel{} P_2$ gilt.
+  definiert wurde. Es ist also \ERel{} in \EBRel{} enthalten. Wie in
+  Korollar~\ref{KommPraekonKor} gezeigt, ist \ERel{} eine Präkongruenz
+  bezüglich $\cdot\|\cdot$. Da \ECRel{} die gröbste Präkongruenz bezüglich
+  $\cdot\|\cdot$ ist, die in \EBRel{} enthalten ist, muss \ERel{} in \ECRel{}
+  enthalten sein. Es folgt also aus $P_1\ERel P_2$, dass auch $P_1\ECRel P_2$
+  gilt.
 
   \glqq$\Rightarrow$\grqq: Durch die Definition von \ECRel{} als Präkongruenz
   in~\ref{EBRelDef} folgt aus $P_1\ECRel{} P_2$, dass $U\|P_1\ECRel U\|P_2$ für
@@ -827,7 +818,7 @@ schließt. Dies ist in Abbildung~\ref{KommFolgerungskette} dargestellt.
   \end{center}
 \end{figure}
 
-Angenommen man definiert, dass $P_1$ $P_2$ verfeinern soll, genau dann wenn für
+Angenommen man definiert, dass $P_1$ $P_2$ verfeinern soll genau dann, wenn für
 alle Partner \MEIO{}s $U$, für die $P_2$ fehler-frei mit $U$ kommuniziert,
 folgt, dass $P_1$ ebenfalls fehler-frei mit $U$ kommuniziert. Dann wird auch
 diese Verfeinerung durch \ERel{} charakterisiert.
