@@ -229,30 +229,39 @@ Gleichheit der betrachteten Trace Mengen in der Relation \QRel{} auch eine
 Aussage über die lokale Erreichbarkeit \glqq fehlerhafter Zustände\grqq{} in
 einer Spezifikation und den zugehörigen Implementierungen getroffen werden.
 
-\begin{Kor}[lokale Ruhe Erreichbarkeit]
-  Es ist ein Fehler oder Ruhe lokal erreichbar in einem \MEIO{} $P
-  \Leftrightarrow \exists$ as"=Implementierung von $P$, in der ein Fehler oder
-  Ruhe lokal erreichbar ist.
+\begin{Kor}[lokale Ruhe Erreichbarkeit]\mbox{}
+  \begin{enumerate}[(i)]
+    \item Falls in einem \MEIO{} $P$ ein Fehler lokal erreichbar ist, dann
+      existiert auch eine as"=Implementierung, in der ein Fehler lokal
+      erreichbar ist.
+    \item Falls in einem \MEIO{} $P$ einen lokal erreichbaren Ruhe-Zustand
+      besitzt, jedoch keinen lokal erreichbaren Fehler, dann existiert auch
+      eine as"=Implementierung, in der ein Ruhe-Zustand und kein Fehler lokal
+      erreichbar ist.
+    \item Falls es eine as"=Implementierung von $P$ gibt, die einen Fehler oder
+      Ruhe lokal erreicht, dann ist auch ein Fehler oder Ruhe in $P$ lokal
+      erreichbar.
+  \end{enumerate}
 \end{Kor}
-\begin{proof}\mbox{}\\
-  $\Rightarrow$:\\
-  Da ein Fehler- oder ein Ruhe-Zustand in $P$ lokal erreichbar ist, gilt $w\in
-  \QET _P$ für $w\in O$. Es muss wegen Proposition~\ref{RuheSemProp} mindestens
-  ein $P'\in \asimp (P)$ geben, für dass $w\in\QET _P'$ gilt. Dies kann nur der
-  Fall sein, wenn durch $w$ in $P'$ ein Fehler- oder Ruhe-Zustand erreicht
-  wird. Da $w$ nur aus lokalen Aktionen besteht, dürfte durch das
-  Korollar~\ref{lokalFehlerErrKor}, die Implikation klar sein für den Fall $w
-  \in \ET _P$. Für den Fall $w\in \StQT _P\backslash \ET _P$ ist die Gleichung
-  aus Proposition~\ref{RuheSemProp} relevant und führt zur lokalen
-  Erreichbarkeit eines Ruhe-Zustandes in $P'$, da $w$ in $P$ kein Fehler-Trace
-  ist, kann $w$ wegen~\ref{KommSemProp}~1.\ auch in $P'$ kein Fehler-Trace
-  sein.
-
-  $\Leftarrow$:\\
-  Sei $P'$ die as"=Implementierung von $P$, in der ein Fehler- oder
-  Ruhe-Zustand lokal erreichbar ist. Es gilt dann $w\in \QET _P'$ für $w\in O$.
-  Mit Proposition~\ref{RuheSemProp} folgt draus $w\in \QET _P$. Es muss also
-  auch in $P$ ein Fehler- oder Ruhe-Zustand lokal erreichbar sein.
+\begin{proof}\mbox{}
+  \begin{enumerate}[(i)]
+    \item Dieser Punkt folgt direkt aus Proposition~\ref{KommSemProp}.
+    \item Da ein Ruhe-Zustand in $P$ lokal erreichbar ist, gilt $w\in \StQT
+      _P\backslash \cont (\PrET) _P \subseteq \QET _P$ für $w\in O$. Es muss
+      wegen Proposition~\ref{RuheSemProp} mindestens ein $P'\in \asimp (P)$
+      geben, für dass $w\in \QET _{P'}$ gilt. Das $w$ kann also in $\ET _{P'}$
+      oder in $\StQT _{P'}$ enthalten sein. Da $w$ nur aus lokalen Aktion
+      bestehen kann, kann $w$ in $P$ kein Input-kritisch Trace sein und auch
+      keine Verlängerung von einem solchen. Es gilt also $w\notin \ET _P$.
+      Mit~\ref{KommSemProp} folgt daraus, dass auch in keiner
+      as"=Implementierung von $P$ $w$ in der Menge \ET{} enthalten ist. Es gilt
+      also $w\in \QET _{P'} \backslash \ET _{P'} \subseteq \StQT _{P'}$. Es ist
+      also auch in $P'$ ein Ruhe-Zustand lokal erreichbar.
+    \item Sei $P'$ die as"=Implementierung von $P$, in der ein Fehler- oder
+      Ruhe-Zustand lokal erreichbar ist. Es gilt dann $w\in \QET _P'$ für $w\in
+      O$. Mit Proposition~\ref{RuheSemProp} folgt draus $w\in \QET _P$. Es muss
+      also auch in $P$ ein Fehler- oder Ruhe-Zustand lokal erreichbar sein.
+  \end{enumerate}
 \end{proof}
 
 Für spätere Beweise werden noch Zusammenhänge zwischen Ruhe-Zuständen in den
