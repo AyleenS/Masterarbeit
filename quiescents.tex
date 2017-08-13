@@ -42,29 +42,30 @@ Für die Erreichbarkeit wird wie im letzten Kapitel ein optimistischer Anzahl
 der lokalen Erreichbarkeit für die Fehler-Zustände verwendet. Ruhe ist kein
 unabwendbare \glqq Fehler-Art\grqq{}, sondern kann durch einen Input repariert
 werden oder im Fall von vorhandenen may"=Output"=Transitionen oder
-may"=$\tau$"=Transitionen, durch eine Implementierung dieses Outputs oder des
-$\tau$s. Daraus ergibt sich, dass Ruhe im Vergleich zu den Fehlern aus dem
-letzten Kapitel als weniger \glqq schlimmer Fehler\grqq{} anzusehen ist. Somit
-ist ein Ruhe-Zustand ebenso wie ein Fehler-Zustand erreichbar, sobald er durch
-Outputs und $\tau$s erreicht werden kann, jedoch ist nicht jede beliebige
-Fortsetzung eines Traces, das durch lokale Aktionen zu einem Ruhe-Zustand führt
-ein Ruhe"=Trace.
+may"=$\tau$"=Transitionen, durch eine Implementierung dieser lokalen Aktionen .
+Daraus ergibt sich, dass Ruhe im Vergleich zu den Fehlern aus dem letzten
+Kapitel als weniger \glqq schlimmer Fehler\grqq{} anzusehen ist. Somit ist ein
+Ruhe-Zustand ebenso wie ein Fehler-Zustand erreichbar, sobald er durch Outputs
+und $\tau$s erreicht werden kann, jedoch ist nicht jede beliebige Fortsetzung
+eines Traces, das durch lokale Aktionen zu einem Ruhe-Zustand führt ein
+Ruhe"=Trace.
 
 \begin{Def}[Test und Verfeinerung für Ruhe]
   \label{RuheTestDef}
   Ein \emph{Test} $T$ ist eine Implementierung. Ein \MEIO{} $P$
   \emph{as-erfüllt} einen Ruhe-Test $T$, falls $S\|T$ fehler- und ruhe-frei ist
-  für alle $S\in \asimp (P)$. Es wird dann $P \QsatAs T$ geschrieben.\\
-  Ein \MEIO{} $P$ \emph{verfeinert} $P'$, falls für alle Tests $T$: $P'\QsatAs
-  T \Rightarrow P\QsatAs T$.
+  für alle $S\in \asimp (P)$. Es wird dann $P \QsatAs T$ geschrieben. Die
+  Parallelkomposition $S\|T$ ist \emph{fehler-} und \emph{ruhe-frei} wenn kein
+  Fehler- und kein Ruhe-Zustand lokal erreichbar ist.\\
+  Ein \MEIO{} $P$ \emph{Ruhe-verfeinert} $P'$, falls für alle Tests $T$:
+  $P'\QsatAs T \Rightarrow P\QsatAs T$.
 \end{Def}
 
 Um eine genauere Auseinandersetzung mit den Präkongruenzen zu ermöglichen,
 benötigt man wie im letzten Kapitel die Definition von Traces auf der Struktur.
-Dadurch erhält man die Möglichkeit die gröbste Präkongruenz charakterisieren zu
-können. Wie bereits oben erwähnt, ist Ruhe ein reparierbares \glqq
-Fehlverhalten\grqq{} im Gegensatz zu Fehlern. Es genügt deshalb für Ruhe die
-strikten Traces ohne Kürzung zu betrachten.
+Wie bereits oben erwähnt, ist Ruhe ein reparierbares \glqq Fehlverhalten\grqq{}
+im Gegensatz zu Fehlern. Es genügt deshalb für Ruhe die strikten Traces ohne
+Kürzung zu betrachten.
 
 \begin{Def}[Ruhe-Traces]
   \label{RuheTraceDef}
@@ -95,16 +96,17 @@ strikten Traces ohne Kürzung zu betrachten.
   must"=Transitionen, keine may"=Transitionen und keine Fehler-Zustände von $P$
   und hat die Identitäts-Relation als starke as"=Verfeinerungs"=Relation
   $\mathcal{R}$. In diesem Fall gilt $\varepsilon\in\StQT (P)$. Für alle
-  $a\in\Sigma$ gilt somit, wenn in $P$ für einen Zustand $p$ $p\nmust[a]$, gilt
-  auch in $P'$ $p' \nmust[a]$ für den Zustand, der mit $p$ in Relation steht.
-  Der Startzustand von $P'$ ist mit $\varepsilon$ erreichbar und ebenfalls
-  ruhig. Es gilt also $p'_0\in Qui (P')$ und $\varepsilon\in\StQT (P')$. Der
-  2.\ Punkt der Definition~\ref{SimDef} ist für die Identitäts-Relation als
-  as"=Verfeinerungs"=Relation $\mathcal{R}$ erfüllt, da alle must"=Transitionen
-  aus $P$ entsprechend in $P'$ umgesetzt wurden. Alle must"=Transitionen in $P$
-  müssen zugrundeliegende may"=Transitionen haben, somit gilt auch 3.\
-  von~\ref{SimDef}. Der 1.\ Punkt der Definition ist auch erfüllt, da
-  $E_{P'}=\emptyset$ gilt, wenn keine Fehler-Zustände implementiert werden.\\
+  $a\in\Sigma$ folgt, wenn in $P$ für einen Zustand $p$ $p\nmust[a]_P$, gilt
+  auch in $P'$ $p' \nmust[a]_{P'}$ für den Zustand, der mit $p$ in Relation
+  steht. Der Startzustand von $P'$ ist mit $\varepsilon$ erreichbar und
+  ebenfalls ruhig. Es gilt also $p'_0\in Qui (P')$ und $\varepsilon\in\StQT
+  (P')$. Der 2.\ Punkt der Definition~\ref{SimDef} ist für die
+  Identitäts-Relation als as"=Verfeinerungs"=Relation $\mathcal{R}$ erfüllt, da
+  alle must"=Transitionen aus $P$ entsprechend in $P'$ umgesetzt wurden. Alle
+  must"=Transitionen in $P$ müssen zugrundeliegende may"=Transitionen haben,
+  somit gilt auch 3.\ von~\ref{SimDef}. Der 1.\ Punkt der Definition ist auch
+  erfüllt, da $E_{P'}=\emptyset$ gilt, wenn keine Fehler-Zustände implementiert
+  werden.\\
   Für alle $w\neq \varepsilon$ und für $w = \varepsilon$, dass zu einem anderen
   ruhigen Zustand führt wie $p_0$, mit $w\in\StQT (P)$ kann $P'$ als die
   folgende as"=Implementierung gewählt werden:
@@ -149,18 +151,17 @@ strikten Traces ohne Kürzung zu betrachten.
   da jeder ungestrichene und gestrichene Zustand in $P'$ die selben eingehenden
   Transitionen hat wie der entsprechende Zustand in $P$. Falls der Trace zu
   $p_j$ may"=Transitionen ohne entsprechende must"=Transitionen enthält, kann
-  der entsprechende Trace in $P'$ ausgeführt werden, in dem von $q_0$ aus der
-  Trace über die gestrichenen Zustände genommen wird bis zur letzten
-  Transition, die zu einem ungestrichenen Zuständen führt in dem auszuführenden
-  Wort. Ab da hat der Trace in $P$ nur must"=Transitionen genommen und kann
-  somit in den ungestrichenen Zuständen in $P'$ nachgefolgt werden. Falls der
-  Trace in $P$ insgesamt nur aus must"=Transitionen bestanden hat, ist direkt
-  von $q_0$ aus der Weg über ungestrichene Zustände zu $q_j$ möglich. Es gilt
-  also $\StQT (P)\backslash \{\varepsilon\} = \StQT (P')\backslash
-  \{\varepsilon\}$. Falls $\varepsilon$ zu einem Ruhe-Zustand $p \neq p_0$ in
-  $P$ geführt hat, gilt sogar $\StQT(P) = \StQT (P')$, da ein Trace aus
-  internen Aktionen in $P$ und $P'$ zu dem entsprechenden ruhigen Zustand $p$
-  bzw.\ $q$ führt.
+  der Trace in $P'$ ausgeführt werden, in dem von $q_0$ aus der Trace über die
+  gestrichenen Zustände genommen wird bis zur letzten Transition, die zu einem
+  ungestrichenen Zuständen führt in dem auszuführenden Wort. Ab da hat der
+  Trace in $P$ nur must"=Transitionen genommen und kann somit in den
+  ungestrichenen Zuständen in $P'$ nachgefolgt werden. Falls der Trace in $P$
+  insgesamt nur aus must"=Transitionen bestanden hat, ist direkt von $q_0$ aus
+  der Weg über ungestrichene Zustände zu $q_j$ möglich. Es gilt also $\StQT
+  (P)\backslash \{\varepsilon\} = \StQT (P')\backslash \{\varepsilon\}$. Falls
+  $\varepsilon$ zu einem Ruhe-Zustand $p \neq p_0$ in $P$ geführt hat, gilt
+  sogar $\StQT(P) = \StQT (P')$, da ein Trace aus internen Aktionen in $P$ und
+  $P'$ zu dem entsprechenden ruhigen Zustand $p$ bzw.\ $q$ führt.
 \end{proof}
 
 Für \ET{} und \EL{} gelten die Definitionen aus dem letzten Kapitel. Es wir nur
@@ -198,7 +199,7 @@ für Ruhe eine neue Semantik definiert.
     (P').\\
   \end{align*}
 
-  $\supseteq$:\\
+  $\supseteq$: \TODO{Trace explizit angeben}\\
   Es wird hier für ein $w\in \QET (P')$ einer beliebigen as"=Implementierung
   $P'$ von $P$ gezeigt, dass das Wort $w$ auch in $\QET (P)$ enthalten ist. Es
   kann danach unterschieden werden, ob $w$ aus $\StQT (P')\backslash \ET (P')$
@@ -222,6 +223,41 @@ für Ruhe eine neue Semantik definiert.
   $\omega\in O\cup \{\tau\}$ gelten, da sonst~\ref{SimDef}~2.\ verletzt würde.
   Es gilt also in diesem Fall $w\in\StQT (P)\subseteq\QET (P)$.
 \end{proof}
+
+Wie im letzten Kapitel kann aus der vorangegangen Proposition über die
+Gleichheit der betrachteten Trace Mengen in der Relation \QRel{} auch eine
+Aussage über die lokale Erreichbarkeit \glqq fehlerhafter Zustände\grqq{} in
+einer Spezifikation und den zugehörigen Implementierungen getroffen werden.
+
+\begin{Kor}[lokale Ruhe Erreichbarkeit]
+  Es ist ein Fehler oder Ruhe lokal erreichbar in einem \MEIO{} $P
+  \Leftrightarrow \exists$ as"=Implementierung von $P$, in der ein Fehler oder
+  Ruhe lokal erreichbar ist.
+\end{Kor}
+\begin{proof}\mbox{}\\
+  $\Rightarrow$:\\
+  Da ein Fehler- oder ein Ruhe-Zustand in $P$ lokal erreichbar ist, gilt $w\in
+  \QET _P$ für $w\in O$. Es muss wegen Proposition~\ref{RuheSemProp} mindestens
+  ein $P'\in \asimp (P)$ geben, für dass $w\in\QET _P'$ gilt. Dies kann nur der
+  Fall sein, wenn durch $w$ in $P'$ ein Fehler- oder Ruhe-Zustand erreicht
+  wird. Da $w$ nur aus lokalen Aktionen besteht, dürfte durch das
+  Korollar~\ref{lokalFehlerErrKor}, die Implikation klar sein für den Fall $w
+  \in \ET _P$. Für den Fall $w\in \StQT _P\backslash \ET _P$ ist die Gleichung
+  aus Proposition~\ref{RuheSemProp} relevant und führt zur lokalen
+  Erreichbarkeit eines Ruhe-Zustandes in $P'$, da $w$ in $P$ kein Fehler-Trace
+  ist, kann $w$ wegen~\ref{KommSemProp}~1.\ auch in $P'$ kein Fehler-Trace
+  sein.
+
+  $\Leftarrow$:\\
+  Sei $P'$ die as"=Implementierung von $P$, in der ein Fehler- oder
+  Ruhe-Zustand lokal erreichbar ist. Es gilt dann $w\in \QET _P'$ für $w\in O$.
+  Mit Proposition~\ref{RuheSemProp} folgt draus $w\in \QET _P$. Es muss also
+  auch in $P$ ein Fehler- oder Ruhe-Zustand lokal erreichbar sein.
+\end{proof}
+
+Für spätere Beweise werden noch Zusammenhänge zwischen Ruhe-Zuständen in den
+einzelnen Komponenten und in einer Parallelkomposition dieses Komponenten
+benötigt.
 
 \begin{Lem}[Ruhe-Zustände unter Parallelkomposition]\mbox{}
   \label{RuheZustLem}
