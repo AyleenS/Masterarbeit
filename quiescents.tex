@@ -199,7 +199,7 @@ für Ruhe eine neue Semantik definiert.
     (P').\\
   \end{align*}
 
-  $\supseteq$: \TODO{Trace explizit angeben}\\
+  $\supseteq$:\\
   Es wird hier für ein $w\in \QET (P')$ einer beliebigen as"=Implementierung
   $P'$ von $P$ gezeigt, dass das Wort $w$ auch in $\QET (P)$ enthalten ist. Es
   kann danach unterschieden werden, ob $w$ aus $\StQT (P')\backslash \ET (P')$
@@ -207,19 +207,26 @@ für Ruhe eine neue Semantik definiert.
   Proposition~\ref{KommSemProp} bereits, dass $w\in \ET (P) \subseteq \QET (P)$
   gilt. Somit wird für den Rest des Beweises davon ausgegangen, dass $w\in\StQT
   (P')\backslash \ET (P')$ ist. $w$ führt in $P'$ also nur zu einem ruhigen
-  Zustand und hat nichts mit Fehler-Zuständen in $P'$ zu tun. Da es eine
+  Zustand und hat nichts mit Fehler-Zuständen in $P'$ zu tun. Der Trace, der
+  durch $w$ in $P'$ beschrieben hat, hat die folgende Form: $\exists w'\in
+  \Sigma _{\tau}, \exists \alpha _1, \alpha _2, \dots , \alpha _n, \exists
+  p'_1, p'_2, \dots p'_n : \hat{w'} = w \land w' = \alpha _1\alpha _2\dots
+  \alpha _n \land p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha _2]_{P'} \dots
+  p'_{n-1} \may[\alpha _n]_{P'} p'_n \in Qui _{P'}$. Da es eine
   as"=Verfeinerungs"=Relation $\mathcal{R}$ geben muss, die beweist, dass $P'$
   $P$ as"=verfeinert, muss es ein Präfix von $w$ geben, dass auch in $P$
   ausführbar ist. Falls $w$ nicht vollständig ausführbar ist in $P$, muss auf
-  dem Weg, auf dem das Präfix von $w$ ausgeführt wird ein Zustand liegen, der
-  ein Fehler-Zustand ist. Es gilt dann $w\in \ET (P)\subseteq \QET (P)$. Falls
-  jedoch $w$ in $P$ ausführbar ist ohne einen Fehler-Zustand zu erreichen,
-  musst der dadurch erreichte Zustand $p$ mit dem Zustand $p'$, der in $P'$
-  durch $w$ erreicht wird, in der starken as"=Verfeinerungs"=Relation
-  $\mathcal{R}$ stehen. $p'$ ist ruhig, nach Voraussetzung, dass $w\in\StQT
-  (P')$ enthalten ist. Es gilt also für alle $\omega\in O\cup\{\tau\}$
-  $p'\nmust[\omega]$. Da $(p',p) \in\mathcal{R}$ in Relation stehen und beide
-  Zustände keine Fehler-Zustände sind, muss auch $p\nmust[\omega]$ für alle
+  dem Weg, auf dem das Präfix von $w$ ausgeführt wird ein Zustand $p_j$ mit $0
+  \leq j \leq n$ liegen, der ein Fehler-Zustand ist. Es gilt dann $w\in \ET
+  (P)\subseteq \QET (P)$. Falls jedoch $w$ in $P$ ausführbar ist ohne einen
+  Fehler-Zustand zu erreichen, gibt es einen analogen Trace zu dem in $P'$, der
+  Form: $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha
+  _n]_P p_n$, wobei $p'_j \mathcal{R} p_j$ für alle $j$ aus $\{0,1,\dots ,n\}$
+  gilt. Es wird also durch $w$ ein Zustand $p_n$ erreicht, der mit dem Zustand
+  $p'_n$ in der starken as"=Verfeinerungs"=Relation $\mathcal{R}$ stehen.
+  $p'_n$ ist ruhig, nach Voraussetzung. Es gilt also für alle $\omega\in O\cup
+  \{\tau\}$ $p'_n\nmust[\omega]$. Da $(p'_n,p_n) \in\mathcal{R}$ gilt und beide
+  Zustände keine Fehler-Zustände sind, muss auch $p_n\nmust[\omega]$ für alle
   $\omega\in O\cup \{\tau\}$ gelten, da sonst~\ref{SimDef}~2.\ verletzt würde.
   Es gilt also in diesem Fall $w\in\StQT (P)\subseteq\QET (P)$.
 \end{proof}
