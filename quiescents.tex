@@ -3,7 +3,10 @@
 
 In diesem Kapitel wird die Menge der betrachteten Zustandsmengen von den
 Kommunikations"=basierten Fehlern im letzten Kapitel erweitert um
-Ruhe-Zustände.\\
+Ruhe-Zustände. Es wird nur noch der Testing-Ansatz des letzten Kapitels
+fortgeführt, da dieser sich auf die Parallelkomposition von \EIO{}s stützt und
+nicht auf die Definition der Parallelkomposition von \MEIO{}s, die auch anders
+gestaltet hätte werden können.\\
 Zustände, die keine must-Outputs ohne einen Input ausführen können, werden als
 in einer Art Verklemmung angesehen, da sie ohne Zutun von Außen den Zustand
 nicht mehr verlassen können, falls ein möglicherweise vorhandener may"=Output
@@ -55,7 +58,7 @@ Ruhe"=Trace.
   Ein \emph{Test} $T$ ist eine Implementierung. Ein \MEIO{} $P$
   \emph{as-erfüllt} einen Ruhe-Test $T$, falls $S\|T$ fehler- und ruhe-frei ist
   für alle $S\in \asimp (P)$. Es wird dann $P \QsatAs T$ geschrieben. Die
-  Parallelkomposition $S\|T$ ist \emph{fehler-} und \emph{ruhe-frei} wenn kein
+  Parallelkomposition $S\|T$ ist \emph{fehler-} und \emph{ruhe-frei}, wenn kein
   Fehler- und kein Ruhe-Zustand lokal erreichbar ist.\\
   Ein \MEIO{} $P$ \emph{Ruhe-verfeinert} $P'$, falls für alle Tests $T$:
   $P'\QsatAs T \Rightarrow P\QsatAs T$.
@@ -759,7 +762,7 @@ in~\ref{RuheTestDef}.
 
 \begin{Satz}
   \label{RuheTestVerfSatz}
-  Falls $P_1\QRel P_2$ gilt folgt draus auch, dass $P_1$ $P_2$ verfeinert.
+  Falls $P_1\QRel P_2$ gilt folgt draus auch, dass $P_1$ $P_2$ Ruhe-verfeinert.
 \end{Satz}
 \begin{proof}
   Nach Definition gilt $w\in\QET (P)$ mit $w\in O(P)^*$ genau dann, wenn in $P$
@@ -785,7 +788,7 @@ in~\ref{RuheTestDef}.
   $T$. Im Fall von Fehlern, zeigt sich sowohl in der Parallelkomposition einer
   as"=Implementierung von $P_1$ wie auch einer as"=Implementierung von $P_2$
   mit beliebigen Tests $T$, der Fehler, da \ERel{} gilt und somit die
-  Argumentationen aus Satz~\ref{KommTestVerfeinSatz} anwendbar sind. Ruhe tritt
+  Argumentationen aus Satz~\ref{KommTestVerfSatz} anwendbar sind. Ruhe tritt
   in $P_2$ nur ohne einen Fehler auf, wenn in $P_1$ auch nur Ruhe und kein
   Fehler auf dem Trace vorhanden war. Ansonsten hätte \ERel{} auch einen Fehler
   in $P_2$ gefordert. In der Parallelkomposition einer as"=Implementierung von
@@ -819,7 +822,10 @@ dargestellt.
           (m-2-2) -- node [below]
           {$\substack{T \text{ Test Partner}\\\Downarrow\\ T \text{ Test}}$} (m-2-1);
     \end{tikzpicture}
-    \caption{Folgerungskette der Testing-Verfeinerung und Fehler-Relation}
+    \caption{Folgerungskette der Testing-Verfeinerung und Ruhe-Relation}
   \label{FolgerungsketteQui}
   \end{center}
 \end{figure}
+
+\TODO{Satz für den Zusammenhang der Verfeinerungs-Relationen erweitern:
+$\wasRel \Rightarrow \QRel \Rightarrow \ERel$}
