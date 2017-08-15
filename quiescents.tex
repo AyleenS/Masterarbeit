@@ -864,8 +864,76 @@ dargestellt.
   $P \ERel Q$ un $\QET _P \subset \QET _Q$ erfüllt. Es gilt also $P \ERel Q$.
 
   $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$:\\
-  \TODO{zu beweisen}
+  Wie im Gegenbeispiel für die analoge Implikation aus der Relation \ERel{}
+  beruht der Grund für die nicht Gültigkeit hier auf darauf, dass Simulationen
+  strenger sind als Sprach Inklusionen. Jedoch funktioniert hier nicht das
+  gleiche Gegenbeispiel, da es zu Problemen mit den Ruhe-Traces führen würde.
+  Um diese zu vermeiden, wird wieder die Technik angewendet an alle Zustände
+  eine $\tau$-Schleife anzufügen. Das daraus entstehende Gegenbeipiel ist in
+  Abbildung~\ref{WasQuiGegenBsp} dargestellt. Die Menge der Inputs $I$ der
+  beiden \MEIO{}s ist leer. Es gilt also $\ET _P = \ET _Q = \QET _P = \QET _Q =
+  \emptyset$ und $\{\varepsilon\} = L(P) \subset L(Q) = \{\varepsilon , o\}$.\\
+  Angenommen es gib eine schache as"=Verfeinerungs"=Relation $\mathcal{R}$
+  zwischen $P$ und $Q$. Dann stehen die Startzustände in dieser Relation, es
+  gilt also $p_0 \mathcal q_0$. Da es keine Fehler"=Zustände in $P$ gibt,
+  ist~\ref{wSimDef}~1.\ erfüllt. Die $\tau$"=must"=Schlingen der
+  Startzustände werden bezüglich der Punkt 3. und 5. der
+  Definition~\ref{wSimDef} gematched. Der 2. Punkt von~\ref{wSimDef} stellt
+  keine Forderungen an die Relation $\mathcal{R}$. Die Transition $q_0
+  \must[o]_Q q_1$ fordert durch~\ref{wSimDef}~3. ihre Verfeinerung in $P$. Da
+  es jedoch keine mit $o$ beschriftete Transition in $P$ gibt, kann
+  $\mathcal{R}$ keine as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ sein.
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+        \node (q1) [right of=q0] {$q_1$};
+
+        \path[->]
+        (q0) edge node{$o!$} (q1)
+        (q0) edge[loop above] node{$\tau$} (q0)
+        (q1) edge[loop right] node{$\tau$} (q1)
+        ;
+
+        \node [initial,initial text=$P$:] (p0) at (7,0) {$p_0$};
+
+        \path[->]
+        (p0) edge[loop right] node{$\tau$} (p0)
+        ;
+      \end{tikzpicture}
+      \caption{Gegenbeispiel zu $\wasRel \Leftarrow \QRel$}
+      \label{WasQuiGegenBsp}
+    \end{center}
+  \end{figure}
 
   $P \QRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \ERel Q$:\\
-  \TODO{zu beweisen}
+  Die Relation \QRel{} stützt sich auf die Definition der Relation \ERel{}.
+  Jedoch erweiter sich die Definition noch um eine weiter Voraussetzung. Es
+  muss also in einem entsprechenden Gegenbeispiel die Inklustion $\QET _P
+  \subseteq \QET _Q$ verletzt sein. Das Gegenbeispiel ist in
+  Abbildung~\ref{QuiEGegenBsp} dargestellt. Es wird $I = \emptyset$
+  vorausgesetzt, damit keine Input-kritischen Traces auftretten. Es gilt also
+  $\ET _P = \ET _Q = \emptyset$ und $L(P) = L(Q) = \{\varepsilon\}$. Es gilt
+  also $P\ERel Q$.\\
+  Jedoch gilt für die strickten Ruhe-Traces $\StQT _P = \{\varepsilon\}$ und
+  $\StQT _Q = \emptyset$. Es folgt also $\QET _P \not\subseteq \QET _Q$ und
+  somit ist die Relation \QRel{} zwischen $P$ und $Q$ auch nicht erfüllt.
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+
+        \node [initial,initial text=$P$:] (p0) at (7,0) {$p_0$};
+
+        \path[->]
+        (p0) edge[loop right] node{$\tau$} (p0)
+        ;
+
+      \end{tikzpicture}
+      \caption{Gegenbeispiel zu $\QRel \Leftarrow \ERel$}
+      \label{QuiEGegenBsp}
+    \end{center}
+  \end{figure}
 \end{proof}
