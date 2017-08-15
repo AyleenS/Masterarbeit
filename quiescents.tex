@@ -827,5 +827,45 @@ dargestellt.
   \end{center}
 \end{figure}
 
-\TODO{Satz für den Zusammenhang der Verfeinerungs-Relationen erweitern:
-$\wasRel \Rightarrow \QRel \Rightarrow \ERel$}
+\begin{Satz}[Zusammenhang der Verfeineruns-Relationenen mit der Ruhe-Relation]
+  Für \MEIO{}s $P$ und $Q$ gilt $P \wasRel Q \Rightarrow P \QRel Q \Rightarrow
+  P \ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht.
+\end{Satz}
+\begin{proof}\mbox{}\\
+  $P \wasRel Q \Rightarrow P \QRel Q$:\\
+  Im Beweis des Satzes~\ref{ZusammenhFehlerSatz} wurde bereits bewiesen, dass
+  eine schwache as"=Verfeinerungs"=Relation $\mathcal{R}$ zwischen $P$ und $Q$
+  die Eigenschaften der Fehler"=Relation \ERel{} erfüllt. Es fehlt für diese
+  Implikation also nur noch der Beweis der Inklusion $\QET _P \subseteq \QET
+  _Q$. Da bereits $\ET _P\subseteq \ET _Q$ beweisen wurde, reicht es aus zu
+  beweißen, dass $\StQT _P \backslash \ET _P\subseteq \QET _Q$ gilt. Für ein
+  Wort $w$ aus $\StQT _P \backslash \ET _P$ gilt: $\exists w'\in\Sigma _{\tau}
+  ^*, \exists p_1, p_2, \dots , p_n, \exists \alpha _1, \alpha _2, \dots
+  ,\alpha _n: \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha _n \land
+  p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P
+  p_n \in Qui _P$. Aufgrund von~\ref{wSimDef}~4. bzw.~5. gibt es einen analogen
+  Trace in $Q$, falls ein $q_j$ für $0\leq j \leq n$ in $E_Q$ angetroffen wird.
+  Es gilt $w\in\StET _Q\subset\ET _Q\subset\QET _Q$, falls ein Fehler-Zustand
+  in $Q$ auf einem Präfix-Trace von $w$ auftritt. Im folgenden wird davon
+  ausgegangen, das $w$ in $Q$ ohne das erreichben eines Fehler"=Zustandes
+  ausführbar ist. Es gibt also einen Trace der Form $q_0
+  \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots
+  q_{n-1} \weakmay[\widehat{\alpha _n}]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$
+  für alle $j$ aus $\{0,1,\dots n\}$. $p_n$ ist für $P$ ein Ruhe-Zustand, es
+  gilt also für alle $\alpha \in (O\cup \{\tau\})$ $p_n \nmust[\alpha]_P$. Da
+  $\mathcal{R}$ eine schwache as"=Verfeinerungs"=Relation ist, muss
+  wegen~\ref{wSimDef}~3. auch $q_n \nmust[\alpha]_Q$ gelten für alle $\alpha
+  \in (O\cup \{\tau\})$. $q_n$ ist also auch ein ruhiger Zustand. Somit ist $w$
+  in $\StQT _Q\subset\QET _Q$ enthalten.
+
+  $P \QRel Q \Rightarrow P \ERel Q$:\\
+  Diese Implikation folgt direkt aus der Definition von \QRel{}
+  in~\ref{RuheSemDef}. Da $P \QRel Q$ dort definiert wurde als Relation, die
+  $P \ERel Q$ un $\QET _P \subset \QET _Q$ erfüllt. Es gilt also $P \ERel Q$.
+
+  $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$:\\
+  \TODO{zu beweisen}
+
+  $P \QRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \ERel Q$:\\
+  \TODO{zu beweisen}
+\end{proof}

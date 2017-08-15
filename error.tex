@@ -1104,6 +1104,7 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
 \section{Zusammenhänge}
 
 \begin{Satz}[Zusammenhang der Verfeinerungs-Relationen mit der Fehler-Relation]
+  \label{ZusammenhFehlerSatz}
   Für \MEIO{}s $P$ und $Q$ gilt $P\asRel Q\Rightarrow P\wasRel Q\Rightarrow
   P\ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht.
 \end{Satz}
@@ -1174,9 +1175,9 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
       \alpha _2 \dots \alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha
       _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n \nmust[a]_P$. Basierend
       auf~\ref{wSimDef}~4.\ bzw.~5.\ kann daraus gefolgert werden, dass die
-      $\alpha _j$ auch schwach ausführbar sind in $Q$, falls kein $p_{j-1}$
+      $\alpha _j$ auch schwach ausführbar sind in $Q$, falls kein $q_{j-1}$
       angetroffen wird, dass in $E_Q$ enthalten ist für $j\in \{1,2,\dots n\}$.
-      Falls eines der $p_j$ mit $0 \leq j \leq n$ ein Fehler-Zustand ist, dann
+      Falls eines der $q_j$ mit $0 \leq j \leq n$ ein Fehler-Zustand ist, dann
       ist $w$ in $\ET _Q$ enthalten, da ein Präfix von $w$ ein strikter
       Fehler-Trace in $Q$ ist. Ansonsten gilt $q_0 \weakmay[\widehat{\alpha
       _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots q_{n-1}
