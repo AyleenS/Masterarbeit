@@ -184,7 +184,40 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   \end{align*}
 
   2. \glqq$\supseteq$\grqq{}:\\
-  \TODO{zu beweisen}
+  Für ein präfix-minimales $w$ aus der Menge $\EDT (P')$ einer
+  as"=Implementierung $P'$ von $P$ wird für diese Inklustion gezeigt, dass auch
+  $w\in\EDT (P)$ gilt. Es genügt ein präfix-minimales Element, da die
+  \EDT{}-Mengen unter \cont{} abgeschlossen sind. Falls das $w$ in $\ET (P')$
+  enthalten ist, folgt $w\in\ET (P) \subseteq\EDT (P)$ aufgrund des ersten
+  Punktes der Proposition~\ref{KommSemProp}. Es ist also nur noch der Fall zu
+  betrachten, in dem $w\in\DT (P') \backslash \ET (P')$ gilt. Es gibt also
+  einen Trace der Form $p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha _2]_{P'}
+  \dots p'_{n-1} \may[\alpha _n]_{P'} p'_n\in Div _{P'}$ in $P'$, wobei $\alpha
+  _1\alpha _2\dots\alpha _n$ $wv$ bis auf interne Aktionen entspricht mit $v\in
+  O^*$. Keiner der Zustände $p'_j$ mit $0\leq j \leq n$ ist in $E_{P'}$
+  enthalten. Da $P'$ eine as"=Implementierung von $P$ ist, muss es eine
+  as"=Verfeinerungs"=Relationen $\mathcal{R}$ zwischen $P'$ und $P$ geben mit
+  $(p'_0,p_0) \in\mathcal{R}$. Solange in $P$ kein Fehler-Zustand erreicht
+  wird, fordert~\ref{SimDef}~3., dass der Trace aus $P'$ in $P$ ebenfalls
+  möglich ist. Falls ein Fehler-Zustand in $P$ erreicht wird, ist ein Präfix
+  von $wv$ in $\StET (P)$ enthalten und mit $w =\prune (wv)$ gilt somit $w\in
+  \ET (P) \subseteq \EDT(P)$. Es gibt den Trace $p_0 \may[\alpha _1]_P p_1
+  \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n$ mit $p'_j\mathcal{R}
+  p_j$, falls keines der $p_j$'s in $E_P$ enthalten ist für $j\in\{0,1,\dots
+  ,n\}$. Für $p'_n$ in ein Transitionsfolge aus unendlichen vielen $\tau$s
+  ausführbar. Es gibt also entweder eine Schleife, die via $\tau$s immer wieder
+  durchlaufen werden kann, oder einen Weg mit unendlichen vielen Zuständen, die
+  durch $\tau$ Transitionen verbunden sind. Falls innerhalb der Schleife oder
+  auf dem Weg ein Zustand in $E_{P'}$ enthalten ist, fordert $\mathcal{R}$
+  mit~\ref{SimDef}~1., dass der erste solche Zustand in Relation mit einem
+  Zustand aus $E_P$ steht und somit $w \in \ET _P \subseteq \EDT _P$ gilt.
+  Falls alle Zustände, die auf dem der unendlichen $\tau$ Folge von $p'_n$ in
+  $P'$ aus liegen nicht in $E_{P'}$ enthalten sind, fordert~\ref{SimDef}~3.
+  auch deren Ausführbarkeit von $p_n$ aus in $P$, bis entweder ein Zustand in
+  $E_P$ erreicht wird, oder ebenfalls eine unendliche $\tau$ Folge in $P$ von
+  $p_n$ aus ausführbar ist. Im ersten Fall gilt wieder $w \in \ET _P \subseteq
+  \EDT _P$. Ansonsten ist $p_n\in Div _P$ erfüllt und somit $w\in\StDT (P)$.
+  Mit $w=\prune (wv)$ folgt $w\in\PrDT (P) \subseteq \EDT (P)$.
 
   3. \glqq$\subseteq$\grqq{}:
   \begin{align*}
@@ -200,7 +233,11 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   \end{align*}
 
   3. \glqq$\supseteq$\grqq{}:\\
-  \TODO{zu beweisen}
+  Dieser Beweis verläuft analog zu dem Beweis von \glqq$\supseteq$\grqq{} der
+  Proposition~\ref{RuheSemProp}, man muss nur die \ET{}-Mengen durch
+  \EDT{}-Mengen ersetzten und für den Fall $w\in\EDT (P')$ folgt $w\in\EDT (P)$
+  wegen des zweiten Punktes dieser Proposition und nicht wegen
+  Proposition~\ref{KommSemProp}.
 
   4. \glqq$\subseteq$\grqq{}:
   \begin{align*}
@@ -215,7 +252,11 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   \end{align*}
 
   4. \glqq$\supseteq$\grqq{}:\\
-  \TODO{zu beweisen}
+  Für den Beweis dieser Inklusion kann man auf den Beweis
+  von~\ref{KommSemProp}~2.~\glqq$\supseteq$\grqq{} zurück greifen. Es müssen
+  wie bei 3. nur die \ET{}-Mengen durch \EDT{}-Mengen ersetzt werden und die
+  Einschränkung auf die geflutete Sprache ohne die Menge \EDT{} ist möglich
+  wegen 2. der aktuellen Proposition.
 \end{proof}
 
 Aus der so eben bewiesenen Proposition über die Gleichheit der betrachteten
