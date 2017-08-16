@@ -56,8 +56,8 @@ die strikten Ruhe"=Traces mit diesen beiden Trace-Mengen geflutet.
   \begin{itemize}
     \item \emph{strikte Divergenz-Traces}: $\StDT (P) := \left\{w\in\Sigma
       ^*\mid p_0\weakmay[w]_P p\in Div(P)\right\}$,
-    \item \emph{gekürzte Divergenz-Traces}: $\PrDT (P) := \bigcup\left\{\prune
-      (w)\mid w\in\StDT (P)\right\}$.
+    \item \emph{gekürzte Divergenz-Traces}: $\PrDT (P) := \left\{\prune (w)\mid
+      w\in\StDT (P)\right\}$.
   \end{itemize}
 \end{Def}
 
@@ -67,52 +67,59 @@ Divergenz-Traces seiner as"=Implementierungen verbindet. Die Begründung
 verläuft analog zu den Propositionen der vorangegangenen Kapitel.
 
 \begin{Prop}[Divergenz-Traces und Implementierungen]
-  Für ein \MEIO{} $P$ gilt:
+  \label{DivTraceProp}
+  Sei $P$ ein \MEIO{}.
   \begin{enumerate}
-    \item $\StDT (P) \subseteq \left\{w\in\Sigma ^*\mid \exists P' \in \asimp
-      (P): p'_0\weakmust[w]_{P'} p'\in Div(P')\right\}$,
-    \item \TODO{\PrDT{} Aussage}
+    \item Für die strikten Divergenz-Traces gilt: $\StDT (P) \subseteq
+      \big\{w\in\Sigma ^*\mid \exists P' \in \asimp (P): p'_0\weakmust[w]_{P'}
+      p'\in Div(P')\big\} = \underset{P'\in\asimp (P)}{\bigcup} \StDT (P')$.
+    \item Für die gekürzten Divergenz-Traces von $P$ gilt der Zusammenhang:
+      $\PrDT (P) \subseteq \{\prune (w) \mid \exists P'\in\asimp (P): w\in\StDT
+      (P')\} = \underset{P'\in\asimp (P)}{\bigcup} \PrDT (P')$.
   \end{enumerate}
 \end{Prop}
 \begin{proof}\mbox{}
   \begin{enumerate}
-    \item 
-  Um diese Inklusion beweisen zu können wird wieder eine as"=Implementierung
-  $P'$ von $P$ und eine passende as"=Verfeinerungs"=Relation $\mathcal{R}$
-  angegeben, so dass alle strikten Divergenz-Traces von $P$ auch in $P'$
-  enthalten sind. In diesem Fall funktioniert der Ansatz, alle Traces aus $P$
-  in $P'$ zu implementieren und keine Fehler-Zustände zu übernehmen. Die
-  Definition von $P'$ lautet also:
-  \begin{itemize}
-    \item $P'=P$,
-    \item $p'_0=p_0$,
-    \item $I_{P'}=I_P$ und $O_{P'}=O_P$,
-    \item $\must _{P'} =\may _{P'} = \may _P$,
-    \item $E_{P'}=\emptyset$.
-  \end{itemize}
-  Die passende as"=Verfeinerungs"=Relation $\mathcal{R}$ ist die
-  Identität-Relation. Wie bereits im Beweis zu Proposition~\ref{LImpProp}
-  begründet erfüllt $\mathcal{R}$ alle Punkte der Definition~\ref{SimDef} um
-  eine as"=Verfeinerungs"=Relation zu sein. Es wird ein $w$ aus $\StDT (P)$
-  betrachtet. Es gibt also einen Trace in $P$ auf dem das Wort $w$ ausgeführt
-  wird und der einen divergenten Zustand erreicht. Es gilt also $\exists w' \in
-  \Sigma _{\tau}^*, \exists \alpha _1, \alpha _2, \dots , \alpha _n, \exists
-  p_1, p_2, \dots , p_n: \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha
-  _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
-  \may[\alpha _n]_P p_n \in Div _P$. Die Identitäts"=Relation $\mathcal{R}$
-  setzt die Zustände des Traces mit den analogen Zuständen aus $P'$ in
-  Relation. Zusätzlich mit der Implementierung aller Transitionen aus $P$ in
-  $P'$ ergibt sich der selbe Trace in $P'$. Es gilt also $p'_0 \may[\alpha
-  _1]_{P'} p'_1 \may[\alpha _2]_{P'} \dots p'_{n-1} \may[\alpha _n]_{P'} p'_n$
-  mit $(p'_j,p_j) \in \mathcal{R}$ für $0\leq j \leq n$. Da $p_n$ in $Div _P$
-  enthalten ist, gibt es von diesem Zustand in $P$ aus die Möglichkeit eine
-  unendliche Folge an $\tau$s auszuführen. Die Ausführbarkeit muss sich dabei
-  auf mit $\tau$ beschriftete may"=Transitionen in $P$ stützen. Da diese
-  Transitionen in $P'$ alle übernommen wurden, ist auch für $p'_n$ eine
-  unendliche Folge an $\tau$s ausführbar. Es gilt also $p'_n\in Div _{P'}$ und
-  somit $w\in \StDT (P')$. Insgesamt folgt also für diese $P'$ $\StDT (P) =
-  \StDT (P')$.
-    \item \TODO{zu beweisen}
+    \item Um diese Inklusion beweisen zu können wird wieder eine
+      as"=Implementierung $P'$ von $P$ und eine passende
+      as"=Verfeinerungs"=Relation $\mathcal{R}$ angegeben, so dass alle
+      strikten Divergenz-Traces von $P$ auch in $P'$ enthalten sind. In diesem
+      Fall funktioniert der Ansatz, alle Traces aus $P$ in $P'$ zu
+      implementieren und keine Fehler-Zustände zu übernehmen. Die Definition
+      von $P'$ lautet also:
+      \begin{itemize}
+        \item $P'=P$,
+        \item $p'_0=p_0$,
+        \item $I_{P'}=I_P$ und $O_{P'}=O_P$,
+        \item $\must _{P'} =\may _{P'} = \may _P$,
+        \item $E_{P'}=\emptyset$.
+      \end{itemize}
+      Die passende as"=Verfeinerungs"=Relation $\mathcal{R}$ ist die
+      Identität-Relation. Wie bereits im Beweis zu Proposition~\ref{LImpProp}
+      begründet erfüllt $\mathcal{R}$ alle Punkte der Definition~\ref{SimDef}
+      um eine as"=Verfeinerungs"=Relation zu sein. Es wird ein $w$ aus $\StDT
+      (P)$ betrachtet. Es gibt also einen Trace in $P$ auf dem das Wort $w$
+      ausgeführt wird und der einen divergenten Zustand erreicht. Es gilt also
+      $\exists w' \in \Sigma _{\tau}^*, \exists \alpha _1, \alpha _2, \dots ,
+      \alpha _n, \exists p_1, p_2, \dots , p_n: \hat{w'} = w \land w' = \alpha
+      _1\alpha _2\dots\alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha
+      _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n \in Div _P$. Die
+      Identitäts"=Relation $\mathcal{R}$ setzt die Zustände des Traces mit den
+      analogen Zuständen aus $P'$ in Relation. Zusätzlich mit der
+      Implementierung aller Transitionen aus $P$ in $P'$ ergibt sich der selbe
+      Trace in $P'$. Es gilt also $p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha
+      _2]_{P'} \dots p'_{n-1} \may[\alpha _n]_{P'} p'_n$ mit $(p'_j,p_j) \in
+      \mathcal{R}$ für $0\leq j \leq n$. Da $p_n$ in $Div _P$ enthalten ist,
+      gibt es von diesem Zustand in $P$ aus die Möglichkeit eine unendliche
+      Folge an $\tau$s auszuführen. Die Ausführbarkeit muss sich dabei auf mit
+      $\tau$ beschriftete may"=Transitionen in $P$ stützen. Da diese
+      Transitionen in $P'$ alle übernommen wurden, ist auch für $p'_n$ eine
+      unendliche Folge an $\tau$s ausführbar. Es gilt also $p'_n\in Div _{P'}$
+      und somit $w\in \StDT (P')$. Insgesamt folgt also für diese $P'$ $\StDT
+      (P) = \StDT (P')$.
+    \item Dieser Punkt entspricht 1.\ bis auf die Anwendung der
+      \prune{}-Funktion auf beiden Seiten des Inklusions-Symbols. Da $\prune{}$
+      monoton ist, folgt dieser Punkt direkt auf dem letzten.
   \end{enumerate}
 \end{proof}
 
@@ -157,7 +164,57 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
       $\EDL (P) = \underset{P'\in\asimp (P)}{\bigcup} \EDL (P')$.
   \end{enumerate}
 \end{Prop}
-\begin{proof}
+\begin{proof}\mbox{}\\
+  1.:\\
+  Es gilt bereits $\PrDT (P) \subseteq \underset{P'\in\asimp (P)}{\bigcup}
+  \PrDT (P')$, wegen 2.\ der Proposition~\ref{DivTraceProp}. Aus der Monotonie
+  von \cont{} folgt also auch die hier geforderte Inklusion.
+
+  2. \glqq$\subseteq$\grqq{}:
+  \begin{align*}
+    \EDT (P)&\overset{\ref{DivSemDef}}{=} \ET (P)\cup \DT (P)\\
+    &\hspace{-0.2cm}\overset{\ref{KommSemProp}~1.}{=} \left(\underset{P'\in
+    \asimp (P)}{\bigcup} \ET (P')\right)\cup \DT (P)\\
+    &\overset{1.}{\subseteq} \left(\underset{P'\in
+    \asimp (P)}{\bigcup} \ET (P')\right)\cup \left(\underset{P'\in \asimp
+    (P)}{\bigcup} \DT (P')\right)\\
+    &= \underset{P'\in \asimp (P)}{\bigcup} \ET (P') \cup \DT (P')\\
+    &\overset{\ref{DivSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \EDT
+    (P').\\
+  \end{align*}
+
+  2. \glqq$\supseteq$\grqq{}:\\
+  \TODO{zu beweisen}
+
+  3. \glqq$\subseteq$\grqq{}:
+  \begin{align*}
+    \QDT (P)&\overset{\ref{DivSemDef}}{=} \StQT (P)\cup \EDT (P)\\
+    &\overset{\ref{RuheTraceProp}}{\subseteq} \left(\underset{P'\in \asimp
+    (P)}{\bigcup} \StQT (P')\right)\cup \EDT (P)\\
+    &\overset{2.}{=} \left(\underset{P'\in \asimp (P)}{\bigcup} \StQT
+    (P')\right)\cup \left(\underset{P'\in \asimp (P)}{\bigcup} \EDT
+    (P')\right)\\
+    &= \underset{P'\in \asimp (P)}{\bigcup} \StQT (P') \cup \EDT (P')\\
+    &\overset{\ref{DivSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \QDT
+    (P').\\
+  \end{align*}
+
+  3. \glqq$\supseteq$\grqq{}:\\
+  \TODO{zu beweisen}
+
+  4. \glqq$\subseteq$\grqq{}:
+  \begin{align*}
+    \EDL (P)&\overset{\ref{DivSemDef}}{=} L (P)\cup \EDT (P)\\
+    &\overset{\ref{LImpProp}}{\subseteq} \left(\underset{P'\in \asimp
+    (P)}{\bigcup} L (P')\right) \cup \EDT (P)\\
+    &\overset{2.}{=} \left(\underset{P'\in \asimp (P)}{\bigcup} L (P')\right)
+    \cup \left(\underset{P'\in \asimp (P)}{\bigcup} \EDT (P')\right)\\
+    &= \underset{P'\in \asimp (P)}{\bigcup} L (P') \cup \EDT (P')\\
+    &\overset{\ref{DivSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \EDL
+    (P').\\
+  \end{align*}
+
+  4. \glqq$\supseteq$\grqq{}:\\
   \TODO{zu beweisen}
 \end{proof}
 
@@ -183,7 +240,7 @@ Spezifikation und den zugehörigen Implementierungen treffen.
       Divergenz in $P$ lokal erreichbar.
   \end{enumerate}
 \end{Kor}
-\begin{proof}
+\begin{proof}\mbox{}\\
   \TODO{zu beweisen}
 \end{proof}
 
