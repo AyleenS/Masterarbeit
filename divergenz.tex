@@ -12,27 +12,6 @@ betrachtet.
   $P$.
 \end{Def}
 
-% \begin{Prop}[Divergenz und Implementierung]
-%   \label{DivProp}
-%   Für ein \MEIO{} $P$ gilt $Div (P) = \left\{p'\in P'\mid P'\in\asimp (P)
-%   \land P' \text{ kann von } p' \text{ aus eine unendliche Folge von } \tau
-%   \text{s ausführen} \right\}$.
-% \end{Prop}
-% \begin{proof}
-%   Falls von einem $p'$ in einem $P'\in\asimp (P)$ eine unendliche $\tau$-Folge
-%   ausführbar ist, dann ist dies via must"=Transitionen möglich. Diese
-%   Transitionen müssen jedoch aus möglichen may"=Transitionen in $P$ folgen.
-%   Deshalb war auch der Zustand, der zu $p'$ in Simulations-Relation nach
-%   Definition~\ref{SimDef} steht, auch bereits divergent und in $Div (P)$
-%   enthalten. Für jedes $p$ aus $Div (P)$ gibt es eine unendliche Folge von
-%   $\tau$s, die via may"=Transitionen möglich ist in $P$. Also gibt es auch in
-%   $\asimp (P)$ mindestens eine Implementierung, die alle diese beteiligen
-%   may"=Transitionen als must"=Transitionen implementiert und einen zu $p$
-%   analogen Zustand als divergent enthält und somit in die Menge $\left\{p'\in
-%   P'\mid P'\in\asimp (P) \land P' \text{ kann von } p' \text{ aus eine
-%   unendliche Folge von } \tau \text{s ausführen} \right\}$ einfügt.
-% \end{proof}
-
 Die unendliche Folge an $\tau$s kann durch eine Schleife an einem durch $\tau$s
 erreichbaren Zustand ausführbar sein oder durch einen Weg, der mit $\tau$s
 ausführbar ist, mit dem unendliche viele Zustände durchlaufen werden. Es ist
@@ -45,23 +24,6 @@ somit eine optimistische Betrachtungsweise. Da das Divergieren eines Systems
 nicht mehr verhindert werden kann, sobald ein divergenter Zustand lokal
 erreicht werden kann, ist Divergenz als ähnlich \glqq schlimm\grqq{} zu
 bewerten wie ein Fehler-Zustand.
-
-% \begin{Def}[fehler-, ruhe- und divergenz-freie Kommunikation]
-%   Zwei \MEIO{}s $P_1$ und $P_2$ kommunizieren \emph{fehler-, ruhe- und
-%   divergenz-frei}, wenn keine as"=Implementierung ihrer Parallelkomposition
-%   $P_{12}$ einen Fehler-, Ruhe- oder Divergenz-Zustand lokal erreichen kann.
-% \end{Def}
-
-% \begin{Def}[Divergenz-Verfeinerungs-Basisrelation]
-%   Für \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur wird $P_1\DBRel{} P_2$
-%   geschrieben, wenn ein Fehler-, Ruhe- oder Divergenz-Zustand in einer
-%   as"=Implementierung von $P_1$ nur dann lokal erreichbar ist, wenn es auch
-%   eine as"=Implementierung von $P_2$ gibt, in der ein solcher lokal erreichbar
-%   ist. Die \emph{Basisrelation} stellt eine \emph{Verfeinerung} bezüglich
-%   \emph{Fehler}, \emph{Ruhe} und \emph{Divergenz} dar.\\
-%   \DCRel{} bezeichnet die \emph{vollständig abstrakte Präkongruenz} von
-%   \DBRel{} bezüglich $\cdot\|\cdot$.
-% \end{Def}
 
 \begin{Def}[Test und Verfeinerung für Divergenz]
   \label{DivTestDef}
@@ -105,11 +67,53 @@ Divergenz-Traces seiner as"=Implementierungen verbindet. Die Begründung
 verläuft analog zu den Propositionen der vorangegangenen Kapitel.
 
 \begin{Prop}[Divergenz-Traces und Implementierungen]
-  Für ein \MEIO{} $P$ gilt $\StDT (P) \subseteq \left\{w\in\Sigma ^*\mid
-  \exists P' \in \asimp (P): p'_0\weakmust[w]_{P'} p'\in Div(P')\right\}$.
+  Für ein \MEIO{} $P$ gilt:
+  \begin{enumerate}
+    \item $\StDT (P) \subseteq \left\{w\in\Sigma ^*\mid \exists P' \in \asimp
+      (P): p'_0\weakmust[w]_{P'} p'\in Div(P')\right\}$,
+    \item \TODO{\PrDT{} Aussage}
+  \end{enumerate}
 \end{Prop}
-\begin{proof}
-  \TODO{zu beweisen}
+\begin{proof}\mbox{}
+  \begin{enumerate}
+    \item 
+  Um diese Inklusion beweisen zu können wird wieder eine as"=Implementierung
+  $P'$ von $P$ und eine passende as"=Verfeinerungs"=Relation $\mathcal{R}$
+  angegeben, so dass alle strikten Divergenz-Traces von $P$ auch in $P'$
+  enthalten sind. In diesem Fall funktioniert der Ansatz, alle Traces aus $P$
+  in $P'$ zu implementieren und keine Fehler-Zustände zu übernehmen. Die
+  Definition von $P'$ lautet also:
+  \begin{itemize}
+    \item $P'=P$,
+    \item $p'_0=p_0$,
+    \item $I_{P'}=I_P$ und $O_{P'}=O_P$,
+    \item $\must _{P'} =\may _{P'} = \may _P$,
+    \item $E_{P'}=\emptyset$.
+  \end{itemize}
+  Die passende as"=Verfeinerungs"=Relation $\mathcal{R}$ ist die
+  Identität-Relation. Wie bereits im Beweis zu Proposition~\ref{LImpProp}
+  begründet erfüllt $\mathcal{R}$ alle Punkte der Definition~\ref{SimDef} um
+  eine as"=Verfeinerungs"=Relation zu sein. Es wird ein $w$ aus $\StDT (P)$
+  betrachtet. Es gibt also einen Trace in $P$ auf dem das Wort $w$ ausgeführt
+  wird und der einen divergenten Zustand erreicht. Es gilt also $\exists w' \in
+  \Sigma _{\tau}^*, \exists \alpha _1, \alpha _2, \dots , \alpha _n, \exists
+  p_1, p_2, \dots , p_n: \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha
+  _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
+  \may[\alpha _n]_P p_n \in Div _P$. Die Identitäts"=Relation $\mathcal{R}$
+  setzt die Zustände des Traces mit den analogen Zuständen aus $P'$ in
+  Relation. Zusätzlich mit der Implementierung aller Transitionen aus $P$ in
+  $P'$ ergibt sich der selbe Trace in $P'$. Es gilt also $p'_0 \may[\alpha
+  _1]_{P'} p'_1 \may[\alpha _2]_{P'} \dots p'_{n-1} \may[\alpha _n]_{P'} p'_n$
+  mit $(p'_j,p_j) \in \mathcal{R}$ für $0\leq j \leq n$. Da $p_n$ in $Div _P$
+  enthalten ist, gibt es von diesem Zustand in $P$ aus die Möglichkeit eine
+  unendliche Folge an $\tau$s auszuführen. Die Ausführbarkeit muss sich dabei
+  auf mit $\tau$ beschriftete may"=Transitionen in $P$ stützen. Da diese
+  Transitionen in $P'$ alle übernommen wurden, ist auch für $p'_n$ eine
+  unendliche Folge an $\tau$s ausführbar. Es gilt also $p'_n\in Div _{P'}$ und
+  somit $w\in \StDT (P')$. Insgesamt folgt also für diese $P'$ $\StDT (P) =
+  \StDT (P')$.
+    \item \TODO{zu beweisen}
+  \end{enumerate}
 \end{proof}
 
 Da die Ruhe"=Traces mit den Fehler- und Divergenz"=Traces geflutet werden
