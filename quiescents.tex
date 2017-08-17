@@ -246,9 +246,8 @@ einer Spezifikation und den zugehörigen Implementierungen getroffen werden.
       existiert auch eine as"=Implementierung, in der ein Fehler lokal
       erreichbar ist.
     \item Falls in einem \MEIO{} $P$ einen lokal erreichbaren Ruhe-Zustand
-      besitzt, jedoch keinen lokal erreichbaren Fehler, dann existiert auch
-      eine as"=Implementierung, in der ein Ruhe-Zustand und kein Fehler lokal
-      erreichbar ist.
+      besitzt, dann existiert auch eine as"=Implementierung, in der ein
+      Ruhe-Zustand lokal erreichbar ist.
     \item Falls es eine as"=Implementierung von $P$ gibt, die einen Fehler oder
       Ruhe lokal erreicht, dann ist auch ein Fehler oder Ruhe in $P$ lokal
       erreichbar.
@@ -256,22 +255,17 @@ einer Spezifikation und den zugehörigen Implementierungen getroffen werden.
 \end{Kor}
 \begin{proof}\mbox{}
   \begin{enumerate}[(i)]
-    \item Dieser Punkt folgt direkt aus Proposition~\ref{KommSemProp}.
+    \item Dieser Punkt folgt direkt aus Korollar~\ref{lokalFehlerErrKor}~(i).
     \item Da ein Ruhe-Zustand in $P$ lokal erreichbar ist, gilt $w\in \StQT
-      _P\backslash \cont (\PrET) _P \subseteq \QET _P$ für $w\in O$. Es muss
-      wegen Proposition~\ref{RuheSemProp} mindestens ein $P'\in \asimp (P)$
-      geben, für dass $w\in \QET _{P'}$ gilt. Das $w$ kann also in $\ET _{P'}$
-      oder in $\StQT _{P'}$ enthalten sein. Da $w$ nur aus lokalen Aktion
-      bestehen kann, kann $w$ in $P$ kein Input-kritisch Trace sein und auch
-      keine Verlängerung von einem solchen. Es gilt also $w\notin \ET _P$.
-      Mit~\ref{KommSemProp} folgt daraus, dass auch in keiner
-      as"=Implementierung von $P$ $w$ in der Menge \ET{} enthalten ist. Es gilt
-      also $w\in \QET _{P'} \backslash \ET _{P'} \subseteq \StQT _{P'}$. Es ist
-      also auch in $P'$ ein Ruhe-Zustand lokal erreichbar.
+      _P$ für $w\in O$. Es muss wegen Proposition~\ref{RuheTraceProp}
+      mindestens ein $P'\in \asimp (P)$ geben, für dass $w\in \StQT _{P'}$
+      gilt. Da $w$ nur aus lokalen Aktion bestehen kann, ist auch in $P'$ ein
+      Ruhe-Zustand lokal erreichbar.
     \item Sei $P'$ die as"=Implementierung von $P$, in der ein Fehler- oder
-      Ruhe-Zustand lokal erreichbar ist. Es gilt dann $w\in \QET _P'$ für $w\in
-      O$. Mit Proposition~\ref{RuheSemProp} folgt draus $w\in \QET _P$. Es muss
-      also auch in $P$ ein Fehler- oder Ruhe-Zustand lokal erreichbar sein.
+      Ruhe-Zustand lokal erreichbar ist. Es gilt dann $w\in \QET _{P'}$ für
+      $w\in O$. Mit Proposition~\ref{RuheSemProp} folgt draus $w\in \QET _P$.
+      Es muss also auch in $P$ ein Fehler- oder Ruhe-Zustand lokal erreichbar
+      sein.
   \end{enumerate}
 \end{proof}
 
@@ -771,15 +765,16 @@ in~\ref{RuheTestDef}.
   Ruhe- oder Fehler-Zustand nur dann in $P_1$ lokal erreichbar, wenn auch ein
   Ruhe- oder Fehler-Zustand in $P_2$ lokal erreichbar ist. Daraus folgt, dass
   es as"=Implementierungen $P'_1$ und $P'_2$ von $P_1$ bzw.\ $P_2$ gibt, die
-  analoge Fehler lokal erreichen wegen~\ref{lokaleRuheErrKor}. Es gilt dann
-  auch, dass $P'_j\|T$ einen lokal erreichbaren Fehler oder lokal erreichbare
-  Ruhe hat, wenn $P'_j$ dies hat, für $j\in\{1,2\}$ und einen Test $T$. Falls
-  $P_1$ einen \glqq fehlerhaften Zustand\grqq{} lokal erreicht, dann zeigt sich
-  auch in einer as"=Implementierung von $P_1$ dieser durch einen Fehler-Zustand
-  oder einen Ruhe-Zustand. In der Parallelkomposition der as"=Implementierung
-  mit einem Test $T$ tritt der \glqq fehlerhafte Zustand\grqq{} auf. Falls es
-  sich um einen Fehler handelt, dann tritt mit allen Tests $T$ ein Fehler in
-  der Parallelkomposition auf. Bei Ruhe hingegen zeigt sich das \glqq
+  analoge \glqq fehlerhafte Zustände\grqq{} lokal erreichen
+  wegen~\ref{lokaleRuheErrKor}. Es gilt dann auch, dass $P'_j\|T$ einen lokal
+  erreichbaren Fehler oder lokal erreichbare Ruhe hat, wenn $P'_j$ dies hat,
+  für $j\in\{1,2\}$ und einen Test $T$. Falls $P_1$ einen \glqq fehlerhaften
+  Zustand\grqq{} lokal erreicht, dann zeigt sich auch in einer
+  as"=Implementierung von $P_1$ dieser durch einen Fehler-Zustand oder einen
+  Ruhe-Zustand. In der Parallelkomposition der as"=Implementierung mit einem
+  Test $T$ tritt der \glqq fehlerhafte Zustand\grqq{} auf. Falls es sich um
+  einen Fehler handelt, dann tritt mit allen Tests $T$ ein Fehler in der
+  Parallelkomposition auf. Bei Ruhe hingegen zeigt sich das \glqq
   Fehlverhalten\grqq{} nur, mit Tests $T$, die einen analogen Ruhe-Zustand
   enthalten. Mit der Relation \QRel{} gibt es auch in $P_2$ einen lokal
   erreichbaren \glqq fehlerhaften Zustand\grqq{}, wenn es in $P_1$ einen

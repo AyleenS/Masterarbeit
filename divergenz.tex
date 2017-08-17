@@ -152,6 +152,7 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
 
 \begin{Prop}[Kommunikationsfehler-, Ruhe-, Divergenz-Semantik und
   Implementierungen]
+  \label{DivSemProp}
   Sie $P$ ein \MEIO{}.
   \begin{enumerate}
     \item Für die Menge der Divergenz-Traces von $P$ gilt $\DT (P) \subseteq
@@ -264,25 +265,43 @@ Traces, lässt sich wie in den letzten beiden Kapiteln eine Aussage über die
 lokale Erreichbarkeit der \glqq fehlerhaften Zustände\grqq{} in einer
 Spezifikation und den zugehörigen Implementierungen treffen.
 
-\begin{Kor}[lokale Divergenz Erreichbarkeit]
+\begin{Kor}[lokale Divergenz Erreichbarkeit]\mbox{}
   \begin{enumerate}[(i)]
     \item Falls in einem \MEIO{} $P$ ein Fehler lokal erreichbar ist, dann
       existiert auch eine as"=Implementierung, in der ein Fehler lokal
       erreichbar ist.
     \item Falls in einem \MEIO{} $P$ Divergenz lokal erreichbar ist, dann
-      existiert auch eine as"=Implementierung, in der Divergenz lokal erreichbar
-      ist.
-    \item Falls ein \MEIO{} $P$ einen lokal erreichbaren Ruhe-Zustand besitzt,
-      jedoch keinen lokal erreichbaren Fehler, dann existiert auch eine
-      as"=Implementierung, in der ein Ruhe-Zustand und kein Fehler lokal
+      existiert auch eine as"=Implementierung, in der Divergenz lokal
       erreichbar ist.
+    \item Falls ein \MEIO{} $P$ einen lokal erreichbaren Ruhe-Zustand besitzt,
+      dann existiert auch eine as"=Implementierung, in der ein Ruhe-Zustand
+      lokal erreichbar ist.
     \item Falls es eine as"=Implementierung von $P$ gibt, die einen Fehler,
       Ruhe oder Divergenz lokal erreicht, dann ist auch ein Fehler, Ruhe oder
       Divergenz in $P$ lokal erreichbar.
   \end{enumerate}
 \end{Kor}
-\begin{proof}\mbox{}\\
-  \TODO{zu beweisen}
+\begin{proof}\mbox{}
+  \begin{enumerate}[(i)]
+    \item Dieser Punkt folgt wie in~\ref{lokaleRuheErrKor} direkt aus
+      Korollar~\ref{lokalFehlerErrKor}~(i).
+    \item Ein divergenter Zustand ist in $P$ lokal erreichbar, wenn
+      $\varepsilon \in \DT _P$ gilt. Mit~\ref{DivSemProp}~1. folgt daraus, dass
+      es auch mindestens eine as"=Implementierung $P'$ aus $\asimp (P)$ geben
+      muss, für die $\varepsilon$ in $\DT (P')$ enthalten ist. Da \DT{} die
+      Menge der vorgesetzten um lokale Aktionen gekürzten strikten
+      Divergenz-Traces ist, muss es lokale Aktionen in $P'$ geben, die zu einem
+      divergenten Zustand führen. Es ist also auch in $P'$ Divergenz lokal
+      erreichbar.
+    \item Dieser Punkt folgt direkt aus Korollar~\ref{lokaleRuheErrKor}~(ii).
+    \item In $P'\in\asimp (P)$ sei ein Fehler-, Ruhe- oder Divergenz-Zustand
+      lokal erreichbar. Es gilt dann also $w\in\QDT _{P'}$ für $w\in O^*$. Mit
+      Proposition~\ref{DivSemProp}~3.\ gilt auch $w\in\QDT _P$ Die Menge \QDT{}
+      setzt sich aus den Mengen \ET{}, \StQT{} und \DT{} zusammen. Es muss also
+      in $P$ ein Fehler-, Ruhe- oder Divergenz-Zustand lokal erreichbar sein,
+      da ein $w$, bestehend nur aus lokalen Aktionen, in $\QDT _P$ enthalten
+      ist.
+  \end{enumerate}
 \end{proof}
 
 \DRel{} ist somit keine Einschränkung von \ERel{} so wie \QRel{}. Es können
