@@ -266,7 +266,7 @@ lokale Erreichbarkeit der \glqq fehlerhaften Zustände\grqq{} in einer
 Spezifikation und den zugehörigen Implementierungen treffen.
 
 \begin{Kor}[lokale Divergenz Erreichbarkeit]\mbox{}
-  \label{lokalDivErrProp}
+  \label{lokalDivErrKor}
   \begin{enumerate}[(i)]
     \item Falls in einem \MEIO{} $P$ ein Fehler lokal erreichbar ist, dann
       existiert auch eine as"=Implementierung, in der ein Fehler lokal
@@ -816,7 +816,81 @@ enthalten ist.
     \item Fall 1 ($w = \varepsilon$): Analog zu den
       Lemmata~\ref{KommTestVerfeinLem} und~\ref{RuheTestVerfeinLem} gilt auch
       hier, dass $\varepsilon$ immer in $\EDL _2$ enthalten ist.
-    \item Fall 2 ($w = x_1\dots x_n$ mit $n \geq 1$): \TODO{zu beweisen}
+    \item Fall 2 ($w = x_1\dots x_n$ mit $n \geq 1$): Die Konstruktion des
+      $\omega$-Partner Tests $T$ weicht nur durch die $\omega$-Transitionen vom
+      Transitionssystem aus dem Beweis der Inklusion der Fehler-gefluteten
+      Sprache \EL{} aus Lemma~\ref{KommTestVerfeinLem} ab. Der Test $T$ ist
+      dann wie folgt definiert (siehe dazu auch Abbildung~\ref{TmitEundO}):
+      \begin{itemize}
+        \item $Q_T=\{p_0,p_1,\dots ,p_n,p\}$,
+        \item $p_{0T}=p_0$,
+        \item $\begin{aligned}[t]
+            \may _T = \must _T &= \{(p_j,x_{j+1},p_{j+1})\mid 0\leq j< n\}\\
+            &\cup\{(p_j,x,p)\mid x\in I_T\backslash\{x_{j+1}\},0\leq j < n\}\\
+            &\cup\{(p_j,\omega ,p)\mid 0\leq j\leq n\}\\
+            &\cup\{(p,x ,p)\mid x\in I_T\cup \{\omega\}\},
+        \end{aligned}$
+        \item $E_T=\{p_n\}$.
+      \end{itemize}
+      \begin{figure} [h!tbp]
+      \begin{center}
+        \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+
+          \node (0) {$p_0$};
+          \node (1) [right of=0] {$p_1$};
+          \node (dots) [right of=1] {$\dots$};
+          \node (n1) [right of=dots] {$p_{n-1}$};
+          \node (n) [right of=n1, rectangle, draw] {$p_n\in E_T$};
+          \node (p) at ($(dots) + (0,-3)$) {$p$};
+
+          \path ($ (0) + (-1,0) $) edge (0)
+                (0) edge node {$x_1$} (1)
+                    edge [bend right] node [below, sloped] {$x?\neq x_1, \omega
+                    !$} (p)
+                (1) edge node {$x_2$} (dots)
+                    edge node [below, sloped] {$x?\neq x_2, \omega !$} (p)
+                (dots) edge node {$x_{n-1}$} (n1)
+                       edge [dashed] (p)
+                (n1) edge node {$x_n$} (n)
+                     edge node [below, sloped] {$x?\neq x_n, \omega !$} (p)
+                (p) edge [loop below] node {$x?\in I_T, \omega !$} (p)
+                (n) edge [bend left] node {$\omega !$} (p);
+        \end{tikzpicture}
+        \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$, $p_n$
+          ist der einzige Fehler-Zustand}
+      \label{TmitEundO}
+      \end{center}
+      \end{figure}
+      Duch die $\omega$-Transition an den Zuständen wird wie oben vermieden,
+      dass es in einer Komposition mit $T$ und auch in $T$ selbst
+      Ruhe"=Zustände geben kann. Da $p_{01} \weakmust[w]_{P'_1} p'_1$ gilt,
+      kann man schließen, dass $P'_1\|T$ einen lokal erreichbaren geerbten
+      Fehler hat. Es muss also auch eine as"=Implementierung $P'_2$ von $P_2$
+      geben, sodass $P'_2\|T$ einen lokal erreichbaren \glqq fehlerhaften
+      Zustand\grqq{} hat. Wie oben bereits erwähnt, kommt Ruhe als \glqq
+      Fehlerhaftigkeit\grqq{} nicht in Frage.
+      \begin{itemize}
+        \item Fall 2a) \big(neuer Fehler aufgrund von $x_i\in O_T\backslash
+          \{\omega\}$ und $p_{02} \lweakmay[x_1\dots x_{j-1}] p'_2
+          \nmust[x_j]$\big): Es gilt $x_1\dots x_j\in\MIT _{P'_2}$ und somit
+          $w\in\EDL _{P'_2}$ Anzumerken ist, dass nur auf diesem Weg Outputs
+          von $T$ aus der Menge $\Synch (P'_2,T)$ möglich sind, deshalb gibt es
+          keine anderen Outputs von $T$, die zu einem neuen Fehler führen
+          könnten. Wegen~\ref{DivSemProp} gilt $w\in\EDL _2$.
+      \end{itemize}
+      Die restlichen Fälle sind analog zu Lemma~\ref{KommTestVerfeinLem}
+      möglich. Somit gilt für alle Fälle (2a) bis 2d)), dass $w$ in $\EDL _2$
+      enthalten ist, da $\EL _2\subseteq \EDL _2$ gilt.
+      \begin{itemize}
+        \item Fall 2e) (Divergenz und kein neuer Fehler): Da $T$ keine
+          Möglichkeit hat zu divergieren, muss diese Möglichkeit von $P'_2$
+          geerbt sein. Es gilt dann $p_{02} \lweakmay[x_1\dots x_j u]_{P'_2} p'
+          \in Div _{P'_2}$ für $j\geq 0$ und $u\in O^*$. Somit ist $x_1\dots
+          x_j u\in\StDT _{P'_2}$ und damit $\prune (x_1\dots x_j u) = \prune
+          (x_1\dots x_j)\in\PrDT _{P'_2}\subseteq\EDT _{P'_2}$. Also folgt
+          mit~\ref{DivSemProp}~2., dass $w$ in $\EDT _2 \subseteq\EDL _2$
+          enthalten ist, da \DT{} unter \cont{} abgeschlossen ist.
+      \end{itemize}
   \end{itemize}
 \end{proof}
 
@@ -826,12 +900,43 @@ enthalten ist.
   Divergenz-verfeinert.
 \end{Satz}
 \begin{proof}
-  \TODO{zu beweisen}
+  Nach Definition gilt $w\in\QDT (P)$ mit $w\in O^*$ genau dann, wenn in $P$
+  ein Fehler-, Ruhe- oder Divergenz-Zustand lokal erreichbar ist. $P_1\DRel
+  P_2$ impliziert, dass $w\in\QDT _2$ gilt, wenn $w\in\QDT _1$ gilt. Somit ist
+  ein Fehler-, Ruhe- oder Divergenz-Zustand nur dann in $P_1$ lokal erreichbar,
+  wenn auch ein solcher in $P_2$ lokal erreichbar ist. Wegen
+  Korollar~\ref{lokalDivErrKor} gibt es dann auch as"=Implementierungen $P'_1$
+  und $P'_2$ von $P_1$ bzw.\ $P_2$, die analoge \glqq fehlerhafte
+  Zustände\grqq{} lokal erreichen. Die Parallelkomposition $P'_j\|T$ für $j\in
+  \{1,2\}$ und einen Test $T$ haben dann ebenfalls einen lokal erreichbaren
+  Fehler-, Ruhe- oder Divergenz"=Zustand. Der \glqq fehlerhafte Zustand\grqq
+  einer as"=Implementierung $P'_1$ tritt in der Parallelkomposition mit $T$ auf
+  jeden Fall auf, wenn es sich um einen Fehler oder Divergenz handelt. Bei Ruhe
+  zeigt sich das \glqq Fehlverhalten\grqq{} nur bei Tests $T$, die einen
+  analogen Ruhe"=Zustand enthalten. Mit der Relation \DRel{} gibt es auch in
+  $P_2$ und somit auch in einer as"=Implementierung $P'_2$ davon einen loak
+  erreichbaren \grqq fehlerhaften Zustand\grqq{}, wenn es in $P_1$ einen
+  solchen gibt. In Parallelkompositionen von $P'_2$ mit Tests $T$ zeigt sich
+  das \glqq Fehlverhalten\grqq{} ebenfalls. Falls ein Fehler oder Divergenz
+  lokal erreichbar ist, gilt $\varepsilon \in \EDT _{P'_j}$. Für alle Tests $T$
+  ist $\varepsilon$ ein Element der Sprache es gilt also $\varepsilon \in\EDL
+  _T$. Mit Satz~\ref{DivSemSatz}~1. folgt auch $\varepsilon\in\EDT _{P'_j\|T}$.
+  Falls es sich in $P_2$ und somit auch in $P'_2$ nur um Ruhe handelt und kein
+  Fehler oder Divergenz lokal erreichbar sind, dann muss auch bereits in $P_1$
+  bzw.\ $P'_1$ Ruhe das einzige \glqq Fehlverhalten\grqq{} gewesen sein, dass
+  lokal erreichbar war. \DRel{} hätte ansonsten auch andere \glqq fehlerhafte
+  Zustände\grqq{} in $P_2$ gefordert. Es ist also die Argumentation aus
+  Satz~\ref{RuheTestVerfSatz} anwendbar. Es gilt also $\neg P_1 \DsatAs T
+  \Rightarrow \neg P_2 \DsatAs T$ für alle Test $T$. Daraus ergibt sich für
+  alle Test $T$ die Implikation $P_2 \DsatAs T \Rightarrow P_2 \DsatAs T$ und
+  somit Divergenz-verfeinert $P_1$ $P_2$.
 \end{proof}
 
-Wie in den letzten beiden Kapitel, wurde eine Folgerungskette gezeigt, die sich
-zu einem Ring schließt. Dies ist in Abbildung~\ref{FolgerungsketteDiv}
-dargestellt.
+Es wurde somit, wie in den letzten beiden Kapiteln eine Kette an Folgerungen
+gezeigt, die sich zu einem Fing schließt. Jedoch ängert sich an der Begründung
+für einen der Folgepfeile etwas, da in Lemma~\ref{DivTestVerfeinLem} $T$ kein
+Partner ist, sondern ein $\omega$-Partner. Die Folgerungskette ist in
+Abbildung~\ref{FolgerungsketteDiv} dargestellt.
 
 \begin{figure}[h!tbp]
   \begin{center}
