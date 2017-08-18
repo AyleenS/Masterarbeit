@@ -623,7 +623,7 @@ enthalten ist.
                     edge [bend left] node [sloped] {$x_{n+1}$!} (n1)
                 (n1) edge [loop below] node {$x?\in I_T, \omega !$} (n1);
         \end{tikzpicture}
-        \caption{$x?\neq x_i$ steht für alle $x\in I_T\backslash\{x_i\}$}
+        \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$}
       \label{TohneEmitO}
       \end{center}
       \end{figure}
@@ -708,10 +708,116 @@ enthalten ist.
   \EDT _2$ gilt, muss nur noch $\StQT _1\backslash \EDT _1\subseteq\QDT _2$
   gezeigt werden.\\
   Es wird ein $w\in\StQT _1\backslash\EDT _1$ gewählt und gezeigt, dass dieses
-  auch in $\QDT _2$ enthalten ist.\\
-  \TODO{zu beweisen}
+  auch in $\QDT _2$ enthalten ist. Das $w$ ist aufgrund der
+  Proposition~\ref{RuheTraceProp} und~\ref{DivSemProp}~2.\ auch für eine
+  as"=Implementierung $P'_1$ von $P_1$ in $\StQT _{P'_1}\backslash \EDT
+  _{P'_1}$ enthalten.\\
+  Durch die Wahl des $w$s wird in $P'_1$ durch das Wort $w$ ein ruhiger
+  Zustand erreicht. Dies hat nur Auswirkungen auf die Parallelkomposition
+  $P'_1\|T$, wenn in $T$ ebenfalls ein Ruhe"=Zustand durch $w$ erreicht wird.\\
+  Das betrachtete $w$ hat die Form $w = x_1\dots x_n\in\Sigma ^*$ mit $n\geq
+  0$. Es wird der folgende $\omega$-Partner Test $T$ betrachtet (siehe auch
+  Abbildung~\ref{TohneEmitIundO}):
+  \begin{itemize}
+    \item $Q_T=\{p_0,p_1,\dots ,p_n, p\}$,
+    \item $p_{0T}=p_0$,
+    \item $\begin{aligned}[t]
+        \may _T = \must _T &= \{(p_j,x_{j+1},p_{j+1})\mid  0\leq j< n\}\\
+        &\cup\{(p_j,x,p)\mid  x\in (I_T\cup \{\omega\})\backslash\{x_{j+1}\},
+        0\leq j< n\}\\
+        &\cup\{(p_n,x,p)\mid x\in I_T\}\\
+        &\cup\{(p,x,p)\mid x\in I_T\cup\{\omega\}\},
+    \end{aligned}$
+    \item $E_T=\emptyset$.
+  \end{itemize}
+  \begin{figure} [h!tbp]
+  \begin{center}
+    \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+      \node (0) {$p_0$};
+      \node (1) [right of=0] {$p_1$};
+      \node (dots) [right of=1] {$\dots$};
+      \node (n) [right of=dots, rectangle, dotted, draw] {$p_n\in Qui_T$};
+      \node (p) at ($(1)!0.5!(dots) + (0,-3)$) {$p$};
 
-  \TODO{Beweis für dritten Punkt}
+      \path ($ (0) + (-1,0) $) edge (0)
+            (0) edge node {$x_1$} (1)
+                edge [bend right] node [below, sloped] {$x?\neq x_1, \omega !$}
+                (p)
+            (1) edge node {$x_2$} (dots)
+                edge [below, sloped] node {$x?\neq x_2, \omega !$} (p)
+            (dots) edge node {$x_n$} (n)
+                   edge [dashed] (p)
+            (n) edge [bend left] node [below,sloped] {$x?\in I_T$} (p)
+            (q) edge [loop below] node {$x?\in I_T, \omega !$} (p);
+    \end{tikzpicture}
+    \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$, $p_n$
+      ist der einzige Ruhe-Zustand}
+    \label{TohneEmitIundO}
+  \end{center}
+  \end{figure}
+  Falls das betrachtete $w$ dem leeren Wort $\varepsilon$ entspricht, reduziert
+  sich der $\omega$-Partner Test $T$ auf den Zustand $p_n = p_0$ und den
+  Zustand $P$. Es ist also in diesem Fall der Startzustand gleich dem ruhigen
+  Zustand.\\
+  Allgemein ist der Zustand $p_n$ aus $T$ der einzige ruhige Zustand in $T$. Es
+  gilt werden des ersten Punkte von Lemma~\ref{RuheZustLem}, dass auch in der
+  Parallelkomposition $P'_1\|T$ ein Ruhe-Zustand mit $w$ erreicht wird. Da es
+  sich bei allen in $w$ befindlichen Aktionen um sychronisieren Aktionen
+  handelt und $I_T\cap I=\emptyset$, folt $w\in O_{P'_1\|T}$ und $w\in\StQT
+  (P'_1\|T)$. Es kann also in der Parallelkomposition durch $w$ ein
+  Ruhe-Zustand lokal erreicht werden. Da $w\notin\EDT _{P'_1}$, kann auf dem
+  Weg, der mit $w$ im Transitionssystem $P'_1$ zurück gelegt wird, kein Fehler-
+  oder Divergenz-Zustand lokal erreicht werden. Es kann also werder von $P'_1$
+  noch von $T$ ein Fehler oder Divergenz auf diesem Weg geerbt werden oder neu
+  entstehen. Da ein Ruhe"=Zustand in $P'_1\|T$ lokal erreichtbar ist, erfüllt
+  $P_1$ den Test $T$ nicht. Es muss also auch eine as"=Implementierung $P'_2$
+  von $P_2$ geben, für die $P'_2\|T$ einen lokal erreichbaren \glqq
+  fehlerhaften Zustand\grqq{} besitzt. Hier kann jedoch zunächst keine Aussage
+  darüber getroffen werden, ob das $w$ in der Parallelkomposition $P'_2\|T$
+  ausführbar ist und ob es sich bei der \glqq Fehlerhaftigkeit\grqq{} um
+  Fehler, Ruhe oder Divergenz handelt.
+  \begin{itemize}
+    \item Fall a) ($\varepsilon \in \ET (P'_2\|T)$): Der lokal erreichbare
+      \glqq fehlerhafte Zustand\grqq{} ist ein Fehler. Das $w$ muss somit nicht
+      ausführbar sein. Der Fehler kann sowohl von $P'_2$ geerbt sein, wie duch
+      fehlende Sychronisations-Sicherstellung als neuer Fehler in der
+      Parallelkomposition entstanden sein. Da nur auf dme Trace $w$ in $T$
+      Sychronisations"=Probleme auftretten können und wegen den Fällen 2i) und
+      2ii) des ersten Punktes dises Beweises ist ein Präfix von $w$ in $\EDT
+      _{P'_2}$ enthalten. Da die Menge \EDT{} unter \cont{} abgeschlossen ist
+      und~\ref{DivSemProp}~2. gilt, folgt $w\in\EDT _2\subseteq\QDT _2$.
+    \item Fall b) ($\varepsilon \in \DT (P'_2\|T)\backslash \ET(P'_2\|T)$): Es
+      handelt sich bei dem lokal erreichbaren \glqq fehlerhaften Zustand\grqq{}
+      um Divergenz. Die Divergenz muss von $P'_2$ geerbt sein, da $T$ keine
+      Möglichkeit für eine unendliche $\tau$-Folge hat. Es gilt also, dass
+      bereits in $P'_2$ ein Präfix von $w$ in $\EDT _{P'_2}$ enthalten ist,
+      wegen Fall 2iii) des Beweises des ersten Punktes dieses Lemmas. Mit dem
+      Abschluss unter \cont und~\ref{DivSemProp}~2. folgt, dass auch $w\in \EDT
+      _2\subseteq\QDT _2$ gilt.
+    \item Fall c) (Ruhe-Zustand lokal erreichbar in $P'_2\|T$ und $\varepsilon
+      \notin \EDT (P'_2\|T)$): Da in $T$ nur durch $w$ ein ruhiger Zustand
+      erreicht werden kann, muss es sich bei dem lokal erreichbaren
+      Ruhe"=Zustand in $P'_2\|T$ um einen handeln, der mit $w$ erreicht werden
+      kann. Mit dem zweiten Punkt von Lemma~\ref{RuheZustLem} kann gefolgert
+      werden, dass auch in $P'_2$ ein Ruhe"=Zustand mit $w$ erreichbar sein
+      muss, da $\ET (P'_2\|T)$ eine Teilmenge von $\EDT (P'_2\|T)$ ist. Es gilt
+      also $w\in\StQT _{P'_2}\subseteq \QDT _{P'_2}$. Mit dem dritten Punkt von
+      Proposition~\ref{DivSemProp} folgt daraus $w\in\QDT _2$.
+  \end{itemize}
+
+  Nun wird mit dem letzten Punkt des Beweises begonnen. Analog wie in den
+  Beweisen zu den Lemmata~\ref{KommTestVerfeinLem} und~\ref{RuheTestVerfeinLem}
+  ist hier aufgrund der bereits geführten Beweisteile nur noch $L_1\backslash
+  \EDT _1 \subseteq \EDL _2$ zu zeigen. Es wird also für ein beliebig gewähltes
+  $w\in L_1\backslash \EDT _1$ gezeigt, dass es auch in $\EDL _2$ enthalten
+  ist. Es gilt auch $w\in L _{P'_1}\backslash \EDL _{P'_1}$ für eine
+  as"=Implikation $P'_1$ von $P_2$, wegen~\ref{LImpProp} und~\ref{DivSemProp}.
+  \begin{itemize}
+    \item Fall 1 ($w = \varepsilon$): Analog zu den
+      Lemmata~\ref{KommTestVerfeinLem} und~\ref{RuheTestVerfeinLem} gilt auch
+      hier, dass $\varepsilon$ immer in $\EDL _2$ enthalten ist.
+    \item Fall 2 ($w = x_1\dots x_n$ mit $n \geq 1$): \TODO{zu beweisen}
+  \end{itemize}
 \end{proof}
 
 \begin{Satz}
