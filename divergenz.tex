@@ -962,7 +962,47 @@ Abbildung~\ref{FolgerungsketteDiv} dargestellt.
   \end{center}
 \end{figure}
 
+\begin{Satz}[Zusammenhang der Verfeinerungs-Relationen mit der
+  Divergenz-Relation]
+  Für zwei \MEIO{}s $P$ und $Q$ gilt $P \asRel Q \Rightarrow P \DRel Q$. Aus
+  keiner der anderen bisher erwähnten Relationen folgt \DRel{} und auch aus der
+  Relation \DRel{} kann keine der anderen Relationen gefolgert werden.
+\end{Satz}
+\begin{proof}\mbox{}\\
+  $P \asRel Q \Rightarrow P \DRel Q$:\\
+  Um diese Inklikation zu zeigen, muss nachgeschiwen werden, dass eine bliebige
+  as"=Verfeinerung"=Relation $\mathcal{R}$ zwischen $P$ und $Q$ auch die
+  Eigenschaften der Relation \QRel{} erfüllt. Da $\mathcal{R}$ eine
+  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ ist, muss $p_0 \mathcal{R}
+  q_0$ gelten. Es sind die folgenden Punkte nachzuweisen:
+  \begin{itemize}
+    \item $\EDT _P \subseteq \EDT _Q$,
+    \item $\QDT _P \subseteq \QDT _Q$,
+    \item $\EDL _P \subseteq \EDL _Q$.
+  \end{itemize}
 
-\TODO{Satz für den Zusammenhang der Verfeinerungs-Relationen erweitern:
-$\asRel \Rightarrow \DRel \overset{?}{\Rightarrow} \QRel$ und $\wasRel
-\not\Rightarrow \DRel$}
+  Die Menge \EDT{} ist unter \cont{} abgeschlossen. Es reicht also für den
+  ersten Punkt zu zeigen, dass ein belibiges präfix-minimales $w$ aus $\EDT _P$
+  auch in $\EDT _Q$ enthalten ist. $w$ kann ein Element aus $\ET _P$ oder $\DT
+  _P$ sein. Für $w$ aus $\ET _P$ folt mit Satz~\ref{ZusammenhFehlerSatz}
+  bereits $w\in\ET _Q$. Es kann also im folgenden davon ausgegengen werden,
+  dass $w$ ein präfix-minimales Elemente aus $\DT _P$ ist. Es gibt in $P$ einen
+  Trace der Form:
+  \TODO{fertig beweisen}
+
+
+  $P \DRel Q \not\Rightarrow P \ERel Q$:\\
+  \TODO{zu beweiesn}
+
+  $P \DRel Q \not\Rightarrow P \QRel Q$, $P \DRel Q \not\Rightarrow P \wasRel
+  Q$ und $P \DRel Q \not\Rightarrow P \asRel Q$:\\
+  \TODO{zu beweiesn}
+
+  $P \wasRel Q \not\Rightarrow P \DRel Q$:\\
+  \TODO{zu beweiesn}
+
+  $P \ERel Q \not\Rightarrow P \DRel Q$ und $P \QRel Q \not\Rightarrow P \DRel
+  Q$:\\
+  \TODO{zu beweiesn}
+
+\end{proof}

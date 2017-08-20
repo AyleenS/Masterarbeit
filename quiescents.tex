@@ -822,7 +822,7 @@ dargestellt.
   \end{center}
 \end{figure}
 
-\begin{Satz}[Zusammenhang der Verfeineruns-Relationenen mit der Ruhe-Relation]
+\begin{Satz}[Zusammenhang der Verfeinerungs-Relationenen mit der Ruhe-Relation]
   Für \MEIO{}s $P$ und $Q$ gilt $P \wasRel Q \Rightarrow P \QRel Q \Rightarrow
   P \ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht.
 \end{Satz}
@@ -840,10 +840,10 @@ dargestellt.
   p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P
   p_n \in Qui _P$. Aufgrund von~\ref{wSimDef}~4. bzw.~5. gibt es einen analogen
   Trace in $Q$, falls ein $q_j$ für $0\leq j \leq n$ in $E_Q$ angetroffen wird.
-  Es gilt $w\in\StET _Q\subset\ET _Q\subset\QET _Q$, falls ein Fehler-Zustand
-  in $Q$ auf einem Präfix-Trace von $w$ auftritt. Im folgenden wird davon
-  ausgegangen, das $w$ in $Q$ ohne das erreichben eines Fehler"=Zustandes
-  ausführbar ist. Es gibt also einen Trace der Form $q_0
+  Es gilt $w\in\StET _Q\subseteq\ET _Q\subseteq\QET _Q$, falls ein
+  Fehler-Zustand in $Q$ auf einem Präfix-Trace von $w$ auftritt. Im folgenden
+  wird davon ausgegangen, das $w$ in $Q$ ohne das erreichben eines
+  Fehler"=Zustandes ausführbar ist. Es gibt also einen Trace der Form $q_0
   \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots
   q_{n-1} \weakmay[\widehat{\alpha _n}]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$
   für alle $j$ aus $\{0,1,\dots n\}$. $p_n$ ist für $P$ ein Ruhe-Zustand, es
@@ -851,12 +851,12 @@ dargestellt.
   $\mathcal{R}$ eine schwache as"=Verfeinerungs"=Relation ist, muss
   wegen~\ref{wSimDef}~3. auch $q_n \nmust[\alpha]_Q$ gelten für alle $\alpha
   \in (O\cup \{\tau\})$. $q_n$ ist also auch ein ruhiger Zustand. Somit ist $w$
-  in $\StQT _Q\subset\QET _Q$ enthalten.
+  in $\StQT _Q\subseteq\QET _Q$ enthalten.
 
   $P \QRel Q \Rightarrow P \ERel Q$:\\
   Diese Implikation folgt direkt aus der Definition von \QRel{}
   in~\ref{RuheSemDef}. Da $P \QRel Q$ dort definiert wurde als Relation, die
-  $P \ERel Q$ un $\QET _P \subset \QET _Q$ erfüllt. Es gilt also $P \ERel Q$.
+  $P \ERel Q$ und $\QET _P \subseteq \QET _Q$ erfüllt. Es gilt also $P \ERel Q$.
 
   $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$:\\
   Wie im Gegenbeispiel für die analoge Implikation aus der Relation \ERel{}
@@ -870,7 +870,7 @@ dargestellt.
   \emptyset$ und $\{\varepsilon\} = L(P) \subset L(Q) = \{\varepsilon , o\}$.\\
   Angenommen es gib eine schache as"=Verfeinerungs"=Relation $\mathcal{R}$
   zwischen $P$ und $Q$. Dann stehen die Startzustände in dieser Relation, es
-  gilt also $p_0 \mathcal q_0$. Da es keine Fehler"=Zustände in $P$ gibt,
+  gilt also $p_0 \mathcal{R} q_0$. Da es keine Fehler"=Zustände in $P$ gibt,
   ist~\ref{wSimDef}~1.\ erfüllt. Die $\tau$"=must"=Schlingen der
   Startzustände werden bezüglich der Punkt 3. und 5. der
   Definition~\ref{wSimDef} gematched. Der 2. Punkt von~\ref{wSimDef} stellt
