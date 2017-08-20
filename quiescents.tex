@@ -1,9 +1,8 @@
-\chapter{Verfeinerungen für Kommunikationsfehler- und Ruhe-Freiheit}
-
+\chapter{Verfeinerungen für Kommunikationsfehler- und Stillstand-Freiheit}
 
 In diesem Kapitel wird die Menge der betrachteten Zustandsmengen von den
 Kommunikations"=basierten Fehlern im letzten Kapitel erweitert um
-Ruhe-Zustände. Es wird nur noch der Testing-Ansatz des letzten Kapitels
+Stille-Zustände. Es wird nur noch der Testing-Ansatz des letzten Kapitels
 fortgeführt, da dieser sich auf die Parallelkomposition von \EIO{}s stützt und
 nicht auf die Definition der Parallelkomposition von \MEIO{}s, die auch anders
 gestaltet hätte werden können.\\
@@ -29,61 +28,61 @@ may"=Output"=Transition je wieder einen Output machen zu können. Falls man
 diese Definition verwenden würde, müsste man immer alle Zustände betrachten,
 die durch $\tau$s erreichbar sind. Dies würde einige Betrachtungen deutlich
 aufwendiger machen und soll deshalb hier nicht behandelt werden. Die Definition
-für die betrachteten Verklemmungen, hier Ruhe genannt, beschränkt sich auf
+für die betrachteten Verklemmungen, hier Stille genannt, beschränkt sich auf
 Zustände, die keine Outputs und $\tau$s via must"=Transitionen ausführen
 können.
 
-\begin{Def}[Ruhe]
-  Ein \emph{Ruhe-Zustand} ist ein Zustand in einem \MEIO{} $P$, der keine
+\begin{Def}[Stillstand]
+  Ein \emph{Stille-Zustand} ist ein Zustand in einem \MEIO{} $P$, der keine
   Outputs und kein $\tau$ zulässt via must"=Transitionen.\\
-  Somit ist die Menge der Ruhe-Zustände in einem \MEIO{} $P$ wie folgt formal
+  Somit ist die Menge der Stille-Zustände in einem \MEIO{} $P$ wie folgt formal
   definiert: $Qui(P):=\left\{p\in P\mid \forall\alpha\in (O\cup\{\tau\}):p
   \nmust[\alpha]_P\right\}$.
 \end{Def}
 
 Für die Erreichbarkeit wird wie im letzten Kapitel ein optimistischer Anzahl
-der lokalen Erreichbarkeit für die Fehler-Zustände verwendet. Ruhe ist kein
+der lokalen Erreichbarkeit für die Fehler-Zustände verwendet. Stille ist kein
 unabwendbare \glqq Fehler-Art\grqq{}, sondern kann durch einen Input repariert
 werden oder im Fall von vorhandenen may"=Output"=Transitionen oder
 may"=$\tau$"=Transitionen, durch eine Implementierung dieser lokalen Aktionen .
-Daraus ergibt sich, dass Ruhe im Vergleich zu den Fehlern aus dem letzten
+Daraus ergibt sich, dass Stille im Vergleich zu den Fehlern aus dem letzten
 Kapitel als weniger \glqq schlimmer Fehler\grqq{} anzusehen ist. Somit ist ein
-Ruhe-Zustand ebenso wie ein Fehler-Zustand erreichbar, sobald er durch Outputs
+Stille-Zustand ebenso wie ein Fehler-Zustand erreichbar, sobald er durch Outputs
 und $\tau$s erreicht werden kann, jedoch ist nicht jede beliebige Fortsetzung
-eines Traces, das durch lokale Aktionen zu einem Ruhe-Zustand führt ein
-Ruhe"=Trace.
+eines Traces, das durch lokale Aktionen zu einem Stille-Zustand führt ein
+Stille"=Trace.
 
-\begin{Def}[Test und Verfeinerung für Ruhe]
-  \label{RuheTestDef}
+\begin{Def}[Test und Verfeinerung für Stillstand]
+  \label{StilleTestDef}
   Ein \emph{Test} $T$ ist eine Implementierung. Ein \MEIO{} $P$
-  \emph{as-erfüllt} einen Ruhe-Test $T$, falls $S\|T$ fehler- und ruhe-frei ist
+  \emph{as-erfüllt} einen Stille-Test $T$, falls $S\|T$ fehler- und stillstand-frei ist
   für alle $S\in \asimp (P)$. Es wird dann $P \QsatAs T$ geschrieben. Die
-  Parallelkomposition $S\|T$ ist \emph{fehler-} und \emph{ruhe-frei}, wenn kein
-  Fehler- und kein Ruhe-Zustand lokal erreichbar ist.\\
-  Ein \MEIO{} $P$ \emph{Ruhe-verfeinert} $P'$, falls für alle Tests $T$:
+  Parallelkomposition $S\|T$ ist \emph{fehler-} und \emph{stillstand-frei}, wenn kein
+  Fehler- und kein Stille-Zustand lokal erreichbar ist.\\
+  Ein \MEIO{} $P$ \emph{Stille-verfeinert} $P'$, falls für alle Tests $T$:
   $P'\QsatAs T \Rightarrow P\QsatAs T$.
 \end{Def}
 
 Um eine genauere Auseinandersetzung mit den Präkongruenzen zu ermöglichen,
 benötigt man wie im letzten Kapitel die Definition von Traces auf der Struktur.
-Wie bereits oben erwähnt, ist Ruhe ein reparierbares \glqq Fehlverhalten\grqq{}
-im Gegensatz zu Fehlern. Es genügt deshalb für Ruhe die strikten Traces ohne
+Wie bereits oben erwähnt, ist Stille ein reparierbares \glqq Fehlverhalten\grqq{}
+im Gegensatz zu Fehlern. Es genügt deshalb für Stille die strikten Traces ohne
 Kürzung zu betrachten.
 
-\begin{Def}[Ruhe-Traces]
-  \label{RuheTraceDef}
+\begin{Def}[Stillstands-Traces]
+  \label{StilleTraceDef}
   Sei $P$ ein \MEIO{} und definiere:
   \begin{itemize}
-    \item \emph{strikte Ruhe-Traces}: $\StQT (P) := \left\{w\in\Sigma ^*\mid
+    \item \emph{strikte Stille-Traces}: $\StQT (P) := \left\{w\in\Sigma ^*\mid
       p_0 \weakmay[w]_P p\in Qui(P)\right\}$.
   \end{itemize}
 \end{Def}
 
 \vspace{0.2cm}
 
-\begin{Prop}[Ruhe-Traces und Implementierungen]
-  \label{RuheTraceProp}
-  Für ein \MEIO{} $P$ gilt für die strikte Ruhe-Traces: $\StQT (P) \subseteq
+\begin{Prop}[Stillstands-Traces und Implementierungen]
+  \label{StilleTraceProp}
+  Für ein \MEIO{} $P$ gilt für die strikte Stille-Traces: $\StQT (P) \subseteq
   \big\{w\in\Sigma ^*\mid \exists P'\in\asimp (P): p'_0 \weakmust[w]_{P'}
   p'\in Qui(P')\big\} = \underset{P'\in\asimp (P)}{\bigcup} \StQT (P')$.
 \end{Prop}
@@ -91,7 +90,7 @@ Kürzung zu betrachten.
   Analog zu den Propositionen~\ref{LImpProp} und~\ref{KommTracesProp} ist die
   Inklusion am Besten mit einer as"=Implementierung zu zeigen und der
   entsprechenden as"=Verfeinerungs"=Relation $\mathcal{R}$. Falls der
-  Startzustand $p_0$ von $P$ ein Ruhe-Zustand ist, muss man zwei
+  Startzustand $p_0$ von $P$ ein Stille-Zustand ist, muss man zwei
   as"=Implementierungen betrachten, ansonsten genügt es eine für alle $w$ aus
   $\StQT (P)$ anzugeben, wobei $w$ möglicherweise nicht $\varepsilon$
   entsprechend darf.\\
@@ -102,7 +101,7 @@ Kürzung zu betrachten.
   $a\in\Sigma$ folgt, wenn in $P$ für einen Zustand $p$ $p\nmust[a]_P$, gilt
   auch in $P'$ $p' \nmust[a]_{P'}$ für den Zustand, der mit $p$ in Relation
   steht. Der Startzustand von $P'$ ist mit $\varepsilon$ erreichbar und
-  ebenfalls ruhig. Es gilt also $p'_0\in Qui (P')$ und $\varepsilon\in\StQT
+  ebenfalls still. Es gilt also $p'_0\in Qui (P')$ und $\varepsilon\in\StQT
   (P')$. Der 2.\ Punkt der Definition~\ref{SimDef} ist für die
   Identitäts-Relation als as"=Verfeinerungs"=Relation $\mathcal{R}$ erfüllt, da
   alle must"=Transitionen aus $P$ entsprechend in $P'$ umgesetzt wurden. Alle
@@ -111,7 +110,7 @@ Kürzung zu betrachten.
   erfüllt, da $E_{P'}=\emptyset$ gilt, wenn keine Fehler-Zustände implementiert
   werden.\\
   Für alle $w\neq \varepsilon$ und für $w = \varepsilon$, dass zu einem anderen
-  ruhigen Zustand führt wie $p_0$, mit $w\in\StQT (P)$ kann $P'$ als die
+  stillen Zustand führt wie $p_0$, mit $w\in\StQT (P)$ kann $P'$ als die
   folgende as"=Implementierung gewählt werden:
   \begin{itemize}
     \item $P'= \{q\mid p\in P\} \cup \{q'\mid p\in P\}$,
@@ -145,7 +144,7 @@ Kürzung zu betrachten.
   gestrichenen wie auch die ungestrichenen Zustände mit den entsprechenden
   Zuständen aus $P$ in der Relation $\mathcal{R}$ stehen. $\mathcal{R}$ ist
   also eine starke alternierende Simulations-Relation auf $P'$ und $P$. Falls
-  ein Zustand $p_j$ in $P$ ruhig war, ist es auch der entsprechenden Zustand
+  ein Zustand $p_j$ in $P$ still war, ist es auch der entsprechenden Zustand
   $q_j$ in $P'$, da für $q_j$ alle ausgehenden must"=Transitionen von $p_j$
   implementiert wurden, aber keine einzige may"=Transition, die keine der
   must"=Transitionen entspricht. Wenn also für $p_j$ keine Outputs und kein
@@ -162,19 +161,19 @@ Kürzung zu betrachten.
   insgesamt nur aus must"=Transitionen bestanden hat, ist direkt von $q_0$ aus
   der Weg über ungestrichene Zustände zu $q_j$ möglich. Es gilt also $\StQT
   (P)\backslash \{\varepsilon\} = \StQT (P')\backslash \{\varepsilon\}$. Falls
-  $\varepsilon$ zu einem Ruhe-Zustand $p \neq p_0$ in $P$ geführt hat, gilt
+  $\varepsilon$ zu einem Stille-Zustand $p \neq p_0$ in $P$ geführt hat, gilt
   sogar $\StQT(P) = \StQT (P')$, da ein Trace aus internen Aktionen in $P$ und
-  $P'$ zu dem entsprechenden ruhigen Zustand $p$ bzw.\ $q$ führt.
+  $P'$ zu dem entsprechenden stillen Zustand $p$ bzw.\ $q$ führt.
 \end{proof}
 
 Für \ET{} und \EL{} gelten die Definitionen aus dem letzten Kapitel. Es wir nur
-für Ruhe eine neue Semantik definiert.
+für Stille eine neue Semantik definiert.
 
-\begin{Def}[Ruhe-Semantik]
-  \label{RuheSemDef}
+\begin{Def}[Stillstands-Semantik]
+  \label{StilleSemDef}
   Sei $P$ ein \MEIO{}.
   \begin{itemize}
-    \item Die Menge der \emph{fehler-gefluteten Ruhe-Traces} von $P$ ist $\QET
+    \item Die Menge der \emph{fehler-gefluteten Stille-Traces} von $P$ ist $\QET
       (P):= \StQT (P)\cup\ET (P)$.
   \end{itemize}
   Für zwei \MEIO{}s $P_1,P_2$ mit der gleichen Signatur wird $P_1\QRel{} P_2$
@@ -183,22 +182,22 @@ für Ruhe eine neue Semantik definiert.
 
 \vspace{0.2cm}
 
-\begin{Prop}[Ruhe-Semanik und Implementierungen]
-  \label{RuheSemProp}
-  Für die Menge der fehler-gefluteten Ruhe-Traces von $P$ gilt $\QET (P) =
+\begin{Prop}[Stillstands-Semanik und Implementierungen]
+  \label{StilleSemProp}
+  Für die Menge der fehler-gefluteten Stille-Traces von $P$ gilt $\QET (P) =
   \underset{P'\in\asimp (P)}{\bigcup} \QET (P')$.
 \end{Prop}
 \begin{proof}\mbox{}\\
   \glqq$\subseteq$\grqq{}:
   \begin{align*}
-    \QET (P)&\overset{\ref{RuheSemDef}}{=} \StQT (P) \cup \ET (P)\\
-    &\overset{\ref{RuheTraceProp}}{\subseteq} \left(\underset{P'\in\asimp
+    \QET (P)&\overset{\ref{StilleSemDef}}{=} \StQT (P) \cup \ET (P)\\
+    &\overset{\ref{StilleTraceProp}}{\subseteq} \left(\underset{P'\in\asimp
     (P)}{\bigcup} \StET (P')\right)\cup \ET (P)\\
     &\overset{\ref{KommSemProp}}{=} \left(\underset{P'\in\asimp
     (P)}{\bigcup} \StET (P')\right)\cup \left(\underset{P'\in\asimp
     (P)}{\bigcup} \ET (P')\right)\\
     &= \underset{P'\in\asimp (P)}{\bigcup} \StQT (P') \cup \ET (P')\\
-    &\overset{\ref{RuheSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \QET
+    &\overset{\ref{StilleSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \QET
     (P').\\
   \end{align*}
 
@@ -209,7 +208,7 @@ für Ruhe eine neue Semantik definiert.
   stammt oder aus $\ET (P')$. Falls $w\in\ET (P')$ gilt, folgt mit
   Proposition~\ref{KommSemProp} bereits, dass $w\in \ET (P) \subseteq \QET (P)$
   gilt. Somit wird für den Rest des Beweises davon ausgegangen, dass $w\in\StQT
-  (P')\backslash \ET (P')$ ist. $w$ führt in $P'$ also nur zu einem ruhigen
+  (P')\backslash \ET (P')$ ist. $w$ führt in $P'$ also nur zu einem stillen
   Zustand und hat nichts mit Fehler-Zuständen in $P'$ zu tun. Der Trace, der
   durch $w$ in $P'$ beschrieben hat, hat die folgende Form: $\exists w'\in
   \Sigma _{\tau}, \exists \alpha _1, \alpha _2, \dots , \alpha _n, \exists
@@ -227,7 +226,7 @@ für Ruhe eine neue Semantik definiert.
   _n]_P p_n$, wobei $p'_j \mathcal{R} p_j$ für alle $j$ aus $\{0,1,\dots ,n\}$
   gilt. Es wird also durch $w$ ein Zustand $p_n$ erreicht, der mit dem Zustand
   $p'_n$ in der starken as"=Verfeinerungs"=Relation $\mathcal{R}$ stehen.
-  $p'_n$ ist ruhig, nach Voraussetzung. Es gilt also für alle $\omega\in O\cup
+  $p'_n$ ist still, nach Voraussetzung. Es gilt also für alle $\omega\in O\cup
   \{\tau\}$ $p'_n\nmust[\omega]$. Da $(p'_n,p_n) \in\mathcal{R}$ gilt und beide
   Zustände keine Fehler-Zustände sind, muss auch $p_n\nmust[\omega]$ für alle
   $\omega\in O\cup \{\tau\}$ gelten, da sonst~\ref{SimDef}~2.\ verletzt würde.
@@ -239,49 +238,49 @@ Gleichheit der betrachteten Trace Mengen in der Relation \QRel{} auch eine
 Aussage über die lokale Erreichbarkeit \glqq fehlerhafter Zustände\grqq{} in
 einer Spezifikation und den zugehörigen Implementierungen getroffen werden.
 
-\begin{Kor}[lokale Ruhe Erreichbarkeit]\mbox{}
-  \label{lokaleRuheErrKor}
+\begin{Kor}[lokale Stillstands Erreichbarkeit]\mbox{}
+  \label{lokaleStilleErrKor}
   \begin{enumerate}[(i)]
     \item Falls in einem \MEIO{} $P$ ein Fehler lokal erreichbar ist, dann
       existiert auch eine as"=Implementierung, in der ein Fehler lokal
       erreichbar ist.
-    \item Falls in einem \MEIO{} $P$ einen lokal erreichbaren Ruhe-Zustand
+    \item Falls in einem \MEIO{} $P$ einen lokal erreichbaren Stille-Zustand
       besitzt, dann existiert auch eine as"=Implementierung, in der ein
-      Ruhe-Zustand lokal erreichbar ist.
+      Stille-Zustand lokal erreichbar ist.
     \item Falls es eine as"=Implementierung von $P$ gibt, die einen Fehler oder
-      Ruhe lokal erreicht, dann ist auch ein Fehler oder Ruhe in $P$ lokal
+      Stille lokal erreicht, dann ist auch ein Fehler oder Stille in $P$ lokal
       erreichbar.
   \end{enumerate}
 \end{Kor}
 \begin{proof}\mbox{}
   \begin{enumerate}[(i)]
     \item Dieser Punkt folgt direkt aus Korollar~\ref{lokalFehlerErrKor}~(i).
-    \item Da ein Ruhe-Zustand in $P$ lokal erreichbar ist, gilt $w\in \StQT
-      _P$ für $w\in O$. Es muss wegen Proposition~\ref{RuheTraceProp}
+    \item Da ein Stille-Zustand in $P$ lokal erreichbar ist, gilt $w\in \StQT
+      _P$ für $w\in O$. Es muss wegen Proposition~\ref{StilleTraceProp}
       mindestens ein $P'\in \asimp (P)$ geben, für dass $w\in \StQT _{P'}$
       gilt. Da $w$ nur aus lokalen Aktion bestehen kann, ist auch in $P'$ ein
-      Ruhe-Zustand lokal erreichbar.
+      Stille-Zustand lokal erreichbar.
     \item Sei $P'$ die as"=Implementierung von $P$, in der ein Fehler- oder
-      Ruhe-Zustand lokal erreichbar ist. Es gilt dann $w\in \QET _{P'}$ für
-      $w\in O$. Mit Proposition~\ref{RuheSemProp} folgt draus $w\in \QET _P$.
-      Es muss also auch in $P$ ein Fehler- oder Ruhe-Zustand lokal erreichbar
+      Stille-Zustand lokal erreichbar ist. Es gilt dann $w\in \QET _{P'}$ für
+      $w\in O$. Mit Proposition~\ref{StilleSemProp} folgt draus $w\in \QET _P$.
+      Es muss also auch in $P$ ein Fehler- oder Stille-Zustand lokal erreichbar
       sein.
   \end{enumerate}
 \end{proof}
 
-Für spätere Beweise werden noch Zusammenhänge zwischen Ruhe-Zuständen in den
+Für spätere Beweise werden noch Zusammenhänge zwischen Stille-Zuständen in den
 einzelnen Komponenten und in einer Parallelkomposition dieses Komponenten
 benötigt.
 
-\begin{Lem}[Ruhe-Zustände unter Parallelkomposition]\mbox{}
-  \label{RuheZustLem}
+\begin{Lem}[Stillstands-Zustände unter Parallelkomposition]\mbox{}
+  \label{StilleZustLem}
   \begin{enumerate}
     \item Ein Zustand $(p_1,p_2)$ aus der Parallelkomposition $P_{12}$ ist
-      ruhig, wenn es auch die Zustände $p_1$ und $p_2$ in $P_1$ bzw. $P_2$
+      still, wenn es auch die Zustände $p_1$ und $p_2$ in $P_1$ bzw. $P_2$
       sind.
-    \item Wenn der Zustand $(p_1,p_2)$ ruhig ist und nicht in $E_{12}$
+    \item Wenn der Zustand $(p_1,p_2)$ still ist und nicht in $E_{12}$
       enthalten ist, dann sind auch die auf die Teilsysteme projizierten
-      Zustände $p_1$ und $p_2$ ruhig.
+      Zustände $p_1$ und $p_2$ still.
   \end{enumerate}
 \end{Lem}
 \begin{proof}\mbox{}
@@ -291,7 +290,7 @@ benötigt.
       Output- und $\tau$-may"=Transitionen, jedoch keine Möglichkeit für Outputs
       oder $\tau$s als must"=Transitionen.\\
       Angenommen der Zustand, der durch die Parallelkomposition aus den
-      Zuständen $p_1$ und $p_2$ entsteht, ist nicht ruhig, d.h.\ er hat eine
+      Zuständen $p_1$ und $p_2$ entsteht, ist nicht still, d.h.\ er hat eine
       ausgehende must"=Transition für einen Output oder ein $\tau$.
       \begin{itemize}
         \item Fall 1 \big($(p_1,p_2)\must[\tau]_{12}$\big): Ein $\tau$ ist eine
@@ -323,7 +322,7 @@ benötigt.
           kann.
       \end{itemize}
       Da alle diese Fälle zu einem Widerspruch mit der Voraussetzung führen
-      folgt, dass bereits die Annahme, dass der Zustand $(p_1,p_2)$ nicht ruhig
+      folgt, dass bereits die Annahme, dass der Zustand $(p_1,p_2)$ nicht still
       ist, falsch war. Es gilt also, dass aus $p_j\in Qui_j$ für $j\in\{1,2\}$
       $(p_1,p_2)\in Qui_{12}$ folgt.
     \item Es gilt $(p_1,p_2)\in Qui_{12}\backslash E_{12}$, somit hat dieser
@@ -376,8 +375,8 @@ benötigt.
 In dem folgenden Satz sind die Punkte 1.\ und 3.\ nur zur Vollständigkeit
 aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
 
-\begin{Satz}[Kommunikationsfehler- und Ruhe-Semantik für Parallelkompositionen]
-  \label{RuheSemSatz}
+\begin{Satz}[Kommunikationsfehler- und Stillstands-Semantik für Parallelkompositionen]
+  \label{StilleSemSatz}
   Für zwei komponierbare \MEIO{}s $P_1,P_2$ und ihre Komposition $P_{12}$ gilt:
   \begin{enumerate}
     \item $\ET _{12}=\cont (\prune ((\ET _1\|\EL _2)\cup (\EL _1\|\ET _2)))$,
@@ -393,11 +392,11 @@ aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
   offensichtlich in der rechten Seite enthalten. Somit wird im Folgenden ein
   $w\in\StQT _{12}\backslash\ET _{12}$ betrachtet und es wird versucht dessen
   Zugehörigkeit zur rechten Menge zu zeigen. Aufgrund von
-  Definition~\ref{RuheTraceDef} weiß man, dass $(p_{01},p_{02})
+  Definition~\ref{StilleTraceDef} weiß man, dass $(p_{01},p_{02})
   \weakmay[w]_{12} (p_1,p_2)$ gilt mit $(p_1,p_2)\in Qui_{12} \backslash
   E_{12}$. Durch Projektion erhält man $p_{01} \weakmay[w_1]_1 p_1$ und $p_{02}
   \weakmay[w_2]_2p_2$ mit $w\in w_1\|w_2$. Aus $(p_1,p_2)\in Qui_{12}
-  \backslash E_{12}$ kann mit dem zweiten Punkt von Lemma~\ref{RuheZustLem}
+  \backslash E_{12}$ kann mit dem zweiten Punkt von Lemma~\ref{StilleZustLem}
   gefolgert werden, dass $q_1\in Qui_1$ und $q_2\in Qui_2$ gilt. Somit gilt
   $w_1 \in \StQT _1\subseteq \QET _1$ und $w_2\in \StQT _2\subseteq\QET _2$.
   Daraus folgt $w\in \QET _1\|\QET _2$ und somit ist $w$ in der rechten Seite
@@ -421,17 +420,17 @@ aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
     \item Fall 2 ($w_1\in\StQT _1\backslash\ET _1\land w_2\in\StQT _2\backslash
       \ET _2$): Es gilt in diesem Fall $p_{01} \weakmay[w_1]_1 p_1\in Qui_1$
       und $p_{02} \weakmay[w_2]_2 p_2\in Qui_2$. Da $p_1$ und $p_2$ in der
-      jeweiligen Ruhe-Menge enthalten sind, ist auch der Zustand, der aus ihnen
-      zusammengesetzt ist, in der Parallelkomposition ruhig, wie bereits im
-      ersten Punkt von Lemma~\ref{RuheZustLem} gezeigt. Es gilt also für die
+      jeweiligen Stillestands-Menge enthalten sind, ist auch der Zustand, der aus ihnen
+      zusammengesetzt ist, in der Parallelkomposition still, wie bereits im
+      ersten Punkt von Lemma~\ref{StilleZustLem} gezeigt. Es gilt also für die
       Komposition $(p_{01},p_{02}) \weakmay[w]_{12} (p_1,p_2)\in Qui_{12}$ und
       dadurch ist $w$ in der linken Seite der Gleichung enthalten, da $w\in
       \StQT _{12}\subseteq \QET _{12}$ gilt.
   \end{itemize}
 \end{proof}
 
-\begin{Kor}[Ruhe-Präkongruenz]
-  \label{RuhePraekonKor}
+\begin{Kor}[Stillstands-Präkongruenz]
+  \label{StillePraekonKor}
   Die Relation \QRel{} ist eine Präkongruenz bezüglich $\cdot\|\cdot$.
 \end{Kor}
 \begin{proof}
@@ -448,12 +447,12 @@ aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
         P_{32},
     \end{aligned}$
     \item $\begin{aligned}[t]
-        \QET{}_{31} &\overset{\ref{RuheSemSatz}~2.}{=}
+        \QET{}_{31} &\overset{\ref{StilleSemSatz}~2.}{=}
         (\QET{}_3\|\QET{}_1)\cup \ET{}_{31}\\
         &\hspace{-0.6cm}\overset{\ET{}_{31}\subseteq
       \ET{}_{32}}{\overset{\mathrm{und}}{\overset{\QET{}_1\subseteq
       \QET{}_2}{\subseteq}}} (\QET{}_3\|\QET{}_2) \cup \ET{}_{32}\\
-        &\overset{\ref{RuheSemSatz}~2.}{=} \QET{}_{32}.
+        &\overset{\ref{StilleSemSatz}~2.}{=} \QET{}_{32}.
     \end{aligned}$
   \vspace*{-0.7cm}
   \end{itemize}
@@ -462,10 +461,10 @@ aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
 Im nächsten Lemma soll eine Verfeinerung bezüglich guter Kommunikation mit
 Partnern betrachtet werden. Die gute Kommunikation stützt sich dabei auf die
 Definition von Tests und der daraus resultierenden Verfeinerung
-in~\ref{RuheTestDef}.
+in~\ref{StilleTestDef}.
 
-\begin{Lem}[Testing-Verfeinerung mit Ruhe]
-  \label{RuheTestVerfeinLem}
+\begin{Lem}[Testing-Verfeinerung mit Stillstand]
+  \label{StilleTestVerfeinLem}
   Gegeben sind zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur. Wenn
   für alle Tests $T$, die Partner von $P_1$ bzw. $P_2$ sind, $P_2\QsatAs T
   \Rightarrow P_1\QsatAs T$ gilt, dann folgt daraus die Gültigkeit von
@@ -484,15 +483,15 @@ in~\ref{RuheTestDef}.
   In Lemma~\ref{KommTestVerfeinLem} wurde bereits etwas Ähnliches gezeigt,
   jedoch wurde dort als Voraussetzung $P_2\EsatAs T\Rightarrow P_1\EsatAs T$
   für alle Test Partner $T$ verwendet und hier dieselbe Aussage mit der Test
-  Erfüllung für Ruhe. Die hier verwendeten Tests sagen nichts darüber aus,
+  Erfüllung für Stille. Die hier verwendeten Tests sagen nichts darüber aus,
   welche Art von \glqq fehlerhaftem Zustand\grqq{} enthalten ist. Die Aussage
   des Lemmas~\ref{KommTestVerfeinLem} kann hier also nicht verwendet werden.
   Aus der lokalen Erreichbarkeit eines Fehler-Zustandes in der
-  Parallelkomposition einer as"=Implenetierung von von $P_1$ mit $T$ lässt sich
+  Parallelkomposition einer as"=Implementierung von von $P_1$ mit $T$ lässt sich
   nur schließen, dass $P_2$ den Test $T$ ebenfalls nicht as"=erfüllt. Dies kann
   aber aufgrund einer as"=Implementierung von $P_2$ sein, die in
-  Parallelkomposition mit $T$ einen Fehler- oder Ruhe-Zustand lokal erreicht.
-  Analoges gilt auch für die lokale Erreichbarkeit eines Ruhe"=Zustandes in der
+  Parallelkomposition mit $T$ einen Fehler- oder Stille-Zustand lokal erreicht.
+  Analoges gilt auch für die lokale Erreichbarkeit eines Stille"=Zustandes in der
   Komposition einer as"=Implementierung von $P_1$ mit einem Test $T$.\\
   Es muss also für den ersten Punkt noch folgendes nachgewiesen werden:
   \begin{itemize}
@@ -518,10 +517,10 @@ in~\ref{RuheTestDef}.
       auch mindestens eine as"=Implementierung $P'_2$ von $P_2$ geben, die den
       Test $T$ ebenfalls nicht erfüllt. Da eine Implementierung den Test $T$
       erfüllt, wenn die Parallelkomposition der Implementierung mit dem Test
-      fehler- und ruhe-frei ist, kann die nicht Erfüllung eines Testes sowohl
-      an einem Fehler- wie auch einem Ruhe-Zustand liegen. Bei dem lokal
+      fehler- und stillstand-frei ist, kann die nicht Erfüllung eines Testes sowohl
+      an einem Fehler- wie auch einem Stille-Zustand liegen. Bei dem lokal
       erreichbaren \glqq fehlerhaften Zustand\grqq{} kann es sich nur um einen
-      Fehler handeln, da es in der Komposition mit $T$ keine Ruhe-Zustände
+      Fehler handeln, da es in der Komposition mit $T$ keine Stille-Zustände
       geben kann. Da $T$ keinen Fehler-Zustand und auch keine fehlenden
       Input-Möglichkeiten enthält, kann der Fehler nur von $P'_2$ geerbt sein.
       Somit muss in $P'_2$ ein Fehler-Zustand lokal erreichbar sein. Es gilt
@@ -569,15 +568,15 @@ in~\ref{RuheTestDef}.
       \label{TohneEmitTau}
       \end{center}
       \end{figure}
-      Die Menge der Ruhe-Zustände des hier betrachteten $T$s ist leer. Da im
+      Die Menge der Stille-Zustände des hier betrachteten $T$s ist leer. Da im
       Vergleich zum Transitionssystem in Abbildung~\ref{UohneE} nur die
-      $\tau$-Schlingen ergänzt wurden und die Umbennennung der Mengen, ändert
+      $\tau$-Schlingen ergänzt wurden und die Umbenennung der Mengen, ändert
       sich nichts an den Fällen 2a) und 2b) aus dem Beweis der selben Inklusion
       von Lemma~\ref{KommTestVerfeinLem}. Die Begründungen, wieso in den beiden
       Fällen $\varepsilon\in\PrET (P'_1\|T)$ gilt, bleibt also analog zum
-      Beweis des ersten Punktes des Lemmas aus dem vorangegangnen Kapitel.
+      Beweis des ersten Punktes des Lemmas aus dem vorangegangenen Kapitel.
       Durch die must-$\tau$-Schlingen wurde, genau wie im letzten Fall nur
-      erreicht, das in einer Parallelkomposition mit $T$ keine Ruhe-Zustände
+      erreicht, das in einer Parallelkomposition mit $T$ keine Stille-Zustände
       möglich sind. Es kann also auch hier aus der lokalen Erreichbarkeit eines
       Fehler in $P'_1\|T$ auf die lokale Erreichbarkeit eines Fehler-Zustandes
       in $P'_2\|T$ für eine as"=Implementierung $P'_2$ von $P_2$ geschlossen
@@ -651,7 +650,7 @@ in~\ref{RuheTestDef}.
       \end{figure}
       Da durch die $\tau$-must-Schlingen an den Zuständen wie oben vermieden
       wird, dass es in einer Komposition mit $T$ und auch in $T$ selbst
-      Ruhe-Zustände gibt, verläuft der Rest des Beweises dieses Punktes analog
+      Stille-Zustände gibt, verläuft der Rest des Beweises dieses Punktes analog
       zum Beweis der selben Inklusionsrichtung von
       Lemma~\ref{KommTestVerfeinLem}. Und somit gilt für alle Fälle (2a) bis
       2d)), dass $w$ in $\EL _2$ enthalten ist.
@@ -664,12 +663,12 @@ in~\ref{RuheTestDef}.
   _1\backslash\ET _1\subseteq\QET _2$ gezeigt werden.\\
   Es wird ein $w\in\StQT _1\backslash\ET _1$ gewählt und gezeigt, dass dieses
   auch in $\QET _2$ enthalten ist. Mit den Propositionen~\ref{KommSemProp}
-  und~\ref{RuheTraceProp} kann gefolgert werden, dass es auch eine
+  und~\ref{StilleTraceProp} kann gefolgert werden, dass es auch eine
   as"=Implementierung $P'_1$ von $P_1$ gibt, für die $w\in\StQT _{P'_1}
   \backslash \ET _{P'_1}$ gilt.\\
   Durch die Wahl des $w$s wird vom Startzustand von $P'_1$ durch das Wort $w$
-  ein ruhiger Zustand erreichbar. Dies hat nur Auswirkungen auf die
-  Parallelkomposition $P'_1\|T$, wenn in $T$ ebenfalls ein Ruhe-Zustand durch
+  ein stiller Zustand erreichbar. Dies hat nur Auswirkungen auf die
+  Parallelkomposition $P'_1\|T$, wenn in $T$ ebenfalls ein Stille-Zustand durch
   $w$ erreichbar ist.\\
   Das betrachtete $w$ hat also die Form $w=x_1\dots x_n\in\Sigma ^*$ mit $n\geq
   0$. Es wird der folgende Partner $T$ betrachtet (siehe auch
@@ -708,29 +707,29 @@ in~\ref{RuheTestDef}.
             (q) edge [loop below] node {$x?\in I_T, \tau$} (q);
     \end{tikzpicture}
     \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$, $p_n$
-    ist der einzige Ruhe-Zustand}
+    ist der einzige Stille-Zustand}
   \label{TohneEmitI}
   \end{center}
   \end{figure}
   Falls für das betrachtete $w=\varepsilon$ gilt, reduziert sich der Partner
   $T$ auf den Zustand $p_n=p_0$ und den Zustand $p$. Es ist also in diesem Fall
-  der Startzustand gleich dem ruhigen Zustand.\\
-  Allgemein ist der Zustand $p_n$ aus $T$ der einzig ruhige Zustand in $T$. Es
-  gilt wegen des ersten Punktes von Lemma~\ref{RuheZustLem}, dass auch in der
-  Parallelkomposition $P'_1\|T$ ein Ruhe-Zustand mit $w$ erreicht wird. Bei
+  der Startzustand gleich dem stillen Zustand.\\
+  Allgemein ist der Zustand $p_n$ aus $T$ der einzig stille Zustand in $T$. Es
+  gilt wegen des ersten Punktes von Lemma~\ref{StilleZustLem}, dass auch in der
+  Parallelkomposition $P'_1\|T$ ein Stille-Zustand mit $w$ erreicht wird. Bei
   allen in $w$ befindlichen Aktionen handelt es sich um synchronisierte
   Aktionen und es gilt $I_T\cap I=\emptyset$. Daraus folgt $w\in O_{P'_1\|T}$
   und $w\in\StQT (P'_1\|T)$. Es kann also in der Parallelkomposition durch $w$
-  ein Ruhe-Zustand lokal erreicht werden. Da $w\notin\ET _{P'_1}$ gilt, kann
+  ein Stille-Zustand lokal erreicht werden. Da $w\notin\ET _{P'_1}$ gilt, kann
   auf dem Weg, der mit $w$ im Transitionssystem $P'_1$ zurückgelegt wird, kein
   Fehler lokal erreicht werden. Es kann also weder von $P'_1$ noch von $T$ ein
   Fehler auf diesem Weg geerbt werden und durch den Aufbau von $T$ kann auch
   kein neuer Fehler in der Parallelkomposition der beiden Systeme entstehen. Da
-  ein Ruhe-Zustand in $P'_1\|T$ lokal erreichbar ist, muss auch in $P'_2\|T$
+  ein Stille-Zustand in $P'_1\|T$ lokal erreichbar ist, muss auch in $P'_2\|T$
   für eine as"=Implementierung $P'_2$ von $P_2$ ein \glqq fehlerhafter
   Zustand\grqq{} lokal erreichbar sein. Es kann zunächst keine Aussage
   getroffen werden, ob das $w$ in $P'_2\|T$ ausführbar ist und ob es sich bei
-  dem \glqq fehlerhaften Zustand\grqq{} um Ruhe oder einen Fehler handelt.
+  dem \glqq fehlerhaften Zustand\grqq{} um Stille oder einen Fehler handelt.
   \begin{itemize}
     \item Fall a) ($\varepsilon\in\ET (P'_2\|T)$): Es handelt sich bei dem
       lokal erreichbaren \glqq fehlerhaften Zustand\grqq{} um einen Fehler. Es
@@ -741,57 +740,57 @@ in~\ref{RuheTestDef}.
       in $\ET _{P'_2}$ enthalten ist, wegen des Beweises des ersten Punktes aus
       Lemma~\ref{KommTestVerfeinLem} und da $T$ nur neue Fehler auf dem Trace
       $w$ zulässt. Die Menge \ET{} ist unter \cont{} abgeschlossen, somit gilt
-      $w\in\ET _{P'_1}\subseteq\QET _{P'_2}$. Mit Proposition~\ref{RuheSemProp}
+      $w\in\ET _{P'_1}\subseteq\QET _{P'_2}$. Mit Proposition~\ref{StilleSemProp}
       folgt daraus $w\in\QET _2$.
-    \item Fall b) (Ruhe-Zustand lokal erreichbar in $P'_2\|T$ und $\varepsilon
-      \notin \ET (P'_2\|T)$): Da in $T$ nur durch $w$ ein ruhiger Zustand
+    \item Fall b) (Stille-Zustand lokal erreichbar in $P'_2\|T$ und $\varepsilon
+      \notin \ET (P'_2\|T)$): Da in $T$ nur durch $w$ ein stiller Zustand
       erreicht werden kann, muss es sich bei dem lokal erreichbaren
-      Ruhe-Zustand in $P'_2\|T$ um einen handeln, der mit $w$ erreicht werden
-      kann. Mit Lemma~\ref{RuheZustLem} kann somit gefolgert werden, dass auch
-      in $P'_2$ ein Ruhe-Zustand mit $w$ erreichbar sein muss. Es gilt $w\in
+      Stille-Zustand in $P'_2\|T$ um einen handeln, der mit $w$ erreicht werden
+      kann. Mit Lemma~\ref{StilleZustLem} kann somit gefolgert werden, dass auch
+      in $P'_2$ ein Stille-Zustand mit $w$ erreichbar sein muss. Es gilt $w\in
       \StQT _{P'_2}\subseteq\QET _{P'_2}\subseteq\QET _2$, aufgrund von
-      Proposition~\ref{RuheSemProp}.
+      Proposition~\ref{StilleSemProp}.
   \end{itemize}
 \end{proof}
 
 \begin{Satz}
-  \label{RuheTestVerfSatz}
-  Falls $P_1\QRel P_2$ gilt folgt draus auch, dass $P_1$ $P_2$ Ruhe-verfeinert.
+  \label{StilleTestVerfSatz}
+  Falls $P_1\QRel P_2$ gilt folgt draus auch, dass $P_1$ $P_2$ Stille-verfeinert.
 \end{Satz}
 \begin{proof}
   Nach Definition gilt $w\in\QET (P)$ mit $w\in O(P)^*$ genau dann, wenn in $P$
-  ein Ruhe-Zustand oder ein Fehler-Zustand lokal erreichbar ist. $P_1\QRel P_2$
+  ein Stille-Zustand oder ein Fehler-Zustand lokal erreichbar ist. $P_1\QRel P_2$
   impliziert, dass $w\in\QET _2$ gilt, wenn $w\in\QET _1$ gilt. Somit ist ein
-  Ruhe- oder Fehler-Zustand nur dann in $P_1$ lokal erreichbar, wenn auch ein
-  Ruhe- oder Fehler-Zustand in $P_2$ lokal erreichbar ist. Daraus folgt, dass
+  Stille- oder Fehler-Zustand nur dann in $P_1$ lokal erreichbar, wenn auch ein
+  Stille- oder Fehler-Zustand in $P_2$ lokal erreichbar ist. Daraus folgt, dass
   es as"=Implementierungen $P'_1$ und $P'_2$ von $P_1$ bzw.\ $P_2$ gibt, die
   analoge \glqq fehlerhafte Zustände\grqq{} lokal erreichen
-  wegen~\ref{lokaleRuheErrKor}. Es gilt dann auch, dass $P'_j\|T$ einen lokal
-  erreichbaren Fehler oder lokal erreichbare Ruhe hat, wenn $P'_j$ dies hat,
+  wegen~\ref{lokaleStilleErrKor}. Es gilt dann auch, dass $P'_j\|T$ einen lokal
+  erreichbaren Fehler oder lokal erreichbare Stille hat, wenn $P'_j$ dies hat,
   für $j\in\{1,2\}$ und einen Test $T$. Falls $P_1$ einen \glqq fehlerhaften
   Zustand\grqq{} lokal erreicht, dann zeigt sich auch in einer
   as"=Implementierung von $P_1$ dieser durch einen Fehler-Zustand oder einen
-  Ruhe-Zustand. In der Parallelkomposition der as"=Implementierung mit einem
+  Stille-Zustand. In der Parallelkomposition der as"=Implementierung mit einem
   Test $T$ tritt der \glqq fehlerhafte Zustand\grqq{} auf. Falls es sich um
   einen Fehler handelt, dann tritt mit allen Tests $T$ ein Fehler in der
-  Parallelkomposition auf. Bei Ruhe hingegen zeigt sich das \glqq
-  Fehlverhalten\grqq{} nur, mit Tests $T$, die einen analogen Ruhe-Zustand
+  Parallelkomposition auf. Bei Stille hingegen zeigt sich das \glqq
+  Fehlverhalten\grqq{} nur, mit Tests $T$, die einen analogen Stille-Zustand
   enthalten. Mit der Relation \QRel{} gibt es auch in $P_2$ einen lokal
   erreichbaren \glqq fehlerhaften Zustand\grqq{}, wenn es in $P_1$ einen
-  solchen gibt. Es tritt dann auch in einer as"=Implementierung Ruhe oder ein
+  solchen gibt. Es tritt dann auch in einer as"=Implementierung Stille oder ein
   Fehler auf, dies zeigt sich dann auch in der Parallelkomposition mit Tests
   $T$. Im Fall von Fehlern, zeigt sich sowohl in der Parallelkomposition einer
   as"=Implementierung von $P_1$ wie auch einer as"=Implementierung von $P_2$
   mit beliebigen Tests $T$, der Fehler, da \ERel{} gilt und somit die
-  Argumentationen aus Satz~\ref{KommTestVerfSatz} anwendbar sind. Ruhe tritt
-  in $P_2$ nur ohne einen Fehler auf, wenn in $P_1$ auch nur Ruhe und kein
+  Argumentationen aus Satz~\ref{KommTestVerfSatz} anwendbar sind. Stille tritt
+  in $P_2$ nur ohne einen Fehler auf, wenn in $P_1$ auch nur Stille und kein
   Fehler auf dem Trace vorhanden war. Ansonsten hätte \ERel{} auch einen Fehler
   in $P_2$ gefordert. In der Parallelkomposition einer as"=Implementierung von
-  $P_1$ mit $T$ hat sich die Ruhe bereits gezeigt, also tut sie dies auch in
+  $P_1$ mit $T$ hat sich die Stille bereits gezeigt, also tut sie dies auch in
   der Parallelkomposition einer as"=Implementierung von $P_2$ mit $T$. Es gilt
   also $\neg P_1 \QsatAs T \Rightarrow \neg P_2 \QsatAs T$ für alle Tests $T$.
   Daraus ergibt sich für alle Tests $T$ die Implikation $P_2 \QsatAs T
-  \Rightarrow P_1 \QsatAs T$ und somit Ruhe-verfeinert $P_1$ $P_2$.
+  \Rightarrow P_1 \QsatAs T$ und somit Stille-verfeinert $P_1$ $P_2$.
 \end{proof}
 
 Es wurde, wie im letzten Kapitel, eine Kette an Folgerungen gezeigt, die
@@ -807,23 +806,23 @@ dargestellt.
         P_1\QsatAs T} &
     \substack{\forall \text{ Tests } T:\\P_2\QsatAs T\Rightarrow P_1\QsatAs T} \\};
         \draw[-implies, double, double distance=1mm]
-          (m-1-1) -- node [above] {Satz~\ref{RuheTestVerfSatz}} (m-1-2);
+          (m-1-1) -- node [above] {Satz~\ref{StilleTestVerfSatz}} (m-1-2);
         \draw[-implies, double, double distance=1mm]
-          (m-1-2) -- node [right] {Definition~\ref{RuheTestDef}} (m-2-2);
+          (m-1-2) -- node [right] {Definition~\ref{StilleTestDef}} (m-2-2);
         \draw[-implies, double, double distance=1mm]
           (m-2-1) -- node [left]
-          {Lemma~\ref{RuheTestVerfeinLem}} (m-1-1);
+          {Lemma~\ref{StilleTestVerfeinLem}} (m-1-1);
         \draw[-implies, double, double distance=1mm]
           (m-2-2) -- node [below]
           {$\substack{T \text{ Test Partner}\\\Downarrow\\ T \text{ Test}}$} (m-2-1);
     \end{tikzpicture}
-    \caption{Folgerungskette der Testing-Verfeinerung und Ruhe-Relation}
+    \caption{Folgerungskette der Testing-Verfeinerung und Stillstands-Relation}
   \label{FolgerungsketteQui}
   \end{center}
 \end{figure}
 
-\begin{Satz}[Zusammenhang der Verfeinerungs-Relationenen mit der Ruhe-Relation]
-  \label{ZusammenhRuheSatz}
+\begin{Satz}[Zusammenhang der Verfeinerungs-Relationenen mit der Stillstands-Relation]
+  \label{ZusammenhStilleSatz}
   Für \MEIO{}s $P$ und $Q$ gilt $P \wasRel Q \Rightarrow P \QRel Q \Rightarrow
   P \ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht.
 \end{Satz}
@@ -834,7 +833,7 @@ dargestellt.
   die Eigenschaften der Fehler"=Relation \ERel{} erfüllt. Es fehlt für diese
   Implikation also nur noch der Beweis der Inklusion $\QET _P \subseteq \QET
   _Q$. Da bereits $\ET _P\subseteq \ET _Q$ beweisen wurde, reicht es aus zu
-  beweißen, dass $\StQT _P \backslash \ET _P\subseteq \QET _Q$ gilt. Für ein
+  beweisen, dass $\StQT _P \backslash \ET _P\subseteq \QET _Q$ gilt. Für ein
   Wort $w$ aus $\StQT _P \backslash \ET _P$ gilt: $\exists w'\in\Sigma _{\tau}
   ^*, \exists p_1, p_2, \dots , p_n, \exists \alpha _1, \alpha _2, \dots
   ,\alpha _n: \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha _n \land
@@ -843,40 +842,40 @@ dargestellt.
   Trace in $Q$, falls ein $q_j$ für $0\leq j \leq n$ in $E_Q$ angetroffen wird.
   Es gilt $w\in\StET _Q\subseteq\ET _Q\subseteq\QET _Q$, falls ein
   Fehler-Zustand in $Q$ auf einem Präfix-Trace von $w$ auftritt. Im folgenden
-  wird davon ausgegangen, das $w$ in $Q$ ohne das erreichben eines
+  wird davon ausgegangen, das $w$ in $Q$ ohne das erreichen eines
   Fehler"=Zustandes ausführbar ist. Es gibt also einen Trace der Form $q_0
   \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots
   q_{n-1} \weakmay[\widehat{\alpha _n}]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$
-  für alle $j$ aus $\{0,1,\dots n\}$. $p_n$ ist für $P$ ein Ruhe-Zustand, es
+  für alle $j$ aus $\{0,1,\dots n\}$. $p_n$ ist für $P$ ein Stille-Zustand, es
   gilt also für alle $\alpha \in (O\cup \{\tau\})$ $p_n \nmust[\alpha]_P$. Da
   $\mathcal{R}$ eine schwache as"=Verfeinerungs"=Relation ist, muss
   wegen~\ref{wSimDef}~3. auch $q_n \nmust[\alpha]_Q$ gelten für alle $\alpha
-  \in (O\cup \{\tau\})$. $q_n$ ist also auch ein ruhiger Zustand. Somit ist $w$
+  \in (O\cup \{\tau\})$. $q_n$ ist also auch ein stiller Zustand. Somit ist $w$
   in $\StQT _Q\subseteq\QET _Q$ enthalten.
 
   $P \QRel Q \Rightarrow P \ERel Q$:\\
   Diese Implikation folgt direkt aus der Definition von \QRel{}
-  in~\ref{RuheSemDef}. Da $P \QRel Q$ dort definiert wurde als Relation, die
+  in~\ref{StilleSemDef}. Da $P \QRel Q$ dort definiert wurde als Relation, die
   $P \ERel Q$ und $\QET _P \subseteq \QET _Q$ erfüllt. Es gilt also $P \ERel Q$.
 
   $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$:\\
   Wie im Gegenbeispiel für die analoge Implikation aus der Relation \ERel{}
   beruht der Grund für die nicht Gültigkeit hier auf darauf, dass Simulationen
   strenger sind als Sprach Inklusionen. Jedoch funktioniert hier nicht das
-  gleiche Gegenbeispiel, da es zu Problemen mit den Ruhe-Traces führen würde.
+  gleiche Gegenbeispiel, da es zu Problemen mit den Stille-Traces führen würde.
   Um diese zu vermeiden, wird wieder die Technik angewendet an alle Zustände
-  eine $\tau$-Schleife anzufügen. Das daraus entstehende Gegenbeipiel ist in
+  eine $\tau$-Schleife anzufügen. Das daraus entstehende Gegenbeispiel ist in
   Abbildung~\ref{WasQuiGegenBsp} dargestellt. Die Menge der Inputs $I$ der
   beiden \MEIO{}s ist leer. Es gilt also $\ET _P = \ET _Q = \QET _P = \QET _Q =
   \emptyset$ und $\{\varepsilon\} = L(P) \subset L(Q) = \{\varepsilon , o\}$.\\
-  Angenommen es gib eine schache as"=Verfeinerungs"=Relation $\mathcal{R}$
+  Angenommen es gib eine schwache as"=Verfeinerungs"=Relation $\mathcal{R}$
   zwischen $P$ und $Q$. Dann stehen die Startzustände in dieser Relation, es
   gilt also $p_0 \mathcal{R} q_0$. Da es keine Fehler"=Zustände in $P$ gibt,
   ist~\ref{wSimDef}~1.\ erfüllt. Die $\tau$"=must"=Schlingen der
-  Startzustände werden bezüglich der Punkt 3. und 5. der
+  Startzustände werden bezüglich der Punkt 3.\ und 5.\ der
   Definition~\ref{wSimDef} gematched. Der 2. Punkt von~\ref{wSimDef} stellt
   keine Forderungen an die Relation $\mathcal{R}$. Die Transition $q_0
-  \must[o]_Q q_1$ fordert durch~\ref{wSimDef}~3. ihre Verfeinerung in $P$. Da
+  \must[o]_Q q_1$ fordert durch~\ref{wSimDef}~3.\ ihre Verfeinerung in $P$. Da
   es jedoch keine mit $o$ beschriftete Transition in $P$ gibt, kann
   $\mathcal{R}$ keine as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ sein.
 
@@ -905,14 +904,14 @@ dargestellt.
 
   $P \QRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \ERel Q$:\\
   Die Relation \QRel{} stützt sich auf die Definition der Relation \ERel{}.
-  Jedoch erweiter sich die Definition noch um eine weiter Voraussetzung. Es
-  muss also in einem entsprechenden Gegenbeispiel die Inklustion $\QET _P
+  Jedoch erweitert sich die Definition noch um eine weiter Voraussetzung. Es
+  muss also in einem entsprechenden Gegenbeispiel die Inklusion $\QET _P
   \subseteq \QET _Q$ verletzt sein. Das Gegenbeispiel ist in
   Abbildung~\ref{QuiEGegenBsp} dargestellt. Es wird $I = \emptyset$
-  vorausgesetzt, damit keine Input-kritischen Traces auftretten. Es gilt also
+  vorausgesetzt, damit keine Input-kritischen Traces auftreten. Es gilt also
   $\ET _P = \ET _Q = \emptyset$ und $L(P) = L(Q) = \{\varepsilon\}$. Es gilt
   also $P\ERel Q$.\\
-  Jedoch gilt für die strickten Ruhe-Traces $\StQT _P = \{\varepsilon\}$ und
+  Jedoch gilt für die strickten Stille-Traces $\StQT _P = \{\varepsilon\}$ und
   $\StQT _Q = \emptyset$. Es folgt also $\QET _P \not\subseteq \QET _Q$ und
   somit ist die Relation \QRel{} zwischen $P$ und $Q$ auch nicht erfüllt.
 

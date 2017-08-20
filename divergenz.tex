@@ -1,7 +1,8 @@
-\chapter{Verfeinerungen für Kommunikationsfehler-, Ruhe- und Divergenz-Freiheit}
+\chapter{Verfeinerungen für Kommunikationsfehler-, Stillstand- und
+Divergenz-Freiheit}
 
 In diesem Kapitel soll die Menge der betrachteten Zustände noch einmal
-erweitert werden. Somit werden dann Fehler-, Ruhe- und Divergenz-Zustände
+erweitert werden. Somit werden dann Fehler-, Stille- und Divergenz-Zustände
 betrachtet. Wie im letzten Kapitel wird auch hier nur der Testing-Ansatz
 betrachtet.
 
@@ -28,11 +29,11 @@ bewerten wie ein Fehler-Zustand.
 \begin{Def}[Test und Verfeinerung für Divergenz]
   \label{DivTestDef}
   Ein \emph{Test} $T$ ist eine Implementierung. Ein \MEIO{} $P$
-  \emph{as-erfüllt} einen Divergenz-Test $T$, falls $S\|T$ fehler-, ruhe- und
-  divergenz-frei ist für alle $S\in \asimp (P)$. Es wird dann $P\DsatAs T$
-  geschrieben. Die Parallelkomposition $S\|T$ ist \emph{fehler-}, \emph{ruhe-}
-  und \emph{divergenz-frei}, wenn kein Fehler-, Ruhe- oder Divergenz-Zustand
-  lokal erreichbar ist.\\
+  \emph{as-erfüllt} einen Divergenz-Test $T$, falls $S\|T$ fehler-, stillstand-
+  und divergenz-frei ist für alle $S\in \asimp (P)$. Es wird dann $P\DsatAs T$
+  geschrieben. Die Parallelkomposition $S\|T$ ist \emph{fehler-},
+  \emph{stillstand-} und \emph{divergenz-frei}, wenn kein Fehler-, Stille- oder
+  Divergenz-Zustand lokal erreichbar ist.\\
   Ein \MEIO{} $P$ \emph{Divergenz-verfeinert} $P'$, falls für alle Tests $T$:
   $P'\DsatAs T \Rightarrow P\DsatAs T$.
 \end{Def}
@@ -49,7 +50,7 @@ Somit wird in den Trace-Mengen auch nicht zwischen Fehler"=Traces und
 Divergenz-Traces explizit unterschieden. Dadurch genügt es nicht mehr nur mit
 den Fehler"=Traces die Sprache zu fluten, sondern es muss sowohl mit den
 Fehler"=Traces wie auch den Divergenz"=Traces geflutet werden. Ebenso werden
-die strikten Ruhe"=Traces mit diesen beiden Trace-Mengen geflutet.
+die strikten Stille"=Traces mit diesen beiden Trace-Mengen geflutet.
 
 \begin{Def}[Divergenz-Traces]
   Sei $P$ ein \MEIO{} und definiere:
@@ -61,7 +62,7 @@ die strikten Ruhe"=Traces mit diesen beiden Trace-Mengen geflutet.
   \end{itemize}
 \end{Def}
 
-Analog zu den Propositionen~\ref{KommTracesProp} und~\ref{RuheTraceProp} gibt es
+Analog zu den Propositionen~\ref{KommTracesProp} und~\ref{StilleTraceProp} gibt es
 hier auch eine Proposition, die die Divergenz-Traces eines \MEIO{}s mit den
 Divergenz-Traces seiner as"=Implementierungen verbindet. Die Begründung
 verläuft analog zu den Propositionen der vorangegangenen Kapitel.
@@ -123,14 +124,14 @@ verläuft analog zu den Propositionen der vorangegangenen Kapitel.
   \end{enumerate}
 \end{proof}
 
-Da die Ruhe"=Traces mit den Fehler- und Divergenz"=Traces geflutet werden
-sollen, kann die Ruhe"=Semantik nicht aus dem letzten Kapitel übernommen
+Da die Stille"=Traces mit den Fehler- und Divergenz"=Traces geflutet werden
+sollen, kann die Stillstands"=Semantik nicht aus dem letzten Kapitel übernommen
 werden. Auch die geflutete Sprache aus dem Fehler-Kapitel kann nicht
 beibehalten werden. Nur die Fehler"=Traces \ET{} können ohne Veränderung auch
 in diesem Kapitel verwendet werden. Jedoch werden diese Traces im weiteren
 Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
 
-\begin{Def}[Kommunikationsfehler-, Ruhe- und Divergenz-Semantik]
+\begin{Def}[Kommunikationsfehler-, Stillstands- und Divergenz-Semantik]
   \label{DivSemDef}
   Sei $P$ ein \MEIO{}.
   \begin{itemize}
@@ -139,7 +140,7 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
     \item Die Menge der \emph{Fehler-Divergenz-Traces} von $P$ ist $\EDT (P) :=
       \ET (P)\cup\DT (P)$.
     \item Die Menge der \emph{Fehler-divergenz-gefluteten
-      Ruhe-Traces} von $P$ ist $\QDT (P) := \StQT (P)\cup\EDT (P)$.
+      Stille-Traces} von $P$ ist $\QDT (P) := \StQT (P)\cup\EDT (P)$.
     \item Die Menge der \emph{Fehler-divergenz-gefluteten
       Sprache} von $P$ ist $\EDL (P) := L(P)\cup\EDT (P)$.
   \end{itemize}
@@ -150,7 +151,7 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
 
 \vspace{0.2cm}
 
-\begin{Prop}[Kommunikationsfehler-, Ruhe-, Divergenz-Semantik und
+\begin{Prop}[Kommunikationsfehler-, Stillstands-, Divergenz-Semantik und
   Implementierungen]
   \label{DivSemProp}
   Sie $P$ ein \MEIO{}.
@@ -159,7 +160,7 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
       \underset{P'\in\asimp (P)}{\bigcup} \DT (P')$.
     \item Für die Menge der Fehler-Divergenz-Traces von $P$ gilt die folgende
       Gleichheit $\EDT (P) = \underset{P'\in\asimp (P)}{\bigcup} \EDT (P')$.
-    \item Für die Menge der Fehler-divergenz-gefluteten Ruhe-Traces von $P$
+    \item Für die Menge der Fehler-divergenz-gefluteten Stille-Traces von $P$
       gilt $\QDT (P) = \underset{P'\in\asimp (P)}{\bigcup} \QDT (P')$.
     \item Für die Menge der Fehler-divergenz-gefluteten Sprache von $P$ gilt
       $\EDL (P) = \underset{P'\in\asimp (P)}{\bigcup} \EDL (P')$.
@@ -223,7 +224,7 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   3. \glqq$\subseteq$\grqq{}:
   \begin{align*}
     \QDT (P)&\overset{\ref{DivSemDef}}{=} \StQT (P)\cup \EDT (P)\\
-    &\overset{\ref{RuheTraceProp}}{\subseteq} \left(\underset{P'\in \asimp
+    &\overset{\ref{StilleTraceProp}}{\subseteq} \left(\underset{P'\in \asimp
     (P)}{\bigcup} \StQT (P')\right)\cup \EDT (P)\\
     &\overset{2.}{=} \left(\underset{P'\in \asimp (P)}{\bigcup} \StQT
     (P')\right)\cup \left(\underset{P'\in \asimp (P)}{\bigcup} \EDT
@@ -235,7 +236,7 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
 
   3. \glqq$\supseteq$\grqq{}:\\
   Dieser Beweis verläuft analog zu dem Beweis von \glqq$\supseteq$\grqq{} der
-  Proposition~\ref{RuheSemProp}, man muss nur die \ET{}-Mengen durch
+  Proposition~\ref{StilleSemProp}, man muss nur die \ET{}-Mengen durch
   \EDT{}-Mengen ersetzten und für den Fall $w\in\EDT (P')$ folgt $w\in\EDT (P)$
   wegen des zweiten Punktes dieser Proposition und nicht wegen
   Proposition~\ref{KommSemProp}.
@@ -274,17 +275,17 @@ Spezifikation und den zugehörigen Implementierungen treffen.
     \item Falls in einem \MEIO{} $P$ Divergenz lokal erreichbar ist, dann
       existiert auch eine as"=Implementierung, in der Divergenz lokal
       erreichbar ist.
-    \item Falls ein \MEIO{} $P$ einen lokal erreichbaren Ruhe-Zustand besitzt,
-      dann existiert auch eine as"=Implementierung, in der ein Ruhe-Zustand
+    \item Falls ein \MEIO{} $P$ einen lokal erreichbaren Stille-Zustand besitzt,
+      dann existiert auch eine as"=Implementierung, in der ein Stille-Zustand
       lokal erreichbar ist.
     \item Falls es eine as"=Implementierung von $P$ gibt, die einen Fehler,
-      Ruhe oder Divergenz lokal erreicht, dann ist auch ein Fehler, Ruhe oder
+      Stille oder Divergenz lokal erreicht, dann ist auch ein Fehler, Stille oder
       Divergenz in $P$ lokal erreichbar.
   \end{enumerate}
 \end{Kor}
 \begin{proof}\mbox{}
   \begin{enumerate}[(i)]
-    \item Dieser Punkt folgt wie in~\ref{lokaleRuheErrKor} direkt aus
+    \item Dieser Punkt folgt wie in~\ref{lokaleStilleErrKor} direkt aus
       Korollar~\ref{lokalFehlerErrKor}~(i).
     \item Ein divergenter Zustand ist in $P$ lokal erreichbar, wenn
       $\varepsilon \in \DT _P$ gilt. Mit~\ref{DivSemProp}~1. folgt daraus, dass
@@ -294,12 +295,12 @@ Spezifikation und den zugehörigen Implementierungen treffen.
       Divergenz-Traces ist, muss es lokale Aktionen in $P'$ geben, die zu einem
       divergenten Zustand führen. Es ist also auch in $P'$ Divergenz lokal
       erreichbar.
-    \item Dieser Punkt folgt direkt aus Korollar~\ref{lokaleRuheErrKor}~(ii).
-    \item In $P'\in\asimp (P)$ sei ein Fehler-, Ruhe- oder Divergenz-Zustand
+    \item Dieser Punkt folgt direkt aus Korollar~\ref{lokaleStilleErrKor}~(ii).
+    \item In $P'\in\asimp (P)$ sei ein Fehler-, Stille- oder Divergenz-Zustand
       lokal erreichbar. Es gilt dann also $w\in\QDT _{P'}$ für $w\in O^*$. Mit
       Proposition~\ref{DivSemProp}~3.\ gilt auch $w\in\QDT _P$ Die Menge \QDT{}
       setzt sich aus den Mengen \ET{}, \StQT{} und \DT{} zusammen. Es muss also
-      in $P$ ein Fehler-, Ruhe- oder Divergenz-Zustand lokal erreichbar sein,
+      in $P$ ein Fehler-, Stille- oder Divergenz-Zustand lokal erreichbar sein,
       da ein $w$, bestehend nur aus lokalen Aktionen, in $\QDT _P$ enthalten
       ist.
   \end{enumerate}
@@ -311,7 +312,7 @@ unterschieden werden. Da die Divergenz-Test zwischen diesen Fehler-Arten auch
 keine Unterscheidung machen, muss eine sinnvolle Relation dies Eigenschaft auch
 übernehmen, so wie \DRel{} dies tut.
 
-\begin{Satz}[Kommunikationsfehler-, Ruhe- und Divergenz-Semantik für
+\begin{Satz}[Kommunikationsfehler-, Stillstands- und Divergenz-Semantik für
   Parallelkompositionen]
   \label{DivSemSatz}
   Für zwei komponierbare \MEIO{}s $P_1,P_2$ und ihre Komposition $P_{12}$ gilt:
@@ -402,14 +403,14 @@ keine Unterscheidung machen, muss eine sinnvolle Relation dies Eigenschaft auch
 
   2. \glqq$\subseteq$\grqq{}:\\
   Diese Inklusionsrichtung kann analog zum Beweis derselben Inklusionsrichtung
-  des zweiten Punktes von Satz~\ref{RuheSemSatz} gezeigt werden. Es muss dabei
+  des zweiten Punktes von Satz~\ref{StilleSemSatz} gezeigt werden. Es muss dabei
   nur in der Argumentation die Menge $\ET _{12}$ durch die Menge $\EDT _{12}$
   und die Mengen $\QET (P)$ durch die Mengen $\QDT (P)$ für die entsprechenden
   Transitionssysteme $P$ ersetzt werden. Dadurch kann ebenso gefolgert werden,
   dass im Fall $w\in\StQT _{12}\backslash\EDT _{12}$ der erreichte Zustand
   $(p_1,p_2)$ kein Fehler sein kann, da $\ET _{12}\subseteq\EDT
   _{12}$ gilt und somit lässt sich auch hier der zweite Punkt von
-  Lemma~\ref{RuheZustLem} anwenden.
+  Lemma~\ref{StilleZustLem} anwenden.
 
   2. \glqq$\supseteq$\grqq{}:\\
   Es muss wieder danach unterschieden werden, aus welcher Menge das betrachtete
@@ -428,7 +429,7 @@ keine Unterscheidung machen, muss eine sinnvolle Relation dies Eigenschaft auch
       enthalten ist.
     \item Fall 2 ($w_1\in\StQT _1\backslash\EDT _1\land w_2\in\StQT
       _2\backslash\EDT _2$): Dieser Fall läuft analog zu Fall 2 derselben
-      Inklusionsrichtung des Beweises von Satz~\ref{RuheSemSatz}. Hierfür muss
+      Inklusionsrichtung des Beweises von Satz~\ref{StilleSemSatz}. Hierfür muss
       die Menge $\QET _{12}$ durch $\QDT _{12}$ ersetzt werden.
   \end{itemize}
 
@@ -469,7 +470,7 @@ Präkongruenz handelt.
   _2$, sowohl $\EDT _{31} \subseteq \EDT _{32}, \QDT _{31} \subseteq \QDT
   _{32}$ als auch $\EDL _{31}\subseteq\EDL _{32}$ folgt. Dies ergibt sich, wie
   in den Beweisen zu den Korollaren~\ref{KommPraekonKor}
-  und~\ref{RuhePraekonKor}, aus der Monotonie von \cont{}, \prune{} und
+  und~\ref{StillePraekonKor}, aus der Monotonie von \cont{}, \prune{} und
   $\cdot\|\cdot$ auf Sprachen wie folgt:
   \begin{itemize}
     \item $\begin{aligned}[t]
@@ -508,8 +509,8 @@ Definition der Tests und die daraus resultierende Verfeinerung
 in~\ref{DivTestDef} vor. Es muss in diesem Lemma eine Veränderung zu den
 analogen Lemmata aus den vorangegangenen Kapitel vorgenommen werden. Die
 Einschränkung der Tests $T$ auf Partner, kann nicht mehr beibehalten werden, da
-die Strategie zur Vermeidung von Ruhe im Beweis aus dem letzten Kapitel hier zu
-Divergenz führen würde. Somit werden für die Ruhe-Vermeidung in diesem Kapitel
+die Strategie zur Vermeidung von Stille im Beweis aus dem letzten Kapitel hier zu
+Divergenz führen würde. Somit werden für die Stillstands-Vermeidung in diesem Kapitel
 Aktionen außerhalb der Menge \Synch{} benötigt, die nicht die interne Aktionen
 $\tau$ sind. Jedoch müssen trotzdem nicht alle Tests $T$ betrachtet werden. Es
 kann eine Einschränkung gemacht werden, sodass $T$ fast ein Partner ist. Zur
@@ -544,19 +545,19 @@ enthalten ist.
     \item $\QDT _1\subseteq \QDT _2$,
     \item $\EDL _1\subseteq \EDL _2$.
   \end{itemize}
-  In den Lemmata~\ref{KommTestVerfeinLem} und~\ref{RuheTestVerfeinLem} wurde
+  In den Lemmata~\ref{KommTestVerfeinLem} und~\ref{StilleTestVerfeinLem} wurde
   bereits etwas Ähnliches gezeigt. Jedoch kann daraus aufgrund der
   unterschiedlichen Implikationen, die vorausgesetzt werden, nichts über dieses
   Lemma und dessen Gültigkeit ausgesagt werden. Es kann in diesem Lemma, ebenso
-  wie im Lemma~\ref{RuheTestVerfeinLem}, aus der lokalen Erreichbarkeit eines
+  wie im Lemma~\ref{StilleTestVerfeinLem}, aus der lokalen Erreichbarkeit eines
   Fehlers in einer Parallelkomposition einer as"=Implementierung von $P_1$ mit
   einem Test $T$ und der Implikation $P_2 \DsatAs T\Rightarrow P_1 \DsatAs T$
   nur geschlossen werden, dass es in einer Parallelkomposition einer
   as"=Implementierung von $P_2$ mit $T$ auch einen lokal erreichbaren \glqq
   fehlerhaften Zustand\grqq{} geben muss, jedoch kann die \glqq
-  Fehlerhaftigkeit\grqq{} hier ein Fehler, Ruhe oder Divergenz sein. Analog
+  Fehlerhaftigkeit\grqq{} hier ein Fehler, Stille oder Divergenz sein. Analog
   verhält es sich, wenn in der Parallelkomposition einer as"=Implementierung
-  von $P_1$ mit einem Test $T$ ein Divergenz-Zustand oder Ruhe-Zustand lokal
+  von $P_1$ mit einem Test $T$ ein Divergenz-Zustand oder Stille-Zustand lokal
   erreichbar ist. Es kann nur geschlossen werden, dass $P_2$ den Test $T$ nicht
   erfüllen darf. Die nicht Erfüllung kann jedoch auf einem beliebigen \glqq
   Fehlverhalten\grqq{} des \MEIO{}s basieren.
@@ -578,7 +579,7 @@ enthalten ist.
       $T$ also nicht. $P_2$ darf $T$ somit auch nicht erfüllen. Es muss eine
       as"=Implementierung $P'_2$ von $P_2$ existieren, für die $P'_2\|T$ einen
       \glqq fehlerhaften Zustand\grqq{} lokal erreicht. Durch die Struktur von
-      $T$ ist in einer Parallelkomposition mit $T$ kein Ruhe-Zustand möglich.
+      $T$ ist in einer Parallelkomposition mit $T$ kein Stille-Zustand möglich.
       Der \glqq fehlerhafte Zustand\grqq{}, der in $P'_2\|T$ lokal erreichbar
       ist, muss also ein Fehler- oder Divergenz-Zustand sein. Da von $T$ kein
       Fehler und keine Divergenz geerbt werden kann und durch die Inputschleife
@@ -627,7 +628,7 @@ enthalten ist.
       \label{TohneEmitO}
       \end{center}
       \end{figure}
-      Die Mengen der Divergenz- und Ruhe-Zustände des hier betrachteten $T$s
+      Die Mengen der Divergenz- und Stille-Zustände des hier betrachteten $T$s
       sind leer. Da im Vergleich zum Transitionssystem in
       Abbildung~\ref{UohneE} nur die $\omega$-Transitionen zu $p_{n+1}$ ergänzt
       und die Mengen unbenannt wurden, ändert sich nichts an dem Fall 2a) im
@@ -653,7 +654,7 @@ enthalten ist.
       werden, dass in der Parallelkomposition einer as"=Implementierung $P'_2$
       von $P_2$ mit dem Test $T$ ein \glqq fehlerhafter Zustand\grqq{} lokal
       erreichbar sein muss. Durch die $\omega$-Transitionen an den Zuständen
-      von $T$ kann es in Komposition mit $T$ keine Ruhe-Zustände geben. Die
+      von $T$ kann es in Komposition mit $T$ keine Stille-Zustände geben. Die
       \glqq Fehlerhaftigkeit\grqq{} muss also ein Fehler oder Divergenz sein.
       \begin{itemize}
         \item Fall 2i) ($\varepsilon\in\ET (P'_1\|T)$ wegen neuem Fehler): Da
@@ -709,12 +710,12 @@ enthalten ist.
   gezeigt werden.\\
   Es wird ein $w\in\StQT _1\backslash\EDT _1$ gewählt und gezeigt, dass dieses
   auch in $\QDT _2$ enthalten ist. Das $w$ ist aufgrund der
-  Proposition~\ref{RuheTraceProp} und~\ref{DivSemProp}~2.\ auch für eine
+  Proposition~\ref{StilleTraceProp} und~\ref{DivSemProp}~2.\ auch für eine
   as"=Implementierung $P'_1$ von $P_1$ in $\StQT _{P'_1}\backslash \EDT
   _{P'_1}$ enthalten.\\
-  Durch die Wahl des $w$s wird in $P'_1$ durch das Wort $w$ ein ruhiger
+  Durch die Wahl des $w$s wird in $P'_1$ durch das Wort $w$ ein stiller
   Zustand erreicht. Dies hat nur Auswirkungen auf die Parallelkomposition
-  $P'_1\|T$, wenn in $T$ ebenfalls ein Ruhe"=Zustand durch $w$ erreicht wird.\\
+  $P'_1\|T$, wenn in $T$ ebenfalls ein Stille"=Zustand durch $w$ erreicht wird.\\
   Das betrachtete $w$ hat die Form $w = x_1\dots x_n\in\Sigma ^*$ mit $n\geq
   0$. Es wird der folgende $\omega$-Partner Test $T$ betrachtet (siehe auch
   Abbildung~\ref{TohneEmitIundO}):
@@ -751,62 +752,62 @@ enthalten ist.
             (q) edge [loop below] node {$x?\in I_T, \omega !$} (p);
     \end{tikzpicture}
     \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$, $p_n$
-      ist der einzige Ruhe-Zustand}
+      ist der einzige Stille-Zustand}
     \label{TohneEmitIundO}
   \end{center}
   \end{figure}
   Falls das betrachtete $w$ dem leeren Wort $\varepsilon$ entspricht, reduziert
   sich der $\omega$-Partner Test $T$ auf den Zustand $p_n = p_0$ und den
-  Zustand $P$. Es ist also in diesem Fall der Startzustand gleich dem ruhigen
+  Zustand $P$. Es ist also in diesem Fall der Startzustand gleich dem stillen
   Zustand.\\
-  Allgemein ist der Zustand $p_n$ aus $T$ der einzige ruhige Zustand in $T$. Es
-  gilt werden des ersten Punkte von Lemma~\ref{RuheZustLem}, dass auch in der
-  Parallelkomposition $P'_1\|T$ ein Ruhe-Zustand mit $w$ erreicht wird. Da es
-  sich bei allen in $w$ befindlichen Aktionen um sychronisieren Aktionen
-  handelt und $I_T\cap I=\emptyset$, folt $w\in O_{P'_1\|T}$ und $w\in\StQT
+  Allgemein ist der Zustand $p_n$ aus $T$ der einzige stille Zustand in $T$. Es
+  gilt werden des ersten Punkte von Lemma~\ref{StilleZustLem}, dass auch in der
+  Parallelkomposition $P'_1\|T$ ein Stille-Zustand mit $w$ erreicht wird. Da es
+  sich bei allen in $w$ befindlichen Aktionen um synchronisieren Aktionen
+  handelt und $I_T\cap I=\emptyset$, folgt $w\in O_{P'_1\|T}$ und $w\in\StQT
   (P'_1\|T)$. Es kann also in der Parallelkomposition durch $w$ ein
-  Ruhe-Zustand lokal erreicht werden. Da $w\notin\EDT _{P'_1}$, kann auf dem
+  Stille-Zustand lokal erreicht werden. Da $w\notin\EDT _{P'_1}$, kann auf dem
   Weg, der mit $w$ im Transitionssystem $P'_1$ zurück gelegt wird, kein Fehler-
-  oder Divergenz-Zustand lokal erreicht werden. Es kann also werder von $P'_1$
+  oder Divergenz-Zustand lokal erreicht werden. Es kann also weder von $P'_1$
   noch von $T$ ein Fehler oder Divergenz auf diesem Weg geerbt werden oder neu
-  entstehen. Da ein Ruhe"=Zustand in $P'_1\|T$ lokal erreichtbar ist, erfüllt
+  entstehen. Da ein Stille"=Zustand in $P'_1\|T$ lokal erreichbar ist, erfüllt
   $P_1$ den Test $T$ nicht. Es muss also auch eine as"=Implementierung $P'_2$
   von $P_2$ geben, für die $P'_2\|T$ einen lokal erreichbaren \glqq
   fehlerhaften Zustand\grqq{} besitzt. Hier kann jedoch zunächst keine Aussage
   darüber getroffen werden, ob das $w$ in der Parallelkomposition $P'_2\|T$
   ausführbar ist und ob es sich bei der \glqq Fehlerhaftigkeit\grqq{} um
-  Fehler, Ruhe oder Divergenz handelt.
+  Fehler, Stille oder Divergenz handelt.
   \begin{itemize}
     \item Fall a) ($\varepsilon \in \ET (P'_2\|T)$): Der lokal erreichbare
       \glqq fehlerhafte Zustand\grqq{} ist ein Fehler. Das $w$ muss somit nicht
-      ausführbar sein. Der Fehler kann sowohl von $P'_2$ geerbt sein, wie duch
-      fehlende Sychronisations-Sicherstellung als neuer Fehler in der
-      Parallelkomposition entstanden sein. Da nur auf dme Trace $w$ in $T$
-      Sychronisations"=Probleme auftretten können und wegen den Fällen 2i) und
-      2ii) des ersten Punktes dises Beweises ist ein Präfix von $w$ in $\EDT
+      ausführbar sein. Der Fehler kann sowohl von $P'_2$ geerbt sein, wie durch
+      fehlende Synchronisations-Sicherstellung als neuer Fehler in der
+      Parallelkomposition entstanden sein. Da nur auf dem Trace $w$ in $T$
+      Synchronisations"=Probleme auftreten können und wegen den Fällen 2i) und
+      2ii) des ersten Punktes dieses Beweises ist ein Präfix von $w$ in $\EDT
       _{P'_2}$ enthalten. Da die Menge \EDT{} unter \cont{} abgeschlossen ist
-      und~\ref{DivSemProp}~2. gilt, folgt $w\in\EDT _2\subseteq\QDT _2$.
+      und~\ref{DivSemProp}~2.\ gilt, folgt $w\in\EDT _2\subseteq\QDT _2$.
     \item Fall b) ($\varepsilon \in \DT (P'_2\|T)\backslash \ET(P'_2\|T)$): Es
       handelt sich bei dem lokal erreichbaren \glqq fehlerhaften Zustand\grqq{}
       um Divergenz. Die Divergenz muss von $P'_2$ geerbt sein, da $T$ keine
       Möglichkeit für eine unendliche $\tau$-Folge hat. Es gilt also, dass
       bereits in $P'_2$ ein Präfix von $w$ in $\EDT _{P'_2}$ enthalten ist,
       wegen Fall 2iii) des Beweises des ersten Punktes dieses Lemmas. Mit dem
-      Abschluss unter \cont und~\ref{DivSemProp}~2. folgt, dass auch $w\in \EDT
+      Abschluss unter \cont und~\ref{DivSemProp}~2.\ folgt, dass auch $w\in \EDT
       _2\subseteq\QDT _2$ gilt.
-    \item Fall c) (Ruhe-Zustand lokal erreichbar in $P'_2\|T$ und $\varepsilon
-      \notin \EDT (P'_2\|T)$): Da in $T$ nur durch $w$ ein ruhiger Zustand
+    \item Fall c) (Stille-Zustand lokal erreichbar in $P'_2\|T$ und $\varepsilon
+      \notin \EDT (P'_2\|T)$): Da in $T$ nur durch $w$ ein stiller Zustand
       erreicht werden kann, muss es sich bei dem lokal erreichbaren
-      Ruhe"=Zustand in $P'_2\|T$ um einen handeln, der mit $w$ erreicht werden
-      kann. Mit dem zweiten Punkt von Lemma~\ref{RuheZustLem} kann gefolgert
-      werden, dass auch in $P'_2$ ein Ruhe"=Zustand mit $w$ erreichbar sein
+      Stille"=Zustand in $P'_2\|T$ um einen handeln, der mit $w$ erreicht werden
+      kann. Mit dem zweiten Punkt von Lemma~\ref{StilleZustLem} kann gefolgert
+      werden, dass auch in $P'_2$ ein Stille"=Zustand mit $w$ erreichbar sein
       muss, da $\ET (P'_2\|T)$ eine Teilmenge von $\EDT (P'_2\|T)$ ist. Es gilt
       also $w\in\StQT _{P'_2}\subseteq \QDT _{P'_2}$. Mit dem dritten Punkt von
       Proposition~\ref{DivSemProp} folgt daraus $w\in\QDT _2$.
   \end{itemize}
 
   Nun wird mit dem letzten Punkt des Beweises begonnen. Analog wie in den
-  Beweisen zu den Lemmata~\ref{KommTestVerfeinLem} und~\ref{RuheTestVerfeinLem}
+  Beweisen zu den Lemmata~\ref{KommTestVerfeinLem} und~\ref{StilleTestVerfeinLem}
   ist hier aufgrund der bereits geführten Beweisteile nur noch $L_1\backslash
   \EDT _1 \subseteq \EDL _2$ zu zeigen. Es wird also für ein beliebig gewähltes
   $w\in L_1\backslash \EDT _1$ gezeigt, dass es auch in $\EDL _2$ enthalten
@@ -814,7 +815,7 @@ enthalten ist.
   as"=Implikation $P'_1$ von $P_2$, wegen~\ref{LImpProp} und~\ref{DivSemProp}.
   \begin{itemize}
     \item Fall 1 ($w = \varepsilon$): Analog zu den
-      Lemmata~\ref{KommTestVerfeinLem} und~\ref{RuheTestVerfeinLem} gilt auch
+      Lemmata~\ref{KommTestVerfeinLem} und~\ref{StilleTestVerfeinLem} gilt auch
       hier, dass $\varepsilon$ immer in $\EDL _2$ enthalten ist.
     \item Fall 2 ($w = x_1\dots x_n$ mit $n \geq 1$): Die Konstruktion des
       $\omega$-Partner Tests $T$ weicht nur durch die $\omega$-Transitionen vom
@@ -863,11 +864,11 @@ enthalten ist.
       \end{figure}
       Duch die $\omega$-Transition an den Zuständen wird wie oben vermieden,
       dass es in einer Komposition mit $T$ und auch in $T$ selbst
-      Ruhe"=Zustände geben kann. Da $p_{01} \weakmust[w]_{P'_1} p'_1$ gilt,
+      Stille"=Zustände geben kann. Da $p_{01} \weakmust[w]_{P'_1} p'_1$ gilt,
       kann man schließen, dass $P'_1\|T$ einen lokal erreichbaren geerbten
       Fehler hat. Es muss also auch eine as"=Implementierung $P'_2$ von $P_2$
       geben, sodass $P'_2\|T$ einen lokal erreichbaren \glqq fehlerhaften
-      Zustand\grqq{} hat. Wie oben bereits erwähnt, kommt Ruhe als \glqq
+      Zustand\grqq{} hat. Wie oben bereits erwähnt, kommt Stille als \glqq
       Fehlerhaftigkeit\grqq{} nicht in Frage.
       \begin{itemize}
         \item Fall 2a) \big(neuer Fehler aufgrund von $x_i\in O_T\backslash
@@ -901,39 +902,39 @@ enthalten ist.
 \end{Satz}
 \begin{proof}
   Nach Definition gilt $w\in\QDT (P)$ mit $w\in O^*$ genau dann, wenn in $P$
-  ein Fehler-, Ruhe- oder Divergenz-Zustand lokal erreichbar ist. $P_1\DRel
+  ein Fehler-, Stille- oder Divergenz-Zustand lokal erreichbar ist. $P_1\DRel
   P_2$ impliziert, dass $w\in\QDT _2$ gilt, wenn $w\in\QDT _1$ gilt. Somit ist
-  ein Fehler-, Ruhe- oder Divergenz-Zustand nur dann in $P_1$ lokal erreichbar,
+  ein Fehler-, Stille- oder Divergenz-Zustand nur dann in $P_1$ lokal erreichbar,
   wenn auch ein solcher in $P_2$ lokal erreichbar ist. Wegen
   Korollar~\ref{lokalDivErrKor} gibt es dann auch as"=Implementierungen $P'_1$
   und $P'_2$ von $P_1$ bzw.\ $P_2$, die analoge \glqq fehlerhafte
   Zustände\grqq{} lokal erreichen. Die Parallelkomposition $P'_j\|T$ für $j\in
   \{1,2\}$ und einen Test $T$ haben dann ebenfalls einen lokal erreichbaren
-  Fehler-, Ruhe- oder Divergenz"=Zustand. Der \glqq fehlerhafte Zustand\grqq
+  Fehler-, Stille- oder Divergenz"=Zustand. Der \glqq fehlerhafte Zustand\grqq
   einer as"=Implementierung $P'_1$ tritt in der Parallelkomposition mit $T$ auf
-  jeden Fall auf, wenn es sich um einen Fehler oder Divergenz handelt. Bei Ruhe
+  jeden Fall auf, wenn es sich um einen Fehler oder Divergenz handelt. Bei Stille
   zeigt sich das \glqq Fehlverhalten\grqq{} nur bei Tests $T$, die einen
-  analogen Ruhe"=Zustand enthalten. Mit der Relation \DRel{} gibt es auch in
-  $P_2$ und somit auch in einer as"=Implementierung $P'_2$ davon einen loak
+  analogen Stille"=Zustand enthalten. Mit der Relation \DRel{} gibt es auch in
+  $P_2$ und somit auch in einer as"=Implementierung $P'_2$ davon einen lokal
   erreichbaren \grqq fehlerhaften Zustand\grqq{}, wenn es in $P_1$ einen
   solchen gibt. In Parallelkompositionen von $P'_2$ mit Tests $T$ zeigt sich
   das \glqq Fehlverhalten\grqq{} ebenfalls. Falls ein Fehler oder Divergenz
   lokal erreichbar ist, gilt $\varepsilon \in \EDT _{P'_j}$. Für alle Tests $T$
   ist $\varepsilon$ ein Element der Sprache es gilt also $\varepsilon \in\EDL
-  _T$. Mit Satz~\ref{DivSemSatz}~1. folgt auch $\varepsilon\in\EDT _{P'_j\|T}$.
-  Falls es sich in $P_2$ und somit auch in $P'_2$ nur um Ruhe handelt und kein
+  _T$. Mit Satz~\ref{DivSemSatz}~1.\ folgt auch $\varepsilon\in\EDT _{P'_j\|T}$.
+  Falls es sich in $P_2$ und somit auch in $P'_2$ nur um Stille handelt und kein
   Fehler oder Divergenz lokal erreichbar sind, dann muss auch bereits in $P_1$
-  bzw.\ $P'_1$ Ruhe das einzige \glqq Fehlverhalten\grqq{} gewesen sein, dass
+  bzw.\ $P'_1$ Stille das einzige \glqq Fehlverhalten\grqq{} gewesen sein, dass
   lokal erreichbar war. \DRel{} hätte ansonsten auch andere \glqq fehlerhafte
   Zustände\grqq{} in $P_2$ gefordert. Es ist also die Argumentation aus
-  Satz~\ref{RuheTestVerfSatz} anwendbar. Es gilt also $\neg P_1 \DsatAs T
+  Satz~\ref{StilleTestVerfSatz} anwendbar. Es gilt also $\neg P_1 \DsatAs T
   \Rightarrow \neg P_2 \DsatAs T$ für alle Test $T$. Daraus ergibt sich für
   alle Test $T$ die Implikation $P_2 \DsatAs T \Rightarrow P_2 \DsatAs T$ und
   somit Divergenz-verfeinert $P_1$ $P_2$.
 \end{proof}
 
 Es wurde somit, wie in den letzten beiden Kapiteln eine Kette an Folgerungen
-gezeigt, die sich zu einem Fing schließt. Jedoch ängert sich an der Begründung
+gezeigt, die sich zu einem Fing schließt. Jedoch ändert sich an der Begründung
 für einen der Folgepfeile etwas, da in Lemma~\ref{DivTestVerfeinLem} $T$ kein
 Partner ist, sondern ein $\omega$-Partner. Die Folgerungskette ist in
 Abbildung~\ref{FolgerungsketteDiv} dargestellt.
@@ -970,7 +971,7 @@ Abbildung~\ref{FolgerungsketteDiv} dargestellt.
 \end{Satz}
 \begin{proof}\mbox{}\\
   $P \asRel Q \Rightarrow P \DRel Q$:\\
-  Um diese Inklikation zu zeigen, muss nachgeschiwen werden, dass eine bliebige
+  Um diese Implikation zu zeigen, muss nachgewiesen werden, dass eine beliebige
   as"=Verfeinerung"=Relation $\mathcal{R}$ zwischen $P$ und $Q$ auch die
   Eigenschaften der Relation \QRel{} erfüllt. Da $\mathcal{R}$ eine
   as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ ist, muss $p_0 \mathcal{R}
@@ -982,48 +983,48 @@ Abbildung~\ref{FolgerungsketteDiv} dargestellt.
   \end{itemize}
 
   Die Menge \EDT{} ist unter \cont{} abgeschlossen. Es reicht also für den
-  ersten Punkt zu zeigen, dass ein belibiges präfix-minimales $w$ aus $\EDT _P$
+  ersten Punkt zu zeigen, dass ein beliebiges präfix-minimales $w$ aus $\EDT _P$
   auch in $\EDT _Q$ enthalten ist. $w$ kann ein Element aus $\ET _P$ oder $\DT
-  _P$ sein. Für $w$ aus $\ET _P$ folt mit Satz~\ref{ZusammenhFehlerSatz}
-  bereits $w\in\ET _Q$. Es kann also im folgenden davon ausgegengen werden,
+  _P$ sein. Für $w$ aus $\ET _P$ folgt mit Satz~\ref{ZusammenhFehlerSatz}
+  bereits $w\in\ET _Q$. Es kann also im folgenden davon ausgegangen werden,
   dass $w$ ein präfix-minimales Elemente aus $\DT _P$ ist. Es gibt in $P$ einen
   Trace der Form: $\exists w'\in\Sigma ^*, \exists p_1, p_2, \dots , p_n,
   \exists \alpha _1, \alpha _2, \dots ,\alpha _n: \hat{w'} = w \land w' =
   \alpha _1\alpha _2\dots\alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha
-  _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n \in Div _P$. Mit~\ref{SimDef}~3.
+  _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n \in Div _P$. Mit~\ref{SimDef}~3.\
   muss dieser Trace auch in $Q$ möglich sein oder ein Präfix von $w$ muss zu
   einem Zustand in $E_Q$ führen. Falls es einen Zustand $q_j$ mit $q_j\in E_Q$
   und $p_j \mathcal{R} p_j$ gibt für $j\in\{1,2,\dots ,n\}$, dann gilt $w\in
-  \ET _Q \subseteq \EDT _Q$. Es kann für den restlichen Beweis davon augegangen
+  \ET _Q \subseteq \EDT _Q$. Es kann für den restlichen Beweis davon ausgegangen
   werden, dass der Trace in $Q$ ausführbar ist. Es gilt also $q_0 \may[\alpha
   _1]_Q q_1 \may[\alpha _2]_Q \dots q_{n-1} \may[\alpha _n]_Q q_n$ mit
   $(p_j,q_j)\in\mathcal{R}$ für $0\leq j \leq n$. Von $p_n$ ist eine unendliche
-  Folge an $\tau$s ausfürbar. Die Definition~\ref{SimDef}~3. erzwingt, dass
+  Folge an $\tau$s ausführbar. Die Definition~\ref{SimDef}~3.\ erzwingt, dass
   entweder ein Zustand von $q_n$ mit $\tau$ aus erreichbar ist, der in $E_Q$
   enthalten ist oder von $q_n$ aus ebenfalls eine unendliche Folge an $\tau$s
-  ausführbar ist, da die Transitionen von $P$ Trantitionen in $Q$ entsprechen
+  ausführbar ist, da die Transitionen von $P$ Transitionen in $Q$ entsprechen
   müssen. Es gilt also entweder $w\in\ET _Q\subseteq\EDT _Q$ oder $q_n\in Div
   _Q$ und $w\in\DT _Q\subseteq \EDT _Q$.
 
-  Da im ersten Punkt bereits die \EDT{}-Inklusition bewiesen wurde, reicht es
+  Da im ersten Punkt bereits die \EDT{}-Inklusion bewiesen wurde, reicht es
   für den zweiten Punkt aus zu zeigen, dass $\StQT _P\backslash \EDT _P
-  \subseteq \QDT _Q$ gilt. In Satz~\ref{ZusammenhRuheSatz} wurde bereits die
+  \subseteq \QDT _Q$ gilt. In Satz~\ref{ZusammenhStilleSatz} wurde bereits die
   Inklusion $\StQT _P \backslash \ET _P \subseteq \QET _Q$ gezeigt unter der
-  Vorraussetztung, dass es eine schwache as"=Verfeinerungs"=Relation zwischen
+  Voraussetzung, dass es eine schwache as"=Verfeinerungs"=Relation zwischen
   $P$ und $Q$ gibt. $\mathcal{R}$ ist nicht nur eine
   as"=Verfeinerungs"=Relation sondern auch eine schwache
   as"=Verfeinerungs"=Relation, wegen Satz~\ref{ZusammenhFehlerSatz}. Die
-  in~\ref{ZusammenhRuheSatz} bewiesene Inklustion gilt also auch hier. Es gilt
+  in~\ref{ZusammenhStilleSatz} bewiesene Inklusion gilt also auch hier. Es gilt
   $\ET _P \subseteq \EDT _P$ und $\QET _Q \subseteq \QDT _Q$. Es folgt also die
-  zu zeigende Inklustion aus der bereits bewiesenen.
+  zu zeigende Inklusion aus der bereits bewiesenen.
 
-  Für den letzten Punkt kann ebenfalls eine Einschränkung der zu zeigenen
-  Inklustion vorgenommen werden. Es muss also $\EDL _P \backslash \EDT _P
+  Für den letzten Punkt kann ebenfalls eine Einschränkung der zu zeigenden
+  Inklusion vorgenommen werden. Es muss also $\EDL _P \backslash \EDT _P
   \subseteq \EDL _Q$ bewiesen werden. Es gilt $L _P \subseteq \EDL _P
-  \backslash \EDT _P$. In Satz~\ref{ZusammenhFehlerSatz} wurde die Inklustion
+  \backslash \EDT _P$. In Satz~\ref{ZusammenhFehlerSatz} wurde die Inklusion
   $L _P\subseteq \EL _Q$ unter der Voraussetzung einer schwachen
   as"=Verfeinerungs"=Relation beweisen. Es gilt also wegen der Implikation
-  $\asRel \Rightarrow \wasRel$ und wegen der Inklustion $\EL _Q \subseteq \EDL
+  $\asRel \Rightarrow \wasRel$ und wegen der Inklusion $\EL _Q \subseteq \EDL
   _Q$ auch die hier nach zu weisende Inklusion.
 
   $P \DRel Q \not\Rightarrow P \ERel Q$:\\
@@ -1033,13 +1034,13 @@ Abbildung~\ref{FolgerungsketteDiv} dargestellt.
   Gegenbeispiel ist in Abbildung~\ref{DivEGegenBsp} dargestellt. Die Sprachen
   beider Transitionssysteme sind gleich und bestehen nur aus dem leeren Wort.
   Für beide Systeme ist besteht die Menge \EDT{} aus allen Wörtern, die über
-  dem Alphabet $\Sigma$ möglich sind. Es gibt keine Ruhe"=Trace. Somit gilt
+  dem Alphabet $\Sigma$ möglich sind. Es gibt keine Stille"=Trace. Somit gilt
   also $P \DRel Q$.\\
   Für $P \ERel Q$ müsste $\ET _P \subseteq \ET _Q$ gelten. Jedoch ist die Menge
-  $\ET _Q$ leer, da $Q$ keine Fehler"=Zustände enthält und verausgesetzt werden
+  $\ET _Q$ leer, da $Q$ keine Fehler"=Zustände enthält und vorausgesetzt werden
   kann, das $I$ leer ist und es keine Input"=kritischen Traces gegen kann. Für
   $P$ ist jedoch der Startzustand ein Fehler"=Zustand und somit entspricht $\ET
-  _P$ der Menge $\Sigma ^*$. Die geforderte Inklustion gilt nicht und somit
+  _P$ der Menge $\Sigma ^*$. Die geforderte Inklusion gilt nicht und somit
   kann auch die Relation \ERel{} zwischen $P$ und $Q$ nicht gelten.
 
   \begin{figure}[htbp]
@@ -1068,22 +1069,22 @@ Abbildung~\ref{FolgerungsketteDiv} dargestellt.
   $P \DRel Q \not\Rightarrow P \QRel Q$, $P \DRel Q \not\Rightarrow P \wasRel
   Q$ und $P \DRel Q \not\Rightarrow P \asRel Q$:\\
   Falls eine dieser Implikationen gelten würde, würde mit den bereits in den
-  Sätzen~\ref{ZusammenhFehlerSatz} und~\ref{ZusammenhRuheSatz} beweisenen
+  Sätzen~\ref{ZusammenhFehlerSatz} und~\ref{ZusammenhStilleSatz} bewiesenen
   Implikationen und der Transitivität von Implikationen folgen, dass auch $P
-  \ERel Q$ gilt. Dies stellt ein Widerspurch zum letzten Punkt dieses Beweises
+  \ERel Q$ gilt. Dies stellt ein Widerspruch zum letzten Punkt dieses Beweises
   dar. Es kann also keine der Implikationen gelten.
 
   $P \wasRel Q \not\Rightarrow P \DRel Q$:\\
-  Das Problem dieser Implikation beruh darauf, dass eine schwache
+  Das Problem dieser Implikation beruht darauf, dass eine schwache
   as"=Verfeinerungs"=Relation es zulässt, dass $\tau$"=Transitionen schwach
-  gemathed werden. Es also möglich ist, eine unendliche $\tau$ Folge ohne eine
+  gematched werden. Es also möglich ist, eine unendliche $\tau$ Folge ohne eine
   einzige Transition zu matchen. Das Gegenbeispiel in
-  Abbildung~\ref{wasDivGegenBsp} verdeutlich dies. $P$ und $Q$ stehen in der
+  Abbildung~\ref{wasDivGegenBsp} verdeutliche dies. $P$ und $Q$ stehen in der
   schwachen as"=Verfeinerungs"=Relation $\mathcal{R}$, die nur aus dem Tupel
   $(p_0,q_0)$ besteht. Die Transitionssysteme bestehen nur aus dem
-  Startzuständen, die beide keine Fehler"=Zustände sind. $Q$ besitzt keine
+  Startzustände, die beide keine Fehler"=Zustände sind. $Q$ besitzt keine
   Transitionen und $P$ nur eine Transition für eine interne Aktion. Es sind
-  also die Punkt 1. bis 4. der Definition~\ref{wSimDef} für $\mathcal{R}$
+  also die Punkt 1.\ bis 4.\ der Definition~\ref{wSimDef} für $\mathcal{R}$
   bereits erfüllt. Der 5. Punkt fordert, die schwache Transition $q_0
   \weakmay[\hat{\tau}]_Q q$ mit $(p_0,q) \in \mathcal{R}$ für ein $q$ aus $Q$.
   $\hat{\tau}$ entspricht $\varepsilon$ somit ist $q_0$ eine zulässige Wahl für
@@ -1115,11 +1116,11 @@ Abbildung~\ref{FolgerungsketteDiv} dargestellt.
 
   $P \ERel Q \not\Rightarrow P \DRel Q$ und $P \QRel Q \not\Rightarrow P \DRel
   Q$:\\
-  Mit den Implikationen, die bereits in Satz~\ref{ZusammenhRuheSatz} bewiesen
+  Mit den Implikationen, die bereits in Satz~\ref{ZusammenhStilleSatz} bewiesen
   wurde, kann gefolgert werden, dass das im letzten Punkt angegebenen Beispiel
   aus für diese Implikationen anwendbar ist. Es galt $P \wasRel Q$ somit gilt
   auch $P \QRel Q$ und $P \ERel Q$. Die Relation \DRel{} hingegen war zwischen
-  $P$ und $Q$ nicht erfüllt. Es folt also, dass die hier angegenen
+  $P$ und $Q$ nicht erfüllt. Es folgt also, dass die hier angegeben
   Implikationen ebenfalls nicht gelten.
 
 \end{proof}
