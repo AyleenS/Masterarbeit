@@ -2,7 +2,7 @@
 
 In diesem Kapitel wird die Menge der betrachteten Zustandsmengen von den
 Kommunikations"=basierten Fehlern im letzten Kapitel erweitert um
-Stille-Zustände. Es wird nur noch der Testing-Ansatz des letzten Kapitels
+stille Zustände. Es wird nur noch der Testing-Ansatz des letzten Kapitels
 fortgeführt, da dieser sich auf die Parallelkomposition von \EIO{}s stützt und
 nicht auf die Definition der Parallelkomposition von \MEIO{}s, die auch anders
 gestaltet hätte werden können.\\
@@ -33,11 +33,11 @@ Zustände, die keine Outputs und $\tau$s via must"=Transitionen ausführen
 können.
 
 \begin{Def}[Stillstand]
-  Ein \emph{Stille-Zustand} ist ein Zustand in einem \MEIO{} $P$, der keine
+  Ein \emph{stiller Zustand} ist ein Zustand in einem \MEIO{} $P$, der keine
   Outputs und kein $\tau$ zulässt via must"=Transitionen.\\
-  Somit ist die Menge der Stille-Zustände in einem \MEIO{} $P$ wie folgt formal
-  definiert: $Qui(P):=\left\{p\in P\mid \forall\alpha\in (O\cup\{\tau\}):p
-  \nmust[\alpha]_P\right\}$.
+  Somit ist die Menge der stillen Zustände in einem \MEIO{} $P$ wie folgt
+  formal definiert: $Qui(P):=\left\{p\in P\mid \forall\alpha\in
+  (O\cup\{\tau\}):p \nmust[\alpha]_P\right\}$.
 \end{Def}
 
 Für die Erreichbarkeit wird wie im letzten Kapitel ein optimistischer Anzahl
@@ -47,26 +47,27 @@ werden oder im Fall von vorhandenen may"=Output"=Transitionen oder
 may"=$\tau$"=Transitionen, durch eine Implementierung dieser lokalen Aktionen .
 Daraus ergibt sich, dass Stille im Vergleich zu den Fehlern aus dem letzten
 Kapitel als weniger \glqq schlimmer Fehler\grqq{} anzusehen ist. Somit ist ein
-Stille-Zustand ebenso wie ein Fehler-Zustand erreichbar, sobald er durch Outputs
+stiller Zustand ebenso wie ein Fehler-Zustand erreichbar, sobald er durch Outputs
 und $\tau$s erreicht werden kann, jedoch ist nicht jede beliebige Fortsetzung
-eines Traces, das durch lokale Aktionen zu einem Stille-Zustand führt ein
+eines Traces, das durch lokale Aktionen zu einem stillen Zustand führt ein
 Stille"=Trace.
 
 \begin{Def}[Test und Verfeinerung für Stillstand]
   \label{StilleTestDef}
   Ein \emph{Test} $T$ ist eine Implementierung. Ein \MEIO{} $P$
-  \emph{as-erfüllt} einen Stille-Test $T$, falls $S\|T$ fehler- und stillstand-frei ist
-  für alle $S\in \asimp (P)$. Es wird dann $P \QsatAs T$ geschrieben. Die
-  Parallelkomposition $S\|T$ ist \emph{fehler-} und \emph{stillstand-frei}, wenn kein
-  Fehler- und kein Stille-Zustand lokal erreichbar ist.\\
+  \emph{as-erfüllt} einen Stillstands-Test $T$, falls $S\|T$ fehler- und
+  stillstand-frei ist für alle $S\in \asimp (P)$. Es wird dann $P \QsatAs T$
+  geschrieben. Die Parallelkomposition $S\|T$ ist \emph{fehler-} und
+  \emph{stillstand-frei}, wenn kein Fehler- und kein stiller Zustand lokal
+  erreichbar ist.\\
   Ein \MEIO{} $P$ \emph{Stille-verfeinert} $P'$, falls für alle Tests $T$:
   $P'\QsatAs T \Rightarrow P\QsatAs T$.
 \end{Def}
 
 Um eine genauere Auseinandersetzung mit den Präkongruenzen zu ermöglichen,
 benötigt man wie im letzten Kapitel die Definition von Traces auf der Struktur.
-Wie bereits oben erwähnt, ist Stille ein reparierbares \glqq Fehlverhalten\grqq{}
-im Gegensatz zu Fehlern. Es genügt deshalb für Stille die strikten Traces ohne
+Wie bereits oben erwähnt, ist Stille ein reparierbares Fehlverhalten im
+Gegensatz zu Fehlern. Es genügt deshalb für Stille die strikten Traces ohne
 Kürzung zu betrachten.
 
 \begin{Def}[Stillstands-Traces]
@@ -78,7 +79,9 @@ Kürzung zu betrachten.
   \end{itemize}
 \end{Def}
 
-\vspace{0.2cm}
+Die Definition der strikten Stille-Traces befasst sich nur mit \MEIO{}s im
+allgemeinen. Jedoch ist auch in diesem Kapitel der Zusammenhang mi den
+entsprechenden Traces der as"=Implementierungen relevant.
 
 \begin{Prop}[Stillstands-Traces und Implementierungen]
   \label{StilleTraceProp}
@@ -90,7 +93,7 @@ Kürzung zu betrachten.
   Analog zu den Propositionen~\ref{LImpProp} und~\ref{KommTracesProp} ist die
   Inklusion am Besten mit einer as"=Implementierung zu zeigen und der
   entsprechenden as"=Verfeinerungs"=Relation $\mathcal{R}$. Falls der
-  Startzustand $p_0$ von $P$ ein Stille-Zustand ist, muss man zwei
+  Startzustand $p_0$ von $P$ ein stiller Zustand ist, muss man zwei
   as"=Implementierungen betrachten, ansonsten genügt es eine für alle $w$ aus
   $\StQT (P)$ anzugeben, wobei $w$ möglicherweise nicht $\varepsilon$
   entsprechend darf.\\
@@ -136,21 +139,22 @@ Kürzung zu betrachten.
   Zuständen der \glqq gleichen Sorte\grqq{} umgesetzt, wohingegen die
   may"=Transitionen, zu denen es keine entsprechende must"=Transition in $P$
   gibt, von den Zuständen $q'$ zu dem entsprechenden ungestrichenen
-  und gestrichenen Zustand implementiert wird. Da die Menge der Fehler-Zustände
-  leer ist, gilt~\ref{SimDef}~1.\ für $\mathcal{R}$. Die must"=Transitionen
-  werden für die ungestrichenen und gestrichenen Zustände umgesetzt, dies
-  erfüllt zusammen mit $\mathcal{R}$ die Definition~\ref{SimDef}~2. Ebenso wird
-  der dritte Punkt der Definition~\ref{SimDef} erfüllt, da sowohl die
-  gestrichenen wie auch die ungestrichenen Zustände mit den entsprechenden
-  Zuständen aus $P$ in der Relation $\mathcal{R}$ stehen. $\mathcal{R}$ ist
-  also eine starke alternierende Simulations-Relation auf $P'$ und $P$. Falls
-  ein Zustand $p_j$ in $P$ still war, ist es auch der entsprechenden Zustand
-  $q_j$ in $P'$, da für $q_j$ alle ausgehenden must"=Transitionen von $p_j$
-  implementiert wurden, aber keine einzige may"=Transition, die keine der
-  must"=Transitionen entspricht. Wenn also für $p_j$ keine Outputs und kein
-  $\tau$ möglich waren via must"=Transitionen, dann ist es dies auch für $q_j$
-  nicht. $q_j$ ist in $P'$ mit den selben Traces erreichbar wie $p_j$ in $P$,
-  da jeder ungestrichene und gestrichene Zustand in $P'$ die selben eingehenden
+  und gestrichenen Zustand implementiert werden. Da die Menge der
+  Fehler-Zustände leer ist, gilt~\ref{SimDef}~1.\ für $\mathcal{R}$. Die
+  must"=Transitionen werden für die ungestrichenen und gestrichenen Zustände
+  umgesetzt, dies erfüllt zusammen mit $\mathcal{R}$ die
+  Definition~\ref{SimDef}~2. Ebenso wird der dritte Punkt der
+  Definition~\ref{SimDef} erfüllt, da sowohl die gestrichenen wie auch die
+  ungestrichenen Zustände mit den entsprechenden Zuständen aus $P$ in der
+  Relation $\mathcal{R}$ stehen. $\mathcal{R}$ ist also eine starke
+  alternierende Simulations-Relation zwischen $P'$ und $P$. Falls ein Zustand
+  $p_j$ in $P$ still ist, ist es auch der entsprechenden Zustand $q_j$ in $P'$,
+  da für $q_j$ alle ausgehenden must"=Transitionen von $p_j$ implementiert
+  wurden, aber keine einzige may"=Transition, die keine der must"=Transitionen
+  entspricht. Wenn also für $p_j$ keine Outputs und kein $\tau$ möglich waren
+  via must"=Transitionen, dann ist es dies auch für $q_j$ nicht. $q_j$ ist in
+  $P'$ mit den selben Traces erreichbar wie $p_j$ in $P$, da jeder
+  ungestrichene und gestrichene Zustand in $P'$ die selben eingehenden
   Transitionen hat wie der entsprechende Zustand in $P$. Falls der Trace zu
   $p_j$ may"=Transitionen ohne entsprechende must"=Transitionen enthält, kann
   der Trace in $P'$ ausgeführt werden, in dem von $q_0$ aus der Trace über die
@@ -161,11 +165,17 @@ Kürzung zu betrachten.
   insgesamt nur aus must"=Transitionen bestanden hat, ist direkt von $q_0$ aus
   der Weg über ungestrichene Zustände zu $q_j$ möglich. Es gilt also $\StQT
   (P)\backslash \{\varepsilon\} = \StQT (P')\backslash \{\varepsilon\}$. Falls
-  $\varepsilon$ zu einem Stille-Zustand $p \neq p_0$ in $P$ geführt hat, gilt
+  $\varepsilon$ zu einem stillen Zustand $p \neq p_0$ in $P$ geführt hat, gilt
   sogar $\StQT(P) = \StQT (P')$, da ein Trace aus internen Aktionen in $P$ und
   $P'$ zu dem entsprechenden stillen Zustand $p$ bzw.\ $q$ führt.
 \end{proof}
 
+Man hätte anstatt des hier verwendeten $P'$ mit zwei Arten von Zuständen auch
+den Ansatz des ausrollens der betrachteten Traces analog zu
+Proposition~\ref{KommTracesProp}~3.\ anwenden können. Es wäre auch möglich die
+Inklusion der Input"=kritischen Traces aus Proposition~\ref{KommTracesProp}~3.\
+mit dem $P'$ aus dem Beweis der Proposition~\ref{StilleTraceProp} zu
+begründen.\\
 Für \ET{} und \EL{} gelten die Definitionen aus dem letzten Kapitel. Es wir nur
 für Stille eine neue Semantik definiert.
 
@@ -210,7 +220,7 @@ für Stille eine neue Semantik definiert.
   gilt. Somit wird für den Rest des Beweises davon ausgegangen, dass $w\in\StQT
   (P')\backslash \ET (P')$ ist. $w$ führt in $P'$ also nur zu einem stillen
   Zustand und hat nichts mit Fehler-Zuständen in $P'$ zu tun. Der Trace, der
-  durch $w$ in $P'$ beschrieben hat, hat die folgende Form: $\exists w'\in
+  durch $w$ in $P'$ beschrieben wird, hat die folgende Form: $\exists w'\in
   \Sigma _{\tau}, \exists \alpha _1, \alpha _2, \dots , \alpha _n, \exists
   p'_1, p'_2, \dots p'_n : \hat{w'} = w \land w' = \alpha _1\alpha _2\dots
   \alpha _n \land p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha _2]_{P'} \dots
@@ -244,9 +254,9 @@ einer Spezifikation und den zugehörigen Implementierungen getroffen werden.
     \item Falls in einem \MEIO{} $P$ ein Fehler lokal erreichbar ist, dann
       existiert auch eine as"=Implementierung, in der ein Fehler lokal
       erreichbar ist.
-    \item Falls in einem \MEIO{} $P$ einen lokal erreichbaren Stille-Zustand
+    \item Falls ein \MEIO{} $P$ einen lokal erreichbaren stillen Zustand
       besitzt, dann existiert auch eine as"=Implementierung, in der ein
-      Stille-Zustand lokal erreichbar ist.
+      stiller Zustand lokal erreichbar ist.
     \item Falls es eine as"=Implementierung von $P$ gibt, die einen Fehler oder
       Stille lokal erreicht, dann ist auch ein Fehler oder Stille in $P$ lokal
       erreichbar.
@@ -255,16 +265,16 @@ einer Spezifikation und den zugehörigen Implementierungen getroffen werden.
 \begin{proof}\mbox{}
   \begin{enumerate}[(i)]
     \item Dieser Punkt folgt direkt aus Korollar~\ref{lokalFehlerErrKor}~(i).
-    \item Da ein Stille-Zustand in $P$ lokal erreichbar ist, gilt $w\in \StQT
+    \item Da ein stiller Zustand in $P$ lokal erreichbar ist, gilt $w\in \StQT
       _P$ für $w\in O$. Es muss wegen Proposition~\ref{StilleTraceProp}
       mindestens ein $P'\in \asimp (P)$ geben, für dass $w\in \StQT _{P'}$
       gilt. Da $w$ nur aus lokalen Aktion bestehen kann, ist auch in $P'$ ein
-      Stille-Zustand lokal erreichbar.
+      stiller Zustand lokal erreichbar.
     \item Sei $P'$ die as"=Implementierung von $P$, in der ein Fehler- oder
-      Stille-Zustand lokal erreichbar ist. Es gilt dann $w\in \QET _{P'}$ für
+      stiller Zustand lokal erreichbar ist. Es gilt dann $w\in \QET _{P'}$ für
       $w\in O$. Mit Proposition~\ref{StilleSemProp} folgt draus $w\in \QET _P$.
-      Es muss also auch in $P$ ein Fehler- oder Stille-Zustand lokal erreichbar
-      sein.
+      Es muss also auch in $P$ ein Fehler- oder stiller Zustand lokal
+      erreichbar sein.
   \end{enumerate}
 \end{proof}
 
@@ -300,7 +310,7 @@ benötigt.
           bereits als must"=Transition in einer Komponente möglich war für
           einen der Zustände, aus denen $(p_1,p_2)$ zusammensetzt ist. Jedoch
           verbietet die Voraussetzung, dass $p_1$ oder $p_2$ eine ausgehende
-          $\tau$ must"=Transition haben, deshalb kann auch $(p_1,p_2)$ keine
+          $\tau$"=must"=Transition haben, deshalb kann auch $(p_1,p_2)$ keine
           solche Transition besitzen.
         \item Fall 2 \big($(p_1,p_2)\must[a]_{12}$ mit $a\in O_{12}\backslash
           \Synch(P_1,P_2)$\big): Da es sich bei $a$ um einen Output handelt, der
@@ -420,14 +430,17 @@ aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
     \item Fall 2 ($w_1\in\StQT _1\backslash\ET _1\land w_2\in\StQT _2\backslash
       \ET _2$): Es gilt in diesem Fall $p_{01} \weakmay[w_1]_1 p_1\in Qui_1$
       und $p_{02} \weakmay[w_2]_2 p_2\in Qui_2$. Da $p_1$ und $p_2$ in der
-      jeweiligen Stillestands-Menge enthalten sind, ist auch der Zustand, der aus ihnen
-      zusammengesetzt ist, in der Parallelkomposition still, wie bereits im
-      ersten Punkt von Lemma~\ref{StilleZustLem} gezeigt. Es gilt also für die
-      Komposition $(p_{01},p_{02}) \weakmay[w]_{12} (p_1,p_2)\in Qui_{12}$ und
-      dadurch ist $w$ in der linken Seite der Gleichung enthalten, da $w\in
-      \StQT _{12}\subseteq \QET _{12}$ gilt.
+      jeweiligen Stillstands-Menge enthalten sind, ist auch der Zustand, der
+      aus ihnen zusammengesetzt ist, in der Parallelkomposition still, wie
+      bereits im ersten Punkt von Lemma~\ref{StilleZustLem} gezeigt. Es gilt
+      also für die Komposition $(p_{01},p_{02}) \weakmay[w]_{12} (p_1,p_2)\in
+      Qui_{12}$ und dadurch ist $w$ in der linken Seite der Gleichung
+      enthalten, da $w\in \StQT _{12}\subseteq \QET _{12}$ gilt.
   \end{itemize}
 \end{proof}
+
+Aus diesem Satz kann direkt gefolgert werden, dass \QRel{} eine Präkongruenz
+ist. Den Beweis dazu liefert das folgende Korollar.
 
 \begin{Kor}[Stillstands-Präkongruenz]
   \label{StillePraekonKor}
@@ -483,16 +496,16 @@ in~\ref{StilleTestDef}.
   In Lemma~\ref{KommTestVerfeinLem} wurde bereits etwas Ähnliches gezeigt,
   jedoch wurde dort als Voraussetzung $P_2\EsatAs T\Rightarrow P_1\EsatAs T$
   für alle Test Partner $T$ verwendet und hier dieselbe Aussage mit der Test
-  Erfüllung für Stille. Die hier verwendeten Tests sagen nichts darüber aus,
-  welche Art von \glqq fehlerhaftem Zustand\grqq{} enthalten ist. Die Aussage
-  des Lemmas~\ref{KommTestVerfeinLem} kann hier also nicht verwendet werden.
-  Aus der lokalen Erreichbarkeit eines Fehler-Zustandes in der
-  Parallelkomposition einer as"=Implementierung von von $P_1$ mit $T$ lässt sich
-  nur schließen, dass $P_2$ den Test $T$ ebenfalls nicht as"=erfüllt. Dies kann
-  aber aufgrund einer as"=Implementierung von $P_2$ sein, die in
-  Parallelkomposition mit $T$ einen Fehler- oder Stille-Zustand lokal erreicht.
-  Analoges gilt auch für die lokale Erreichbarkeit eines Stille"=Zustandes in der
-  Komposition einer as"=Implementierung von $P_1$ mit einem Test $T$.\\
+  Erfüllung für Stillstand. Die hier verwendeten Tests sagen nichts darüber
+  aus, welche Art von fehlerhaftem Zustand enthalten ist. Die Aussage des
+  Lemmas~\ref{KommTestVerfeinLem} kann hier also nicht verwendet werden. Aus
+  der lokalen Erreichbarkeit eines Fehler-Zustandes in der Parallelkomposition
+  einer as"=Implementierung von $P_1$ mit $T$ lässt sich nur schließen, dass
+  $P_2$ den Test $T$ ebenfalls nicht as"=erfüllt. Dies kann aber aufgrund einer
+  as"=Implementierung von $P_2$ sein, die in Parallelkomposition mit $T$ einen
+  Fehler- oder stillen Zustand lokal erreicht. Analoges gilt auch für die
+  lokale Erreichbarkeit eines stillen Zustandes in der Komposition einer
+  as"=Implementierung von $P_1$ mit einem Test $T$.\\
   Es muss also für den ersten Punkt noch folgendes nachgewiesen werden:
   \begin{itemize}
     \item $\ET _1\subseteq\ET _2$,
@@ -510,21 +523,21 @@ in~\ref{StilleTestDef}.
     \item Fall 1 ($w=\varepsilon$): Es handelt sich um einen lokal erreichbaren
       Fehler-Zustand in $P'_1$. Für $T$ wird ein Transitionssystem verwendet,
       das nur aus dem Startzustand, einer must-Schleife für alle Inputs $x\in
-      I_U$ und einer must-Schlinge für $\tau$ besteht. Somit kann $P'_1$ die im
+      I_T$ und einer must-Schlinge für $\tau$ besteht. Somit kann $P'_1$ die im
       Prinzip gleichen Fehler-Zustände lokal erreichen wie $P'_1\|T$. Es gibt
       also einen lokal erreichbaren Zustand von $P'_1\|T$, der in $E_{P'_1\|T}$
       enthalten ist. Somit erfüllt $P_1$ nicht alle Tests $T$ und es muss somit
       auch mindestens eine as"=Implementierung $P'_2$ von $P_2$ geben, die den
       Test $T$ ebenfalls nicht erfüllt. Da eine Implementierung den Test $T$
       erfüllt, wenn die Parallelkomposition der Implementierung mit dem Test
-      fehler- und stillstand-frei ist, kann die nicht Erfüllung eines Testes sowohl
-      an einem Fehler- wie auch einem Stille-Zustand liegen. Bei dem lokal
-      erreichbaren \glqq fehlerhaften Zustand\grqq{} kann es sich nur um einen
-      Fehler handeln, da es in der Komposition mit $T$ keine Stille-Zustände
-      geben kann. Da $T$ keinen Fehler-Zustand und auch keine fehlenden
-      Input-Möglichkeiten enthält, kann der Fehler nur von $P'_2$ geerbt sein.
-      Somit muss in $P'_2$ ein Fehler-Zustand lokal erreichbar sein. Es gilt
-      also $\varepsilon \in \PrET _{P'_2} \subseteq \ET _{P'_2}$ und mit
+      fehler- und stillstand-frei ist, kann die nicht Erfüllung eines Testes
+      sowohl an einem Fehler- wie auch einem stillen Zustand liegen. Bei dem
+      lokal erreichbaren fehlerhaften Zustand kann es sich nur um einen Fehler
+      handeln, da es in der Komposition mit $T$ keine Stille geben kann. Da $T$
+      keinen Fehler-Zustand und auch keine fehlenden Input-Möglichkeiten
+      enthält, kann der Fehler nur von $P'_2$ geerbt sein. Somit muss in $P'_2$
+      ein Fehler-Zustand lokal erreichbar sein. Es gilt also $\varepsilon \in
+      \PrET _{P'_2} \subseteq \ET _{P'_2}$ und mit
       Proposition~\ref{KommSemProp} auch $\varepsilon\in\ET _2$.
     \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
       $x_{n+1}\in I$): Es wird der folgende Partner $T$ betrachtet (siehe auch
@@ -568,7 +581,7 @@ in~\ref{StilleTestDef}.
       \label{TohneEmitTau}
       \end{center}
       \end{figure}
-      Die Menge der Stille-Zustände des hier betrachteten $T$s ist leer. Da im
+      Die Menge der stillen Zustände des hier betrachteten $T$s ist leer. Da im
       Vergleich zum Transitionssystem in Abbildung~\ref{UohneE} nur die
       $\tau$-Schlingen ergänzt wurden und die Umbenennung der Mengen, ändert
       sich nichts an den Fällen 2a) und 2b) aus dem Beweis der selben Inklusion
@@ -576,7 +589,7 @@ in~\ref{StilleTestDef}.
       Fällen $\varepsilon\in\PrET (P'_1\|T)$ gilt, bleibt also analog zum
       Beweis des ersten Punktes des Lemmas aus dem vorangegangenen Kapitel.
       Durch die must-$\tau$-Schlingen wurde, genau wie im letzten Fall nur
-      erreicht, das in einer Parallelkomposition mit $T$ keine Stille-Zustände
+      erreicht, das in einer Parallelkomposition mit $T$ keine stillen Zustände
       möglich sind. Es kann also auch hier aus der lokalen Erreichbarkeit eines
       Fehler in $P'_1\|T$ auf die lokale Erreichbarkeit eines Fehler-Zustandes
       in $P'_2\|T$ für eine as"=Implementierung $P'_2$ von $P_2$ geschlossen
@@ -650,16 +663,16 @@ in~\ref{StilleTestDef}.
       \end{figure}
       Da durch die $\tau$-must-Schlingen an den Zuständen wie oben vermieden
       wird, dass es in einer Komposition mit $T$ und auch in $T$ selbst
-      Stille-Zustände gibt, verläuft der Rest des Beweises dieses Punktes analog
-      zum Beweis der selben Inklusionsrichtung von
+      stille Zustände gibt, verläuft der Rest des Beweises dieses Punktes
+      analog zum Beweis der selben Inklusions von
       Lemma~\ref{KommTestVerfeinLem}. Und somit gilt für alle Fälle (2a) bis
       2d)), dass $w$ in $\EL _2$ enthalten ist.
   \end{itemize}
 
   So bleibt nur noch der letzt Beweispunkt zu zeigen, d.h.\ die Inklusion $\QET
-  _1\subseteq\QET _2$. Die Inklusion kann jedoch, analog zum Beweis der
-  Inklusion der Fehler-gefluteten Sprache, noch weiter eingeschränkt werden. Da
-  bereits bekannt ist, dass $\ET _1\subseteq\ET _2$ gilt, muss nur noch $\StQT
+  _1\subseteq\QET _2$. Diese kann jedoch, analog zum Beweis der Inklusion der
+  Fehler-gefluteten Sprache, noch weiter eingeschränkt werden. Da bereits
+  bekannt ist, dass $\ET _1\subseteq\ET _2$ gilt, muss nur noch $\StQT
   _1\backslash\ET _1\subseteq\QET _2$ gezeigt werden.\\
   Es wird ein $w\in\StQT _1\backslash\ET _1$ gewählt und gezeigt, dass dieses
   auch in $\QET _2$ enthalten ist. Mit den Propositionen~\ref{KommSemProp}
@@ -668,8 +681,8 @@ in~\ref{StilleTestDef}.
   \backslash \ET _{P'_1}$ gilt.\\
   Durch die Wahl des $w$s wird vom Startzustand von $P'_1$ durch das Wort $w$
   ein stiller Zustand erreichbar. Dies hat nur Auswirkungen auf die
-  Parallelkomposition $P'_1\|T$, wenn in $T$ ebenfalls ein Stille-Zustand durch
-  $w$ erreichbar ist.\\
+  Parallelkomposition $P'_1\|T$, wenn in $T$ ebenfalls ein stiller Zustand
+  durch $w$ erreichbar ist.\\
   Das betrachtete $w$ hat also die Form $w=x_1\dots x_n\in\Sigma ^*$ mit $n\geq
   0$. Es wird der folgende Partner $T$ betrachtet (siehe auch
   Abbildung~\ref{TohneEmitI}):
@@ -707,7 +720,7 @@ in~\ref{StilleTestDef}.
             (q) edge [loop below] node {$x?\in I_T, \tau$} (q);
     \end{tikzpicture}
     \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$, $p_n$
-    ist der einzige Stille-Zustand}
+    ist der einzige stille Zustand}
   \label{TohneEmitI}
   \end{center}
   \end{figure}
@@ -716,70 +729,69 @@ in~\ref{StilleTestDef}.
   der Startzustand gleich dem stillen Zustand.\\
   Allgemein ist der Zustand $p_n$ aus $T$ der einzig stille Zustand in $T$. Es
   gilt wegen des ersten Punktes von Lemma~\ref{StilleZustLem}, dass auch in der
-  Parallelkomposition $P'_1\|T$ ein Stille-Zustand mit $w$ erreicht wird. Bei
+  Parallelkomposition $P'_1\|T$ ein stiller Zustand mit $w$ erreicht wird. Bei
   allen in $w$ befindlichen Aktionen handelt es sich um synchronisierte
   Aktionen und es gilt $I_T\cap I=\emptyset$. Daraus folgt $w\in O_{P'_1\|T}$
   und $w\in\StQT (P'_1\|T)$. Es kann also in der Parallelkomposition durch $w$
-  ein Stille-Zustand lokal erreicht werden. Da $w\notin\ET _{P'_1}$ gilt, kann
+  ein stiller Zustand lokal erreicht werden. Da $w\notin\ET _{P'_1}$ gilt, kann
   auf dem Weg, der mit $w$ im Transitionssystem $P'_1$ zurückgelegt wird, kein
   Fehler lokal erreicht werden. Es kann also weder von $P'_1$ noch von $T$ ein
   Fehler auf diesem Weg geerbt werden und durch den Aufbau von $T$ kann auch
   kein neuer Fehler in der Parallelkomposition der beiden Systeme entstehen. Da
-  ein Stille-Zustand in $P'_1\|T$ lokal erreichbar ist, muss auch in $P'_2\|T$
-  für eine as"=Implementierung $P'_2$ von $P_2$ ein \glqq fehlerhafter
-  Zustand\grqq{} lokal erreichbar sein. Es kann zunächst keine Aussage
-  getroffen werden, ob das $w$ in $P'_2\|T$ ausführbar ist und ob es sich bei
-  dem \glqq fehlerhaften Zustand\grqq{} um Stille oder einen Fehler handelt.
+  ein stiller Zustand in $P'_1\|T$ lokal erreichbar ist, muss auch in $P'_2\|T$
+  für eine as"=Implementierung $P'_2$ von $P_2$ ein fehlerhafter Zustand lokal
+  erreichbar sein. Es kann zunächst keine Aussage getroffen werden, ob das $w$
+  in $P'_2\|T$ ausführbar ist und ob es sich bei dem fehlerhaften Zustand um
+  Stille oder einen Fehler handelt.
   \begin{itemize}
     \item Fall a) ($\varepsilon\in\ET (P'_2\|T)$): Es handelt sich bei dem
-      lokal erreichbaren \glqq fehlerhaften Zustand\grqq{} um einen Fehler. Es
-      ist somit nicht relevant, ob $w$ ausführbar ist. Der Fehler-Zustand kann
-      sowohl von $P'_2$ geerbt sein, wie auch durch fehlende
-      Input"=must"=Transitionen als neuer Fehler in der Parallelkomposition
-      entstanden sein. Es gilt, dass bereits in $P'_2$ ein Präfix von $w$
-      in $\ET _{P'_2}$ enthalten ist, wegen des Beweises des ersten Punktes aus
-      Lemma~\ref{KommTestVerfeinLem} und da $T$ nur neue Fehler auf dem Trace
-      $w$ zulässt. Die Menge \ET{} ist unter \cont{} abgeschlossen, somit gilt
-      $w\in\ET _{P'_1}\subseteq\QET _{P'_2}$. Mit Proposition~\ref{StilleSemProp}
-      folgt daraus $w\in\QET _2$.
-    \item Fall b) (Stille-Zustand lokal erreichbar in $P'_2\|T$ und $\varepsilon
-      \notin \ET (P'_2\|T)$): Da in $T$ nur durch $w$ ein stiller Zustand
-      erreicht werden kann, muss es sich bei dem lokal erreichbaren
-      Stille-Zustand in $P'_2\|T$ um einen handeln, der mit $w$ erreicht werden
-      kann. Mit Lemma~\ref{StilleZustLem} kann somit gefolgert werden, dass auch
-      in $P'_2$ ein Stille-Zustand mit $w$ erreichbar sein muss. Es gilt $w\in
-      \StQT _{P'_2}\subseteq\QET _{P'_2}\subseteq\QET _2$, aufgrund von
+      lokal erreichbaren fehlerhaften Zustand um einen Fehler. Es ist somit
+      nicht relevant, ob $w$ ausführbar ist. Der Fehler-Zustand kann sowohl von
+      $P'_2$ geerbt sein, wie auch durch fehlende Input"=must"=Transitionen als
+      neuer Fehler in der Parallelkomposition entstanden sein. Es gilt, dass in
+      $P'_2$ ein Präfix von $w$ in $\ET _{P'_2}$ enthalten ist, wegen des
+      Beweises des ersten Punktes aus Lemma~\ref{KommTestVerfeinLem} und da $T$
+      nur neue Fehler auf dem Trace $w$ zulässt. Die Menge \ET{} ist unter
+      \cont{} abgeschlossen, somit gilt $w\in\ET _{P'_1}\subseteq\QET _{P'_2}$.
+      Mit Proposition~\ref{StilleSemProp} folgt daraus $w\in\QET _2$.
+    \item Fall b) (stiller Zustand lokal erreichbar in $P'_2\|T$ und
+      $\varepsilon \notin \ET (P'_2\|T)$): Da in $T$ nur durch $w$ ein stiller
+      Zustand erreicht werden kann, muss es sich bei dem lokal erreichbaren
+      stillen Zustand in $P'_2\|T$ um einen handeln, der mit $w$ erreicht
+      werden kann. Mit Lemma~\ref{StilleZustLem} kann somit gefolgert werden,
+      dass auch in $P'_2$ ein stiller Zustand mit $w$ erreichbar sein muss. Es
+      gilt $w\in \StQT _{P'_2}\subseteq\QET _{P'_2}\subseteq\QET _2$, wegen
       Proposition~\ref{StilleSemProp}.
   \end{itemize}
 \end{proof}
 
 \begin{Satz}
   \label{StilleTestVerfSatz}
-  Falls $P_1\QRel P_2$ gilt folgt draus auch, dass $P_1$ $P_2$ Stille-verfeinert.
+  Falls $P_1\QRel P_2$ gilt folgt draus auch, dass $P_1$ $P_2$
+  Stille-verfeinert.
 \end{Satz}
 \begin{proof}
   Nach Definition gilt $w\in\QET (P)$ mit $w\in O(P)^*$ genau dann, wenn in $P$
-  ein Stille-Zustand oder ein Fehler-Zustand lokal erreichbar ist. $P_1\QRel P_2$
-  impliziert, dass $w\in\QET _2$ gilt, wenn $w\in\QET _1$ gilt. Somit ist ein
-  Stille- oder Fehler-Zustand nur dann in $P_1$ lokal erreichbar, wenn auch ein
-  Stille- oder Fehler-Zustand in $P_2$ lokal erreichbar ist. Daraus folgt, dass
-  es as"=Implementierungen $P'_1$ und $P'_2$ von $P_1$ bzw.\ $P_2$ gibt, die
-  analoge \glqq fehlerhafte Zustände\grqq{} lokal erreichen
+  ein stiller Zustand oder ein Fehler-Zustand lokal erreichbar ist. $P_1\QRel
+  P_2$ impliziert, dass $w\in\QET _2$ gilt, wenn $w\in\QET _1$ gilt. Somit ist
+  ein stiller- oder Fehler-Zustand nur dann in $P_1$ lokal erreichbar, wenn
+  auch ein stiller- oder Fehler-Zustand in $P_2$ lokal erreichbar ist. Daraus
+  folgt, dass es as"=Implementierungen $P'_1$ und $P'_2$ von $P_1$ bzw.\ $P_2$
+  gibt, die analoge fehlerhafte Zustände lokal erreichen
   wegen~\ref{lokaleStilleErrKor}. Es gilt dann auch, dass $P'_j\|T$ einen lokal
   erreichbaren Fehler oder lokal erreichbare Stille hat, wenn $P'_j$ dies hat,
-  für $j\in\{1,2\}$ und einen Test $T$. Falls $P_1$ einen \glqq fehlerhaften
-  Zustand\grqq{} lokal erreicht, dann zeigt sich auch in einer
-  as"=Implementierung von $P_1$ dieser durch einen Fehler-Zustand oder einen
-  Stille-Zustand. In der Parallelkomposition der as"=Implementierung mit einem
-  Test $T$ tritt der \glqq fehlerhafte Zustand\grqq{} auf. Falls es sich um
-  einen Fehler handelt, dann tritt mit allen Tests $T$ ein Fehler in der
-  Parallelkomposition auf. Bei Stille hingegen zeigt sich das \glqq
-  Fehlverhalten\grqq{} nur, mit Tests $T$, die einen analogen Stille-Zustand
-  enthalten. Mit der Relation \QRel{} gibt es auch in $P_2$ einen lokal
-  erreichbaren \glqq fehlerhaften Zustand\grqq{}, wenn es in $P_1$ einen
-  solchen gibt. Es tritt dann auch in einer as"=Implementierung Stille oder ein
-  Fehler auf, dies zeigt sich dann auch in der Parallelkomposition mit Tests
-  $T$. Im Fall von Fehlern, zeigt sich sowohl in der Parallelkomposition einer
+  für $j\in\{1,2\}$ und einen Test $T$. Falls $P_1$ einen fehlerhaften Zustand
+  lokal erreicht, dann zeigt sich auch in einer as"=Implementierung von $P_1$
+  dieser durch einen Fehler-Zustand oder einen stillen Zustand. In der
+  Parallelkomposition der as"=Implementierung mit einem Test $T$ tritt der
+  fehlerhafte Zustand auf. Falls es sich um einen Fehler handelt, dann tritt
+  mit allen Tests $T$ ein Fehler in der Parallelkomposition auf. Bei Stille
+  hingegen zeigt sich das Fehlverhalten nur, mit Tests $T$, die einen analogen
+  stillen Zustand enthalten. Mit der Relation \QRel{} gibt es auch in $P_2$
+  einen lokal erreichbaren fehlerhaften Zustand, wenn es in $P_1$ einen solchen
+  gibt. Es tritt dann auch in einer as"=Implementierung Stille oder ein Fehler
+  auf, dies zeigt sich dann auch in der Parallelkomposition mit Tests $T$. Im
+  Fall von Fehlern, zeigt sich sowohl in der Parallelkomposition einer
   as"=Implementierung von $P_1$ wie auch einer as"=Implementierung von $P_2$
   mit beliebigen Tests $T$, der Fehler, da \ERel{} gilt und somit die
   Argumentationen aus Satz~\ref{KommTestVerfSatz} anwendbar sind. Stille tritt
@@ -838,18 +850,18 @@ dargestellt.
   ^*, \exists p_1, p_2, \dots , p_n, \exists \alpha _1, \alpha _2, \dots
   ,\alpha _n: \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha _n \land
   p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P
-  p_n \in Qui _P$. Aufgrund von~\ref{wSimDef}~4. bzw.~5. gibt es einen analogen
-  Trace in $Q$, falls ein $q_j$ für $0\leq j \leq n$ in $E_Q$ angetroffen wird.
-  Es gilt $w\in\StET _Q\subseteq\ET _Q\subseteq\QET _Q$, falls ein
-  Fehler-Zustand in $Q$ auf einem Präfix-Trace von $w$ auftritt. Im folgenden
-  wird davon ausgegangen, das $w$ in $Q$ ohne das erreichen eines
+  p_n \in Qui _P$. Aufgrund von~\ref{wSimDef}~4.\ bzw.~5.\ gibt es einen
+  analogen Trace in $Q$, falls kein $q_j$ für $0\leq j \leq n$ in $E_Q$
+  angetroffen wird. Es gilt $w\in\StET _Q\subseteq\ET _Q\subseteq\QET _Q$,
+  falls ein Fehler-Zustand in $Q$ auf einem Präfix-Trace von $w$ auftritt. Im
+  folgenden wird davon ausgegangen, das $w$ in $Q$ ohne das erreichen eines
   Fehler"=Zustandes ausführbar ist. Es gibt also einen Trace der Form $q_0
   \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots
   q_{n-1} \weakmay[\widehat{\alpha _n}]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$
-  für alle $j$ aus $\{0,1,\dots n\}$. $p_n$ ist für $P$ ein Stille-Zustand, es
-  gilt also für alle $\alpha \in (O\cup \{\tau\})$ $p_n \nmust[\alpha]_P$. Da
+  für alle $j$ aus $\{0,1,\dots n\}$. $p_n$ ist für $P$ ein stiller Zustand, es
+  gilt also für alle $\omega \in (O\cup \{\tau\})$ $p_n \nmust[\omega]_P$. Da
   $\mathcal{R}$ eine schwache as"=Verfeinerungs"=Relation ist, muss
-  wegen~\ref{wSimDef}~3. auch $q_n \nmust[\alpha]_Q$ gelten für alle $\alpha
+  wegen~\ref{wSimDef}~3.\ auch $q_n \nmust[\omega]_Q$ gelten für alle $\omega
   \in (O\cup \{\tau\})$. $q_n$ ist also auch ein stiller Zustand. Somit ist $w$
   in $\StQT _Q\subseteq\QET _Q$ enthalten.
 
@@ -860,24 +872,22 @@ dargestellt.
 
   $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$:\\
   Wie im Gegenbeispiel für die analoge Implikation aus der Relation \ERel{}
-  beruht der Grund für die nicht Gültigkeit hier auf darauf, dass Simulationen
+  beruht der Grund für die nicht Gültigkeit hier auch darauf, dass Simulationen
   strenger sind als Sprach Inklusionen. Jedoch funktioniert hier nicht das
-  gleiche Gegenbeispiel, da es zu Problemen mit den Stille-Traces führen würde.
-  Um diese zu vermeiden, wird wieder die Technik angewendet an alle Zustände
-  eine $\tau$-Schleife anzufügen. Das daraus entstehende Gegenbeispiel ist in
-  Abbildung~\ref{WasQuiGegenBsp} dargestellt. Die Menge der Inputs $I$ der
-  beiden \MEIO{}s ist leer. Es gilt also $\ET _P = \ET _Q = \QET _P = \QET _Q =
-  \emptyset$ und $\{\varepsilon\} = L(P) \subset L(Q) = \{\varepsilon , o\}$.\\
+  gleiche Gegenbeispiel wie im letzten Kapitel, da es zu Problemen mit den
+  Stille-Traces führen würde. Um diese zu vermeiden, wird wieder die Technik
+  angewendet an alle Zustände eine $\tau$-Schleife anzufügen. Das daraus
+  entstehende Gegenbeispiel ist in Abbildung~\ref{WasQuiGegenBsp} dargestellt.
+  Die Menge der Inputs $I$ der beiden \MEIO{}s ist leer. Es gilt also $\ET _P =
+  \ET _Q = \QET _P = \QET _Q = \emptyset$ und $\{\varepsilon\} = L(P) \subset
+  L(Q) = \{\varepsilon , o\}$.\\
   Angenommen es gib eine schwache as"=Verfeinerungs"=Relation $\mathcal{R}$
   zwischen $P$ und $Q$. Dann stehen die Startzustände in dieser Relation, es
   gilt also $p_0 \mathcal{R} q_0$. Da es keine Fehler"=Zustände in $P$ gibt,
-  ist~\ref{wSimDef}~1.\ erfüllt. Die $\tau$"=must"=Schlingen der
-  Startzustände werden bezüglich der Punkt 3.\ und 5.\ der
-  Definition~\ref{wSimDef} gematched. Der 2. Punkt von~\ref{wSimDef} stellt
-  keine Forderungen an die Relation $\mathcal{R}$. Die Transition $q_0
-  \must[o]_Q q_1$ fordert durch~\ref{wSimDef}~3.\ ihre Verfeinerung in $P$. Da
-  es jedoch keine mit $o$ beschriftete Transition in $P$ gibt, kann
-  $\mathcal{R}$ keine as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ sein.
+  ist~\ref{wSimDef}~1.\ erfüllt. Die Transition $q_0 \must[o]_Q q_1$ fordert
+  durch~\ref{wSimDef}~3.\ ihre Verfeinerung in $P$. Da es jedoch keine mit $o$
+  beschriftete Transition in $P$ gibt, kann $\mathcal{R}$ keine
+  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ sein.
 
   \begin{figure}[htbp]
     \begin{center}
@@ -927,7 +937,8 @@ dargestellt.
         ;
 
       \end{tikzpicture}
-      \caption{Gegenbeispiel zu $\QRel \Leftarrow \ERel$}
+      \caption{Gegenbeispiel zu $\QRel \Leftarrow \ERel$ mit $I_P = I_Q =
+      \emptyset$}
       \label{QuiEGegenBsp}
     \end{center}
   \end{figure}
