@@ -32,8 +32,8 @@ Implementierungen entsprechen den z.B.\ in~\cite{Schinko2016BA} behandelten
 \EIO{}s.\\
 Must-Transitionen sind Transitionen, die von einer Verfeinerung implementiert
 werden müssen. Die may-Transitionen sind hingegen die zulässigen Transitionen
-für eine Verfeinerung. Alle nicht vorhandenen Transitionen dürfen auch in
-keiner Verfeinerung einer Spezifikation in \MEIO{}-Form auftauchen.\\
+für eine Verfeinerung. Alle nicht vorhandenen must- und may-Transitionen dürfen
+auch in keiner Verfeinerung einer Spezifikation in \MEIO{}-Form auftauchen.\\
 \MEIO{}s  werden in dieser Arbeit durch ihre Zustandsmenge (z.B.\ $P$)
 identifiziert und falls notwendig werden damit auch die Komponenten indiziert
 (z.B.\ $I_P$ anstatt $I$). Falls das \MEIO{} selbst bereits einen Index hat
@@ -177,11 +177,11 @@ auf LTS mit einer as"=Verfeinerungs"=Relation zwischen zwei Systemen deren
 Auf den \EIO{}, die z.B.\ in~\cite{Schinko2016BA} betrachtet wurden, lässt die
 as"=Verfeinerungs"=Relation zu, dass es in einer Verfeinerung möglicherweise
 weniger Fehler gibt und zusätzliches Verhalten, dass die Spezifikation nicht
-hatte kann auftreten. Die \EIO{} entsprechen Implementierungen von \MEIO{}s, es
-ist also möglich, eine Implementierung mit Fehler durch eine andere as zu
-verfeinern, die keine Fehler enthält, aber potentiell zusätzliches Verhalten
-aufweist. Falls eine Implementierung bereits fehler-frei ist, entspricht sie
-einem LTS und kann somit nur noch durch äquivalente Implementierungen \glqq
+hatte. Die \EIO{}s entsprechen Implementierungen von \MEIO{}s, es ist also
+möglich, eine Implementierung mit Fehler durch eine andere as zu verfeinern,
+die keine Fehler enthält, aber potentiell zusätzliches Verhalten aufweist.
+Falls eine Implementierung bereits frei von Fehler"=Zuständen ist, entspricht
+sie einem LTS und kann somit nur noch durch äquivalente Implementierungen \glqq
 verfeinert\grqq{} werden.
 
 \begin{Def}[schwache alternierende Simulation]
@@ -262,11 +262,11 @@ Wort und $\mathfrak{P}(M)$ die Potenzmenge der Menge $M$ bezeichnet.
 
 Somit entspricht die Sprache eines \MEIO{}s, das eine Implementierung ist der
 Definition aus~\cite{Schinko2016BA} für \EIO{}s. Jedoch muss die Sprache einer
-as"=Verfeinerung eine \MEIO{}s nicht mehr Teilmenge der Sprache des
+as"=Verfeinerung eines \MEIO{}s nicht mehr Teilmenge der Sprache des
 \MEIO{}s sein, da Definition~\ref{SimDef} beliebiges Verhalten nach einem
-Fehler-Zustand in dem zu verfeinernden \MEIO{} zulässt. Falls jedoch der
-\MEIO{} bereits fehler-frei ist, ist seine Sprache die Vereinigung der Sprachen
-all seine möglichen as"=Implementierungen.\\
+Fehler-Zustand in dem zu verfeinernden \MEIO{} zulässt. Falls jedoch das
+\MEIO{} bereits frei von Fehler"=Zuständen ist, ist seine Sprache die
+Vereinigung der Sprachen all seine möglichen as"=Implementierungen.\\
 Von der Sprache einer as"=Verfeinerung eines \MEIO{}s kann man keine
 Rückschlüsse mehr auf die ursprüngliche Sprache ziehen, da man nicht weiß,
 welche Fehler-Zustände in der Verfeinerung übernommen wurden und welche als
