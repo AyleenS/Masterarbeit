@@ -1,0 +1,272 @@
+\section{Testing-Ansatz}
+
+Der gröbste Präkongruenz-Ansatz aus dem letzten Teil stützt sich auf die
+Parallelkomposition von \MEIO{}s, die wie bereits
+in~\ref{schwVerfParallelLem}~1.\ erwähnt auch anders gestaltet hätte werden
+können. Spezielle bei neuen Fehler ist dort gezeigt worden, dass es zu einem
+ungewöhnlichen Verfeinerungs-Verhalten kommen kann, das möglicherweise gar
+nicht so gewollt ist. Deshalb ist es sinnvoll sich nur auf die Definition der
+Parallelkomposition von \EIO{} zu stützen, die hier für die Implementierungen
+gilt. Dies führt zu dem in diesem Teil behandelten Testing-Ansatz. Dieser lässt
+jedoch keine Aussage zu gröbste Präkongruenz zu, wie das im letzen Teil möglich
+war. Der Test ersetzt die Basisrelation als grundlegende Definition für den
+Ansatz. Die Präkongruenz, die sich ergibt, ist jedoch die selbe.\\
+Der Testing-Ansatz stützt sich auf das Vorgehen, das
+in~\cite{Vogler2015FailSem} angewendet wurde. Jedoch sind Tests dort Tupel aus
+einer Implementierung und einer Menge an Aktionen, über denen synchronisiert
+werden soll. Die \MEIO{}s, die hier komponiert werden bringen die Menge
+$\Synch$ an Aktionen, die synchronisiert werden bereits mit. Es wird im
+Gegensatz zu~\cite{Vogler2015FailSem} mit Inputs und Outputs gearbeitet und
+dadurch scheint der Ansatz die gemeinsamen Aktionen zu synchronisieren
+natürlicher, wie eine Menge an Aktionen beim Test vorzugeben.\\
+Die Definition von lokaler Erreichbarkeit eines Fehler-Zustandes soll aus dem
+Erweiterungs"=Ansatz übernommen werden. Es wird also trotzdem noch
+optimistisch davon ausgegangen, dass Fehler erst zu Problemen führen, wenn eine
+hilfreiche Umgebung dies nicht mehr verhindern kann.
+
+\begin{Def}[Test und Verfeinerung für Kommunikationsfehler]
+  \label{KommTestDef}
+  Ein \emph{Test} $T$ ist eine Implementierung. Ein \MEIO{} $P$
+  \emph{as-erfüllt} einen Kommunikationsfehler-Test $T$, falls $S\|T$
+  fehler-frei ist für alle $S\in \asimp (P)$. Es wird dann $P \EsatAs T$
+  geschrieben. Die Parallelkomposition $S\|T$ ist \emph{fehler-frei}, wenn kein
+  Fehler lokal erreichbar ist.\\
+  Ein \MEIO{} $P$ \emph{Fehler-verfeinert} $P'$, falls für alle Tests $T$:
+  $P'\EsatAs T \Rightarrow P\EsatAs T$.
+\end{Def}
+
+Abgesehen von Korollar~\ref{lokalFehlerErrKor}~(ii) erweisen sich
+Definition~\ref{KommTracesDef} bis Korollar~\ref{KommPraekonKor} auch hier als
+nützlich.\\
+Die Basisrelation aus dem gröbsten Präkongruenz-Ansatz gibt es in diesem Teil
+nicht, somit kann das Lemma~\ref{KommVerfeinLem} nicht in dieser Art formuliert
+werden. Jedoch kann hier mit Tests gearbeitet werden und unter deren
+zuhilfenahme ein ähnliches Lemma formuliert werden.
+
+\begin{Lem}[Testing-Verfeinerung mit Kommunikationsfehlern]
+  \label{KommTestVerfeinLem}
+  Gegeben sind zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur. Wenn
+  für alle Tests $T$, die Partner von $P_1$ bzw. $P_2$ sind, $P_2\EsatAs T
+  \Rightarrow P_1\EsatAs T$ gilt, dann folgt daraus die Gültigkeit von $P_1\ERel
+  P_2$.
+\end{Lem}
+\begin{proof}
+  Da $P_1$ und $P_2$ die gleichen Signaturen haben wird $I:=I_1=I_2$ und $O:=
+  O_1=O_2$ definiert. Für jeden Test Partner $T$ gilt $I_T=O$ und $O_T=I$.\\
+  Um $P_1\ERel P_2$ zu zeigen, wird nachgeprüft, ob folgendes gilt:
+  \begin{itemize}
+    \item $\ET _1\subseteq \ET _2$,
+    \item $\EL _1\subseteq \EL _2$.
+  \end{itemize}
+  Für ein gewähltes präfix-minimales Element $w\in\ET _1$ wird gezeigt, dass
+  dies $w$ oder eines seiner Präfixe in $\ET _2$ enthalten ist. Dies ist
+  möglich, da die beiden Mengen $\ET _1$ und $\ET _2$ unter \cont{}
+  abgeschlossen sind.\\
+  Mit Proposition~\ref{KommSemProp} folgt aus $w\in\ET _1$, dass es auch eine
+  as"=Implementierung $P'_1$ von $P_1$ geben muss, für die $w$ ebenfalls in
+  $\ET _{P'_1}$ enthalten ist.
+  \begin{itemize}
+    \item Fall 1 ($w=\varepsilon$): Es ist ein Fehler-Zustand in $P'_1$ lokal
+      erreichbar. Für $T$ wird ein Transitionssystem verwendet, das nur aus dem
+      Startzustand und einer must"=Schleife für alle Inputs $x\in I_T$ besteht.
+      Somit kann $P'_1$ die im Prinzip gleichen Fehler-Zustände lokal
+      erreichen wie $P'_1\|T$. $P'_1$ ist in Parallelkomposition mit $T$ nicht
+      fehler-frei somit gilt $P_1\EsatAs T$ nicht. Es darf also auch $P_2$ den
+      Test $T$ nicht as"=erfüllen, wegen der Implikation $P_2\EsatAs T
+      \Rightarrow P_1\EsatAs T$. Damit $P_2$ $T$ nicht as"=erfüllt muss es eine
+      as"=Implementierungen $P'_2$ geben, die in Parallelkomposition mit $T$ zu
+      einem nicht fehler-freien System führt. Es muss also in $P'_2\|T$ ein
+      Fehler lokal erreichbar sein. Durch die Definition von $T$ kann dieser
+      Fehler nur von $P'_2$ geerbt sein. In $P'_2$ kann dieser Fehler-Zustand
+      nur durch interen Aktionen und Outputs erreichbar sein, da $T$ keine
+      Outputs besitzt, die man mit Inputs aus $P'_2$ synchronisieren könnte und
+      unsynchronisierte Aktionen sind in einer Parallelkomposition von Partner
+      nicht möglich. Somit gilt $\varepsilon\in \PrET _{P'_2}\subseteq \ET
+      _{P'_2}$. Mit Proposition~\ref{KommSemProp} folgt daraus $\varepsilon\in
+      \ET _2$.
+    \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
+      $x_{n+1}\in I=O_T$): Es wird der folgende Partner $T$ betrachtet (dieser
+      entspricht bis auf die Benennungen der Mengen dem Transitionssystem $U$
+      aus Abbildung~\ref{UohneE}):
+      \begin{itemize}
+        \item $T=\{p_0,p_1,\dots ,p_{n+1}\}$,
+        \item $p_{0T}=p_0$,
+        \item $\begin{aligned}[t]
+            \may _T = \must _T&=\{(p_j,x_{j+1},p_{j+1})\mid  0\leq j\leq n\}\\
+            &\cup\{(p_j,x,p_{n+1})\mid  x\in I_T\backslash\{x_{j+1}\}, 0\leq
+            j\leq n\}\\
+            &\cup\{(p_{n+1},x,p_{n+1})\mid  x\in I_T\},
+        \end{aligned}$
+        \item $E_T=\emptyset$.
+      \end{itemize}
+      Für $w$ können nun zwei Fälle unterschieden werden, für die beide
+      $\varepsilon\in\PrET (P'_1\|T)$ folgen wird.
+      \begin{itemize}
+        \item Fall 2a) ($w\in\MIT _{P'_1}$): In $P'_1\|T$ erhält man
+          $(p'_{01},p_0) \lweakmay[x_1\dots x_n]_{P'_1\|T} (p',p_n)$ mit $p'
+          \nmust[x_{n+1}]_{P'_1}$ und $p_n\must[x_{n+1}]_T$. Deshalb gilt
+          $(p',p_n)\in E_{P'_1\|T}$. Da alle Aktionen aus $w$ bis auf $x_{n+1}$
+          synchronisiert werden und $I\cap I_T=\emptyset$, gilt $x_1,\dots ,
+          x_n\in O_{P'_1\|T}$. Es folgt also $\varepsilon\in \PrET (P'_1\|T)$.
+        \item Fall 2b) ($w\in\PrET _{P'_1}$): In der Parallelkomposition
+          $P'_1\|T$ erhält man die Transitionsfolge $(p_{01},p_0)
+          \weakmay[w]_{P'_1\|T} (p'',p_{n+1}) \weakmay[u]_{P'_1\|T}
+          (p',p_{n+1})$ für $u\in O^*$ und $p'\in E_{P'_1}$. Daraus folgt
+          $(p',p_{n+1})\in E_{P'_1\|T}$ und somit $wu\in\StET (P'_1\|T)$. Da
+          alle Aktionen in $w$ synchronisiert werden und $I\cap I_T =
+          \emptyset$, gilt $x_1,\dots , x_n, x_{n+1}\in O_{P'_1\|T}$ und, da
+          $u\in O^*$, folgt $u\in O^*_{P'_1\|T}$. Somit ergibt sich
+          $\varepsilon \in \PrET (P'_1\|T)$.
+      \end{itemize}
+      Da $\varepsilon\in\PrET (P'_1\|T)$ gilt, kann durch $P_2\EsatAs T
+      \Rightarrow P_1\EsatAs T$ geschlossen werden, dass auch $P_2\EsatAs T$
+      nicht gelten kann. Die Relation gilt für $P_2$ nicht, da es eine
+      as"=Implementierung $P'_2$ von $P_2$ gibt, so dass $P'_2\|T$ nicht
+      fehler-frei ist.\\
+      Der lokal erreichbar Fehler in $P'_2\|T$ kann geerbt oder neu sein.
+      \begin{itemize}
+        \item Fall 2i) (neuer Fehler): Da jeder Zustand von $T$ alle Inputs
+          $x\in O=I_T$ zulässt, muss ein lokal erreichbarer Fehler-Zustand der
+          Form sein, dass ein Outputs $a\in O_T$ von $T$ möglich ist, der nicht
+          mit einem passenden Input aus $P'_2$ synchronisiert werden werden
+          kann. Durch die Konstruktion von $T$ sind in $p_{n+1}$ keine Outputs
+          möglich. Ein neuer Fehler muss also die Form $(p',p_i)$ haben mit
+          $i\leq n$, $p'\nmust[x_{i+1}]_{P'_2}$ und $x_{i+1}\in O_T=I$. Durch
+          Projektion erhält man dann $p_{02} \lweakmay[x_1\dots x_i]_{P'_2} p'
+          \nmust[x_{i+1}]_{P'_2}$ und damit gilt $x_1\dots x_{i+1}\in\MIT
+          _{P'_2} \subseteq \ET _{P'_2}$. Es ist also ein Präfix von $w$ in
+          $\ET _{P'_2}$ enthalten und mit Proposition~\ref{KommSemProp} auch in
+          $\ET _2$.
+        \item Fall 2ii) (geerbter Fehler): $T$ hat $x_1\dots x_i u$ mit $u\in
+          I^*_T =O^*$ ausgeführt und ebenso hat $P'_2$ dieses Wort
+          abgearbeitet. Durch dies hat $P'_2$ einen Zustand in $E _{P'_2}$
+          erreicht, da von $T$ keine Fehler geerbt werden können. Es gilt dann
+          $\prune (x_1\dots x_iu) = \prune (x_1\dots x_i)\in\PrET _{P'_2}
+          \subseteq \ET _{P'_2}$. Da $x_1\dots x_i$ ein Präfix von $w$ ist,
+          führt in diesem Fall eine Verlängerung um lokale Aktionen eines
+          Präfix von $w$ zu einem Fehler-Zustand. Da \ET{} der Menge aller
+          Verlängerungen von gekürzten Fehler-Traces entspricht, ist $x_1\dots
+          x_i$ in $\ET _{P'_2}$ enthalten und somit ist mit
+          Proposition~\ref{KommSemProp} ein Präfix von $w$ in $\ET _2$
+          enthalten.
+      \end{itemize}
+  \end{itemize}
+  Um die andere Inklusion zu beweisen, reich es aufgrund der ersten Inklusion
+  und der Definition von \EL{} aus zu zeigen, dass $L_1\backslash \ET
+  _1\subseteq \EL _2$ gilt.\\
+  Es wird dafür ein beliebiges $w\in L_1\backslash \ET _1$ gewählt und gezeigt,
+  dass es in $\EL _2$ enthalten ist. Das $w$ ist wegen der
+  Propositionen~\ref{LImpProp} und~\ref{KommSemProp} auch für eine
+  as"=Implementierung $P'_1$ von $P_1$ in $L_{P'_1}\backslash \ET _{P'_1}$
+  enthalten.
+  \begin{itemize}
+    \item Fall 1 ($w=\varepsilon$): Da $\varepsilon$ immer in $\EL _2$
+      enthalten ist, muss hier nichts gezeigt werden.
+    \item Fall 2 ($w=x_1\dots x_n$ mit $n\geq 1$): Es wird ein Partner $T$ wie
+      folgt konstruiert ($T$ entspricht dabei $U$ aus Abbildung~\ref{UmitE} bis
+      auf die Benennung der Mengen):
+      \begin{itemize}
+        \item $T=\{p_0,p_1,\dots ,p_n,p\}$,
+        \item $p_{0T}=p_0$,
+        \item $\begin{aligned}[t]
+            \may _T = \must _T&=\{(p_j,x_{j+1},p_{j+1})\mid 0\leq j< n\}\\
+            &\cup\{(p_j,x,p)\mid x\in I_T\backslash\{x_{j+1}\},0\leq j< n\}\\
+            &\cup\{(p,x,p)\mid x\in I_T\},
+        \end{aligned}$
+        \item $E_T=\{p_n\}$.
+      \end{itemize}
+      Da $p_{01} \weakmay[w]_{P'_1} p'$ gilt, kann man schließen, dass
+      $P'_1\|T$ ein lokal erreichbaren geerbten Fehler hat. Es muss also auch
+      eine as"=Implementierung $P'_2$ von $P_2$ geben, für die $P'_2\|T$ einen
+      lokal erreichbaren Fehler-Zustand hat.
+      \begin{itemize}
+        \item Fall 2a) (neuer Fehler aufgrund von $x_i\in O_T$ und $p_{02}
+          \lweakmay[x_1\dots x_{i-1}]_{P'_2}p''\nmust[x_i]_{P'_2}$): Es gilt
+          $x_1\dots x_i\in\MIT _{P'_2}$ und somit $w\in\EL _{P'_2}$. Anzumerken
+          ist, dass es nur auf diesem Weg Outputs von $T$ möglich sind, deshalb
+          gibt es keine anderen Outputs von $T$, die zu einem neuen Fehler
+          führen können. Es gilt $w\in\EL _2$ wegen
+          Proposition~\ref{KommSemProp}.
+        \item Fall 2b) (neuer Fehler aufgrund von $a\in O=I_T$): Der einzige
+          Zustand, in dem $T$ nicht alle Inputs erlaubt sind, ist $p_n$, der
+          bereits ein Fehler-Zustand ist. Da in diesem Fall der Fehler"=Zustand
+          in $P'_2\|T$ erreichbar ist, besitzt der komponierte \MEIO{} einen
+          geerbten Fehler und es gilt $w\in L_{P'_2}\subseteq \EL _2$, wegen
+          dem folgenden Fall 2c).
+        \item Fall 2c) (geerbter Fehler von $T$): Da $p_n$ der einzige
+          Fehler-Zustand in $T$ ist und alle Aktionen synchronisiert sind, ist
+          dies nur möglich, wenn $p_{02} \lweakmay[x_1\dots x_n]_{P'_2}$ gilt.
+          In diesem Fall ist $w\in L_{P'_2}\subseteq \EL _{P'_2}$. Daraus
+          folgt mit Proposition~\ref{KommSemProp} $w\in\EL _2$.
+        \item Fall 2d) (geerbter Fehler von $P'_2$): Es gilt $p_{02}
+          \lweakmay[x_1\dots x_n]_{P'_2} p'\in E_{P'_2}$ für ein $i\geq 0$ und
+          $u\in O^*$. Somit ist $x_1\dots x_i u\in\StET _{P'_2}$ und damit
+          $\prune (x_1\dots x_iu) =\prune (x_1\dots x_i)\in\PrET
+          _{P'_2}\subseteq \EL _{P'_2}$. Mit Hilfe von
+          Proposition~\ref{KommSemProp} folgt $w\in\EL _{P'_2}\subseteq \EL
+          _2$.
+      \end{itemize}
+  \end{itemize}
+\end{proof}
+
+\begin{Satz}
+  \label{KommTestVerfSatz}
+  Falls $P_1\ERel P_2$ gilt folgt draus, dass $P_1$ $P_2$
+  Fehler-verfeinert.
+\end{Satz}
+\begin{proof}
+  Nach Definition gilt genau dann, wenn $\varepsilon\in \ET (P)$, ist ein
+  Fehler-Zustand lokal erreichbar in $P$. $P_1\ERel P_2$ impliziert, dass
+  $\varepsilon\in\ET _2$ gilt, wenn $\varepsilon\in\ET _1$. Somit ist ein
+  Fehler-Zustand in $P_1$ nur dann lokal erreichbar, wenn dieser auch in $P_2$
+  lokal erreichbar ist. Aufgrund von Proposition~\ref{lokalFehlerErrKor}~(i)
+  gibt es dann auch entsprechende as"=Implementierungen $P'_1$ und $P'_2$ für
+  $P_1$ bzw. $P_2$, die ebenfalls Fehler-Zustände lokal erreichen können, wenn
+  dies in $P_1$ bzw. $P_2$ möglich ist. Für alle Tests $T$ gilt, dass $P'_j\|T$
+  für $j\in\{1,2\}$ einen lokal erreichbaren Fehler hat, wenn $P'_j$ einen
+  solchen hat. Dies Schlussfolgerung ist möglich, da
+  Satz~\ref{KommFehlerSemSatz}~1.\ aussagt, dass die Parallelkomposition von
+  einem Fehler-Trace aus $\ET _{P'_j}$ mit einem Wort aus $\EL _T$ in den
+  Fehler-Traces von $\ET _{P'_j\|T}$ enthalten ist. $\varepsilon$ ist ein
+  Element von $\ET _{P'_j}$, da ein Fehler lokal erreichbar ist und
+  $\varepsilon \in \EL _T$ gilt  für alle Test $T$ und somit folgt $\varepsilon
+  \in \ET _{P'_j\|T}$. Dies impliziert die lokal Fehler Erreichbarkeit in
+  $P'_j\|T$. Falls also $P_1$ einen lokal erreichbaren Fehler-Zustand enthält,
+  dann zeigt sich dies Verhalten auch in einer as"=Implementierungen und
+  ebenfalls in der Parallelkomposition der as"=Implementierung mit allen Tests
+  $T$. Aus einem lokal erreichbaren Fehler in $P_1$ folgt auch ein lokal
+  erreichbarer Fehler-Zustand in $P_2$ und somit auch ein lokal erreichbarer
+  Fehler-Zustand in der Parallelkomposition einer as"=Implementierung von $P_2$
+  mit allen Tests $T$. Aus $P_1\ERel P_2$ folgt also die Implikation $\neg P_1
+  \EsatAs T \Rightarrow \neg P_2 \EsatAs T$ für alle Test $T$. Wenn man die
+  Negationen entfernt, ergibt sich für alle Tests $T$: $P_2\EsatAs T\Rightarrow
+  P_1\EsatAs T$. Dies entspricht der Definition von $P_1$ Fehler-verfeinert
+  $P_2$.
+\end{proof}
+
+Auch die in diesem Abschnitt gezeigten Folgerungen schließen sich zu einem
+Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
+
+\begin{figure}[h!tbp]
+  \begin{center}
+    \begin{tikzpicture}[scale = 3]
+      \matrix (m) [matrix of math nodes,row sep=2cm,column sep=4cm]{%
+        P_1\ERel P_2 & P_1 \text{ Fehler-verfeinert } P_2 \\
+        \substack{\forall \text{ Test Partner } T:\\P_2\EsatAs T\Rightarrow
+        P_1\EsatAs T} &
+    \substack{\forall \text{ Tests } T:\\P_2\EsatAs T\Rightarrow P_1\EsatAs T} \\};
+        \draw[-implies, double, double distance=1mm]
+          (m-1-1) -- node [above] {Satz~\ref{KommTestVerfSatz}} (m-1-2);
+        \draw[-implies, double, double distance=1mm]
+          (m-1-2) -- node [right] {Definition~\ref{KommTestDef}} (m-2-2);
+        \draw[-implies, double, double distance=1mm]
+          (m-2-1) -- node [left]
+          {Lemma~\ref{KommTestVerfeinLem}} (m-1-1);
+        \draw[-implies, double, double distance=1mm]
+          (m-2-2) -- node [below]
+          {$\substack{T \text{ Test Partner}\\\Downarrow\\ T \text{ Test}}$} (m-2-1);
+    \end{tikzpicture}
+    \caption{Folgerungskette der Testing-Verfeinerung und Fehler-Relation}
+  \label{KommTestFolgerungskette}
+  \end{center}
+\end{figure}

@@ -1,0 +1,100 @@
+\section{Konjunktion}
+
+Um die Konjunktion zwischen zwei \MEIO{}s bilden zu können muss man diese
+zuerst normalisieren, da sonst nicht gewolltes Verhalten auftreten kann. Die
+Konjunktion soll auf dem Kreuzprodukt der beiden Transitionssysteme beruhen,
+also für \MEIO{}s $Q$ und $P$ eine \MEIO{} der Art $Q\times P$ mit
+möglicherweise kleinen Abwandlungen. Eine Verfeinerung, die beide
+Spezifikationen erfüllt, kann dabei nur Fehler enthalten, die beide
+Spezifikationen zulassen. Es sollte also für die Konjunktion $\ET _Q\cap \ET
+_P$ gelten. Im Beispiel in Abbildung~\ref{BspKreuzpConj} soll verdeutlicht
+werden, wieso es bei \MEIO{}s ohne Normalisierung zu Problemen mit dieser
+Forderung kommen kann. Für $P$ un $Q$ ist $i$ ein Fehler"=Trace. Da jedoch die
+Output"=Transitionen alleine nicht in das Kreuzprodukt übernommen werden,
+enthält $Q\times P$ kleinen Fehler"=Zustand und somit ist auch die Menge $\ET
+_{Q\times P}$ leer. Durch eine Normalisierung, in der die lokalen Aktionen
+bereits von einem Fehler"=Trace entfernt würden und der letzten Input bereits
+zu dem Fehler"=Zustand führen würde, könnte dieses Problem verhindert werden.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+      \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+      \node (q1) [right of=q0] {$q_1$};
+      \node (q2) [right of=q1] {$q_2\in E_Q$};
+
+      \path[->]
+      (q0) edge node{$i?$} (q1)
+      (q1) edge node{$o!$} (q2)
+      ;
+
+      \node [initial,initial text=$P$:] (p0) at (9,0) {$p_0$};
+      \node (p1) [right of=p0] {$p_1$};
+      \node (p2) [right of=p1] {$p_2\in E_P$};
+
+      \path[->]
+      (p0) edge node{$i?$} (p1)
+      (p1) edge node{$o'!$} (p2)
+      ;
+
+
+      \node [initial,initial text=$Q\times P$:] (qp0) at (5.5,-1.5) {$(q_0,p_0)$};
+      \node (qp1) [right of=qp0] {$(q_1,p_1)$};
+
+      \path[->]
+      (qp0) edge node{$i?$} (qp1)
+      ;
+    \end{tikzpicture}
+    \caption{Beispiel um die Notwendigkeit der Normalisierung zu verdeutlichen}
+    \label{BspKreuzpConj}
+  \end{center}
+\end{figure}
+
+\begin{Def}[Normal Form]
+  Ein \MEIO{} $P$ ist in \emph{Normal Form} (\NF{}), falls die Menge $E_P$ der
+  Fehler"=Zustände nur ein einziges Element enthält $E_P=\{e\}$ und es gilt
+  zusätzlich die Bedingung $e \must{a} e$ für alle $a\in\Sigma$ und die $p
+  \may[\alpha] e$ mit $p\neq e$ impliziert $\alpha\in I$.\\
+  Die \emph{Normal Form} von $P$ ist ein \MEIO{} $\NF (P)$, das man aus $P$
+  durch die nachfolgenden zwei Schritte erhält:
+  \begin{enumerate}[(i)]
+    \item Definiere $\overline{E_P} = \{p \mid \exists p'\in E_P, w\in O^*:
+      p\weakmay[w]_P p'\}$ und ersetzte $E_P$ durch $\overline{E_P}$.
+    \item Falls $p_0\in \overline{E_P}$, ist $NF(P) = (\{p_0\}), I, O, \{p_0
+      \must[a] p_0 \mid a\in\Sigma\}, p_0, \{p_0\})$.\\
+      Ansonsten, füge einen neuen Zustand $e$ hinzu, der der einzige
+      Fehler"=Zustand wird. Wann immer $p \may[\alpha]_P p'\in \overline{E_P}$
+      und $p\notin \overline{E_P}$ für ein $\alpha\in \Sigma \cup \{\tau\}$
+      gilt (dann gilt zwingendermaßen $\alpha \in I$), entferne alle
+      $\alpha$-Transitionen, die von $P$ ausgehen und füge die Transition
+      $p\may[\alpha]_{\NF (P)} e$ und falls $p \must[\alpha]_P p'\in
+      \overline{E_P}$ galt auch $p \must[\alpha]_{\NF (P)} e$ hinzu. Am Ende
+      füge alle $e\must[a]_{\NF (P)} e$ mit $a\in\Sigma$ hinzu.
+  \end{enumerate}
+\end{Def}
+
+Schritt (i) verändert nichts an den Transitionen und auch nichts daran, ob ein
+Zustand einen fehlenden Input hat oder nicht. Die Menge \StET{} wird verändert
+jedoch bleibt die Menge \PrET{} gleich, da \StET{} am Ende alle Traces enthält,
+die direkt oder durch lokale Aktionen zu einem Fehler"=Zustand des
+ursprünglichen $P$ führen. Für die Menge $\MIT\backslash\cont (\PrET)$ ändert
+sich nichts, da sich an Zuständen ohne Zusammenhang mit Fehler"=Zuständen
+nichts ändert. Das Ergebnis von (i) entspricht also $P$ bezüglich der Relation
+\ERel{}. Im ersten Fall von Schritt (ii) gilt $\ET _P =\Sigma ^* = \ET (\NF
+(P))$. Im zweiten Fall ändert der Schritt (ii) nichts an Zuständen, die
+fehlende Inputs haben, solange diese nicht in der Menge $\overline{E_P}$
+enthalten sind, da meine must"=Transition zum Zustand $e$ nur hinzu gefügt
+wird, wenn der entsprechende Input davor bereits eine ausgehende
+must"=Transition des Zustands $p$ war. Die Menge \MIT{} kann sich jedoch
+verkleinern, falls der Trace in $\cont (\PrET)$ enthalten war. Die Menge \ET
+bleibt also im Schritt (ii) gleich. Die Menge \EL wird mit \ET geflutet und
+somit gilt für \EL auch $\EL (P) = \EL (\NF (P))$. Somit ist $\NF (P)$
+äquivalent zu $P$ bezüglich der Relation \ERel{}. Es gilt also die folgende
+Proposition.
+
+\begin{Prop}[Normal Form]
+  Jedes \MEIO{} $P$ ist äquivalent zu $\NF (P)$ bezüglich \ERel{}.
+\end{Prop}
+
+Somit können wird davon ausgehen, dass ein \MEIO{} in Normal Form ist, falls
+dies notwendig ist.

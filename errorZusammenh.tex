@@ -1,0 +1,238 @@
+\section{Zusammenhänge}
+
+\begin{Satz}[Zusammenhang der Verfeinerungs-Relationen mit der Fehler-Relation]
+  \label{ZusammenhFehlerSatz}
+  Für \MEIO{}s $P$ und $Q$ gilt $P\asRel Q\Rightarrow P\wasRel Q\Rightarrow
+  P\ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht.
+\end{Satz}
+\begin{proof}\mbox{}\\
+  $P\asRel Q\Rightarrow P\wasRel Q$:\\
+  Um diese Implikation zu zeigen, muss man nachweisen, dass jede starke
+  as"=Verfeinerungs"=Relation auch die Definition~\ref{wSimDef} der schwachen
+  as"=Verfeinerungs"=Relation erfüllt. In beiden Simulations-Definitionen
+  (\ref{SimDef} und~\ref{wSimDef}) müssen die Punkte für alle $(p,q) \in
+  \mathcal{R}$ mit $q\notin E_Q$ gelten. Sei $\mathcal{R}$ nun eine
+  as"=Verfeinerungs"=Relation. Es gilt also mit~\ref{SimDef}~1.\, dass $p$ kein
+  Fehler-Zustand von $P$ ist. Somit ist auch 1.\ von~\ref{wSimDef} erfüllt. Für
+  alle $\alpha\in\Sigma _{\tau}$ impliziert~\ref{SimDef}~2. $q \must[\alpha]_Q
+  q'$ $p\must[\alpha]_P p'$ für ein $p'$ mit $p'\mathcal{R} q'$. Da $\Sigma
+  _{\tau} = I \cup O \cup \{\tau\}$ gilt, sind dadurch 2.\ und 3.\ der
+  Definition~\ref{wSimDef} erfüllt. Die schwache $\varepsilon$-Transition aus
+  2.\ führt keine echten Transitionen aus, sondern bleibt beim Zustand $p'$.
+  Die schwache $\hat{\omega}$-Transition aus 3.\ entspricht in $\mathcal{R}$
+  nur einer einzigen Transition für $\omega$. Die Punkte 4.\ und 5.\ aus
+  Definition~\ref{wSimDef} werden durch~\ref{SimDef}~3.\ erfüllt. Es gilt für
+  $\mathcal{R}$ $p\may[\alpha]_P p'$ impliziert $q \may[\alpha]_Q q'$ für ein
+  $q'$ mit $p'\mathcal{R}q'$. Die in~\ref{wSimDef} geforderten schwachen
+  may"=Transitionen werden hier jeweils stark durch eine einzige Transition
+  umgesetzt. $\mathcal{R}$ ist also auch eine schwache
+  as"=Verfeinerungs"=Relation.
+
+  $P\wasRel Q\Rightarrow P\ERel Q$:\\
+  Um diese Implikation zu beweisen wird gezeigt, dass eine beliebige
+  schwache as"=Verfeinerungs"=Relation $\mathcal{R}$ zwischen $P$ und $Q$ auch
+  die Eigenschaften der Relation $\ERel$ erfüllt. Da $\mathcal{R}$ eine
+  schwache as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ ist, muss $p_0
+  \mathcal{R} q_0$ gelten. Es sind die folgenden Punkte nachzuweisen:
+  \begin{itemize}
+    \item $\ET _P \subseteq \ET _Q$,
+    \item $\EL _P \subseteq \EL _Q$.
+  \end{itemize}
+  Für den ersten Punkt wird ein beliebiges $w$ aus $\ET _P$ betrachtet und
+  gezeigt, dass dieses auch in $\ET _Q$ enthalten ist. Es kann davon
+  ausgegangen werden, dass $w$ präfix-minimal ist, da beide \ET{}-Mengen unter
+  \cont{} abgeschlossen sind. $w$ kann ein Element aus $\PrET (P)$ sein oder
+  ein Element aus $\MIT (P)$.
+  \begin{itemize}
+    \item Fall 1 ($w\in\PrET (P)$): Es existiert ein $v\in O_P$, sodass das
+      Wort $wv$ in $P$ einen Fehler-Zustand erreicht. Für die entsprechende
+      Transitionsfolge existieren Zustände $p_1, p_2,\dots , p_n$ in $P$ und
+      Aktionen $\alpha _1, \alpha _2,\dots , \alpha _n$, die zusammengesetzt
+      ein Wort $w'=\alpha _1 \alpha _2 \dots \alpha _n$ bilden, dass ohne die
+      internen Aktionen $wv$ entspricht. Die entsprechende Transitionsfolge in
+      $P$ ist dann $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
+      \may[\alpha _n]_P p_n \in E_P$. Abhängig davon, ob $\alpha _j$ ein Input
+      oder eine lokale Aktion ist, kann mit~\ref{wSimDef}~4.\ bzw.~5.\
+      argumentiert werden, dass das jeweilige $\alpha _j$ auch in $Q$ schwach
+      ausführbar ist, solange der entsprechende Zustand $q_{j-1}$ kein
+      Fehler-Zustand ist für $j\in \{1,2,\dots n\}$. Falls ein $q_j$ für $j <
+      n$ in $E_Q$ enthalten ist, wurde bis dort ein Präfix von $wv$ ausgeführt.
+      Dieses Präfix ist in $\StET _Q$ enthalten. Es gilt also mit $w=\prune
+      (wv)$ und dem Abschluss von \ET{} unter \cont{} $w\in\ET _Q$. Ansonsten
+      gibt es in $Q$ einen Trace $q_0 \weakmay[\widehat{\alpha _1}]_Q q_1
+      \weakmay[\widehat{\alpha _2}]_Q \dots q_{n-1} \weakmay[\widehat{\alpha
+      _n}]_Q q_n$, wobei $p_j \mathcal{R} q_j$ für alle $0 \leq j \leq n$ gilt.
+      Mit~\ref{wSimDef}~1.\ folgt, dass $q_n\in E_Q$ gelten muss und somit auch
+      $w\in\ET _Q$ mit der Begründung von oben.
+    \item Fall 2 ($w\in\MIT (P)$): $w$ ist in $P$ ein Input-kritischer Trace.
+      Es existiert also eine Aufteilung von $w$ in $va$ mit $v\in \Sigma ^*$
+      und $a\in I$. Der Trace in $P$ kann wie folgt dargestellt werden:
+      $\exists v'\in \Sigma _{\tau}^*, \exists p_1, p_2, \dots , p_n, \exists
+      \alpha _1, \alpha _2, \dots , \alpha _n: \hat{v'}=v \land v'=\alpha _1
+      \alpha _2 \dots \alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha
+      _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n \nmust[a]_P$. Basierend
+      auf~\ref{wSimDef}~4.\ bzw.~5.\ kann daraus gefolgert werden, dass die
+      $\alpha _j$ auch schwach ausführbar sind in $Q$, falls kein $q_{j-1}$
+      angetroffen wird, dass in $E_Q$ enthalten ist für $j\in \{1,2,\dots n\}$.
+      Falls eines der $q_j$ mit $0 \leq j \leq n$ ein Fehler-Zustand ist, dann
+      ist $w$ in $\ET _Q$ enthalten, da ein Präfix von $w$ ein strikter
+      Fehler-Trace in $Q$ ist. Ansonsten gilt $q_0 \weakmay[\widehat{\alpha
+      _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots q_{n-1}
+      \weakmay[\widehat{\alpha _n}]_Q q_n$ mit $p_j \mathcal{R} q_j$ für alle
+      $j\in \{0,1, \dots , n\}$. Da $a$ für $p_n$ in $P$ keine ausgehende
+      must"=Transition sein kann, gilt mit~\ref{wSimDef}~2.\ auch $q_n
+      \nmust[a]$. $w$ ist in $\MIT _Q \subseteq \ET _Q$ enthalten.
+  \end{itemize}
+  Für den zweiten Punkt kann man sich auf die Inklusion $\EL _P\backslash\ET _P
+  \subseteq \EL _Q$ einschränken, da der erste Punkt bereits vorausgesetzt
+  werden kann. $\EL _P\backslash\ET _P$ ist eine Teilmenge der Sprache $L _P$.
+  Somit ist ein $w$ in $P$ ausführbar. Es gibt also einen Trace $p_0
+  \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n$
+  in $P$, wobei $w$ der Aktionsfolge $\alpha _1\alpha _2 \dots \alpha _n$
+  entspricht bis auf die internen Aktionen. Erneut können
+  hier~\ref{wSimDef}~4.\ und~5.\ dazu verwendet werden einen analogen Trace in
+  $Q$ zu finden. Falls ein $q_j$ für $0 \leq j \leq n$ in $E_Q$ enthalten ist,
+  gilt $w\in\ET _Q \subseteq \EL _Q$. Es wird also im Folgenden davon
+  ausgegangen, dass kein $q_j$ ein Fehler-Zustand ist. Es gilt dann $q_0
+  \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots
+  q_{n-1} \weakmay[\widehat{\alpha _n}]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$
+  für $0 \leq j \leq n$ und somit $w\in L _Q\subseteq \EL _Q$.
+
+  $P\asRel Q\hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P\wasRel Q$:\\
+  Im Abbildung~\ref{asWasGegenBsp} wird ein Gegenbeispiel dargestellt mit einem
+  \MEIO{} $Q$ und einer schwachen as"=Verfeinerung $P$ von $Q$, die jedoch
+  keine starke as"=Verfeinerung von $Q$ ist. Die schwache
+  as"=Verfeinerungs"=Relationen $\mathcal{R}$ zwischen $P$ und $Q$ enthält die
+  Tupel $(p_0,q_0)$ und $(p_1,q_{12})$. Damit $\mathcal{R}$ eine schwache
+  Simulations"=Relation zwischen $P$ und $Q$ sein kann müssen die Startzustände
+  in Relation stehen. Dies ist durch $(p_0,q_0)\in \mathcal{R}$ erfüllt.
+  Es sind keine Fehler-Zustände in $Q$ und $P$ enthalten, somit ist 1.\ der
+  Definition~\ref{wSimDef} bereits für beide Zustands-Tupel erfüllt. Für das
+  Tupel $(p_1,q_{12})$ sind auch 2.-5.\ von~\ref{wSimDef} erfüllt, da weder
+  $p_1$ noch $q_{12}$ ausgehende Transitionen besitzen. Für $(p_0,q_0)\in
+  \mathcal{R}$ gibt es keine ausgehende must"=Transitionen. Also ist 2.\ und
+  3.\ von~\ref{wSimDef} bereits erfüllt. Falls $\alpha$ ein Input ist,
+  fordert~\ref{wSimDef}~4., dass die Transition $p_0 \may[\alpha]_P p_1$ in $Q$
+  schwach ausführbar ist in der Form $q_0 \may[\alpha]_Q
+  \weakmay[\varepsilon]_Q q$. Ein entsprechendes $q$ ist in diesem Fall
+  $q_{12}$ und es gilt $p_1 \mathcal{R} q_{12}$. Falls $\alpha$ eine lokale
+  Aktion ist, lautet die Forderung $q_0 \weakmay[\hat{\alpha}]_Q q$ für $Q$ und
+  $q_{12}$ ist wieder der passende Zustand für $q$, der mit $p_1$ in Relation
+  stehen. $\mathcal{R}$ ist also eine schwache as"=Verfeinerungs"=Relation
+  zwischen $P$ und $Q$.\\
+  Angenommen es gibt auch eine starke as"=Verfeinerungs"=Relation
+  $\mathcal{R}'$ zwischen $P$ und $Q$, dann muss $p_0 \mathcal{R}' q_0$
+  gelten. Mit~\ref{SimDef}~3.\ wird gefordert, dass die Transition $p_0
+  \may[\alpha]_P p_1$ durch eine Transition der Form $q_0 \may[\alpha]_Q q$
+  in $Q$ gematched werden muss. Für den Zustand $q$ kommt dieses mal nur
+  $q_{11}$ in Frage. Es muss also $(p_1,q_{11})\in \mathcal{R}$ gelten. Der
+  zweite Punkt der Definition~\ref{SimDef} fordert, dass die
+  $\tau$-must"=Transition aus $Q$ auch in $P$ auftauchen muss. Es müsste also
+  ein $p$ geben, für dass $p_1 \must[\tau]_P p$ gilt und das Tupel $(p,q_{12})$
+  müsste in $\mathcal{R}$ enthalten sein. Da es keine solche Transition gibt,
+  tritt ein Widerspruch zur Annahme auf. Es kann also keine starke
+  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ geben.
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+        \node (q11) [right of=q0] {$q_{11}$};
+        \node (q12) [right of=q11] {$q_{12}$};
+
+        \path[->]
+        (q0) edge[dashed] node{$\alpha$} (q11)
+        (q11) edge node{$\tau$} (q12)
+        ;
+
+        \node [initial,initial text=$P$:] (p0) at (10,0) {$p_0$};
+        \node (p1) [right of=p0] {$p_1$};
+
+        \path[->]
+        (p0) edge[dashed] node{$\alpha$} (p1)
+        ;
+      \end{tikzpicture}
+      \caption{Gegenbeispiel zu $\asRel \Leftarrow \wasRel$}
+      \label{asWasGegenBsp}
+    \end{center}
+  \end{figure}
+
+  $P\wasRel Q\hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P\ERel Q$:\\
+  Die nicht Gültigkeit dieser Implikation beruht darauf, dass Simulationen
+  strenger sind als Sprach Inklusionen. Das Gegenbeispiel hier ist also so
+  aufgebaut, dass $\ET (P) =\ET (Q) = \emptyset$ und $L(P) \subseteq L(Q)$
+  gilt, jedoch keine schwache as"=Verfeinerungs"=Relation zwischen $P$ und $Q$
+  existieren kann. $Q$ und $P$ sind in der Abbildung~\ref{WasEGegenBsp}
+  dargestellt. Damit $\ET (P) =\ET (Q) = \emptyset$ gilt, dürfen keine der
+  Zustände Fehler-Zustände sein und es muss gefordert werden, dass die Menge
+  $I$ der Inputs für die \MEIO{}s leer ist, ansonsten würde es Input-kritische
+  Traces gegen. $P$ kann keine Aktionen ausführen und $Q$ nur die Output Aktion
+  $o$ somit gilt für die Sprachen $\{\varepsilon\} = L(P) \subset L(Q) =
+  \{\varepsilon , o\}$.\\
+  Angenommen es gibt eine schwache as"=Verfeinerungs"=Relation $\mathcal{R}$
+  zwischen $P$ und $Q$. Dafür muss $(p_0,q_0)\in \mathcal{R}$ gelten. Da es
+  keine Fehler-Zustände in $P$ gibt, ist~\ref{wSimDef}~1.\ erfüllt. Die
+  Punkte 2., 4.\ und 5.\ der Definition~\ref{wSimDef} stellen keine
+  Forderungen an die Relation $\mathcal{R}$. Da jedoch die Transition $q_0
+  \must[o]_Q q_1$ in $Q$ vorhanden ist, wird die Verfeinerung dieser in $P$
+  gefordert es müsste also auch eine must"=Output"=Transition in $P$ geben. Da
+  diese nicht vorhanden ist, stellt dies einen Widerspruch zur Annahme dar und
+  es folgt, dass es keine schwache as"=Verfeinerungs"=Relation zwischen $P$ und
+  $Q$ geben kann.
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+        \node (q1) [right of=q0] {$q_1$};
+
+        \path[->]
+        (q0) edge node{$o!$} (q1)
+        ;
+
+        \node [initial,initial text=$P$:] (p0) at (7,0) {$p_0$};
+      \end{tikzpicture}
+      \caption{Gegenbeispiel zu $\wasRel \Leftarrow \ERel$ mit $I_P = I_Q =
+      \emptyset$}
+      \label{WasEGegenBsp}
+    \end{center}
+  \end{figure}
+\end{proof}
+
+In dieser Arbeit werden im Gegensatz zu~\cite{Vogler2016MIA3} die Fehler bei
+einer Parallelkomposition beibehalten bzw.\ aus dieser entstehend angesehen. Es
+werden dabei alle Transitionen, die nicht durch fehlende
+Synchronisations"=Möglichkeiten wegfallen, übernommen. In~\cite{Vogler2016MIA3}
+hingegen wird der Ansatz verfolgt alle Fehler zu entfernen und durch einen
+universal Zustand zu ersetzten, der nur eingehende may"=Input"=Transitionen
+zulässt. Auf diese Normierung wurde hier mit Absicht verzichtete um sehen zu
+können, dass die Fehler einen Ursprung haben, den man später auch noch einsehen
+kann. Jedoch gibt es trotzdem einen Zusammenhang zwischen diesen beiden
+Ansätzen.\\
+Die Unterscheidung, die die Basisrelation \EBRel{} hier herbei führt, würde
+dort der Unterscheidung zwischen Transitionssystemen, die den universal
+Zustand $e$ als Startzustand haben und denen, die einen Startzustand ungleich
+$e$ besitzen, entsprechen. Falls hier in einer as"=Implementierung von $P$ ein
+Fehler lokal erreichbar ist, dann muss auch in $P$ ein Fehler-Zustand lokal
+erreichbar sein, wegen~\ref{lokalFehlerErrKor}~(i). Dies entspricht
+$\varepsilon \in \PrET (P)$. Das Abschneiden den lokalen Aktionen wird hier nur
+in der Trace Menge praktiziert, in~\cite{Vogler2016MIA3} jedoch direkt auf den
+Transitionssystemen. Im Fall der lokalen Fehler-Erreichbarkeit bleibt also
+nur noch der Zustand $e$ als universal Zustand übrig, für den jedes Verhalten
+zulässig ist. Falls man hier dieses Pruning mit beliebigem Verhalten nachmachen
+wollen würde, müsste man an den Zustand $e$ noch eine may-Schleife für alle
+Aktionen aus $I$ und $O$ hinzufügen.\\
+Da auch der Testing-Ansatz die lokale Fehler-Erreichbarkeit verwendet,
+existiert der Zusammenhang auch dort für die Parallelkomposition mit dem
+entsprechenden Test.\\
+Falls es keine Input-kritischen Traces gibt, entspricht \ERel{} der Relation
+$\sqsubseteq$ aus~\cite{Vogler2016MIA3}, falls auf die \MEIO{}s das
+entsprechende Abschneiden der Fehler-Traces angewendet würde und diese dann
+durch einen universal Zustand mit may"=Schleife für alle Inputs und Outputs
+ersetzt würden. Gibt es in $Q$ jedoch einen Input-kritische Traces, würde $P
+\ERel Q$ zulassen, dass $P$ einen gekürzten Fehler-Trace anstatt dessen
+besitzt. Diese Art der Verfeinerung lässt $\sqsubseteq$ nicht zu. Jedoch sind
+die Input-kritischen Traces auch dort die potentiellen Auslöser für neue
+Fehler-Zustände in einer Parallelkomposition. Diese Problem basiert auf dem
+Problem, dass \ERel{} keine schwache as"=Verfeinerungs"=Relation sein muss, die
+in \wasRel{} enthalten ist.
