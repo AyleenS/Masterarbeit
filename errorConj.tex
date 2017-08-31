@@ -1,5 +1,14 @@
 \section{Konjunktion}
 
+Neben der Parallelkomposition ist die Konjunktion einer der wichtigsten
+Operatoren, die man auf Transitionssysteme anwenden kann, die wie
+Spezifikationen und Verfeinerungen behandelt werden. Dieser Operator erlaubt es
+unterschiedliche Verhaltensweisen eines Systems separat zu definieren und
+daraus durch Konjunktion dann eine vollständige Spezifikation den gesamten
+Systems zu erhalten. Die Konjunktion sollte also die größte Spezifikation sein,
+die alle gegebenen einzel Komponenten Spezifikationen verfeinert, d.h.\ sie
+sollte die größte untere Schranke der Verfeinerungs Präkongruenz
+charakterisieren.\\
 Um die Konjunktion zwischen zwei \MEIO{}s bilden zu können muss man diese
 zuerst normalisieren, da sonst nicht gewolltes Verhalten auftreten kann. Die
 Konjunktion soll auf dem Kreuzprodukt der beiden Transitionssysteme beruhen,
@@ -37,7 +46,6 @@ zu dem Fehler"=Zustand führen würde, könnte dieses Problem verhindert werden.
       (p1) edge node{$o'!$} (p2)
       ;
 
-
       \node [initial,initial text=$Q\times P$:] (qp0) at (5.5,-1.5) {$(q_0,p_0)$};
       \node (qp1) [right of=qp0] {$(q_1,p_1)$};
 
@@ -51,6 +59,7 @@ zu dem Fehler"=Zustand führen würde, könnte dieses Problem verhindert werden.
 \end{figure}
 
 \begin{Def}[Normal Form]
+  \label{normalFormDef}
   Ein \MEIO{} $P$ ist in \emph{Normal Form} (\NF{}), falls die Menge $E_P$ der
   Fehler"=Zustände nur ein einziges Element enthält $E_P=\{e\}$ und es gilt
   zusätzlich die Bedingung $e \must{a} e$ für alle $a\in\Sigma$ und die $p
@@ -97,4 +106,157 @@ Proposition.
 \end{Prop}
 
 Somit können wird davon ausgehen, dass ein \MEIO{} in Normal Form ist, falls
-dies notwendig ist.
+dies notwendig ist.\\
+Die Transformation in die Normal Form aus der Definition~\ref{normalFormDef}
+ist effizient für endliche \MEIO{}s: Für Schritt (i)  kann eine Tiefensuche
+(DFS) in linearer Zeit von den Zuständen in $E$ über umgekehrte lokalen
+Transitionen. Für der erste Fall von Schritt (ii) benötigt nur konstante Zeit,
+da nur der Startzustand überprüft werden muss. Für den zweiten Fall kann erneut
+eine DFS ausgeführt werden vom Startzustand $p_0$ ohne die Transitionen zu
+benutzen, die gelöscht werden sollen. Alle Zustände, die dadurch nicht besucht
+werden sind nicht erreichbar in $\NF (P)$ und können entfernt werden. $\NF (P)$
+kann also möglicherweise deutlich kleiner sein wie $P$. Es ergibt sich das
+folgende Lemma.
+
+\begin{Lem}
+  Falls ein \MEIO{} in Normal Form (mit einem Fehler"=Zustand $e$) ist, $w\in
+  \ET (P)$ gilt genau dann, wenn $w$ sich aus einem Ablauf ergibt, der $e$
+  erreicht. Ein $w\in\EL (P)$ ergibt sich genau dann, wenn $w$ ein Ablauf von
+  $P$ ist. Somit gilt $\EL (P) = L(P)$.
+\end{Lem}
+
+Es wurden durch die Normalisierung die Probleme mit den Traces in $\cont
+(\PrET)$ gelöst, und man erhält dann Transitionssysteme, die die Eigenschaften
+der \MIA{}s aus z.B.~\cite{Vogler2016MIA3} erfüllen. Jedoch Kan die Konjunktion
+hier trotzdem nicht auf die gleiche Art gebildet werden, wie dort. Das Problem,
+das noch nicht gelöst ist, beruht auf den Input"=kritischen Traces.
+In~\cite{Vogler2016MIA3} kann ein Zustand in der Konjunktion, der für eines der
+Transitionssysteme einen must"=Input ($P$) hat und für den anderen keine
+entsprechende may"=Transition ($Q$) der Zustand als inkonsistent angesehen
+werden und aus dem Konjunktion"=Transitionssystem entfernt werden. Dies würde
+jedoch hier zu einem Problem mit den Traces führen. Es soll für die Komposition
+$\EL _Q \cap \EL _P$ und $\ET _P \cap \ET _Q$ gelten. Der Trace in $Q$ mit
+dem entsprechenden nicht vorhanden Input ist ein Input"=kritischer Trace. Er
+ist also in der Menge $\ET _Q\subseteq \EL _Q$ enthalten. Da es in $P$ ein
+must"=Transition gibt ist der entsprechende Trace in der Sprache von $P$
+enthalten, also auch in der Menge $\EL _P$. Es muss also noch den geforderten
+Eigenschaften der Konjunktion auch gelten, dass der Trace in der
+Fehler"=gefluteten Sprache vor Konjunktion enthalten ist. Durch das entfernen
+des Zustandes wie in~\cite{Vogler2016MIA3} wird in vielen Fällen der Trace
+nicht in der Fehler"=gefluteten Sprache enthalten sein (siehe dazu auch das
+Beispiel in Abbildung~\ref{BspMITConj}).
+
+\begin{figure}[htbp]
+  \begin{center}
+    \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+      \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+      \node (q1) [right of=q0] {$q_1$};
+      \node (q2) [right of=q1] {$q_2$};
+
+      \path[->]
+      (q0) edge[loop above] node{$i?$} (q0)
+      (q0) edge[dashed] node{$o!$} (q1)
+      (q1) edge node{$i?$} (q2)
+      (q2) edge[loop above] node{$i?$} (q2)
+      ;
+
+      \node [initial,initial text=$P$:] (p0) at (9,0) {$p_0$};
+      \node (p1) [right of=p0] {$p_1$};
+
+      \path[->]
+      (p0) edge[loop above] node{$i?$} (p0)
+      (p0) edge[dashed] node{$o!$} (p1)
+      ;
+
+      \node [initial,initial text=$Q\land P$:] (qp0) at (6.5,-1.5) {$(q_0,p_0)$};
+
+      \path[->]
+      (qp0) edge[loop above] node{$i?$} (qp0)
+      ;
+    \end{tikzpicture}
+    \caption{Beispiel für \MIT{}-Problem, $\land$ bezeichnet die Konjunktion
+    aus~\cite{Vogler2016MIA3}}
+    \label{BspMITConj}
+  \end{center}
+\end{figure}
+
+Man kann diese Problem lösen, in dem man die Zustände aus dem in Konjunktion
+entstehenden Transitionssystemen nicht streicht sondern beibehält und die
+Transition zu einem Zustands"=Tupel aus dem Zustand, der durch die
+must"=Transition erreicht wird und dem Fehler"=Zustand des anderen
+Transitionssystems führt.\\
+Bis auf diesem Unterschied orientiert sich die Definition der Konjunktion und
+des Konjunktiven Produkts an den Definition aus~\cite{Vogler2016MIA3}. Es wird
+also zuerst eine Konjunktives Produkt gebildet, aus dem dann in der zweiten
+Definition die Zustandspaaren entfernte werden, die nicht Vereinbar sind mit den
+Spezifikationen.
+
+\begin{Def}[Konjunktives Produkt]
+  Für zwei \MEIO{}s $P_1 = (P_1,I,O,\must _1,\may _1,p_{01},\{e_1\})$ und $P_2
+  = (P_2,I,O,\must _2,\may _2,p_{02},\{e_2\})$ in Normal Form mit der selben
+  Signatur ist das \emph{Konjunktive Produkt} definiert als $P_1\& P_2 =
+  (P_1\times P_2, I, O, \must, \may ,(p_{01},p_{02}),\{(e_1,e_2)\})$ mit den
+  folgenden Regeln für die Transitionen:
+  \begin{itemize}
+    \item[(OMust)] $(p_1,p_2) \must[\omega] (p'_1,p'_2)$, falls
+      $p_1 \must[\omega]_1 p'_1$ und $p_2 \weakmay[\hat{\omega}]_2 p'_2$ oder
+      $p_1 \weakmay[\hat{\omega}]_1 p'_1$ und $p_2 \must[\omega]_2 p'_2$,
+    \item[(IMust1)] $(p_1,p_2) \must[i] (p'_1,p'_2)$, falls $p_1 \must[i]_1
+      p'_1$ und $p_2 \may[i]_2 \weakmay[\varepsilon]_2 p'_2$ oder $p_1
+      \may[i]_1 \weakmay[\varepsilon]_1 p'_1$ und $p_2 \must[i]_2 p'_2$,
+    \item[(IMust2)] $(p_1,p_2) \must[i] (p'_1,e_2)$, falls $p_1 \must[i]_1
+      p'_1$ und $p_2 \nmay[i]_2$,
+    \item[(IMust3)] $(p_1,p_2) \must[i] (e_1,p'_2)$, falls $p_1 \nmay[i]_1$ und
+      $p_2 \must[i]_2 p'_2$,
+    \item[(EMust1)] $(p_1,e_2) \must[\alpha] (p'_1,e_2)$, falls $p_1
+      \must[\alpha]_1 p'_1$,
+    \item[(EMust2)] $(e_1,p_2) \must[\alpha] (e_1,p'_2)$, falls $p_2
+      \must[\alpha]_2 p'_2$,
+    \item[(May1)] $(p_1,p_2) \may[\tau] (p'_1,p_2)$, falls $p_1
+      \weakmay[\tau]_1 p'_1$,
+    \item[(May2)] $(p_1,p_2) \may[\tau] (p_1,p'_2)$, falls $p_2
+      \weakmay[\tau]_2 p'_2$,
+    \item[(OMay)] $(p_1,p_2) \may[\omega] (p'_1,p'_2)$, falls $p_1
+      \weakmay[\omega]_1 p'_1$ und $p_2 \weakmay[\omega]_2 p'_2$,
+    \item[(IMay1)] $(p_1,p_2) \may[i] (p'_1,p'_2)$, falls $p_1 \may[i]_1
+      \weakmay[\varepsilon]_1 p'_1$ und $p_2 \may[i]_2 \weakmay[\varepsilon]_2
+      p'_2$,
+    \item[(IMay2)] $(p_1,p_2) \may[i] (p'_1,e_2)$, falls $p_1 \may[i]_1 p'_1$
+      und $p_2 \nmay[i]_2$,
+    \item[(IMay3)] $(p_1,p_2) \may[i] (e_1,p'_2)$, falls $p_1 \nmay[i]_1$ und
+      $p_2 \may[i]_2 p'_2$,
+    \item[(EMay1)] $(p_1,e_2) \may[\alpha] (p'_1,e_2)$, falls $p_1
+      \may[\alpha]_1 p'_1$,
+    \item[(EMay2)] $(e_1,p_2) \may[\alpha] (e_1,p'_2)$, falls $p_2
+      \may[\alpha]_2 p'_2$.
+  \end{itemize}
+\end{Def}
+
+Aus schwachen Transitionen der einzelnen \MEIO{}s entstehen im Konjunktiven
+Produkt einzelnen Transitionen (z.B.\ (OMust), (IMust), (May)).
+$\tau$"=Transitionen können via der Regel (OMay) synchronisiert werden. In den
+Regel (EMust) und (EMay) wirkt die Fehler"=Zustände als neutrales Element. In
+der Parallelkomposition hingeben hatten die Fehler"=Zustände absorbierende
+Wirkung.
+
+\begin{Def}[Konjunktion]
+  Gegeben ein Konjunktives Produkt $P_1\& P_2$, die Menge $F\subseteq P_1\times
+  P_2$ der (logisch) \emph{inkonsistenten Zustände} ist definiert als die
+  kleinste Menge, die die folgende Regeln erfüllt für $p_1\neq e_1$ und $p_2
+  \neq e_2$:
+  \begin{itemize}
+    \item[F1] aus $p_1\must[o]_1$ und $p_2\nweakmay[o]_2$ folgt $(p_1,p_2)\in
+      F$,
+    \item[F2] aus $p_1\nweakmay[o]_1$ und $p_2\must[o]_2$ folgt $(p_1,p_2)\in
+      F$,
+    \item[F3] aus $(p_1,p_2) \must[\alpha] (p'_1,p'_2)$ und $(p'_1,p'_2) \in F$
+      folgt $(p_1,p_2)\in F$. \TODO{überlegen ob Regel sinnvoll ist}
+  \end{itemize}
+  Die Konjunktion $P_1\land P_2$ erhält man dort das entfernen der Zustände
+  $(p_1,p_2)\in F$ aus $P_1\& P_2$. Dies entfernt ebenfalls alle may- und
+  must"=Transitionen, die zu dem Zustand führen oder diesen verlassen. Es wird
+  $p_1\land p_2$ für Zustände $(p_1,p_2)$ in $P_1\land P_2$ geschrieben, alle
+  diese Zustände sind definiert und konsistent durch die Konstruktion. Falls
+  $(p_{01},p_{02})\in F$, dann existiert die Konjunktion von $P_1$ und $P_2$
+  nicht.
+\end{Def}

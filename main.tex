@@ -82,6 +82,11 @@
   \ensuremath{\hspace{0.2cm}\not\hspace{-0.2cm}\weakmust[#1]}
   }
 
+\newcommand{\nweakmay}[1][\empty]{%
+  \ensuremath{\hspace{0.25cm}\not\hspace{-0.25cm}\weakmay[#1]}
+  }
+
+
 \newcommand{\lweakmay}[1][\empty]{%
   \ifthenelse{\equal{#1}{\empty}}{\ensuremath{==\Rightarrow}}
   {\ensuremath{\overset{#1}{==\Rightarrow}}
