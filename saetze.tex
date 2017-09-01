@@ -1,14 +1,13 @@
-\chapter{allgemeine Folgerungen}
+\section{allgemeine Folgerungen}
 
 \begin{Prop}[Sprache und Implementierungen]
   \label{LImpProp}
-  Für die Sprache eines \MEIO{}s $P$ gilt $L(P) \subseteq \left\{w\in
-  \Sigma ^* \mid \exists P'\in\asimp (P) : p'_0\weakmust[w]_{P'} \right\} =
-  \underset{P'\in\asimp (P)}{\bigcup} L(P')$.
+  Für die Sprache eines \MEIO{}s $P$ gilt $L(P) \subseteq \underset{P'\in\asimp
+  (P)}{\bigcup} L(P')$.
 \end{Prop}
 \begin{proof}\mbox{}\\
   Sei $P'$ die as-Implementierung von $P$, die alle may- und must-Transitionen
-  von $P$ implementiert. Die Definition von $P'$ lautet dann:
+  von $P$ implementiert. Die Definition von $P'$ lautet also:
   \begin{itemize}
     \item $P'=P$,
     \item $p'_0=p_0$,
@@ -19,7 +18,7 @@
   Die entsprechende starke as"=Verfeinerungs"=Relation $\mathcal{R}$, die
   zwischen $P'$ und $P$ gilt, ist die Identitäts-Relation zwischen den
   Zuständen der Transitionssysteme. Für~\ref{SimDef}~3.\ betrachten wir $(p,p)
-  \in\mathcal{R}$ und $p\may[\alpha]_{P'} p'$ in $P'$. Diese Transition muss
+  \in\mathcal{R}$ mit $p\may[\alpha]_{P'} p'$ in $P'$. Diese Transition muss
   auch in $P$ existieren und da $\mathcal{R}$ die Identitäts-Relation ist auch
   $(p',p')\in\mathcal{R}$ gelten. Alle must"=Transitionen in $P$ haben zugrunde
   liegende may"=Transitionen. Es gibt also zu jeder must"=Transition $p
@@ -54,11 +53,11 @@
   Für zwei komponierbar \MEIO{}s $P_1$ und $P_2$ gilt, falls $P'_1$ und $P'_2$
   schwache as"=Verfeinerungen von $P_1$ bzw. $P_2$ sind, dann muss $P'_1\|P'_2$
   keine schwache as"=Verfeinerung von $P_1\|P_2$ sein. Jedoch für eine Relation
-  $\mathcal{R}_{12}$ für die $((p'_1,p'_2),(p_1,p_2)) \in \mathcal{R}_{12}$
+  $\mathcal{R}_{12}$, für die $((p'_1,p'_2),(p_1,p_2)) \in \mathcal{R}_{12}$
   genau dann gilt, wenn $(p'_1,p_1)\in\mathcal{R}_1$ und
   $(p'_2,p_2)\in\mathcal{R}_2$ für die schwachen as"=Verfeinerungs"=Relationen
   von $P'_j$ bzgl.\ $P_j$ für $j\in\{1,2\}$, dann sind für $\mathcal{R}_{12}$
-  die Punkte 2.\ bis 5.\ aus der Definition~\ref{wSimDef} erfüllt.
+  die Aussagen 2.\ bis 5.\ aus der Definition~\ref{wSimDef} erfüllt.
   \\ \TODO{falls Zeit: in Lemma mit nur einer Verfeinerung umformulieren
   (andere folgt wegen Kommutativität)}
 \end{Lem}

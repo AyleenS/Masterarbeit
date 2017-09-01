@@ -1,5 +1,4 @@
-\chapter{Definitionen}
-{\large\textbf{Stand: \today{}}}\\
+\section{Definitionen}
 
 Das Definitions-Kapitel wurde auf Grundlage von~\cite{Vogler2015FailSem}
 und~\cite{Schinko2016BA} zusammengestellt und teilweise
@@ -33,7 +32,9 @@ Implementierungen entsprechen den z.B.\ in~\cite{Schinko2016BA} behandelten
 Must-Transitionen sind Transitionen, die von einer Verfeinerung implementiert
 werden müssen. Die may-Transitionen sind hingegen die zulässigen Transitionen
 für eine Verfeinerung. Alle nicht vorhandenen must- und may-Transitionen dürfen
-auch in keiner Verfeinerung einer Spezifikation in \MEIO{}-Form auftauchen.\\
+auch in keiner Verfeinerung einer Spezifikation in \MEIO{}-Form auftauchen.
+Diese Forderungen werden in den Definitionen der Verfeinerungen in~\ref{SimDef}
+und~\ref{wSimDef} berücksichtigt.\\
 \MEIO{}s  werden in dieser Arbeit durch ihre Zustandsmenge (z.B.\ $P$)
 identifiziert und falls notwendig werden damit auch die Komponenten indiziert
 (z.B.\ $I_P$ anstatt $I$). Falls das \MEIO{} selbst bereits einen Index hat
@@ -60,14 +61,14 @@ Analog zu $\may$ und $\weakmay$ werden $\must$ und $\weakmust$ für die
 entsprechenden Relationen der must-Transition verwendet.\\
 Outputs und die interne Aktion werden \emph{lokale Aktionen} genannt, da sie
 lokal vom ausführenden \MEIO{} kontrolliert sind.\\
-Um eine Erleichterung der Notation zu erhalten, soll gelten, dass $p\nmust[a]$
-und $p\nmay[a]$ für $\neg\exists p': p\must[a]p'$ und $\neg\exists p':
-p\may[a]p'$ stehen soll. $p\must[a]\weakmust[\varepsilon]p'$ wird geschrieben,
-wenn $p''$ existiert, so dass $p\must[a]p''\weakmust[\varepsilon]p'$ gilt.
-Diese Transition wird auch als \emph{schwach-nachlaufende must-Transition}
-bezeichnet. Entsprechend steht $\may[a]\weakmay[\varepsilon]$ für die
-\emph{schwach-nachlaufende may-Transition}.\\
-In Graphiken wird eine Aktion $a$ als $a?$ notiert, falls $a\in I$ und $a!$,
+Um die Notation zu vereinfachen soll $p\nmust[a]$ und $p\nmay[a]$ für
+$\neg\exists p': p\must[a]p'$ und $\neg\exists p': p\may[a]p'$ stehen.
+$p\must[a]\weakmust[\varepsilon]p'$ wird geschrieben, wenn $p''$ existiert, so
+dass $p\must[a]p''\weakmust[\varepsilon]p'$ gilt. Diese Transition wird auch
+als \emph{schwach-nachlaufende must-Transition} bezeichnet. Entsprechend steht
+$\may[a]\weakmay[\varepsilon]$ für die \emph{schwach-nachlaufende
+may-Transition}.\\
+In Grafiken wird eine Aktion $a$ als $a?$ notiert, falls $a\in I$ und $a!$,
 falls $a\in O$. Must-Transitionen (may-Transitionen) werden als durchgezogener
 Pfeil gezeichnet (gestrichelter Pfeil). Entsprechend der syntaktischen
 Konsistenz repräsentiert jede gezeichnete must-Transition auch gleichzeitig die
@@ -107,8 +108,8 @@ zugrundeliegende may-Transitionen.
       \Synch(P_1,P_2)\right\},
     \end{aligned}$
   \item $\begin{aligned}[t]
-      E & = (P_1\times E_2) \cup (E_1\times P_2) &&\text{geerbte
-        Fehler}\\
+      E & = \left.(P_1\times E_2) \cup (E_1\times P_2)\hspace{3.95cm}\right\}
+      &&\text{geerbte Fehler}\\
         &\left.\begin{aligned}
         \cup \left\{(p_1,p_2) \mid \exists a \in O_1\cap I_2 : p_1
         \may[a]_1\land p_2\nmust[a]_2\right\}\\
@@ -119,21 +120,21 @@ zugrundeliegende may-Transitionen.
   \end{itemize}
   Dabei bezeichnet $\Synch(P_1,P_2)=(I_1\cap O_2)\cup (O_1\cap I_2)\cup
   (I_1\cap I_2)$ die Menge der zu \emph{synchronisierenden Aktionen}. Die
-  synchronisierten Aktionen werden als Inputs, in dem Fall $(I_1\cap I_2)$, bzw.
-  Outputs, in allen anderen Fällen, der Komposition beibehalten.\\
-  $P_1$ wird \emph{Partner} von $P_2$ genannt, wenn die Parallelkomposition von
+  synchronisierten Aktionen werden zu Inputs (im Fall $(I_1\cap I_2)$) bzw.
+  Outputs (alle anderen Fälle) der Komposition.\\
+  $P_1$ ist ein \emph{Partner} von $P_2$, wenn die Parallelkomposition von
   $P_1$ und $P_2$ geschlossen ist. Eine Parallelkomposition von zwei \MEIO{}s
   $P_1$ und $P_2$ ist \emph{geschlossen}, wenn $P_1$ und $P_2$ duale Signaturen
   $\Sig (P_1)=(I,O)$ und $\Sig (P_2)=(O,I)$ haben.
 \end{Def}
 
-Ein neuer Fehler entsteht, wenn eines der \MEIO{}s die
-Möglichkeit für einen Output hat (may-Transition) und das andere \MEIO{} den
-passenden Input nicht sicher stellt (keine must-Transition vorhanden). Es muss
-also in möglichen Implementierungen nicht wirklich zu diesem
-Fehler kommen, da die Output"=Transition nicht zwingendermaßen
-implementiert werden muss und die may"=Input"=Transition trotzdem erlaubt sein
-kann.\\
+Die Definition der Parallelkomposition sagt aus, dass ein neuer Fehler
+entsteht, wenn eines der \MEIO{}s die Möglichkeit für einen Output hat
+(may-Transition) und das andere \MEIO{} den passenden Input nicht sicher stellt
+(keine must-Transition vorhanden). Es muss also in möglichen Implementierungen
+nicht wirklich zu diesem Fehler kommen, da die Output"=Transition nicht
+zwingendermaßen implementiert werden muss und die may"=Input"=Transition
+trotzdem erlaubt sein kann.\\
 Wie bereits unter anderem in~\cite{Schinko2016BA} gesehen werden konnte, kann
 es durch die Synchronisation von Inputs zu keinen neuen Fehler kommen, da die
 Inputs in beiden Transitionssystemen keine lokal kontrollierten Aktionen sind.
@@ -144,9 +145,9 @@ weiteren \MEIO{} dort zu einem neuen Fehler kommen.
 
 \begin{Def}[alternierende Simulation]
   \label{SimDef}
-  Eine \emph{(starke) alternierende Simulation} ist eine Relation
-  $\mathcal{R}\subseteq P \times Q$ auf zwei \MEIO{}s $P$ und $Q$, wenn für
-  alle $(p,q)\in \mathcal{R}$ mit $q\notin E_Q$ und $\alpha\in\Sigma _\tau$
+  Eine Relation $\mathcal{R}\subseteq P \times Q$ auf zwei \MEIO{}s $P$ und $Q$
+  mit gleicher Signatur ist eine \emph{(starke) alternierende Simulation}, wenn
+  für alle $(p,q)\in \mathcal{R}$ mit $q\notin E_Q$ und $\alpha\in\Sigma _\tau$
   gilt:
   \begin{enumerate}
     \item $p\notin E_P$,
@@ -155,10 +156,11 @@ weiteren \MEIO{} dort zu einem neuen Fehler kommen.
     \item $p\may[\alpha]_P p'$ impliziert $q\may[\alpha]_Q q'$ für ein $q'$ mit
       $p'\mathcal{R}q'$.
   \end{enumerate}
-  Die Vereinigung \asRel{} aller dieser Relationen wird als \emph{(starke)
-  as-Verfeinerung(-s Relation)} (auch modal Verfeinerung) bezeichnet. Es wird
-  $P\asRel Q$ geschrieben, falls $p_0\asRel q_0$ gilt. $P\asRel Q$ steht dabei
-  dafür, dass $P$ $Q$ \emph{(stark) as-verfeinert} oder dass $P$ eine
+  Die Vereinigung \asRel{} aller dieser Simulations-Relationen wird als
+  \emph{(starke) as-Verfeinerung(-s Relation)} (auch modal Verfeinerung)
+  bezeichnet. Falls für die Startzustände von zwei \MEIO{}s $p_0\asRel q_0$
+  gilt, wird auch $P\asRel Q$ für die Transitionssysteme geschrieben. $P\asRel
+  Q$ bedeutet, dass $P$ $Q$ \emph{(stark) as-verfeinert} oder dass $P$ eine
   \emph{(starke) as-Verfeinerung} von $Q$ ist.\\
   Für ein \MEIO{} $Q$ und eine Implementierung $P$ mit $P\asRel{}Q$, ist
   $P$ eine \emph{as"=Implementierung} von $Q$ und es wird $\asimp (Q)$ für die
@@ -169,8 +171,8 @@ Da für zwei \MEIO{}s $P$ und $Q$ und alle möglichen Zustands-Tupel $(p,q)$ in
 einer alternierenden Simulations-Relation $\mathcal{R}$ gelten muss, dass aus
 $q\notin E_Q$ folgt, dass auch $p$ nicht in $E_P$ enthalten ist, gilt auch die
 Implikation $p\in E_P\Rightarrow q\in E_Q$.\\
-Für LTS, die nach Definition keine Modalitäten und keine Fehler-Zustände
-enthalten, entspricht die as"=Verfeinerung einer Bisimulation. Dafür müssen die
+Für LTS (Labelled Transition Systems), die nach Definition keine Modalitäten
+und keine Fehler-Zustände enthalten, entspricht die as"=Verfeinerung einer Bisimulation. Dafür müssen die
 Transitionen eines LTS als must"=Transitionen aufgefasst werden. Man kann also
 auf LTS mit einer as"=Verfeinerungs"=Relation zwischen zwei Systemen deren
 Äquivalenz beweisen.\\ \TODO{falls möglich passendes Quellen Beispiel einfügen}\\
@@ -186,10 +188,10 @@ verfeinert\grqq{} werden.
 
 \begin{Def}[schwache alternierende Simulation]
   \label{wSimDef}
-  Eine \emph{schwache alternierende Simulation} ist eine Relation $\mathcal{R}
-  \subseteq P  \times Q$ auf zwei \MEIO{}s $P$ und $Q$, wenn für alle $(p,q)
-  \in \mathcal{R}$ mit $q\notin E_Q$ und $i\in I$ und $\omega\in O\cup\{\tau\}$
-  gilt:
+  Eine Relation $\mathcal{R} \subseteq P  \times Q$ auf zwei \MEIO{}s $P$ und
+  $Q$ mit gleicher Signatur ist eine \emph{schwache alternierende Simulation},
+  wenn für alle $(p,q) \in \mathcal{R}$ mit $q\notin E_Q$ und $i\in I$ und
+  $\omega\in O\cup\{\tau\}$ gilt:
   \begin{enumerate}
     \item $p\notin E_P$,
     \item $q\must[i]_Q q'$ impliziert $p\must[i]_P\weakmust[\varepsilon]_P p'$
@@ -202,26 +204,32 @@ verfeinert\grqq{} werden.
       ein $q'$ mit $p'\mathcal{R}q'$.
   \end{enumerate}
   Analog zur starken alternierenden Simulation, wird hier \wasRel{} als
-  Relationssymbol verwendet und man kann auch entsprechend \emph{schwache
-  as"=Verfeinerungen} betrachten.\\
+  Relationssymbol für die Vereinigung aller schwachen Simulations-Relationen
+  verwendet und man kann auch entsprechend \emph{schwache as"=Verfeinerungen}
+  definieren.\\
   Ebenso kann \wasRel{} für ein \MEIO{} Q und eine Implementierung $P$
   definiert werden mit $P\wasRel Q$, ist $P$ eine \emph{w"=as"=Implementierung}
   von $Q$ und es wird $\wasimp (Q)$ für die Menge aller
   w"=as"=Implementierungen von $Q$ verwendet.
 \end{Def}
 
-Die schwache Simulation erlaubt interne Aktionen beim \MEIO{}, das die
+Die schwache Simulation erlaubt interne Aktionen des \MEIO{}, das die
 entsprechende Aktion matchen muss. Jedoch ist es zwingend notwendig, dass ein
-Input sofort aufgeführt wird und erst dann interne Aktinen möglich sind. Da
+Input sofort ausgeführt wird und erst dann interne Aktinen möglich sind, da
 ein Input die Reaktion auf eine Aktion ist, die die Umwelt auslöst und die
 nicht auf das Transitionssystem warten kann. Outputs hingegen können auch
 verzögert werden, da die Umgebung dies dann als Inputs aufnimmt und für diese
-somit nicht lokal kontrolliert ist.\\
+somit nicht lokal kontrolliert sind.\\
 Auch für alle Tupel $(p,q)$ in einer schwach alternierenden
 Simulations-Relation $\mathcal{R}$ gilt $p\in E_P\Rightarrow q\in E_Q$.
 
-Die Parallelkomposition von Wörtern und Mengen kann z.B.\
-aus~\cite{Vogler2014EIO} übernommen werden.
+Die in der folgende Definition vorgestellte Parallelkomposition von Wörtern und
+Mengen kann z.B.\ aus~\cite{Vogler2014EIO} übernommen werden. Die
+Aktionsfolgen eines \MEIO{} werden auch \emph{Traces} genannt. Traces sind die
+möglichen Wege des Systems, mit ihrer Transitionsbeschriftung. Diese
+Beschriftung besteht aus Inputs und Outputs, mit denen die Transitionsfolge ab
+dem Startzustand beschriftet ist. Somit kann ein Trace auch als das Wort
+aufgefasst werden, dass verarbeitet wird während des Ablauf des Systems.
 
 \begin{Def}[Parallelkomposition auf Traces]\mbox{}
   \begin{itemize}
@@ -256,24 +264,24 @@ Wort und $\mathfrak{P}(M)$ die Potenzmenge der Menge $M$ bezeichnet.
 
 \begin{Def}[Sprache]
   \label{LDef}
-  Die \emph{Sprache} eines \MEIO{}s $P$ ist definiert als: $L(P) := \left\{w\in
-  \Sigma ^* \mid p_0\weakmay[w]_P \right\}$.
+  Die \emph{Sprache} eines \MEIO{}s $P$ ist definiert als:
+  \[L(P) := \left\{w\in \Sigma ^* \mid p_0\weakmay[w]_P \right\}.\]
 \end{Def}
 
-Somit entspricht die Sprache eines \MEIO{}s, das eine Implementierung ist der
-Definition aus~\cite{Schinko2016BA} für \EIO{}s. Jedoch muss die Sprache einer
-as"=Verfeinerung eines \MEIO{}s nicht mehr Teilmenge der Sprache des
-\MEIO{}s sein, da Definition~\ref{SimDef} beliebiges Verhalten nach einem
-Fehler-Zustand in dem zu verfeinernden \MEIO{} zulässt. Falls jedoch das
-\MEIO{} bereits frei von Fehler"=Zuständen ist, ist seine Sprache die
-Vereinigung der Sprachen all seine möglichen as"=Implementierungen.\\
-Von der Sprache einer as"=Verfeinerung eines \MEIO{}s kann man keine
-Rückschlüsse mehr auf die ursprüngliche Sprache ziehen, da man nicht weiß,
+Somit entspricht die Sprache einer Implementierung der Definition
+aus~\cite{Schinko2016BA} für \EIO{}s. Jedoch muss die Sprache einer
+as"=Verfeinerung eines \MEIO{}s nicht mehr Teilmenge der Sprache des \MEIO{}s
+sein, da Definition~\ref{SimDef} beliebiges Verhalten nach einem Fehler-Zustand
+in dem zu verfeinernden \MEIO{} zulässt. Falls jedoch das \MEIO{} bereits frei
+von Fehler"=Zuständen ist, ist seine Sprache die Vereinigung der Sprachen all
+seine möglichen as"=Implementierungen.\\
+Von der Sprache einer as"=Verfeinerung eines \MEIO{}s kann man nur wenig
+Rückschlüsse auf die ursprüngliche Sprache ziehen, da man nicht weiß,
 welche Fehler-Zustände in der Verfeinerung übernommen wurden und welche als
 normale Zustände mit beliebigen Verhalten umgesetzt wurden.\\
-Man hätte alternativ die Sprache eines \MEIO{}s anders definieren können um
-weiterhin einen eindeutigen Zusammenhang zwischen dieser und den Sprachen der
-as"=Implementierungen zu haben, jedoch wäre dann die Äquivalenz zur \EIO{}
+Man hätte alternativ die Sprache eines \MEIO{}s auf andere Weise definieren
+können um einen eindeutigen Zusammenhang zwischen dieser und den Sprachen der
+as"=Implementierungen zu erhalten, jedoch wäre dann die Äquivalenz zur \EIO{}
 Sprach-Definition in~\cite{Schinko2016BA} verloren gegangen. Eine
 Implementierung mit Fehler-Zuständen hätte dann eine Sprache mit Wörtern, die
-sie nicht mal ausführen können muss.
+sie nicht ausführen können muss.

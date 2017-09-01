@@ -73,11 +73,9 @@ verläuft analog zu den Propositionen der vorangegangenen Kapitel.
   Sei $P$ ein \MEIO{}.
   \begin{enumerate}
     \item Für die strikten Divergenz-Traces gilt: $\StDT (P) \subseteq
-      \big\{w\in\Sigma ^*\mid \exists P' \in \asimp (P): p'_0\weakmust[w]_{P'}
-      p'\in Div(P')\big\} = \underset{P'\in\asimp (P)}{\bigcup} \StDT (P')$.
-    \item Für die gekürzten Divergenz-Traces von $P$ gilt der Zusammenhang:
-      $\PrDT (P) \subseteq \{\prune (w) \mid \exists P'\in\asimp (P): w\in\StDT
-      (P')\} = \underset{P'\in\asimp (P)}{\bigcup} \PrDT (P')$.
+      \underset{P'\in\asimp (P)}{\bigcup} \StDT (P')$.
+    \item Für die gekürzten Divergenz-Traces von $P$ gilt:
+      $\PrDT (P) \subseteq \underset{P'\in\asimp (P)}{\bigcup} \PrDT (P')$.
   \end{enumerate}
 \end{Prop}
 \begin{proof}\mbox{}

@@ -245,12 +245,14 @@ Wirkung.
   kleinste Menge, die die folgende Regeln erfüllt für $p_1\neq e_1$ und $p_2
   \neq e_2$:
   \begin{itemize}
-    \item[F1] aus $p_1\must[o]_1$ und $p_2\nweakmay[o]_2$ folgt $(p_1,p_2)\in
+    \item[(F1)] aus $p_1\must[o]_1$ und $p_2\nweakmay[o]_2$ folgt $(p_1,p_2)\in
       F$,
-    \item[F2] aus $p_1\nweakmay[o]_1$ und $p_2\must[o]_2$ folgt $(p_1,p_2)\in
+    \item[(F2)] aus $p_1\nweakmay[o]_1$ und $p_2\must[o]_2$ folgt $(p_1,p_2)\in
       F$,
-    \item[F3] aus $(p_1,p_2) \must[\alpha] (p'_1,p'_2)$ und $(p'_1,p'_2) \in F$
-      folgt $(p_1,p_2)\in F$. \TODO{überlegen ob Regel sinnvoll ist}
+    \item[(F3)] aus $(p_1,p_2) \must[\alpha] (p'_1,p'_2)$ und $(p'_1,p'_2) \in
+      F$ folgt $(p_1,p_2)\in F$.
+      \\ \TODO{überlegen ob Regel sinnvoll ist (eher nicht, verändert die
+      Sprache)}
   \end{itemize}
   Die Konjunktion $P_1\land P_2$ erhält man dort das entfernen der Zustände
   $(p_1,p_2)\in F$ aus $P_1\& P_2$. Dies entfernt ebenfalls alle may- und

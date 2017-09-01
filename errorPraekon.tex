@@ -59,19 +59,11 @@ Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
   Sei $P$ ein \MEIO{}.
   \begin{enumerate}
     \item Für die strikten Fehler-Traces von $P$ gilt: $\StET (P) \subseteq
-      \big\{w\in\Sigma ^* \mid \exists P' \in\asimp (P) :$ $p'_0
-      \weakmust[w]_{P'} p' \in E\big\} = \underset{P' \in\asimp (P)}{\bigcup}
-      \StET (P')$.
-      \TODO{erzwungen Zeilenumbruch kontrollieren}
+      \underset{P' \in\asimp (P)}{\bigcup} \StET (P')$.
     \item Für die gekürzten Fehler-Traces von $P$ gilt: $\PrET (P) \subseteq
-      \{\prune (w) \mid \exists P' \in$\linebreak $\asimp (P) : w\in\StET (P')
-      \} = \underset{P' \in\asimp (P)}{\bigcup} \PrET (P')$,
-      \TODO{erzwungen Zeilenumbruch kontrollieren}
+      \underset{P' \in\asimp (P)}{\bigcup} \PrET (P')$.
     \item Für Input-kritischen-Traces von $P$ gilt: $\MIT (P) \subseteq
-      \big\{wa\in\Sigma ^* \mid \exists P' \in\asimp (P) :$ $p'_0
-      \weakmust[w]_{P'} p' \land a\in I\land p'\nmust[a]_{P'} \big\} =
       \underset{P' \in\asimp (P)}{\bigcup} \MIT (P')$.
-      \TODO{erzwungen Zeilenumbruch kontrollieren}
   \end{enumerate}
 \end{Prop}
 \begin{proof}\mbox{}
