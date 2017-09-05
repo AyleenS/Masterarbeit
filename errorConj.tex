@@ -100,10 +100,10 @@ enthalten sind, da eine must"=Transition zum Zustand $e$ nur hinzu gefügt
 wird, wenn der entsprechende Input davor bereits eine ausgehende
 must"=Transition des Zustands $p$ war. Die Menge \MIT{} kann sich jedoch
 verkleinern, falls der Schnitt mit $\cont (\PrET)$ nicht leer war. Die Menge
-\ET bleibt also im Schritt (ii) gleich. Die Menge \EL wird mit \ET geflutet und
-somit gilt für \EL auch $\EL (P) = \EL (\NF (P))$. Somit ist $\NF (P)$
-äquivalent zu $P$ bezüglich der Relation \ERel{}. Es gilt also die folgende
-Proposition.
+\ET{} bleibt also im Schritt (ii) gleich. Die Menge \EL{} wird mit \ET{}
+geflutet und somit gilt für \EL{} auch $\EL (P) = \EL (\NF (P))$. Somit ist
+$\NF (P)$ äquivalent zu $P$ bezüglich der Relation \ERel{}. Es gilt also die
+folgende Proposition.
 
 \begin{Prop}[Normal Form]
   \label{normalFormProp}
@@ -124,10 +124,12 @@ entfernt werden. $\NF (P)$ ist also möglicherweise deutlich kleiner wie $P$. Es
 ergibt sich das folgende Lemma.
 
 \begin{Lem}
+  \label{AblaufNFLem}
   Sei $P$ ein \MEIO{} in Normal Form (mit einem Fehler"=Zustand $e$). $w\in
-  \ET (P)$ gilt genau dann, wenn $w$ sich aus einem Ablauf ergibt, der $e$
-  erreicht. Ein $w$ ist Element der Menge $\EL (P)$ genau dann, wenn $w$ ein
-  Ablauf von $P$ ist. Somit gilt $\EL (P) = L(P)$.
+  \cont (\PrET (P)) $ gilt genau dann, wenn $w$ sich aus einem Ablauf ergibt,
+  der $e$ erreicht. $va = w\in \MIT \backslash \cont(\PrET (P))$ mit $v\in
+  \Sigma ^*$ und $a\in I$ gilt genau dann, wenn $v$ ein Ablauf von $P$ ist, der
+  zu einem Zustand führt, für den $a$ keine ausgehende must"=Transition ist.
 \end{Lem}
 
 Es wurden durch die Normalisierung die Probleme mit den Traces in $\cont
@@ -141,15 +143,15 @@ keine entsprechende may"=Transition ($Q$) der Zustand als inkonsistent
 angesehen werden und aus dem Konjunktion"=Transitionssystem entfernt werden.
 Dies würde jedoch hier zu einem Problem mit den Traces führen. Es soll für die
 Komposition $\EL _Q \cap \EL _P$ und $\ET _P \cap \ET _Q$ gelten. Der Trace in
-$Q$ mit einem entsprechenden nicht vorhanden Input ist ein Input"=kritischer
-Trace. Er ist also in der Menge $\ET _Q\subseteq \EL _Q$ enthalten. Da es in
-$P$ ein must"=Transition gibt ist der entsprechende Trace in der Sprache von
-$P$ enthalten, also auch in der Menge $\EL _P$. Es muss also nach den
-geforderten Eigenschaften der Konjunktion auch gelten, dass der Trace in der
-Fehler"=gefluteten Sprache der Konjunktion enthalten ist. Durch das entfernen
-des Zustandes wie in~\cite{Vogler2016MIA3} wird in vielen Fällen der Trace
-nicht in der Fehler"=gefluteten Sprache enthalten sein (siehe dazu auch das
-Beispiel in Abbildung~\ref{BspMITConj}).
+$Q$ mit einem entsprechenden nicht sichergestellten Input ist ein
+Input"=kritischer Trace. Er ist also in der Menge $\ET _Q\subseteq \EL _Q$
+enthalten. Da es in $P$ ein must"=Transition gibt ist der entsprechende Trace
+in der Sprache von $P$ enthalten, also auch in der Menge $\EL _P$. Es muss also
+nach den geforderten Eigenschaften der Konjunktion auch gelten, dass der Trace
+in der Fehler"=gefluteten Sprache der Konjunktion enthalten ist. Durch das
+entfernen des Zustandes wie in~\cite{Vogler2016MIA3} wird in vielen Fällen der
+Trace nicht in der Fehler"=gefluteten Sprache enthalten sein (siehe dazu auch
+das Beispiel in Abbildung~\ref{BspMITConj}).
 
 \begin{figure}[htbp]
   \begin{center}
@@ -189,23 +191,30 @@ Man kann diese Problem lösen, in dem man die Zustände aus dem in Konjunktion
 entstehenden Transitionssystemen nicht streicht sondern beibehält und die
 Transition zu einem Zustands"=Tupel aus dem Zustand, der durch die
 must"=Transition erreicht wird und dem Fehler"=Zustand des anderen
-Transitionssystems führt.\\
+Transitionssystems führt. Falls in $Q$ der Input als may"=Transition ausführbar
+ist. Zählt der Trace in $Q$ bereits als Input"=kritisch und es kommt nicht mehr
+darauf an, ob die Verlängerungen ausführbar sind. Die Verlängerungen sind als
+in der Menge $\ET _Q$ enthalten. Die Ausführbarkeit nach der Input"=Transition
+in der Komposition hängt also nur von $P$ ab. Die Transitionen der Komposition
+sollten also direkt von $P$ geerbt werden, dies erhält man, in dem man den
+may"=Input von $Q$ auf den Zustand $e_Q$ umbiegt.\\
 Auch die Behandlung von Outputs in Fällen, in denen das eine \MEIO{} eine
 must"=Transition besitzt und das andere keine Transition für den Output, führt
 zu Problemen mit den Traces, die ausführbar sein sollten, da sie im Schnitt der
 \EL{}-Mengen enthalten sind. Es wird in dieser Arbeit also verzichtet (logisch)
-inkonsistente Zustände wie z.B.\ in~\cite{Vog2016MIA3} zu definiere und diese
-aus den Transitionssystemen zu entfernen. Man kann sich von der Korrektheit
-dieses Vorgehens recht leicht dadurch überzeugen, dass für alle \MEIO{}s
-$\varepsilon$ in der Menge \EL{} enthalten ist, also muss auch eine Konjunktion
-zweier \MEIO{}s das leere Wort immer ausführen können. Es gibt also immer eine
-Konjunktion. Mit inkonsistenten Zuständen könnte es jedoch dazu kommen, dass
-der Startzustand inkonsistent ist und somit der Komposition nicht existieren
-würde. Die Definition der Konjunktion orientiert sich somit eher an der des
-konjunktiven Produkts aus~\cite{Vogler2016MIA3}, wie an der Definition der
-Konjunktion aus diesem Paper.
+inkonsistente Zustände wie z.B.\ in~\cite{Vogler2016MIA3} zu definiere und
+diese aus den Transitionssystemen zu entfernen. Man kann sich von der
+Korrektheit dieses Vorgehens recht leicht dadurch überzeugen, dass für alle
+\MEIO{}s $\varepsilon$ in der Menge \EL{} enthalten ist, also muss auch eine
+Konjunktion zweier \MEIO{}s das leere Wort immer ausführen können. Es gibt also
+immer eine Konjunktion. Mit inkonsistenten Zuständen könnte es jedoch dazu
+kommen, dass der Startzustand inkonsistent ist und somit der Komposition nicht
+existieren würde. Die Definition der Konjunktion orientiert sich somit eher an
+der des konjunktiven Produkts aus~\cite{Vogler2016MIA3}, wie an der Definition
+der Konjunktion aus diesem Paper.
 
 \begin{Def}[Konjunktion]
+  \label{ConjDef}
   Für zwei \MEIO{}s $P_1 = (P_1,I,O,\must _1,\may _1,p_{01},\{e_1\})$ und $P_2
   = (P_2,I,O,\must _2,\may _2,p_{02},\{e_2\})$ in Normal Form mit der selben
   Signatur ist die \emph{Konjunktion} definiert als $P_1\land P_2 =
@@ -216,12 +225,12 @@ Konjunktion aus diesem Paper.
       $p_1 \must[\omega]_1 p'_1$ und $p_2 \weakmay[\hat{\omega}]_2 p'_2$ oder
       $p_1 \weakmay[\hat{\omega}]_1 p'_1$ und $p_2 \must[\omega]_2 p'_2$,
     \item[(IMust1)] $(p_1,p_2) \must[i] (p'_1,p'_2)$, falls $p_1 \must[i]_1
-      p'_1$ und $p_2 \may[i]_2 \weakmay[\varepsilon]_2 p'_2$ oder $p_1
-      \may[i]_1 \weakmay[\varepsilon]_1 p'_1$ und $p_2 \must[i]_2 p'_2$,
+      p'_1$ und $p_2 \must[i]_2 \weakmay[\varepsilon]_2 p'_2$ oder $p_1
+      \must[i]_1 \weakmay[\varepsilon]_1 p'_1$ und $p_2 \must[i]_2 p'_2$,
     \item[(IMust2)] $(p_1,p_2) \must[i] (p'_1,e_2)$, falls $p_1 \must[i]_1
-      p'_1$ und $p_2 \nmay[i]_2$,
-    \item[(IMust3)] $(p_1,p_2) \must[i] (e_1,p'_2)$, falls $p_1 \nmay[i]_1$ und
-      $p_2 \must[i]_2 p'_2$,
+      p'_1$ und $p_2 \nmust[i]_2$,
+    \item[(IMust3)] $(p_1,p_2) \must[i] (e_1,p'_2)$, falls $p_1 \nmust[i]_1$
+      und $p_2 \must[i]_2 p'_2$,
     \item[(EMust1)] $(p_1,e_2) \must[\alpha] (p'_1,e_2)$, falls $p_1
       \must[\alpha]_1 p'_1$,
     \item[(EMust2)] $(e_1,p_2) \must[\alpha] (e_1,p'_2)$, falls $p_2
@@ -236,8 +245,8 @@ Konjunktion aus diesem Paper.
       \weakmay[\varepsilon]_1 p'_1$ und $p_2 \may[i]_2 \weakmay[\varepsilon]_2
       p'_2$,
     \item[(IMay2)] $(p_1,p_2) \may[i] (p'_1,e_2)$, falls $p_1 \may[i]_1 p'_1$
-      und $p_2 \nmay[i]_2$,
-    \item[(IMay3)] $(p_1,p_2) \may[i] (e_1,p'_2)$, falls $p_1 \nmay[i]_1$ und
+      und $p_2 \nmust[i]_2$,
+    \item[(IMay3)] $(p_1,p_2) \may[i] (e_1,p'_2)$, falls $p_1 \nmust[i]_1$ und
       $p_2 \may[i]_2 p'_2$,
     \item[(EMay1)] $(p_1,e_2) \may[\alpha] (p'_1,e_2)$, falls $p_1
       \may[\alpha]_1 p'_1$,
@@ -247,7 +256,7 @@ Konjunktion aus diesem Paper.
 \end{Def}
 
 Aus schwachen Transitionen der einzelnen \MEIO{}s entstehen im der Konjunktion
-einzelnen Transitionen (z.B.\ (OMust), (IMust), (May)). $\tau$"=Transitionen
+einzelnen Transitionen (z.B.\ (OMust), (IMust1), (May)). $\tau$"=Transitionen
 können via der Regel (OMay) synchronisiert werden. In den Regel (EMust) und
 (EMay) wirken die Fehler"=Zustände als neutrales Element. In der
 Parallelkomposition hingeben hatten die Fehler"=Zustände absorbierende Wirkung.
@@ -257,8 +266,8 @@ Konjunktion $\land$ um die gewünschte größte untere Schranke bezüglich der
 Relation \ERel{} handelt.
 
 \begin{Satz}[Konjunktion]
-  Für drei \MEIO{}s $R$, $P_1$ und $P_2$ mit der gleichen Signatur gilt
-  $R\ERel P_1\land P_2$ genau dann, wenn $R\ERel P_1$ und $R\ERel P_2$ erfüllt
+  Für drei \MEIO{}s $S$, $P_1$ und $P_2$ mit der gleichen Signatur gilt
+  $S\ERel P_1\land P_2$ genau dann, wenn $S\ERel P_1$ und $S\ERel P_2$ erfüllt
   ist.
 \end{Satz}
 
@@ -267,9 +276,73 @@ Relation \ERel{} handelt.
   es sinnvoll auch hier von \MEIO{}s $P_1$ und $P_2$ in Normal Form auszugehen.
   Dies ist möglich aufgrund von Proposition~\ref{normalFormProp}.
 
-  \glqq $\Rightarrow$\grqq{}:\\
-  \TODO{zu beweisen}
-
   \glqq $\Leftarrow$\grqq{}:\\
+  Um diese Richtung zu beweisen muss gezeigt werden, dass $\ET _S \subseteq \ET
+  _{P_1\land P_2}$ und $\EL _S \subseteq \EL _{P_1\land P_2}$ gilt, wenn $\ET
+  _S \subseteq \ET _1$, $\EL _S \subseteq \EL _1$, $\ET _S \subseteq \ET _2$
+  und $\EL _S \subseteq \EL _2$ vorausgesetzt wird.
+
+  Als erstes wird versucht die Teilmengenbeziehung $\ET _S \subseteq \ET
+  _{P_1\land P_2}$ zu beweisen. Dafür wird ein beliebiges $w$ aus der Menge
+  $\ET _S$ gewählt. Wegen der Voraussetzungen ist das $w$ auch in $\ET _1\cap
+  \ET _2$ enthalten. In Lemma~\ref{AblaufNFLem} wurde ein Unterschied zwischen
+  Elementen der Menge $\cont (\PrET (P))$ und $\cont (\MIT (P))$ deutlich.
+  Somit ist hier eine Unterscheidung notwendig.
+  \begin{itemize}
+    \item Fall 1 ($w\in(\cont (\PrET _1)\cap \cont(\PrET _2))$): Es führt also
+      nach Lemma~\ref{AblaufNFLem} sowohl in $P_1$ wie auch in $P_2$ der Ablauf
+      von $w$ zu dem Fehler"=Zustand $e_1$ bzw.\ $e_2$. Da in beiden
+      Transitionssystemen der Ablauf von $w$ möglich ist, enthält auch
+      $P_1\land P_2$ die dafür notwendigen Transitionen. Das $w$ führt in der
+      Konjunktion zum Zustand $(e_1,e_2)$ und ist wegen~\ref{AblaufNFLem} in
+      der Menge $\ET _{P_1\land P_2}$ enthalten.
+    \item Fall 2 ($w\in(\cont (\MIT _1)\cap \cont (\MIT _2))$): Es existieren
+      Präfixe $w_1$ und $w_2$ von $w$ für die $w_1\in\MIT _1$ und $w_2\in\MIT
+      _2$ gilt. Falls $w_1=w_2$ gilt, ist in beiden $P_j$ das $v$ Element der
+      Sprache $L_j$, für das es einen Input $a$ gibt, so dass $va=w_1=w_2$
+      gilt. Das $v$ muss aufgrund von~\ref{AblaufNFLem} in den \MEIO{}s $P_j$
+      ausführbar sein und jeweils einen Zustand $p_j$ erreichen, in dem das $a$
+      nicht via einer must"=Transition ausführbar ist. In der Komposition muss
+      es einen Ablauf von $v$ geben, der zu dem Zustand $(p_1,p_2)$ führt. Da
+      für keinen der beiden Zustände $p_j$ $a$ eine ausgehende must"=Transition
+      ist, kann mit Definition~\ref{ConjDef} auch es auch keine mit $a$
+      beschriftete ausgehende must"=Transition für $(p_1,p_2)$ geben. Es gilt
+      also mit~\ref{AblaufNFLem} $w_1=w_2\in\MIT _{P_1\land P_2}$ und somit
+      $w\in\ET _{P_1\land P_2}$. Falls $w_1\neq w_2$ gilt, ist \oBdA{} $w_1$
+      kürzer wie $w_2$. Es gibt Wörter $v_1$, $v_2$ und Inputs $a_1$, $a_2$, so
+      dass $w_1=v_1a_2$ und $w_2=v_2a_2$ gilt. $v_1$ ist ein Präfix von $v_2$.
+      Es ist also $v_1$ in beiden \MEIO{}s $P_j$ ausführbar. In $P_1$ wird
+      dadurch ein Zustand $p_1$ erreicht für den $p_1\nmust[a_1]$ gilt. Für den
+      Zustand $p_2$, den $P_2$ durch $v_1$ erreicht gilt jedoch
+      $p_1\nmust[a_1]$. In der Konjunktion kommt also die Regel (IMust3) der
+      Definition~\ref{ConjDef} zur Anwendung. Die restlichen Transitionen von
+      $v_2$ erbt die Konjunktion also direkt von $P_2$. In $P_1\land P_2$ führt
+      der Ablauf von $v_2$ zu dem Zustand $(e_1,p'_2)$. Für $p'_2$ ist $a_2$
+      keine ausgehende must"=Transition. Die Definition~\ref{ConjDef} lässt es
+      deshalb auch nicht zu, dass $(e_1,p'_2)$ der Input $a_2$ als ausgehenden
+      must"=Transition besitzt. Es gilt also mit~\ref{AblaufNFLem} $w_2\in\MIT
+      _{P_1\land P_2}$ und daraus folgt dann auch $w\in\ET _{P_1\land P_2}$.
+    \item Fall 3 ($w\in (\cont (\PrET _1)\cap \cont (\MIT _2))$ oder $w\in
+      (\cont (\MIT _1)\cap \cont (\PrET _2))$): Die beiden hier Vereinigten
+      Fälle sind symmetrisch, somit kann \oBdA{} davon ausgegangen werden, dass
+      $w\in (\cont (\PrET _1)\cap \cont (\MIT _2))$ gilt. In $P_1$ führt der
+      Ablauf $w$ zum Fehler"=Zustand $e_1$. Es gibt ein Präfix $w'$ von $w$,
+      dass in $\MIT _2$ enthalten ist. In $P_2$ ist das Präfix $v$ von $w'$
+      ausführbar, für das es einen Input $a$ gibt, so dass $w'=va$ gilt. $a$
+      ist in $P_1$ nach dem Ablauf von $v$ ausführbar. Mit der
+      Definition~\ref{ConjDef} folgt, dass in der Konjunktion durch $va$ ein
+      Zustand erreicht werden muss, dessen zweites Element des Tupels $e_2$
+      ist. Somit wird in $P_1\land P_2$ durch $w$ der Zustand $(e_1,e_2)$
+      erreicht. Mit Lemma~\ref{AblaufNFLem} folgt $w\in\ET _{P_1\land P_2}$.
+  \end{itemize}
+  Ein beliebiges $w$ der fehler"=gefluteten Sprache des \MEIO{}s $S$. Muss
+  wegen der Voraussetzungen und wegen Lemma~\ref{AblaufNFLem} in $P_1$ und
+  $P_2$ ausführbar sein. Die Transitionen des Ablaufes $w$ sind also in beiden
+  Transitionssystemen möglich, die an der Konjunktion beteiligt sind. Dadurch
+  muss auch in $P_1\land P_2$ der Ablauf des Wortes $w$ ausführbar sein und
+  somit in $\EL _{P_1\land P_2}$ (Lemma~\ref{AblaufNFLem}) enthalten sein.
+  \TODO{Absatz verbessern}
+
+  \glqq $\Rightarrow$\grqq{}:\\
   \TODO{zu beweisen}
 \end{proof}
