@@ -151,10 +151,10 @@ weiteren \MEIO{} dort zu einem neuen Fehler kommen.
   gilt:
   \begin{enumerate}
     \item $p\notin E_P$,
-    \item $q\must[\alpha]_Q q'$ impliziert $p\must[\alpha]_P p'$ für ein $p'$
-      mit $p'\mathcal{R}q'$,
-    \item $p\may[\alpha]_P p'$ impliziert $q\may[\alpha]_Q q'$ für ein $q'$ mit
-      $p'\mathcal{R}q'$.
+    \item falls $q\must[\alpha]_Q q'$ gilt, gibt es eine Transition
+      $p\must[\alpha]_P p'$ für ein $p'$ mit $p'\mathcal{R}q'$,
+    \item falls $p\may[\alpha]_P p'$ gilt, gibt es eine Transition
+      $q\may[\alpha]_Q q'$ für ein $q'$ mit $p'\mathcal{R}q'$.
   \end{enumerate}
   Die Vereinigung \asRel{} aller dieser Simulations-Relationen wird als
   \emph{(starke) as-Verfeinerung(-s Relation)} (auch modal Verfeinerung)
@@ -194,14 +194,14 @@ verfeinert\grqq{} werden.
   $\omega\in O\cup\{\tau\}$ gilt:
   \begin{enumerate}
     \item $p\notin E_P$,
-    \item $q\must[i]_Q q'$ impliziert $p\must[i]_P\weakmust[\varepsilon]_P p'$
-      für ein $p'$ mit $p'\mathcal{R}q'$,
-    \item $q\must[\omega]_Q q'$ impliziert $p\weakmust[\hat{\omega}]_P p'$ für
-      ein $p'$ mit $p'\mathcal{R}q'$,
-    \item $p\may[i]_P p'$ impliziert $q\may[i]_Q\weakmay[\varepsilon]_Q q'$ für
-      ein $q'$ mit $p'\mathcal{R}q'$,
-    \item $p\may[\omega]_P p'$ impliziert $q\weakmay[\hat{\omega}]_Q q'$ für
-      ein $q'$ mit $p'\mathcal{R}q'$.
+    \item falls $q\must[i]_Q q'$ gilt, gibt es eine Transition $p \must[i]_P
+      \weakmust[\varepsilon]_P p'$ für ein $p'$ mit $p'\mathcal{R}q'$,
+    \item falls $q\must[\omega]_Q q'$ gilt, gibt es eine Transition $p
+      \weakmust[\hat{\omega}]_P p'$ für ein $p'$ mit $p'\mathcal{R}q'$,
+    \item falls $p\may[i]_P p'$ gilt, gibt es eine Transition $q
+      \may[i]_Q\weakmay[\varepsilon]_Q q'$ für ein $q'$ mit $p'\mathcal{R}q'$,
+    \item falls $p\may[\omega]_P p'$ gilt, gibt es eine Transition $q
+      \weakmay[\hat{\omega}]_Q q'$ für ein $q'$ mit $p'\mathcal{R}q'$.
   \end{enumerate}
   Analog zur starken alternierenden Simulation, wird hier \wasRel{} als
   Relationssymbol für die Vereinigung aller schwachen Simulations-Relationen
