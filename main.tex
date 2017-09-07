@@ -68,6 +68,10 @@
   \hspace{0.2cm}\not\hspace{-0.2cm}\must[#1]
   }
 
+\newcommand{\anmust}[1][\empty]{%
+  \hspace{0.25cm}\not\hspace{-0.25cm}\must[#1]
+  }
+
 \newcommand{\weakmay}[1][\empty]{%
   \ifthenelse{\equal{#1}{\empty}}{\ensuremath{=\Rightarrow}}
   {\ensuremath{\overset{#1}{=\Rightarrow}}

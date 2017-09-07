@@ -283,8 +283,22 @@ Aus schwachen Transitionen der einzelnen \MEIO{}s entstehen im der Konjunktion
 einzelnen Transitionen (z.B.\ (OMust), (IMust1), (May)). $\tau$"=Transitionen
 können via der Regel (OMay) synchronisiert werden. In den Regel (EMust) und
 (EMay) wirken die Fehler"=Zustände als neutrales Element. In der
-Parallelkomposition hingeben hatten die Fehler"=Zustände absorbierende Wirkung.
-
+Parallelkomposition hingeben hatten die Fehler"=Zustände absorbierende
+Wirkung.\\
+$P_1$ und $P_2$ müssen für die Definition~\ref{ConjDef} in Normal Form sein.
+Der daraus resultierende \MEIO{} $P_1\land P_2$ ist ebenfalls wieder in Normal
+Form. Es gibt nur den Zustand $(e_1,e_2)$ als Fehler"=Zustand. Da für $e_1$ und
+$e_2$ bereits alle Aktionen via must"=Schleife ausführbar sind, hat auch der
+Zustand $(e_1,e_2)$ die Möglichkeit alle Aktionen via must"=Transition zu sich
+selbst auszuführen. Die Transitionen, die in $P_1$ und $P_2$ zu den
+Fehler"=Zustand führen sind bereits alle Inputs. Es kann also in der
+Konjunktion durch das gemeinsame Ausführen der Transitionen nur Inputs zum
+Zustand $(e_1,e_2)$ führen. Es kann jedoch auch durch Input"=kritische Traces
+der Komponenten möglich sein, den Zustand $(e_1,e_2)$ zu erreicht. Hierfür
+kommen aber nur die Regel (IMust2), (IMust3), (IMay2) und (IMay3) in Frage.
+Diese befassen sich jedoch nur mit Input"=Transitionen. Es kann also durch
+diese Regeln auch keine zu $(e_1,e_2)$ führende Transition entstehen, die mit
+einer lokalen Aktion beschriftet wäre.\\
 Auf Grundlage dieser Definitionen kann nun gezeigt werden, dass es sich bei der
 Konjunktion $\land$ um die gewünschte größte untere Schranke bezüglich der
 Relation \ERel{} handelt.
@@ -298,7 +312,7 @@ Relation \ERel{} handelt.
 \begin{proof}
   Die Definition von $\land$ setzt normalisierte \MEIO{}s voraus. Deshalb ist
   es sinnvoll auch hier von \MEIO{}s $P_1$ und $P_2$ in Normal Form auszugehen.
-  Dies ist möglich aufgrund von Proposition~\ref{normalFormProp}.
+  Dies ist möglich durch die Aussage der Proposition~\ref{normalFormProp}.
 
   \glqq $\Leftarrow$\grqq{}:\\
   Um diese Richtung zu beweisen muss gezeigt werden, dass $\ET _S \subseteq \ET
@@ -308,94 +322,108 @@ Relation \ERel{} handelt.
 
   Als erstes wird versucht die Teilmengenbeziehung $\ET _S \subseteq \ET
   _{P_1\land P_2}$ zu beweisen. Dafür wird ein beliebiges $w$ aus der Menge
-  $\ET _S$ gewählt. Wegen der Voraussetzungen ist das $w$ auch in $\ET _1\cap
-  \ET _2$ enthalten. In Lemma~\ref{AblaufNFLem} wurde ein Unterschied zwischen
-  Elementen der Menge $\cont (\PrET (P))$ und $\cont (\MIT (P))$ deutlich.
-  Somit ist hier eine Unterscheidung notwendig.
+  $\ET _S$ gewählt. Das $w$ muss ebenfalls in $\ET _1\cap \ET _2$ enthalten. In
+  Lemma~\ref{AblaufNFLem} wurde ein Unterschied zwischen Elementen der Menge
+  $\cont (\PrET (P))$ und $\cont (\MIT (P))$ deutlich. Dies ist auch der Grund
+  für die nachfolgende Fallunterscheidung.
   \begin{itemize}
     \item Fall 1 ($w\in(\cont (\PrET _1)\cap \cont(\PrET _2))$): Es führt also
       nach Lemma~\ref{AblaufNFLem} sowohl in $P_1$ wie auch in $P_2$ der Ablauf
-      von $w$ zu dem Fehler"=Zustand $e_1$ bzw.\ $e_2$. Da in beiden
+      von $w$ zum Fehler"=Zustand $e_1$ bzw.\ $e_2$. Da in beiden
       Transitionssystemen der Ablauf von $w$ möglich ist, enthält auch
       $P_1\land P_2$ die dafür notwendigen Transitionen. Das $w$ führt in der
       Konjunktion zum Zustand $(e_1,e_2)$ und ist wegen~\ref{AblaufNFLem} in
       der Menge $\ET _{P_1\land P_2}$ enthalten.
     \item Fall 2 ($w\in(\cont (\MIT _1)\cap \cont (\MIT _2))$): Es existieren
       Präfixe $w_1$ und $w_2$ von $w$ für die $w_1\in\MIT _1$ und $w_2\in\MIT
-      _2$ gilt. Falls $w_1=w_2$ gilt, ist in beiden $P_j$ das $v$ Element der
-      Sprache $L_j$, für das es einen Input $a$ gibt, so dass $va=w_1=w_2$
-      gilt. Das $v$ muss aufgrund von~\ref{AblaufNFLem} in den \MEIO{}s $P_j$
-      ausführbar sein und jeweils einen Zustand $p_j$ erreichen, in dem das $a$
-      nicht via einer must"=Transition ausführbar ist. In der Komposition muss
-      es einen Ablauf von $v$ geben, der zu dem Zustand $(p_1,p_2)$ führt. Da
-      für keinen der beiden Zustände $p_j$ $a$ eine ausgehende must"=Transition
-      ist, kann mit Definition~\ref{ConjDef} auch es auch keine mit $a$
-      beschriftete ausgehende must"=Transition für $(p_1,p_2)$ geben. Es gilt
-      also mit~\ref{AblaufNFLem} $w_1=w_2\in\MIT _{P_1\land P_2}$ und somit
-      $w\in\ET _{P_1\land P_2}$. Falls $w_1\neq w_2$ gilt, ist \oBdA{} $w_1$
-      kürzer wie $w_2$. Es gibt Wörter $v_1$, $v_2$ und Inputs $a_1$, $a_2$, so
-      dass $w_1=v_1a_2$ und $w_2=v_2a_2$ gilt. $v_1$ ist ein Präfix von $v_2$.
-      Es ist also $v_1$ in beiden \MEIO{}s $P_j$ ausführbar. In $P_1$ wird
-      dadurch ein Zustand $p_1$ erreicht für den $p_1\nmust[a_1]$ gilt. Für den
-      Zustand $p_2$, den $P_2$ durch $v_1$ erreicht gilt jedoch
-      $p_1\nmust[a_1]$. In der Konjunktion kommt also die Regel (IMust3) der
-      Definition~\ref{ConjDef} zur Anwendung. Die restlichen Transitionen von
-      $v_2$ erbt die Konjunktion also direkt von $P_2$. In $P_1\land P_2$ führt
-      der Ablauf von $v_2$ zu dem Zustand $(e_1,p'_2)$. Für $p'_2$ ist $a_2$
-      keine ausgehende must"=Transition. Die Definition~\ref{ConjDef} lässt es
-      deshalb auch nicht zu, dass $(e_1,p'_2)$ der Input $a_2$ als ausgehenden
-      must"=Transition besitzt. Es gilt also mit~\ref{AblaufNFLem} $w_2\in\MIT
-      _{P_1\land P_2}$ und daraus folgt dann auch $w\in\ET _{P_1\land P_2}$.
+      _2$ gilt.
+      \begin{itemize}
+        \item Fall 2a) ($w_1=w_2$): In beiden $P_j$ ist das $v$, für das es
+          einen Input $a$ gibt, so dass $w_1 = w_2 = va$ gilt, Element der
+          Sprache $L_j$. Das $v$ muss wegen~\ref{AblaufNFLem} in den \MEIO{}s
+          $P_j$ zu jeweils einem Zustand $p_j$ führen, in dem das $a$ nicht
+          sichergestellt ist. In der Komposition muss es einen Ablauf von $v$
+          geben, der zu dem Zustand $(p_1,p_2)$ führt. Da für keinen der beiden
+          Zustände $p_j$ der Input $a$ eine ausgehende must"=Transition ist,
+          kann es mit Definition~\ref{ConjDef} auch keine mit $a$ beschriftete
+          ausgehende must"=Transition für $(p_1,p_2)$ geben. Es gilt also mit
+          Lemma~\ref{AblaufNFLem} $w_1=w_2\in\MIT _{P_1\land P_2}$ und somit
+          $w\in\ET _{P_1\land P_2}$.
+        \item Fall 2b) ($w_1\neq w_2$): \OBdA{} ist $w_1$ kürzer wie $w_2$. Es
+          gibt Wörter $v_1$, $v_2$ und Inputs $a_1$, $a_2$, so dass $w_1 =
+          v_1a_1$ und $w_2 = v_2a_2$ gilt. $v_1$ ist ein echtes Präfix von
+          $v_2$. Es ist also $v_1$ in beiden \MEIO{}s $P_j$ ausführbar. In
+          $P_1$ wird dadurch ein Zustand $p_1$ erreicht für den
+          $p_1\anmust[a_1]$ gilt. Für den Zustand $p_2$, den $P_2$ durch $v_1$
+          erreicht gilt jedoch $p_2\must[a_1]$. In der Konjunktion kommt also
+          die Regel (IMust3) der Definition~\ref{ConjDef} zur Anwendung. Die
+          restlichen Transitionen von $v_2$ nach der Ausführung von $w_1$ erbt
+          die Konjunktion also direkt von $P_2$. In $P_1\land P_2$ führt der
+          Ablauf von $v_2$ zu einem Zustand der Form $(e_1,p'_2)$. Für $p'_2$
+          ist $a_2$ keine ausgehende must"=Transition. Da für $e_1$ alle
+          Aktionen eine must"=Transition zu $e_1$ besitzen kann erneut die
+          Regel (IMust3) der Definition~\ref{ConjDef} angewendet werden. Durch
+          $w_2$ wird in $P_1\land P_2$ der Zustand $(e_1,e_2)$ erreicht. Es
+          gilt durch Lemma~\ref{AblaufNFLem} $w_2\in\PrET _{P_1\land P_2}$ und
+          daraus folgt dann auch $w\in\ET _{P_1\land P_2}$.
+      \end{itemize}
     \item Fall 3 ($w\in (\cont (\PrET _1)\cap \cont (\MIT _2))$ oder $w\in
       (\cont (\MIT _1)\cap \cont (\PrET _2))$): Die beiden hier Vereinigten
-      Fälle sind symmetrisch, somit kann \oBdA{} davon ausgegangen werden, dass
-      $w\in (\cont (\PrET _1)\cap \cont (\MIT _2))$ gilt. In $P_1$ führt der
-      Ablauf $w$ zum Fehler"=Zustand $e_1$. Es gibt ein Präfix $w'$ von $w$,
-      dass in $\MIT _2$ enthalten ist. In $P_2$ ist das Präfix $v$ von $w'$
-      ausführbar, für das es einen Input $a$ gibt, so dass $w'=va$ gilt. $va$
-      ist entweder in $\MIT _1$ enthalten und somit kann der Fall 2 angewendet
-      werden, oder der Input $a$ ist in $P_1$ nach dem Ablauf von $v$ durch
-      eine must"=Transition ausführbar. Mit der Definition~\ref{ConjDef} folgt
-      dann, dass in der Konjunktion durch $va$ ein Zustand erreicht werden
-      muss, dessen zweites Element des Tupels $e_2$ ist. Somit wird in
-      $P_1\land P_2$ durch $w$ der Zustand $(e_1,e_2)$ erreicht. Mit
-      Lemma~\ref{AblaufNFLem} folgt $w\in\ET _{P_1\land P_2}$.
+      Fälle sind symmetrisch, somit kann wegen der Kommunativität der
+      Konjunktioin \oBdA{} davon ausgegangen werden, dass $w\in (\cont (\PrET
+      _1)\cap \cont (\MIT _2))$ gilt. In $P_1$ führt der Ablauf $w$ zum
+      Fehler"=Zustand $e_1$. Es gibt ein Präfix $w'$ von $w$, dass in $\MIT _2$
+      enthalten ist. In $P_2$ ist das Präfix $v$ von $w'$ ausführbar, für das
+      es einen Input $a$ gibt, so dass $w'=va$ gilt. $va$ ist entweder in $\MIT
+      _1$ enthalten und es kann Fall 2 angewendet werden, oder der Input $a$
+      ist in $P_1$ nach der Ausführung von $v$ durch eine must"=Transition
+      möglich. Falls in $P_1$ die $a$-must"=Transtion enthalten ist, folgt mit
+      der Definition~\ref{ConjDef}, dass in der Konjunktion durch $w'$ ein
+      Zustand erreicht werden muss, dessen zweites Element des Tupels $e_2$
+      ist. Somit wird in $P_1\land P_2$ durch $w$ der Zustand $(e_1,e_2)$
+      erreicht. Mit Lemma~\ref{AblaufNFLem} folgt daraus $w\in\ET _{P_1\land
+      P_2}$.
   \end{itemize}
 
-  Ein beliebiges $w$ der fehler"=gefluteten Sprache des \MEIO{}s $S$. Muss
-  wegen der Voraussetzungen in $P_1$ und $P_2$ ebenfalls ein Wort aus der
-  jeweiligen Menge $\EL _j$ sein. Da die fehler"=geflutete Sprache die
-  Vereinigung der Sprache $L$ und den Fehler"=Traces \ET{} ist, kann man
-  unterschiedliche Fälle für das Wort $w$ unterscheiden.
+  Ein beliebiges $w$ der fehler"=gefluteten Sprache des \MEIO{}s $S$ muss
+  in $P_1$ und $P_2$ ebenfalls ein Wort aus der jeweiligen Menge $\EL _j$ sein.
+  Da die fehler"=geflutete Sprache die Vereinigung der Sprache $L$ und der
+  Fehler"=Traces \ET{} ist, können unterschiedliche Fälle für das Wort $w$
+  eintreten.
   \begin{itemize}
-    \item Fall 1 ($w\in\ET _1\cap \ET _2$): In diesem Fall gilt aufgrund des
+    \item Fall I ($w\in\ET _1\cap \ET _2$): In diesem Fall gilt aufgrund des
       Beweises der vorangegangen Inklusion $w\in\ET _{P_1\land P_2}\subseteq
       \EL _{P_1\land P_2}$.
-    \item Fall 2 ($w\in\ET _1\cap L_2\backslash \ET _2$ oder $w\in
+    \item Fall II ($w\in\ET _1\cap L_2\backslash \ET _2$ oder $w\in
       L_1\backslash \ET _1\cap \ET _2$): Dieses beiden Fälle sind symmetrisch
-      und somit kann \oBdA{} davon ausgegangen werden, dass $w\in\ET _1\cap
-      L_2\backslash \ET _2$ gilt. Es gibt also in $P_2$ einen Ablauf des Wortes
-      $w$. Falls $w\in\cont (\PrET _1)$ enthalten ist, gibt es mit
-      Lemma~\ref{AblaufNFLem} auch in $P_1$ einen Ablauf, der mit $w$
-      beschriftet ist und der zum Zustand $e_1$ führt. In diesem Fall gilt also
-      $w\in L_{P_1\land P_2}\subseteq \EL _{P_1\land P_2}$. Falls $w$ jedoch in
-      der Menge $\cont (\MIT _1)$ enthalten ist, muss das $w$ nicht ausführbar
-      sein in $P_1$. Jedoch gibt es dann ein Präfix $v$ von $w$, dass in $P_1$
-      zu einem Zustand führt, der einen Input $a$ nicht sicherstellt, so dass
-      $va$ ein Präfix von $w$ ist. Da $w\notin \ET _2$ gilt, kann $va$ in $P_2$
-      kein Input"=kritischer Trace sein. Es muss also nach dem Ablauf $v$ in
-      $P_2$ ein Zustand erreicht werden, der für $a$ einen ausgehende
-      must"=Transition besitzt. Es folgt mit Definition~\ref{ConjDef}, dass in
-      der Konjunktion mit $va$ ein Zustand erreicht wird, der als erstes
-      Element des Tupels den Zustand $e_1$ enthält. Die noch fehlenden
-      Transitionen des Wortes $w$ werden also direkt von $P_2$ geerbt. Somit
-      gibt es in $P_1\land P_2$ einen mit $w$ beschrifteten Ablauf und es gilt
-      $w\in L_{P_1\land P_2}\subseteq \EL _{P_1\land P_2}$.
-    \item Fall 3 ($w\in L_1\backslash\ET _1 \cap L_2\backslash\ET _2$): Das
+      und da die Konjunktion kommunaitv ist kann \oBdA{} davon ausgegangen
+      werden, dass $w\in\ET _1\cap L_2\backslash \ET _2$ gilt. Es gibt also in
+      $P_2$ einen Ablauf des Wortes $w$.
+      \begin{itemize}
+        \item Fall IIa) ($w\in\cont (\PrET _1)$): Es gibt wegen
+          Lemma~\ref{AblaufNFLem} auch in $P_1$ einen Ablauf, der mit $w$
+          beschriftet ist. In diesem Fall gilt also $w\in L_{P_1\land P_2}
+          \subseteq \EL _{P_1\land P_2}$.
+        \item Fall IIb) ($w\in\cont (\MIT _1)\backslash\cont (\PrET _1)$): $w$
+          ist in $P_1$ nicht ausführbar. Es gibt ein echtes Präfix $v$ von $w$,
+          dass in $P_1$ zu einem Zustand führt, der einen Input $a$ nicht
+          sicherstellt, so dass $va$ ebenfalls ein Präfix von $w$ ist. Da
+          $w\notin \ET _2$ gilt, kann $va$ in $P_2$ kein Input"=kritischer
+          Trace sein. Es muss also nach dem Ablauf $v$ in $P_2$ ein Zustand
+          erreicht werden, der für den Input $a$ einen ausgehende
+          must"=Transition besitzt. Es folgt mit Definition~\ref{ConjDef}, dass
+          in der Konjunktion durch $va$ ein Zustand erreicht wird, der als
+          erstes Element des Tupels den Zustand $e_1$ enthält. Die noch
+          fehlenden Transitionen des Wortes $w$ nach der Ausführung von $va$
+          werden also direkt von $P_2$ geerbt. Somit gibt es in $P_1\land P_2$
+          einen mit $w$ beschrifteten Ablauf und es gilt $w\in L_{P_1\land P_2}
+          \subseteq \EL _{P_1\land P_2}$.
+      \end{itemize}
+    \item Fall III ($w\in L_1\backslash\ET _1 \cap L_2\backslash\ET _2$): Das
       Wort $w$ ist in beiden \MEIO{}s $P_j$ ausführbar. Die dafür verwendeten
-      Transitionen können durch die Definition~\ref{ConjDef} in die Konjunktion
-      übernommen werden. Es gibt also auch in $P_1\land P_2$ einen Ablauf, der
-      mit $w$ beschriftet ist. Somit gilt $w\in L_{P_1\land P_2}\subseteq \EL
+      Transitionen werden durch die Definition~\ref{ConjDef} in die Konjunktion
+      übernommen. Es gibt also auch in $P_1\land P_2$ einen Ablauf, der mit $w$
+      beschriftet ist. Somit gilt $w\in L_{P_1\land P_2}\subseteq \EL
       _{P_1\land P_2}$.
   \end{itemize}
 
@@ -404,8 +432,8 @@ Relation \ERel{} handelt.
   _{P_1\land P_2}$ und $\EL _S\subseteq \EL _{P_1\land P_2}$ vorausgesetzt
   werden um $\ET _S\subseteq \ET _1$, $\EL _S\subseteq \EL _1$, $\ET
   _S\subseteq \ET _2$ und $\EL _S\subseteq \EL _2$ zu zeigen. Da die
-  Konjunktion aufgrund ihrer Definition kommutativ ist, reicht es die
-  Inklusionen für einen der beiden \MEIO{}s zu zeigen.
+  Konjunktion aufgrund ihrer Definition in~\ref{ConjDef} kommutativ ist, reicht
+  es die Inklusionen für einen der beiden \MEIO{}s zu zeigen.
 
   Als erstes soll die Inklusion $\ET _S\subseteq \ET _1$ betrachtet werden.
   Durch die Voraussetzungen gilt für ein beliebiges $w$ aus $\ET _S$ auch die
@@ -417,16 +445,16 @@ Relation \ERel{} handelt.
     \item Fall 1 ($w\in\cont (\PrET _{P_1\land P_2})$): Der Ablauf von $w$
       führt zum Zustand $(e_1,e_2)$. Es muss also durch die Konjunktion von
       $P_1$ und $P_2$ der Zustand $e_1$ durch das Wort $w$ in der ersten
-      Komponente der Zustands"=Tupel erreicht worden sein. Dies ist möglich durch
-      eine nicht sichergestellte Input"=Transition innerhalb des $w$s in $P_1$
-      oder dadurch, dass $w$ ein Ablauf in $P_1$ ist, der zum Fehler"=Zustand
-      $e_1$ führt. Das Wort $w$ ist in beiden Fällen in der Menge $\ET _1$
-      enthalten.
+      Komponente der Zustands"=Tupel erreicht worden sein. Dies ist möglich
+      durch eine nicht sichergestellte Input"=Transition innerhalb des $w$s in
+      $P_1$ oder dadurch, dass $w$ ein Ablauf in $P_1$ ist, der zum
+      Fehler"=Zustand $e_1$ führt. Das Wort $w$ ist in beiden Fällen in der
+      Menge $\ET _1$ enthalten.
     \item Fall 2 ($w\in\cont (\MIT _{P_1\land P_2})$): Das Präfix $v$ von $w$
       ist in $P_1\land P_2$ ausführbar zu einem Zustand $(p_1,p_2)$, für den
       $(p_1,p_2)\nmust[a]_{P_1\land P_2}$ gilt. Es darf also für die Zustände
-      $p_1$ und $p_2$ ebenfalls keine ausgehenden $a$-must"=Transition geben, da
-      sonst~\ref{ConjDef} auch eine must"=Transition in der Konjunktion der
+      $p_1$ und $p_2$ ebenfalls keine ausgehenden $a$-must"=Transition geben,
+      da sonst~\ref{ConjDef} auch eine must"=Transition in der Konjunktion der
       beiden \MEIO{}s fordern würde. $va$ ist also für $P_1$ ein
       Input"=kritischer Trace mit $va\in\MIT _1\subseteq \ET _1$. Da die Menge
       \ET{} unter Fortsetzung abgeschlossen ist, gilt auch $w\in\ET _1$.
@@ -439,33 +467,38 @@ Relation \ERel{} handelt.
   _{P_1\land P_2})$, dieser Fall führt zu $w\in\ET _1\subseteq\EL _1$, wie
   bereits in Fall 2 der letzten Inklusion gezeigt wurde. Es kann also davon
   ausgegangen werden, dass $w$ in der Konjunktion ausführbar ist. Der Fall $w$
-  führt in $P_1\land P_2$ zum Fehler"=Zustand wurde auch bereits in Fall 1 der
-  letzten Inklustion behandelt und führt zu $w\in\ET _1\subseteq\EL _1$. Man
-  kann sich für diesen Beweisteil deshalb sogar auf Abläufe von $w$
+  führt in $P_1\land P_2$ zum Fehler"=Zustand wurde auch bereits von der
+  letzten Inklustion in Fall 1 behandelt und führt zu $w\in\ET _1\subseteq\EL
+  _1$. Man kann sich für diesen Beweisteil deshalb sogar auf Abläufe von $w$
   einschränken, die zu einem Zustand in $P_1\land P_2$ führen, der nicht der
   Fehler"=Zustand ist. Jedoch ist es trotzdem möglich, dass durch $w$ ein
   Zustand erreicht wird, in dessen Tupel einer der Zustände der Fehler"=Zustand
   der jeweiligen Komponente ist.
   \begin{itemize}
-    \item Fall 1 ($(p_{01},p_{02})\weakmay[w]_{P_1\land P_2} (p_1,p_2)$ mit
+    \item Fall I ($(p_{01},p_{02})\weakmay[w]_{P_1\land P_2} (p_1,p_2)$ mit
       $p_1\neq e_1$): Die Konjunktion kann für das Wort $w$ nur Transitionen
       verwendet haben, die in $P_1$ mindestens via schwacher may"=Transitionen
       möglich waren. Es muss also auch in $P_1$ einen Ablauf des Wortes $w$
       geben, der ebenfalls zum Zustand $p_1$ führt. Es gilt also $w\in L_1
       \subseteq \EL _1$.
-    \item Fall 2 ($(p_{01},p_{02})\weakmay[w]_{P_1\land P_2} (e_1,p_2)$): Da
+    \item Fall II ($(p_{01},p_{02})\weakmay[w]_{P_1\land P_2} (e_1,p_2)$): Da
       das Zustands"=Tupel $(e_1,p_2)$ den Fehler"=Zustand von $P_1$ in der
       ersten Komponente enthält, gibt es zwei Möglichkeiten für $P_1$ wie
-      dieser Zustand in der Konjunktion erreicht wurde. Es kann in $P_1$ durch
-      $w$ der Zustand $e_1$ erreicht worden sein und somit $w\in L_1\cap \ET
-      _1\subseteq \EL _1$ gelten. Alternativ kann es ein Präfix $w'$ von $w$
-      geben, dass man in das Wort $v$ und den Input $a$ aufteilen kann, so dass
-      $w'=va$ gilt und durch $v$ in $P_1$ ein Zustand erreicht wurde, für den
-      der Input $a$ nicht sichergestellt wurde. In der Konjunktion kam dann die
-      Transitions"=Regel (IMust3) oder (IMay3) der Definition~\ref{ConjDef} zum
-      Einsatz um einen Zustand zu erreichen, der $e_1$ als erste Komponente
-      enthält. Es gilt also $va\in\MIT _1\subseteq\ET _1$. Wegen der
-      Abgeschlossenheit der Menge \ET{} unter Fortsetzungen gilt $w\in \ET _1
+      dieser Zustand in der Konjunktion erreicht wurde.
+      \begin{itemize}
+        \item Fall IIa) ($w$ ausführbar in $P_1$): $P_1$ kann durch $w$ den
+          Zustand $e_1$ erreichen. Es gilt also $w\in L_1\cap \ET _1\subseteq
+          \EL _1$.
+        \item Fall IIb) ($w$ nicht vollständig ausführbar in $P_1$): Es gibt
+          ein Präfix $w'$ von $w$, das man in das Wort $v$ und den Input $a$
+          aufteilen kann, so dass $w'=va$ gilt und durch $v$ in $P_1$ ein
+          Zustand erreicht wird, für den der Input $a$ nicht sichergestellt
+          ist. In der Konjunktion kam die Transitions"=Regel (IMust3) oder
+          (IMay3) der Definition~\ref{ConjDef} zum Einsatz um einen Zustand zu
+          erreichen, der $e_1$ als erste Komponente enthält. Es gilt in diesem
+          Fall also $va\in\MIT _1\subseteq\ET _1$. Wegen der Abgeschlossenheit
+          der Menge \ET{} unter Fortsetzungen gilt $w\in \ET _1
       \subseteq \EL _1$.
+      \end{itemize}
   \end{itemize}
 \end{proof}
