@@ -1,3 +1,64 @@
 \section{Konjunktion}
 
-\TODO{Konjunktion des Fehler-Kapitels entsprechend erweitern}
+Die Relation \QRel{} verfeinert die Relation \ERel{} nur um die zusätzlich
+Inklusion $\QET _P \subseteq \QET _Q$. Es kann also die Konjunktion und die
+dafür notwendige Normal Form nur mit kleinen Abwandlungen aus dem
+Fehler"=Kapitel übernommen werden.\\
+Als erstes sollte überprüft werden, ob die Konstruktion der Normal Form etwas
+an den Traces aus der Menge \QET{} verändert. Da die Normalisierung
+in~\ref{normalFormDef} die Menge der Fehler"=Traces in \ET{} unverändert lässt,
+reicht es aus die Traces aus $\StQT (P)\backslash\ET (P)$ zu betrachten.
+Schritt (i) lässt alle Zustände, die nicht in $E_P$ oder $\overline{E_P}$
+enthalten sind unverändert, vor allem verändert dieser Schritt noch keine
+Transitionen. Alle stillen Zustände sind also auch noch nach dem Schritt (i)
+still. Im ersten Fall des Schrittes (ii) ist die Menge $\StQT (P)\backslash \ET
+(P)$ leer und ebenso ist es die Menge $\StQT (\NF (P))\backslash\ET (\NF (P))$.
+Der zweite Fall von Schritt (ii) verändert nur Transitionen, zu Zuständen
+führen, die mit Traces aus $\ET (P)$ erreichbar sind. Es bleiben also auch die
+durch $\StQT (P)\backslash \ET (P)$ erreichbaren Zustände im zweiten Schritt
+der Konstruktion in~\ref{normalFormDef} still. Es gilt also auch für die Trace
+Menge \QET{} $\QET(P) = \QET (\NF (P))$ und somit ist $\NF (P)$ ebenfalls
+äquivalent zu $P$ bezüglich der Relation \QRel{}.\\
+Die Normal Form hat das Problem mit dem Fehler"=Zuständen gelöst. In der
+Definition~\ref{ConjDef} gab es eine spezielle Behandlung der
+Input"=Transitionen um in der Konjunktion die Input"=kritischen Traces
+entsprechend zu berücksichtigen. Auch für die in diesem Kapitel neu eingeführte
+Trace Menge \QET{} kann es zu Problemen kommen, die durch die Normal Form und
+Konjunktion im Fehler"=Kapitel noch nicht gelöst wurden. Es soll wiederum $\QET
+_{P\land Q} = \QET _P \cap \QET _Q$ gelten. Für die \ET{} Mengen gilt bereits
+eine analoge Aussage. Es ist also nur noch notwendig sich mit Traces
+auseinander zu setzten, die in mindestens einer Komponente der Konjunktion
+einen stillen Zustand erreichen. Falls $P$ und $Q$ beide einen stillen Zustand
+erreichen, kann es in der Konjunktion aus den beiden stillen Zuständen auch
+keine ausgehenden lokalen Aktionen geben, da in $P\land Q$ nur Transitionen
+möglich sind, die mindestens an einem der beteiligten Zustände möglich ist. Es
+sind also alle im Schritt der fehler"=gefluteten Stille"=Traces enthaltenen
+Elemente auch in der Menge $\QET _{P\land Q}$ enthalten. Jedoch kann die Menge
+$\QET _{P\land Q}$ echt größer sein, wenn man die Definitionen aus dem letzten
+Kapitel unverändert anwendet. Falls $P$ eine must"=Output"=Transition besitzt
+und $Q$ keine passende Output"=Transition enthält. Hat der zusammengesetzt
+keine ausgehende Transition für den Output. Somit kann es dazu kommen, dass ein
+Zustand, der aus zwei Zuständen zusammen gesetzt ist, von denen mindestens
+einer nicht still ist, in der Konjunktion trotzdem still ist. An den Zuständen,
+an denen das beschriebene Problem auftritt kann diese durch neu hinzugefügte
+$\tau$-Schlingen gelöst werden.
+
+\begin{Def}[Konjunktion]
+  Es werden die Voraussetzungen und die Konstruktion der Konjunktion
+  aus~\ref{ConjDef} in diese Definition übernommen. Man erhält $P_1\land P_2$
+  in diesem Kapitel aus der konstruierten Konjunktion in dem man eine
+  $\tau$-Schleife an jeden Zustand $(p_1,p_2)\in Qui$ anfügt, für den keiner
+  der $p_j$ ein Fehler-, Input"=kritischer oder stiller Zustand ist.
+\end{Def}
+
+Für dies abgewandelte Konjunktions"=Definition kann nun auch für die Relation
+\QRel{} gezeigt werden, dass $\land$ die gewünscht größte untere Schranke ist.
+
+\begin{Satz}[Konjunktion]
+  Für drei \MEIO{}s $S$, $P_1$ und $P_2$ mit der gleichen Signatur gilt $S\QRel
+  P_1\land P_2$ genau dann, wenn $S\QRel P_1$ und $S\QRel P_2$ erfüllt ist.
+\end{Satz}
+
+\begin{proof}
+  \TODO{zu beweisen}
+\end{proof}
