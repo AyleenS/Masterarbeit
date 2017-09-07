@@ -1,0 +1,955 @@
+\section{Testing-Ansatz}
+
+\begin{Def}[Divergenz]
+  Ein \emph{Divergenz-Zustand} ist ein Zustand in einem \MEIO{} $P$, der via
+  may-Transitionen eine unendliche Folge an $\tau$s ausführen kann.\\
+  Die Menge $Div(P)$ besteht aus all diesen divergenten Zuständen des \MEIO{}s
+  $P$.
+\end{Def}
+
+Die unendliche Folge an $\tau$s kann durch eine Schleife an einem durch interne
+Aktionen erreichbaren Zustand ausführbar sein oder durch einen Weg, der mit
+$\tau$s ausführbar ist, der unendliche viele Zustände durchläuft. Es ist jedoch
+zu beachten, dass ein Zustand, von dem aus unendlich viele Zustände durch
+$\tau$s  erreichbar sind, nicht divergent sein muss. Es ist auch möglich, dass
+dieser Zustand eine unendliche Verzweigung hat und somit keine unendlichen
+Folgen an $\tau$s ausführen kann.\\
+Als Erreichbarkeitsbegriff wird wieder die lokale Erreichbarkeit verwendet und
+somit eine optimistische Betrachtungsweise. Da das Divergieren eines Systems
+nicht mehr verhindert werden kann, sobald ein divergenter Zustand lokal
+erreicht werden kann, ist Divergenz als ähnlich \glqq schlimm\grqq{} zu
+bewerten wie ein Fehler-Zustand.
+
+\begin{Def}[Test und Verfeinerung für Divergenz]
+  \label{DivTestDef}
+  Ein \emph{Test} $T$ ist eine Implementierung. Ein \MEIO{} $P$
+  \emph{as-erfüllt} einen Divergenz-Test $T$, falls $S\|T$ fehler-, stillstand-
+  und divergenz-frei ist für alle $S\in \asimp (P)$. Es wird dann $P\DsatAs T$
+  geschrieben. Die Parallelkomposition $S\|T$ ist \emph{fehler-},
+  \emph{stillstand-} und \emph{divergenz-frei}, wenn kein Fehler-, stiller-
+  oder Divergenz-Zustand lokal erreichbar ist.\\
+  Ein \MEIO{} $P$ \emph{Divergenz-verfeinert} $P'$, falls für alle Tests $T$:
+  $P'\DsatAs T \Rightarrow P\DsatAs T$.
+\end{Def}
+
+Da nun die grundlegenden Definitionen für Divergenz festgehalten sind, kann man
+sich einen Begriff für die Traces zu divergenten Zuständen bilden. Im letzten
+Absatz wurde bereits festgestellt, dass Divergenz als ähnlich \glqq
+schlimmes\grqq{} Fehlverhalten anzusehen ist wie Fehler und dass das
+Divergieren eines Systems nicht mehr verhinderbar ist, sobald ein divergenter
+Zustand lokal erreichbar ist, kommt für die Divergenz-Traces wieder die
+\prune{}-Funktion zum Einsatz. Ein System, das unendliche viele $\tau$s
+ausführen kann, ist von außen nicht von so einem System zu unterscheiden, das
+einen Fehler-Zustand erreicht. Somit wird in den Trace-Mengen auch nicht
+zwischen Fehler"=Traces und Divergenz"=Traces explizit unterschieden. Dadurch
+genügt es nicht mehr nur mit den Fehler"=Traces die Sprache zu fluten, sondern
+es muss sowohl mit den Fehler"=Traces wie auch den Divergenz"=Traces geflutet
+werden. Ebenso werden die strikten Stille"=Traces mit diesen beiden
+Trace-Mengen geflutet.
+
+\begin{Def}[Divergenz-Traces]
+  Sei $P$ ein \MEIO{} und definiere:
+  \begin{itemize}
+    \item \emph{strikte Divergenz-Traces}: $\StDT (P) := \left\{w\in\Sigma
+      ^*\mid p_0\weakmay[w]_P p\in Div(P)\right\}$,
+    \item \emph{gekürzte Divergenz-Traces}: $\PrDT (P) := \left\{\prune (w)\mid
+      w\in\StDT (P)\right\}$.
+  \end{itemize}
+\end{Def}
+
+Analog zu den Propositionen~\ref{KommTracesProp} und~\ref{StilleTraceProp} gibt es
+hier auch eine Proposition, die die Divergenz-Traces eines \MEIO{}s mit den
+Divergenz-Traces seiner as"=Implementierungen verbindet. Die Begründung
+verläuft analog zu den Propositionen der vorangegangenen Kapitel.
+
+\begin{Prop}[Divergenz-Traces und Implementierungen]
+  \label{DivTraceProp}
+  Sei $P$ ein \MEIO{}.
+  \begin{enumerate}
+    \item Für die strikten Divergenz-Traces gilt: $\StDT (P) \subseteq
+      \underset{P'\in\asimp (P)}{\bigcup} \StDT (P')$.
+    \item Für die gekürzten Divergenz-Traces von $P$ gilt:
+      $\PrDT (P) \subseteq \underset{P'\in\asimp (P)}{\bigcup} \PrDT (P')$.
+  \end{enumerate}
+\end{Prop}
+\begin{proof}\mbox{}
+  \begin{enumerate}
+    \item Um diese Inklusion beweisen zu können wird wieder eine
+      as"=Implementierung $P'$ von $P$ und eine passende
+      as"=Verfeinerungs"=Relation $\mathcal{R}$ angegeben, so dass alle
+      strikten Divergenz-Traces von $P$ auch in $P'$ enthalten sind. In diesem
+      Fall funktioniert der Ansatz alle Traces aus $P$ in $P'$ zu
+      implementieren und keine Fehler-Zustände zu übernehmen. Die Definition
+      von $P'$ lautet also:
+      \begin{itemize}
+        \item $P'=P$,
+        \item $p'_0=p_0$,
+        \item $I_{P'}=I_P$ und $O_{P'}=O_P$,
+        \item $\must _{P'} =\may _{P'} = \may _P$,
+        \item $E_{P'}=\emptyset$.
+      \end{itemize}
+      Die passende as"=Verfeinerungs"=Relation $\mathcal{R}$ ist die
+      Identität-Relation. Wie bereits im Beweis zu Proposition~\ref{LImpProp}
+      begründet erfüllt $\mathcal{R}$ alle Punkte der Definition~\ref{SimDef}
+      um eine as"=Verfeinerungs"=Relation zu sein. Es wird ein $w$ aus $\StDT
+      (P)$ betrachtet. Es gibt also einen Trace in $P$ auf dem das Wort $w$
+      ausgeführt wird und der einen divergenten Zustand erreicht. Es gilt also
+      $\exists w' \in \Sigma _{\tau}^*, \exists \alpha _1, \alpha _2, \dots ,
+      \alpha _n, \exists p_1, p_2, \dots , p_n: \hat{w'} = w \land w' = \alpha
+      _1\alpha _2\dots\alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha
+      _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n \in Div _P$. Die
+      Identitäts"=Relation $\mathcal{R}$ setzt die Zustände des Traces mit den
+      analogen Zuständen aus $P'$ in Relation. Zusätzlich mit der
+      Implementierung aller Transitionen aus $P$ in $P'$ ergibt sich der selbe
+      Trace in $P'$. Es gilt also $p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha
+      _2]_{P'} \dots p'_{n-1} \may[\alpha _n]_{P'} p'_n$ mit $(p'_j,p_j) \in
+      \mathcal{R}$ für $0\leq j \leq n$. Da $p_n$ in $Div _P$ enthalten ist,
+      gibt es von diesem Zustand in $P$ aus die Möglichkeit eine unendliche
+      Folge an $\tau$s auszuführen. Die Ausführbarkeit muss sich dabei auf mit
+      $\tau$ beschriftete may"=Transitionen in $P$ stützen. Da diese
+      Transitionen in $P'$ alle übernommen wurden, ist auch für $p'_n$ eine
+      unendliche Folge an $\tau$s ausführbar. Es gilt also $p'_n\in Div _{P'}$
+      und somit $w\in \StDT (P')$. Insgesamt folgt also für diese $P'$ $\StDT
+      (P) = \StDT (P')$.
+    \item Dieser Punkt entspricht 1.\ bis auf die Anwendung der
+      \prune{}-Funktion auf beiden Seiten des Inklusions-Symbols. Da $\prune{}$
+      monoton ist, folgt dieser Punkt direkt auf dem letzten.
+  \end{enumerate}
+\end{proof}
+
+Da die Stille"=Traces mit den Fehler- und Divergenz"=Traces geflutet werden
+sollen, kann die Stillstands"=Semantik nicht aus dem letzten Kapitel übernommen
+werden. Auch die geflutete Sprache aus dem Fehler-Kapitel kann nicht
+beibehalten werden. Nur die Fehler"=Traces \ET{} können ohne Veränderung auch
+in diesem Kapitel verwendet werden. Jedoch werden diese Traces im weiteren
+Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
+
+\begin{Def}[Kommunikationsfehler-, Stillstands- und Divergenz-Semantik]
+  \label{DivSemDef}
+  Sei $P$ ein \MEIO{}.
+  \begin{itemize}
+    \item Die Menge der \emph{Divergenz-Traces} von $P$ ist $\DT (P) := \cont
+      (\PrDT (P))$.
+    \item Die Menge der \emph{Fehler-Divergenz-Traces} von $P$ ist $\EDT (P) :=
+      \ET (P)\cup\DT (P)$.
+    \item Die Menge der \emph{Fehler-Divergenz-gefluteten
+      Stille-Traces} von $P$ ist $\QDT (P) := \StQT (P)\cup\EDT (P)$.
+    \item Die Menge der \emph{Fehler-Divergenz-gefluteten
+      Sprache} von $P$ ist $\EDL (P) := L(P)\cup\EDT (P)$.
+  \end{itemize}
+  Für zwei \MEIO{}s $P_1,P_2$ mit der gleichen Signatur schreibt man $P_1\DRel
+  P_2$, wenn $\EDT _1\subseteq \EDT _2, \QDT _1\subseteq \QDT _2$ und $\EDL
+  _1\subseteq \EDL _2$ gilt.
+\end{Def}
+
+\vspace{0.2cm}
+
+\begin{Prop}[Kommunikationsfehler-, Stillstands-, Divergenz-Semantik und
+  Implementierungen]
+  \label{DivSemProp}
+  Sie $P$ ein \MEIO{}.
+  \begin{enumerate}
+    \item Für die Menge der Divergenz-Traces von $P$ gilt $\DT (P) \subseteq
+      \underset{P'\in\asimp (P)}{\bigcup} \DT (P')$.
+    \item Für die Menge der Fehler-Divergenz-Traces von $P$ gilt die folgende
+      Gleichheit $\EDT (P) = \underset{P'\in\asimp (P)}{\bigcup} \EDT (P')$.
+    \item Für die Menge der Fehler-Divergenz-gefluteten Stille-Traces von $P$
+      gilt $\QDT (P) = \underset{P'\in\asimp (P)}{\bigcup} \QDT (P')$.
+    \item Für die Menge der Fehler-Divergenz-gefluteten Sprache von $P$ gilt
+      $\EDL (P) = \underset{P'\in\asimp (P)}{\bigcup} \EDL (P')$.
+  \end{enumerate}
+\end{Prop}
+\begin{proof}\mbox{}\\
+  1.:\\
+  Es gilt bereits $\PrDT (P) \subseteq \underset{P'\in\asimp (P)}{\bigcup}
+  \PrDT (P')$, wegen 2.\ der Proposition~\ref{DivTraceProp}. Aus der Monotonie
+  von \cont{} folgt also auch die hier geforderte Inklusion.
+
+  2. \glqq$\subseteq$\grqq{}:
+  \begin{align*}
+    \EDT (P)&\overset{\ref{DivSemDef}}{=} \ET (P)\cup \DT (P)\\
+    &\hspace{-0.2cm}\overset{\ref{KommSemProp}~1.}{=} \left(\underset{P'\in
+    \asimp (P)}{\bigcup} \ET (P')\right)\cup \DT (P)\\
+    &\overset{1.}{\subseteq} \left(\underset{P'\in
+    \asimp (P)}{\bigcup} \ET (P')\right)\cup \left(\underset{P'\in \asimp
+    (P)}{\bigcup} \DT (P')\right)\\
+    &= \underset{P'\in \asimp (P)}{\bigcup} \ET (P') \cup \DT (P')\\
+    &\overset{\ref{DivSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \EDT
+    (P').\\
+  \end{align*}
+
+  2. \glqq$\supseteq$\grqq{}:\\
+  Für ein präfix-minimales $w$ aus der Menge $\EDT (P')$ einer
+  as"=Implementierung $P'$ von $P$ wird für diese Inklusion gezeigt, dass auch
+  $w\in\EDT (P)$ gilt. Es genügt ein präfix-minimales Element, da die
+  \EDT{}-Mengen unter \cont{} abgeschlossen sind. Falls das $w$ in $\ET (P')$
+  enthalten ist, folgt $w\in\ET (P) \subseteq\EDT (P)$ aufgrund des ersten
+  Punktes der Proposition~\ref{KommSemProp}. Es ist also nur noch der Fall zu
+  betrachten, in dem $w\in\DT (P') \backslash \ET (P')$ gilt. Es gibt also
+  einen Trace der Form $p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha _2]_{P'}
+  \dots p'_{n-1} \may[\alpha _n]_{P'} p'_n\in Div _{P'}$ in $P'$, wobei $\alpha
+  _1\alpha _2\dots\alpha _n$ dem Wort $wv$ bis auf interne Aktionen entspricht
+  mit $v\in O^*$. Keiner der Zustände $p'_j$ mit $0\leq j \leq n$ ist in
+  $E_{P'}$ enthalten. Da $P'$ eine as"=Implementierung von $P$ ist, muss es
+  eine as"=Verfeinerungs"=Relationen $\mathcal{R}$ zwischen $P'$ und $P$ geben
+  mit $(p'_0,p_0) \in\mathcal{R}$. Solange in $P$ kein Fehler-Zustand erreicht
+  wird, fordert~\ref{SimDef}~3., dass der Trace aus $P'$ in $P$ ebenfalls
+  möglich ist. Falls ein Fehler-Zustand in $P$ erreicht wird, ist ein Präfix
+  von $wv$ in $\StET (P)$ enthalten und mit $w =\prune (wv)$ gilt somit $w\in
+  \ET (P) \subseteq \EDT(P)$. Es gibt den Trace $p_0 \may[\alpha _1]_P p_1
+  \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n$ mit $p'_j\mathcal{R}
+  p_j$, falls keiner der Zustände $p_j$ in $E_P$ enthalten ist für $j\in\{0,1,
+  \dots, n\}$. Für $p'_n$ in ein Transitionsfolge aus unendlichen vielen
+  $\tau$s ausführbar. Es gibt also entweder eine Schleife, die via $\tau$s
+  immer wieder durchlaufen werden kann, oder einen Weg mit unendlichen vielen
+  Zuständen, die durch $\tau$-Transitionen verbunden sind. Falls innerhalb der
+  Schleife oder auf dem Weg ein Zustand in $E_{P'}$ enthalten ist, fordert
+  $\mathcal{R}$ mit~\ref{SimDef}~1., dass der erste solche Zustand in Relation
+  mit einem Zustand aus $E_P$ steht und somit $w \in \ET _P \subseteq \EDT _P$
+  gilt. Falls alle Zustände, die auf dem der unendlichen $\tau$-Folge von
+  $p'_n$ in $P'$ aus liegen nicht in $E_{P'}$ enthalten sind,
+  fordert~\ref{SimDef}~3.\ auch deren Ausführbarkeit von $p_n$ aus in $P$, bis
+  entweder ein Zustand in $E_P$ erreicht wird, oder ebenfalls eine unendliche
+  $\tau$-Folge in $P$ von $p_n$ aus ausführbar ist. Im ersten Fall gilt wieder
+  $w \in \ET _P \subseteq \EDT _P$. Ansonsten gilt $p_n\in Div _P$ und somit
+  $wv\in\StDT (P)$. Mit $w=\prune (wv)$ folgt $w\in\PrDT (P) \subseteq \EDT
+  (P)$.
+
+  3. \glqq$\subseteq$\grqq{}:
+  \begin{align*}
+    \QDT (P)&\overset{\ref{DivSemDef}}{=} \StQT (P)\cup \EDT (P)\\
+    &\overset{\ref{StilleTraceProp}}{\subseteq} \left(\underset{P'\in \asimp
+    (P)}{\bigcup} \StQT (P')\right)\cup \EDT (P)\\
+    &\overset{2.}{=} \left(\underset{P'\in \asimp (P)}{\bigcup} \StQT
+    (P')\right)\cup \left(\underset{P'\in \asimp (P)}{\bigcup} \EDT
+    (P')\right)\\
+    &= \underset{P'\in \asimp (P)}{\bigcup} \StQT (P') \cup \EDT (P')\\
+    &\overset{\ref{DivSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \QDT
+    (P').\\
+  \end{align*}
+
+  3. \glqq$\supseteq$\grqq{}:\\
+  Dieser Beweis verläuft analog zu dem Beweis von \glqq$\supseteq$\grqq{} der
+  Proposition~\ref{StilleSemProp}, man muss nur die \ET{}-Mengen durch
+  \EDT{}-Mengen ersetzten und für den Fall $w\in\EDT (P')$ folgt $w\in\EDT (P)$
+  wegen des zweiten Punktes dieser Proposition und nicht wegen
+  Proposition~\ref{KommSemProp}.
+
+  4. \glqq$\subseteq$\grqq{}:
+  \begin{align*}
+    \EDL (P)&\overset{\ref{DivSemDef}}{=} L (P)\cup \EDT (P)\\
+    &\overset{\ref{LImpProp}}{\subseteq} \left(\underset{P'\in \asimp
+    (P)}{\bigcup} L (P')\right) \cup \EDT (P)\\
+    &\overset{2.}{=} \left(\underset{P'\in \asimp (P)}{\bigcup} L (P')\right)
+    \cup \left(\underset{P'\in \asimp (P)}{\bigcup} \EDT (P')\right)\\
+    &= \underset{P'\in \asimp (P)}{\bigcup} L (P') \cup \EDT (P')\\
+    &\overset{\ref{DivSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \EDL
+    (P').\\
+  \end{align*}
+
+  4. \glqq$\supseteq$\grqq{}:\\
+  Für den Beweis dieser Inklusion kann man auf den Beweis
+  von~\ref{KommSemProp}~2.~\glqq$\supseteq$\grqq{} zurück greifen. Es müssen
+  wie bei 3.\ nur die \ET{}-Mengen durch \EDT{}-Mengen ersetzt werden und die
+  Einschränkung auf die geflutete Sprache ohne die Menge \EDT{} ist möglich
+  wegen des zweiten Punktes der aktuellen Proposition.
+\end{proof}
+
+Aus der so eben bewiesenen Proposition über die Gleichheit der betrachteten
+Traces, lässt sich wie in den letzten beiden Kapiteln eine Aussage über die
+lokale Erreichbarkeit der fehlerhaften Zustände in einer Spezifikation und den
+zugehörigen as"=Implementierungen treffen.
+
+\begin{Kor}[lokale Divergenz Erreichbarkeit]\mbox{}
+  \label{lokalDivErrKor}
+  \begin{enumerate}[(i)]
+    \item Falls in einem \MEIO{} $P$ ein Fehler lokal erreichbar ist, dann
+      existiert auch eine as"=Implementierung, in der ein Fehler lokal
+      erreichbar ist.
+    \item Falls in einem \MEIO{} $P$ Divergenz lokal erreichbar ist, dann
+      existiert auch eine as"=Implementierung, in der Divergenz lokal
+      erreichbar ist.
+    \item Falls ein \MEIO{} $P$ einen lokal erreichbaren stillen Zustand
+      besitzt, dann existiert auch eine as"=Implementierung, in der ein stiller
+      Zustand lokal erreichbar ist.
+    \item Falls es eine as"=Implementierung von $P$ gibt, die Fehler, Stille
+      oder Divergenz lokal erreicht, dann ist auch Fehler, Stille oder
+      Divergenz in $P$ lokal erreichbar.
+  \end{enumerate}
+\end{Kor}
+\begin{proof}\mbox{}
+  \begin{enumerate}[(i)]
+    \item Dieser Punkt folgt wie in~\ref{lokaleStilleErrKor} direkt aus
+      Korollar~\ref{lokalFehlerErrKor}~(i).
+    \item Ein divergenter Zustand ist in $P$ lokal erreichbar, wenn
+      $\varepsilon \in \DT _P$ gilt. Mit~\ref{DivSemProp}~1. folgt daraus, dass
+      es auch mindestens eine as"=Implementierung $P'$ aus $\asimp (P)$ geben
+      muss, für die $\varepsilon$ in $\DT (P')$ enthalten ist. Da \DT{} die
+      Menge der fortgesetzten um lokale Aktionen gekürzten strikten
+      Divergenz-Traces ist, muss es lokale Aktionen in $P'$ geben, die zu einem
+      divergenten Zustand führen. Es ist also auch in $P'$ Divergenz lokal
+      erreichbar.
+    \item Dieser Punkt folgt direkt aus Korollar~\ref{lokaleStilleErrKor}~(ii).
+    \item In $P'\in\asimp (P)$ sei ein Fehler-, stillen oder Divergenz-Zustand
+      lokal erreichbar. Es gilt dann $w\in\QDT _{P'}$ für $w\in O^*$. Mit
+      Proposition~\ref{DivSemProp}~3.\ gilt auch $w\in\QDT _P$ Die Menge \QDT{}
+      setzt sich aus den Mengen \ET{}, \StQT{} und \DT{} zusammen. Es muss also
+      in $P$ ein Fehler-, stiller oder Divergenz-Zustand lokal erreichbar sein,
+      da ein $w$, bestehend nur aus lokalen Aktionen, in $\QDT _P$ enthalten
+      ist.
+  \end{enumerate}
+\end{proof}
+
+Die Relation\DRel{} ist somit keine Einschränkung von \ERel{} so wie \QRel{}.
+Es können Systeme mit einem Fehler nicht von Systemen mit Divergenz
+unterschieden werden. Da die Divergenz-Test zwischen diesen Fehler-Arten auch
+keine Unterscheidung machen, muss eine sinnvolle Relation dies Eigenschaft auch
+übernehmen, so wie \DRel{} dies tut.
+
+\begin{Satz}[Kommunikationsfehler-, Stillstands- und Divergenz-Semantik für
+  Parallelkompositionen]
+  \label{DivSemSatz}
+  Für zwei komponierbare \MEIO{}s $P_1,P_2$ und ihre Komposition $P_{12}$ gilt:
+  \begin{enumerate}
+    \item $\EDT _{12} =\cont (\prune ((\EDT _1\|\EDL _2)\cup (\EDL _1\|\EDT
+      _2)))$,
+    \item $\QDT _{12} =(\QDT _1\|\QDT _2)\cup \EDT _{12}$,
+    \item $\EDL _{12} =(\EDL _1\|\EDL _2)\cup \EDT _{12}$.
+  \end{enumerate}
+\end{Satz}
+\begin{proof}\mbox{}\\
+  1. \glqq$\subseteq$\grqq{}:\\
+  Da beide Seiten der Gleichung unter \cont{} abgeschlossen sind, genügt es ein
+  präfix-minimales Element $w$ zu betrachten. Es muss hier unterschieden
+  werden, ob $w\in\ET _{12}$ oder $w\in\DT _{12}\backslash\ET _{12}$ betrachtet
+  wird. Im ersten Fall ist das $w$ in der rechten Seite der Gleichung enthalten
+  wegen des Beweises des ersten Punktes von Satz~\ref{KommFehlerSemSatz} und da
+  $\ET (P)\subseteq \EDT (P)$ und $\EL (P)\subseteq \EDL (P)$ gilt. Deshalb
+  wird im weiteren Verlauf dieses Beweises davon ausgegangen, dass $w\in\DT
+  _{12}\backslash\ET _{12}$ gilt und es wird versuch zu zeigen, dass dieses $w$
+  ebenfalls in der rechten Seite enthalten ist. Da das betrachtete $w$
+  präfix-minimal ist, gilt $w\in\PrDT _{12}\backslash\ET _{12}$. Aus der
+  Definition~\ref{DivSemDef} weiß man, dass ein $v\in O^*_{12}$ existiert,
+  sodass $(p_{01},p_{02})\weakmay[w]_{12} (p_1,p_2)\weakmay[v]_{12}
+  (p'_1,p'_2)$ gilt mit $(p'_1,p'_2)\in Div _{12}$. Durch die Projektion auf die
+  Transitionssysteme $P_1$ und $P_2$ erhält man $p_{01}\weakmay[w_1]_1 p_1
+  \weakmay[v_1]_1 p'_1$ und $p_{02}\weakmay[w_2]_2 p_2\weakmay[v_2]_2 p'_2$ mit
+  $w\in w_1\|w_2$ und $v\in v_1\|v_2$. Aus $(p'_1,p'_2)\in Div _{12}$ folgt,
+  dass \oBdA{} $p'_1\in Div _1$ gilt, d.h.\ $w_1v_1\in\StDT _1\subseteq\EDT
+  _1$. Da $p_{02}\weakmay[w_2v_2]_2$ gilt, erhält man $w_2v_2\in\EDL _2$. Somit
+  gilt insgesamt $wv\in\EDT _1\|\EDL _2$ und da $v\in O^*_{12}$, gilt $\prune
+  (wv) = w$ und $w$ ist in der rechten Seite der Gleichung enthalten.
+
+  1. \glqq$\supseteq$\grqq{}:\\
+  Es wird ebenso wie oben nur ein präfix-minimales $x$ betrachtet wegen des
+  Abschlusses beider Seiten der Gleichung unter \cont{}. Es wird also für ein
+  beliebiges $x\in\prune ((\EDT _1\|$ $\EDL _2)\cup (\EDL _1\|\EDT _2))$ gezeigt,
+  dass dieses oder eines seiner Präfixe auch in $\EDT _{12}$ enthalten ist. Da
+  das $x$ aus der \prune{}-Funktion entstanden ist, lässt sich ein $y$ aus
+  $O^*_{12}$ finden, sodass $xy\in (\EDT _1\|\EDL _2)\cup (\EDL _1\|\EDT _2)$.
+  Es wird nun noch vorausgesetzt, dass \oBdA{} $xy\in \EDT _1\|\EDL _2$ gilt,
+  d.h.\ es existiert $w_1\in\EDT _1$ und $w_2\in\EDL _2$ mit $xy\in
+  w_1\|w_2$. \TODO{erzwungenen Zeilenumbruch kontrollieren}\\
+  Die folgende Argumentation läuft analog zu der im Beweis der Inklusion $\ET
+  _{12} \supseteq \cont($ $\prune ((\ET _1\|\EL _2)\cup (\EL _1\|\ET _2)))$ aus
+  Satz~\ref{KommFehlerSemSatz}. Es muss dazu nur jeweils an den Stellen, an
+  denen $\PrET (P)\cup\MIT (P)$ steht auch noch eine Vereinigung mit $\PrDT
+  (P)$ vorgenommen werden. Für Fall I und II aus dem Beweis der oben genannten
+  Inklusion von Satz~\ref{KommFehlerSemSatz} ist jeweils kein weiterer
+  Unterfall für $v'_2$ notwendig da, wenn $v'_2$ nicht ausführbar ist, bereits
+  ein Fehler-Zustand in der Parallelkomposition
+  entsteht. Somit ist egal, ob auch noch Divergenz vorlag. Falls $v'_2$
+  ausführbar, ist nicht relevant, ob eine Divergenz-Möglichkeit bestanden hat,
+  da diese nicht an der Ausführbarkeit ändert. Am Ende ist ein zusätzlicher
+  Fall für $v_1\in\PrDT _1$ zu ergänzen:
+  \TODO{erzwungenen Zeilenumbruch kontrollieren}
+  \begin{itemize}
+    \item Fall III ($v_1\in\PrDT _1$): Es existiert ein $u_1$ aus $O^*_1$,
+      sodass $p_{01}\weakmay[v_1]_1 p_1\weakmay[u_1]_1 p'_1$ mit $p'_1\in Div
+      _1$ gilt. Da es hier keine disjunkten Inputmengen gibt kann das $a$, auf
+      das $v_1$ im Fall $v_1\neq\varepsilon$ endet, ebenfalls der letzte
+      Buchstabe von $v_2$ sein. Im Fall von $v_2\in\MIT _2$ kann somit $a=b$
+      gelten und damit wäre $v_2=v'_2$. Dieser Fall verläuft jedoch analog zu
+      Fall Ic) aus dem Beweis der oben genannten Inklusion von
+      Satz~\ref{KommFehlerSemSatz} und wird somit hier nicht weiter betrachtet.
+      Deshalb gilt für alle im folgenden betrachteten Fälle
+      $p_{02}\weakmay[v'_2]_2 p_2$ mit $(p_{01},p_{02}) \weakmay[v']_{12}$.
+      \begin{itemize}
+        \item Fall IIIa) \big($u_2\in (O_1\cap I_2)^*,c\in (O_1\cap I_2)$,
+          sodass $u_2c$ ein Präfix von $u_1|_{I_2}$ mit $p_2\weakmust[u_2]_2
+          p'_2 \nmust[c]_2$\big): Für ein Präfix von $u'_1c$ von $u_1$ mit
+          $(u'_1c)|_{I_2}=u_2c$ weiß man, dass $p_1\weakmay[u'_1]_1 p''_1
+          \may[c]_1$. Somit gilt $u'_1\in u'_1\|u_2$ und $(p_1,p_2)
+          \weakmay[u'_1]_{12} (p''_1,p'_2)\in E_{12}$, da für $P_2$ der
+          entsprechende Input fehlt, der mit dem Output von $c$ von $P_1$ zu
+          koppeln wäre. Es handelt sich also um einen neuen
+          Fehler. Es wird $v:=\prune (v'u'_1) \in\PrET _{12}$
+          gewählt, dies ist ein Präfix von $v'$, da $u_1\in O^*_1$.
+        \item Fall IIIb) \big($p_2\weakmust[u_2]_2 p'_2$ mit $u_2=u_1|_{I_2}$
+          \big): Somit ist $u_1\in u_1\|u_2$ und $(p_1,p_2)\weakmay[u_1]_{12}
+          (p'_1,p'_2)\in Div _{12}$, da $p_1\in Div _1$. $P_{12}$ hat also die
+          Divergenz von $P_1$ geerbt. Es wird nun $v:=\prune (v'u_1)\in\PrDT
+          _{12}$ gewählt, das wiederum ein Präfix von $v'$ ist.
+      \end{itemize}
+  \end{itemize}
+
+  2. \glqq$\subseteq$\grqq{}:\\
+  Diese Inklusionsrichtung kann analog zum Beweis derselben Inklusionsrichtung
+  des zweiten Punktes von Satz~\ref{StilleSemSatz} gezeigt werden. Es muss dabei
+  nur in der Argumentation die Menge $\ET _{12}$ durch die Menge $\EDT _{12}$
+  und die Mengen $\QET (P)$ durch die Mengen $\QDT (P)$ für die entsprechenden
+  Transitionssysteme $P$ ersetzt werden. Dadurch kann ebenso gefolgert werden,
+  dass im Fall $w\in\StQT _{12}\backslash\EDT _{12}$ der erreichte Zustand
+  $(p_1,p_2)$ kein Fehler sein kann, da $\ET _{12}\subseteq\EDT
+  _{12}$ gilt und somit lässt sich auch hier der zweite Punkt von
+  Lemma~\ref{StilleZustLem} anwenden.
+
+  2. \glqq$\supseteq$\grqq{}:\\
+  Es muss wieder danach unterschieden werden, aus welcher Menge das betrachtete
+  Element stammt. Falls $w$ ein Element von $\EDT _{12}$ ist, folgt die
+  Zugehörigkeit zur linken Seite der Gleichung direkt. Somit wird für den
+  weiteren Verlauf dieses Beweises davon ausgegangen, dass $w\in\QDT _1\|\QDT
+  _2$ gilt. Für dieses $w$ soll dann gezeigt werden, dass es auch in $\QDT
+  _{12}$ enthalten ist. Da $\QDT _i=\StQT _i\cup\EDT _i$ gilt, existierten für
+  $w_1$ und $w_2$ mit $w\in w_1\|w_2$ unterschiedliche Möglichkeiten:
+  \begin{itemize}
+    \item Fall 1 ($w_1\in\EDT _1\lor w_2\in\EDT _2$): \OBdA{} gilt $w_1\in\EDT
+      _1$. Es kann nun $w_2\in\StQT _2\subseteq L_2$ gelten oder $w_2\in\EDT
+      _2\subseteq \EDL _2$ und somit gilt auf jeden Fall $w_2\in\EDL _2$.
+      Daraus kann mit dem ersten Punkt dieses Satzes gefolgert werden, dass
+      $w\in\EDT _{12}$ gilt und somit $w$ in der linken Seite der Gleichung
+      enthalten ist.
+    \item Fall 2 ($w_1\in\StQT _1\backslash\EDT _1\land w_2\in\StQT
+      _2\backslash\EDT _2$): Dieser Fall läuft analog zu Fall 2 derselben
+      Inklusionsrichtung des Beweises von Satz~\ref{StilleSemSatz}. Hierfür muss
+      die Menge $\QET _{12}$ durch $\QDT _{12}$ ersetzt werden.
+  \end{itemize}
+
+  3.:\\
+  Durch die Definition~\ref{DivSemDef} ist klar, dass $L_i\subseteq\EDL _i$ und
+  $\EDT _i\subseteq\EDL _i$ gilt. Die Argumentation wird von der rechten Seite
+  der Gleichung aus begonnen:
+  \begin{align*}
+    (\EDL _1\| \EDL _2)\cup \EDT _{12}
+    &\overset{\ref{DivSemDef}}{=}\left(\left(L _1\cup \EDT _1\right)\|\left(L
+    _2\cup \EDT _2\right)\right)\cup \EDT _{12}\\
+    &=(L _1\|L _2) \cup \underset{\overset{1.}{\subseteq} \EDT
+    _{12}}{\underset{\subseteq (\EDL _1\|\EDT _2)}{\underbrace{(L _1\|\EDT
+    _2)}}} \cup \underset{\overset{1.}{\subseteq} \EDT
+    _{12}}{\underset{\subseteq (\EDT _1\|\EDL _2)}{\underbrace{(\EDT _1\|L
+    _2)}}}\\
+    &\quad\quad\cup \underset{\overset{1.}{\subseteq} \EDT
+    _{12}}{\underset{\subseteq (\EDL _1\|\EDT _2)}{\underbrace{(\EDT _1\|\EDT
+    _2)}}} \cup \EDT _{12}\\
+    &=(L _1\|L _2) \cup \EDT _{12}\\
+    &\overset{\ref{LParallelProp}}{=}L _{12}\cup \EDT _{12}\\
+    &\overset{\ref{DivSemDef}}{=}\EDL _{12}.
+  \end{align*}
+\end{proof}
+
+Analog wie in den beiden vorangegangenen Kapitel, ergibt sich aus diesem Satz
+als direkte Folgerung, dass es sich bei der Relation \DRel{} um eine
+Präkongruenz handelt.
+
+\begin{Kor}[Divergenz-Präkongruenz]
+  Die Relation \DRel{} ist eine Präkongruenz bezüglich $\cdot\|\cdot$.
+\end{Kor}
+\begin{proof}
+  Um zu zeigen, dass es sich bei \DRel{} um eine Präkongruenz handelt, muss
+  nachgewiesen werden, dass aus $P_1\DRel P_2$ auch $P_{31}\DRel P_{32}$ für
+  jedes komponierbare System $P_3$ folgt. D.h.\ es ist zu zeigen, dass aus
+  $\EDT _1\subseteq\EDT _2, \QDT _1\subseteq\QDT _2$ und $\EDL _1\subseteq\EDL
+  _2$, sowohl $\EDT _{31} \subseteq \EDT _{32}, \QDT _{31} \subseteq \QDT
+  _{32}$ als auch $\EDL _{31}\subseteq\EDL _{32}$ folgt. Dies ergibt sich, wie
+  in den Beweisen zu den Korollaren~\ref{KommPraekonKor}
+  und~\ref{StillePraekonKor}, aus der Monotonie von \cont{}, \prune{} und
+  $\cdot\|\cdot$ auf Sprachen wie folgt:
+  \begin{itemize}
+    \item $\begin{aligned}[t]
+        \EDT{}_{31} &\overset{\ref{DivSemSatz}~1.}{=}
+        \cont{}\left(\prune{}\left(\left(\EDT{}_3\|\EDL{}_1\right) \cup
+        \left(\EDL{}_3\|\EDT{}_1\right)\right)\right)\\
+        &\hspace{-0.6cm}\overset{\EDT{}_1\subseteq
+      \EDT{}_2}{\overset{\mathrm{und}}{\overset{\EDL{}_1\subseteq
+    \EDL{}_2}{\subseteq}}}
+    \cont{}\left(\prune{}\left(\left(\EDT{}_3\|\EDL{}_2\right) \cup
+        \left(\EDL{}_3\|\EDT{}_2\right)\right)\right)\\
+      &\overset{\ref{DivSemSatz}~1.}{=} \EDT{}_{32},
+    \end{aligned}$
+    \item $\begin{aligned}[t]
+        \QDT{}_{31} &\overset{\ref{DivSemSatz}~2.}{=} (\QDT{}_3\|\QDT{}_1)
+        \cup \EDT{}_{31}\\
+        &\hspace{-0.8cm}\overset{\EDT{}_{31}\subseteq
+      \EDT{}_{32},}{\overset{\mathrm{und}}{\overset{\QDT{}_1\subseteq
+      \QDT{}_2}{\subseteq}}} (\QDT{}_3\|\QDT{}_2) \cup \EDT{}_{32}\\
+      &\overset{\ref{DivSemSatz}~2.}{=} \QDT{}_{32}.
+    \end{aligned}$
+    \item $\begin{aligned}[t]
+        \EDL{}_{31} &\overset{\ref{DivSemSatz}~3.}{=} (\EDL{}_3\|\EDL{}_1)
+        \cup \EDT{}_{31}\\
+        &\hspace{-0.8cm}\overset{\EDT{}_{31}\subseteq
+      \EDT{}_{32},}{\overset{\mathrm{und}}{\overset{\EDL{}_1\subseteq
+      \EDL{}_2}{\subseteq}}} (\EDL{}_3\|\EDL{}_2) \cup \EDT{}_{32}\\
+      &\overset{\ref{DivSemSatz}~3.}{=} \EDL{}_{32}.
+    \end{aligned}$
+  \end{itemize}
+\end{proof}
+
+Im nächsten Lemma soll eine Verfeinerung bezüglich guter Kommunikation
+betrachtet werden. Die Vorgaben für gute Kommunikation gibt hierbei die
+Definition der Tests und die daraus resultierende Verfeinerung
+in~\ref{DivTestDef} vor. Es muss in diesem Lemma eine Veränderung zu den
+analogen Lemmata aus den vorangegangenen Kapitel vorgenommen werden. Die
+Einschränkung der Tests $T$ auf Partner, kann nicht mehr beibehalten werden, da
+die Strategie zur Vermeidung von Stille im Beweis aus dem letzten Kapitel hier zu
+Divergenz führen würde. Somit werden für die Stillstands-Vermeidung in diesem Kapitel
+Aktionen außerhalb der Menge \Synch{} benötigt, die nicht die interne Aktionen
+$\tau$ sind. Jedoch müssen trotzdem nicht alle Tests $T$ betrachtet werden. Es
+kann eine Einschränkung gemacht werden, sodass $T$ fast ein Partner ist. Zur
+Vereinfachung von umständlichen Formulierungen im Folgenden wird hierfür nun
+ein neuer Begriff definiert. Der jedoch auch bereits so in
+z.B.~\cite{Schinko2016BA} analog für \EIO{}s verwendet und definiert wurde.
+
+\begin{Def}[{\boldmath$\omega$}-Partner]
+  Ein \MEIO{} $P_1$ ist ein $\omega$-Partner von einem \MEIO{} $P_2$, wenn
+  $I_1=O_2$ und $O_1=I_2\cup\{\omega\}$ mit $\omega\notin I_2\cup O_2$ gilt.
+\end{Def}
+
+Ein $\omega$-Partner $P_1$ von $P_2$ unterscheidet sich von einem Partner von
+$P_2$ nur um den Output $\omega$, der nicht in der Menge $\Synch (P_1,P_2)$
+enthalten ist.
+
+\begin{Lem}[Testing-Verfeinerung mit Divergenz]
+  \label{DivTestVerfeinLem}
+  Gegeben sind zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur. Wenn
+  für alle Tests $T$, die $\omega$-Partner von $P_1$ bzw. $P_2$ sind, $P_2
+  \DsatAs T\Rightarrow P_1 \DsatAs T$ gilt, dann folgt daraus die Gültigkeit
+  von $P_1\DRel P_2$.
+\end{Lem}
+\begin{proof}
+  Da $P_1$ und $P_2$ die gleiche Signatur haben, definiert man $I:=I_1=I_2$ und
+  $O:=O_1=O_2$. Für jeden $\omega$-Partner Test $T$ gilt $I_T=O$ und
+  $O_T=I\cup\{\omega\}$ mit $\omega\notin I\cup O$.\\
+  Um zu zeigen, dass die Relation $P_1\DRel P_2$ gilt, müssen die folgenden
+  Punkte nachgewiesen werden:
+  \begin{itemize}
+    \item $\EDT _1\subseteq \EDT _2$,
+    \item $\QDT _1\subseteq \QDT _2$,
+    \item $\EDL _1\subseteq \EDL _2$.
+  \end{itemize}
+  In den Lemmata~\ref{KommTestVerfeinLem} und~\ref{StilleTestVerfeinLem} wurde
+  bereits etwas Ähnliches gezeigt. Jedoch kann daraus aufgrund der
+  unterschiedlichen Implikationen, die vorausgesetzt werden, nichts über dieses
+  Lemma und dessen Gültigkeit ausgesagt werden. Es kann in diesem Lemma, ebenso
+  wie im Lemma~\ref{StilleTestVerfeinLem}, aus der lokalen Erreichbarkeit eines
+  Fehlers in einer Parallelkomposition einer as"=Implementierung von $P_1$ mit
+  einem Test $T$ und der Implikation $P_2 \DsatAs T\Rightarrow P_1 \DsatAs T$
+  nur geschlossen werden, dass es in einer Parallelkomposition einer
+  as"=Implementierung von $P_2$ mit $T$ auch einen lokal erreichbaren
+  fehlerhaften Zustand geben muss, jedoch kann die Fehlerhaftigkeit hier ein
+  Fehler, Stille oder Divergenz sein. Analog verhält es sich, wenn in der
+  Parallelkomposition einer as"=Implementierung von $P_1$ mit einem Test $T$
+  ein Divergenz-Zustand oder stiller Zustand lokal erreichbar ist. Es kann nur
+  geschlossen werden, dass $P_2$ den Test $T$ nicht erfüllen darf. Die nicht
+  Erfüllung kann jedoch auf einem beliebigen Fehlverhalten des \MEIO{}s
+  basieren.
+
+  Als Erstes wird der erste Beweispunkt gezeigt, also die Inklusion $\EDT
+  _1\subseteq\EDT _2$.\\
+  Es wird für ein präfix-minimales $w$ aus $\EDT _1$ gezeigt, dass dieses $w$
+  oder eines seiner Präfixe in $\EDT _2$ enthalten ist. Diese Möglichkeit
+  bietet sich, da beide Mengen unter \cont{} abgeschlossen sind. Wegen
+  Proposition~\ref{DivSemProp}~2.\ ist $w$ auch ein präfix-minimales Elemente
+  der Menge $\EDT _{P'_1}$ einer as"=Implementierung $P'_1$ von $P_1$.
+  \begin{itemize}
+    \item Fall 1 ($w=\varepsilon$): Es handelt sich um einen lokal erreichbaren
+      Fehler oder um lokale erreichbare Divergenz in $P'_1$. Für $T$ wird ein
+      Transitionssysteme verwendet, das nur aus dem Startzustand und einer
+      must"=Schleife für alle Inputs $x\in I_T$ und einer must"=Schleife für
+      $\omega$ besteht. Somit kann $P'_1$ im Prinzip die gleichen Fehler- und
+      Divergenz-Zustände wie $P'_1\|T$ lokal erreichen. $P_1$ erfüllt den Test
+      $T$ nicht. $P_2$ darf $T$ somit auch nicht erfüllen. Es muss eine
+      as"=Implementierung $P'_2$ von $P_2$ existieren, für die $P'_2\|T$ einen
+      fehlerhaften Zustand lokal erreicht. Durch die Struktur von $T$ ist in
+      einer Parallelkomposition mit $T$ kein stiller Zustand möglich. Der
+      fehlerhafte Zustand, der in $P'_2\|T$ lokal erreichbar ist, muss also ein
+      Fehler- oder Divergenz-Zustand sein. Da von $T$ kein Fehler und keine
+      Divergenz geerbt werden kann und durch die Input"=Schleife auch kein
+      neuer Fehler entstehen kann, muss der fehlerhafte Zustand von $P'_2$
+      geerbt sein. Somit muss in $P'_2$ ein Fehler- oder Divergenz-Zustand
+      lokal erreichbar sein. Da $\EDT (P) =\ET (P)\cup\DT (P)$ gilt, folgt
+      $w\in \EDT _{P'_2}$ und mit~\ref{DivSemProp}~2. $w\in \EDT _2$.
+    \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
+      $x_{n+1}\in I$): Es wird der folgende $\omega$-Partner $T$ betrachtet
+      (siehe auch Abbildung~\ref{TohneEmitO}):
+      \begin{itemize}
+        \item $T=\{p_0,p_1,\dots ,p_{n+1}\}$,
+        \item $p_{0T}=p_0$,
+        \item $\begin{aligned}[t]
+            \may _T = \must _T&=\{(p_j,x_{j+1},p_{j+1})\mid  0\leq j\leq n\}\\
+            &\cup\{(p_j,x,p_{n+1})\mid  x\in I_T\backslash\{x_{j+1}\}, 0\leq
+            j\leq n\}\\
+            &\cup\{(p_{n+1},x,p_{n+1})\mid  x\in I_T\}\\
+            &\cup\{(p_j,\omega ,p_{n+1})\mid 0\leq j\leq n+1\},
+        \end{aligned}$
+        \item $E_T=\emptyset$.
+      \end{itemize}
+      \begin{figure} [h!tbp]
+      \begin{center}
+        \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+          \node (0) {$p_0$};
+          \node (1) [right of=0] {$p_1$};
+          \node (dots) [right of=1] {$\dots$};
+          \node (n) [right of=dots] {$p_n$};
+          \node (n1) at ($(1)!0.5!(dots) + (0,-3)$) {$p_{n+1}$};
+
+          \path ($ (0) + (-1,0) $) edge (0)
+                (0) edge node {$x_1$} (1)
+                    edge [bend right] node [below, sloped] {$x?\neq x_1, \omega
+                    !$} (n1)
+                (1) edge node {$x_2$} (dots)
+                    edge node [below, sloped] {$x?\neq x_2, \omega !$} (n1)
+                (dots) edge node {$x_n$} (n)
+                       edge [dashed] (n1)
+                (n) edge node [above, sloped] {$x?\in I_T, \omega !$} (n1)
+                    edge [bend left] node [sloped] {$x_{n+1}$!} (n1)
+                (n1) edge [loop below] node {$x?\in I_T, \omega !$} (n1);
+        \end{tikzpicture}
+        \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$}
+      \label{TohneEmitO}
+      \end{center}
+      \end{figure}
+      Die Mengen der Divergenz- und stillen Zustände des hier betrachteten $T$s
+      sind leer. Da im Vergleich zum Transitionssystem in
+      Abbildung~\ref{UohneE} nur die $\omega$-Transitionen zu $p_{n+1}$ ergänzt
+      und die Mengen unbenannt wurden, ändert sich nichts an dem Fall 2a) im
+      ersten Punkt des Beweises von Lemma~\ref{KommTestVerfeinLem}. Im Fall 2b)
+      muss die Menge $O^*$ durch $(O\cup\{\omega\})^*$ ersetzt werden. Die
+      Begründungen, wieso in den beiden Fällen $\varepsilon\in\PrET (P'_1\|T)$
+      für ein $P'_1\in\asimp (P_1)$ gilt, bleibt also analog zum Beweis von
+      Lemma~\ref{KommTestVerfeinLem}. Da nun aber auch Divergenz betrachtet
+      wird, muss ein weiterer Fall ergänzt werden:
+      \begin{itemize}
+        \item Fall 2c) ($w\in\PrDT _{P'_1}$): In $P'_1\|T$ erhält man
+          $(p_{01},p_0) \weakmay[w] (p'',p_{n+1})\weakmay[u] (p',p_{n+1})$ für
+          $u\in (O\cup \{\omega\})^*$ und $p'\in Div_1$. Daraus folgt
+          $(p',p_{n+1})\in Div_{P'_1\|T}$ und somit $wu\in\StDT (P'_1\|F)$. Da
+          alle Aktionen aus $w$ synchronisiert werden und $I_T\cap
+          I=\emptyset$ gilt $x_1,\dots , x_n, x_{n+1}\in O_{P'_1\|T}$. Da
+          zusätzlich $u$ in $(O\cup \{\omega\}) ^*$ enthalten ist, folgt $u\in
+          O^*_{P'_1\|T}$. Somit ergibt sich $\varepsilon\in\PrDT (P'_1\|T)$.
+      \end{itemize}
+      Da $\varepsilon$ in $\PrET (P'_1\|T) \cup \PrDT (P'_1\|T)$ enthalten ist,
+      ist ein Fehler oder Divergenz lokal erreichbar in $P'_1\|T$. Mit der
+      Implikation $P_2 \DsatAs T\Rightarrow P_1 \DsatAs T$ kann geschlossen
+      werden, dass in der Parallelkomposition einer as"=Implementierung $P'_2$
+      von $P_2$ mit dem Test $T$ ein fehlerhafter Zustand lokal erreichbar sein
+      muss. Durch die $\omega$-Transitionen an den Zuständen von $T$ kann es in
+      Komposition mit $T$ keine stillen Zustände geben. Die Fehlerhaftigkeit
+      muss also ein Fehler oder Divergenz sein.
+      \begin{itemize}
+        \item Fall 2i) ($\varepsilon\in\ET (P'_1\|T)$ wegen neuem Fehler): Da
+          jeder Zustand von $T$ alle Inputs $x\in I_T=O$ zulässt, muss ein
+          lokal erreichbarer Fehler-Zustand in diesem Fall der Form sein, dass
+          ein Output $a\in O_T\backslash\{\omega\}$ von $T$ möglich ist, der
+          nicht mit einem passenden Input aus $P'_2$ synchronisiert werden
+          kann. Durch die Konstruktion von $T$ ist in $p_{n+1}$ kein Output
+          außer $\omega$ möglich. Ein neuer Fehler muss also die Form
+          $(p',p_j)$ haben mit $j\leq n$, $p'\nmust[x_{i+1}]_{P'_2}$ und
+          $x_{i+1}\in O_T\backslash\{\omega\}$. Durch Projektion erhält man
+          dann $p_{02} \lweakmay[x_1\dots x_i]_{P'_2} p'
+          \nmust[x_{i+1}]_{P'_2}$ und damit gilt $x_1\dots x_{i+1}\in\MIT
+          _{P'_2}\subseteq \ET _{P'_2}$. Somit ist ein Präfix von $w$ in $\EDT
+          _{P'_2}$ enthalten. Wegen des Abschlusses unter \cont{} und wegen
+          Proposition~\ref{DivSemProp}~2.\ gilt $w\in\EDT _2$.
+        \item Fall 2ii) ($\varepsilon\in\ET (P'_2\|T)$ wegen geerbtem Fehler):
+          $T$ hat $x_1\dots x_iu$ ausgeführt mit $u\in (O\cup\{\omega\})^*$ und
+          ebenso hat $P'_2$ den Weg $x_1\dots x_iu|_{\Sigma _2}$ ausgeführt.
+          Durch dies hat $P'_2$ einen Zustand aus $E_{P'_2}$ erreicht, da von
+          $T$ kein Fehler geerbt werden kann. Es gilt dann $\prune (x_1\dots
+          x_iu| _{\Sigma _2})=\prune (x_1\dots x_i)\in\PrET _{P'_2}\subseteq
+          \ET _{P'_2}$. Da $x_1\dots x_i$ ein Präfix von $w$ ist, führt in
+          diesem Fall eine Verlängerung um lokale Aktionen von einem Präfix von
+          $w$ zu einem Fehler-Zustand. Da \ET{} der Menge aller Verlängerungen
+          von gekürzten Fehler-Traces entspricht, ist $x_1\dots x_i$ in $\EDT
+          _{P'_2}$ enthalten und mit~\ref{DivSemProp}~2.\ ist ein Präfix von
+          $w$ in $\EDT _2$ enthalten.
+        \item Fall 2iii) ($\varepsilon\in\DT (P'_2\|T)\backslash\ET
+          (P'_2\|T)$): Da $T$ nicht unendlich viele Zustände hat und auch keine
+          $\tau$-Schleifen besitzt, kann das Divergenz"=Verhalten nur von
+          $P'_2$ geerbt sein. $T$ hat $x_1\dots x_iu$ ausgeführt mit $u\in (O
+          \cup \{\omega\})^*$ und ebenso hat $P'_2$ den Weg $x_1\dots
+          x_iu|_{\Sigma _2}$ ausgeführt. Durch dies hat $P'_2$ einen Zustand
+          aus $Div_{P'_2}$ erreicht. Es gilt dann $\prune (x_1\dots
+          x_iu|_{\Sigma _2}) = \prune (x_1\dots x_i)\in\PrDT _{P'_2} \subseteq
+          \DT _{P'_2}$, da $u|_{\Sigma _2}$ in $O^*$ enthalten ist. Da
+          $x_1\dots x_i$ ein Präfix von $w$ ist, führt in diesem Fall eine
+          Verlängerung um lokale Aktionen von einem Präfix von $w$ zu einem
+          divergenten Zustand. Da \DT{} die Menge aller Verlängerungen von
+          gekürzten Divergenz-Traces ist und $\DT _{P'_2}\subseteq \EDT
+          _{P'_2}$ gilt, ist in diesem Fall das Präfix $x_1\dots x_i$ von $w$
+          in $\EDT _{P'_2}$ enthalten. Mit~\ref{DivSemProp}~2.\ folgt daraus,
+          dass ein Präfix von $w$ in $\EDT _2$ enthalten ist.
+      \end{itemize}
+  \end{itemize}
+
+  Als nächstes wird nun der zweite Beweispunkt gezeigt, d.h.\ die Inklusion
+  $\QDT _1\subseteq\QDT _2$. Diese Inklusion kann jedoch noch, analog zum
+  Beweis der Inklusion der Fehler-gefluteten Sprache aus dem Fehler-Kapitel,
+  weiter eingeschränkt werden. Da bereits bekannt ist, das $\EDT _1 \subseteq
+  \EDT _2$ gilt, muss nur noch $\StQT _1\backslash \EDT _1\subseteq\QDT _2$
+  gezeigt werden.\\
+  Es wird ein $w\in\StQT _1\backslash\EDT _1$ gewählt und gezeigt, dass dieses
+  auch in $\QDT _2$ enthalten ist. Das $w$ ist aufgrund der
+  Propositionen~\ref{StilleTraceProp} und~\ref{DivSemProp}~2.\ auch für eine
+  as"=Implementierung $P'_1$ von $P_1$ in $\StQT _{P'_1}\backslash \EDT
+  _{P'_1}$ enthalten.\\
+  Durch die Wahl des $w$s wird in $P'_1$ durch das Wort $w$ ein stiller
+  Zustand erreicht. Dies hat nur Auswirkungen auf die Parallelkomposition
+  $P'_1\|T$, wenn in $T$ ebenfalls ein stiller Zustand durch $w$ erreicht
+  wird.\\
+  Das betrachtete $w$ hat die Form $w = x_1\dots x_n\in\Sigma ^*$ mit $n\geq
+  0$. Es wird der folgende $\omega$-Partner Test $T$ betrachtet (siehe auch
+  Abbildung~\ref{TohneEmitIundO}):
+  \begin{itemize}
+    \item $T=\{p_0,p_1,\dots ,p_n, p\}$,
+    \item $p_{0T}=p_0$,
+    \item $\begin{aligned}[t]
+        \may _T = \must _T &= \{(p_j,x_{j+1},p_{j+1})\mid  0\leq j< n\}\\
+        &\cup\{(p_j,x,p)\mid  x\in (I_T\cup \{\omega\})\backslash\{x_{j+1}\},
+        0\leq j< n\}\\
+        &\cup\{(p_n,x,p)\mid x\in I_T\}\\
+        &\cup\{(p,x,p)\mid x\in I_T\cup\{\omega\}\},
+    \end{aligned}$
+    \item $E_T=\emptyset$.
+  \end{itemize}
+  \begin{figure} [h!tbp]
+  \begin{center}
+    \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+      \node (0) {$p_0$};
+      \node (1) [right of=0] {$p_1$};
+      \node (dots) [right of=1] {$\dots$};
+      \node (n) [right of=dots, rectangle, dotted, draw] {$p_n\in Qui_T$};
+      \node (p) at ($(1)!0.5!(dots) + (0,-3)$) {$p$};
+
+      \path ($ (0) + (-1,0) $) edge (0)
+            (0) edge node {$x_1$} (1)
+                edge [bend right] node [below, sloped] {$x?\neq x_1, \omega !$}
+                (p)
+            (1) edge node {$x_2$} (dots)
+                edge [below, sloped] node {$x?\neq x_2, \omega !$} (p)
+            (dots) edge node {$x_n$} (n)
+                   edge [dashed] (p)
+            (n) edge [bend left] node [below,sloped] {$x?\in I_T$} (p)
+            (q) edge [loop below] node {$x?\in I_T, \omega !$} (p);
+    \end{tikzpicture}
+    \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$, $p_n$
+      ist der einzige stille Zustand}
+    \label{TohneEmitIundO}
+  \end{center}
+  \end{figure}
+  Falls das betrachtete $w$ dem leeren Wort $\varepsilon$ entspricht, reduziert
+  sich der $\omega$-Partner Test $T$ auf den Zustand $p_n = p_0$ und den
+  Zustand $p$. Es ist also in diesem Fall der Startzustand gleich dem stillen
+  Zustand.\\
+  Allgemein ist der Zustand $p_n$ aus $T$ der einzige stille Zustand in $T$. Es
+  gilt wegen des ersten Punkte von Lemma~\ref{StilleZustLem}, dass auch in der
+  Parallelkomposition $P'_1\|T$ ein stiller Zustand mit $w$ erreicht wird. Da
+  es sich bei allen in $w$ befindlichen Aktionen um synchronisieren Aktionen
+  handelt und $I_T\cap I=\emptyset$ gilt, folgt $w\in O_{P'_1\|T}$ und $w\in
+  \StQT (P'_1\|T)$. Es kann also in der Parallelkomposition durch $w$ ein
+  stiller Zustand lokal erreicht werden. Da $w\notin\EDT _{P'_1}$, kann auf dem
+  Weg, der mit $w$ im Transitionssystem $P'_1$ zurück gelegt wird, kein Fehler-
+  oder Divergenz-Zustand lokal erreicht werden. Es kann weder von $P'_1$
+  noch von $T$ ein Fehler oder Divergenz auf diesem Weg geerbt werden oder neu
+  entstehen. Da ein stiller Zustand in $P'_1\|T$ lokal erreichbar ist, erfüllt
+  $P_1$ den Test $T$ nicht. Es muss also auch eine as"=Implementierung $P'_2$
+  von $P_2$ geben, für die $P'_2\|T$ einen lokal erreichbaren fehlerhaften
+  Zustand besitzt. Hier kann jedoch zunächst keine Aussage darüber getroffen
+  werden, ob das $w$ in der Parallelkomposition $P'_2\|T$ ausführbar ist und ob
+  es sich bei der Fehlerhaftigkeit um Fehler, Stille oder Divergenz handelt.
+  \begin{itemize}
+    \item Fall a) ($\varepsilon \in \ET (P'_2\|T)$): Der lokal erreichbare
+      fehlerhafte Zustand ist ein Fehler. Das $w$ muss somit nicht ausführbar
+      sein. Der Fehler kann sowohl von $P'_2$ geerbt sein, wie durch fehlende
+      Synchronisations-Sicherstellung als neuer Fehler in der
+      Parallelkomposition entstanden sein. Da nur auf dem Trace $w$ in $T$
+      Synchronisations"=Probleme auftreten können und wegen den Fällen 2i) und
+      2ii) des ersten Punktes dieses Beweises ist ein Präfix von $w$ in $\EDT
+      _{P'_2}$ enthalten. Da die Menge \EDT{} unter \cont{} abgeschlossen ist
+      und~\ref{DivSemProp}~2.\ gilt, folgt $w\in\EDT _2\subseteq\QDT _2$.
+    \item Fall b) ($\varepsilon \in \DT (P'_2\|T)\backslash \ET(P'_2\|T)$): Es
+      handelt sich bei dem lokal erreichbaren fehlerhaften Zustand um
+      Divergenz. Die Divergenz muss von $P'_2$ geerbt sein, da $T$ keine
+      Möglichkeit für eine unendliche $\tau$-Folge hat. Es gilt also, dass
+      bereits in $P'_2$ ein Präfix von $w$ in $\EDT _{P'_2}$ enthalten ist,
+      wegen Fall 2iii) des Beweises des ersten Punktes dieses Lemmas. Mit dem
+      Abschluss unter \cont{} und~\ref{DivSemProp}~2.\ folgt, dass auch $w\in
+      \EDT _2\subseteq\QDT _2$ gilt.
+    \item Fall c) (stiller Zustand lokal erreichbar in $P'_2\|T$ und $\varepsilon
+      \notin \EDT (P'_2\|T)$): Da in $T$ nur durch $w$ ein stiller Zustand
+      erreicht werden kann, muss es sich bei dem lokal erreichbaren
+      stillen Zustand in $P'_2\|T$ um einen handeln, der mit $w$ erreicht werden
+      kann. Mit dem zweiten Punkt von Lemma~\ref{StilleZustLem} kann gefolgert
+      werden, dass auch in $P'_2$ ein stiller Zustand mit $w$ erreichbar sein
+      muss, da $\ET (P'_2\|T)$ eine Teilmenge von $\EDT (P'_2\|T)$ ist. Es gilt
+      also $w\in\StQT _{P'_2}\subseteq \QDT _{P'_2}$. Mit dem dritten Punkt von
+      Proposition~\ref{DivSemProp} folgt daraus $w\in\QDT _2$.
+  \end{itemize}
+
+  Nun wird mit dem letzten Punkt des Beweises begonnen. Analog wie in den
+  Beweisen zu den Lemmata~\ref{KommTestVerfeinLem} und~\ref{StilleTestVerfeinLem}
+  ist hier aufgrund der bereits geführten Beweisteile nur noch $L_1\backslash
+  \EDT _1 \subseteq \EDL _2$ zu zeigen. Es wird also für ein beliebig gewähltes
+  $w\in L_1\backslash \EDT _1$ gezeigt, dass es auch in $\EDL _2$ enthalten
+  ist. Es gilt auch $w\in L _{P'_1}\backslash \EDL _{P'_1}$ für eine
+  as"=Implementierung $P'_1$ von $P_1$, wegen~\ref{LImpProp}
+  und~\ref{DivSemProp}.
+  \begin{itemize}
+    \item Fall 1 ($w = \varepsilon$): Analog zu den
+      Lemmata~\ref{KommTestVerfeinLem} und~\ref{StilleTestVerfeinLem} gilt auch
+      hier, dass $\varepsilon$ immer in $\EDL _2$ enthalten ist.
+    \item Fall 2 ($w = x_1\dots x_n$ mit $n \geq 1$): Die Konstruktion des
+      $\omega$-Partner Tests $T$ weicht nur durch die $\omega$-Transitionen vom
+      Transitionssystem aus dem Beweis der Inklusion der Fehler-gefluteten
+      Sprache \EL{} aus Lemma~\ref{KommTestVerfeinLem} ab. Der Test $T$ ist
+      dann wie folgt definiert (siehe dazu auch Abbildung~\ref{TmitEundO}):
+      \begin{itemize}
+        \item $T=\{p_0,p_1,\dots ,p_n,p\}$,
+        \item $p_{0T}=p_0$,
+        \item $\begin{aligned}[t]
+            \may _T = \must _T &= \{(p_j,x_{j+1},p_{j+1})\mid 0\leq j< n\}\\
+            &\cup\{(p_j,x,p)\mid x\in I_T\backslash\{x_{j+1}\},0\leq j < n\}\\
+            &\cup\{(p_j,\omega ,p)\mid 0\leq j\leq n\}\\
+            &\cup\{(p,x ,p)\mid x\in I_T\cup \{\omega\}\},
+        \end{aligned}$
+        \item $E_T=\{p_n\}$.
+      \end{itemize}
+      \begin{figure} [h!tbp]
+      \begin{center}
+        \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+
+          \node (0) {$p_0$};
+          \node (1) [right of=0] {$p_1$};
+          \node (dots) [right of=1] {$\dots$};
+          \node (n1) [right of=dots] {$p_{n-1}$};
+          \node (n) [right of=n1, rectangle, draw] {$p_n\in E_T$};
+          \node (p) at ($(dots) + (0,-3)$) {$p$};
+
+          \path ($ (0) + (-1,0) $) edge (0)
+                (0) edge node {$x_1$} (1)
+                    edge [bend right] node [below, sloped] {$x?\neq x_1, \omega
+                    !$} (p)
+                (1) edge node {$x_2$} (dots)
+                    edge node [below, sloped] {$x?\neq x_2, \omega !$} (p)
+                (dots) edge node {$x_{n-1}$} (n1)
+                       edge [dashed] (p)
+                (n1) edge node {$x_n$} (n)
+                     edge node [below, sloped] {$x?\neq x_n, \omega !$} (p)
+                (p) edge [loop below] node {$x?\in I_T, \omega !$} (p)
+                (n) edge [bend left] node {$\omega !$} (p);
+        \end{tikzpicture}
+        \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$, $p_n$
+          ist der einzige Fehler-Zustand}
+      \label{TmitEundO}
+      \end{center}
+      \end{figure}
+      Durch die $\omega$-Transition an den Zuständen wird wie oben vermieden,
+      dass es in einer Komposition mit $T$ und auch in $T$ selbst
+      stille Zustände geben kann. Da $p_{01} \weakmust[w]_{P'_1} p'_1$ gilt,
+      kann man schließen, dass $P'_1\|T$ einen lokal erreichbaren geerbten
+      Fehler hat. Es muss also auch eine as"=Implementierung $P'_2$ von $P_2$
+      geben, sodass $P'_2\|T$ einen lokal erreichbaren fehlerhaften Zustand
+      hat. Wie oben bereits erwähnt, kommt Stille als Fehlerhaftigkeit nicht in
+      Frage.
+      \begin{itemize}
+        \item Fall 2a) \big(neuer Fehler aufgrund von $x_i\in O_T\backslash
+          \{\omega\}$ und $p_{02} \lweakmay[x_1\dots x_{j-1}] p'_2
+          \nmust[x_j]$\big): Es gilt $x_1\dots x_j\in\MIT _{P'_2}$ und somit
+          $w\in\EDL _{P'_2}$ Anzumerken ist, dass nur auf diesem Weg Outputs
+          von $T$ aus der Menge $\Synch (P'_2,T)$ möglich sind, deshalb gibt es
+          keine anderen Outputs von $T$, die zu einem neuen Fehler führen
+          könnten. Wegen~\ref{DivSemProp} gilt $w\in\EDL _2$.
+      \end{itemize}
+      Die restlichen Fälle sind analog zu Lemma~\ref{KommTestVerfeinLem}
+      möglich. Somit gilt für alle Fälle (2a) bis 2d)), dass $w$ in $\EDL _2$
+      enthalten ist, da $\EL _2\subseteq \EDL _2$ gilt.
+      \begin{itemize}
+        \item Fall 2e) (Divergenz und kein neuer Fehler): Da $T$ keine
+          Möglichkeit hat zu divergieren, muss diese Möglichkeit von $P'_2$
+          geerbt sein. Es gilt dann $p_{02} \lweakmay[x_1\dots x_j u]_{P'_2} p'
+          \in Div _{P'_2}$ für $j\geq 0$ und $u\in O^*$. Somit ist $x_1\dots
+          x_j u\in\StDT _{P'_2}$ und damit $\prune (x_1\dots x_j u) = \prune
+          (x_1\dots x_j)\in\PrDT _{P'_2}\subseteq\EDT _{P'_2}$. Also folgt
+          mit~\ref{DivSemProp}~2., dass $w$ in $\EDT _2 \subseteq\EDL _2$
+          enthalten ist, da \DT{} unter \cont{} abgeschlossen ist.
+      \end{itemize}
+  \end{itemize}
+\end{proof}
+
+\begin{Satz}
+  \label{DivTestVerfSatz}
+  Falls $P_1 \DRel P_2$ gilt folgt daraus auch, dass $P_1$ $P_2$
+  Divergenz-verfeinert.
+\end{Satz}
+\begin{proof}
+  Nach Definition gilt $w\in\QDT (P)$ mit $w\in O^*$ genau dann, wenn in $P$
+  ein Fehler-, stiller oder Divergenz-Zustand lokal erreichbar ist. $P_1\DRel
+  P_2$ impliziert, dass $w\in\QDT _2$ gilt, wenn $w\in\QDT _1$ gilt. Somit ist
+  ein Fehler-, stiller oder Divergenz-Zustand nur dann in $P_1$ lokal
+  erreichbar, wenn auch ein solcher in $P_2$ lokal erreichbar ist. Wegen
+  Korollar~\ref{lokalDivErrKor} gibt es dann auch as"=Implementierungen $P'_1$
+  und $P'_2$ von $P_1$ bzw.\ $P_2$, die analoge fehlerhafte Zustände lokal
+  erreichen. Die Parallelkomposition $P'_j\|T$ für $j\in \{1,2\}$ und einen
+  Test $T$ haben dann ebenfalls einen lokal erreichbaren Fehler-, stille oder
+  Divergenz"=Zustand. Der fehlerhafte Zustand einer as"=Implementierung $P'_1$
+  tritt in der Parallelkomposition mit $T$ auf jeden Fall auf, wenn es sich um
+  einen Fehler oder Divergenz handelt. Bei Stille zeigt sich das Fehlverhalten
+  nur bei Tests $T$, die einen analogen stillen Zustand enthalten. Mit der
+  Relation \DRel{} gibt es auch in $P_2$ und somit auch in einer
+  as"=Implementierung $P'_2$ davon einen lokal erreichbaren fehlerhaften
+  Zustand, wenn es in $P_1$ einen solchen gibt. In Parallelkompositionen von
+  $P'_2$ mit Tests $T$ zeigt sich das Fehlverhalten ebenfalls. Falls ein Fehler
+  oder Divergenz lokal erreichbar ist, gilt $\varepsilon \in \EDT _{P'_j}$. Für
+  alle Tests $T$ ist $\varepsilon$ ein Element der Sprache es gilt also
+  $\varepsilon \in\EDL _T$. Mit Satz~\ref{DivSemSatz}~1.\ folgt auch
+  $\varepsilon \in \EDT _{P'_j\|T}$. Falls es sich in $P_2$ und somit auch in
+  $P'_2$ nur um Stille handelt und kein Fehler oder Divergenz lokal erreichbar
+  ist, dann muss auch bereits in $P_1$ bzw.\ $P'_1$ Stille das einzige
+  Fehlverhalten gewesen sein, dass lokal erreichbar war. \DRel{} hätte
+  ansonsten auch andere fehlerhafte Zustände in $P_2$ gefordert. Es ist also
+  die Argumentation aus Satz~\ref{StilleTestVerfSatz} anwendbar. Es gilt also
+  $\neg P_1 \DsatAs T \Rightarrow \neg P_2 \DsatAs T$ für alle Test $T$. Daraus
+  ergibt sich für alle Test $T$ die Implikation $P_2 \DsatAs T \Rightarrow P_2
+  \DsatAs T$ und somit Divergenz-verfeinert $P_1$ $P_2$.
+\end{proof}
+
+Es wurde, wie in den letzten beiden Kapiteln, eine Kette an Folgerungen
+gezeigt, die sich zu einem Ring schließt. Jedoch ändert sich an der Begründung
+für einen der Folgepfeile etwas, da in Lemma~\ref{DivTestVerfeinLem} $T$ kein
+Partner ist, sondern ein $\omega$-Partner. Die Folgerungskette ist in
+Abbildung~\ref{FolgerungsketteDiv} dargestellt.
+
+\begin{figure}[h!tbp]
+  \begin{center}
+    \begin{tikzpicture}[scale = 3]
+      \matrix (m) [matrix of math nodes,row sep=2cm,column sep=4cm]{%
+        P_1\DRel P_2 & P_1 \text{ verfeinert } P_2 \\
+        \substack{\forall \text{ Test } \omega\text{-Partner } T:\\P_2\DsatAs
+        T\Rightarrow P_1\DsatAs T} &
+    \substack{\forall \text{ Tests } T:\\P_2\DsatAs T\Rightarrow P_1\DsatAs T} \\};
+        \draw[-implies, double, double distance=1mm]
+          (m-1-1) -- node [above] {Satz~\ref{DivTestVerfSatz}} (m-1-2);
+        \draw[-implies, double, double distance=1mm]
+          (m-1-2) -- node [right] {Definition~\ref{DivTestDef}} (m-2-2);
+        \draw[-implies, double, double distance=1mm]
+          (m-2-1) -- node [left]
+          {Lemma~\ref{DivTestVerfeinLem}} (m-1-1);
+        \draw[-implies, double, double distance=1mm]
+          (m-2-2) -- node [below]
+          {$\substack{T \text{ Test } \omega\text{-Partner}\\\Downarrow\\ T \text{ Test}}$} (m-2-1);
+    \end{tikzpicture}
+    \caption{Folgerungskette der Testing-Verfeinerung und Divergenz-Relation}
+  \label{FolgerungsketteDiv}
+  \end{center}
+\end{figure}

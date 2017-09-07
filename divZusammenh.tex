@@ -1,0 +1,166 @@
+\section{Zusammenhänge}
+
+\begin{Satz}[Zusammenhang der Verfeinerungs-Relationen mit der
+  Divergenz-Relation]
+  Für zwei \MEIO{}s $P$ und $Q$ gilt $P \asRel Q \Rightarrow P \DRel Q$. Aus
+  keiner der anderen bisher erwähnten Relationen folgt \DRel{} und auch aus der
+  Relation \DRel{} kann keine der anderen Relationen gefolgert werden.
+\end{Satz}
+\begin{proof}\mbox{}\\
+  $P \asRel Q \Rightarrow P \DRel Q$:\\
+  Um diese Implikation zu zeigen, muss nachgewiesen werden, dass eine beliebige
+  as"=Verfeinerung"=Relation $\mathcal{R}$ zwischen $P$ und $Q$ auch die
+  Eigenschaften der Relation \DRel{} erfüllt. Da $\mathcal{R}$ eine
+  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ ist, muss $p_0 \mathcal{R}
+  q_0$ gelten. Es sind die folgenden Punkte nachzuweisen:
+  \begin{itemize}
+    \item $\EDT _P \subseteq \EDT _Q$,
+    \item $\QDT _P \subseteq \QDT _Q$,
+    \item $\EDL _P \subseteq \EDL _Q$.
+  \end{itemize}
+
+  Die Menge \EDT{} ist unter \cont{} abgeschlossen. Es reicht also für den
+  ersten Punkt zu zeigen, dass ein beliebiges präfix-minimales $w$ aus $\EDT
+  _P$ auch in $\EDT _Q$ enthalten ist. Das Wort $w$ kann ein Element aus $\ET
+  _P$ oder $\DT _P$ sein. Für $w$ aus $\ET _P$ folgt mit
+  Satz~\ref{ZusammenhFehlerSatz} bereits $w\in\ET _Q$. Es kann also im
+  folgenden davon ausgegangen werden dass $w$ ein präfix-minimales Elemente aus
+  $\DT _P$ ist. Es gibt in $P$ einen Trace der Form: $\exists w'\in\Sigma ^*,
+  \exists p_1, p_2, \dots , p_n, \exists \alpha _1, \alpha _2, \dots ,\alpha
+  _n: \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha _n \land p_0
+  \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n
+  \in Div _P$. Mit~\ref{SimDef}~3.\ muss dieser Trace auch in $Q$ möglich sein
+  oder ein Präfix von $w$ muss zu einem Zustand in $E_Q$ führen. Falls es einen
+  Zustand $q_j$ mit $q_j\in E_Q$ und $p_j \mathcal{R} p_j$ gibt für
+  $j\in\{1,2,\dots ,n\}$, dann gilt $w\in \ET _Q \subseteq \EDT _Q$. Es kann
+  für den restlichen Beweis davon ausgegangen werden, dass der Trace in $Q$
+  ausführbar ist. Es gilt also $q_0 \may[\alpha _1]_Q q_1 \may[\alpha _2]_Q
+  \dots q_{n-1} \may[\alpha _n]_Q q_n$ mit $(p_j,q_j)\in\mathcal{R}$ für $0\leq
+  j \leq n$. Von $p_n$ ist eine unendliche Folge an $\tau$s ausführbar. Die
+  Definition~\ref{SimDef}~3.\ erzwingt, dass entweder ein Zustand von $q_n$ mit
+  $\tau$ aus erreichbar ist, der in $E_Q$ enthalten ist oder von $q_n$ aus
+  ebenfalls eine unendliche Folge an $\tau$s ausführbar ist, da die
+  Transitionen von $P$ Transitionen in $Q$ entsprechen müssen. Es gilt also
+  entweder $w\in\ET _Q\subseteq\EDT _Q$ oder $q_n\in Div _Q$ und somit $w\in\DT
+  _Q\subseteq \EDT _Q$.
+
+  Da im ersten Punkt bereits die \EDT{}-Inklusion bewiesen wurde, reicht es
+  für den zweiten Punkt aus zu zeigen, dass $\StQT _P\backslash \EDT _P
+  \subseteq \QDT _Q$ gilt. In Satz~\ref{ZusammenhStilleSatz} wurde bereits die
+  Inklusion $\StQT _P \backslash \ET _P \subseteq \QET _Q$ gezeigt unter der
+  Voraussetzung, dass es eine schwache as"=Verfeinerungs"=Relation zwischen
+  $P$ und $Q$ gibt. $\mathcal{R}$ ist nicht nur eine
+  as"=Verfeinerungs"=Relation sondern auch eine schwache
+  as"=Verfeinerungs"=Relation, wegen Satz~\ref{ZusammenhFehlerSatz}. Die
+  in~\ref{ZusammenhStilleSatz} bewiesene Inklusion gilt also auch hier. Es gilt
+  $\ET _P \subseteq \EDT _P$ und $\QET _Q \subseteq \QDT _Q$. Es folgt also die
+  zu zeigende Inklusion aus der bereits bewiesenen.
+
+  Für den letzten Punkt kann ebenfalls eine Einschränkung der zu zeigenden
+  Inklusion vorgenommen werden. Es muss also $\EDL _P \backslash \EDT _P
+  \subseteq \EDL _Q$ bewiesen werden. Es gilt $L _P \subseteq \EDL _P
+  \backslash \EDT _P$. In Satz~\ref{ZusammenhFehlerSatz} wurde die Inklusion
+  $L _P\subseteq \EL _Q$ unter der Voraussetzung einer schwachen
+  as"=Verfeinerungs"=Relation beweisen. Es gilt also wegen der Implikation
+  $\asRel \Rightarrow \wasRel$ (Satz~\ref{ZusammenhFehlerSatz}) und wegen der
+  Inklusion $\EL _Q \subseteq \EDL _Q$ auch die hier nach zu weisende
+  Inklusion.
+
+  $P \DRel Q \not\Rightarrow P \ERel Q$:\\
+  Diese Implikation gilt nicht, da \DRel{} nicht zwischen Fehler und Divergenz
+  unterscheiden kann, \ERel{} hingegen nur Fehler berücksichtigt und Divergenz
+  nicht als Fehlverhalten auffasst. Ein entsprechende Gegenbeispiel ist in
+  Abbildung~\ref{DivEGegenBsp} dargestellt. Die Sprachen beider
+  Transitionssysteme sind gleich und bestehen nur aus dem leeren Wort. Für
+  beide Systeme besteht die Menge \EDT{} aus allen Wörtern, die über dem
+  Alphabet $\Sigma$ möglich sind. Es gibt keine Stille"=Trace. Somit gilt also
+  $P \DRel Q$.\\
+  Für $P \ERel Q$ müsste $\ET _P \subseteq \ET _Q$ gelten. Jedoch ist die Menge
+  $\ET _Q$ leer, da $Q$ keine Fehler"=Zustände enthält und vorausgesetzt werden
+  kann, das $I$ leer ist und es keine Input"=kritischen Traces gegen kann. Für
+  $P$ ist jedoch der Startzustand ein Fehler"=Zustand und somit entspricht $\ET
+  _P$ der Menge $\Sigma ^*$. Die geforderte Inklusion gilt nicht und somit
+  kann auch die Relation \ERel{} zwischen $P$ und $Q$ nicht gelten.
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+        \node [initial,initial text=$Q$:, rectangle, draw, dashed] (q0) at
+        (0,0) {$q_0 \in Div _Q$};
+
+        \path[->]
+        (q0) edge[loop right] node{$\tau$} (q0)
+        ;
+
+        \node [initial,initial text=$P$:, rectangle, draw] (p0) at (7,0) {$p_0
+        \in E_Q \cup Div _Q$};
+
+        \path[->]
+        (p0) edge[loop right] node{$\tau$} (p0)
+        ;
+
+      \end{tikzpicture}
+      \caption{Gegenbeispiel zu $\DRel \Rightarrow \ERel$ mit $I_P = I_Q =
+      \emptyset$}
+      \label{DivEGegenBsp}
+    \end{center}
+  \end{figure}
+
+  $P \DRel Q \not\Rightarrow P \QRel Q$, $P \DRel Q \not\Rightarrow P \wasRel
+  Q$ und $P \DRel Q \not\Rightarrow P \asRel Q$:\\
+  Falls eine dieser Implikationen gelten würde, würde mit den bereits in den
+  Sätzen~\ref{ZusammenhFehlerSatz} und~\ref{ZusammenhStilleSatz} bewiesenen
+  Implikationen und der Transitivität von Implikationen folgen, dass auch $P
+  \ERel Q$ gilt. Dies stellt ein Widerspruch zum letzten Punkt dieses Beweises
+  dar. Es kann also keine der Implikationen gelten.
+
+  $P \wasRel Q \not\Rightarrow P \DRel Q$:\\
+  Das Problem dieser Implikation beruht darauf, dass eine schwache
+  as"=Verfeinerungs"=Relation es zulässt, dass $\tau$"=Transitionen schwach
+  gematched werden. Es ist also möglich, eine unendliche $\tau$-Folge ohne eine
+  einzige Transition zu matchen. Das Gegenbeispiel in
+  Abbildung~\ref{wasDivGegenBsp} verdeutliche dies. $P$ und $Q$ stehen in der
+  schwachen as"=Verfeinerungs"=Relation $\mathcal{R}$, die nur aus dem Tupel
+  $(p_0,q_0)$ besteht. Die Transitionssysteme bestehen nur aus dem
+  Startzustände, die beide keine Fehler"=Zustände sind. $Q$ besitzt keine
+  Transitionen und $P$ nur eine Transition für eine interne Aktion. Es sind
+  also die Punkt 1.\ bis 4.\ der Definition~\ref{wSimDef} für $\mathcal{R}$
+  bereits erfüllt. Der 5. Punkt fordert, die schwache Transition $q_0
+  \weakmay[\hat{\tau}]_Q q$ mit $(p_0,q) \in \mathcal{R}$ für ein $q$ aus $Q$.
+  $\hat{\tau}$ entspricht $\varepsilon$ somit ist $q_0$ eine zulässige Wahl für
+  $q$. $\mathcal{R}$ erfüllt also auch den letzten Punkt der
+  Definition~\ref{wSimDef} und ist deshalb eine as"=Verfeinerungs"=Relation.\\
+  $Q$ enthält keine Fehler- oder Divergenz"=Zustände. Es gilt also $\EDT _Q=
+  \emptyset$. Für $P$ ist jedoch der Startzustand ein divergenter Zustand. Es
+  gilt also $\varepsilon \in\StDT _P\subseteq \EDT _P$. Die Inklusion $\EDT _P
+  \subseteq \EDT _Q$, die für die Relation \DRel{} zwischen $P$ und $Q$
+  notwendig wäre, ist also nicht erfüllt.
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+
+        \node [initial,initial text=$P$:, rectangle, draw, dashed] (p0) at
+        (7,0) {$p_0 \in Div _Q$};
+
+        \path[->]
+        (p0) edge[loop right, dashed] node{$\tau$} (p0)
+        ;
+
+      \end{tikzpicture}
+      \caption{Gegenbeispiel zu $\wasRel \Rightarrow \DRel$}
+      \label{wasDivGegenBsp}
+    \end{center}
+  \end{figure}
+
+  $P \ERel Q \not\Rightarrow P \DRel Q$ und $P \QRel Q \not\Rightarrow P \DRel
+  Q$:\\
+  Mit den Implikationen, die bereits in Satz~\ref{ZusammenhStilleSatz} bewiesen
+  wurde, kann gefolgert werden, dass das im letzten Punkt angegebenen Beispiel
+  aus für diese Implikationen anwendbar ist. Es galt $P \wasRel Q$ somit gilt
+  auch $P \QRel Q$ und $P \ERel Q$. Die Relation \DRel{} hingegen ist zwischen
+  $P$ und $Q$ nicht erfüllt. Es folgt also, dass die hier angegeben
+  Implikationen ebenfalls nicht gelten.
+
+\end{proof}
