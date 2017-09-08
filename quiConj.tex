@@ -100,10 +100,56 @@ Für dies abgewandelte Konjunktions"=Definition kann nun auch für die Relation
   die Vereinigung einiger Trace"=Mengen ist, müssen gibt es unterschiedliche
   Fälle für das Wort $w$.
   \begin{itemize}
-    \item Fall 1 ():
+    \item Fall 1 ($w\in\ET _1\cap \ET _2$): Durch den Beweis von
+      Satz~\ref{FehlerConjSatz} folgt in diesem Fall $w\in\ET _{P_1\land P_2}
+      \subseteq \QET _{P_1\land P_2}$.
+    \item Fall 2 ($w\in\StQT _1\backslash\ET _1\cap \ET _2$ oder $w\in\ET _1
+      \cap \StQT _2\backslash\ET _2$): Durch die Kommutativität der Konjunktion
+      kann man sich in diesem Fall \oBdA{} auf $w\in\StQT _1\backslash\ET
+      _1\cap \ET _2$ einschränken. Es gibt in $P_1$ einen Ablauf für das Wort
+      $w$, der zu einem Zustand führt, der keine ausgehenden must"=Transitionen
+      für lokale Aktionen besitzt. Für $w\in\ET _2$ gibt es jedoch
+      unterschiedliche Fälle.
+      \\ \TODO{Behandlung lokaler Aktionen in der Konjunktions-Definition ähnlich zu \MIT{}-Traces anpassen}
+      \begin{itemize}
+        \item Fall 2a) ($w\in\cont (\PrET _2)$): Es ist ein mit $w$
+          beschrifteter Trace in $P_2$ ausführbar, der zum Zustand $e_2$ führt.
+          $e_2$ hat für alle Output"=Aktionen eine must"=Schleife zu sich
+          selbst.
+          \TODO{Argumentation nach Anpassung der Definition beenden}
+        \item Fall 2b) ($w\in\cont (\MIT _2)$): Es gibt ein echtes Präfix $v$
+          von $w$, dass in $P_2$ ausführbar ist zu einem Zustand, der für einen
+          Input $a$ keine ausgehende must"=Transition besitzt. $va$ muss dabei
+          ein Präfix von $w$ sein. Da $w$ kein Element von $\ET _1$ ist, muss
+          $P_1$ nach dem Wort $v$ den Input $a$ via einer must"=Transition
+          sicherstellen. Es kommt also die Regel (IMust2) aus der
+          Definition~\ref{FehlerConjDef} in der Konjunktion aus dieser Stelle
+          zum Einsatz. Dadurch wird in der Komponente $P_2$ der Zustand $e_2$
+          erreicht. Der Rest der Argumentation verläuft analog zu Fall 2a).
+      \end{itemize}
+    \item Fall 3 ($w\in\StQT _1\backslash\ET _1\cap \StQT _2\backslash\ET _2$):
+      In $P_1$ und $P_2$ gibt es einen Ablauf für das Wort $w$, dass einen
+      stillen Zustand erreicht. Der Zustand, der aus diesem beiden Zuständen in
+      Konjunktion entsteht, kann keine ausgehenden must"=Transitionen für
+      Outputs oder die interne Aktion $\tau$ haben. Der Zustand muss also
+      ebenfalls still sein. Die Transitionen, die für $w$ in $P_1$ und $P_2$
+      verwendet werden, gibt es auch in der Konjunktion und durch dies
+      Transitionen wird der stille Zustand erreicht. $w$ ist also ein strikter
+      Stille"=Trace in $P_1\land P_2$. Es gilt also $w\in\StQT _{P_1\land P_2}
+      \subseteq\QET _{P_1\land P_2}$.
   \end{itemize}
-  \TODO{zu beweisen}
 
   \glqq $\Rightarrow$\grqq{}:\\
-  \TODO{zu beweisen}
+  Die Inklusionen $\QET _S\subseteq \QET _1$ und $\QET _S\subseteq \QET _2$
+  müssen für diesen Punkt unter der Voraussetzung $S\QRel P_1\land P_2$
+  beweisen werden. Es reicht wie in Satz~\ref{FehlerConjSatz} aus nur die
+  Inklusion für $P_1$ zu begründen, da daraus mit der Kommutativität der
+  Konjunktion auch die Inklusion für $P_2$ folgt.\\
+  Sei $w$ beliebig aus $\QET _2$. $w$ muss auch in der Menge $\QET _{P_1\land
+  P_2}$ enthalten sein. Falls $w\in\ET _{P_1\land P_2}$ gilt folgt mit
+  Satz~\ref{FehlerConjSatz} $w\in\ET _1\subseteq\QET _1$. Somit müssen im
+  folgenden nur noch $w$ aus der Menge $\StQT _{P_1\land P_2}\backslash\ET
+  _{P_1\land P_2}$ betrachtet werden. Das $w$ ist in der Konjunktion von $P_1$
+  und $P_2$ zu einem Zustand ausführbar, der still ist.
+  \\ \TODO{Argumentation nach Veränderung der Definition beenden}
 \end{proof}
