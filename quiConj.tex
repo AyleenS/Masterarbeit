@@ -18,9 +18,28 @@ führen, die mit Traces aus $\ET (P)$ erreichbar sind. Es bleiben also auch die
 durch $\StQT (P)\backslash \ET (P)$ erreichbaren Zustände im zweiten Schritt
 der Konstruktion in~\ref{normalFormDef} still. Es gilt also auch für die Trace
 Menge \QET{} $\QET(P) = \QET (\NF (P))$ und somit ist $\NF (P)$ ebenfalls
-äquivalent zu $P$ bezüglich der Relation \QRel{}.\\
+äquivalent zu $P$ bezüglich der Relation \QRel{}. Es ergibt sich eine analoge
+Folgerung zu Proposition~\ref{FehlerNormalFormProp}.\\
+
+\begin{Prop}[Normal Form]
+  \label{stilleNormalFormProp}
+  Jedes \MEIO{} $P$ ist äquivalent zu seiner Normal Form $\NF (P)$ bezüglich
+  der Relation \QRel{}.
+\end{Prop}
+
+Das Lemma~\ref{FehlerAblaufNFLem} kann für die Stille"=Traces erweitert werden.
+Alle Aussagen, die Lemma~\ref{FehlerAblaufNFLem} trifft sind auch in diesem
+Kapitel weiterhin gültig.
+
+\begin{Lem}
+  Sei $P$ ein \MEIO{} in Normal Form. $w\in\StET (P)\backslash \ET (P)$ gilt
+  genau dann, wenn $w$ sich aus einem Ablauf ergibt, der einen Zustand
+  erreicht, für denen es keine ausgehenden must"=Transitionen für lokale
+  Aktionen gibt.
+\end{Lem}
+
 Die Normal Form hat das Problem mit dem Fehler"=Zuständen gelöst. In der
-Definition~\ref{ConjDef} gab es eine spezielle Behandlung der
+Definition~\ref{FehlerConjDef} gab es eine spezielle Behandlung der
 Input"=Transitionen um in der Konjunktion die Input"=kritischen Traces
 entsprechend zu berücksichtigen. Auch für die in diesem Kapitel neu eingeführte
 Trace Menge \QET{} kann es zu Problemen kommen, die durch die Normal Form und
@@ -45,8 +64,8 @@ $\tau$-Schlingen gelöst werden.
 
 \begin{Def}[Konjunktion]
   Es werden die Voraussetzungen und die Konstruktion der Konjunktion
-  aus~\ref{ConjDef} in diese Definition übernommen. Man erhält $P_1\land P_2$
-  in diesem Kapitel aus der konstruierten Konjunktion in dem man eine
+  aus~\ref{FehlerConjDef} in diese Definition übernommen. Man erhält $P_1\land
+  P_2$ in diesem Kapitel aus der konstruierten Konjunktion in dem man eine
   $\tau$-Schleife an jeden Zustand $(p_1,p_2)\in Qui$ anfügt, für den keiner
   der $p_j$ ein Fehler-, Input"=kritischer oder stiller Zustand ist.
 \end{Def}
@@ -60,5 +79,31 @@ Für dies abgewandelte Konjunktions"=Definition kann nun auch für die Relation
 \end{Satz}
 
 \begin{proof}
+  Man kann sich hier, wie auch im Beweis von Satz~\ref{FehlerConjSatz} auf
+  \MEIO{}s in Normal Form beschränken. Dies ist möglich, da jeder \MEIO{} einen
+  bezüglich \QRel{} äquivalenten \MEIO{} in Normal Form besitzt nach
+  Proposition~\ref{stilleNormalFormProp}.\\
+  Damit $P\QRel Q$ gilt, muss $P\ERel Q$ und $\QET _P \subseteq \QET _Q$
+  erfüllt sein (Definition~\ref{StilleSemDef}). Für die Relation \ERel{} wurde
+  bereits im Fehler"=Kapitel ein analoger Satz (\ref{FehlerConjSatz}) bewiesen.
+  Somit reicht es um diesen Satz zu zeigen, sich auf die Inklusionen der
+  \QET{}-Mengen zu beschränken.
+
+
+  \glqq $\Leftarrow$\grqq{}:\\
+  Für diese Richtung muss die Inklusion $\QET _S\subseteq\QET _{P_1\land P_2}$
+  beweisen wurden unter der Voraussetzung, dass $\QET _S\subseteq \QET _1$ und
+  $\QET _S\subseteq \QET _2$ gilt. Auch der Satz~\ref{FehlerConjSatz} wird im
+  laufe des Beweises benötigt werden, dies ist zulässig, da \QRel{} eine
+  Verfeinerung der Fehler"=Relation \ERel{} ist.\\
+  Für ein beliebiges $w\in \QET _S$ gilt $w\in\QET _1\cap \QET _2$. Da \QET{}
+  die Vereinigung einiger Trace"=Mengen ist, müssen gibt es unterschiedliche
+  Fälle für das Wort $w$.
+  \begin{itemize}
+    \item Fall 1 ():
+  \end{itemize}
+  \TODO{zu beweisen}
+
+  \glqq $\Rightarrow$\grqq{}:\\
   \TODO{zu beweisen}
 \end{proof}

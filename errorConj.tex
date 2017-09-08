@@ -119,7 +119,7 @@ mit \ET{} geflutet und es gilt deshalb für \EL{} auch $\EL (P) = \EL (\NF
 gilt also die folgende Proposition.
 
 \begin{Prop}[Normal Form]
-  \label{normalFormProp}
+  \label{FehlerNormalFormProp}
   Jedes \MEIO{} $P$ ist äquivalent zu seiner Normal Form $\NF (P)$ bezüglich
   der Relation \ERel{}.
 \end{Prop}
@@ -212,7 +212,7 @@ erhält man, in dem man den may"=Input von $Q$ auf den Zustand $e_Q$ umbiegt.\\
 Es ergibt sich das folgende Lemma.
 
 \begin{Lem}
-  \label{AblaufNFLem}
+  \label{FehlerAblaufNFLem}
   Sei $P$ ein \MEIO{} in Normal Form (mit dem Fehler"=Zustand $e$). $w\in
   \cont (\PrET (P)) $ gilt genau dann, wenn $w$ sich aus einem Ablauf ergibt,
   der $e$ erreicht. $va = w\in \MIT \backslash \cont(\PrET (P))$ mit $v\in
@@ -238,7 +238,7 @@ Konjunktion aus~\cite{Vogler2016MIA3}. Jedoch mussten für die
 Input"=Transitionen einige Veränderungen vorgenommen werden.
 
 \begin{Def}[Konjunktion]
-  \label{ConjDef}
+  \label{FehlerConjDef}
   Für zwei \MEIO{}s $P_1 = (P_1,I,O,\must _1,\may _1,p_{01},\{e_1\})$ und $P_2
   = (P_2,I,O,\must _2,\may _2,p_{02},\{e_2\})$ in Normal Form mit der selben
   Signatur ist die \emph{Konjunktion} definiert als $P_1\land P_2 =
@@ -285,7 +285,7 @@ können via der Regel (OMay) synchronisiert werden. In den Regel (EMust) und
 (EMay) wirken die Fehler"=Zustände als neutrales Element. In der
 Parallelkomposition hingeben hatten die Fehler"=Zustände absorbierende
 Wirkung.\\
-$P_1$ und $P_2$ müssen für die Definition~\ref{ConjDef} in Normal Form sein.
+$P_1$ und $P_2$ müssen für die Definition~\ref{FehlerConjDef} in Normal Form sein.
 Der daraus resultierende \MEIO{} $P_1\land P_2$ ist ebenfalls wieder in Normal
 Form. Es gibt nur den Zustand $(e_1,e_2)$ als Fehler"=Zustand. Da für $e_1$ und
 $e_2$ bereits alle Aktionen via must"=Schleife ausführbar sind, hat auch der
@@ -304,6 +304,7 @@ Konjunktion $\land$ um die gewünschte größte untere Schranke bezüglich der
 Relation \ERel{} handelt.
 
 \begin{Satz}[Konjunktion]
+  \label{FehlerConjSatz}
   Für drei \MEIO{}s $S$, $P_1$ und $P_2$ mit der gleichen Signatur gilt
   $S\ERel P_1\land P_2$ genau dann, wenn $S\ERel P_1$ und $S\ERel P_2$ erfüllt
   ist.
@@ -312,7 +313,7 @@ Relation \ERel{} handelt.
 \begin{proof}
   Die Definition von $\land$ setzt normalisierte \MEIO{}s voraus. Deshalb ist
   es sinnvoll auch hier von \MEIO{}s $P_1$ und $P_2$ in Normal Form auszugehen.
-  Dies ist möglich durch die Aussage der Proposition~\ref{normalFormProp}.
+  Dies ist möglich durch die Aussage der Proposition~\ref{FehlerNormalFormProp}.
 
   \glqq $\Leftarrow$\grqq{}:\\
   Um diese Richtung zu beweisen muss gezeigt werden, dass $\ET _S \subseteq \ET
@@ -323,16 +324,16 @@ Relation \ERel{} handelt.
   Als erstes wird versucht die Teilmengenbeziehung $\ET _S \subseteq \ET
   _{P_1\land P_2}$ zu beweisen. Dafür wird ein beliebiges $w$ aus der Menge
   $\ET _S$ gewählt. Das $w$ muss ebenfalls in $\ET _1\cap \ET _2$ enthalten. In
-  Lemma~\ref{AblaufNFLem} wurde ein Unterschied zwischen Elementen der Menge
+  Lemma~\ref{FehlerAblaufNFLem} wurde ein Unterschied zwischen Elementen der Menge
   $\cont (\PrET (P))$ und $\cont (\MIT (P))$ deutlich. Dies ist auch der Grund
   für die nachfolgende Fallunterscheidung.
   \begin{itemize}
     \item Fall 1 ($w\in(\cont (\PrET _1)\cap \cont(\PrET _2))$): Es führt also
-      nach Lemma~\ref{AblaufNFLem} sowohl in $P_1$ wie auch in $P_2$ der Ablauf
+      nach Lemma~\ref{FehlerAblaufNFLem} sowohl in $P_1$ wie auch in $P_2$ der Ablauf
       von $w$ zum Fehler"=Zustand $e_1$ bzw.\ $e_2$. Da in beiden
       Transitionssystemen der Ablauf von $w$ möglich ist, enthält auch
       $P_1\land P_2$ die dafür notwendigen Transitionen. Das $w$ führt in der
-      Konjunktion zum Zustand $(e_1,e_2)$ und ist wegen~\ref{AblaufNFLem} in
+      Konjunktion zum Zustand $(e_1,e_2)$ und ist wegen~\ref{FehlerAblaufNFLem} in
       der Menge $\ET _{P_1\land P_2}$ enthalten.
     \item Fall 2 ($w\in(\cont (\MIT _1)\cap \cont (\MIT _2))$): Es existieren
       Präfixe $w_1$ und $w_2$ von $w$ für die $w_1\in\MIT _1$ und $w_2\in\MIT
@@ -340,14 +341,14 @@ Relation \ERel{} handelt.
       \begin{itemize}
         \item Fall 2a) ($w_1=w_2$): In beiden $P_j$ ist das $v$, für das es
           einen Input $a$ gibt, so dass $w_1 = w_2 = va$ gilt, Element der
-          Sprache $L_j$. Das $v$ muss wegen~\ref{AblaufNFLem} in den \MEIO{}s
+          Sprache $L_j$. Das $v$ muss wegen~\ref{FehlerAblaufNFLem} in den \MEIO{}s
           $P_j$ zu jeweils einem Zustand $p_j$ führen, in dem das $a$ nicht
           sichergestellt ist. In der Komposition muss es einen Ablauf von $v$
           geben, der zu dem Zustand $(p_1,p_2)$ führt. Da für keinen der beiden
           Zustände $p_j$ der Input $a$ eine ausgehende must"=Transition ist,
-          kann es mit Definition~\ref{ConjDef} auch keine mit $a$ beschriftete
+          kann es mit Definition~\ref{FehlerConjDef} auch keine mit $a$ beschriftete
           ausgehende must"=Transition für $(p_1,p_2)$ geben. Es gilt also mit
-          Lemma~\ref{AblaufNFLem} $w_1=w_2\in\MIT _{P_1\land P_2}$ und somit
+          Lemma~\ref{FehlerAblaufNFLem} $w_1=w_2\in\MIT _{P_1\land P_2}$ und somit
           $w\in\ET _{P_1\land P_2}$.
         \item Fall 2b) ($w_1\neq w_2$): \OBdA{} ist $w_1$ kürzer wie $w_2$. Es
           gibt Wörter $v_1$, $v_2$ und Inputs $a_1$, $a_2$, so dass $w_1 =
@@ -356,15 +357,15 @@ Relation \ERel{} handelt.
           $P_1$ wird dadurch ein Zustand $p_1$ erreicht für den
           $p_1\anmust[a_1]$ gilt. Für den Zustand $p_2$, den $P_2$ durch $v_1$
           erreicht gilt jedoch $p_2\must[a_1]$. In der Konjunktion kommt also
-          die Regel (IMust3) der Definition~\ref{ConjDef} zur Anwendung. Die
+          die Regel (IMust3) der Definition~\ref{FehlerConjDef} zur Anwendung. Die
           restlichen Transitionen von $v_2$ nach der Ausführung von $w_1$ erbt
           die Konjunktion also direkt von $P_2$. In $P_1\land P_2$ führt der
           Ablauf von $v_2$ zu einem Zustand der Form $(e_1,p'_2)$. Für $p'_2$
           ist $a_2$ keine ausgehende must"=Transition. Da für $e_1$ alle
           Aktionen eine must"=Transition zu $e_1$ besitzen kann erneut die
-          Regel (IMust3) der Definition~\ref{ConjDef} angewendet werden. Durch
+          Regel (IMust3) der Definition~\ref{FehlerConjDef} angewendet werden. Durch
           $w_2$ wird in $P_1\land P_2$ der Zustand $(e_1,e_2)$ erreicht. Es
-          gilt durch Lemma~\ref{AblaufNFLem} $w_2\in\PrET _{P_1\land P_2}$ und
+          gilt durch Lemma~\ref{FehlerAblaufNFLem} $w_2\in\PrET _{P_1\land P_2}$ und
           daraus folgt dann auch $w\in\ET _{P_1\land P_2}$.
       \end{itemize}
     \item Fall 3 ($w\in (\cont (\PrET _1)\cap \cont (\MIT _2))$ oder $w\in
@@ -378,10 +379,10 @@ Relation \ERel{} handelt.
       _1$ enthalten und es kann Fall 2 angewendet werden, oder der Input $a$
       ist in $P_1$ nach der Ausführung von $v$ durch eine must"=Transition
       möglich. Falls in $P_1$ die $a$-must"=Transtion enthalten ist, folgt mit
-      der Definition~\ref{ConjDef}, dass in der Konjunktion durch $w'$ ein
+      der Definition~\ref{FehlerConjDef}, dass in der Konjunktion durch $w'$ ein
       Zustand erreicht werden muss, dessen zweites Element des Tupels $e_2$
       ist. Somit wird in $P_1\land P_2$ durch $w$ der Zustand $(e_1,e_2)$
-      erreicht. Mit Lemma~\ref{AblaufNFLem} folgt daraus $w\in\ET _{P_1\land
+      erreicht. Mit Lemma~\ref{FehlerAblaufNFLem} folgt daraus $w\in\ET _{P_1\land
       P_2}$.
   \end{itemize}
 
@@ -401,7 +402,7 @@ Relation \ERel{} handelt.
       $P_2$ einen Ablauf des Wortes $w$.
       \begin{itemize}
         \item Fall IIa) ($w\in\cont (\PrET _1)$): Es gibt wegen
-          Lemma~\ref{AblaufNFLem} auch in $P_1$ einen Ablauf, der mit $w$
+          Lemma~\ref{FehlerAblaufNFLem} auch in $P_1$ einen Ablauf, der mit $w$
           beschriftet ist. In diesem Fall gilt also $w\in L_{P_1\land P_2}
           \subseteq \EL _{P_1\land P_2}$.
         \item Fall IIb) ($w\in\cont (\MIT _1)\backslash\cont (\PrET _1)$): $w$
@@ -411,7 +412,7 @@ Relation \ERel{} handelt.
           $w\notin \ET _2$ gilt, kann $va$ in $P_2$ kein Input"=kritischer
           Trace sein. Es muss also nach dem Ablauf $v$ in $P_2$ ein Zustand
           erreicht werden, der für den Input $a$ einen ausgehende
-          must"=Transition besitzt. Es folgt mit Definition~\ref{ConjDef}, dass
+          must"=Transition besitzt. Es folgt mit Definition~\ref{FehlerConjDef}, dass
           in der Konjunktion durch $va$ ein Zustand erreicht wird, der als
           erstes Element des Tupels den Zustand $e_1$ enthält. Die noch
           fehlenden Transitionen des Wortes $w$ nach der Ausführung von $va$
@@ -421,7 +422,7 @@ Relation \ERel{} handelt.
       \end{itemize}
     \item Fall III ($w\in L_1\backslash\ET _1 \cap L_2\backslash\ET _2$): Das
       Wort $w$ ist in beiden \MEIO{}s $P_j$ ausführbar. Die dafür verwendeten
-      Transitionen werden durch die Definition~\ref{ConjDef} in die Konjunktion
+      Transitionen werden durch die Definition~\ref{FehlerConjDef} in die Konjunktion
       übernommen. Es gibt also auch in $P_1\land P_2$ einen Ablauf, der mit $w$
       beschriftet ist. Somit gilt $w\in L_{P_1\land P_2}\subseteq \EL
       _{P_1\land P_2}$.
@@ -432,7 +433,7 @@ Relation \ERel{} handelt.
   _{P_1\land P_2}$ und $\EL _S\subseteq \EL _{P_1\land P_2}$ vorausgesetzt
   werden um $\ET _S\subseteq \ET _1$, $\EL _S\subseteq \EL _1$, $\ET
   _S\subseteq \ET _2$ und $\EL _S\subseteq \EL _2$ zu zeigen. Da die
-  Konjunktion aufgrund ihrer Definition in~\ref{ConjDef} kommutativ ist, reicht
+  Konjunktion aufgrund ihrer Definition in~\ref{FehlerConjDef} kommutativ ist, reicht
   es die Inklusionen für einen der beiden \MEIO{}s zu zeigen.
 
   Als erstes soll die Inklusion $\ET _S\subseteq \ET _1$ betrachtet werden.
@@ -454,7 +455,7 @@ Relation \ERel{} handelt.
       ist in $P_1\land P_2$ ausführbar zu einem Zustand $(p_1,p_2)$, für den
       $(p_1,p_2)\nmust[a]_{P_1\land P_2}$ gilt. Es darf also für die Zustände
       $p_1$ und $p_2$ ebenfalls keine ausgehenden $a$-must"=Transition geben,
-      da sonst~\ref{ConjDef} auch eine must"=Transition in der Konjunktion der
+      da sonst~\ref{FehlerConjDef} auch eine must"=Transition in der Konjunktion der
       beiden \MEIO{}s fordern würde. $va$ ist also für $P_1$ ein
       Input"=kritischer Trace mit $va\in\MIT _1\subseteq \ET _1$. Da die Menge
       \ET{} unter Fortsetzung abgeschlossen ist, gilt auch $w\in\ET _1$.
@@ -494,7 +495,7 @@ Relation \ERel{} handelt.
           aufteilen kann, so dass $w'=va$ gilt und durch $v$ in $P_1$ ein
           Zustand erreicht wird, für den der Input $a$ nicht sichergestellt
           ist. In der Konjunktion kam die Transitions"=Regel (IMust3) oder
-          (IMay3) der Definition~\ref{ConjDef} zum Einsatz um einen Zustand zu
+          (IMay3) der Definition~\ref{FehlerConjDef} zum Einsatz um einen Zustand zu
           erreichen, der $e_1$ als erste Komponente enthält. Es gilt in diesem
           Fall also $va\in\MIT _1\subseteq\ET _1$. Wegen der Abgeschlossenheit
           der Menge \ET{} unter Fortsetzungen gilt $w\in \ET _1
