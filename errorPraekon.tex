@@ -1,7 +1,7 @@
 \section{gröbster Präkongruenz-Ansatz}
 
-Dieses Kapitel versucht die Präkongruenz für Error bei \EIO{}s aus
-z.B.~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
+Dieses Kapitel erweitert die Präkongruenz für Error bei \EIO{}s aus
+z.B.~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s.
 
 \begin{Def}[fehler-freie Kommunikation]
   Ein Fehler"=Zustand ist \emph{lokal erreichbar} in einem \MEIO{} $P$, wenn
@@ -19,9 +19,8 @@ z.B.~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
   P_2$ geschrieben, wenn nur dann ein Fehler"=Zustand in einer
   as"=Implementierung von $P_1$ lokal erreichbar ist, wenn es auch eine
   as"=Implementierung von $P_2$ gibt, in der ein Fehler"=Zustand ebenfalls
-  lokal erreichbar ist. Die Basisrelation stellt eine
-  \emph{Verfeinerungs-Relation} bezüglich \emph{Kommunikationsfehler"=Freiheit}
-  dar.\\
+  lokal erreichbar ist. Die \EBRel{} stellt als Basisrelation eine
+  \emph{Verfeinerung} bezüglich \emph{Kommunikationsfehler"=Freiheit} dar.\\
   \ECRel{} bezeichnet die \emph{vollständig abstrakte Präkongruenz} von
   \EBRel{} bezüglich $\cdot\|\cdot$, d.h.\ die gröbste Präkongruenz bezüglich
   $\cdot\|\cdot$, die in \EBRel{} enthalten ist.
@@ -51,8 +50,8 @@ in den Trace-Mengen eine Beziehung zwischen der allgemeinen Definition für
 \MEIO{}s und deren as"=Implementierungen herzustellen. Die nächste Proposition
 stellt eine Teilmengen"=Beziehung zwischen den Traces eines \MEIO{}s und den
 Traces seiner as"=Implementierungen dar. Die Teilmengen"=Beziehung in die
-andere Richtung muss nicht gelten, da as"=Verfeinerungs"=Relationen beliebiges
-Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
+andere Richtung gilt im allgemeinen nicht, da as"=Verfeinerungs"=Relationen
+beliebiges Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
 
 \begin{Prop}[Kommunikationsfehler-Traces und Implementierungen]
   \label{KommTracesProp}
