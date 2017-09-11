@@ -63,26 +63,29 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
   abgeschlossen sind.\\
   Mit Proposition~\ref{KommSemProp} folgt aus $w\in\ET _1$, dass es auch eine
   as"=Implementierung $P'_1$ von $P_1$ geben muss, für die $w$ ebenfalls in
-  $\ET _{P'_1}$ enthalten ist.
+  $\ET _{P'_1}$ enthalten ist. Da $w$ für $P_1$ präfix-minimal ist, gilt $w\in
+  \PrET _1$ oder $w\in\MIT _1$ mit Proposition~\ref{KommTracesProp} kann die
+  as"=Implementierung $P'_1$ sogar so gewählt werden, dass $w$ für $P'_1$
+  ebenfalls präfix-minimal ist.
   \begin{itemize}
     \item Fall 1 ($w=\varepsilon$): Es ist ein Fehler-Zustand in $P'_1$ lokal
       erreichbar. Für $T$ wird ein Transitionssystem verwendet, das nur aus dem
       Startzustand und einer must"=Schleife für alle Inputs $x\in I_T$ besteht.
       Somit kann $P'_1$ die im Prinzip gleichen Fehler-Zustände lokal
       erreichen wie $P'_1\|T$. $P'_1$ ist in Parallelkomposition mit $T$ nicht
-      fehler-frei somit gilt $P_1\EsatAs T$ nicht. Es darf also auch $P_2$ den
-      Test $T$ nicht as"=erfüllen, wegen der Implikation $P_2\EsatAs T
-      \Rightarrow P_1\EsatAs T$. Damit $P_2$ $T$ nicht as"=erfüllt muss es eine
-      as"=Implementierungen $P'_2$ geben, die in Parallelkomposition mit $T$ zu
-      einem nicht fehler-freien System führt. Es muss also in $P'_2\|T$ ein
-      Fehler lokal erreichbar sein. Durch die Definition von $T$ kann dieser
-      Fehler nur von $P'_2$ geerbt sein. In $P'_2$ kann dieser Fehler-Zustand
-      nur durch interen Aktionen und Outputs erreichbar sein, da $T$ keine
-      Outputs besitzt, die man mit Inputs aus $P'_2$ synchronisieren könnte und
-      unsynchronisierte Aktionen sind in einer Parallelkomposition von Partner
-      nicht möglich. Somit gilt $\varepsilon\in \PrET _{P'_2}\subseteq \ET
-      _{P'_2}$. Mit Proposition~\ref{KommSemProp} folgt daraus $\varepsilon\in
-      \ET _2$.
+      lokal fehler-frei somit gilt $P_1\EsatAs T$ nicht. Es darf also auch
+      $P_2$ den Test $T$ nicht as"=erfüllen, wegen der Implikation $P_2\EsatAs
+      T \Rightarrow P_1\EsatAs T$. Damit $P_2$ $T$ nicht as"=erfüllt muss es
+      eine as"=Implementierungen $P'_2$ geben, die in Parallelkomposition mit
+      $T$ zu einem nicht lokal fehler-freien System führt. Es muss also in
+      $P'_2\|T$ ein Fehler lokal erreichbar sein. Durch die Definition von $T$
+      kann dieser Fehler nur von $P'_2$ geerbt sein. In $P'_2$ kann dieser
+      Fehler-Zustand nur durch interen Aktionen und Outputs erreichbar sein, da
+      $T$ keine Outputs besitzt, die man mit Inputs aus $P'_2$ synchronisieren
+      könnte und unsynchronisierte Aktionen sind in einer Parallelkomposition
+      von Partner nicht möglich. Somit gilt $\varepsilon\in \PrET _{P'_2}
+      \subseteq \ET _{P'_2}$. Mit Proposition~\ref{KommSemProp} folgt daraus
+      $\varepsilon\in \ET _2$.
     \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
       $x_{n+1}\in I=O_T$): Es wird der folgende Partner $T$ betrachtet (dieser
       entspricht bis auf die Benennungen der Mengen dem Transitionssystem $U$
@@ -98,8 +101,8 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
         \end{aligned}$
         \item $E_T=\emptyset$.
       \end{itemize}
-      Für $w$ können nun zwei Fälle unterschieden werden, für die beide
-      $\varepsilon\in\PrET (P'_1\|T)$ folgen wird.
+      Für das präfix-minimale $w$ können nun zwei Fälle unterschieden werden,
+      für die beide $\varepsilon\in\PrET (P'_1\|T)$ folgen wird.
       \begin{itemize}
         \item Fall 2a) ($w\in\MIT _{P'_1}$): In $P'_1\|T$ erhält man
           $(p'_{01},p_0) \lweakmay[x_1\dots x_n]_{P'_1\|T} (p',p_n)$ mit $p'
@@ -121,7 +124,7 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
       \Rightarrow P_1\EsatAs T$ geschlossen werden, dass auch $P_2\EsatAs T$
       nicht gelten kann. Die Relation gilt für $P_2$ nicht, da es eine
       as"=Implementierung $P'_2$ von $P_2$ gibt, so dass $P'_2\|T$ nicht
-      fehler-frei ist.\\
+      lokal fehler-frei ist.\\
       Der lokal erreichbar Fehler in $P'_2\|T$ kann geerbt oder neu sein.
       \begin{itemize}
         \item Fall 2i) (neuer Fehler): Da jeder Zustand von $T$ alle Inputs
@@ -198,7 +201,7 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
           In diesem Fall ist $w\in L_{P'_2}\subseteq \EL _{P'_2}$. Daraus
           folgt mit Proposition~\ref{KommSemProp} $w\in\EL _2$.
         \item Fall 2d) (geerbter Fehler von $P'_2$): Es gilt $p_{02}
-          \lweakmay[x_1\dots x_n]_{P'_2} p'\in E_{P'_2}$ für ein $i\geq 0$ und
+          \lweakmay[x_1\dots x_iu]_{P'_2} p'\in E_{P'_2}$ für ein $i\geq 0$ und
           $u\in O^*$. Somit ist $x_1\dots x_i u\in\StET _{P'_2}$ und damit
           $\prune (x_1\dots x_iu) =\prune (x_1\dots x_i)\in\PrET
           _{P'_2}\subseteq \EL _{P'_2}$. Mit Hilfe von
@@ -207,6 +210,8 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
       \end{itemize}
   \end{itemize}
 \end{proof}
+
+\TODO{ab hier Verbesserungen einarbeiten}
 
 \begin{Satz}
   \label{KommTestVerfSatz}
