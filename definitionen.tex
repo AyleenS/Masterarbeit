@@ -5,7 +5,7 @@ und~\cite{Schinko2016BA} zusammengestellt und teilweise
 von~\cite{Vogler2016MIA3} beeinflusst.
 
 \begin{Def}[Modal Error-I/O-Transitionssystem]
-  Ein \emph{Modal Error-I/O-Transitionssystem (\MEIO{})} ist ein Tupel
+  Ein \emph{Modales Error-I/O-Transitionssystem (\MEIO{})} ist ein Tupel
   $(P,I,O,\must,\may,p_0,E)$ mit:
   \begin{itemize}
     \item $P$: Menge der \emph{Zustände},
@@ -45,10 +45,10 @@ Buchstaben aus den Alphabeten $I,O,\Sigma ,O\cup\{\tau\}$ und $\Sigma_\tau$.\\
 Es wird die Notation $p\may[\alpha] p'$ für $(p,\alpha,p')\in\may$ und
 $p\may[\alpha]$ für $\exists p':(p,\alpha,p')\in\may$ verwendet. Dies kann
 entsprechend auf Buchstaben-Sequenzen $w\in\Sigma_{\tau}^*$ erweitert werden:
-für $p\may[w]p'$ ($p\may[w]$) steht für die Existenz eines Laufes $p\may[\alpha
-_1]p_1\may[\alpha _2]\dots p_{n-1}\may[\alpha _n] p'$ ($p\may[\alpha _1] p_1
-\may[\alpha _2]\dots p_{n-1}\may[\alpha _n]$) mit $w=\alpha _1\dots \alpha
-_n$.\\
+$p\may[w]p'$ ($p\may[w]$) steht für die Existenz eines \emph{Laufes}
+$p\may[\alpha _1]p_1\may[\alpha _2]\dots p_{n-1}\may[\alpha _n] p'$
+($p\may[\alpha _1] p_1 \may[\alpha _2]\dots p_{n-1}\may[\alpha _n]$) mit
+$w=\alpha _1\dots \alpha _n$.\\
 Desweiteren soll $w|_B$ die Aktions-Sequenz bezeichnen, die man erhält, wenn
 man aus $w$ alle Aktionen löscht, die nicht in $B\subseteq\Sigma$ enthalten
 sind. $\widehat{w}$ steht für $w|_{\Sigma}$. Es wird $p\weakmay[w] p'$
@@ -122,9 +122,7 @@ zugrundeliegende may-Transitionen.
   (I_1\cap I_2)$ die Menge der zu \emph{synchronisierenden Aktionen}. Die
   synchronisierten Aktionen werden zu Inputs (im Fall $(I_1\cap I_2)$) bzw.
   Outputs (alle anderen Fälle) der Komposition.\\
-  $P_1$ ist ein \emph{Partner} von $P_2$, wenn die Parallelkomposition von
-  $P_1$ und $P_2$ geschlossen ist. Eine Parallelkomposition von zwei \MEIO{}s
-  $P_1$ und $P_2$ ist \emph{geschlossen}, wenn $P_1$ und $P_2$ duale Signaturen
+  $P_1$ ist ein \emph{Partner} von $P_2$, wenn $P_1$ und $P_2$ duale Signaturen
   $\Sig (P_1)=(I,O)$ und $\Sig (P_2)=(O,I)$ haben.
 \end{Def}
 
@@ -135,20 +133,19 @@ entsteht, wenn eines der \MEIO{}s die Möglichkeit für einen Output hat
 nicht wirklich zu diesem Fehler kommen, da die Output"=Transition nicht
 zwingendermaßen implementiert werden muss und die may"=Input"=Transition
 trotzdem erlaubt sein kann.\\
-Wie bereits unter anderem in~\cite{Schinko2016BA} gesehen werden konnte, kann
-es durch die Synchronisation von Inputs zu keinen neuen Fehler kommen, da die
-Inputs in beiden Transitionssystemen keine lokal kontrollierten Aktionen sind.
-Falls jedoch nur eines der Transitionssysteme die Möglichkeit für einen Input
-hat, der synchronisiert wird, besteht diese Möglichkeit in der
-Parallelkomposition nicht mehr. Es kann also in der Kommunikation mit einem
-weiteren \MEIO{} dort zu einem neuen Fehler kommen.
+Durch die Synchronisation von Inputs kann es zu keinen neuen Fehler kommen, da
+die Inputs in beiden Transitionssystemen keine lokal kontrollierten Aktionen
+sind. Falls jedoch nur eines der Transitionssysteme einen Input sicherstellt,
+der synchronisiert wird, wird dieser Input in der Parallelkomposition nicht
+mehr sicher gestellt. Es kann also in der Kommunikation mit einem weiteren
+\MEIO{} dort zu einem neuen Fehler kommen.
 
 \begin{Def}[alternierende Simulation]
   \label{SimDef}
   Eine Relation $\mathcal{R}\subseteq P \times Q$ auf zwei \MEIO{}s $P$ und $Q$
   mit gleicher Signatur ist eine \emph{(starke) alternierende Simulation}, wenn
-  für alle $(p,q)\in \mathcal{R}$ mit $q\notin E_Q$ und $\alpha\in\Sigma _\tau$
-  gilt:
+  für alle $(p,q)\in \mathcal{R}$ mit $q\notin E_Q$ und alle $\alpha\in\Sigma
+  _\tau$ gilt:
   \begin{enumerate}
     \item $p\notin E_P$,
     \item falls $q\must[\alpha]_Q q'$ gilt, gibt es eine Transition
@@ -172,16 +169,18 @@ einer alternierenden Simulations-Relation $\mathcal{R}$ gelten muss, dass aus
 $q\notin E_Q$ folgt, dass auch $p$ nicht in $E_P$ enthalten ist, gilt auch die
 Implikation $p\in E_P\Rightarrow q\in E_Q$.\\
 Für LTS (Labelled Transition Systems), die nach Definition keine Modalitäten
-und keine Fehler-Zustände enthalten, entspricht die as"=Verfeinerung einer Bisimulation. Dafür müssen die
-Transitionen eines LTS als must"=Transitionen aufgefasst werden. Man kann also
-auf LTS mit einer as"=Verfeinerungs"=Relation zwischen zwei Systemen deren
-Äquivalenz beweisen.\\ \TODO{falls möglich passendes Quellen Beispiel einfügen}\\
+und keine Fehler-Zustände enthalten, entspricht die as"=Verfeinerung einer
+Bisimulation. Dafür müssen die Transitionen eines LTS als must"=Transitionen
+aufgefasst werden. Man kann also auf LTS mit einer as"=Verfeinerungs"=Relation
+zwischen zwei Systemen deren Äquivalenz beweisen.\\ \TODO{falls möglich
+passendes Quellen Beispiel einfügen}\\
 Auf den \EIO{}, die z.B.\ in~\cite{Schinko2016BA} betrachtet wurden, lässt die
 as"=Verfeinerungs"=Relation zu, dass es in einer Verfeinerung möglicherweise
 weniger Fehler gibt und zusätzliches Verhalten, dass die Spezifikation nicht
 hatte. Die \EIO{}s entsprechen Implementierungen von \MEIO{}s, es ist also
 möglich, eine Implementierung mit Fehler durch eine andere as zu verfeinern,
 die keine Fehler enthält, aber potentiell zusätzliches Verhalten aufweist.
+\\ \TODO{Beispiel einfügen}\\
 Falls eine Implementierung bereits frei von Fehler"=Zuständen ist, entspricht
 sie einem LTS und kann somit nur noch durch äquivalente Implementierungen \glqq
 verfeinert\grqq{} werden.
@@ -210,26 +209,26 @@ verfeinert\grqq{} werden.
   Ebenso kann \wasRel{} für ein \MEIO{} Q und eine Implementierung $P$
   definiert werden mit $P\wasRel Q$, ist $P$ eine \emph{w"=as"=Implementierung}
   von $Q$ und es wird $\wasimp (Q)$ für die Menge aller
-  w"=as"=Implementierungen von $Q$ verwendet.
+  w"=as"=Implementierungen von $Q$ verwendet. \TODO{ausführen oder
+  umformulieren}
 \end{Def}
 
-Die schwache Simulation erlaubt interne Aktionen des \MEIO{}, das die
-entsprechende Aktion matchen muss. Jedoch ist es zwingend notwendig, dass ein
-Input sofort ausgeführt wird und erst dann interne Aktinen möglich sind, da
-ein Input die Reaktion auf eine Aktion ist, die die Umwelt auslöst und die
-nicht auf das Transitionssystem warten kann. Outputs hingegen können auch
-verzögert werden, da die Umgebung dies dann als Inputs aufnimmt und für diese
-somit nicht lokal kontrolliert sind.\\
+Die schwache Simulation erlaubt interne Aktionen des \MEIO{}, das eine Aktion
+matchen muss. Jedoch ist es zwingend notwendig, dass ein Input sofort
+ausgeführt wird und erst dann interne Aktinen möglich sind, da ein Input die
+Reaktion auf eine Aktion ist, die die Umwelt auslöst, welche nicht auf das
+Transitionssystem warten kann. Outputs hingegen können auch verzögert werden,
+da die Umgebung diese dann als Inputs aufnimmt und für die Umgebung diese
+Aktionen nicht lokal kontrolliert sind.\\
 Auch für alle Tupel $(p,q)$ in einer schwach alternierenden
 Simulations-Relation $\mathcal{R}$ gilt $p\in E_P\Rightarrow q\in E_Q$.
 
+Wie üblich kann man zeigen, dass \asRel{} (bzw.\ \wasRel{}) eine starke (bzw.\
+schwache) alternierende Simulation ist und die Eigenschaft der Transitivität
+erfüllt. Die Beweise für diese Aussagen sollen hier entfallen.
+
 Die in der folgende Definition vorgestellte Parallelkomposition von Wörtern und
-Mengen kann z.B.\ aus~\cite{Vogler2014EIO} übernommen werden. Die
-Aktionsfolgen eines \MEIO{} werden auch \emph{Traces} genannt. Traces sind die
-möglichen Wege des Systems, mit ihrer Transitionsbeschriftung. Diese
-Beschriftung besteht aus Inputs und Outputs, mit denen die Transitionsfolge ab
-dem Startzustand beschriftet ist. Somit kann ein Trace auch als das Wort
-aufgefasst werden, dass verarbeitet wird während des Ablauf des Systems.
+Mengen kann z.B.\ aus~\cite{Vogler2014EIO} übernommen werden.
 
 \begin{Def}[Parallelkomposition auf Traces]\mbox{}
   \begin{itemize}
@@ -244,10 +243,18 @@ aufgefasst werden, dass verarbeitet wird während des Ablauf des Systems.
   \end{itemize}
 \end{Def}
 
-Ebenso können die Definitionen der Funktionen \prune{} und \cont{} zum
-Abschneiden und Verlängern von Traces z.B.\ aus~\cite{Vogler2014EIO} übernommen
-werden. Hierbei ist zu beachten, dass in dieser Arbeit $\varepsilon$ das leere
-Wort und $\mathfrak{P}(M)$ die Potenzmenge der Menge $M$ bezeichnet.
+$w_1$ und $w_2$ sind für gewöhnlich Traces von \MEIO{}, die Komponiert werden.
+Das Wort $w_1\|w_2$ ist dann eine Aktionsfolge aus Input und Outputs. Es
+existiert in einer Parallelkomposition ein Transitionsfolge vom Startzustand
+aus, die mit den Aktionen aus $w_1\|w_2$ beschriftet ist. Der Trace $w_1\|w_2$
+der Parallelkomposition kann also auch als Wort aufgefasst werden, dass
+verarbeitet wird während es Ablauf des Systems.
+
+Definitionen der Funktionen \prune{} und \cont{} zum Abschneiden und Verlängern
+von Traces können ebenso wie die letzte Definition aus
+z.B.~\cite{Vogler2014EIO} übernommen werden. Hierbei ist zu beachten, dass in
+dieser Arbeit $\varepsilon$ das leere Wort und $\mathfrak{P}(M)$ die
+Potenzmenge der Menge $M$ bezeichnet.
 
 \begin{Def}[Pruning- und Fortsetzungs-Funktion]\mbox{}
   \begin{itemize}

@@ -133,10 +133,10 @@ entsprechenden Traces der as"=Implementierungen relevant.
   may"=Transitionen, zu denen es keine entsprechende must"=Transition in $P$
   gibt, von den Zuständen $q'$ zu dem entsprechenden ungestrichenen
   und gestrichenen Zustand implementiert werden. Da die Menge der
-  Fehler-Zustände leer ist, gilt~\ref{SimDef}~1.\ für $\mathcal{R}$. Die
+  Fehler-Zustände leer ist, gilt~\ref{SimDef}.1 für $\mathcal{R}$. Die
   must"=Transitionen werden für die ungestrichenen und gestrichenen Zustände
   umgesetzt, dies erfüllt zusammen mit $\mathcal{R}$ die
-  Definition~\ref{SimDef}~2. Ebenso wird der dritte Punkt der
+  Definition~\ref{SimDef}.2. Ebenso wird der dritte Punkt der
   Definition~\ref{SimDef} erfüllt, da sowohl die gestrichenen wie auch die
   ungestrichenen Zustände mit den entsprechenden Zuständen aus $P$ in der
   Relation $\mathcal{R}$ stehen. $\mathcal{R}$ ist also eine starke
@@ -165,8 +165,8 @@ entsprechenden Traces der as"=Implementierungen relevant.
 
 Man hätte anstatt des hier verwendeten $P'$ mit zwei Arten von Zuständen auch
 den Ansatz des ausrollens der betrachteten Traces analog zu
-Proposition~\ref{KommTracesProp}~3.\ anwenden können. Es wäre auch möglich die
-Inklusion der Input"=kritischen Traces aus Proposition~\ref{KommTracesProp}~3.\
+Proposition~\ref{KommTracesProp}.3 anwenden können. Es wäre auch möglich die
+Inklusion der Input"=kritischen Traces aus Proposition~\ref{KommTracesProp}.3
 mit dem $P'$ aus dem Beweis der Proposition~\ref{StilleTraceProp} zu
 begründen.\\
 Für \ET{} und \EL{} gelten die Definitionen aus dem letzten Kapitel. Es wir nur
@@ -232,7 +232,7 @@ für Stille eine neue Semantik definiert.
   $p'_n$ ist still, nach Voraussetzung. Es gilt also für alle $\omega\in O\cup
   \{\tau\}$ $p'_n\nmust[\omega]$. Da $(p'_n,p_n) \in\mathcal{R}$ gilt und beide
   Zustände keine Fehler-Zustände sind, muss auch $p_n\nmust[\omega]$ für alle
-  $\omega\in O\cup \{\tau\}$ gelten, da sonst~\ref{SimDef}~2.\ verletzt würde.
+  $\omega\in O\cup \{\tau\}$ gelten, da sonst~\ref{SimDef}.2 verletzt würde.
   Es gilt also in diesem Fall $w\in\StQT (P)\subseteq\QET (P)$.
 \end{proof}
 
@@ -453,12 +453,12 @@ ist. Den Beweis dazu liefert das folgende Korollar.
         P_{32},
     \end{aligned}$
     \item $\begin{aligned}[t]
-        \QET{}_{31} &\overset{\ref{StilleSemSatz}~2.}{=}
+        \QET{}_{31} &\overset{\ref{StilleSemSatz}.2}{=}
         (\QET{}_3\|\QET{}_1)\cup \ET{}_{31}\\
         &\hspace{-0.6cm}\overset{\ET{}_{31}\subseteq
       \ET{}_{32}}{\overset{\mathrm{und}}{\overset{\QET{}_1\subseteq
       \QET{}_2}{\subseteq}}} (\QET{}_3\|\QET{}_2) \cup \ET{}_{32}\\
-        &\overset{\ref{StilleSemSatz}~2.}{=} \QET{}_{32}.
+        &\overset{\ref{StilleSemSatz}.2}{=} \QET{}_{32}.
     \end{aligned}$
   \vspace*{-0.7cm}
   \end{itemize}

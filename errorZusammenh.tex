@@ -12,16 +12,16 @@
   as"=Verfeinerungs"=Relation erfüllt. In beiden Simulations-Definitionen
   (\ref{SimDef} und~\ref{wSimDef}) müssen die Punkte für alle $(p,q) \in
   \mathcal{R}$ mit $q\notin E_Q$ gelten. Sei $\mathcal{R}$ nun eine
-  as"=Verfeinerungs"=Relation. Es gilt also mit~\ref{SimDef}~1.\, dass $p$ kein
+  as"=Verfeinerungs"=Relation. Es gilt also mit~\ref{SimDef}.1, dass $p$ kein
   Fehler-Zustand von $P$ ist. Somit ist auch 1.\ von~\ref{wSimDef} erfüllt. Für
-  alle $\alpha\in\Sigma _{\tau}$ impliziert~\ref{SimDef}~2. $q \must[\alpha]_Q
+  alle $\alpha\in\Sigma _{\tau}$ impliziert~\ref{SimDef}.2 $q \must[\alpha]_Q
   q'$ $p\must[\alpha]_P p'$ für ein $p'$ mit $p'\mathcal{R} q'$. Da $\Sigma
   _{\tau} = I \cup O \cup \{\tau\}$ gilt, sind dadurch 2.\ und 3.\ der
   Definition~\ref{wSimDef} erfüllt. Die schwache $\varepsilon$-Transition aus
   2.\ führt keine echten Transitionen aus, sondern bleibt beim Zustand $p'$.
   Die schwache $\hat{\omega}$-Transition aus 3.\ entspricht in $\mathcal{R}$
   nur einer einzigen Transition für $\omega$. Die Punkte 4.\ und 5.\ aus
-  Definition~\ref{wSimDef} werden durch~\ref{SimDef}~3.\ erfüllt. Es gilt für
+  Definition~\ref{wSimDef} werden durch~\ref{SimDef}.3 erfüllt. Es gilt für
   $\mathcal{R}$ $p\may[\alpha]_P p'$ impliziert $q \may[\alpha]_Q q'$ für ein
   $q'$ mit $p'\mathcal{R}q'$. Die in~\ref{wSimDef} geforderten schwachen
   may"=Transitionen werden hier jeweils stark durch eine einzige Transition
@@ -52,7 +52,7 @@
       internen Aktionen $wv$ entspricht. Die entsprechende Transitionsfolge in
       $P$ ist dann $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
       \may[\alpha _n]_P p_n \in E_P$. Abhängig davon, ob $\alpha _j$ ein Input
-      oder eine lokale Aktion ist, kann mit~\ref{wSimDef}~4.\ bzw.~5.\
+      oder eine lokale Aktion ist, kann mit~\ref{wSimDef}.4 bzw.~\ref{wSimDef}.5
       argumentiert werden, dass das jeweilige $\alpha _j$ auch in $Q$ schwach
       ausführbar ist, solange der entsprechende Zustand $q_{j-1}$ kein
       Fehler-Zustand ist für $j\in \{1,2,\dots n\}$. Falls ein $q_j$ für $j <
@@ -62,7 +62,7 @@
       gibt es in $Q$ einen Trace $q_0 \weakmay[\widehat{\alpha _1}]_Q q_1
       \weakmay[\widehat{\alpha _2}]_Q \dots q_{n-1} \weakmay[\widehat{\alpha
       _n}]_Q q_n$, wobei $p_j \mathcal{R} q_j$ für alle $0 \leq j \leq n$ gilt.
-      Mit~\ref{wSimDef}~1.\ folgt, dass $q_n\in E_Q$ gelten muss und somit auch
+      Mit~\ref{wSimDef}.1 folgt, dass $q_n\in E_Q$ gelten muss und somit auch
       $w\in\ET _Q$ mit der Begründung von oben.
     \item Fall 2 ($w\in\MIT (P)$): $w$ ist in $P$ ein Input-kritischer Trace.
       Es existiert also eine Aufteilung von $w$ in $va$ mit $v\in \Sigma ^*$
@@ -71,7 +71,7 @@
       \alpha _1, \alpha _2, \dots , \alpha _n: \hat{v'}=v \land v'=\alpha _1
       \alpha _2 \dots \alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha
       _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n \nmust[a]_P$. Basierend
-      auf~\ref{wSimDef}~4.\ bzw.~5.\ kann daraus gefolgert werden, dass die
+      auf~\ref{wSimDef}.4 bzw.~\ref{wSimDef}.5 kann daraus gefolgert werden, dass die
       $\alpha _j$ auch schwach ausführbar sind in $Q$, falls kein $q_{j-1}$
       angetroffen wird, dass in $E_Q$ enthalten ist für $j\in \{1,2,\dots n\}$.
       Falls eines der $q_j$ mit $0 \leq j \leq n$ ein Fehler-Zustand ist, dann
@@ -80,7 +80,7 @@
       _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots q_{n-1}
       \weakmay[\widehat{\alpha _n}]_Q q_n$ mit $p_j \mathcal{R} q_j$ für alle
       $j\in \{0,1, \dots , n\}$. Da $a$ für $p_n$ in $P$ keine ausgehende
-      must"=Transition sein kann, gilt mit~\ref{wSimDef}~2.\ auch $q_n
+      must"=Transition sein kann, gilt mit~\ref{wSimDef}.2 auch $q_n
       \nmust[a]$. $w$ ist in $\MIT _Q \subseteq \ET _Q$ enthalten.
   \end{itemize}
   Für den zweiten Punkt kann man sich auf die Inklusion $\EL _P\backslash\ET _P
@@ -90,7 +90,7 @@
   \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n$
   in $P$, wobei $w$ der Aktionsfolge $\alpha _1\alpha _2 \dots \alpha _n$
   entspricht bis auf die internen Aktionen. Erneut können
-  hier~\ref{wSimDef}~4.\ und~5.\ dazu verwendet werden einen analogen Trace in
+  hier~\ref{wSimDef}.4 und~\ref{wSimDef}.5 dazu verwendet werden einen analogen Trace in
   $Q$ zu finden. Falls ein $q_j$ für $0 \leq j \leq n$ in $E_Q$ enthalten ist,
   gilt $w\in\ET _Q \subseteq \EL _Q$. Es wird also im Folgenden davon
   ausgegangen, dass kein $q_j$ ein Fehler-Zustand ist. Es gilt dann $q_0
@@ -112,7 +112,7 @@
   $p_1$ noch $q_{12}$ ausgehende Transitionen besitzen. Für $(p_0,q_0)\in
   \mathcal{R}$ gibt es keine ausgehende must"=Transitionen. Also ist 2.\ und
   3.\ von~\ref{wSimDef} bereits erfüllt. Falls $\alpha$ ein Input ist,
-  fordert~\ref{wSimDef}~4., dass die Transition $p_0 \may[\alpha]_P p_1$ in $Q$
+  fordert~\ref{wSimDef}.4, dass die Transition $p_0 \may[\alpha]_P p_1$ in $Q$
   schwach ausführbar ist in der Form $q_0 \may[\alpha]_Q
   \weakmay[\varepsilon]_Q q$. Ein entsprechendes $q$ ist in diesem Fall
   $q_{12}$ und es gilt $p_1 \mathcal{R} q_{12}$. Falls $\alpha$ eine lokale
@@ -122,7 +122,7 @@
   zwischen $P$ und $Q$.\\
   Angenommen es gibt auch eine starke as"=Verfeinerungs"=Relation
   $\mathcal{R}'$ zwischen $P$ und $Q$, dann muss $p_0 \mathcal{R}' q_0$
-  gelten. Mit~\ref{SimDef}~3.\ wird gefordert, dass die Transition $p_0
+  gelten. Mit~\ref{SimDef}.3 wird gefordert, dass die Transition $p_0
   \may[\alpha]_P p_1$ durch eine Transition der Form $q_0 \may[\alpha]_Q q$
   in $Q$ gematched werden muss. Für den Zustand $q$ kommt dieses mal nur
   $q_{11}$ in Frage. Es muss also $(p_1,q_{11})\in \mathcal{R}$ gelten. Der
@@ -171,7 +171,7 @@
   \{\varepsilon , o\}$.\\
   Angenommen es gibt eine schwache as"=Verfeinerungs"=Relation $\mathcal{R}$
   zwischen $P$ und $Q$. Dafür muss $(p_0,q_0)\in \mathcal{R}$ gelten. Da es
-  keine Fehler-Zustände in $P$ gibt, ist~\ref{wSimDef}~1.\ erfüllt. Die
+  keine Fehler-Zustände in $P$ gibt, ist~\ref{wSimDef}.1 erfüllt. Die
   Punkte 2., 4.\ und 5.\ der Definition~\ref{wSimDef} stellen keine
   Forderungen an die Relation $\mathcal{R}$. Da jedoch die Transition $q_0
   \must[o]_Q q_1$ in $Q$ vorhanden ist, wird die Verfeinerung dieser in $P$

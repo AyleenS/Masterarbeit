@@ -168,7 +168,7 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   2. \glqq$\subseteq$\grqq{}:
   \begin{align*}
     \EDT (P)&\overset{\ref{DivSemDef}}{=} \ET (P)\cup \DT (P)\\
-    &\hspace{-0.2cm}\overset{\ref{KommSemProp}~1.}{=} \left(\underset{P'\in
+    &\hspace{-0.2cm}\overset{\ref{KommSemProp}.1}{=} \left(\underset{P'\in
     \asimp (P)}{\bigcup} \ET (P')\right)\cup \DT (P)\\
     &\overset{1.}{\subseteq} \left(\underset{P'\in
     \asimp (P)}{\bigcup} \ET (P')\right)\cup \left(\underset{P'\in \asimp
@@ -193,7 +193,7 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   $E_{P'}$ enthalten. Da $P'$ eine as"=Implementierung von $P$ ist, muss es
   eine as"=Verfeinerungs"=Relationen $\mathcal{R}$ zwischen $P'$ und $P$ geben
   mit $(p'_0,p_0) \in\mathcal{R}$. Solange in $P$ kein Fehler-Zustand erreicht
-  wird, fordert~\ref{SimDef}~3., dass der Trace aus $P'$ in $P$ ebenfalls
+  wird, fordert~\ref{SimDef}.3, dass der Trace aus $P'$ in $P$ ebenfalls
   möglich ist. Falls ein Fehler-Zustand in $P$ erreicht wird, ist ein Präfix
   von $wv$ in $\StET (P)$ enthalten und mit $w =\prune (wv)$ gilt somit $w\in
   \ET (P) \subseteq \EDT(P)$. Es gibt den Trace $p_0 \may[\alpha _1]_P p_1
@@ -204,11 +204,11 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   immer wieder durchlaufen werden kann, oder einen Weg mit unendlichen vielen
   Zuständen, die durch $\tau$-Transitionen verbunden sind. Falls innerhalb der
   Schleife oder auf dem Weg ein Zustand in $E_{P'}$ enthalten ist, fordert
-  $\mathcal{R}$ mit~\ref{SimDef}~1., dass der erste solche Zustand in Relation
+  $\mathcal{R}$ mit~\ref{SimDef}.1, dass der erste solche Zustand in Relation
   mit einem Zustand aus $E_P$ steht und somit $w \in \ET _P \subseteq \EDT _P$
   gilt. Falls alle Zustände, die auf dem der unendlichen $\tau$-Folge von
   $p'_n$ in $P'$ aus liegen nicht in $E_{P'}$ enthalten sind,
-  fordert~\ref{SimDef}~3.\ auch deren Ausführbarkeit von $p_n$ aus in $P$, bis
+  fordert~\ref{SimDef}.3 auch deren Ausführbarkeit von $p_n$ aus in $P$, bis
   entweder ein Zustand in $E_P$ erreicht wird, oder ebenfalls eine unendliche
   $\tau$-Folge in $P$ von $p_n$ aus ausführbar ist. Im ersten Fall gilt wieder
   $w \in \ET _P \subseteq \EDT _P$. Ansonsten gilt $p_n\in Div _P$ und somit
@@ -249,7 +249,7 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
 
   4. \glqq$\supseteq$\grqq{}:\\
   Für den Beweis dieser Inklusion kann man auf den Beweis
-  von~\ref{KommSemProp}~2.~\glqq$\supseteq$\grqq{} zurück greifen. Es müssen
+  von~\ref{KommSemProp}.2~\glqq$\supseteq$\grqq{} zurück greifen. Es müssen
   wie bei 3.\ nur die \ET{}-Mengen durch \EDT{}-Mengen ersetzt werden und die
   Einschränkung auf die geflutete Sprache ohne die Menge \EDT{} ist möglich
   wegen des zweiten Punktes der aktuellen Proposition.
@@ -282,7 +282,7 @@ zugehörigen as"=Implementierungen treffen.
     \item Dieser Punkt folgt wie in~\ref{lokaleStilleErrKor} direkt aus
       Korollar~\ref{lokalFehlerErrKor}~(i).
     \item Ein divergenter Zustand ist in $P$ lokal erreichbar, wenn
-      $\varepsilon \in \DT _P$ gilt. Mit~\ref{DivSemProp}~1. folgt daraus, dass
+      $\varepsilon \in \DT _P$ gilt. Mit~\ref{DivSemProp}.1 folgt daraus, dass
       es auch mindestens eine as"=Implementierung $P'$ aus $\asimp (P)$ geben
       muss, für die $\varepsilon$ in $\DT (P')$ enthalten ist. Da \DT{} die
       Menge der fortgesetzten um lokale Aktionen gekürzten strikten
@@ -292,7 +292,7 @@ zugehörigen as"=Implementierungen treffen.
     \item Dieser Punkt folgt direkt aus Korollar~\ref{lokaleStilleErrKor}~(ii).
     \item In $P'\in\asimp (P)$ sei ein Fehler-, stillen oder Divergenz-Zustand
       lokal erreichbar. Es gilt dann $w\in\QDT _{P'}$ für $w\in O^*$. Mit
-      Proposition~\ref{DivSemProp}~3.\ gilt auch $w\in\QDT _P$ Die Menge \QDT{}
+      Proposition~\ref{DivSemProp}.3 gilt auch $w\in\QDT _P$ Die Menge \QDT{}
       setzt sich aus den Mengen \ET{}, \StQT{} und \DT{} zusammen. Es muss also
       in $P$ ein Fehler-, stiller oder Divergenz-Zustand lokal erreichbar sein,
       da ein $w$, bestehend nur aus lokalen Aktionen, in $\QDT _P$ enthalten
@@ -466,7 +466,7 @@ Präkongruenz handelt.
   $\cdot\|\cdot$ auf Sprachen wie folgt:
   \begin{itemize}
     \item $\begin{aligned}[t]
-        \EDT{}_{31} &\overset{\ref{DivSemSatz}~1.}{=}
+        \EDT{}_{31} &\overset{\ref{DivSemSatz}.1}{=}
         \cont{}\left(\prune{}\left(\left(\EDT{}_3\|\EDL{}_1\right) \cup
         \left(\EDL{}_3\|\EDT{}_1\right)\right)\right)\\
         &\hspace{-0.6cm}\overset{\EDT{}_1\subseteq
@@ -474,23 +474,23 @@ Präkongruenz handelt.
     \EDL{}_2}{\subseteq}}}
     \cont{}\left(\prune{}\left(\left(\EDT{}_3\|\EDL{}_2\right) \cup
         \left(\EDL{}_3\|\EDT{}_2\right)\right)\right)\\
-      &\overset{\ref{DivSemSatz}~1.}{=} \EDT{}_{32},
+      &\overset{\ref{DivSemSatz}.1}{=} \EDT{}_{32},
     \end{aligned}$
     \item $\begin{aligned}[t]
-        \QDT{}_{31} &\overset{\ref{DivSemSatz}~2.}{=} (\QDT{}_3\|\QDT{}_1)
+        \QDT{}_{31} &\overset{\ref{DivSemSatz}.2}{=} (\QDT{}_3\|\QDT{}_1)
         \cup \EDT{}_{31}\\
         &\hspace{-0.8cm}\overset{\EDT{}_{31}\subseteq
       \EDT{}_{32},}{\overset{\mathrm{und}}{\overset{\QDT{}_1\subseteq
       \QDT{}_2}{\subseteq}}} (\QDT{}_3\|\QDT{}_2) \cup \EDT{}_{32}\\
-      &\overset{\ref{DivSemSatz}~2.}{=} \QDT{}_{32}.
+      &\overset{\ref{DivSemSatz}.2}{=} \QDT{}_{32}.
     \end{aligned}$
     \item $\begin{aligned}[t]
-        \EDL{}_{31} &\overset{\ref{DivSemSatz}~3.}{=} (\EDL{}_3\|\EDL{}_1)
+        \EDL{}_{31} &\overset{\ref{DivSemSatz}.3}{=} (\EDL{}_3\|\EDL{}_1)
         \cup \EDT{}_{31}\\
         &\hspace{-0.8cm}\overset{\EDT{}_{31}\subseteq
       \EDT{}_{32},}{\overset{\mathrm{und}}{\overset{\EDL{}_1\subseteq
       \EDL{}_2}{\subseteq}}} (\EDL{}_3\|\EDL{}_2) \cup \EDT{}_{32}\\
-      &\overset{\ref{DivSemSatz}~3.}{=} \EDL{}_{32}.
+      &\overset{\ref{DivSemSatz}.3}{=} \EDL{}_{32}.
     \end{aligned}$
   \end{itemize}
 \end{proof}
@@ -559,7 +559,7 @@ enthalten ist.
   Es wird für ein präfix-minimales $w$ aus $\EDT _1$ gezeigt, dass dieses $w$
   oder eines seiner Präfixe in $\EDT _2$ enthalten ist. Diese Möglichkeit
   bietet sich, da beide Mengen unter \cont{} abgeschlossen sind. Wegen
-  Proposition~\ref{DivSemProp}~2.\ ist $w$ auch ein präfix-minimales Elemente
+  Proposition~\ref{DivSemProp}.2 ist $w$ auch ein präfix-minimales Elemente
   der Menge $\EDT _{P'_1}$ einer as"=Implementierung $P'_1$ von $P_1$.
   \begin{itemize}
     \item Fall 1 ($w=\varepsilon$): Es handelt sich um einen lokal erreichbaren
@@ -578,7 +578,7 @@ enthalten ist.
       neuer Fehler entstehen kann, muss der fehlerhafte Zustand von $P'_2$
       geerbt sein. Somit muss in $P'_2$ ein Fehler- oder Divergenz-Zustand
       lokal erreichbar sein. Da $\EDT (P) =\ET (P)\cup\DT (P)$ gilt, folgt
-      $w\in \EDT _{P'_2}$ und mit~\ref{DivSemProp}~2. $w\in \EDT _2$.
+      $w\in \EDT _{P'_2}$ und mit~\ref{DivSemProp}.2 $w\in \EDT _2$.
     \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
       $x_{n+1}\in I$): Es wird der folgende $\omega$-Partner $T$ betrachtet
       (siehe auch Abbildung~\ref{TohneEmitO}):
@@ -661,7 +661,7 @@ enthalten ist.
           \nmust[x_{i+1}]_{P'_2}$ und damit gilt $x_1\dots x_{i+1}\in\MIT
           _{P'_2}\subseteq \ET _{P'_2}$. Somit ist ein Präfix von $w$ in $\EDT
           _{P'_2}$ enthalten. Wegen des Abschlusses unter \cont{} und wegen
-          Proposition~\ref{DivSemProp}~2.\ gilt $w\in\EDT _2$.
+          Proposition~\ref{DivSemProp}.2 gilt $w\in\EDT _2$.
         \item Fall 2ii) ($\varepsilon\in\ET (P'_2\|T)$ wegen geerbtem Fehler):
           $T$ hat $x_1\dots x_iu$ ausgeführt mit $u\in (O\cup\{\omega\})^*$ und
           ebenso hat $P'_2$ den Weg $x_1\dots x_iu|_{\Sigma _2}$ ausgeführt.
@@ -672,7 +672,7 @@ enthalten ist.
           diesem Fall eine Verlängerung um lokale Aktionen von einem Präfix von
           $w$ zu einem Fehler-Zustand. Da \ET{} der Menge aller Verlängerungen
           von gekürzten Fehler-Traces entspricht, ist $x_1\dots x_i$ in $\EDT
-          _{P'_2}$ enthalten und mit~\ref{DivSemProp}~2.\ ist ein Präfix von
+          _{P'_2}$ enthalten und mit~\ref{DivSemProp}.2 ist ein Präfix von
           $w$ in $\EDT _2$ enthalten.
         \item Fall 2iii) ($\varepsilon\in\DT (P'_2\|T)\backslash\ET
           (P'_2\|T)$): Da $T$ nicht unendlich viele Zustände hat und auch keine
@@ -688,7 +688,7 @@ enthalten ist.
           divergenten Zustand. Da \DT{} die Menge aller Verlängerungen von
           gekürzten Divergenz-Traces ist und $\DT _{P'_2}\subseteq \EDT
           _{P'_2}$ gilt, ist in diesem Fall das Präfix $x_1\dots x_i$ von $w$
-          in $\EDT _{P'_2}$ enthalten. Mit~\ref{DivSemProp}~2.\ folgt daraus,
+          in $\EDT _{P'_2}$ enthalten. Mit~\ref{DivSemProp}.2 folgt daraus,
           dass ein Präfix von $w$ in $\EDT _2$ enthalten ist.
       \end{itemize}
   \end{itemize}
@@ -701,7 +701,7 @@ enthalten ist.
   gezeigt werden.\\
   Es wird ein $w\in\StQT _1\backslash\EDT _1$ gewählt und gezeigt, dass dieses
   auch in $\QDT _2$ enthalten ist. Das $w$ ist aufgrund der
-  Propositionen~\ref{StilleTraceProp} und~\ref{DivSemProp}~2.\ auch für eine
+  Propositionen~\ref{StilleTraceProp} und~\ref{DivSemProp}.2 auch für eine
   as"=Implementierung $P'_1$ von $P_1$ in $\StQT _{P'_1}\backslash \EDT
   _{P'_1}$ enthalten.\\
   Durch die Wahl des $w$s wird in $P'_1$ durch das Wort $w$ ein stiller
@@ -777,14 +777,14 @@ enthalten ist.
       Synchronisations"=Probleme auftreten können und wegen den Fällen 2i) und
       2ii) des ersten Punktes dieses Beweises ist ein Präfix von $w$ in $\EDT
       _{P'_2}$ enthalten. Da die Menge \EDT{} unter \cont{} abgeschlossen ist
-      und~\ref{DivSemProp}~2.\ gilt, folgt $w\in\EDT _2\subseteq\QDT _2$.
+      und~\ref{DivSemProp}.2 gilt, folgt $w\in\EDT _2\subseteq\QDT _2$.
     \item Fall b) ($\varepsilon \in \DT (P'_2\|T)\backslash \ET(P'_2\|T)$): Es
       handelt sich bei dem lokal erreichbaren fehlerhaften Zustand um
       Divergenz. Die Divergenz muss von $P'_2$ geerbt sein, da $T$ keine
       Möglichkeit für eine unendliche $\tau$-Folge hat. Es gilt also, dass
       bereits in $P'_2$ ein Präfix von $w$ in $\EDT _{P'_2}$ enthalten ist,
       wegen Fall 2iii) des Beweises des ersten Punktes dieses Lemmas. Mit dem
-      Abschluss unter \cont{} und~\ref{DivSemProp}~2.\ folgt, dass auch $w\in
+      Abschluss unter \cont{} und~\ref{DivSemProp}.2 folgt, dass auch $w\in
       \EDT _2\subseteq\QDT _2$ gilt.
     \item Fall c) (stiller Zustand lokal erreichbar in $P'_2\|T$ und $\varepsilon
       \notin \EDT (P'_2\|T)$): Da in $T$ nur durch $w$ ein stiller Zustand
@@ -881,7 +881,7 @@ enthalten ist.
           \in Div _{P'_2}$ für $j\geq 0$ und $u\in O^*$. Somit ist $x_1\dots
           x_j u\in\StDT _{P'_2}$ und damit $\prune (x_1\dots x_j u) = \prune
           (x_1\dots x_j)\in\PrDT _{P'_2}\subseteq\EDT _{P'_2}$. Also folgt
-          mit~\ref{DivSemProp}~2., dass $w$ in $\EDT _2 \subseteq\EDL _2$
+          mit~\ref{DivSemProp}.2, dass $w$ in $\EDT _2 \subseteq\EDL _2$
           enthalten ist, da \DT{} unter \cont{} abgeschlossen ist.
       \end{itemize}
   \end{itemize}
@@ -912,7 +912,7 @@ enthalten ist.
   $P'_2$ mit Tests $T$ zeigt sich das Fehlverhalten ebenfalls. Falls ein Fehler
   oder Divergenz lokal erreichbar ist, gilt $\varepsilon \in \EDT _{P'_j}$. Für
   alle Tests $T$ ist $\varepsilon$ ein Element der Sprache es gilt also
-  $\varepsilon \in\EDL _T$. Mit Satz~\ref{DivSemSatz}~1.\ folgt auch
+  $\varepsilon \in\EDL _T$. Mit Satz~\ref{DivSemSatz}.1 folgt auch
   $\varepsilon \in \EDT _{P'_j\|T}$. Falls es sich in $P_2$ und somit auch in
   $P'_2$ nur um Stille handelt und kein Fehler oder Divergenz lokal erreichbar
   ist, dann muss auch bereits in $P_1$ bzw.\ $P'_1$ Stille das einzige
