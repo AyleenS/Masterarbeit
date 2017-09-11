@@ -20,19 +20,18 @@ Gegensatz zu~\cite{Vogler2015FailSem} mit Inputs und Outputs gearbeitet und
 dadurch scheint der Ansatz die gemeinsamen Aktionen zu synchronisieren
 natürlicher, wie eine Menge an Aktionen beim Test vorzugeben.\\
 Die Definition von lokaler Erreichbarkeit eines Fehler-Zustandes soll aus dem
-Erweiterungs"=Ansatz übernommen werden. Es wird also trotzdem noch
+gröbsten Präkongruenz"=Ansatz übernommen werden. Es wird also trotzdem noch
 optimistisch davon ausgegangen, dass Fehler erst zu Problemen führen, wenn eine
 hilfreiche Umgebung dies nicht mehr verhindern kann.
 
 \begin{Def}[Test und Verfeinerung für Kommunikationsfehler]
   \label{KommTestDef}
-  Ein \emph{Test} $T$ ist eine Implementierung. Ein \MEIO{} $P$
-  \emph{as-erfüllt} einen Kommunikationsfehler-Test $T$, falls $S\|T$
+  Ein \emph{Test} $T$ ist eine komponierbare Implementierung. Ein \MEIO{} $P$
+  \emph{as-erfüllt} einen Kommunikationsfehler"=Test $T$, falls $S\|T$ lokal
   fehler-frei ist für alle $S\in \asimp (P)$. Es wird dann $P \EsatAs T$
-  geschrieben. Die Parallelkomposition $S\|T$ ist \emph{fehler-frei}, wenn kein
-  Fehler lokal erreichbar ist.\\
-  Ein \MEIO{} $P$ \emph{Fehler-verfeinert} $P'$, falls für alle Tests $T$:
-  $P'\EsatAs T \Rightarrow P\EsatAs T$.
+  geschrieben.\\
+  Ein \MEIO{} $P$ \emph{Fehler-verfeinert} $P'$, falls sie die selbe Signaturen
+  haben und für alle Tests $T$: $P'\EsatAs T \Rightarrow P\EsatAs T$.
 \end{Def}
 
 Abgesehen von Korollar~\ref{lokalFehlerErrKor}~(ii) erweisen sich

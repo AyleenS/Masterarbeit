@@ -6,8 +6,8 @@ z.B.~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
 \begin{Def}[fehler-freie Kommunikation]
   Ein Fehler"=Zustand ist \emph{lokal erreichbar} in einem \MEIO{} $P$, wenn
   ein $w\in O^*$ existiert mit $p_0 \weakmay[w]_P p\in E$. Ein \MEIO{} $P$
-  ist lokal fehler-frei, wenn $\neg\exists w\in O^*: p_0\weakmay[w]_P p\in
-  E$.\\
+  ist \emph{lokal fehler-frei}, wenn $\neg\exists w\in O^*: p_0\weakmay[w]_P
+  p\in E$.\\
   Zwei \MEIO{}s $P_1$ und $P_2$ \emph{kommunizieren fehler-frei}, wenn keine
   as"=Implementierungen ihrer Parallelkomposition $P_{12}$ einen
   Fehler"=Zustände lokal erreichen kann.
@@ -255,8 +255,9 @@ folgt.
     &\overset{\ref{KommTracesProp}}{\subseteq} \cont
     \left(\underset{P'\in\asimp (P)}{\bigcup} \PrET (P')\right)\cup \cont
     \left(\underset{P'\in\asimp (P)}{\bigcup} \MIT (P')\right)\\
-    &\hspace{-0.4cm}\overset{\cont}{\overset{\text{monoton}}{=}} \underset{P'\in\asimp
-    (P)}{\bigcup} \cont (\PrET (P'))\cup \cont (\MIT (P'))\\
+    &\hspace{-0.4cm}\overset{\cont}{\overset{\text{monoton}}{=}}
+    \underset{P'\in\asimp (P)}{\bigcup} \cont (\PrET (P'))\cup \cont (\MIT
+    (P'))\\
     &\overset{\ref{KommFehlerSemDef}}{=} \underset{P'\in\asimp
     (P)}{\bigcup} \ET (P').\\
   \end{align*}
@@ -443,8 +444,8 @@ folgt.
   ausgegangen, dass $xy\in \ET _1\| \EL _2$ gilt, d.h.\ es gibt $w_1\in \ET _1$
   und $w_2\in \EL _2$ mit $xy \in w_1\| w_2$.\\
   Im Folgenden wird für alle Fälle von $xy$ gezeigt, dass es ein $v\in \PrET
-  _{12} \cup \MIT _{12}$ gibt, das ein Präfix von $xy$ ist. Also $v$ entweder
-  auf einen Input $I_{12}$ endet oder $v=\varepsilon$. Damit muss $v$ ein
+  _{12} \cup \MIT _{12}$ gibt, das ein Präfix von $xy$ ist. Also: entweder
+  endet $v$ auf einen Input $I_{12}$ oder $v=\varepsilon$. Damit muss $v$ ein
   Präfix von $x$ sein, denn $\varepsilon$ ist Präfix von jedem Wort und sobald
   $v$ mindestens einen Buchstaben enthält, muss das Ende von $v$ vor dem Anfang
   von $y\in O_{12}^*$ liegen. Dadurch ist ein Präfix von $x$ in $\PrET
@@ -476,7 +477,7 @@ folgt.
   In den beiden vorangegangen Fällen erhält man $v'_2=v'|_{\Sigma _2}$ ist ein
   Präfix von $v_2$ und $v'\in v_1\|v'_2$ ist ein Präfix von $xy$. Es kann nur
   für die Fälle $a\notin I_2$ gefolgert werden, dass $p_{02} \weakmay[v'_2]_2$
-  gilt. Falls $p_{02} \weakmay[v'_2]$ nicht gilt, ist $v'_2=v_2\in\MIT _2$ und
+  gilt. (*) Falls $p_{02} \weakmay[v'_2]$ nicht gilt, ist $v'_2=v_2\in\MIT _2$ und
   $v'_2$ endet auf $b=a\in I_2$.
   \begin{itemize}
     \item Fall I ($v_1\in\MIT _1$): Da $v_1\in\MIT _1$ gilt, muss $v_1$
@@ -493,16 +494,16 @@ folgt.
           sichergestellter Input. Daraus folgt, dass $(p_1,p_2)\nmust[a]_{12}$
           gilt. Es wird ebenfalls $v := v''a=v'\in\MIT _{12}$ gewählt.
         \item Fall Ic) ($a\in I_2$ und $v'_2\notin\MIT _2$): Es gilt
-          $p_{02}\weakmay[v''_2]_2p_2\must[a]_2$ mit $v'_2=v''_2a \in L_2$. Da
-          die gemeinsamen Inputs synchronisiert werden, folgt $(p_1,p_2)
-          \nmust[a]_{12}$ bereits aus $q_1\nmust[a]_1$. Somit kann hier
-          nochmals $v:=v''a=v'\in \MIT _{12}$ gewählt werden.
+          $p_{02}\weakmay[v''_2]_2p_2\must[a]_2$ mit $v'_2=v''_2a \in L_2$,
+          wegen (*). Da die gemeinsamen Inputs synchronisiert werden, folgt
+          $(p_1,p_2) \nmust[a]_{12}$ bereits aus $p_1\nmust[a]_1$. Somit kann
+          hier nochmals $v:=v''a=v'\in \MIT _{12}$ gewählt werden.
         \item Fall Id) ($a\in O_2$): Es gilt $v'_2=v''_2a$ und $p_{02}
-          \weakmay[v'_2]_2$. Man erhält also $p_{02}\weakmay[v''_2]_2 p_2 \may[a]_2$
-          mit $v''\in v'_1\|v''_2$. Daraus ergibt sich $(p_{01},p_{02})
-          \weakmay[v'']_{12} (p_1,p_2)$ mit $p_2\may[a]_1$, $p_1\nmust[a]_1,
-          a\in I_1$ und $a\in O_2$, somit gilt $(p_1,p_2)\in E_{12}$.
-          Es wird $v:= \prune (v'')\in\PrET _{12}$ gewählt.
+          \weakmay[v'_2]_2$. Man erhält also $p_{02}\weakmay[v''_2]_2 p_2
+          \may[a]_2$ mit $v''\in v'_1\|v''_2$. Daraus ergibt sich
+          $(p_{01},p_{02}) \weakmay[v'']_{12} (p_1,p_2)$ mit $p_2\may[a]_1$,
+          $p_1\nmust[a]_1, a\in I_1$ und $a\in O_2$, somit gilt $(p_1,p_2)\in
+          E_{12}$. Es wird $v:= \prune (v'')\in\PrET _{12}$ gewählt.
       \end{itemize}
     \item Fall II ($v_1\in\PrET _1$): $\exists u_1\in O_1^*: p_{01}
       \weakmay[v_1]_1 p_1 \weakmay[u_1]_1 p'_1$ mit $p'_1\in E_1$. Im Fall $v_1
