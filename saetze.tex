@@ -225,14 +225,14 @@
   \end{enumerate}
 \end{proof}
 
-\begin{Bem}[w-as-Verfeinerung und Parallelkomposition]
+\begin{Prop}[w-as-Verfeinerung und Parallelkomposition]
+  \label{schwVerfParallelProp}
   Für zwei komponierbare \MEIO{}s $P_1$ und $P_2$ und eine schwache
   as"=Verfeinerung $P'_1$ von $P_1$ muss $P'_1\|P_2$ keine schwache
   as"=Verfeinerung von $P_1\|P_2$ sein. Spezielle erfüllt die Relation
   $\mathcal{R}_{12}$ aus dem Lemma~\ref{schwVerfParallelLem} den ersten Punkt
   der Definition~\ref{wSimDef} im allgemeinen nicht.
-\end{Bem}
-
+\end{Prop}
 \begin{proof}
   Die Aussage 1.\ der Definition~\ref{wSimDef} ist im Allgemeinen für die
   Relation $\mathcal{R}_{12}$ aus~\ref{schwVerfParallelLem} nicht erfüllt. Es
@@ -265,30 +265,14 @@
   gilt $(p_{01},p_{02})\notin E_{12}$. Jedoch ist $(p'_{01},p_{02})$ trotzdem
   ein Fehler-Zustand in der Parallelkomposition von $P'_1$ und $P_2$.\\
   Es kann auch keine andere schwache as"=Verfeinerungs"=Relation $\mathcal{R}$
-  für $P'_1\|P_2$ und $P_1\|P_2$ geben, da $P'_1\|P_2 \mathcal{R} P_1\|P_2$ nur
-  gilt, wenn\TODO{beenden}
+  für $P'_1\|P_2$ und $P_1\|P_2$ geben, da $(P'_1\|P_2) \mathcal{R} (P_1\|P_2)$
+  nur gilt, wenn die Startzustände der Transitionssysteme in der Relation
+  $\mathcal{R}$ stehen. Das Tupel $((p'_{01},p_{02}),(p_{01},p_{02}))$ muss
+  also in $\mathcal{R}$ enthalten sein. Für diese Tupel ist jedoch der erste
+  Punkt der Definition~\ref{wSimDef} nicht erfüllt mit der analogen Begründung
+  wie für die Relation $\mathcal{R}_{12}$.
 
-
-
-
-  Es wäre auch möglich, dass $P_1$ ebenfalls eine Implementierung ist. Die
-  must"=$\tau$-Transition würde dann eine schwache Implementierung in $P'_1$
-  fordern, jedoch muss es dafür keine echte Transition in $P'_1$ geben, da
-  $\tau$ die interne Aktion ist. Die Implementierung von $a$ würde ebenfalls
-  schwach gefordert werden, ist jedoch bereits stark vorhanden. $P_1\|P_2$
-  würde mit der must"=$\tau$"=Transition dann ebenfalls zu einer
-  Implementierung werden. Die must"=$a$"=Transition in $P'_1$ könnte auch eine
-  may"=Transition sein, solange die $a$-Transition in $P_1$ keine
-  must"=Transition ist.\\
-  Um dieses Problem zu lösen könnte man die Definition der Parallelkomposition
-  verändern. Es wäre denkbar, dass alle Zustände, die lokal Fehler-Zustände
-  erreichen können ebenfalls bereits als Fehler angesehen werden. Jedoch stellt
-  dies eine stärkere Forderung. Für Implementierungen ist die Forderung sogar
-  stärkere, wie die der \EIO{}s in z.B.~\cite{Schinko2016BA}. Dieser Ansatz
-  käme jedoch dem Vorgehen des Abschneidens der Fehler-Zustände mit ihren
-  lokalen Vorgängern in~\cite{Vogler2016MIA3} näher.
-
-  \begin{figure}[htbp]
+  \begin{figure}[h!tbp]
     \begin{center}
       \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
         \node [initial,initial text=$P_1$:] (p01) at (0,0) {$p_{01}$};
@@ -326,6 +310,24 @@
       \label{bsp1wSim}
     \end{center}
   \end{figure}
+
+  Es wäre auch möglich, dass $P_1$ ebenfalls eine Implementierung ist. Die
+  must"=$\tau$-Transition würde dann eine schwache Implementierung in $P'_1$
+  fordern, jedoch muss es dafür keine echte Transition in $P'_1$ geben, da
+  $\tau$ die interne Aktion ist. Die Implementierung von $a$ würde ebenfalls
+  schwach gefordert werden, ist jedoch bereits stark vorhanden. $P_1\|P_2$
+  würde mit der must"=$\tau$"=Transition dann ebenfalls zu einer
+  Implementierung werden. Die must"=$a$"=Transition in $P'_1$ könnte auch eine
+  may"=Transition sein, solange die $a$-Transition in $P_1$ keine
+  must"=Transition ist.\\
+  Um dieses Problem zu lösen könnte man die Definition der Parallelkomposition
+  verändern. Es wäre denkbar, dass alle Zustände, die lokal Fehler-Zustände
+  erreichen können ebenfalls bereits als Fehler angesehen werden. Jedoch wird
+  erwartet dass die Definition der Parallelkomposition dann eine stärkere
+  Forderung an die Transitionssysteme stellt. Für Implementierungen wäre die
+  Forderung sogar stärkere, wie die der \EIO{}s in z.B.~\cite{Schinko2016BA}.
+  Dieser Ansatz käme jedoch dem Vorgehen des Abschneidens der Fehler-Zustände
+  mit ihren lokalen Vorgängern in~\cite{Vogler2016MIA3} näher.
 \end{proof}
 
 
@@ -339,8 +341,8 @@
   Falls die Relation $\mathcal{R}_1$ aus dem Lemma~\ref{schwVerfParallelLem}
   keine schwachen as"=Verfeinerungs"=Relation sondern eine starke
   as"=Verfeinerungs"=Relation ist, ist auch $\mathcal{R}_{12}$ eine
-  as"=Verfeinerungs"=Relation zwischen $P'_1\|P_2$ und $P_1\|P_2$. Es ist also
-  nur zu zeigen, wie aus den einzelnen Beweispunkten des Beweises
+  as"=Verfeinerungs"=Relation zwischen $P'_1\|P_2$ und $P_1\|P_2$. Dazu ist
+  also nur zu zeigen, wie aus den einzelnen Beweispunkten des Beweises
   von~\ref{schwVerfParallelLem} folgt, dass $\mathcal{R}_{12}$ eine starke
   as"=Verfeinerungs"=Relation ist und dass hier zusätzlich der erste Punkt
   erfüllt ist. Es wird hier ebenso für alle Punkte jeweils ein
@@ -354,25 +356,22 @@
       $p_1$ im Falle eines Outputs $a$ dieser nicht nur schwach sondern direkt
       ausführbar ist. Es ist also zu zeigen, dass $(p'_1,p_2)$ kein Element von
       $E_{P'_1\|P_2}$ ist.\\
-      Dies folgt direkt aus der Voraussetzung, dass $(p_1,p_2)\notin
-      E_{P_1\|P_2}$ für das Tupel $((p'_1,p_2),(p_1,p_2))$ aus
-      $\mathcal{R}_{12}$ gilt. In dem man auf das $\mathcal{R}_{12}$ die
-      Definition anwendet, erhält man $(p'_1,p_1)\in\mathcal{R}_1$ und $p_2\in
-      P_2$. Die $p_j$ dürfen beide keine Fehler-Zustände sein, da sonst auch
-      $(p_1,p_2)$ ein solcher wäre. Somit folgt mit Definition~\ref{SimDef}.1
-      $p'_1\notin E_{P'_1}$. Die Zustände $p'_1$ und $p_2$ in
-      Parallelkomposition können also keinen geerbten Fehler produzieren.
-      Jedoch könnte $(p'_1,p_2)$ aufgrund eines nicht sichergestellten Inputs
-      ein neuer Fehler-Zustand sein. Dafür müsste entweder $p'_1
-      \nmust[a]_{P'_1}$ und $p_2\may[a]_2$ für ein $a$ aus $I_1\cap O_2$ oder
-      $p'_1\may[a]_{P'_1}$ und $p_2\nmust[a]_2$ für ein $a$ aus $O_1\cap I_2$
-      gelten. Mit~\ref{SimDef}.2 und $\mathcal{R}_1$ folgt im Fall $a\in I_1$
-      $p_1 \nmust[a]_1$. $\mathcal{R}_1$ erzwingt mit~\ref{SimDef}.3 die
-      direkte Ausführbarkeit des Outputs $a$ in $P_1$ im Fall $a\in O_1$, d.h.\
-      $p_1 \may[a]_1$. Somit müsste auch $(p_1,p_2)\in E_{12}$ in beiden Fällen
-      gelten, was ein Widerspruch zur Voraussetzung wäre. $(p'_1,p'_2)$ kann
-      also weder ein geerbter noch ein neuer Fehler in $P'_1\|P_2$ sein und
-      deshalb gilt $(p'_1,p_2) \notin E_{P'_1\|P_2}$.
+      In dem man auf $\mathcal{R}_{12}$ die Definition anwendet, erhält man
+      $(p'_1,p_1)\in\mathcal{R}_1$ und $p_2\in P_2$. Die $p_j$ dürfen beide
+      keine Fehler-Zustände sein, da sonst auch $(p_1,p_2)$ ein solcher wäre.
+      Somit folgt mit Definition~\ref{SimDef}.1 $p'_1\notin E_{P'_1}$. Die
+      Zustände $p'_1$ und $p_2$ in Parallelkomposition können also keinen
+      geerbten Fehler produzieren. Jedoch könnte $(p'_1,p_2)$ aufgrund eines
+      nicht sichergestellten Inputs ein neuer Fehler-Zustand sein. Dafür müsste
+      entweder $p'_1 \nmust[a]_{P'_1}$ und $p_2\may[a]_2$ für ein $a$ aus
+      $I_1\cap O_2$ oder $p'_1\may[a]_{P'_1}$ und $p_2\nmust[a]_2$ für ein $a$
+      aus $O_1\cap I_2$ gelten. Mit~\ref{SimDef}.2 und $\mathcal{R}_1$ folgt im
+      Fall $a\in I_1$ $p_1 \nmust[a]_1$. $\mathcal{R}_1$ erzwingt
+      mit~\ref{SimDef}.3 die direkte Ausführbarkeit des Outputs $a$ in $P_1$ im
+      Fall $a\in O_1$, d.h.\ $p_1 \may[a]_1$. Somit müsste auch $(p_1,p_2)\in
+      E_{12}$ in beiden Fällen gelten, was ein Widerspruch zur Voraussetzung
+      wäre. $(p'_1,p'_2)$ kann also weder ein geerbter noch ein neuer Fehler in
+      $P'_1\|P_2$ sein und deshalb gilt $(p'_1,p_2) \notin E_{P'_1\|P_2}$.
     \item $\alpha$ kann sowohl Input, Output wie auch interen Aktion sein. Um
       diesen Punkt zu beweisen muss man 2.\ und 3.\ aus dem Beweis von
       Lemma~\ref{schwVerfParallelLem} kombinieren. Da $\mathcal{R}_1$ die
@@ -389,11 +388,10 @@
   \end{enumerate}
 \end{proof}
 
-Das Lemma~\ref{schwVerfParallelLem} und das Korollar~\ref{verfParallelKor}
-fordern jeweils nur die Verfeinerung der ersten Komponente. Die
-Parallelkomposition wurde so definiert, dass sie kommutativ ist. Somit ist
-ebenso die Verfeinerung der zweiten Komponente möglich. Da man beide
-Komponenten nach einander verfeinern kann und jede Verfeinerung einer
+Die drei vorangegangenen Ergebnisse fordern nur die Verfeinerung der ersten
+Komponente. Die Parallelkomposition wurde so definiert, dass sie kommutativ
+ist. Somit ist ebenso die Verfeinerung der zweiten Komponente möglich. Da man
+beide Komponenten nach einander verfeinern kann und jede Verfeinerung einer
 Verfeinerung auch eine Verfeinerung das ursprünglichen Systems ist, kann man
 auch beide Komponenten gleichzeitig verfeinern und erhält in der
 Parallelkomposition die gleiche Verfeinerung.
@@ -420,11 +418,11 @@ Parallelkomposition die gleiche Verfeinerung.
 
 Für schwache as"=Implementierungen kann es kein analoges Korollar
 zu~\ref{ImpParallelKor} gegen, da die Verfeinerung im allgemeinen bereits
-scheitert (siehe Bemerkung nach Lemma~\ref{schwVerfParallelLem}). Die
-Parallelkomposition von Implementierungen ist jedoch immer eine
-Implementierung. Somit würde in den Fällen, in denen auch~\ref{wSimDef}.1
-erfüllt ist für die Parallelkomposition schwacher as"=Implementierungen, eine
-analoge Aussage gelten.\\
+scheitert (Proposition~\ref{schwVerfParallelProp}); man beachte auch die
+Diskussion des Beispiels~\ref{bsp1wSim}. Die Parallelkomposition von
+Implementierungen ist jedoch immer eine Implementierung. Somit würde in den
+Fällen, in denen auch~\ref{wSimDef}.1 erfüllt ist für die Parallelkomposition
+schwacher as"=Implementierungen, eine analoge Aussage gelten.\\
 Die umgekehrte Richtung von Korollar~\ref{verfParallelKor} gilt im
 allgemeinen nicht, d.h.\ es muss zu einer as"=Verfeinerung $P'$ einer
 Parallelkomposition $P_1\|P_2$ keine as"=Verfeinerungen $P'_1$ und $P'_2$ der
