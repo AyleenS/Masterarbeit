@@ -500,3 +500,106 @@ implementiert werden kann. Falls es aber in der Parallelkomposition zweier
 mögliche Implementierung, die diesen Fehler enthält und es gibt auch immer
 mindestens ein Implementierungs-Paar der Komponenten, in deren
 Parallelkomposition sich dieser Fehler ebenfalls zeigt.
+
+Lemma~\ref{schwVerfParallelLem} und Korollar~\ref{verfParallelKor} lassen schon
+die Vermutung zu, dass es einen Zusammenhang zwischen den beiden
+Verfeinerungs"=Relation \wasRel{} und \asRel{} gibt. Durch
+Proposition~\ref{schwVerfParallelProp} fällt jedoch schon auf, dass es Stellen
+gibt, an denen sich die Relationen unterscheiden. Durch die Definitionen wird
+klar, das der Unterschied der beiden Relationen in den $\tau$-Transitionen
+liegt. Die nächste Aussage, dass jede starke as"=Verfeinerungs"=Relation auch
+eine schwache ist, jedoch die Umkehrung nicht gilt sollte somit nicht
+überraschen.
+
+\begin{Satz}[Zusammenhang der Verfeinerungs"=Relationen]
+  \label{ZusammenhWasAsSatz}
+  Jede starke as"=Verfeinerungs"=Relation ist auch eine schwache
+  as"=Verfeinerungs"=Relation. Jedoch ist eine schwache
+  as"=Verfeinerungs"=Relation im allgemeinen keine starke
+  as"=Verfeinerungs"=Relation. Es gilt also: $P \asRel Q \Rightarrow P \wasRel
+  Q$ und im allgemeinen $P \asRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow
+  P \wasRel Q$.
+\end{Satz}
+
+\begin{proof}\mbox{}\\
+  \glqq $\Rightarrow$\grqq{}:\\
+  Um diese Implikation zu zeigen, muss man nachweisen, dass jede starke
+  as"=Verfeinerungs"=Relation auch die Definition~\ref{wSimDef} der schwachen
+  as"=Verfeinerungs"=Relation erfüllt. In beiden Simulations-Definitionen
+  (\ref{SimDef} und~\ref{wSimDef}) müssen die Punkte für alle $(p,q) \in
+  \mathcal{R}$ mit $q\notin E_Q$ gelten. Sei $\mathcal{R}$ nun eine
+  as"=Verfeinerungs"=Relation. Es gilt also mit~\ref{SimDef}.1, dass $p$ kein
+  Fehler-Zustand von $P$ ist. Somit ist auch 1.\ von~\ref{wSimDef} erfüllt. Für
+  alle $\alpha\in\Sigma _{\tau}$ impliziert~\ref{SimDef}.2 $q \must[\alpha]_Q
+  q'$ $p\must[\alpha]_P p'$ für ein $p'$ mit $p'\mathcal{R} q'$. Da $\Sigma
+  _{\tau} = I \cup O \cup \{\tau\}$ gilt, sind dadurch 2.\ und 3.\ der
+  Definition~\ref{wSimDef} erfüllt. Die schwache $\varepsilon$-Transition aus
+  2.\ führt keine echten Transitionen aus, sondern bleibt beim Zustand $p'$.
+  Die schwache $\hat{\omega}$-Transition aus 3.\ entspricht in $\mathcal{R}$
+  nur einer einzigen Transition für $\omega$. Die Punkte 4.\ und 5.\ aus
+  Definition~\ref{wSimDef} werden durch~\ref{SimDef}.3 erfüllt. Es gilt für
+  $\mathcal{R}$ $p\may[\alpha]_P p'$ impliziert $q \may[\alpha]_Q q'$ für ein
+  $q'$ mit $p'\mathcal{R}q'$. Die in~\ref{wSimDef} geforderten schwachen
+  may"=Transitionen werden hier jeweils stark durch eine einzige Transition
+  umgesetzt. $\mathcal{R}$ ist also auch eine schwache
+  as"=Verfeinerungs"=Relation.
+
+  \glqq $\hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow$\grqq{}:\\
+  Im Abbildung~\ref{asWasGegenBsp} wird ein Gegenbeispiel dargestellt mit einem
+  \MEIO{} $Q$ und einer schwachen as"=Verfeinerung $P$ von $Q$, die jedoch
+  keine starke as"=Verfeinerung von $Q$ ist. Die schwache
+  as"=Verfeinerungs"=Relationen $\mathcal{R}$ zwischen $P$ und $Q$ enthält die
+  Tupel $(p_0,q_0)$ und $(p_1,q_{12})$. Damit $\mathcal{R}$ eine schwache
+  Simulations"=Relation zwischen $P$ und $Q$ sein kann müssen die Startzustände
+  in Relation stehen. Dies ist durch $(p_0,q_0)\in \mathcal{R}$ erfüllt.
+  Es sind keine Fehler-Zustände in $Q$ und $P$ enthalten, somit ist 1.\ der
+  Definition~\ref{wSimDef} bereits für beide Zustands-Tupel erfüllt. Für das
+  Tupel $(p_1,q_{12})$ sind auch 2.-5.\ von~\ref{wSimDef} erfüllt, da weder
+  $p_1$ noch $q_{12}$ ausgehende Transitionen besitzen. Für $(p_0,q_0)\in
+  \mathcal{R}$ gibt es keine ausgehende must"=Transitionen. Also ist 2.\ und
+  3.\ von~\ref{wSimDef} bereits erfüllt. Falls $\alpha$ ein Input ist,
+  fordert~\ref{wSimDef}.4, dass die Transition $p_0 \may[\alpha]_P p_1$ in $Q$
+  schwach ausführbar ist in der Form $q_0 \may[\alpha]_Q
+  \weakmay[\varepsilon]_Q q$. Ein entsprechendes $q$ ist in diesem Fall
+  $q_{12}$ und es gilt $p_1 \mathcal{R} q_{12}$. Falls $\alpha$ eine lokale
+  Aktion ist, lautet die Forderung $q_0 \weakmay[\hat{\alpha}]_Q q$ für $Q$ und
+  $q_{12}$ ist wieder der passende Zustand für $q$, der mit $p_1$ in Relation
+  stehen. $\mathcal{R}$ ist also eine schwache as"=Verfeinerungs"=Relation
+  zwischen $P$ und $Q$.\\
+  Angenommen es gibt auch eine starke as"=Verfeinerungs"=Relation
+  $\mathcal{R}'$ zwischen $P$ und $Q$, dann muss $p_0 \mathcal{R}' q_0$
+  gelten. Mit~\ref{SimDef}.3 wird gefordert, dass die Transition $p_0
+  \may[\alpha]_P p_1$ durch eine Transition der Form $q_0 \may[\alpha]_Q q$
+  in $Q$ gematched werden muss. Für den Zustand $q$ kommt dieses mal nur
+  $q_{11}$ in Frage. Es muss also $(p_1,q_{11})\in \mathcal{R}$ gelten. Der
+  zweite Punkt der Definition~\ref{SimDef} fordert, dass die
+  $\tau$-must"=Transition aus $Q$ auch in $P$ auftauchen muss. Es müsste also
+  ein $p$ geben, für dass $p_1 \must[\tau]_P p$ gilt und das Tupel $(p,q_{12})$
+  müsste in $\mathcal{R}$ enthalten sein. Da es keine solche Transition gibt,
+  tritt ein Widerspruch zur Annahme auf. Es kann also keine starke
+  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ geben.
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+        \node (q11) [right of=q0] {$q_{11}$};
+        \node (q12) [right of=q11] {$q_{12}$};
+
+        \path[->]
+        (q0) edge[dashed] node{$\alpha$} (q11)
+        (q11) edge node{$\tau$} (q12)
+        ;
+
+        \node [initial,initial text=$P$:] (p0) at (10,0) {$p_0$};
+        \node (p1) [right of=p0] {$p_1$};
+
+        \path[->]
+        (p0) edge[dashed] node{$\alpha$} (p1)
+        ;
+      \end{tikzpicture}
+      \caption{Gegenbeispiel zu $\asRel \Leftarrow \wasRel$}
+      \label{asWasGegenBsp}
+    \end{center}
+  \end{figure}
+\end{proof}

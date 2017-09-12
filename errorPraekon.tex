@@ -179,9 +179,27 @@ Hierbei ist zu beachten, dass die Mengen \StET{}, \PrET{}, \MIT{}, \ET{} und
 \EL{} nur denen aus~\cite{Schinko2016BA} entsprechen, wenn $P$ bereits eine
 as"=Implementierung ist.\\
 Im weiteren Verlauf wird immer wieder eine Aussage den Zusammenhang von
-Abläufen in as"=Verfeinerungen und ihren Spezifikationen benötigt. Um nicht
-immer wieder ähnliche Argumentationen zu benötigen, wird diese Aussage nun hier
-allgemein bewiesen.
+Abläufen in as"=Verfeinerungen bzw.\ schwachen as"=Verfeinerungen und ihren
+Spezifikationen benötigt. Um nicht immer wieder ähnliche Argumentationen zu
+benötigen, wird diese Aussage nun hier allgemein zunächst für schwache
+as"=Verfeinerungen bewiesen. Die analoge Aussage für starke as"=Verfeinerungen
+folgt dann mit Satz~\ref{ZusammenhWasAsSatz}.
+
+\begin{Prop}[Abläufe in schwachen as"=Verfeinerungen und Spezifikationen]
+  \label{AblaefeSchwVerfSpezProp}
+  Sei $P'$ eine schwache as"=Verfeinerung eines \MEIO{}s $P$ und $\mathcal{R}$
+  die schwache as"=Verfeinerungs"=Relation zwischen den beiden
+  Transitionssystemen. Ein Ablauf $p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha
+  _2]_{P'} \dots p'_{n-1} \may[\alpha _n]_{P'} p'_n$ aus $P'$ kann durch einen
+  Ablauf $p_0 \weakmay[\alpha _1]_P p_1 \weakmay[\alpha _2]_P \dots p_{n-1}
+  \weakmay[\alpha _n]_P p_n$ mit $p'_j \mathcal{R} p_j$ für alle
+  $j\in\{0,1,\dots n\}$ in $P$ gematched werden oder es wird ein $p_j$ für
+  $0\leq j < n$ erreicht, dass in der Menge $E_P$ enthalten ist. Aus $w\in
+  L(P')$ folgt also $w\in L(P)$ oder $w\in\cont (\StET (P))\subseteq \ET (P)$.
+\end{Prop}
+\begin{proof}
+  \TODO{zu beweisen und nächste Proposition daraus folgen lassen}
+\end{proof}
 
 \begin{Prop}[Abläufe in as-Verfeinerungen und Spezifikationen]
   \label{AblaefeVerfSpezProp}
@@ -191,7 +209,7 @@ allgemein bewiesen.
   \may[\alpha _n]_{P'} p'_n$ aus $P'$ kann durch einen Ablauf $p_0 \may[\alpha
   _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n$ mit $p'_j
   \mathcal{R} p_j$ für alle $j\in\{0,1,\dots n\}$ in $P$ gematched werden oder
-  es gibt wird ein $p_j$ für $0\leq j < n$ erreicht, dass in der Menge $E_P$
+  es wird ein $p_j$ für $0\leq j < n$ erreicht, dass in der Menge $E_P$
   enthalten ist. Aus $w\in L(P')$ folgt also $w\in L(P)$ oder $w\in\cont (\StET
   (P))\subseteq \ET (P)$.
 \end{Prop}
