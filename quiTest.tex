@@ -117,9 +117,9 @@ entsprechenden Traces der as"=Implementierungen relevant.
         &\cup \left\{(q_0,\alpha,q'_j)\mid p_0\may[\alpha] p_j\right\}\\
         &\cup \left\{(q_j,\alpha ,q_k)\mid p_j\must[\alpha] p_k\right\}\\
         &\cup \left\{(q'_j,\alpha ,q'_k)\mid p_j\must[\alpha] p_k\right\}\\
-        &\cup \left\{(q'_j,\alpha ,q_k)\mid j\neq 0, p_j\may[\alpha] p_k,
+        &\cup \left\{(q'_j,\alpha ,q_k)\mid p_j\may[\alpha] p_k,
         p_j\nmust[\alpha] p_k\right\}\\
-        &\cup \left\{(q'_j,\alpha ,q'_k)\mid j\neq 0, p_j\may[\alpha] p_k,
+        &\cup \left\{(q'_j,\alpha ,q'_k)\mid p_j\may[\alpha] p_k,
         p_j\nmust[\alpha] p_k\right\},
     \end{aligned}$
     \item $E_{P'}=\emptyset$.
@@ -132,11 +132,16 @@ entsprechenden Traces der as"=Implementierungen relevant.
   Zuständen der \glqq gleichen Sorte\grqq{} umgesetzt, wohingegen die
   may"=Transitionen, zu denen es keine entsprechende must"=Transition in $P$
   gibt, von den Zuständen $q'$ zu dem entsprechenden ungestrichenen
-  und gestrichenen Zustand implementiert werden. Da die Menge der
-  Fehler-Zustände leer ist, gilt~\ref{SimDef}.1 für $\mathcal{R}$. Die
-  must"=Transitionen werden für die ungestrichenen und gestrichenen Zustände
-  umgesetzt, dies erfüllt zusammen mit $\mathcal{R}$ die
-  Definition~\ref{SimDef}.2. Ebenso wird der dritte Punkt der
+  und gestrichenen Zustand implementiert werden. Die Zustände $q$ ohne Strich
+  von $P'$ sind bis auf $q_0$ die potentiell ruhigen Zustände, die nur die
+  zwingend notwendigen Transitionen besitzen. Die gestrichenen Zustände $q'$
+  aus $P'$ hingegen sind die Zustände, die das gesamte erlaubte Verhalten
+  umsetzten. Durch die Transitionen, die von den gestrichenen Zuständen zu den
+  ungestrichenen führen, sind alles erlaubte möglich bis entschieden wird, nur
+  noch das geforderte zu benötigen. Da die Menge der Fehler-Zustände leer ist,
+  gilt~\ref{SimDef}.1 für $\mathcal{R}$. Die must"=Transitionen werden für die
+  ungestrichenen und gestrichenen Zustände umgesetzt, dies erfüllt zusammen mit
+  $\mathcal{R}$ die Definition~\ref{SimDef}.2. Ebenso wird der dritte Punkt der
   Definition~\ref{SimDef} erfüllt, da sowohl die gestrichenen wie auch die
   ungestrichenen Zustände mit den entsprechenden Zuständen aus $P$ in der
   Relation $\mathcal{R}$ stehen. $\mathcal{R}$ ist also eine starke
