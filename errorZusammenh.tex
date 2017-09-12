@@ -23,58 +23,42 @@
   ein Element aus $\MIT (P)$.
   \begin{itemize}
     \item Fall 1 ($w\in\PrET (P)$): Es existiert ein $v\in O_P$, sodass das
-      Wort $wv$ in $P$ einen Fehler-Zustand erreicht. Für die entsprechende
-      Transitionsfolge existieren Zustände $p_1, p_2,\dots , p_n$ in $P$ und
-      Aktionen $\alpha _1, \alpha _2,\dots , \alpha _n$, die zusammengesetzt
-      ein Wort $w'=\alpha _1 \alpha _2 \dots \alpha _n$ bilden, dass ohne die
-      internen Aktionen $wv$ entspricht. Die entsprechende Transitionsfolge in
-      $P$ ist dann $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
-      \may[\alpha _n]_P p_n \in E_P$. Abhängig davon, ob $\alpha _j$ ein Input
-      oder eine lokale Aktion ist, kann mit~\ref{wSimDef}.4
-      bzw.~\ref{wSimDef}.5 argumentiert werden, dass das jeweilige $\alpha _j$
-      auch in $Q$ schwach ausführbar ist, solange der entsprechende Zustand
-      $q_{j-1}$ kein Fehler-Zustand ist für $j\in \{1,2,\dots n\}$. Falls ein
-      $q_j$ für $j < n$ in $E_Q$ enthalten ist, wurde bis dort ein Präfix von
-      $wv$ ausgeführt. Dieses Präfix ist in $\StET _Q$ enthalten. Es gilt also
-      mit $w=\prune (wv)$ und dem Abschluss von \ET{} unter \cont{} $w\in\ET
-      _Q$. Ansonsten gibt es in $Q$ einen Trace $q_0 \weakmay[\widehat{\alpha
-      _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots q_{n-1}
-      \weakmay[\widehat{\alpha _n}]_Q q_n$, wobei $p_j \mathcal{R} q_j$ für
-      alle $0 \leq j \leq n$ gilt. Mit~\ref{wSimDef}.1 folgt, dass $q_n\in E_Q$
+      Wort $wv$ in $P$ einen Fehler-Zustand erreicht. Es gibt eine
+      Transitionsfolge wie in Lemma~\ref{AblaefeSchwVerfSpezLem}, so dass $wv =
+      (\alpha _1\alpha _2\dots \alpha _n)|_{\Sigma}$ gilt und der dadurch
+      erreichte Zustand $p_n$ ein Zustand aus der Menge $E_P$ ist. Falls eines
+      des $q_j$ für $0 \leq j < n$ in $E_Q$ enthalten ist, folgt mit dem Beweis
+      von Lemma~\ref{AblaefeSchwVerfSpezLem}, dass ein Präfix von $wv$ in
+      $\StET (Q)$ enthalten ist. Mit $w=\prune (wv)$ und dem Abschluss von
+      \ET{} unter \cont{} gilt dann $w\in\ET _Q$. Ansonsten gibt es in $Q$
+      einen Trace für das Wort $wv$, dass einen Zustand $q_n$ erreicht, für den
+      $p_n \mathcal{R} q_n$ gilt. Mit~\ref{wSimDef}.1 folgt, dass $q_n\in E_Q$
       gelten muss und somit auch $w\in\ET _Q$ mit der Begründung von oben.
     \item Fall 2 ($w\in\MIT (P)$): $w$ ist in $P$ ein Input-kritischer Trace.
       Es existiert also eine Aufteilung von $w$ in $va$ mit $v\in \Sigma ^*$
-      und $a\in I$. Der Trace in $P$ kann wie folgt dargestellt werden:
-      $\exists v'\in \Sigma _{\tau}^*, \exists p_1, p_2, \dots , p_n, \exists
-      \alpha _1, \alpha _2, \dots , \alpha _n: \hat{v'}=v \land v'=\alpha _1
-      \alpha _2 \dots \alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha
-      _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n \nmust[a]_P$. Basierend
-      auf~\ref{wSimDef}.4 bzw.~\ref{wSimDef}.5 kann daraus gefolgert werden,
-      dass die $\alpha _j$ auch schwach ausführbar sind in $Q$, falls kein
-      $q_{j-1}$ angetroffen wird, dass in $E_Q$ enthalten ist für $j\in
-      \{1,2,\dots n\}$. Falls eines der $q_j$ mit $0 \leq j \leq n$ ein
-      Fehler-Zustand ist, dann ist $w$ in $\ET _Q$ enthalten, da ein Präfix von
-      $w$ ein strikter Fehler-Trace in $Q$ ist. Ansonsten gilt $q_0
-      \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots
-      q_{n-1} \weakmay[\widehat{\alpha _n}]_Q q_n$ mit $p_j \mathcal{R} q_j$
-      für alle $j\in \{0,1, \dots , n\}$. Da $a$ für $p_n$ in $P$ keine
-      ausgehende must"=Transition sein kann, gilt mit~\ref{wSimDef}.2 auch $q_n
-      \nmust[a]$. $w$ ist in $\MIT _Q \subseteq \ET _Q$ enthalten.
+      und $a\in I$, wobei $v$ in $P$ zu einem Zustand ausführbar ist, der den
+      Input $a$ nicht sicherstellt. Es gibt also ein Ablauf des Wortes $v$ wie
+      in Lemma~\ref{AblaefeSchwVerfSpezLem}, der zu einem Zustand $p_n$ führt,
+      der keine ausgehende must"=Transition für $a$ besitzt. Falls ein $q_j$
+      für $0 \leq j \leq n$ in $E_Q$ enthalten ist, folgt mit dem Beweis des
+      Lemmas~\ref{AblaefeSchwVerfSpezLem} und dem Abschluss der Menge \ET{}
+      unter \cont{} $w\in\ET _Q$. Ansonsten wird durch $v$ in $Q$ ein Zustand
+      $q_n$ erreicht, für den $p_n\mathcal{R} q_n$ gilt. Da $a$ für $p_n$ in
+      $P$ keine ausgehende must"=Transition sein kann, gilt mit~\ref{wSimDef}.2
+      auch $q_n \nmust[a]$. $w$ ist in $\MIT _Q \subseteq \ET _Q$ enthalten.
   \end{itemize}
   Für den zweiten Punkt kann man sich auf die Inklusion $\EL _P\backslash\ET _P
   \subseteq \EL _Q$ einschränken, da der erste Punkt bereits vorausgesetzt
   werden kann. $\EL _P\backslash\ET _P$ ist eine Teilmenge der Sprache $L _P$.
-  Somit ist ein $w$ in $P$ ausführbar. Es gibt also einen Trace $p_0
-  \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n$
-  in $P$, wobei $w$ der Aktionsfolge $\alpha _1\alpha _2 \dots \alpha _n$
-  entspricht bis auf die internen Aktionen. Erneut können hier~\ref{wSimDef}.4
-  und~\ref{wSimDef}.5 dazu verwendet werden einen analogen Trace in $Q$ zu
-  finden. Falls ein $q_j$ für $0 \leq j \leq n$ in $E_Q$ enthalten ist, gilt
-  $w\in\ET _Q \subseteq \EL _Q$. Es wird also im Folgenden davon ausgegangen,
-  dass kein $q_j$ ein Fehler-Zustand ist. Es gilt dann $q_0
-  \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots
-  q_{n-1} \weakmay[\widehat{\alpha _n}]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$
-  für $0 \leq j \leq n$ und somit $w\in L _Q\subseteq \EL _Q$.
+  Somit ist ein $w$ aus $\EL _P\backslash\ET _P$ in $P$ ausführbar. Es gibt
+  also einen Trace für $w$ in $P$ der Form, wie sie in
+  Lemma~\ref{AblaefeSchwVerfSpezLem} vorausgesetzt wird. Falls ein $q_j$ für $0
+  \leq j \leq n$ in $E_Q$ enthalten ist, gilt $w\in\ET _Q \subseteq \EL _Q$. Es
+  wird also im Folgenden davon ausgegangen, dass kein $q_j$ ein Fehler-Zustand
+  ist. Es gilt dann $q_0 \weakmay[\widehat{\alpha _1}]_Q q_1
+  \weakmay[\widehat{\alpha _2}]_Q \dots q_{n-1} \weakmay[\widehat{\alpha _n}]_Q
+  q_n$ in $Q$ mit $p_j \mathcal{R} q_j$ für $0 \leq j \leq n$ und somit $w\in L
+  _Q\subseteq \EL _Q$.
 
   $P\wasRel Q\hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P\ERel Q$:\\
   Die nicht Gültigkeit dieser Implikation beruht darauf, dass Simulationen
@@ -89,15 +73,12 @@
   $o$ somit gilt für die Sprachen $\{\varepsilon\} = L(P) \subset L(Q) =
   \{\varepsilon , o\}$.\\
   Angenommen es gibt eine schwache as"=Verfeinerungs"=Relation $\mathcal{R}$
-  zwischen $P$ und $Q$. Dafür muss $(p_0,q_0)\in \mathcal{R}$ gelten. Da es
-  keine Fehler-Zustände in $P$ gibt, ist~\ref{wSimDef}.1 erfüllt. Die
-  Punkte 2., 4.\ und 5.\ der Definition~\ref{wSimDef} stellen keine
-  Forderungen an die Relation $\mathcal{R}$. Da jedoch die Transition $q_0
-  \must[o]_Q q_1$ in $Q$ vorhanden ist, wird die Verfeinerung dieser in $P$
-  gefordert es müsste also auch eine must"=Output"=Transition in $P$ geben. Da
-  diese nicht vorhanden ist, stellt dies einen Widerspruch zur Annahme dar und
-  es folgt, dass es keine schwache as"=Verfeinerungs"=Relation zwischen $P$ und
-  $Q$ geben kann.
+  zwischen $P$ und $Q$. Dafür muss $(p_0,q_0)\in \mathcal{R}$ gelten.Da die
+  Transition $q_0 \must[o]_Q q_1$ in $Q$ vorhanden ist, wird die Verfeinerung
+  dieser in $P$ gefordert es müsste auch eine must"=Output"=Transition in $P$
+  geben. Es gibt jedoch keine must"=Transition in $P$, dies stellt einen
+  Widerspruch zur Annahme dar und es folgt, dass es keine schwache
+  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ geben kann.
 
   \begin{figure}[htbp]
     \begin{center}

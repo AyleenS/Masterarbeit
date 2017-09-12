@@ -183,66 +183,104 @@ Abläufen in as"=Verfeinerungen bzw.\ schwachen as"=Verfeinerungen und ihren
 Spezifikationen benötigt. Um nicht immer wieder ähnliche Argumentationen zu
 benötigen, wird diese Aussage nun hier allgemein zunächst für schwache
 as"=Verfeinerungen bewiesen. Die analoge Aussage für starke as"=Verfeinerungen
-folgt dann mit Satz~\ref{ZusammenhWasAsSatz}.
+folgt dann mit Lemma~\ref{ZusammenhWasAsLem}.
 
-\begin{Prop}[Abläufe in schwachen as"=Verfeinerungen und Spezifikationen]
-  \label{AblaefeSchwVerfSpezProp}
-  Sei $P'$ eine schwache as"=Verfeinerung eines \MEIO{}s $P$ und $\mathcal{R}$
+\begin{Lem}[Abläufe in schwachen as"=Verfeinerungen und Spezifikationen]
+  \label{AblaefeSchwVerfSpezLem}
+  Sei $P$ eine schwache as"=Verfeinerung eines \MEIO{}s $Q$ und $\mathcal{R}$
   die schwache as"=Verfeinerungs"=Relation zwischen den beiden
-  Transitionssystemen. Ein Ablauf $p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha
-  _2]_{P'} \dots p'_{n-1} \may[\alpha _n]_{P'} p'_n$ aus $P'$ kann durch einen
-  Ablauf $p_0 \weakmay[\alpha _1]_P p_1 \weakmay[\alpha _2]_P \dots p_{n-1}
-  \weakmay[\alpha _n]_P p_n$ mit $p'_j \mathcal{R} p_j$ für alle
-  $j\in\{0,1,\dots n\}$ in $P$ gematched werden oder es wird ein $p_j$ für
-  $0\leq j < n$ erreicht, dass in der Menge $E_P$ enthalten ist. Aus $w\in
-  L(P')$ folgt also $w\in L(P)$ oder $w\in\cont (\StET (P))\subseteq \ET (P)$.
-\end{Prop}
+  Transitionssystemen. Ein Ablauf $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P
+  \dots p_{n-1} \may[\alpha _n]_P p_n$ aus $P$ kann durch einen Ablauf $q_0
+  \weakmay[\hat{\alpha _1}]_Q q_1 \weakmay[\hat{\alpha _2}]_Q \dots q_{n-1}
+  \weakmay[\hat{\alpha _n}]_Q q_n$ mit $p_j \mathcal{R} q_j$ für alle
+  $j\in\{0,1,\dots n\}$ in $Q$ gematched werden oder es wird ein $q_j$ für
+  $0\leq j < n$ erreicht, dass in der Menge $E_Q$ enthalten ist. Aus $w\in
+  L(P)$ folgt also $w\in L(Q)$ oder $w\in\cont (\StET (Q))\subseteq \ET (Q)$.
+\end{Lem}
 \begin{proof}
-  \TODO{zu beweisen und nächste Proposition daraus folgen lassen}
-\end{proof}
-
-\begin{Prop}[Abläufe in as-Verfeinerungen und Spezifikationen]
-  \label{AblaefeVerfSpezProp}
-  Sei $P'$ eine as"=Verfeinerung eines \MEIO{}s $P$ und $\mathcal{R}$ die
-  as"=Verfeinerungs"=Relation zwischen den beiden Transitionssystemen. Ein
-  Ablauf $p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha _2]_{P'} \dots p'_{n-1}
-  \may[\alpha _n]_{P'} p'_n$ aus $P'$ kann durch einen Ablauf $p_0 \may[\alpha
-  _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n$ mit $p'_j
-  \mathcal{R} p_j$ für alle $j\in\{0,1,\dots n\}$ in $P$ gematched werden oder
-  es wird ein $p_j$ für $0\leq j < n$ erreicht, dass in der Menge $E_P$
-  enthalten ist. Aus $w\in L(P')$ folgt also $w\in L(P)$ oder $w\in\cont (\StET
-  (P))\subseteq \ET (P)$.
-\end{Prop}
-\begin{proof}
-  Die Existenz des Traces in $P$ soll induktiv über die einzelnen Transitionen
+  Die Existenz des Traces in $Q$ soll induktiv über die einzelnen Transitionen
   bewiesen werden. Die entsprechenden Behauptung für die Induktion lautet: Für
-  alle $j\in\{0,1,\dots n-1\}$ mit $p'_j\mathcal{R} p_j$ gibt es eine Transition
-  $p_j \may{\alpha _{j+1}}_P p_{j+1}$ mit $p'_{j+1}\mathcal{R} p_{j+1}$ oder
-  $p_j$ ist in $E_P$ enthalten.\\
-  Die Verankerung $p'_0\mathcal{R} p_0$ folgt direkt aus der Voraussetzung, das
-  $\mathcal{R}$ eine as"=Verfeinerungs"=Relation für $P'$ und $P$ ist.\\
-  Es kann also nun davon ausgegangen werden, dass $p'_j\mathcal{R} p_j$ für ein
+  alle $j\in\{0,1,\dots n-1\}$ mit $p_j\mathcal{R} q_j$ gibt es eine schwache
+  Transition $q_j \weakmay[\hat{\alpha _{j+1}}]_Q q_{j+1}$ mit $p_{j+1}
+  \mathcal{R} q_{j+1}$ oder $p_j$ ist in $E_P$ enthalten.\\
+  Die Verankerung $p_0\mathcal{R} q_0$ folgt direkt aus der Voraussetzung, das
+  $\mathcal{R}$ eine schwache as"=Verfeinerungs"=Relation für $P$ und $Q$
+  ist.\\
+  Es kann also nun davon ausgegangen werden, dass $p_j\mathcal{R} q_j$ für ein
   $j$ mit $0\leq j < n$ erfüllt ist.
   \begin{itemize}
-    \item Fall 1 ($p_j\in E_P$): Die Behauptung der Induktion ist bereits
+    \item Fall 1 ($q_j\in E_Q$): Die Behauptung der Induktion ist bereits
       erfüllt.
-    \item Fall 2 ($p_j\notin E_P$): In der Verfeinerung $P'$ existiert die
-      Transition $p'_j \may[\alpha _{j+1}]_{P'} p'_{j+1}$. Mit
-      Definition~\ref{SimDef}.3 folgt daraus die Existenz der Transition $p_j
-      \may[\alpha _{j+1}]_P p_{j+1}$ in der Spezifikation $P$ mit $p'_{j+1}
-      \mathcal{R} p_{j+1}$.
+    \item Fall 2 ($q_j\notin E_Q$): In der Verfeinerung $P$ existiert die
+      Transition $p_j \may[\alpha _{j+1}]_P p_{j+1}$. $\alpha _{j+1}$ kann ein
+      Input oder eine lokale Aktion sein. Falls $\alpha _{j+1}\in I$ gilt,
+      folgt mit Definition~\ref{wSimDef}.4 die Transition $q_j \may[\alpha
+      _{j+1}]_Q \weakmay[\varepsilon]_Q q_{j+1}$ in $Q$ für ein $q_{j+1}$
+      mit $(p_{j+1},q_{j+1})\in\mathcal{R}$. Die schwach"=nachlaufenden
+      may"=Transition ist nur eine spezielle Form der schwachen may"=Transition
+      es gilt also auch $q_j \weakmay[\hat{\alpha _{j+1}}]_Q q_{j+1}$. $\alpha
+      _{j+1}$ kann jedoch auch eine lokale Aktion sein. Mit
+      Definition~\ref{wSimDef}.4 folgt dann die Existenz der Transition $q_j
+      \weakmay[\hat{\alpha _{j+1}}]_Q q_{j+1}$ in der Spezifikation $Q$ mit
+      $p_{j+1} \mathcal{R} q_{j+1}$.
   \end{itemize}
-  Für jedes $w$ aus $L(P')$ gibt es einen Ablauf wie er in dieser Proposition
+  Für jedes $w$ aus $L(P)$ gibt es einen Ablauf wie er in dieser Proposition
   vorausgesetzt wurde, so dass $w=(\alpha _1\alpha _2\dots \alpha
-  _n)|_{\Sigma}$ gilt. Im Fall 1 wurden bis $p_j$ die Aktionen $\alpha$ in
-  ihrer Reihenfolge ausgeführt. Es gibt also ein Präfix $v$ von $w$, dass in
-  $P$ zu einem Fehler"=Zustand führt und somit $v\in\StET (P)$ erfüllt. $w$ ist
-  eine Fortsetzung von $v$ somit gilt die Aussage $w\in\cont (\StET
-  (P))\subseteq \ET (P)$ ebenfalls. Falls der Fall 2 für $j = n-1$ angewendet
-  werden kann, folgt daraus $p'_n\mathcal{R} p_n$ und $\alpha _1\alpha _2\dots
-  \alpha _n$ sind die Transitionsbeschriftungen, die vom Startzustand $p_0$ zum
-  Zustand $p_n$ in $P$ führen. Das Wort $w$ ist also in $P$ ausführbar und
-  somit in der Sprache $L(P)$ enthalten.
+  _n)|_{\Sigma}$ gilt. Im Fall 1 wurden bis $q_j$ die Aktionen $\alpha$ in
+  ihrer Reihenfolge schwach ausgeführt. Es gibt also ein Präfix $v$ von $w$,
+  dass in $Q$ zu einem Fehler"=Zustand führt und somit $v\in\StET (Q)$ erfüllt.
+  $w$ ist eine Fortsetzung von $v$ somit gilt die Aussage $w\in\cont (\StET
+  (Q))\subseteq \ET (Q)$ ebenfalls. Falls der Fall 2 für $j = n-1$ angewendet
+  werden kann, folgt daraus $p_n\mathcal{R} q_n$ und $(\alpha _1\alpha _2\dots
+  \alpha _n)|_{\Sigma}$ ist die folge der sichtbaren Transitionsbeschriftungen,
+  die vom Startzustand $q_0$ zum Zustand $q_n$ in $Q$ führen. Das Wort $w$ ist
+  also in $Q$ ausführbar und somit in der Sprache $L(Q)$ enthalten.
+\end{proof}
+
+Man könnte durch das gerade eben bewiesene Lemma die gleiche Aussage für starke
+as"=Verfeinerungen zeigen, in dem man Lemma~\ref{ZusammenhWasAsLem} anwendet.
+Die Aussage wäre zunächst auch stark genug, jedoch sobald Divergenz mit
+betrachtet wird, kann es durch das schwache Transitions-Matching zu Problemen
+kommen, da dadurch zusätzliches Divergenz"=Verhalten möglich ist. Das nächste
+Lemma ist somit nur ähnlich zum vorangegangenen, hat jedoch eine etwas
+stärkere Aussage.
+
+\begin{Lem}[Abläufe in as-Verfeinerungen und Spezifikationen]
+  \label{AblaefeVerfSpezLem}
+  Sei $P$ eine as"=Verfeinerung eines \MEIO{}s $Q$ und $\mathcal{R}$ die
+  as"=Verfeinerungs"=Relation zwischen den beiden Transitionssystemen. Ein
+  Ablauf $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha
+  _n]_P p_n$ aus $P$ kann durch einen Ablauf $q_0 \may[\alpha _1]_Q q_1
+  \may[\alpha _2]_Q \dots q_{n-1} \may[\alpha _n]_Q q_n$ mit $p_j \mathcal{R}
+  q_j$ für alle $j\in\{0,1,\dots n\}$ in $Q$ gematched werden oder es wird ein
+  $q_j$ für $0\leq j < n$ erreicht, dass in der Menge $E_Q$ enthalten ist. Aus
+  $w\in L(P)$ folgt also $w\in L(Q)$ oder $w\in\cont (\StET (Q))\subseteq \ET
+  (Q)$.
+\end{Lem}
+\begin{proof}
+  Aus $w\in L(P)$ folgt $w\in L(Q)$ oder $w\in\cont (\StET (Q))\subseteq \ET
+  (Q)$ ist eine Aussage, die genau so auch in
+  Lemma~\ref{AblaefeSchwVerfSpezLem} für schwache as"=Verfeinerungen galt. Jede
+  starke as"=Verfeinerung ist auch eine schwache
+  (Lemma~\ref{ZusammenhWasAsLem}), somit folgt diese Aussage direkt aus
+  Lemma~\ref{AblaefeSchwVerfSpezLem}.\\
+  Aus dem vorausgesetzten Trace für $P$ würde mit den
+  Lemmata~\ref{AblaefeSchwVerfSpezLem} und~\ref{ZusammenhWasAsLem} nur der
+  Ablauf $q_0 \weakmay[\hat{\alpha _1}]_Q q_1 \weakmay[\hat{\alpha _2}]_Q \dots
+  q_{n-1} \weakmay[\hat{\alpha _n}]_Q q_n$ in $Q$ folgen. In diesem Lemma
+  sollen die Transitionen jedoch ohne zusätzliche oder entfallende $\tau$s
+  möglich sein. Die Induktion aus dem Beweis von~\ref{AblaefeSchwVerfSpezLem}
+  kann jedoch entsprechend verstärkt werden. Die Behauptung für die Induktion
+  lautet dann: Für alle $j\in\{0,1,\dots n-1\}$ mit $p_j\mathcal{R} q_j$ gibt
+  es eine Transition $q_j \may[\alpha _{j+1}]_Q q_{j+1}$ mit $p_{j+1}
+  \mathcal{R} q_{j+1}$ oder $q_j$ ist in $E_Q$ enthalten. Fall 1 bleibt
+  unverändert und in Fall 2 entfällt die Unterscheidung, ob $\alpha _{j+1}$ ein
+  Input oder eine lokale Aktion ist. Mit Definition~\ref{SimDef}.3 kann
+  begründet werden, dass die $\alpha _{j+1}$-Transition direkt zum Zustand
+  $q_{j+1}$ führt. Es gilt also in jedem Schritt der Induktion, der Fall 2
+  betrifft, $a_j \may[\alpha _{j+1}]_Q q_{j+1}$. Es folgt also der Ablauf, der
+  hier gezeigt werden sollte, falls kein Fehler"=Zustand in $Q$ angetroffen
+  wird.
 \end{proof}
 
 Aus den Propositionen für die Sprache und die Traces konnte für die Vereinigung
@@ -253,7 +291,7 @@ zulässt. Mit dem Einsatz der \cont{}-Funktion zum beliebigen fortsetzten der
 Traces kann dies ausgeglichen werden. Somit gilt wie die nächsten Proposition
 behauptet für die Fehler-Traces und die Fehler-geflutete Sprache Gleichheit
 und nicht nur die Inklusion, die aus den vorangegangenen Propositionen bereits
-folgt.
+folgen.
 
 \begin{Prop}[Kommunikationsfehler-Semantik und Implementierungen]
   \label{KommSemProp}
@@ -295,8 +333,8 @@ folgt.
   \begin{itemize}
     \item Fall 1 ($w\in\PrET (P')$): In $P'$ existiert eine Verlängerung $v\in
       O^*$ von $w$, so dass $wv\in\StET (P')$ gilt. Das Wort $wv$ ist in $P'$
-      ausführbar ($wv\in L(P')$). Es kann somit die
-      Proposition~\ref{AblaefeVerfSpezProp} angewendet werden, wobei
+      ausführbar ($wv\in L(P')$). Es kann somit das
+      Lemma~\ref{AblaefeVerfSpezLem} angewendet werden, wobei
       vorausgesetzt werden kann, dass der Trace in $P'$ zu einem Zustand $p'_n$
       führt, der in $E_{P'}$ enthalten ist. Falls ein $p_j$ mit $0\leq j < n$
       in $E_P$ enthalten ist, dann ist ein Präfix von $wv$ ein strikter
@@ -304,14 +342,14 @@ folgt.
       in $\ET (P)$ enthalten. Da \ET{} unter Fortsetzung der Traces
       abgeschlossen ist, gilt auch $w\in \ET (P)$. Falls für alle $p_j$ mit $j
       < n$ $p_j\notin E_P$ gilt, kann $p'_n \mathcal{R} p_n$ gefolgert werden
-      durch den Beweis von~\ref{AblaefeVerfSpezProp}. Da $p'_n\in E_{P'}$ gilt,
+      durch den Beweis von~\ref{AblaefeVerfSpezLem}. Da $p'_n\in E_{P'}$ gilt,
       folgt draus mit~\ref{SimDef}.1, dass bereits $p_n$ in $E_P$ enthalten
       sein muss. Es gilt also $wv\in\StET (P)$ und mit der Argumentation von
       oben folgt daraus $w\in\ET (P)$.
     \item Fall 2 ($w\in\MIT (P')\backslash\PrET (P')$): Da $w$ in $\MIT (P')$
       enthalten ist, gibt es ein $a\in I$ für das $w=va$ gilt mit $v\in\Sigma
       ^*$. Analog zu Fall 1 kann das $v$ in $P'$ ausgeführt werden und davor
-      die Proposition~\ref{AblaefeVerfSpezProp} angewendet werden, wobei das
+      die Proposition~\ref{AblaefeVerfSpezLem} angewendet werden, wobei das
       erreicht $p'_n$ den Input $a$ nicht als ausgehenden must"=Transition
       besitzen soll. Falls es ein $p_j\in E_P$ mit $0\leq j \leq n$ gibt, gilt
       $v\in\ET (P)$ und wegen des Abschlusses unter \cont{} auch $w\in\ET (P)$.
