@@ -105,34 +105,47 @@ werden dabei alle Transitionen, die nicht durch fehlende
 Synchronisations"=Möglichkeiten wegfallen, übernommen. In~\cite{Vogler2016MIA3}
 hingegen wird der Ansatz verfolgt alle Fehler zu entfernen und durch einen
 universal Zustand zu ersetzten, der nur eingehende may"=Input"=Transitionen
-zulässt. Auf diese Normierung wurde hier mit Absicht verzichtete um sehen zu
-können, dass die Fehler einen Ursprung haben, den man später auch noch einsehen
-kann. Jedoch gibt es trotzdem einen Zusammenhang zwischen diesen beiden
-Ansätzen.\\
+zulässt. Außer dem universalen Zustand gibt es in einem \MIA wie
+in~\cite{Vogler2016MIA3} keine anderen Fehler"=Zustände. Auf diese Normierung
+wurde hier mit Absicht verzichtete um sehen zu können, dass die Fehler einen
+Ursprung haben, den man später auch noch einsehen kann. Jedoch gibt es trotzdem
+einen Zusammenhang zwischen diesen beiden Ansätzen.\\
 Die Unterscheidung, die die Basisrelation \EBRel{} hier herbei führt, würde
 dort der Unterscheidung zwischen Transitionssystemen, die den universal
 Zustand $e$ als Startzustand haben und denen, die einen Startzustand ungleich
 $e$ besitzen, entsprechen. Falls hier in einer as"=Implementierung von $P$ ein
 Fehler lokal erreichbar ist, dann muss auch in $P$ ein Fehler-Zustand lokal
 erreichbar sein, wegen~\ref{lokalFehlerErrKor}~(i). Dies entspricht
-$\varepsilon \in \PrET (P)$. Das Abschneiden den lokalen Aktionen wird hier nur
+$\varepsilon \in \PrET (P)$. Das Abschneiden der lokalen Aktionen wird hier nur
 in der Trace Menge praktiziert, in~\cite{Vogler2016MIA3} jedoch direkt auf den
 Transitionssystemen. Im Fall der lokalen Fehler-Erreichbarkeit bleibt also
 nur noch der Zustand $e$ als universal Zustand übrig, für den jedes Verhalten
-zulässig ist. Falls man hier dieses Pruning mit beliebigem Verhalten nachmachen
-wollen würde, müsste man an den Zustand $e$ noch eine may-Schleife für alle
-Aktionen aus $I$ und $O$ hinzufügen.\\
+zulässig ist. Für die Fehler"=Zustände ist in dem hier verwendeten Ansatz nur
+auf Trace-Ebene bzw.\ bezüglich der Verfeinerungs-Relationen beliebiges
+Verhalten möglich. In den Transitionssystemen gibt es die Transitionen für das
+beliebiges Verhalten im allgemeinen nicht.\\
 Da auch der Testing-Ansatz die lokale Fehler-Erreichbarkeit verwendet,
 existiert der Zusammenhang auch dort für die Parallelkomposition mit dem
 entsprechenden Test.\\
-Falls es keine Input-kritischen Traces gibt, entspricht \ERel{} der Relation
-$\sqsubseteq$ aus~\cite{Vogler2016MIA3}, falls auf die \MEIO{}s das
-entsprechende Abschneiden der Fehler-Traces angewendet würde und diese dann
-durch einen universal Zustand mit may"=Schleife für alle Inputs und Outputs
-ersetzt würden. Gibt es in $Q$ jedoch einen Input-kritische Traces, würde $P
-\ERel Q$ zulassen, dass $P$ einen gekürzten Fehler-Trace anstatt dessen
-besitzt. Diese Art der Verfeinerung lässt $\sqsubseteq$ nicht zu. Jedoch sind
-die Input-kritischen Traces auch dort die potentiellen Auslöser für neue
-Fehler-Zustände in einer Parallelkomposition. Diese Problem basiert auf dem
-Problem, dass \ERel{} keine schwache as"=Verfeinerungs"=Relation sein muss, die
-in \wasRel{} enthalten ist.
+Für eine entsprechende Normierung, die die Input-kritischen Traces zum
+universal Zustand führt und somit die \MEIO{}s Input-enabled macht, gibt es zu
+jedem \MEIO{} einen äquivalenten \MIA{}. Mit dieser Normierung für die \MEIO{}s
+entspricht \ERel{} der Relation $\sqsubseteq$ aus~\cite{Vogler2016MIA3} für
+Input-enabled \MIA{}s.\\
+Gibt es in $Q$ jedoch einen Input-kritische Traces, würde $P \ERel Q$ zulassen,
+dass $P$ einen gekürzten Fehler-Trace anstatt dessen besitzt. Diese Art der
+Verfeinerung lässt $\sqsubseteq$ nicht zu. Jedoch sind die Input-kritischen
+Traces auch dort die potentiellen Auslöser für neue Fehler-Zustände in einer
+Parallelkomposition. Diese Problem basiert auf dem Problem, dass \ERel{} keine
+schwache as"=Verfeinerungs"=Relation sein muss, die in \wasRel{} enthalten ist.
+
+\begin{Def}[Normal Form]
+  \TODO{Definition aus Konjunktions-Kapitel übernehmen und Input-enabled machen}
+\end{Def}
+
+\begin{Satz}[Existenz äquvialenter \MIA{}s]
+  Für jeden \MEIO{} $P$ gibt es einen äquivalenten \MIA{} $P'$.
+\end{Satz}
+\begin{proof}
+  \TODO{zu beweisen}
+\end{proof}
