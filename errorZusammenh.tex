@@ -141,6 +141,7 @@ Parallelkomposition. Diese Problem basiert auf dem Problem, dass \ERel{} keine
 schwache as"=Verfeinerungs"=Relation sein muss, die in \wasRel{} enthalten ist.
 
 \begin{Def}[Normal Form]
+  \label{NFDef}
   Ein \MEIO{} $P$ ist in \emph{Normal Form} (\NF{}), falls die Menge $E_P$ der
   Fehler"=Zustände nur ein einziges Element enthält $E_P=\{e\}$ und $P$ bis auf
   den Zustand $e$ Input-enabled ist. Zusätzlich soll für jede Transition, für
@@ -159,17 +160,82 @@ schwache as"=Verfeinerungs"=Relation sein muss, die in \wasRel{} enthalten ist.
       und $p\notin \overline{E_P}$ für ein $\alpha\in \Sigma \cup \{\tau\}$
       gilt (dann gilt zwingendermaßen $\alpha \in I$), entferne alle
       $\alpha$-Transitionen, die von $P$ ausgehen und füge die Transition
-      $p\may[\alpha]_{\NF (P)} e$ und falls $p \must[\alpha]_P p'\in
-      \overline{E_P}$ galt auch $p \must[\alpha]_{\NF (P)} e$ hinzu. Am Ende
-      füge alle $e\must[a]_{\NF (P)} e$ mit $a\in\Sigma$ hinzu. \TODO{MIT zu
-      Input-enabled}
+      $p\may[\alpha]_{\NF (P)} e$ hinzu. Für alle $p\neq \overline{E_P}$, für
+      die $p \nmust[i]$ für einen Input $i$ gilt, füge die Transitionen $p
+      \must[i] e$ und $p \may[i] e$ hinzu.
   \end{enumerate}
 \end{Def}
+
+An allen Zuständen außer $e$, für die nicht alle Inputs sichergestellt wurden,
+wurde die entsprechende must"=Transtion zum Zustand $e$ in der Normal Form
+hinzugefügt. Somit hat die Normal Form nur $e$ als einzigen Fehler"=Zustand und
+bis auf $e$ sind auch für alle Zustände alle Inputs sichergestellt.\\
+Schritt (i) den Normal Form Konsturktion verändert nicht an den Transitionen
+und auch nichts daran, ob ein Zustand einen nicht sichergestellten Input hat
+oder nicht. Die Menge \StET{} wird verändert jedoch bleibt die Menge \PrET{}
+gleich, da \StET{} mach dem Schritt (i) alle Traces enthält, die direkt oder
+durch lokal Aktionen zu einem Fehler"=Zustand des ursprünglichen \MEIO{}s
+führen. Für die Menge $\MIT (P)\backslash\cont (\PrET (P))$ ändert sich nichts
+durch die Anwendung des ersten Schrittes auf $P$, da sich an den Zuständen ohne
+Zusammenhang zu Fehler"=Zuständen nicht ändert. Das Ergebnis des Schrittes (i)
+entspricht also also $P$ bezüglich der Relation \ERel{}. Im ersten Fall von
+Schritt (ii) gilt $\ET (P) = \Sigma ^* = \ET (\NF (P))$. Im zweiten Fall ändert
+der Schritt (ii) nichts an Zuständen, die keine Transitionen zu Zuständen in
+der Menge $\overline{E _P}$ besitzten und alle Inputs sicherstellen. Da jeweils
+die erste Transtion, die zu einem Zustand in der Menge $\overline{E _P}$ führt
+zum Zustand $e$ umgebogen wird, sind die Traces, die in $\PrET (P)$ enthalten
+sind auch alle in $\PrET (\NF (P))$ enthalten. Alle Traces aus $\MIT (P)$ waren
+in $P$ nicht ausführbar. Durch das hinzufügen Input"=Transtionen an den
+Zuständen mit nicht sichergestellten Inputs, führt dazu, dass die Menge $\MIT
+(\NF (P))$ der Menge $\PrET (\NF (P))$ entspricht, da der Zustand $e$ als
+Fehler"=Zustand keine ausgehenden Transitionen besitzt und alle fehlenden
+must"=Input"=Transtionen aus $P$ in $\NF (P)$ zum Zustand $e$ führen. Die Menge
+der Fehler"=Traces \ET{} bleibt somit im Schritt (ii) gleich. Die Sprache des
+\MEIO{}s $P$ wird durch die Konsturktion in (ii) um die Traces in $(\cont
+(\PrET (P))\backslash \PrET (P)) \cup (\cont (\MIT (P))\backslash \MIT (P))$
+verkleinert. Da diese Traces jedoch in der Menge \ET{} enthalten sind, mit
+denen die Sprache $L$ in \EL{} geflutet wird, spielt diese bezüglich der
+Relation \ERel{} keine Rolle. Es gilt also auch $\EL (P) = \EL (\NF (P))$.
+Somit ist $\NF (P)$ äquivalent zu $P$ bezüglich der Relation \ERel{}. Es gilt
+also die folgende Proposition.
+
+\begin{Prop}[Normal Form]
+  Jedes \MEIO{} $P$ ist äquivalent zu seiner Normal Form $\NF (P)$ bezüglich
+  der Relation \ERel{}.
+\end{Prop}
+
+Durch die Konstuktion in Definition~\ref{NFDef} kann man zu jedem \MEIO{} $P$
+einen bezüglich der Relation \ERel{} äquvialenten \MEIO{} in Normal Form
+konsturieren. Um zu zeigen, dass es auch immer einen bezüglich \ERel{}
+äquvialenten \MIA{} wie in~\cite{Vogler2016MIA3} definiert gibt, reicht es nun
+aus zu beweisen, dass ein \MEIO{} in Normal Form in einem \MIA{} umgewandelt
+werden kann.
 
 \begin{Satz}[Existenz äquvialenter \MIA{}s]
   Für jeden \MEIO{} $P$ gibt es einen äquivalenten \MIA{} $P'$ bezüglich der
   Relation \ERel{}.
 \end{Satz}
 \begin{proof}
-  \TODO{zu beweisen}
+  Man kann \oBdA{} davon ausgehen, dass $P$ ein \MEIO{} in Normal Form ist. $P$
+  besitzt also genau einen Fehler"=Zustand. Dies ist der univeral Zustand des
+  \MIA{}s. Alle eingehenden Transtionen in den Zustand $e$ sind
+  Input"=Transitionen un alle must"=Transtionen haben zugrundeliegende
+  may"=Transtionen. Das einzige noch vorhandene Problem besteht in der Signatur
+  der must"=Transitionen. Jedoch kann die Relation der must"=Transitionen einen
+  äquivalenten \MIA{} $P'$ auf Basis der must"=Transitions"=Realtion des
+  \MEIO{}s $P$ definiert werden als: $\must _{P'} = \{(p, \alpha , Q) \mid
+  (\forall p' \in Q: p \must[\alpha]_P p') \land (\neg \exists p' \in P
+  \backslash Q: p \must[\alpha]_P p')\}$. Die Menge der Zustände von $P'$
+  entspricht $P$. Die Startzustände von $P$ und $P'$ sind gleich, genau so wie
+  die Mengen der Input- und Output-Aktionen. Für die Relation $\may _{P'}$ gilt
+  $\may _{P'} = \may _{P}$. Das daraus resultierende Transtionssysteme $P'$ ist
+  ein \MIA{} nach der Definition in~\cite{Vogler2016MIA3}.
 \end{proof}
+
+Die \MIA{}s aus~\cite{Vogler2016MIA3} müssen jedoch im allgemeinen nicht
+Input-enabled für alle Zustände außer $e$ sein. Falls jedoch alle nicht
+sichergestellten Input"=Transitionen in einem \MIA{} ergänzt werden, wie in der
+Konstuktion in Definition~\ref{NFDef}, ist jeder \MIA{} auch ein \MEIO{}, wenn
+die must"=Transtionen"=Relation in die entsprechenden einzelnen Transtionen
+aufgespalten wird, die nur noch einen Zustand als Ziel haben und keine Menge
+von Zuständen.

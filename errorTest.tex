@@ -26,12 +26,12 @@ hilfreiche Umgebung dies nicht mehr verhindern kann.
 
 \begin{Def}[Test und Verfeinerung für Kommunikationsfehler]
   \label{KommTestDef}
-  Ein \emph{Test} $T$ ist eine komponierbare Implementierung. Ein \MEIO{} $P$
-  \emph{as-erfüllt} einen Kommunikationsfehler"=Test $T$, falls $S\|T$ lokal
-  fehler-frei ist für alle $S\in \asimp (P)$. Es wird dann $P \EsatAs T$
-  geschrieben.\\
+  Sei $P$ ein \MEIO{}. Ein \emph{Test} $T$ für $P$ ist eine zu $P$ komponierbare
+  Implementierung. $P$ \emph{as-erfüllt} T als einen
+  Kommunikationsfehler"=Test, falls $S\|T$ lokal fehler-frei ist für alle $S\in
+  \asimp (P)$. Es wird dann $P \EsatAs T$ geschrieben.\\
   Ein \MEIO{} $P$ \emph{Fehler-verfeinert} $P'$, falls sie die selbe Signaturen
-  haben und für alle Tests $T$: $P'\EsatAs T \Rightarrow P\EsatAs T$.
+  haben und für alle ihre Tests $T$: $P'\EsatAs T \Rightarrow P\EsatAs T$.
 \end{Def}
 
 Abgesehen von Korollar~\ref{lokalFehlerErrKor}~(ii) erweisen sich
