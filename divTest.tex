@@ -596,21 +596,22 @@ enthalten ist.
       \end{itemize}
       \begin{figure} [h!tbp]
       \begin{center}
-        \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+        \begin{tikzpicture}[auto,node distance =3cm, semithick]
           \node (0) {$p_0$};
           \node (1) [right of=0] {$p_1$};
           \node (dots) [right of=1] {$\dots$};
           \node (n) [right of=dots] {$p_n$};
           \node (n1) at ($(1)!0.5!(dots) + (0,-3)$) {$p_{n+1}$};
 
-          \path ($ (0) + (-1,0) $) edge (0)
+          \path[line width=1pt] (dots) edge [loosely dotted] (n1);
+
+          \path[->, >=latex'] ($ (0) + (-1,0) $) edge (0)
                 (0) edge node {$x_1$} (1)
                     edge [bend right] node [below, sloped] {$x?\neq x_1, \omega
                     !$} (n1)
                 (1) edge node {$x_2$} (dots)
                     edge node [below, sloped] {$x?\neq x_2, \omega !$} (n1)
                 (dots) edge node {$x_n$} (n)
-                       edge [dashed] (n1)
                 (n) edge node [above, sloped] {$x?\in I_T, \omega !$} (n1)
                     edge [bend left] node [sloped] {$x_{n+1}$!} (n1)
                 (n1) edge [loop below] node {$x?\in I_T, \omega !$} (n1);
@@ -725,21 +726,22 @@ enthalten ist.
   \end{itemize}
   \begin{figure} [h!tbp]
   \begin{center}
-    \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+    \begin{tikzpicture}[auto,node distance =3cm, semithick]
       \node (0) {$p_0$};
       \node (1) [right of=0] {$p_1$};
       \node (dots) [right of=1] {$\dots$};
       \node (n) [right of=dots, rectangle, dotted, draw] {$p_n\in Qui_T$};
       \node (p) at ($(1)!0.5!(dots) + (0,-3)$) {$p$};
 
-      \path ($ (0) + (-1,0) $) edge (0)
+      \path[line width=1pt] (dots) edge [loosely dotted] (p);
+
+      \path[->, >=latex'] ($ (0) + (-1,0) $) edge (0)
             (0) edge node {$x_1$} (1)
                 edge [bend right] node [below, sloped] {$x?\neq x_1, \omega !$}
                 (p)
             (1) edge node {$x_2$} (dots)
                 edge [below, sloped] node {$x?\neq x_2, \omega !$} (p)
             (dots) edge node {$x_n$} (n)
-                   edge [dashed] (p)
             (n) edge [bend left] node [below,sloped] {$x?\in I_T$} (p)
             (q) edge [loop below] node {$x?\in I_T, \omega !$} (p);
     \end{tikzpicture}
@@ -827,7 +829,7 @@ enthalten ist.
       \end{itemize}
       \begin{figure} [h!tbp]
       \begin{center}
-        \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+        \begin{tikzpicture}[auto,node distance =3cm, semithick]
 
           \node (0) {$p_0$};
           \node (1) [right of=0] {$p_1$};
@@ -836,14 +838,15 @@ enthalten ist.
           \node (n) [right of=n1, rectangle, draw] {$p_n\in E_T$};
           \node (p) at ($(dots) + (0,-3)$) {$p$};
 
-          \path ($ (0) + (-1,0) $) edge (0)
+          \path[line width=1pt] (dots) edge [loosely dotted] (p);
+
+          \path[->, >=latex'] ($ (0) + (-1,0) $) edge (0)
                 (0) edge node {$x_1$} (1)
                     edge [bend right] node [below, sloped] {$x?\neq x_1, \omega
                     !$} (p)
                 (1) edge node {$x_2$} (dots)
                     edge node [below, sloped] {$x?\neq x_2, \omega !$} (p)
                 (dots) edge node {$x_{n-1}$} (n1)
-                       edge [dashed] (p)
                 (n1) edge node {$x_n$} (n)
                      edge node [below, sloped] {$x?\neq x_n, \omega !$} (p)
                 (p) edge [loop below] node {$x?\in I_T, \omega !$} (p)

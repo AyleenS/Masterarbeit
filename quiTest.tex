@@ -554,14 +554,16 @@ in~\ref{StilleTestDef}.
       \end{itemize}
       \begin{figure} [h!tbp]
       \begin{center}
-        \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+        \begin{tikzpicture}[auto,node distance =3cm, semithick]
           \node (0) {$p_0$};
           \node (1) [right of=0] {$p_1$};
           \node (dots) [right of=1] {$\dots$};
           \node (n) [right of=dots] {$p_n$};
           \node (n1) at ($(1)!0.5!(dots) + (0,-3)$) {$p_{n+1}$};
 
-          \path ($ (0) + (-1,0) $) edge (0)
+          \path[line width=1pt] (dots) edge [loosely dotted] (n1);
+
+          \path[->, >=latex'] ($ (0) + (-1,0) $) edge (0)
                 (0) edge node {$x_1$} (1)
                     edge [bend right] node [below, sloped] {$x?\neq x_1$} (n1)
                     edge [loop above] node {$\tau$} (0)
@@ -569,7 +571,6 @@ in~\ref{StilleTestDef}.
                     edge node [below, sloped] {$x?\neq x_2$} (n1)
                     edge [loop above] node {$\tau$} (1)
                 (dots) edge node {$x_n$} (n)
-                       edge [dashed] (n1)
                 (n) edge node [above, sloped] {$x?\in I_T$} (n1)
                     edge [bend left] node [sloped] {$x_{n+1}$!} (n1)
                     edge [loop above] node {$\tau$} (n)
@@ -630,7 +631,7 @@ in~\ref{StilleTestDef}.
       \end{itemize}
       \begin{figure} [h!tbp]
       \begin{center}
-        \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+        \begin{tikzpicture}[auto,node distance =3cm, semithick]
 
           \node (0) {$p_0$};
           \node (1) [right of=0] {$p_1$};
@@ -639,7 +640,9 @@ in~\ref{StilleTestDef}.
           \node (n) [right of=n1, rectangle, draw] {$p_n\in E_T$};
           \node (q) at ($(1)!0.5!(dots) + (0,-3)$) {$p$};
 
-          \path ($ (0) + (-1,0) $) edge (0)
+          \path[line width=1pt] (dots) edge [loosely dotted] (q);
+
+          \path[->, >=latex'] ($ (0) + (-1,0) $) edge (0)
                 (0) edge node {$x_1$} (1)
                     edge [bend right] node [below, sloped] {$x?\neq x_1$} (q)
                     edge [loop above] node {$\tau$} (0)
@@ -647,7 +650,6 @@ in~\ref{StilleTestDef}.
                     edge node [below, sloped] {$x?\neq x_2$} (q)
                     edge [loop above] node {$\tau$} (1)
                 (dots) edge node {$x_{n-1}$} (n1)
-                       edge [dashed] (q)
                 (n1) edge node {$x_n$} (n)
                      edge [bend left] node [below, sloped] {$x?\neq x_n$} (q)
                      edge [loop above] node {$\tau$} (n1)
@@ -698,14 +700,16 @@ in~\ref{StilleTestDef}.
   \end{itemize}
   \begin{figure} [h!tbp]
   \begin{center}
-    \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+    \begin{tikzpicture}[auto,node distance =3cm, semithick]
       \node (0) {$p_0$};
       \node (1) [right of=0] {$p_1$};
       \node (dots) [right of=1] {$\dots$};
       \node (n) [right of=dots, rectangle, dotted, draw] {$p_n\in Qui_T$};
       \node (q) at ($(1)!0.5!(dots) + (0,-3)$) {$p$};
 
-      \path ($ (0) + (-1,0) $) edge (0)
+      \path[line width=1pt] (dots) edge [loosely dotted] (q);
+
+      \path[->, >=latex'] ($ (0) + (-1,0) $) edge (0)
             (0) edge node {$x_1$} (1)
                 edge [loop above] node {$\tau$} (0)
                 edge [bend right] node [below, sloped] {$x?\neq x_1$} (q)
@@ -713,7 +717,6 @@ in~\ref{StilleTestDef}.
                 edge [loop above] node {$\tau$} (1)
                 edge [below, sloped] node {$x?\neq x_2$} (q)
             (dots) edge node {$x_n$} (n)
-                   edge [dashed] (q)
             (n) edge [bend left] node [below,sloped] {$x?\in I_T$} (q)
             (q) edge [loop below] node {$x?\in I_T, \tau$} (q);
     \end{tikzpicture}
