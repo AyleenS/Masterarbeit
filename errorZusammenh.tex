@@ -128,10 +128,11 @@ Da auch der Testing-Ansatz die lokale Fehler-Erreichbarkeit verwendet,
 existiert der Zusammenhang auch dort für die Parallelkomposition mit dem
 entsprechenden Test.\\
 Für eine entsprechende Normierung, die die Input-kritischen Traces zum
-universal Zustand führt und somit die \MEIO{}s Input-enabled macht, gibt es zu
-jedem \MEIO{} einen äquivalenten \MIA{}. Mit dieser Normierung für die \MEIO{}s
-entspricht \ERel{} der Relation $\sqsubseteq$ aus~\cite{Vogler2016MIA3} für
-Input-enabled \MIA{}s.\\
+universal Zustand führt und somit die \MEIO{}s bis auf den Fehler"=Zustand
+Input"=enabled macht, gibt es zu jedem \MEIO{} einen äquivalenten \MIA{}. Mit
+dieser Normierung für die \MEIO{}s entspricht \ERel{} der Relation
+$\sqsubseteq$ aus~\cite{Vogler2016MIA3} für Input-enabled \MIA{}s bis auf den
+Zustand $e$.\\
 Gibt es in $Q$ jedoch einen Input-kritische Traces, würde $P \ERel Q$ zulassen,
 dass $P$ einen gekürzten Fehler-Trace anstatt dessen besitzt. Diese Art der
 Verfeinerung lässt $\sqsubseteq$ nicht zu. Jedoch sind die Input-kritischen
@@ -140,11 +141,34 @@ Parallelkomposition. Diese Problem basiert auf dem Problem, dass \ERel{} keine
 schwache as"=Verfeinerungs"=Relation sein muss, die in \wasRel{} enthalten ist.
 
 \begin{Def}[Normal Form]
-  \TODO{Definition aus Konjunktions-Kapitel übernehmen und Input-enabled machen}
+  Ein \MEIO{} $P$ ist in \emph{Normal Form} (\NF{}), falls die Menge $E_P$ der
+  Fehler"=Zustände nur ein einziges Element enthält $E_P=\{e\}$ und $P$ bis auf
+  den Zustand $e$ Input-enabled ist. Zusätzlich soll für jede Transition, für
+  die $p \may[\alpha] e$ mit $p\neq e$ gilt, $\alpha$ ein Element der Menge der
+  Input"=Aktionen $I$ sein.
+
+  Die \emph{Normal Form} von $P$ ist ein \MEIO{} $\NF (P)$, das man aus $P$
+  durch die nachfolgenden zwei Schritte erhält:
+  \begin{enumerate}[(i)]
+    \item Definiere $\overline{E_P} = \{p \mid \exists p'\in E_P, w\in O^*:
+      p\weakmay[w]_P p'\}$ und ersetzte $E_P$ durch $\overline{E_P}$.
+    \item Falls $p_0\in \overline{E_P}$, ist $NF(P) = (\{p_0\}, I, O, \emptyset
+      , \emptyset , p_0, \{p_0\})$.\\
+      Ansonsten, füge einen neuen Zustand $e$ hinzu, der der einzige
+      Fehler"=Zustand wird. Wann immer $p \may[\alpha]_P p'\in \overline{E_P}$
+      und $p\notin \overline{E_P}$ für ein $\alpha\in \Sigma \cup \{\tau\}$
+      gilt (dann gilt zwingendermaßen $\alpha \in I$), entferne alle
+      $\alpha$-Transitionen, die von $P$ ausgehen und füge die Transition
+      $p\may[\alpha]_{\NF (P)} e$ und falls $p \must[\alpha]_P p'\in
+      \overline{E_P}$ galt auch $p \must[\alpha]_{\NF (P)} e$ hinzu. Am Ende
+      füge alle $e\must[a]_{\NF (P)} e$ mit $a\in\Sigma$ hinzu. \TODO{MIT zu
+      Input-enabled}
+  \end{enumerate}
 \end{Def}
 
 \begin{Satz}[Existenz äquvialenter \MIA{}s]
-  Für jeden \MEIO{} $P$ gibt es einen äquivalenten \MIA{} $P'$.
+  Für jeden \MEIO{} $P$ gibt es einen äquivalenten \MIA{} $P'$ bezüglich der
+  Relation \ERel{}.
 \end{Satz}
 \begin{proof}
   \TODO{zu beweisen}

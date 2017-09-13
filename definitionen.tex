@@ -45,7 +45,7 @@ Buchstaben aus den Alphabeten $I,O,\Sigma ,O\cup\{\tau\}$ und $\Sigma_\tau$.\\
 Es wird die Notation $p\may[\alpha] p'$ für $(p,\alpha,p')\in\may$ und
 $p\may[\alpha]$ für $\exists p':(p,\alpha,p')\in\may$ verwendet. Dies kann
 entsprechend auf Buchstaben-Sequenzen $w\in\Sigma_{\tau}^*$ erweitert werden:
-$p\may[w]p'$ ($p\may[w]$) steht für die Existenz eines \emph{Laufes}
+$p\may[w]p'$ ($p\may[w]$) steht für die Existenz eines \emph{Ablaufes}
 $p\may[\alpha _1]p_1\may[\alpha _2]\dots p_{n-1}\may[\alpha _n] p'$
 ($p\may[\alpha _1] p_1 \may[\alpha _2]\dots p_{n-1}\may[\alpha _n]$) mit
 $w=\alpha _1\dots \alpha _n$.\\
@@ -241,12 +241,12 @@ Mengen kann z.B.\ aus~\cite{Vogler2014EIO} übernommen werden.
   \end{itemize}
 \end{Def}
 
-$w_1$ und $w_2$ sind für gewöhnlich Traces von \MEIO{}, die Komponiert werden.
-Das Wort $w_1\|w_2$ ist dann eine Aktionsfolge aus Input und Outputs. Es
-existiert in einer Parallelkomposition ein Transitionsfolge vom Startzustand
-aus, die mit den Aktionen aus $w_1\|w_2$ beschriftet ist. Der Trace $w_1\|w_2$
-der Parallelkomposition kann also auch als Wort aufgefasst werden, dass
-verarbeitet wird während es Ablauf des Systems.
+Die Wörter $w_1$ und $w_2$ sind für gewöhnlich Traces von \MEIO{}, die
+Komponiert werden. Das Wort $w_1\|w_2$ ist dann eine Aktionsfolge aus Input und
+Outputs. Es existiert in einer Parallelkomposition ein Transitionsfolge vom
+Startzustand aus, die mit den Aktionen aus $w\in w_1\|w_2$ beschriftet ist. Der
+Trace $w_1\|w_2$ der Parallelkomposition kann also auch als Wort aufgefasst
+werden, dass verarbeitet wird während es Ablauf des Systems.
 
 Definitionen der Funktionen \prune{} und \cont{} zum Abschneiden und Verlängern
 von Traces können ebenso wie die letzte Definition aus

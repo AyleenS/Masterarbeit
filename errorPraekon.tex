@@ -191,50 +191,56 @@ folgt dann mit Lemma~\ref{ZusammenhWasAsLem}.
   die schwache as"=Verfeinerungs"=Relation zwischen den beiden
   Transitionssystemen. Ein Ablauf $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P
   \dots p_{n-1} \may[\alpha _n]_P p_n$ aus $P$ kann durch einen Ablauf $q_0
-  \weakmay[\hat{\alpha _1}]_Q q_1 \weakmay[\hat{\alpha _2}]_Q \dots q_{n-1}
-  \weakmay[\hat{\alpha _n}]_Q q_n$ mit $p_j \mathcal{R} q_j$ für alle
-  $j\in\{0,1,\dots n\}$ in $Q$ gematched werden oder es wird ein $q_j$ für
-  $0\leq j < n$ erreicht, dass in der Menge $E_Q$ enthalten ist. Aus $w\in
-  L(P)$ folgt also $w\in L(Q)$ oder $w\in\cont (\StET (Q))\subseteq \ET (Q)$.
+  \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots
+  q_{n-1} \weakmay[\widehat{\alpha _n}]_Q q_n$ mit $p_j \mathcal{R} q_j$ für
+  alle $j\in\{0,1,\dots n\}$ in $Q$ gematched werden oder $\exists k: q_0,\dots
+  q_k\in Q$ und $0 \leq k < n$ mit $q_j \mathcal{R} q_j$ für alle $j \in
+  \{1,2,\dots , k\}$ und $q_k\in E_Q$. Aus $w\in L(P)$ folgt also $w\in L(Q)$
+  oder $w\in\cont (\StET (Q))\subseteq \ET (Q)$.
 \end{Lem}
 \begin{proof}
   Die Existenz des Traces in $Q$ soll induktiv über die einzelnen Transitionen
-  bewiesen werden. Die entsprechenden Behauptung für die Induktion lautet: Für
-  alle $j\in\{0,1,\dots n-1\}$ mit $p_j\mathcal{R} q_j$ gibt es eine schwache
-  Transition $q_j \weakmay[\hat{\alpha _{j+1}}]_Q q_{j+1}$ mit $p_{j+1}
-  \mathcal{R} q_{j+1}$ oder $p_j$ ist in $E_P$ enthalten.\\
+  bewiesen werden. Für alle $j\in \{0,1,\dots ,n\}$ gilt $\exists k: 0 \leq k
+  < j \land p_k \mathcal{R} q_k \land q_k\in E_Q$ oder es gilt $p_j
+  \mathcal{R} q_j$.\\
   Die Verankerung $p_0\mathcal{R} q_0$ folgt direkt aus der Voraussetzung, das
   $\mathcal{R}$ eine schwache as"=Verfeinerungs"=Relation für $P$ und $Q$
   ist.\\
-  Es kann also nun davon ausgegangen werden, dass $p_j\mathcal{R} q_j$ für ein
-  $j$ mit $0\leq j < n$ erfüllt ist.
+  Es kann also nun davon ausgegangen werden, dass $p_j\mathcal{R} q_j$ oder
+  $\exists 0 \leq k < j: p_k \mathcal{R} q_k \land q_k \in E_Q$ für ein $j$ mit
+  $0\leq j < n$ erfüllt ist.
   \begin{itemize}
-    \item Fall 1 ($q_j\in E_Q$): Die Behauptung der Induktion ist bereits
+    \item Fall 1 ($\exists 0 \leq k < j: q_k\in E_Q \land p_k \mathcal{R}
+      q_k$): Es gilt auch $k < j+1$, somit ist die Behauptung auch für $j+1$
       erfüllt.
-    \item Fall 2 ($q_j\notin E_Q$): In der Verfeinerung $P$ existiert die
-      Transition $p_j \may[\alpha _{j+1}]_P p_{j+1}$. $\alpha _{j+1}$ kann ein
-      Input oder eine lokale Aktion sein. Falls $\alpha _{j+1}\in I$ gilt,
-      folgt mit Definition~\ref{wSimDef}.4 die Transition $q_j \may[\alpha
-      _{j+1}]_Q \weakmay[\varepsilon]_Q q_{j+1}$ in $Q$ für ein $q_{j+1}$
-      mit $(p_{j+1},q_{j+1})\in\mathcal{R}$. Die schwach"=nachlaufenden
-      may"=Transition ist nur eine spezielle Form der schwachen may"=Transition
-      es gilt also auch $q_j \weakmay[\hat{\alpha _{j+1}}]_Q q_{j+1}$. $\alpha
-      _{j+1}$ kann jedoch auch eine lokale Aktion sein. Mit
-      Definition~\ref{wSimDef}.4 folgt dann die Existenz der Transition $q_j
-      \weakmay[\hat{\alpha _{j+1}}]_Q q_{j+1}$ in der Spezifikation $Q$ mit
-      $p_{j+1} \mathcal{R} q_{j+1}$.
+    \item Fall 2 ($p_j\mathcal{R} q_j \land q_j\in E_Q$): Es galt bereits $
+      \leq j$ und für $j+1$ ist auch $j < j+1$ erfüllt. $j$ ist also das $k$,
+      dass kleiner wie $j+1$ ist, für das $q_k$ ein Fehler"=Zustand ist.
+    \item Fall 3 ($p_j \mathcal{R} q_j \land q_j\notin E_Q$): In der
+      Verfeinerung $P$ existiert die Transition $p_j \may[\alpha _{j+1}]_P
+      p_{j+1}$. $\alpha _{j+1}$ kann ein Input oder eine lokale Aktion sein.
+      Falls $\alpha _{j+1}\in I$ gilt, folgt mit Definition~\ref{wSimDef}.4 die
+      Transition $q_j \may[\alpha _{j+1}]_Q \weakmay[\varepsilon]_Q q_{j+1}$ in
+      $Q$ für ein $q_{j+1}$ mit $(p_{j+1},q_{j+1})\in\mathcal{R}$. Die
+      schwach"=nachlaufenden may"=Transition ist nur eine spezielle Form der
+      schwachen may"=Transition es gilt also auch $q_j \weakmay[\widehat{\alpha
+      _{j+1}}]_Q q_{j+1}$. $\alpha _{j+1}$ kann jedoch auch eine lokale Aktion
+      sein. Mit Definition~\ref{wSimDef}.4 folgt dann die Existenz der
+      Transition $q_j \weakmay[\widehat{\alpha _{j+1}}]_Q q_{j+1}$ in der
+      Spezifikation $Q$ mit $p_{j+1} \mathcal{R} q_{j+1}$.
   \end{itemize}
-  Für jedes $w$ aus $L(P)$ gibt es einen Ablauf wie er in dieser Proposition
+  Für jedes $w$ aus $L(P)$ gibt es einen Ablauf wie er in diesem Lemma
   vorausgesetzt wurde, so dass $w=(\alpha _1\alpha _2\dots \alpha
-  _n)|_{\Sigma}$ gilt. Im Fall 1 wurden bis $q_j$ die Aktionen $\alpha$ in
-  ihrer Reihenfolge schwach ausgeführt. Es gibt also ein Präfix $v$ von $w$,
-  dass in $Q$ zu einem Fehler"=Zustand führt und somit $v\in\StET (Q)$ erfüllt.
-  $w$ ist eine Fortsetzung von $v$ somit gilt die Aussage $w\in\cont (\StET
-  (Q))\subseteq \ET (Q)$ ebenfalls. Falls der Fall 2 für $j = n-1$ angewendet
-  werden kann, folgt daraus $p_n\mathcal{R} q_n$ und $(\alpha _1\alpha _2\dots
-  \alpha _n)|_{\Sigma}$ ist die folge der sichtbaren Transitionsbeschriftungen,
-  die vom Startzustand $q_0$ zum Zustand $q_n$ in $Q$ führen. Das Wort $w$ ist
-  also in $Q$ ausführbar und somit in der Sprache $L(Q)$ enthalten.
+  _n)|_{\Sigma}$ gilt. Im Fall 1 bzw.\ Fall 2 wurden bis $q_k$ bzw.\ $q_j$ die
+  Aktionen $\alpha$ in ihrer Reihenfolge schwach ausgeführt. Es gibt also ein
+  Präfix $v$ von $w$, dass in $Q$ zu einem Fehler"=Zustand führt und somit
+  $v\in\StET (Q)$ erfüllt. $w$ ist eine Fortsetzung von $v$ somit gilt die
+  Aussage $w\in\cont (\StET (Q))\subseteq \ET (Q)$ ebenfalls. Falls der Fall 3
+  für $j = n-1$ angewendet werden kann, folgt daraus $p_n\mathcal{R} q_n$ und
+  $(\alpha _1\alpha _2\dots \alpha _n)|_{\Sigma}$ ist die Folge der sichtbaren
+  Transitionsbeschriftungen, die vom Startzustand $q_0$ zum Zustand $q_n$ in
+  $Q$ führen. Das Wort $w$ ist also in $Q$ ausführbar und somit in der Sprache
+  $L(Q)$ enthalten.
 \end{proof}
 
 Man könnte durch das gerade eben bewiesene Lemma die gleiche Aussage für starke
@@ -252,10 +258,10 @@ stärkere Aussage.
   Ablauf $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha
   _n]_P p_n$ aus $P$ kann durch einen Ablauf $q_0 \may[\alpha _1]_Q q_1
   \may[\alpha _2]_Q \dots q_{n-1} \may[\alpha _n]_Q q_n$ mit $p_j \mathcal{R}
-  q_j$ für alle $j\in\{0,1,\dots n\}$ in $Q$ gematched werden oder es wird ein
-  $q_j$ für $0\leq j < n$ erreicht, dass in der Menge $E_Q$ enthalten ist. Aus
-  $w\in L(P)$ folgt also $w\in L(Q)$ oder $w\in\cont (\StET (Q))\subseteq \ET
-  (Q)$.
+  q_j$ für alle $j\in\{0,1,\dots n\}$ in $Q$ gematched werden oder $\exists k:
+  q_0,\dots q_k\in Q$ und $0 \leq k < n$ mit $q_j \mathcal{R} q_j$ für alle $j
+  \in \{1,2,\dots , k\}$ und $q_k\in E_Q$. Aus $w\in L(P)$ folgt also $w\in
+  L(Q)$ oder $w\in\cont (\StET (Q))\subseteq \ET (Q)$.
 \end{Lem}
 \begin{proof}
   Aus $w\in L(P)$ folgt $w\in L(Q)$ oder $w\in\cont (\StET (Q))\subseteq \ET
@@ -270,17 +276,14 @@ stärkere Aussage.
   q_{n-1} \weakmay[\hat{\alpha _n}]_Q q_n$ in $Q$ folgen. In diesem Lemma
   sollen die Transitionen jedoch ohne zusätzliche oder entfallende $\tau$s
   möglich sein. Die Induktion aus dem Beweis von~\ref{AblaefeSchwVerfSpezLem}
-  kann jedoch entsprechend verstärkt werden. Die Behauptung für die Induktion
-  lautet dann: Für alle $j\in\{0,1,\dots n-1\}$ mit $p_j\mathcal{R} q_j$ gibt
-  es eine Transition $q_j \may[\alpha _{j+1}]_Q q_{j+1}$ mit $p_{j+1}
-  \mathcal{R} q_{j+1}$ oder $q_j$ ist in $E_Q$ enthalten. Fall 1 bleibt
-  unverändert und in Fall 2 entfällt die Unterscheidung, ob $\alpha _{j+1}$ ein
-  Input oder eine lokale Aktion ist. Mit Definition~\ref{SimDef}.3 kann
-  begründet werden, dass die $\alpha _{j+1}$-Transition direkt zum Zustand
-  $q_{j+1}$ führt. Es gilt also in jedem Schritt der Induktion, der Fall 2
-  betrifft, $a_j \may[\alpha _{j+1}]_Q q_{j+1}$. Es folgt also der Ablauf, der
-  hier gezeigt werden sollte, falls kein Fehler"=Zustand in $Q$ angetroffen
-  wird.
+  kann jedoch entsprechend verstärkt werden. Die Behauptung lautet gleich und
+  somit könne die Fälle 1 und 2 unveränder übernommen werden. Für Fall 3
+  entfällt die Unterscheidung, ob $\alpha _{j+1}$ ein Input oder eine lokale
+  Aktion ist. Mit Definition~\ref{SimDef}.3 kann begründet werden, dass die
+  $\alpha _{j+1}$-Transition direkt zum Zustand $q_{j+1}$ führt. Es gilt also
+  in jedem Schritt der Induktion, der Fall 3 betrifft, $q_j \may[\alpha
+  _{j+1}]_Q q_{j+1}$. Es folgt also der Ablauf, der hier gezeigt werden sollte,
+  falls kein Fehler"=Zustand in $Q$ angetroffen wird.
 \end{proof}
 
 Aus den Propositionen für die Sprache und die Traces konnte für die Vereinigung
@@ -356,8 +359,8 @@ folgen.
       Ansonsten kann davon ausgegangen werden, dass $p'_n \mathcal{R} p_n$ für
       einen Zustand $p_n$ aus $P$ erfüllt ist. Falls $a$ für $p_n$ eine
       ausgehende must"=Transition wäre, würde~\ref{SimDef}.2 auch für $p'_n$
-      die Implementierung der $a$ Transition fordern, dies würde einen
-      Widerspruch zu $va\in\MIT (P')$ darstellen. Es gilt also $p\nmust[a]$ und
+      die Implementierung der $a$ Transition fordern, dies wäre jedoch ein
+      Widerspruch zur Wahl des Zustandes $p'_n$. Es gilt also $p\nmust[a]$ und
       $va\in\MIT (P)$. Daraus ergibt sich direkt $w\in\ET (P)$.
   \end{itemize}
 
@@ -688,7 +691,7 @@ folgen.
       \end{itemize}
       \begin{figure} [h!tbp]
       \begin{center}
-        \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+        \begin{tikzpicture}[auto,node distance =3cm, semithick]
 
           \node (0) {$p_0$};
           \node (1) [right of=0] {$p_1$};
@@ -696,13 +699,14 @@ folgen.
           \node (n) [right of=dots] {$p_n$};
           \node (n1) at ($(1)!0.5!(dots) + (0,-3)$) {$p_{n+1}$};
 
-          \path ($ (0) + (-1,0) $) edge (0)
+          \path[line width=1pt] (dots) edge [loosely dotted] (n1);
+
+          \path[->, >=latex'] ($ (0) + (-1,0) $) edge (0)
                 (0) edge node {$x_1$} (1)
                     edge [bend right] node [below, sloped] {$x?\neq x_1$} (n1)
                 (1) edge node {$x_2$} (dots)
                     edge node [below, sloped] {$x?\neq x_2$} (n1)
                 (dots) edge node {$x_n$} (n)
-                       edge [dashed] (n1)
                 (n) edge node [above, sloped] {$x?\in I_U$} (n1)
                     edge [bend left] node [sloped] {$x_{n+1}$!} (n1)
                 (n1) edge [loop below] node {$x?\in I_U$} (n1);
@@ -783,7 +787,7 @@ folgen.
       \end{itemize}
       \begin{figure} [h!tbp]
       \begin{center}
-        \begin{tikzpicture}[->, >=latex',auto,node distance =3cm, semithick]
+        \begin{tikzpicture}[auto,node distance =3cm, semithick]
 
           \node (0) {$p_0$};
           \node (1) [right of=0] {$p_1$};
@@ -792,13 +796,14 @@ folgen.
           \node (n) [right of=n1, rectangle, draw] {$p_n\in E_U$};
           \node (q) at ($(1)!0.5!(dots) + (0,-3)$) {$p$};
 
-          \path ($ (0) + (-1,0) $) edge (0)
+          \path[line width=1pt] (dots) edge [loosely dotted] (q);
+
+          \path[->, >=latex'] ($ (0) + (-1,0) $) edge (0)
                 (0) edge node {$x_1$} (1)
                     edge [bend right] node [below, sloped] {$x?\neq x_1$} (q)
                 (1) edge node {$x_2$} (dots)
                     edge node [below, sloped] {$x?\neq x_2$} (q)
                 (dots) edge node {$x_{n-1}$} (n1)
-                       edge [dashed] (q)
                 (n1) edge node {$x_n$} (n)
                 edge [bend left] node [below, sloped] {$x?\neq x_n$} (q)
                 (q) edge [loop below] node {$x?\in I_U$} (q);
