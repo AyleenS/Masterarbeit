@@ -1,30 +1,15 @@
 \section{Testing-Ansatz}
 
-Zustände, die keine must-Outputs ohne einen Input ausführen können, werden als
-in einer Art Verklemmung angesehen, da sie ohne Zutun von Außen den Zustand
-nicht mehr verlassen können, falls ein möglicherweise vorhandener may"=Output
-nicht implementiert wird. So ein Zustand hat also keine
-must"=Transitions"=Möglichkeiten für einen Output. Falls dieser Zustand die
-Möglichkeit für eine interne Aktion via einer must"=Transition hat, darf durch
-die $\tau$s niemals ein Zustand erreicht werden, von dem aus ein Output in
-Implementierungen sicher gestellt wird. Ein Zustand, der keine Outputs und
-$\tau$s via must"=Transitionen ausführen kann, ist also ein Deadlock-Zustand,
-in denen das System nichts mehr tun können muss ohne einen Input. Wenn man eine
-Erweiterung um $\tau$s zu Zuständen ohne must"=Outputs zulässt, hat man
-zusätzlich noch Verklemmungen der Art Livelock, da diese Zustände
-möglicherweise beliebig viele interne Aktionen ausführen können, jedoch nie aus
-eigener Kraft einen wirklichen Fortschritt in Form eines Outputs bewirken
-können müssen. Die Menge der Zustände, die sich in einer Verklemmung
-befinden, würde also durch $\left\{p\in P\mid \forall a\in O: p\nweakmust[a]_P
-\right\}$ beschrieben werden. Somit wären dies alle Zustände, die keine
-Möglichkeit haben ohne einen Input von Außen oder eine implementierte
-may"=Output"=Transition je wieder einen Output machen zu können. Falls man
-diese Definition verwenden würde, müsste man immer alle Zustände betrachten,
-die durch $\tau$s erreichbar sind. Dies würde einige Betrachtungen deutlich
-aufwendiger machen und soll deshalb hier nicht behandelt werden. Die Definition
-für die betrachteten Verklemmungen, hier Stille genannt, beschränkt sich auf
-Zustände, die keine Outputs und $\tau$s via must"=Transitionen ausführen
-können.
+Zustände, die keine must-Transitionen für lokale Aktionen ohne einen Input
+ausführen können, werden als in einer Art Verklemmung angesehen, da sie ohne
+Zutun von Außen den Zustand nicht mehr verlassen können, falls ein
+möglicherweise vorhandener may"=Transition für lokale Aktionen nicht
+implementiert wird. So ein Zustand hat also keine
+must"=Transitions"=Möglichkeiten für einen lokale Aktion, es ist also ein
+Deadlock-Zustand, in denen das System nichts mehr tun können muss ohne einen
+Input. Diese Zustände werden in dieser Arbeit als sill bezeichnet, da wenn
+dieser Zustand erreicht wird, dass System still steht bis die Umwelt eine
+Aktion ausführt.
 
 \begin{Def}[Stillstand]
   Ein \emph{stiller Zustand} ist ein Zustand in einem \MEIO{} $P$, der keine
@@ -34,17 +19,90 @@ können.
   (O\cup\{\tau\}):p \nmust[\alpha]_P\right\}$.
 \end{Def}
 
-Für die Erreichbarkeit wird wie im letzten Kapitel ein optimistischer Anzahl
-der lokalen Erreichbarkeit für die Fehler-Zustände verwendet. Stille ist kein
-unabwendbare \glqq Fehler-Art\grqq{}, sondern kann durch einen Input repariert
-werden oder im Fall von vorhandenen may"=Output"=Transitionen oder
-may"=$\tau$"=Transitionen, durch eine Implementierung dieser lokalen Aktionen .
-Daraus ergibt sich, dass Stille im Vergleich zu den Fehlern aus dem letzten
-Kapitel als weniger \glqq schlimmer Fehler\grqq{} anzusehen ist. Somit ist ein
-stiller Zustand ebenso wie ein Fehler-Zustand erreichbar, sobald er durch Outputs
-und $\tau$s erreicht werden kann, jedoch ist nicht jede beliebige Fortsetzung
-eines Traces, das durch lokale Aktionen zu einem stillen Zustand führt ein
-Stille"=Trace.
+Der Ansatz, dass stille Zustände keine Output und keine $\tau$-Transitionen
+sicherstellen basiert auf der Definition der Stille für \EIO{}s in
+z.B.~\cite{Schinko2016BA}.\\
+Alternativ wäre es auch möglich gewesen eine andere Betrachtung zu wählen, die
+für Stille Zustände nur fordert, dass keine must"=Outputs möglich sein dürfen.
+Falls dieser Zustand die Möglichkeit für eine interne Aktion via einer
+must"=Transition hat, darf durch die $\tau$s niemals ein Zustand erreicht
+werden, von dem aus ein Output in Implementierungen sicher gestellt wird.
+Zusätzlich zu den in dieser Arbeit betrachteten Verklemmungen der Art Deadlock,
+lässt die Betrachtungsweise mit den zugelassenen $\tau$-must"=Transitionen auch
+Verklemmungen der Art Livelock zu, da diese Zustände möglicherweise beliebig
+viele interne Aktionen ausführen können, jedoch nie aus eigener Kraft einen
+wirklichen Fortschritt in Form eines Outputs bewirken können müssen. Die Menge
+der Zustände, die sich in einer Verklemmung befinden, würde also in einer
+einer alternativen Betrachtung durch $\left\{p\in P\mid \forall a\in O:
+p\nweakmust[a]_P \right\}$ beschrieben werden. Somit wären dies alle Zustände,
+die keine Möglichkeit haben ohne einen Input von Außen oder eine implementierte
+may"=Output"=Transition je wieder einen Output machen zu können. Falls man
+diese Definition verwenden würde, müsste man immer alle Zustände betrachten,
+die durch $\tau$s erreichbar sind. Es ist unklar, zu Konsequenzen dies führen
+kann. Vor allem im Bezug auf Hiding ist es schwierig, da unterschiedliche
+Transitionen in einem System zu unterschiedlichem Verhalten führen, obwohl sie
+von der Transitionsbeschriftung her nicht zu unterscheiden sind. Hierzu ist
+auch das Beispiel in Abbildung~\ref{QuiTracesBsp} zu beachten. Die Sprachen
+beider \MEIO{}s sind gleich und auch die strikten stille Traces stimmen
+überein, da jeweils durch beliebig viele $o$s (mindestens eins), die von einem
+$o'$ gefolgt werden eine ruhiger Zustand erreicht wird. Bei $P$ ist dies immer
+möglich. Falls aber in $Q$ die erste $o$ Transition nach rechts ausgeführt
+wird, kann kein stiller Zustand mehr erreicht werden. Die \MEIO{}s können also
+auf Trace-Ebenen nicht von einander unterschieden werden, jedoch können durch
+lokal Entscheidungen sehr verschiedenen Ergebnisse entstehen. Falls man das $o$
+durch Hiding in ein $\tau$ umwandelt, wäre $p_1$ sicher nicht still. $q_{12}$
+hingegen würde in der alternativen Betrachtung still werden. Die davor über die
+Trace-Mengen nicht unterscheidbaren Systeme würden durch Hiding dann einen
+Unterschied in den Trace-Mengen aufweisen.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
+      \node [initial above,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+      \node (q11) [below left of=q0] {$q_{11}$};
+      \node (q12) [below right of=q0] {$q_{12}$};
+      \node (q2) [below of=q11] {$q_2$};
+
+      \path
+      (q0) edge node[swap]{$o$} (q11)
+      (q0) edge node{$o$} (q12)
+      (q11) edge node{$o'$} (q2)
+      (q11) edge[loop left] node{$o$} (q11)
+      (q12) edge[loop right] node{$o$} (q12)
+      ;
+
+      \node [initial above,initial text=$P$:] (p0) at (7,0) {$p_0$};
+      \node (p1) [below of=p0] {$p_1$};
+      \node (p2) [below of=p1] {$p_2$};
+
+      \path
+      (p0) edge node{$o$} (p1)
+      (p1) edge[loop left] node{$o$} (p1)
+      (p1) edge node{$o'$} (p2)
+      ;
+    \end{tikzpicture}
+    \caption{}
+    \label{QuiTracesBsp}
+  \end{center}
+\end{figure}
+
+Im nächsten Kapitel, in dem Zustände mit Divergenz betrachtet werden, heben
+sich die Unterschiede in den Trace-Mengen, die die beiden unterschiedlichen
+Ansätze hier erzeugen würden auf. Da die Zustände die eine unendliche Folge an
+$\tau$s ausführen können als divergent betrachtet werden und die Stille als
+nicht so schlimm angesehen wird und auf Trace-Ebene somit geflutet wird.
+
+Ob ein stiller Zustand relevant ist für einen Transitionssystem wird wie im
+letzten Kapitel für die Fehler"=Zustände ein optimistischer Ansatz der lokalen
+Erreichbarkeit verwendet. Stille ist aber keine unabwendbare \glqq
+Fehler-Art\grqq{}, sondern kann durch einen Input repariert werden oder im Fall
+von vorhandenen may"=Output"=Transitionen oder may"=$\tau$"=Transitionen, durch
+eine Implementierung dieser lokalen Aktionen. Daraus ergibt sich, dass Stille
+im Vergleich zu den Fehlern aus dem letzten Kapitel als weniger \glqq schlimmer
+Fehler\grqq{} anzusehen ist. Somit ist ein stiller Zustand ebenso wie ein
+Fehler-Zustand unmittelbar relevant, sobald er durch Outputs und $\tau$s
+erreicht werden kann, jedoch ist nicht jede beliebige Fortsetzung eines Traces,
+das durch lokale Aktionen zu einem stillen Zustand führt ein Stille"=Trace.
 
 \begin{Def}[Test und Verfeinerung für Stillstand]
   \label{StilleTestDef}
@@ -145,7 +203,8 @@ entsprechenden Traces der as"=Implementierungen relevant.
   Definition~\ref{SimDef} erfüllt, da sowohl die gestrichenen wie auch die
   ungestrichenen Zustände mit den entsprechenden Zuständen aus $P$ in der
   Relation $\mathcal{R}$ stehen. $\mathcal{R}$ ist also eine starke
-  alternierende Simulations-Relation zwischen $P'$ und $P$. Falls ein Zustand
+  alternierende Simulations-Relation zwischen $P'$ und $P$.\\
+  Falls ein Zustand
   $p_j$ in $P$ still ist, ist es auch der entsprechenden Zustand $q_j$ in $P'$,
   da für $q_j$ alle ausgehenden must"=Transitionen von $p_j$ implementiert
   wurden, aber keine einzige may"=Transition, die keine der must"=Transitionen
@@ -169,7 +228,7 @@ entsprechenden Traces der as"=Implementierungen relevant.
 \end{proof}
 
 Man hätte anstatt des hier verwendeten $P'$ mit zwei Arten von Zuständen auch
-den Ansatz des ausrollens der betrachteten Traces analog zu
+den Ansatz des ausrollens für jeden Trace analog zu
 Proposition~\ref{KommTracesProp}.3 anwenden können. Es wäre auch möglich die
 Inklusion der Input"=kritischen Traces aus Proposition~\ref{KommTracesProp}.3
 mit dem $P'$ aus dem Beweis der Proposition~\ref{StilleTraceProp} zu

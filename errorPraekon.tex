@@ -283,9 +283,14 @@ stärkere Aussage.
   $\alpha _{j+1}$-Transition direkt zum Zustand $q_{j+1}$ führt. Es gilt also
   in jedem Schritt der Induktion, der Fall 3 betrifft, $q_j \may[\alpha
   _{j+1}]_Q q_{j+1}$. Es folgt also der Ablauf, der hier gezeigt werden sollte,
-  falls kein Fehler"=Zustand in $Q$ angetroffen wird.
-  \\ \TODO{erweiterbar auf unendliche Wege, Königs Lemma (Petrinetz Vorlesung,
-  keine unendlichen Verzweigungen/lokal endlich)}
+  falls kein Fehler"=Zustand in $Q$ angetroffen wird.\\
+  Man kann das hier angewendete Vorgehen auch auf unendliche Ablaufe anwenden.
+  Falls die Spezifikation $Q$ keine unendlichen Verzweigungen hat, also lokal
+  endlich ist, gibt es auch dort dann einen unendlichen Ablauf nach dem Königs
+  Lemma der Graphentheorie. Dieser Punkt wird in einem späteren Kapitel für
+  unendliche $\tau$-Abläufe bezüglich Divergenz relevant.
+  \\ \TODO{Quelle für Königs Lemma (Petrinetz Vorlesung, keine unendlichen
+  Verzweigungen/lokal endlich)}
 \end{proof}
 
 Aus den Propositionen für die Sprache und die Traces konnte für die Vereinigung

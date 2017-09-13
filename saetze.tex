@@ -274,12 +274,12 @@
 
   \begin{figure}[h!tbp]
     \begin{center}
-      \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+      \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
         \node [initial,initial text=$P_1$:] (p01) at (0,0) {$p_{01}$};
         \node (p) [right of=p01] {$p$};
         \node (p1) [right of=p] {$p_1$};
 
-        \path[->]
+        \path
         (p01) edge[dashed] node{$\tau$} (p)
         (p) edge[dashed] node{$a!$} (p1)
         ;
@@ -287,7 +287,7 @@
         \node [initial,initial text=$P'_1$:] (p'01) at (9,0) {$p'_{01}$};
         \node (p'1) [right of=p'01] {$p'_1$};
 
-        \path[->]
+        \path
         (p'01) edge node{$a!$} (p'1)
         ;
 
@@ -298,7 +298,7 @@
         \node (p01p) [rectangle, draw, right of=p0102] {$p_{01}\|p \in
         E_{12}$};
 
-        \path[->]
+        \path
         (p0102) edge[dashed] node{$\tau$} (p01p)
         ;
 
@@ -444,18 +444,18 @@ keine passende Verfeinerung gibt.
 
 \begin{figure}[htbp]
   \begin{center}
-    \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+    \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
       \node [initial,initial text=$P_1$:] (p01) at (0,0) {$p_{01}$};
       \node (p1) [right of=p01] {$p_1$};
 
-      \path[->]
+      \path
       (p01) edge node{$o!$} (p1)
       ;
 
       \node [initial,initial text=$P_2$:] (p02) at (7,0) {$p_{02}$};
       \node (p2) [right of=p02] {$p_2$};
 
-      \path[->]
+      \path
       (p02) edge[dashed] node{$o'!$} (p2)
       ;
 
@@ -465,7 +465,7 @@ keine passende Verfeinerung gibt.
       \node (p012) [below of=p0] {$p_{01}\|p_2$};
       \node (p12) [below of=p102] {$p_1\|p_2$};
 
-      \path[->]
+      \path
       (p0) edge node{$o!$} (p102)
       (p012) edge node{$o!$} (p12)
       (p0) edge[dashed] node{$o'!$} (p012)
@@ -478,7 +478,7 @@ keine passende Verfeinerung gibt.
       \node (p'012) [below of=p'0] {$p'_{01}\|p'_2$};
       \node (p'12) [below of=p'102] {$p'_1\|p'_2$};
 
-      \path[->]
+      \path
       (p'0) edge node{$o!$} (p'102)
       (p'012) edge node{$o!$} (p'12)
       (p'0) edge node{$o'!$} (p'012)
@@ -581,12 +581,12 @@ eine schwache ist, jedoch die Umkehrung nicht gilt sollte somit nicht
 
   \begin{figure}[htbp]
     \begin{center}
-      \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+      \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
         \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
         \node (q11) [right of=q0] {$q_{11}$};
         \node (q12) [right of=q11] {$q_{12}$};
 
-        \path[->]
+        \path
         (q0) edge[dashed] node{$\alpha$} (q11)
         (q11) edge node{$\tau$} (q12)
         ;
@@ -594,7 +594,7 @@ eine schwache ist, jedoch die Umkehrung nicht gilt sollte somit nicht
         \node [initial,initial text=$P$:] (p0) at (10,0) {$p_0$};
         \node (p1) [right of=p0] {$p_1$};
 
-        \path[->]
+        \path
         (p0) edge[dashed] node{$\alpha$} (p1)
         ;
       \end{tikzpicture}

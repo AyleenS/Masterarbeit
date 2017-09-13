@@ -82,11 +82,11 @@
 
   \begin{figure}[htbp]
     \begin{center}
-      \begin{tikzpicture}[shorten >=1pt,auto,node distance=2.5cm]
+      \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
         \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
         \node (q1) [right of=q0] {$q_1$};
 
-        \path[->]
+        \path
         (q0) edge node{$o!$} (q1)
         ;
 
