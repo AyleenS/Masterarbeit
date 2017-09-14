@@ -3,40 +3,101 @@
 \begin{Satz}[Zusammenhang der Verfeinerungs-Relationenen mit der
   Stillstands-Relation]
   \label{ZusammenhStilleSatz}
-  Für \MEIO{}s $P$ und $Q$ gilt $P \wasRel Q \Rightarrow P \QRel Q \Rightarrow
-  P \ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht.
+  Für \MEIO{}s $P$ und $Q$ gilt $P \asRel Q \Rightarrow P \QRel Q \Rightarrow
+  P \ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht. Die
+  Relationen \wasRel{} und \QRel{} sind unvergleichbar. Für eine Spezifikation
+  $Q$, die keinen Divergenten"=Zustand erreichen kann (durch beliebige
+  Aktionen) gilt jedoch $P \wasRel Q \Rightarrow P \QRel Q$. Die umgekehrte
+  Richtung gilt jedoch auch unter dieser Einschränkung nicht.
 \end{Satz}
 \begin{proof}\mbox{}\\
-  $P \wasRel Q \Rightarrow P \QRel Q$:\\
+  $P \asRel Q \Rightarrow P \QRel Q$:\\
   Im Beweis des Satzes~\ref{ZusammenhFehlerSatz} wurde bereits bewiesen, dass
   eine schwache as"=Verfeinerungs"=Relation $\mathcal{R}$ zwischen $P$ und $Q$
-  die Eigenschaften der Fehler"=Relation \ERel{} erfüllt. Es fehlt für diese
-  Implikation also nur noch der Beweis der Inklusion $\QET _P \subseteq \QET
-  _Q$. Da bereits $\ET _P\subseteq \ET _Q$ beweisen wurde, reicht es aus zu
-  beweisen, dass $\StQT _P \backslash \ET _P\subseteq \QET _Q$ gilt. Für ein
-  Wort $w$ aus $\StQT _P \backslash \ET _P$ gilt: $\exists w'\in\Sigma _{\tau}
-  ^*, \exists p_1, p_2, \dots , p_n, \exists \alpha _1, \alpha _2, \dots
-  ,\alpha _n: \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha _n \land
-  p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P
-  p_n \in Qui _P$. Aufgrund von~\ref{wSimDef}.4 bzw.~\ref{wSimDef}.5 gibt es einen
-  analogen Trace in $Q$, falls kein $q_j$ für $0\leq j \leq n$ in $E_Q$
-  angetroffen wird. Es gilt $w\in\StET _Q\subseteq\ET _Q\subseteq\QET _Q$,
-  falls ein Fehler-Zustand in $Q$ auf einem Präfix-Trace von $w$ auftritt. Im
-  folgenden wird davon ausgegangen, das $w$ in $Q$ ohne das erreichen eines
-  Fehler"=Zustandes ausführbar ist. Es gibt also einen Trace der Form $q_0
-  \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots
-  q_{n-1} \weakmay[\widehat{\alpha _n}]_Q q_n$ in $Q$ mit $p_j \mathcal{R} q_j$
-  für alle $j$ aus $\{0,1,\dots n\}$. $p_n$ ist für $P$ ein stiller Zustand, es
-  gilt also für alle $\omega \in (O\cup \{\tau\})$ $p_n \nmust[\omega]_P$. Da
-  $\mathcal{R}$ eine schwache as"=Verfeinerungs"=Relation ist, muss
-  wegen~\ref{wSimDef}.3 auch $q_n \nmust[\omega]_Q$ gelten für alle $\omega
-  \in (O\cup \{\tau\})$. $q_n$ ist also auch ein stiller Zustand. Somit ist $w$
-  in $\StQT _Q\subseteq\QET _Q$ enthalten.
+  die Eigenschaften der Fehler"=Relation \ERel{} erfüllt. Nach
+  Lemma~\ref{ZusammenhWasAsLem} ist jede starke as"=Verfeinerungs"=Relation
+  auch eine schwache. Es fehlt also für diese Implikation nur noch der Beweis
+  der Inklusion $\QET _P \subseteq \QET _Q$. Da bereits $\ET _P\subseteq \ET
+  _Q$ beweisen wurde, reicht es aus zu beweisen, dass $\StQT _P \backslash \ET
+  _P\subseteq \QET _Q$ gilt. Die as"=Verfeinerungs"=Relation $\mathcal{R}$
+  zwischen $P$ und $Q$ ist in diesem Fall als stark anzunehmen. Für ein Wort
+  $w$ aus $\StQT _P \backslash \ET _P$ gibt es einen ausführbaren Trace der
+  Form wie in Lemma~\ref{AblaefeVerfSpezLem}, der mit $p_n$ einen stillen
+  Zustand erreicht. Es gilt $w\in\cont (\StET _Q) \subseteq\ET _Q\subseteq\QET
+  _Q$, falls ein Fehler-Zustand in $Q$ auf einem Präfix-Trace von $w$ auftritt,
+  wegen Lemma~\ref{AblaefeVerfSpezLem}. Im folgenden wird davon ausgegangen,
+  das $w$ in $Q$ ohne das erreichen eines Fehler"=Zustandes ausführbar ist.
+  Wegen~\ref{AblaefeVerfSpezLem} gibt es also einen Trace für $w$ in $Q$, der
+  im Zustand $q_n$ mit $p_n \mathcal{R} q_n$ endet. $p_n$ ist für $P$ ein
+  stiller Zustand, es gilt also für alle $\omega \in (O\cup \{\tau\})$ $p_n
+  \nmust[\omega]_P$. Da $\mathcal{R}$ eine starke as"=Verfeinerungs"=Relation
+  ist, muss wegen~\ref{SimDef}.2 auch $q_n \nmust[\omega]_Q$ gelten für alle
+  $\omega \in (O\cup \{\tau\})$. $q_n$ ist also auch ein stiller Zustand. Somit
+  ist $w$ in $\StQT _Q\subseteq\QET _Q$ enthalten.
 
   $P \QRel Q \Rightarrow P \ERel Q$:\\
   Diese Implikation folgt direkt aus der Definition von \QRel{}
   in~\ref{StilleSemDef}. Da $P \QRel Q$ dort definiert wurde als Relation, die
   $P \ERel Q$ und $\QET _P \subseteq \QET _Q$ erfüllt. Es gilt also $P \ERel Q$.
+
+  $P \wasRel Q \not\Rightarrow P \QRel Q$:\\
+  Diese Implikation scheitert dran, dass für stille Zustände keine
+  $\tau$"=must"=Transitionen zulässig sind und \QRel{} keine Divergenz mit
+  betrachtet. Ein entsprechenden Gegenbeispiel ist in
+  Abbildung~\ref{QuiWasGegenBsp} dargestellt. Da hier nur das die strikten
+  Stille Trace das Problem erzeugen, soll $I = \emptyset$ gelten, damit die
+  \MIT{}-Mengen für beide Systeme leer sind. $\mathcal{R} = \{(p_0,q_0)\}$ ist
+  eine schwache as"=Verfeinerungs"=Relation zwischen $P$ und $Q$. Beides
+  Transitionssysteme enthalten keine Fehler"=Zustände, $P$ besitzt keine
+  Transitionen und $Q$ nur eine Transition für eine interne Aktion, somit sind
+  die Punkt 1.,2.,4.\ und 5.\ der Definition~\ref{wSimDef} für $\mathcal{R}$
+  sicher erfüllt. Der dritte Punkt von~\ref{wSimDef} fordert, dass die
+  Transition $q_0 \must[\tau]_Q q_0$ in $P$ schwach gematched wird. Da
+  $\hat{\tau}$ jedoch $\varepsilon$ entspricht, muss es keine echte interne
+  Transition in $P$ für $p_0$ geben. Die Definition~\ref{wSimDef}.3 ist also
+  ebenfalls durch das bereits enthaltene Tupel $(p_0,q_0)$ erfüllt.\\
+  Für $P$ ist $\varepsilon$ ein strikten Stille"=Trace. Die Menge $\StQT (Q) =
+  \QET (Q)$ ist jedoch leer. Die Inklusion $\QET (P) \subset \QET (Q)$, die für
+  $P\QRel Q$ gelten müsste ist also nicht erfüllt.
+
+  \begin{figure}[htbp]
+    \begin{center}
+      \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
+        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+
+        \path
+        (q0) edge[loop right] node{$\tau$} (q0)
+        ;
+
+        \node [initial,initial text=$P$:, rectangle, draw, dotted] (p0) at
+        (7,0) {$p_0\in Qui _P$};
+      \end{tikzpicture}
+      \caption{Gegenbeispiel zu $\wasRel \Rightarrow \QRel$ mit $I_P = I_Q =
+      \emptyset$}
+      \label{QuiWasGegenBsp}
+    \end{center}
+  \end{figure}
+
+  $P \wasRel Q \Rightarrow P \QRel Q$ für $Q$ erreicht keinen divergenten
+  Zustand:\\
+  Der Beweis verläuft analog zum Beweis der Implikation $P \asRel Q \Rightarrow
+  P \QRel Q$ bis zu dem Punkt, an dem man ein $q_n$ in $Q$ mit $p_n \mathcal{R}
+  q_n$ erreicht, in dem man statt Lemma~\ref{AblaefeVerfSpezLem} das
+  Lemma~\ref{AblaefeSchwVerfSpezLem} anwendet und $\mathcal{R}$ eine schwache
+  und keine starke as"=Verfeinerungs"=Relation ist. Für $p_n$ als stillen
+  Zustand gilt ebenfalls $p_n \nmust[\omega]_P$ für alle $\omega\in
+  (O\cup\{\tau\})$. Daraus folgt mit der Definition der Relation \weakmust{}
+  auch $p_n \nweakmust[\hat{\omega}]_P$ für alle $\omega\in O$. Für
+  $\hat{\tau}$ ist für $p_n$ auf jeden Fall via \glqq must"=Transitionen\grqq{}
+  schwach ausführbar. Darin bestand das Problem, das das Gegenbeispiel im
+  letzten Punkt ausgenutzt hat. Es kann jedoch via must"=Transitionen mit dem
+  leeren Wort von $p_n$ aus kein von $p_n$ verschiedenen Zustand erreicht
+  werden, da $p_n \nmust[\tau]$ gilt. Es gilt also für alle Zustände $p\in
+  P\backslash \{p_n\}$ $p_n \nweakmust[\hat{\tau}] p$. Für $Q$ gilt $q_n
+  \nmust[\tau] q_n$, da $q_n$ in $Q$ erreichbar ist durch $w$ und somit nicht
+  divergent sein darf nach Voraussetzung. Zusammen mit~\ref{wSimDef}.3 somit
+  für alle $\omega \in (O\cup \{\tau\}$ $q_n \nmust[\omega]$. Es gilt also
+  $q_n\in Qui_Q$ und damit auch $w\in\StQT _Q\subseteq\QET _Q$.
 
   $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$:\\
   Wie im Gegenbeispiel für die analoge Implikation aus der Relation \ERel{}
@@ -54,8 +115,13 @@
   gilt also $p_0 \mathcal{R} q_0$. Da es keine Fehler"=Zustände in $P$ gibt,
   ist~\ref{wSimDef}.1 erfüllt. Die Transition $q_0 \must[o]_Q q_1$ fordert
   durch~\ref{wSimDef}.3 ihre Verfeinerung in $P$. Da es jedoch keine mit $o$
-  beschriftete Transition in $P$ gibt, kann $\mathcal{R}$ keine
-  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ sein.
+  beschriftete Transition in $P$ gibt, kann $\mathcal{R}$ keine schwache
+  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ sein.\\
+  Wenn $Q$ eine Spezifikation ohne erreichbare Divergenz sein muss, kann das
+  hier angegebenen Gegenbeispiel mit einer kleinen Veränderung trotzdem
+  verwendet werden. Die $\tau$-Schleifen müssen durch Output"=Schleifen für ein
+  $o'\neq o$ ersetzt werden. Die Sprachen verändern sich dadurch, jedoch gilt
+  die $L(P) \subset L(Q)$ auch unter der Veränderung.
 
   \begin{figure}[htbp]
     \begin{center}
@@ -80,6 +146,13 @@
     \end{center}
   \end{figure}
 
+  $P \asRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$:\\
+  Falls diese Implikation gelten würde, würde jedes Paar von \MEIO{}s, dass in
+  der Relation \QRel{} steht auch in der Relation \asRel{} stehen. Mit
+  Lemma~\ref{ZusammenhWasAsLem} würde draus folgen, dass das \MEIO{} Paar auch
+  in der Relation \wasRel{} stehen muss Dies stellt jedoch ein Widerspruch zum
+  letzten Punkte dieses Beweises dar.
+
   $P \QRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \ERel Q$:\\
   Die Relation \QRel{} stützt sich auf die Definition der Relation \ERel{}.
   Jedoch erweitert sich die Definition noch um eine weiter Voraussetzung. Es
@@ -89,14 +162,15 @@
   vorausgesetzt, damit keine Input-kritischen Traces auftreten. Es gilt also
   $\ET _P = \ET _Q = \emptyset$ und $L(P) = L(Q) = \{\varepsilon\}$. Es gilt
   also $P\ERel Q$.\\
-  Jedoch gilt für die strickten Stille-Traces $\StQT _P = \{\varepsilon\}$ und
+  Jedoch gilt für die strikten Stille-Traces $\StQT _P = \{\varepsilon\}$ und
   $\StQT _Q = \emptyset$. Es folgt also $\QET _P \not\subseteq \QET _Q$ und
   somit ist die Relation \QRel{} zwischen $P$ und $Q$ auch nicht erfüllt.
 
   \begin{figure}[htbp]
     \begin{center}
       \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
-        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+        \node [initial,initial text=$Q$:, rectangle, draw, dotted] (q0) at
+        (0,0) {$q_0 \in Qui _Q$};
 
         \node [initial,initial text=$P$:] (p0) at (7,0) {$p_0$};
 
