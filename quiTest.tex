@@ -278,27 +278,21 @@ für Stille eine neue Semantik definiert.
   gilt. Somit wird für den Rest des Beweises davon ausgegangen, dass $w\in\StQT
   (P')\backslash \ET (P')$ ist. $w$ führt in $P'$ also nur zu einem stillen
   Zustand und hat nichts mit Fehler-Zuständen in $P'$ zu tun. Der Trace, der
-  durch $w$ in $P'$ beschrieben wird, hat die folgende Form: $\exists w'\in
-  \Sigma _{\tau}, \exists \alpha _1, \alpha _2, \dots , \alpha _n, \exists
-  p'_1, p'_2, \dots p'_n : \hat{w'} = w \land w' = \alpha _1\alpha _2\dots
-  \alpha _n \land p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha _2]_{P'} \dots
-  p'_{n-1} \may[\alpha _n]_{P'} p'_n \in Qui _{P'}$. Da es eine
-  as"=Verfeinerungs"=Relation $\mathcal{R}$ geben muss, die beweist, dass $P'$
-  $P$ as"=verfeinert, muss es ein Präfix von $w$ geben, dass auch in $P$
-  ausführbar ist. Falls $w$ nicht vollständig ausführbar ist in $P$, muss auf
-  dem Weg, auf dem das Präfix von $w$ ausgeführt wird ein Zustand $p_j$ mit $0
-  \leq j \leq n$ liegen, der ein Fehler-Zustand ist. Es gilt dann $w\in \ET
-  (P)\subseteq \QET (P)$. Falls jedoch $w$ in $P$ ausführbar ist ohne einen
-  Fehler-Zustand zu erreichen, gibt es einen analogen Trace zu dem in $P'$, der
-  Form: $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha
-  _n]_P p_n$, wobei $p'_j \mathcal{R} p_j$ für alle $j$ aus $\{0,1,\dots ,n\}$
-  gilt. Es wird also durch $w$ ein Zustand $p_n$ erreicht, der mit dem Zustand
-  $p'_n$ in der starken as"=Verfeinerungs"=Relation $\mathcal{R}$ stehen.
-  $p'_n$ ist still, nach Voraussetzung. Es gilt also für alle $\omega\in O\cup
-  \{\tau\}$ $p'_n\nmust[\omega]$. Da $(p'_n,p_n) \in\mathcal{R}$ gilt und beide
-  Zustände keine Fehler-Zustände sind, muss auch $p_n\nmust[\omega]$ für alle
-  $\omega\in O\cup \{\tau\}$ gelten, da sonst~\ref{SimDef}.2 verletzt würde.
-  Es gilt also in diesem Fall $w\in\StQT (P)\subseteq\QET (P)$.
+  durch $w$ in $P'$ beschrieben wird, hat die folgende Form aus
+  Lemma~\ref{AblaefeVerfSpezLem}. Da $P'$ eine as"=Verfeinerung von $P$ ist,
+  gibt es auch eine as"=Verfeinerungs"=Relation $\mathcal{R}$, die zwischen den
+  beiden \MEIO{}s gilt. In $P$ führt entweder ein Präfix von $w$ zu einem
+  Fehler"=Zustand oder $w$ ist in $P$ zu einem Zustand ausführbar, für den
+  $p'_n \mathcal{R} p_n$ gilt, wegen~\ref{AblaefeVerfSpezLem}. Falls ein Präfix
+  von $w$ zu einem Fehler"=Zustand führt, gilt $w\in\ET _P\subseteq \QET _P$.
+  Andernfalls wird also durch $w$ ein Zustand $p_n$ erreicht, der mit dem
+  Zustand $p'_n$ in der starken as"=Verfeinerungs"=Relation $\mathcal{R}$
+  stehen. $p'_n$ ist still, nach Voraussetzung. Es gilt also für alle
+  $\omega\in O\cup \{\tau\}$ $p'_n\nmust[\omega]$. Da $(p'_n,p_n)
+  \in\mathcal{R}$ gilt und beide Zustände keine Fehler-Zustände sind, muss auch
+  $p_n\nmust[\omega]$ für alle $\omega\in O\cup \{\tau\}$ gelten, da
+  sonst~\ref{SimDef}.2 verletzt würde. Es gilt also in diesem Fall $w\in\StQT
+  (P)\subseteq\QET (P)$.
 \end{proof}
 
 Wie im letzten Kapitel kann aus der vorangegangen Proposition über die
@@ -399,22 +393,18 @@ benötigt.
       Angenommen $p_1\notin Qui _1$, dann ist für $p_1$ entweder eine
       $\tau$"=must"=Transition oder eine Output"=must"=Transition möglich.
       \begin{itemize}
-        \item Fall 1 \big($p_1\must[\tau]_1$\big): Da die Transition für $P_1$
-          möglich ist, hat auch $P_{12}$ die Möglichkeit für eine
+        \item Fall 1 \big($p_1\must[\tau]_1$\big): Da die Transition für $p_1$
+          möglich ist, hat auch $(p_1,p_2)$ die Möglichkeit für eine
           $\tau$"=must"=Transition. Dies ist jedoch durch die Voraussetzung
           verboten und somit kann dieser Fall nicht eintreten.
         \item Fall 2 \big($p_1\must[a]_1$ mit $a\in O_1\backslash
-          \Synch(P_1,P_2)$\big): Da es sich bei $a$ um einen must"=Output
-          handelt, der nicht zu synchronisieren ist, wird dieser einfach in die
-          Parallelkomposition übernommen. Es müsste also $(p_1,p_2)
-          \must[a]_{12}$ mit $a\in O_{12}$ gelten, was jedoch verboten ist.
-          Somit kann die Transition für $P_1$ in diesem Fall nicht möglich
-          sein.
+          \Synch(P_1,P_2)$\big): Dieser Fall kann wegen einer analogen
+          Begründung wie in Fall 1 nicht auftreten.
         \item Fall 3 \big($p_1\must[a]_1$ mit $a\in O_1\cap\Synch(P_1,P_2)$ und
           $p_2\must[a]_2$\big): In diesem Fall ist die Synchronisation des
           Outputs $a$ von $P_1$ mit dem Input $a$ von $P_2$ möglich, so dass in
           der Parallelkomposition der Output $a$ als must"=Transition für
-          $(p_1,p_2)$ entsteht. Diese must"=Transition ist jedoch für $P_{12}$
+          $(p_1,p_2)$ entsteht. Diese must"=Transition ist jedoch in $P_{12}$
           nach Voraussetzung nicht erlaubt. Es folgt also auch, dass dieser
           Fall nicht eintreten kann.
         \item Fall 4 \big($p_1\must[a]_1$ mit $a\in O_1\cap\Synch(P_1,P_2)$ und
@@ -458,8 +448,8 @@ aufgeführt. Sie entsprechen Punkt 1.\ und 2.\ aus Satz~\ref{KommFehlerSemSatz}.
   Hier muss unterschieden werden, ob ein $w\in\StQT _{12}\backslash\ET _{12}$
   oder ein $w\in\ET _{12}$ betrachtet wird. Im zweiten Fall ist das $w$
   offensichtlich in der rechten Seite enthalten. Somit wird im Folgenden ein
-  $w\in\StQT _{12}\backslash\ET _{12}$ betrachtet und es wird versucht dessen
-  Zugehörigkeit zur rechten Menge zu zeigen. Aufgrund von
+  $w\in\StQT _{12}\backslash\ET _{12}$ betrachtet und es wird dessen
+  Zugehörigkeit zur rechten Menge gezeigt. Aufgrund von
   Definition~\ref{StilleTraceDef} weiß man, dass $(p_{01},p_{02})
   \weakmay[w]_{12} (p_1,p_2)$ gilt mit $(p_1,p_2)\in Qui_{12} \backslash
   E_{12}$. Durch Projektion erhält man $p_{01} \weakmay[w_1]_1 p_1$ und $p_{02}
@@ -505,12 +495,13 @@ ist. Den Beweis dazu liefert das folgende Korollar.
   Die Relation \QRel{} ist eine Präkongruenz bezüglich $\cdot\|\cdot$.
 \end{Kor}
 \begin{proof}
-  Es muss gezeigt werden: Wenn $P_1\QRel P_2$ gilt, so auch $P_{31}\QRel
-  P_{32}$ für jedes komponierbare System $P_3$. D.h.\ es ist zu zeigen, dass
-  aus $P_1\ERel P_2$ und $\QET{}_1\subseteq \QET{}_2$ sowohl $P_{31}\ERel
-  P_{32}$ als auch $\QET{}_{31}\subseteq \QET{}_{32}$ folgt. Dies ergibt sich,
-  wie im Beweis zu Korollar~\ref{KommPraekonKor}, aus der Monotonie von
-  $\cdot\|\cdot$ auf Sprachen wie folgt:
+  Es muss gezeigt werden: Wenn $P_1\QRel P_2$ für zwei \MEIO{}s $P_1$ und $P_2$
+  gilt, so auch $P_{31}\QRel P_{32}$ für jedes alle komponierbare Systeme
+  $P_3$. D.h.\ es ist zu zeigen, dass aus $P_1\ERel P_2$ und $\QET{}_1\subseteq
+  \QET{}_2$ sowohl $P_{31}\ERel P_{32}$ als auch $\QET{}_{31}\subseteq
+  \QET{}_{32}$ folgt, wegen der Defintion von \QRel{} in~\ref{StilleSemDef}.
+  Dies ergibt sich, wie im Beweis zu Korollar~\ref{KommPraekonKor}, aus der
+  Monotonie von $\cdot\|\cdot$ auf Sprachen wie folgt:
   \begin{itemize}
     \item $\begin{aligned}[t]
         P_{31} \overset{\mathrm{Korollar}~\ref{KommPraekonKor}}{
@@ -584,18 +575,18 @@ in~\ref{StilleTestDef}.
       I_T$ und einer must-Schlinge für $\tau$ besteht. Somit kann $P'_1$ die im
       Prinzip gleichen Fehler-Zustände lokal erreichen wie $P'_1\|T$. Es gibt
       also einen lokal erreichbaren Zustand von $P'_1\|T$, der in $E_{P'_1\|T}$
-      enthalten ist. Somit erfüllt $P_1$ nicht alle Tests $T$ und es muss somit
+      enthalten ist. Somit erfüllt $P_1$ den Tests $T$ nicht und es muss somit
       auch mindestens eine as"=Implementierung $P'_2$ von $P_2$ geben, die den
       Test $T$ ebenfalls nicht erfüllt. Da eine Implementierung den Test $T$
       erfüllt, wenn die Parallelkomposition der Implementierung mit dem Test
       fehler- und stillstand-frei ist, kann die nicht Erfüllung eines Testes
       sowohl an einem Fehler- wie auch einem stillen Zustand liegen. Bei dem
       lokal erreichbaren fehlerhaften Zustand kann es sich nur um einen Fehler
-      handeln, da es in der Komposition mit $T$ keine Stille geben kann. Da $T$
-      keinen Fehler-Zustand und auch keine fehlenden Input-Möglichkeiten
-      enthält, kann der Fehler nur von $P'_2$ geerbt sein. Somit muss in $P'_2$
-      ein Fehler-Zustand lokal erreichbar sein. Es gilt also $\varepsilon \in
-      \PrET _{P'_2} \subseteq \ET _{P'_2}$ und mit
+      handeln, da es wegen der $\tau$-Schlinge in der Komposition mit $T$ keine
+      Stille geben kann. Da $T$ keinen Fehler-Zustand und auch keine fehlenden
+      Input-Möglichkeiten enthält, kann der Fehler nur von $P'_2$ geerbt sein.
+      Somit muss in $P'_2$ ein Fehler-Zustand lokal erreichbar sein. Es gilt
+      also $\varepsilon \in \PrET _{P'_2} \subseteq \ET _{P'_2}$ und mit
       Proposition~\ref{KommSemProp} auch $\varepsilon\in\ET _2$.
     \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
       $x_{n+1}\in I$): Es wird der folgende Partner $T$ betrachtet (siehe auch
@@ -794,13 +785,9 @@ in~\ref{StilleTestDef}.
   allen in $w$ befindlichen Aktionen handelt es sich um synchronisierte
   Aktionen und es gilt $I_T\cap I=\emptyset$. Daraus folgt $w\in O_{P'_1\|T}$
   und $w\in\StQT (P'_1\|T)$. Es kann also in der Parallelkomposition durch $w$
-  ein stiller Zustand lokal erreicht werden. Da $w\notin\ET _{P'_1}$ gilt, kann
-  auf dem Weg, der mit $w$ im Transitionssystem $P'_1$ zurückgelegt wird, kein
-  Fehler lokal erreicht werden. Es kann also weder von $P'_1$ noch von $T$ ein
-  Fehler auf diesem Weg geerbt werden und durch den Aufbau von $T$ kann auch
-  kein neuer Fehler in der Parallelkomposition der beiden Systeme entstehen. Da
-  ein stiller Zustand in $P'_1\|T$ lokal erreichbar ist, muss auch in $P'_2\|T$
-  für eine as"=Implementierung $P'_2$ von $P_2$ ein fehlerhafter Zustand lokal
+  ein stiller Zustand lokal erreicht werden. Da ein stiller Zustand in
+  $P'_1\|T$ lokal erreichbar ist, muss auch in $P'_2\|T$ für eine
+  as"=Implementierung $P'_2$ von $P_2$ ein fehlerhafter Zustand lokal
   erreichbar sein. Es kann zunächst keine Aussage getroffen werden, ob das $w$
   in $P'_2\|T$ ausführbar ist und ob es sich bei dem fehlerhaften Zustand um
   Stille oder einen Fehler handelt.
@@ -809,12 +796,16 @@ in~\ref{StilleTestDef}.
       lokal erreichbaren fehlerhaften Zustand um einen Fehler. Es ist somit
       nicht relevant, ob $w$ ausführbar ist. Der Fehler-Zustand kann sowohl von
       $P'_2$ geerbt sein, wie auch durch fehlende Input"=must"=Transitionen als
-      neuer Fehler in der Parallelkomposition entstanden sein. Es gilt, dass in
-      $P'_2$ ein Präfix von $w$ in $\ET _{P'_2}$ enthalten ist, wegen des
-      Beweises des ersten Punktes aus Lemma~\ref{KommTestVerfeinLem} und da $T$
-      nur neue Fehler auf dem Trace $w$ zulässt. Die Menge \ET{} ist unter
-      \cont{} abgeschlossen, somit gilt $w\in\ET _{P'_1}\subseteq\QET _{P'_2}$.
-      Mit Proposition~\ref{StilleSemProp} folgt daraus $w\in\QET _2$.
+      neuer Fehler in der Parallelkomposition entstanden sein. Von $T$ kann
+      kein Fehler geerbt werden und $T$ kann hat in allen Zuständen die
+      Möglichkeit alle Inputs entgegen zu nehmen. Die einzigen Outputs, die $T$
+      ausführen kann, befinden sich auf dem Trace, auf dem $T$ das Wort $w$
+      ausführt. Es gilt, dass ein Präfix von $w$ in $\ET _{P'_2}$ enthalten
+      ist, wegen des Beweises des ersten Punktes aus
+      Lemma~\ref{KommTestVerfeinLem} und da $T$ nur neue Fehler auf dem Trace
+      $w$ zulässt. Die Menge \ET{} ist unter \cont{} abgeschlossen, somit gilt
+      $w\in\ET _{P'_2}\subseteq\QET _{P'_2}$. Mit
+      Proposition~\ref{StilleSemProp} folgt daraus $w\in\QET _2$.
     \item Fall b) (stiller Zustand lokal erreichbar in $P'_2\|T$ und
       $\varepsilon \notin \ET (P'_2\|T)$): Da in $T$ nur durch $w$ ein stiller
       Zustand erreicht werden kann, muss es sich bei dem lokal erreichbaren
@@ -828,11 +819,11 @@ in~\ref{StilleTestDef}.
 
 \begin{Satz}
   \label{StilleTestVerfSatz}
-  Falls $P_1\QRel P_2$ gilt folgt draus auch, dass $P_1$ $P_2$
-  Stille-verfeinert.
+  Aus $P_1\QRel P_2$ folgt, dass $P_1$ $P_2$ Stille-verfeinert.
 \end{Satz}
 \begin{proof}
-  Nach Definition gilt $w\in\QET (P)$ mit $w\in O(P)^*$ genau dann, wenn in $P$
+  \TODO{analog zum entsprechendn Satz des Fehler-Kapitels umformulieren}
+  Nach Definition gilt $w\in\QET (P)$ mit $w\in O_P^*$ genau dann, wenn in $P$
   ein stiller Zustand oder ein Fehler-Zustand lokal erreichbar ist. $P_1\QRel
   P_2$ impliziert, dass $w\in\QET _2$ gilt, wenn $w\in\QET _1$ gilt. Somit ist
   ein stiller- oder Fehler-Zustand nur dann in $P_1$ lokal erreichbar, wenn
