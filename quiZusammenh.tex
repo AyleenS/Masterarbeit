@@ -5,10 +5,7 @@
   \label{ZusammenhStilleSatz}
   Für \MEIO{}s $P$ und $Q$ gilt $P \asRel Q \Rightarrow P \QRel Q \Rightarrow
   P \ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht. Die
-  Relationen \wasRel{} und \QRel{} sind unvergleichbar. Für eine Spezifikation
-  $Q$, die keinen Divergenten"=Zustand erreichen kann (durch beliebige
-  Aktionen) gilt jedoch $P \wasRel Q \Rightarrow P \QRel Q$. Die umgekehrte
-  Richtung gilt jedoch auch unter dieser Einschränkung nicht.
+  Relationen \wasRel{} und \QRel{} sind unvergleichbar.
 \end{Satz}
 \begin{proof}\mbox{}\\
   $P \asRel Q \Rightarrow P \QRel Q$:\\
@@ -78,27 +75,6 @@
     \end{center}
   \end{figure}
 
-  $P \wasRel Q \Rightarrow P \QRel Q$ für $Q$ erreicht keinen divergenten
-  Zustand:\\
-  Der Beweis verläuft analog zum Beweis der Implikation $P \asRel Q \Rightarrow
-  P \QRel Q$ bis zu dem Punkt, an dem man ein $q_n$ in $Q$ mit $p_n \mathcal{R}
-  q_n$ erreicht, in dem man statt Lemma~\ref{AblaefeVerfSpezLem} das
-  Lemma~\ref{AblaefeSchwVerfSpezLem} anwendet und $\mathcal{R}$ eine schwache
-  und keine starke as"=Verfeinerungs"=Relation ist. Für $p_n$ als stillen
-  Zustand gilt ebenfalls $p_n \nmust[\omega]_P$ für alle $\omega\in
-  (O\cup\{\tau\})$. Daraus folgt mit der Definition der Relation \weakmust{}
-  auch $p_n \nweakmust[\hat{\omega}]_P$ für alle $\omega\in O$. Für
-  $\hat{\tau}$ ist für $p_n$ auf jeden Fall via \glqq must"=Transitionen\grqq{}
-  schwach ausführbar. Darin bestand das Problem, das das Gegenbeispiel im
-  letzten Punkt ausgenutzt hat. Es kann jedoch via must"=Transitionen mit dem
-  leeren Wort von $p_n$ aus kein von $p_n$ verschiedenen Zustand erreicht
-  werden, da $p_n \nmust[\tau]$ gilt. Es gilt also für alle Zustände $p\in
-  P\backslash \{p_n\}$ $p_n \nweakmust[\hat{\tau}] p$. Für $Q$ gilt $q_n
-  \nmust[\tau] q_n$, da $q_n$ in $Q$ erreichbar ist durch $w$ und somit nicht
-  divergent sein darf nach Voraussetzung. Zusammen mit~\ref{wSimDef}.3 somit
-  für alle $\omega \in (O\cup \{\tau\}$ $q_n \nmust[\omega]$. Es gilt also
-  $q_n\in Qui_Q$ und damit auch $w\in\StQT _Q\subseteq\QET _Q$.
-
   $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$:\\
   Wie im Gegenbeispiel für die analoge Implikation aus der Relation \ERel{}
   beruht der Grund für die nicht Gültigkeit hier auch darauf, dass Simulationen
@@ -116,12 +92,7 @@
   ist~\ref{wSimDef}.1 erfüllt. Die Transition $q_0 \must[o]_Q q_1$ fordert
   durch~\ref{wSimDef}.3 ihre Verfeinerung in $P$. Da es jedoch keine mit $o$
   beschriftete Transition in $P$ gibt, kann $\mathcal{R}$ keine schwache
-  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ sein.\\
-  Wenn $Q$ eine Spezifikation ohne erreichbare Divergenz sein muss, kann das
-  hier angegebenen Gegenbeispiel mit einer kleinen Veränderung trotzdem
-  verwendet werden. Die $\tau$-Schleifen müssen durch Output"=Schleifen für ein
-  $o'\neq o$ ersetzt werden. Die Sprachen verändern sich dadurch, jedoch gilt
-  die $L(P) \subset L(Q)$ auch unter der Veränderung.
+  as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ sein.
 
   \begin{figure}[htbp]
     \begin{center}

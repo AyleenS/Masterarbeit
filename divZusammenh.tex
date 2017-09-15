@@ -4,7 +4,10 @@
   Divergenz-Relation]
   Für zwei \MEIO{}s $P$ und $Q$ gilt $P \asRel Q \Rightarrow P \DRel Q$. Aus
   keiner der anderen bisher erwähnten Relationen folgt \DRel{} und auch aus der
-  Relation \DRel{} kann keine der anderen Relationen gefolgert werden.
+  Relation \DRel{} kann keine der anderen Relationen gefolgert werden.\\
+  Für eine Spezifikation $Q$, die keinen Divergenten"=Zustand erreichen kann
+  (durch beliebige Aktionen) gilt $P \wasRel Q \Rightarrow P \QRel Q$. Die
+  umgekehrte Richtung gilt jedoch auch unter dieser Einschränkung nicht.
 \end{Satz}
 \begin{proof}\mbox{}\\
   $P \asRel Q \Rightarrow P \DRel Q$:\\
@@ -23,22 +26,25 @@
   ersten Punkt zu zeigen, dass ein beliebiges präfix-minimales $w$ aus $\EDT
   _P$ auch in $\EDT _Q$ enthalten ist. Das Wort $w$ kann ein Element aus $\ET
   _P$ oder $\DT _P$ sein. Für $w$ aus $\ET _P$ folgt mit
-  Satz~\ref{ZusammenhFehlerSatz} bereits $w\in\ET _Q$. Es kann also im
-  folgenden davon ausgegangen werden dass $w$ ein präfix-minimales Elemente aus
-  $\DT _P$ ist. Es gibt in $P$ einen Trace der Form: $\exists w'\in\Sigma ^*,
-  \exists p_1, p_2, \dots , p_n, \exists \alpha _1, \alpha _2, \dots ,\alpha
-  _n: \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha _n \land p_0
-  \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n
-  \in Div _P$. Mit~\ref{SimDef}.3 muss dieser Trace auch in $Q$ möglich sein
-  oder ein Präfix von $w$ muss zu einem Zustand in $E_Q$ führen. Falls es einen
-  Zustand $q_j$ mit $q_j\in E_Q$ und $p_j \mathcal{R} p_j$ gibt für
-  $j\in\{1,2,\dots ,n\}$, dann gilt $w\in \ET _Q \subseteq \EDT _Q$. Es kann
-  für den restlichen Beweis davon ausgegangen werden, dass der Trace in $Q$
-  ausführbar ist. Es gilt also $q_0 \may[\alpha _1]_Q q_1 \may[\alpha _2]_Q
-  \dots q_{n-1} \may[\alpha _n]_Q q_n$ mit $(p_j,q_j)\in\mathcal{R}$ für $0\leq
-  j \leq n$. Von $p_n$ ist eine unendliche Folge an $\tau$s ausführbar. Die
-  Definition~\ref{SimDef}.3 erzwingt, dass entweder ein Zustand von $q_n$ mit
-  $\tau$ aus erreichbar ist, der in $E_Q$ enthalten ist oder von $q_n$ aus
+  Satz~\ref{ZusammenhFehlerSatz} und da jede starke as"=Verfeinerung auch eine
+  schwache ist (Lemma~\ref{ZusammenhWasAsLem}) bereits $w\in\ET _Q$. Es kann
+  also im folgenden davon ausgegangen werden dass $w$ ein präfix-minimales
+  Elemente aus $\DT _P$ ist. Es gibt in $P$ einen Trace der Form wie in
+  Lemma~\ref{AblaefeVerfSpezLem} für den der erreichte Zustand $p_n$ in $Div_P$
+  enthalten ist. Mit Lemma~\ref{AblaefeVerfSpezLem} ein Präfix von $w$ muss zu
+  einem Zustand in $E_Q$ führen oder es gibt einen passenden Trace in $Q$ für
+  $w$. Falls es einen Zustand $q_j\in E_Q$ gibt, gibt mit
+  Lemma~\ref{AblaefeVerfSpezLem} $w\in \ET _Q \subseteq \EDT _Q$. Es kann
+  für den restlichen Beweis davon ausgegangen werden, dass der Trace des Wortes
+  $w$ in $Q$ ausführbar ist. Es gibt also ein $q_n$, dass durch $w$ in $Q$
+  erreicht wird mit $(p_n,q_n)\in\mathcal{R}$, wegen
+  Lemma~\ref{AblaefeVerfSpezLem}. Von $p_n$ ist eine unendliche Folge an
+  $\tau$s ausführbar. Diese Folge kann wie in Lemma~\ref{AblaefeVerfSpezLem}
+  als Trace aufgefasst werden, nur in diesem Fall als unendlicher Trace. Wie
+  bereits im Beweis von~\ref{AblaefeVerfSpezLem} erwähnt, gilt die Erweiterung
+  für unendliche Trace nur für lokal endliche Transitionssysteme durch das
+  Königs Lemma der Graphentheorie. Es ist also entweder ein Zustand von $q_n$
+  aus mit $\tau$s erreichbar, der in $E_Q$ enthalten ist oder von $q_n$ aus ist
   ebenfalls eine unendliche Folge an $\tau$s ausführbar ist, da die
   Transitionen von $P$ Transitionen in $Q$ entsprechen müssen. Es gilt also
   entweder $w\in\ET _Q\subseteq\EDT _Q$ oder $q_n\in Div _Q$ und somit $w\in\DT
@@ -48,13 +54,9 @@
   für den zweiten Punkt aus zu zeigen, dass $\StQT _P\backslash \EDT _P
   \subseteq \QDT _Q$ gilt. In Satz~\ref{ZusammenhStilleSatz} wurde bereits die
   Inklusion $\StQT _P \backslash \ET _P \subseteq \QET _Q$ gezeigt unter der
-  Voraussetzung, dass es eine schwache as"=Verfeinerungs"=Relation zwischen
-  $P$ und $Q$ gibt. $\mathcal{R}$ ist nicht nur eine
-  as"=Verfeinerungs"=Relation sondern auch eine schwache
-  as"=Verfeinerungs"=Relation, wegen Satz~\ref{ZusammenhFehlerSatz}. Die
-  in~\ref{ZusammenhStilleSatz} bewiesene Inklusion gilt also auch hier. Es gilt
-  $\ET _P \subseteq \EDT _P$ und $\QET _Q \subseteq \QDT _Q$. Es folgt also die
-  zu zeigende Inklusion aus der bereits bewiesenen.
+  Voraussetzung, dass es eine starke as"=Verfeinerungs"=Relation zwischen
+  $P$ und $Q$ gibt. Es gilt $\ET _P \subseteq \EDT _P$ und $\QET _Q \subseteq
+  \QDT _Q$. Es folgt also die zu zeigende Inklusion aus der bereits bewiesenen.
 
   Für den letzten Punkt kann ebenfalls eine Einschränkung der zu zeigenden
   Inklusion vorgenommen werden. Es muss also $\EDL _P \backslash \EDT _P
@@ -62,7 +64,7 @@
   \backslash \EDT _P$. In Satz~\ref{ZusammenhFehlerSatz} wurde die Inklusion
   $L _P\subseteq \EL _Q$ unter der Voraussetzung einer schwachen
   as"=Verfeinerungs"=Relation beweisen. Es gilt also wegen der Implikation
-  $\asRel \Rightarrow \wasRel$ (Satz~\ref{ZusammenhFehlerSatz}) und wegen der
+  $\asRel \Rightarrow \wasRel$ (Lemma~\ref{ZusammenhWasAsLem}) und wegen der
   Inklusion $\EL _Q \subseteq \EDL _Q$ auch die hier nach zu weisende
   Inklusion.
 
@@ -108,15 +110,16 @@
 
   $P \DRel Q \not\Rightarrow P \QRel Q$, $P \DRel Q \not\Rightarrow P \wasRel
   Q$ und $P \DRel Q \not\Rightarrow P \asRel Q$:\\
-  Falls eine dieser Implikationen gelten würde, würde mit den bereits in den
-  Sätzen~\ref{ZusammenhFehlerSatz} und~\ref{ZusammenhStilleSatz} bewiesenen
-  Implikationen und der Transitivität von Implikationen folgen, dass auch $P
-  \ERel Q$ gilt. Dies stellt ein Widerspruch zum letzten Punkt dieses Beweises
-  dar. Es kann also keine der Implikationen gelten.
+  Falls eine dieser Implikationen gelten würde, würde mit den bereits in
+  Lemma~\ref{ZusammenhWasAsLem} und den Sätzen~\ref{ZusammenhFehlerSatz}
+  und~\ref{ZusammenhStilleSatz} bewiesenen Implikationen und der Transitivität
+  von Implikationen folgen, dass auch $P \ERel Q$ gilt. Dies stellt ein
+  Widerspruch zum letzten Punkt dieses Beweises dar. Es kann also keine der
+  Implikationen gelten.
 
   $P \wasRel Q \not\Rightarrow P \DRel Q$:\\
   Das Problem dieser Implikation beruht darauf, dass eine schwache
-  as"=Verfeinerungs"=Relation es zulässt, dass $\tau$"=Transitionen schwach
+  as"=Verfeinerungs"=Relation zulässt, dass $\tau$"=Transitionen schwach
   gematched werden. Es ist also möglich, eine unendliche $\tau$-Folge ohne eine
   einzige Transition zu matchen. Das Gegenbeispiel in
   Abbildung~\ref{wasDivGegenBsp} verdeutliche dies. $P$ und $Q$ stehen in der
@@ -129,7 +132,8 @@
   \weakmay[\hat{\tau}]_Q q$ mit $(p_0,q) \in \mathcal{R}$ für ein $q$ aus $Q$.
   $\hat{\tau}$ entspricht $\varepsilon$ somit ist $q_0$ eine zulässige Wahl für
   $q$. $\mathcal{R}$ erfüllt also auch den letzten Punkt der
-  Definition~\ref{wSimDef} und ist deshalb eine as"=Verfeinerungs"=Relation.\\
+  Definition~\ref{wSimDef} und ist deshalb eine schwache
+  as"=Verfeinerungs"=Relation.\\
   $Q$ enthält keine Fehler- oder Divergenz"=Zustände. Es gilt also $\EDT _Q=
   \emptyset$. Für $P$ ist jedoch der Startzustand ein divergenter Zustand. Es
   gilt also $\varepsilon \in\StDT _P\subseteq \EDT _P$. Die Inklusion $\EDT _P
@@ -154,13 +158,54 @@
     \end{center}
   \end{figure}
 
-  $P \ERel Q \not\Rightarrow P \DRel Q$ und $P \QRel Q \not\Rightarrow P \DRel
-  Q$:\\
-  Mit den Implikationen, die bereits in Satz~\ref{ZusammenhStilleSatz} bewiesen
-  wurde, kann gefolgert werden, dass das im letzten Punkt angegebenen Beispiel
-  aus für diese Implikationen anwendbar ist. Es galt $P \wasRel Q$ somit gilt
-  auch $P \QRel Q$ und $P \ERel Q$. Die Relation \DRel{} hingegen ist zwischen
-  $P$ und $Q$ nicht erfüllt. Es folgt also, dass die hier angegeben
-  Implikationen ebenfalls nicht gelten.
+  $P \ERel Q \not\Rightarrow P \DRel Q$:\\
+  Mit der Implikation $\wasRel \Rightarrow \ERel$, die bereits in
+  Satz~\ref{ZusammenhFehlerSatz} bewiesen wurde, kann gefolgert werden, dass
+  das im letzten Punkt angegebenen Beispiel aus für diese Implikation anwendbar
+  ist. Es galt $P \wasRel Q$ somit gilt auch $P \ERel Q$. Die Relation \DRel{}
+  hingegen ist zwischen $P$ und $Q$ nicht erfüllt. Es folgt also, dass die hier
+  angegeben Implikation ebenfalls nicht gilt.
 
+  $P \QRel Q \not\Rightarrow P \DRel Q$:\\
+  Das Gegenbeispiel aus Abbildung~\ref{wasDivGegenBsp} funktioniert auch für
+  diese Implikation jedoch mit einer anderen Begründung. Unter der
+  Voraussetzung, dass $I=\emptyset$ ist, gibt es keine Input-kritischen Traces
+  in $Q$ und in $P$. Weder $Q$ noch $P$ enthalten Fehler"=Zustände somit gilt
+  $\ET _P = \ET _Q = \emptyset$. Da die Zustände $q_0$ und $p_0$ beide keine
+  ausgehenden must"=Transitionen besitzen, sind beide still. Es gilt also
+  $\StQT _P = \StQT _Q = \{\varepsilon\}$. Die Sprachen beider \MEIO{}s
+  bestehen nur aus dem leeren Wort. Es gelten also die notwendigen
+  Inklusionen, damit $P \QRel Q$ erfüllt ist. Wie bereits begründet wurde,
+  erfüllen $P$ und $Q$ jedoch nicht die Voraussetzungen für $P \DRel Q$.
+
+  $P \wasRel Q \Rightarrow P \QRel Q$ für $Q$ erreicht keinen divergenten
+  Zustand:\\
+  Der Beweis verläuft analog zum Beweis der Implikation $P \asRel Q \Rightarrow
+  P \QRel Q$ aus Satz~\ref{ZusammenhStilleSatz} bis zu dem Punkt, an dem man
+  ein $q_n$ in $Q$ mit $p_n \mathcal{R} q_n$ erreicht, in dem man statt
+  Lemma~\ref{AblaefeVerfSpezLem} das Lemma~\ref{AblaefeSchwVerfSpezLem}
+  anwendet und $\mathcal{R}$ eine schwache und keine starke
+  as"=Verfeinerungs"=Relation ist. Für $p_n$ als stillen Zustand gilt ebenfalls
+  $p_n \nmust[\omega]_P$ für alle $\omega\in (O\cup\{\tau\})$. Daraus folgt mit
+  der Definition der Relation \weakmust{} auch $p_n \nweakmust[\hat{\omega}]_P$
+  für alle $\omega\in O$. $\hat{\tau}$ ist für $p_n$ auf jeden Fall via \glqq
+  must"=Transitionen\grqq{} schwach ausführbar. Darin bestand das Problem, das
+  das Gegenbeispiel im Satz~\ref{ZusammenhStilleSatz} für diese Implikation
+  ohne die Einschränkung für $Q$ ausgenutzt hat. Es kann jedoch via
+  must"=Transitionen mit dem leeren Wort von $p_n$ aus kein von $p_n$
+  verschiedenen Zustand erreicht werden, da $p_n \nmust[\tau]$ gilt. Es gilt
+  also für alle Zustände $p\in P\backslash \{p_n\}$ $p_n \nweakmust[\hat{\tau}]
+  p$. Für $Q$ gilt $q_n \nmust[\tau] q_n$, da $q_n$ in $Q$ erreichbar ist durch
+  $w$ und somit nicht divergent sein darf nach Voraussetzung. Zusammen
+  mit~\ref{wSimDef}.3 gilt somit für alle $\omega \in (O\cup \{\tau\})$ $q_n
+  \nmust[\omega]$. $q_n$ ist also in $Qui_Q$ enthalten und damit folgt auch $w
+  \in\StQT _Q\subseteq\QET _Q$.
+
+  $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$ für $Q$
+  erreicht keinen divergenten Zustand:\\
+  Wenn $Q$ eine Spezifikation ohne erreichbare Divergenz sein muss, kann das
+  Gegenbeispiel aus Abbildung~\ref{WasQuiGegenBsp} mit einer kleinen
+  Veränderung trotzdem verwendet werden. Die $\tau$-Schleifen müssen durch
+  Output"=Schleifen für ein $o'\neq o$ ersetzt werden. Die Sprachen verändern
+  sich dadurch, jedoch gilt $L(P) \subset L(Q)$ auch unter der Veränderung.
 \end{proof}
