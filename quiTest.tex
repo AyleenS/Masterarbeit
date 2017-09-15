@@ -822,39 +822,57 @@ in~\ref{StilleTestDef}.
   Aus $P_1\QRel P_2$ folgt, dass $P_1$ $P_2$ Stille-verfeinert.
 \end{Satz}
 \begin{proof}
-  \TODO{analog zum entsprechendn Satz des Fehler-Kapitels umformulieren}
-  Nach Definition gilt $w\in\QET (P)$ mit $w\in O_P^*$ genau dann, wenn in $P$
-  ein stiller Zustand oder ein Fehler-Zustand lokal erreichbar ist. $P_1\QRel
-  P_2$ impliziert, dass $w\in\QET _2$ gilt, wenn $w\in\QET _1$ gilt. Somit ist
-  ein stiller- oder Fehler-Zustand nur dann in $P_1$ lokal erreichbar, wenn
-  auch ein stiller- oder Fehler-Zustand in $P_2$ lokal erreichbar ist. Daraus
-  folgt, dass es as"=Implementierungen $P'_1$ und $P'_2$ von $P_1$ bzw.\ $P_2$
-  gibt, die analoge fehlerhafte Zustände lokal erreichen
-  wegen~\ref{lokaleStilleErrKor}. Es gilt dann auch, dass $P'_j\|T$ einen lokal
-  erreichbaren Fehler oder lokal erreichbare Stille hat, wenn $P'_j$ dies hat,
-  für $j\in\{1,2\}$ und einen Test $T$. Falls $P_1$ einen fehlerhaften Zustand
-  lokal erreicht, dann zeigt sich auch in einer as"=Implementierung von $P_1$
-  dieser durch einen Fehler-Zustand oder einen stillen Zustand. In der
-  Parallelkomposition der as"=Implementierung mit einem Test $T$ tritt der
-  fehlerhafte Zustand auf. Falls es sich um einen Fehler handelt, dann tritt
-  mit allen Tests $T$ ein Fehler in der Parallelkomposition auf. Bei Stille
-  hingegen zeigt sich das Fehlverhalten nur, mit Tests $T$, die einen analogen
-  stillen Zustand enthalten. Mit der Relation \QRel{} gibt es auch in $P_2$
-  einen lokal erreichbaren fehlerhaften Zustand, wenn es in $P_1$ einen solchen
-  gibt. Es tritt dann auch in einer as"=Implementierung Stille oder ein Fehler
-  auf, dies zeigt sich dann auch in der Parallelkomposition mit Tests $T$. Im
-  Fall von Fehlern, zeigt sich sowohl in der Parallelkomposition einer
-  as"=Implementierung von $P_1$ wie auch einer as"=Implementierung von $P_2$
-  mit beliebigen Tests $T$, der Fehler, da \ERel{} gilt und somit die
-  Argumentationen aus Satz~\ref{KommTestVerfSatz} anwendbar sind. Stille tritt
-  in $P_2$ nur ohne einen Fehler auf, wenn in $P_1$ auch nur Stille und kein
-  Fehler auf dem Trace vorhanden war. Ansonsten hätte \ERel{} auch einen Fehler
-  in $P_2$ gefordert. In der Parallelkomposition einer as"=Implementierung von
-  $P_1$ mit $T$ hat sich die Stille bereits gezeigt, also tut sie dies auch in
-  der Parallelkomposition einer as"=Implementierung von $P_2$ mit $T$. Es gilt
-  also $\neg P_1 \QsatAs T \Rightarrow \neg P_2 \QsatAs T$ für alle Tests $T$.
-  Daraus ergibt sich für alle Tests $T$ die Implikation $P_2 \QsatAs T
-  \Rightarrow P_1 \QsatAs T$ und somit Stille-verfeinert $P_1$ $P_2$.
+  In einem \MEIO{} $P$ ist ein Fehler- oder stiller Zustand nach Definition
+  genau dann lokal erreichbar, wenn $w\in\QET _P$ für $w\in O_P$ gilt.\\
+  $P_1$ Stille-verfeinert $P_2$ genau dann, wenn für alle Tests $T$ von $P_1$
+  und $P_2$ die Implikation $P_2\QsatAs T \Rightarrow P_1\QsatAs T$ gilt. Wenn
+  man die Implikation negiert, ist für alle Tests $T$ der beiden \MEIO{}s $\neg
+  P_1\QsatAs T \Rightarrow \neg P_2\QsatAs T$ zu zeigen. Es soll $\neg P_1
+  \QsatAs T$ für einen beliebig gewählten Test $T$ gelten. Es exisitiert also
+  ein $P'_1$ aus der Menge $\asimp (P_1)$, für das $P'_1\|T$ einen Fehler oder
+  einen stillen Zustand lokal erreicht. Für ein $w\in O_{P'_1\|T}^*$ gilt also
+  $w\in\QET _{P'_1\|T}$. Aufgrund von~\ref{StilleSemSatz} kann die Menge $\QET
+  _{P'_1\|T}$ auch als die Vereinigung von $\StQT _{P'_1\|T}$ und $\ET
+  _{P'_1\|T}$ geschrieben werden.
+  \begin{itemize}
+    \item Fall 1 ($w\in\ET _{P'_1\|T}$): Es muss auch $\varepsilon\in\ET
+      _{P'_1\|T}$ gelten, da $w$ keinen Input aus der Menge $I _{P'_1\|T}$
+      enthält und somit $w$ kein Element der Menge $\cont (\MIT _{P'_1\|T})$
+      sein kann. Es kann also der Beweis von Satz~\ref{KommTestVerfSatz}
+      angewendet werden, um in diesem Fall zu folgern, dass für eine
+      as"=Implementierung $P'_2$ von $P_2$ ein Fehler in $P'_2\|T$ lokal
+      erreichbar ist und somit $\neg P_2\QsatAs T$ gilt.
+    \item Fall 2 ($w\in\StQT _{P'_1\|T}\backslash\ET _{P'_1\|T}$): Damit dieser
+      Fall eintretten kann, muss das Wort $w$ in $P'_1\|T$ einen stillen
+      Zustand $(p_1,p_T)$ erreichen, der nicht in $E_{P'_1\|T}$ enthalten ist.
+      Mit Lemma~\ref{StilleZustLem}.2 sind auch die Zustände $p_1$ und $p_T$ in
+      den Teilsystemen still. Es gibt also eine Projektion des Wortes $w$ auf
+      die Teilsysteme, so dass $w\in w_1\|w_T$, $w_1\in\StQT _{P'_1}$ und
+      $w_T\in\StQT _T$ gilt, wobei $w_1$ den Zustand $p_1$ in $P'_1$ und $w_T$
+      den Zustand $p_T$ in $T$ erreicht. $w_1$ ist in der Menge $\StQT _{P'_1}
+      \subseteq \QET _{P'_1}$ enthalten. Mit Proposition~\ref{StilleSemProp}
+      gilt also auch $w_1\in\QET _1$ und mit $P_1\QRel P_2$ folgt draus
+      $w_1$ auch in der Menge $\QET _2$ enthalten sein muss. Es gibt wegen
+      Proposition~\ref{StilleSemProp} auch eine as"=Implementierung $P'_2$ von
+      $P_2$, für die $w_1\in\QET _{P'_2}$ gilt. Da die Menge \QET{} der
+      fehler-gefluteten Stille-Trace ist, können im folgenden zwei Fälle
+      unterschieden werden.
+      \begin{itemize}
+        \item Fall 2a) ($w_1\in\ET _{P'_2}$): Da $w_T$ in $T$ ausführbar ist,
+          gilt $w_T\in L_T\subseteq\EL _T$ und somit folgt mit
+          Satz~\ref{KommFehlerSemSatz}.1 $w\in\ET _{P'_2\|T}$. Es ist also wie
+          im Beweis von Satz~\ref{KommTestVerfSatz} ein Fehler in $P'_2\|T$
+          lokal erreichbar. Somit folgt wie in Fall 1 $\neg P_2\QsatAs T$.
+        \item Fall 2b) ($w_1\in\StQT _{P'_2}$): Das Wort $w_1$ führt in $P'_2$
+          zu einem Zustand $p_2$, der still ist. Wenn man also die Wörter $w_1$
+          und $w_T$ in $P'_2\|T$ parallel zum Zustand $(p_2,p_T)$ ausführt, ist
+          dieser Zustand durch Lemma~\ref{StilleZustLem}.1 still. Es gilt also
+          $w\in\StQT _{P'_2\|T}$ mit $w\in O_{P'_2\|T}$, da $P_1$ und $P_2$ die
+          selbe Signatur haben müssen. Ein stiller Zustand ist als in der
+          Parallelkomposition $P'_2\|T$ lokal erreichbar. Es gilt also auch in
+          diesem Fall $\neg P_2\QsatAs T$.
+      \end{itemize}
+  \end{itemize}
 \end{proof}
 
 Es wurde, wie im letzten Kapitel, eine Kette an Folgerungen gezeigt, die
@@ -884,3 +902,10 @@ dargestellt.
   \label{FolgerungsketteQui}
   \end{center}
 \end{figure}
+
+Aus der Abbildung~\ref{FolgerungsketteQui} folgt eine Äquivalenz, die im
+nächsten Korollar noch extra hervorgehoben wird.
+
+\begin{Kor}
+  Es gilt: $P_1\QRel P_2 \Leftrightarrow P_1$ Stille-verfeinert $P_2$.
+\end{Kor}

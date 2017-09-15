@@ -220,29 +220,33 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
   Fehler-verfeinert.
 \end{Satz}
 \begin{proof}
-  Um zu zeigen, dass $P_1$ $P_2$ Fehler-verfeinert, muss nachgewiesen werden,
-  dass für alle Test $T$ $P_2\EsatAs T \Rightarrow P_1\EsatAs T$ gilt. Diese
-  Aussage ist analog zu für alle Test $T$ gilt $\neg P_1\EsatAs T \Rightarrow
-  \neg P_2\EsatAs T$. Es wird ein beliebiger Test $T$ gewählt für den $\neg P_1
-  \EsatAs T$ gilt. Es muss also eine as"=Implementierung $P'_1$ von $P_1$
-  geben, die in der Parallelkomposition einen Fehler lokal erreicht. Es gilt
-  also $\varepsilon\in\ET _{P'_1\|T}$. Nach Satz~\ref{KommFehlerSemSatz}.1 gilt
-  $\ET _{P'_1\|T} = \cont (\prune ((\ET _{P'_1}\|\EL _T)\cup (\EL _{P'_1}\|\ET
-  _T)))$. $\varepsilon$ ist auf jeden Fall präfix-minimal, das \cont{} hat also
-  keinen Einfluss. Mit Proposition~\ref{KommSemProp} folgt $\varepsilon \in
-  \prune ((\ET _1\|\EL _T)\cup (\EL _1\|\ET _T))$. Es gibt also ein $w\in
-  O_{P_1\|T}^*$, dass entweder in der Menge $\ET _1\|\EL _T$ oder in der Menge
-  $\EL _1\|\ET _T$ enthalten ist. Es gibt also Wörter $w_1$ und $w_T$ mit $w\in
-  w_1\|w_T$, $w_1\in \ET _1$ bzw.\ $w_1\in\EL _1$ und $w_T\in\EL _T$ bzw.\ $w_T
-  \in\ET _T$. Da $P_1\ERel P_2$ gilt, folgt $w_1\in \ET _2$ bzw.\ $w_1\in \EL
-  _2$. Es gibt durch Proposition~\ref{KommSemProp} eine as"=Implementierung
-  $P'_2$ von $P_2$ für die $w_1\in\ET _{P'_2}$ bzw.\ $w_1\in\ET _{P'_2}$ gilt.
-  In Parallelkomposition mit $T$ ist das Wort $w$ also in der Menge $(\ET
-  _{P'_2}\|\EL _T)\cup (\EL _{P'_2}\|\ET _T)$ enthalten. $P_1$ und $P_2$ müssen
-  die gleiche Signatur besitzen, es gilt also auch $w\in O_{P'_2\|T}$ und somit
-  $\varepsilon\in\prune ((\ET _{P'_2}\|\EL _T)\cup (\EL _{P'_2}\|\ET _T)))$. Es
-  ist also in $P'_2\|T$ ein Fehler lokal erreichbar und es folgt $\neg P'_2
-  \EsatAs T$.
+  Für ein \MEIO{} $P$ gilt nach Definition $\varepsilon\in\ET _P$ genau dann,
+  wenn ein Fehler"=Zustand lokal erreichbar ist in $P$.\\
+  Um zu zeigen, dass $P_1$ eine Fehler-Verfeinerung von $P_2$ ist, muss
+  nachgewiesen werden, dass für alle ihre Test $T$ $P_2\EsatAs T \Rightarrow
+  P_1\EsatAs T$ gilt. Diese Aussage ist analog zu der Aussage, dass für alle
+  Test $T$ von $P_1$ und $P_2$ $\neg P_1\EsatAs T \Rightarrow \neg P_2\EsatAs
+  T$ gilt. Es wird ein beliebiger Test $T$ gewählt für den $\neg P_1 \EsatAs T$
+  gilt. Es muss also eine as"=Implementierung $P'_1$ von $P_1$ geben, die in
+  der Parallelkomposition mit $T$ einen Fehler lokal erreicht. Es gilt also
+  $\varepsilon\in\ET _{P'_1\|T}$. Nach Satz~\ref{KommFehlerSemSatz}.1 gilt die
+  Gleichheit $\ET _{P'_1\|T} = \cont (\prune ((\ET _{P'_1}\|\EL _T)\cup (\EL
+  _{P'_1}\|\ET _T)))$. $\varepsilon$ ist auf jeden Fall präfix-minimal, das
+  \cont{} hat also keinen Einfluss. Mit Proposition~\ref{KommSemProp} folgt
+  $\varepsilon \in \prune ((\ET _1\|\EL _T)\cup (\EL _1\|\ET _T))$. Es gibt
+  also ein $w\in O_{P_1\|T}^*$, dass in der Menge $\ET _1\|\EL _T$ oder in der
+  Menge $\EL _1\|\ET _T$ enthalten ist. Es gibt also Wörter $w_1$ und $w_T$ mit
+  $w\in w_1\|w_T$, $w_1\in \ET _1$ bzw.\ $w_1\in\EL _1$ und $w_T\in\EL _T$
+  bzw.\ $w_T \in\ET _T$. Da $P_1\ERel P_2$ gilt, folgt $w_1\in \ET _2$ bzw.\
+  $w_1\in \EL _2$. Es gibt durch Proposition~\ref{KommSemProp} eine
+  as"=Implementierung $P'_2$ von $P_2$ für die $w_1\in\ET _{P'_2}$ bzw.\
+  $w_1\in\ET _{P'_2}$ gilt. In Parallelkomposition mit $T$ ist das Wort $w$
+  also in der Menge $(\ET _{P'_2}\|\EL _T)\cup (\EL _{P'_2}\|\ET _T)$
+  enthalten. $P_1$ und $P_2$ müssen die gleiche Signatur besitzen, es gilt also
+  auch $w\in O_{P'_2\|T}$ und somit $\varepsilon\in\prune ((\ET _{P'_2}\|\EL
+  _T)\cup (\EL _{P'_2}\|\ET _T))) \subseteq \ET _{P'_2\|T}$. Es ist also in
+  $P'_2\|T$ ein Fehler lokal erreichbar und es folgt für die Spezifikation
+  $P_2$ $\neg P_2 \EsatAs T$.
 \end{proof}
 
 Auch die in diesem Abschnitt gezeigten Folgerungen schließen sich zu einem
