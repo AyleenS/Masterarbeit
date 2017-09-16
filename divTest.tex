@@ -417,6 +417,35 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
     \item $\EL (\DF (P_{12})) = \EL (\DF (P_1)\|\DF (P_2))$.
   \end{enumerate}
 
+  $\ET (\DF (P_{12})) \subseteq \ET (\DF (P_1)\|\DF (P_2))$:\\
+  Da die \ET{}-Mengen beide unter \cont{} abgeschlossen sind, kann man ein
+  beliebiges präfix-minimales Element $w\in\ET (\DF (P_{12}))$ betrachten.
+  Das $w$ kann ein Input-kritischer Trace sein oder ein gekürzter
+  Fehler"=Trace.
+  \begin{itemize}
+    \item Fall 1 ($w\in \MIT (\DF (P_{12}))$): Durch die Normierung von
+      $P_{12}$ auf das divergenz-freie System $P_{12}$ haben sich die
+      Input-kritischen Traces nicht verändert. Es gilt also auch $w\in P_{12}$.
+      Durch den Fall 1 des Beweises von 1. \glqq $\subseteq$\grqq{} von
+      Satz~\ref{KommFehlerSemSatz} folgt, dass mindestens für eines der
+      Transitionssysteme $P_1$ und $P_2$ der Trace $w$, der auf das Teilsystem
+      projeziert wurde, auch ein Input-kritischer Trace sein muss. Bei der
+      Normierung der Teilsysteme bleiben ihre Input-kritischen Traces
+      unverändert erhalten. In der Parallekompositon ergibt sich mit Fall I von
+      1. \glqq $\supseteq$\grqq{} aus Satz~\ref{KommFehlerSemSatz}, dass $w$
+      als Parallekompositon der beiden Traces der der einzel Systeme in der
+      Menge $\ET (\DF (P_1)\|\DF (P_2))$ enthalten ist.
+    \item Fall 2 ($w\in \PrET (\DF (P_{12}))$): Es kann sich in diesem Fall um
+      einen strikten gekürzter Fehler"=Trace handeln, der in $P_{12}$ ebenfalls
+      ein gekürzter Fehler"=Trace ist oder um einen, der erst durch die
+      Normierung zu einem wurde. Fall $w$ erst durch Normierung zu einem
+      gekürzten Fehler"=Trace wurde, ist er in der Menge $\PrDT _{12}$ enthalten.
+      \begin{itemize}
+        \item Fall 2a) ($w\in \PrET_{12}$): \TODO{zu beweisen}
+        \item Fall 2b) ($w\in \PrDT_{12}$): \TODO{zu beweisen}
+      \end{itemize}
+  \end{itemize}
+
   \TODO{Punkte beweisen}
 
 
