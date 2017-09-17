@@ -359,6 +359,8 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   bezüglich der Relation \DRel{}.
 \end{Prop}
 
+\vspace{0.2cm}
+
 \begin{Lem}[Relationen unter Divergenz-Freiheit]
   Für zwei \MEIO{}s $P$ und $Q$ in divergenz-freier Form gilt: $P \DRel Q
   \Leftrightarrow P \QRel Q$.
@@ -395,7 +397,6 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   also auch in divergenz-freier Form.
 \end{proof}
 
-
 \begin{proof}[Beweis zu Satz~\ref{DivSemSatz}]\mbox{}\\
   Durch Proposition~\ref{DivNormProp} kann man jeden \MEIO{} $P$ so normieren,
   dass es divergenz-frei ist, dass Ergebnis der Normierung jedoch noch
@@ -417,13 +418,13 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
     \item $\EL (\DF (P_{12})) = \EL (\DF (P_1)\|\DF (P_2))$.
   \end{enumerate}
 
-  $\ET (\DF (P_{12})) \subseteq \ET (\DF (P_1)\|\DF (P_2))$:\\
+  (i) \glqq $\subseteq$\grqq{}:\\
   Da die \ET{}-Mengen beide unter \cont{} abgeschlossen sind, kann man ein
   beliebiges präfix-minimales Element $w\in\ET (\DF (P_{12}))$ betrachten.
   Das $w$ kann ein Input-kritischer Trace sein oder ein gekürzter
   Fehler"=Trace. Im Fall $w\in\PrET (\DF (P_{12}))$ kann $w\in\PrET _{12}$
   gelten oder $w\in\PrDT _{12}$. Input-kritische Traces bleiben von der
-  Normierung unberührt. Die Menge $\MIT (\DF (P_{12})$ und $\MIT _{12}$
+  Normierung unberührt. Die Menge $\MIT (\DF (P_{12}))$ und $\MIT _{11}$
   entsprechen sich also.
   \begin{itemize}
     \item Fall 1 ($w\in \ET _{12}$): Es gilt mit Satz~\ref{KommFehlerSemSatz}.1
@@ -451,187 +452,101 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
       besteht, gilt auch $w\in\ET (\DF (P_1)\|\DF (P_2))$.
   \end{itemize}
 
-  \TODO{Punkte beweisen}
+  (i) \glqq $\supseteq$\grqq{}:\\
+  Es genügt auch für diese Inklusion ein präfix-minimales Element zu
+  betrachten, da beide \ET{}-Mengen unter \cont{} abgeschlossen sind. Für ein
+  präfix-minimales $w$ aus der Menge $\ET (\DF (P_1)\|\DF (P_2))$ gilt mit
+  Satz~\ref{KommFehlerSemSatz}.1 $w\in \cont (\prune ((\ET _{\DF (P_1)}\|\EL
+  _{\DF (P_2)})\cup (\EL _{\DF (P_1)}\|\ET _{\DF (P_2)})))$. Es gibt also
+  eine Projektion des Wortes $w$ auf die einzelnen Systeme, so dass $w\in w_1\|
+  w_2$ gilt mit $w_1\in\ET _{\DF (P_1)}$ bzw.\ $w_1\in\EL _{\DT (P_1)}$ und
+  $w_2\in\EL _{\DF (P_2)}$ bzw.\ $w_2\in\ET _{\DT (P_2)}$. Da das $w$
+  präfix-minimal ist in $\DF (P_1)\|\DF (P_2)$ sind die $w_j\in \EL _{\DF
+  (P_j)}$ entweder ausführbar ($w_j\in L _{\DF (P_j)}$) oder in der Menge $\MIT
+  _{\DF (P_j)}$ enthalten. Die Normierung auf ein divergenz-freies System kann
+  nichts an der Ausführbarkeit von Traces verändern. Falls das $w_j$ für
+  $j\in\{1,2\}$ in der Menge $\cont (\MIT _{\DF (P_j)})$ enthalten ist, gilt
+  auch $w_j\in\cont (\MIT _j)$, da die Normierung auf divergenz-freie Systeme
+  die Input-kritischen Trace unverändert lässt. Für $w_j\in\cont (\PrET _{\DF
+  (P_j)})$ können jedoch zwei Fälle unterschieden werden. $w_j$ kann bereits
+  von der Normierung ein Trace aus der Menge $\cont (\PrET _j)$ gewesen sein
+  oder $w_j$ ist erst durch die Normierung zu einem forgesetzten gekürzten
+  Fehler-Trace geworden und es galt davor $\cont (\PrDT _j) = \DT _j$. Für die
+  hier betrachten $w_j$ gilt $w_j\in \EL _j$, wenn nach der Normierung
+  $w_j\in\EL _{\DF (P_j)}$. Es kommt also nur auf die Wörter $w_j$ in den
+  \ET{}-Mengen an.
+  \begin{itemize}
+    \item Fall 1 ($w_j\in\ET _j$): In diesem Fall kann man
+      Satz~\ref{KommFehlerSemSatz}.1 anwenden und es folgt $w\in\ET _{12}$ und
+      nach der Anwendung der Konstuktion aus Definition~\ref{DivNormDef} gilt
+      immer noch $w\in\ET _{\DF (P_{12})}$.
+    \item Fall 2 ($w_j\in\DT _j$): \OBdA{} $j=1$. $w_2$ ist in der Menge $\EL
+      _2$ enthalten. Wegen der präfix-Minimalität von $w$ ist die hier
+      relevante unterscheidung $w_2\in\MIT _2$ oder $w_2\in L_2$.
+      \begin{itemize}
+        \item Fall 2a) ($w_2\in\MIT _2$): Es gibt ein Präfix von $w_1$, dass
+          zu einem divergenten Zustand führt. Falls es durch dieses Präfix von
+          $w_1$ noch nicht zu einem Problem mit dem fehlenden Input aus $w_2$
+          in der Komposition kommt, wird der divergente Zustand von $P_1$ an
+          die Parallelkomposition $P_1\|P_2$ vererbt und durch die
+          Abgeschlossenheit gegenüber \cont{} folgt dann $w\in\DT _{12}
+          \subseteq \ET _{\DF (P_{12})}$. Falls es jedoch zu
+          Sychnronisations"=Problemen wegen des nicht sichergestellten Input in
+          $P_2$ im Wort $w_2$ kommt, entsteht in der Parallelkomposition ein
+          Trace aus der Menge $\ET _{12} \subseteq \ET _{\DF (P_{12})}$ durch
+          Satz~\ref{KommFehlerSemSatz}.1, da dann das Präfix von $w_1$, dass zu
+          den Sychronsiations"=Problemen führt ausführbar ist und somit in der
+          Sprache und auch der Fehler"=gefluteten Sprache enthalten ist.
+        \item Fall 2b) ($w_2\in L_2$): In diesem Fall ist $w_2$ komplett
+          ausführbar in $P_2$. Das Präfix von $w_1$, dass zu einem
+          Divergenz"=Zustand führt, kann also mit einem Präfix von $w_2$
+          Komponiert werden und ergibt ein Präfix von $w$ in der
+          Parallelkomposition $P_1\|P_2$, dass zu einem divergenten Zustand
+          führt. Wegen der Abgeschlossenheit bezüglich \cont{} gilt $w\in \DT
+          _{12}\subseteq \ET _{\DF (P_{12})}$.
+      \end{itemize}
+  \end{itemize}
 
+  (ii):
+  Man kann diese Gleichheit wieder in zwei Inklusitionen aufteilen, die jedoch
+  durch die das bereits in (i) gezeigte eingeschränkt werden können, dabei
+  entstehen dann die beiden folgenden Inklusionen: $\StQT (\DF (P_{12}))
+  \backslash \ET (\DF (P_{12})) \subseteq\QET (\DF (P_1)\|\DF (P_2))$ und
+  $\StQT (\DF (P_1)\|\DF (P_2)) \backslash \ET (\DF (P_1)\|\DF (P_2))
+  \subseteq\QET (\DF (P_{12}))$. Da die Konstuktion der Normierung auf
+  divergenz-freie Systeme in Definition~\ref{DivNormDef} jedoch keine
+  Transitionen verändert, sondern nur die Zustands-Mengen $E$ erweitert, gilt
+  sogar die Gleichheit $\StQT (\DF (P_{12})) \backslash \ET (\DF (P_{12})) =
+  \StQT (\DF (P_1)\|\DF (P_2)) \backslash \ET (\DF (P_1)\|\DF (P_2))$. Ein Wort
+  aus der Menge einer der \StQT{}-Mengen muss ausführbar sein zu einem stillen
+  Zustand führen, da auf beiden Seiten ausgeschlossen wurde, dass das jeweilige
+  Wort auch in der \ET{}-Menge enthalten ist, ist der erreicht Zustand ein
+  Fehler"=Zustand. Es kann also Lemma~\ref{StilleZustLem} angewendet werden und
+  es folgt auf beiden Seiten der Gleichung, das die in den projektionen
+  erreichten Zustände in $P_1$ und $P_2$ still sein müssen. Aus zwei stillen
+  Zuständen in der Komposition entsteht auch immer weider ein stiller Zustand
+  mit Lemma~\ref{StilleZustLem}.
 
-  % 1. \glqq$\subseteq$\grqq{}:\\
-  % Da beide Seiten der Gleichung unter \cont{} abgeschlossen sind, genügt es ein
-  % präfix-minimales Element $w$ zu betrachten. Es muss hier unterschieden
-  % werden, ob $w\in\ET _{12}$ oder $w\in\DT _{12}\backslash\ET _{12}$ betrachtet
-  % wird. Im ersten Fall ist das $w$ in der rechten Seite der Gleichung enthalten
-  % wegen des Beweises des ersten Punktes von Satz~\ref{KommFehlerSemSatz} und da
-  % $\ET (P)\subseteq \EDT (P)$ und $\EL (P)\subseteq \EDL (P)$ gilt. Deshalb
-  % wird im weiteren Verlauf dieses Beweises davon ausgegangen, dass $w\in\DT
-  % _{12}\backslash\ET _{12}$ gilt und es wird versuch zu zeigen, dass dieses $w$
-  % ebenfalls in der rechten Seite enthalten ist. Da das betrachtete $w$
-  % präfix-minimal ist, gilt $w\in\PrDT _{12}\backslash\ET _{12}$. Aus der
-  % Definition~\ref{DivSemDef} weiß man, dass ein $v\in O^*_{12}$ existiert,
-  % sodass $(p_{01},p_{02})\weakmay[w]_{12} (p_1,p_2)\weakmay[v]_{12}
-  % (p'_1,p'_2)$ gilt mit $(p'_1,p'_2)\in Div _{12}$. Durch die Projektion auf die
-  % Transitionssysteme $P_1$ und $P_2$ erhält man $p_{01}\weakmay[w_1]_1 p_1
-  % \weakmay[v_1]_1 p'_1$ und $p_{02}\weakmay[w_2]_2 p_2\weakmay[v_2]_2 p'_2$ mit
-  % $w\in w_1\|w_2$ und $v\in v_1\|v_2$. Aus $(p'_1,p'_2)\in Div _{12}$ folgt,
-  % dass \oBdA{} $p'_1\in Div _1$ gilt, d.h.\ $w_1v_1\in\StDT _1\subseteq\EDT
-  % _1$. Da $p_{02}\weakmay[w_2v_2]_2$ gilt, erhält man $w_2v_2\in\EDL _2$. Somit
-  % gilt insgesamt $wv\in\EDT _1\|\EDL _2$ und da $v\in O^*_{12}$, gilt $\prune
-  % (wv) = w$ und $w$ ist in der rechten Seite der Gleichung enthalten.
-
-  % 1. \glqq$\supseteq$\grqq{}:\\
-  % Es wird ebenso wie oben nur ein präfix-minimales $x$ betrachtet wegen des
-  % Abschlusses beider Seiten der Gleichung unter \cont{}. Es wird also für ein
-  % beliebiges $x\in\prune ((\EDT _1\|$ $\EDL _2)\cup (\EDL _1\|\EDT _2))$ gezeigt,
-  % dass dieses oder eines seiner Präfixe auch in $\EDT _{12}$ enthalten ist. Da
-  % das $x$ aus der \prune{}-Funktion entstanden ist, lässt sich ein $y$ aus
-  % $O^*_{12}$ finden, sodass $xy\in (\EDT _1\|\EDL _2)\cup (\EDL _1\|\EDT _2)$.
-  % Es wird nun noch vorausgesetzt, dass \oBdA{} $xy\in \EDT _1\|\EDL _2$ gilt,
-  % d.h.\ es existiert $w_1\in\EDT _1$ und $w_2\in\EDL _2$ mit $xy\in
-  % w_1\|w_2$. \TODO{erzwungenen Zeilenumbruch kontrollieren}\\
-  % Die folgende Argumentation läuft analog zu der im Beweis der Inklusion $\ET
-  % _{12} \supseteq \cont($ $\prune ((\ET _1\|\EL _2)\cup (\EL _1\|\ET _2)))$ aus
-  % Satz~\ref{KommFehlerSemSatz}. Es muss dazu nur jeweils an den Stellen, an
-  % denen $\PrET (P)\cup\MIT (P)$ steht auch noch eine Vereinigung mit $\PrDT
-  % (P)$ vorgenommen werden. Für Fall I und II aus dem Beweis der oben genannten
-  % Inklusion von Satz~\ref{KommFehlerSemSatz} ist jeweils kein weiterer
-  % Unterfall für $v'_2$ notwendig da, wenn $v'_2$ nicht ausführbar ist, bereits
-  % ein Fehler-Zustand in der Parallelkomposition
-  % entsteht. Somit ist egal, ob auch noch Divergenz vorlag. Falls $v'_2$
-  % ausführbar, ist nicht relevant, ob eine Divergenz-Möglichkeit bestanden hat,
-  % da diese nicht an der Ausführbarkeit ändert. Am Ende ist ein zusätzlicher
-  % Fall für $v_1\in\PrDT _1$ zu ergänzen:
-  % \TODO{erzwungenen Zeilenumbruch kontrollieren}
-  % \begin{itemize}
-  %   \item Fall III ($v_1\in\PrDT _1$): Es existiert ein $u_1$ aus $O^*_1$,
-  %     sodass $p_{01}\weakmay[v_1]_1 p_1\weakmay[u_1]_1 p'_1$ mit $p'_1\in Div
-  %     _1$ gilt. Da es hier keine disjunkten Inputmengen gibt kann das $a$, auf
-  %     das $v_1$ im Fall $v_1\neq\varepsilon$ endet, ebenfalls der letzte
-  %     Buchstabe von $v_2$ sein. Im Fall von $v_2\in\MIT _2$ kann somit $a=b$
-  %     gelten und damit wäre $v_2=v'_2$. Dieser Fall verläuft jedoch analog zu
-  %     Fall Ic) aus dem Beweis der oben genannten Inklusion von
-  %     Satz~\ref{KommFehlerSemSatz} und wird somit hier nicht weiter betrachtet.
-  %     Deshalb gilt für alle im folgenden betrachteten Fälle
-  %     $p_{02}\weakmay[v'_2]_2 p_2$ mit $(p_{01},p_{02}) \weakmay[v']_{12}$.
-  %     \begin{itemize}
-  %       \item Fall IIIa) \big($u_2\in (O_1\cap I_2)^*,c\in (O_1\cap I_2)$,
-  %         sodass $u_2c$ ein Präfix von $u_1|_{I_2}$ mit $p_2\weakmust[u_2]_2
-  %         p'_2 \nmust[c]_2$\big): Für ein Präfix von $u'_1c$ von $u_1$ mit
-  %         $(u'_1c)|_{I_2}=u_2c$ weiß man, dass $p_1\weakmay[u'_1]_1 p''_1
-  %         \may[c]_1$. Somit gilt $u'_1\in u'_1\|u_2$ und $(p_1,p_2)
-  %         \weakmay[u'_1]_{12} (p''_1,p'_2)\in E_{12}$, da für $P_2$ der
-  %         entsprechende Input fehlt, der mit dem Output von $c$ von $P_1$ zu
-  %         koppeln wäre. Es handelt sich also um einen neuen
-  %         Fehler. Es wird $v:=\prune (v'u'_1) \in\PrET _{12}$
-  %         gewählt, dies ist ein Präfix von $v'$, da $u_1\in O^*_1$.
-  %       \item Fall IIIb) \big($p_2\weakmust[u_2]_2 p'_2$ mit $u_2=u_1|_{I_2}$
-  %         \big): Somit ist $u_1\in u_1\|u_2$ und $(p_1,p_2)\weakmay[u_1]_{12}
-  %         (p'_1,p'_2)\in Div _{12}$, da $p_1\in Div _1$. $P_{12}$ hat also die
-  %         Divergenz von $P_1$ geerbt. Es wird nun $v:=\prune (v'u_1)\in\PrDT
-  %         _{12}$ gewählt, das wiederum ein Präfix von $v'$ ist.
-  %     \end{itemize}
-  % \end{itemize}
-
-  % 2. \glqq$\subseteq$\grqq{}:\\
-  % Diese Inklusionsrichtung kann analog zum Beweis derselben Inklusionsrichtung
-  % des zweiten Punktes von Satz~\ref{StilleSemSatz} gezeigt werden. Es muss dabei
-  % nur in der Argumentation die Menge $\ET _{12}$ durch die Menge $\EDT _{12}$
-  % und die Mengen $\QET (P)$ durch die Mengen $\QDT (P)$ für die entsprechenden
-  % Transitionssysteme $P$ ersetzt werden. Dadurch kann ebenso gefolgert werden,
-  % dass im Fall $w\in\StQT _{12}\backslash\EDT _{12}$ der erreichte Zustand
-  % $(p_1,p_2)$ kein Fehler sein kann, da $\ET _{12}\subseteq\EDT
-  % _{12}$ gilt und somit lässt sich auch hier der zweite Punkt von
-  % Lemma~\ref{StilleZustLem} anwenden.
-
-  % 2. \glqq$\supseteq$\grqq{}:\\
-  % Es muss wieder danach unterschieden werden, aus welcher Menge das betrachtete
-  % Element stammt. Falls $w$ ein Element von $\EDT _{12}$ ist, folgt die
-  % Zugehörigkeit zur linken Seite der Gleichung direkt. Somit wird für den
-  % weiteren Verlauf dieses Beweises davon ausgegangen, dass $w\in\QDT _1\|\QDT
-  % _2$ gilt. Für dieses $w$ soll dann gezeigt werden, dass es auch in $\QDT
-  % _{12}$ enthalten ist. Da $\QDT _i=\StQT _i\cup\EDT _i$ gilt, existierten für
-  % $w_1$ und $w_2$ mit $w\in w_1\|w_2$ unterschiedliche Möglichkeiten:
-  % \begin{itemize}
-  %   \item Fall 1 ($w_1\in\EDT _1\lor w_2\in\EDT _2$): \OBdA{} gilt $w_1\in\EDT
-  %     _1$. Es kann nun $w_2\in\StQT _2\subseteq L_2$ gelten oder $w_2\in\EDT
-  %     _2\subseteq \EDL _2$ und somit gilt auf jeden Fall $w_2\in\EDL _2$.
-  %     Daraus kann mit dem ersten Punkt dieses Satzes gefolgert werden, dass
-  %     $w\in\EDT _{12}$ gilt und somit $w$ in der linken Seite der Gleichung
-  %     enthalten ist.
-  %   \item Fall 2 ($w_1\in\StQT _1\backslash\EDT _1\land w_2\in\StQT
-  %     _2\backslash\EDT _2$): Dieser Fall läuft analog zu Fall 2 derselben
-  %     Inklusionsrichtung des Beweises von Satz~\ref{StilleSemSatz}. Hierfür muss
-  %     die Menge $\QET _{12}$ durch $\QDT _{12}$ ersetzt werden.
-  % \end{itemize}
-
-  % 3.:\\
-  % Durch die Definition~\ref{DivSemDef} ist klar, dass $L_i\subseteq\EDL _i$ und
-  % $\EDT _i\subseteq\EDL _i$ gilt. Die Argumentation wird von der rechten Seite
-  % der Gleichung aus begonnen:
-  % \begin{align*}
-  %   (\EDL _1\| \EDL _2)\cup \EDT _{12}
-  %   &\overset{\ref{DivSemDef}}{=}\left(\left(L _1\cup \EDT _1\right)\|\left(L
-  %   _2\cup \EDT _2\right)\right)\cup \EDT _{12}\\
-  %   &=(L _1\|L _2) \cup \underset{\overset{1.}{\subseteq} \EDT
-  %   _{12}}{\underset{\subseteq (\EDL _1\|\EDT _2)}{\underbrace{(L _1\|\EDT
-  %   _2)}}} \cup \underset{\overset{1.}{\subseteq} \EDT
-  %   _{12}}{\underset{\subseteq (\EDT _1\|\EDL _2)}{\underbrace{(\EDT _1\|L
-  %   _2)}}}\\
-  %   &\quad\quad\cup \underset{\overset{1.}{\subseteq} \EDT
-  %   _{12}}{\underset{\subseteq (\EDL _1\|\EDT _2)}{\underbrace{(\EDT _1\|\EDT
-  %   _2)}}} \cup \EDT _{12}\\
-  %   &=(L _1\|L _2) \cup \EDT _{12}\\
-  %   &\overset{\ref{LParallelProp}}{=}L _{12}\cup \EDT _{12}\\
-  %   &\overset{\ref{DivSemDef}}{=}\EDL _{12}.
-  % \end{align*}
+  (iii):
+  Dieser Punkt könnte analog zum letzten Punkt durch die bereits bewiesenen
+  Punkte eingeschränkte Inklusionen gezeigt werden, jedoch gilt hier ebenfalls
+  bereits die Geleichheit für die Einschränkung. Es wird also direkt $L (\DF
+  (P_{12})) = L (\DF (P_1)\|\DF (P_2))$ gezeigt. Die Normierung auf
+  divergenz"=freie Systeme verändert die ausführbaren Traces nicht. Somit bleibt
+  die Sprache gleich. Egal ob vor der Parallelkomposition normiert wurde oder
+  erst danach, die Traces, die in den Parallelkomposition ausführbar sind,
+  stimmen überein.
 \end{proof}
 
 Analog wie in den beiden vorangegangenen Kapitel, ergibt sich aus diesem Satz
 als direkte Folgerung, dass es sich bei der Relation \DRel{} um eine
-Präkongruenz handelt.
-
-\TODO{Präkongruenz-Eigenschaft auf \QRel{} zurück führen}
+Präkongruenz handelt. Der Beweis dafür ist analog zu den Beweisen der
+Korollare~\ref{KommPraekonKor} und~\ref{StillePraekonKor} und soll deshalb hier
+nicht wiederholt werden.
 
 \begin{Kor}[Divergenz-Präkongruenz]
   Die Relation \DRel{} ist eine Präkongruenz bezüglich $\cdot\|\cdot$.
 \end{Kor}
-\begin{proof}
-  Um zu zeigen, dass es sich bei \DRel{} um eine Präkongruenz handelt, muss
-  nachgewiesen werden, dass aus $P_1\DRel P_2$ auch $P_{31}\DRel P_{32}$ für
-  jedes komponierbare System $P_3$ folgt. D.h.\ es ist zu zeigen, dass aus
-  $\EDT _1\subseteq\EDT _2, \QDT _1\subseteq\QDT _2$ und $\EDL _1\subseteq\EDL
-  _2$, sowohl $\EDT _{31} \subseteq \EDT _{32}, \QDT _{31} \subseteq \QDT
-  _{32}$ als auch $\EDL _{31}\subseteq\EDL _{32}$ folgt. Dies ergibt sich, wie
-  in den Beweisen zu den Korollaren~\ref{KommPraekonKor}
-  und~\ref{StillePraekonKor}, aus der Monotonie von \cont{}, \prune{} und
-  $\cdot\|\cdot$ auf Sprachen wie folgt:
-  \begin{itemize}
-    \item $\begin{aligned}[t]
-        \EDT{}_{31} &\overset{\ref{DivSemSatz}.1}{=}
-        \cont{}\left(\prune{}\left(\left(\EDT{}_3\|\EDL{}_1\right) \cup
-        \left(\EDL{}_3\|\EDT{}_1\right)\right)\right)\\
-        &\hspace{-0.6cm}\overset{\EDT{}_1\subseteq
-      \EDT{}_2}{\overset{\mathrm{und}}{\overset{\EDL{}_1\subseteq
-    \EDL{}_2}{\subseteq}}}
-    \cont{}\left(\prune{}\left(\left(\EDT{}_3\|\EDL{}_2\right) \cup
-        \left(\EDL{}_3\|\EDT{}_2\right)\right)\right)\\
-      &\overset{\ref{DivSemSatz}.1}{=} \EDT{}_{32},
-    \end{aligned}$
-    \item $\begin{aligned}[t]
-        \QDT{}_{31} &\overset{\ref{DivSemSatz}.2}{=} (\QDT{}_3\|\QDT{}_1)
-        \cup \EDT{}_{31}\\
-        &\hspace{-0.8cm}\overset{\EDT{}_{31}\subseteq
-      \EDT{}_{32},}{\overset{\mathrm{und}}{\overset{\QDT{}_1\subseteq
-      \QDT{}_2}{\subseteq}}} (\QDT{}_3\|\QDT{}_2) \cup \EDT{}_{32}\\
-      &\overset{\ref{DivSemSatz}.2}{=} \QDT{}_{32}.
-    \end{aligned}$
-    \item $\begin{aligned}[t]
-        \EDL{}_{31} &\overset{\ref{DivSemSatz}.3}{=} (\EDL{}_3\|\EDL{}_1)
-        \cup \EDT{}_{31}\\
-        &\hspace{-0.8cm}\overset{\EDT{}_{31}\subseteq
-      \EDT{}_{32},}{\overset{\mathrm{und}}{\overset{\EDL{}_1\subseteq
-      \EDL{}_2}{\subseteq}}} (\EDL{}_3\|\EDL{}_2) \cup \EDT{}_{32}\\
-      &\overset{\ref{DivSemSatz}.3}{=} \EDL{}_{32}.
-    \end{aligned}$
-  \end{itemize}
-\end{proof}
 
 Im nächsten Lemma soll eine Verfeinerung bezüglich guter Kommunikation
 betrachtet werden. Die Vorgaben für gute Kommunikation gibt hierbei die
