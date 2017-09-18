@@ -24,7 +24,9 @@ $\tau$s ausführbar ist, der unendliche viele Zustände durchläuft. Es ist jedo
 zu beachten, dass ein Zustand, von dem aus unendlich viele Zustände durch
 $\tau$s  erreichbar sind, nicht divergent sein muss. Es ist auch möglich,
 dass dieser Zustand eine unendliche Verzweigung hat und somit keine unendlichen
-Folgen an $\tau$s ausführen kann.\\
+Folgen an $\tau$s ausführen kann. Aus diesem Grund, schränkt sich diese Kapitel
+auf \MEIO{}s ein ohne unendlich Verzweigungen, die dann die Definition der
+lokalen erfüllen, dass sie lokal endlich sind.\\
 Für die Relevant eines Divergenz-Zustandes in einem Transitionssystem wieder
 wieder der optimistische Ansatz der lokalen Erreichbarkeit. Auf
 Implementierungen, die den \EIO{}s in z.B.~\cite{Schinko2016BA} entsprechen,
@@ -180,6 +182,7 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   von \cont{} folgt also auch die hier geforderte Inklusion.
 
   2. \glqq$\subseteq$\grqq{}:
+  {\allowdisplaybreaks
   \begin{align*}
     \EDT (P)&\overset{\ref{DivSemDef}}{=} \ET (P)\cup \DT (P)\\
     &\hspace{-0.2cm}\overset{\ref{KommSemProp}.1}{=} \left(\underset{P'\in
@@ -189,8 +192,8 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
     (P)}{\bigcup} \DT (P')\right)\\
     &= \underset{P'\in \asimp (P)}{\bigcup} \ET (P') \cup \DT (P')\\
     &\overset{\ref{DivSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \EDT
-    (P').\\
-  \end{align*}
+    (P').
+  \end{align*}}
 
   2. \glqq$\supseteq$\grqq{}:\\
   Für ein präfix-minimales $w$ aus der Menge $\EDT (P')$ einer
@@ -200,36 +203,29 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   enthalten ist, folgt $w\in\ET (P) \subseteq\EDT (P)$ aufgrund des ersten
   Punktes der Proposition~\ref{KommSemProp}. Es ist also nur noch der Fall zu
   betrachten, in dem $w\in\DT (P') \backslash \ET (P')$ gilt. Es gibt also
-  einen Trace der Form $p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha _2]_{P'}
-  \dots p'_{n-1} \may[\alpha _n]_{P'} p'_n\in Div _{P'}$ in $P'$, wobei $\alpha
-  _1\alpha _2\dots\alpha _n$ dem Wort $wv$ bis auf interne Aktionen entspricht
-  mit $v\in O^*$. Keiner der Zustände $p'_j$ mit $0\leq j \leq n$ ist in
-  $E_{P'}$ enthalten. Da $P'$ eine as"=Implementierung von $P$ ist, muss es
-  eine as"=Verfeinerungs"=Relationen $\mathcal{R}$ zwischen $P'$ und $P$ geben
-  mit $(p'_0,p_0) \in\mathcal{R}$. Solange in $P$ kein Fehler-Zustand erreicht
-  wird, fordert~\ref{SimDef}.3, dass der Trace aus $P'$ in $P$ ebenfalls
-  möglich ist. Falls ein Fehler-Zustand in $P$ erreicht wird, ist ein Präfix
-  von $wv$ in $\StET (P)$ enthalten und mit $w =\prune (wv)$ gilt somit $w\in
-  \ET (P) \subseteq \EDT(P)$. Es gibt den Trace $p_0 \may[\alpha _1]_P p_1
-  \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n$ mit $p'_j\mathcal{R}
-  p_j$, falls keiner der Zustände $p_j$ in $E_P$ enthalten ist für $j\in\{0,1,
-  \dots, n\}$. Für $p'_n$ in ein Transitionsfolge aus unendlichen vielen
-  $\tau$s ausführbar. Es gibt also entweder eine Schleife, die via $\tau$s
-  immer wieder durchlaufen werden kann, oder einen Weg mit unendlichen vielen
-  Zuständen, die durch $\tau$-Transitionen verbunden sind. Falls innerhalb der
-  Schleife oder auf dem Weg ein Zustand in $E_{P'}$ enthalten ist, fordert
-  $\mathcal{R}$ mit~\ref{SimDef}.1, dass der erste solche Zustand in Relation
-  mit einem Zustand aus $E_P$ steht und somit $w \in \ET _P \subseteq \EDT _P$
-  gilt. Falls alle Zustände, die auf dem der unendlichen $\tau$-Folge von
-  $p'_n$ in $P'$ aus liegen nicht in $E_{P'}$ enthalten sind,
-  fordert~\ref{SimDef}.3 auch deren Ausführbarkeit von $p_n$ aus in $P$, bis
-  entweder ein Zustand in $E_P$ erreicht wird, oder ebenfalls eine unendliche
-  $\tau$-Folge in $P$ von $p_n$ aus ausführbar ist. Im ersten Fall gilt wieder
-  $w \in \ET _P \subseteq \EDT _P$. Ansonsten gilt $p_n\in Div _P$ und somit
-  $wv\in\StDT (P)$. Mit $w=\prune (wv)$ folgt $w\in\PrDT (P) \subseteq \EDT
-  (P)$.
+  einen unendlichen Ablauf analog zu dem in Lemma~\ref{AblaefeVerfSpezLem}
+  thematisierten für $wv\in\StDT _P'$ mit $v\in O^*$, wobei nur endlich viele
+  Transitionen benötigt werden bis die letzte sichtbare Aktion aus $wv$
+  ausgeführt wird und danach unendlich viele $\tau$-Transitionen folgen.
+  Zwischen $P'$ und $P$ soll $\mathcal{R}$ als as"=Verfeinerungs"=Relationen
+  gelten. Falls in dem matchenden Ablauf in $P$ ein Fehler-Zustand erreicht
+  wird, muss nach Lemma~\ref{AblaefeVerfSpezLem} ein Präfix von $wv$ in $\StET
+  _P$ enthalten sein. Mit $w=\prune (wv)$ folgt somit $w\in \ET _P \subseteq
+  \EDT_P$. Falls in $P$ jedoch ein mit $wv$ beschrifteter Trace ausführbar ist
+  und kein mit $wv$ beschrifteter Trace oder ein Präfix davon einen
+  Fehler"=Zustand erreicht, muss es ein $p_j$ in $P$ geben, dass durch einen
+  $wv$-Trace in $P$ erreicht wird und das mit einem $p'_j$ in der Relation
+  $\mathcal{R}$ steht, dass in dem unendlichen Ablauf von $P'$ nach der letzten
+  sichtbaren Aktion auftritt. $p'_j$ ist also ein divergenter Zustand für $P'$
+  für den es einen unendlichen Ablauf gibt, der nur $\tau$-Transitionen enthält
+  und es gilt $p'_j\mathcal{R} p_j$. Mit den Anmerkungen zu unendlichen
+  Abläufen in Lemma~\ref{AblaefeVerfSpezLem} muss $P$ diesen unendlichen Ablauf
+  von $\tau$s von $p_j$ aus matchen können. Es gilt also $p_j\in Div _P$ und
+  somit $wv\in\StDT (P)$. Mit $w=\prune (wv)$ folgt $w\in\PrDT (P) \subseteq
+  \EDT (P)$.
 
   3. \glqq$\subseteq$\grqq{}:
+  {\allowdisplaybreaks
   \begin{align*}
     \QDT (P)&\overset{\ref{DivSemDef}}{=} \StQT (P)\cup \EDT (P)\\
     &\overset{\ref{StilleTraceProp}}{\subseteq} \left(\underset{P'\in \asimp
@@ -239,8 +235,8 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
     (P')\right)\\
     &= \underset{P'\in \asimp (P)}{\bigcup} \StQT (P') \cup \EDT (P')\\
     &\overset{\ref{DivSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \QDT
-    (P').\\
-  \end{align*}
+    (P').
+  \end{align*}}
 
   3. \glqq$\supseteq$\grqq{}:\\
   Dieser Beweis verläuft analog zu dem Beweis von \glqq$\supseteq$\grqq{} der
@@ -259,7 +255,7 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
     \cup \left(\underset{P'\in \asimp (P)}{\bigcup} \EDT (P')\right)\\
     &= \underset{P'\in \asimp (P)}{\bigcup} L (P') \cup \EDT (P')\\
     &\overset{\ref{DivSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \EDL
-    (P').\\
+    (P').
   \end{align*}}
 
   4. \glqq$\supseteq$\grqq{}:\\
@@ -269,6 +265,8 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   Einschränkung auf die geflutete Sprache ohne die Menge \EDT{} ist möglich
   wegen des zweiten Punktes der aktuellen Proposition.
 \end{proof}
+
+\TODO{Beispiel einfügen, wieso für 1. kein = gilt}
 
 Aus der so eben bewiesenen Proposition über die Gleichheit der betrachteten
 Traces, lässt sich wie in den letzten beiden Kapiteln eine Aussage über die
@@ -315,7 +313,9 @@ zugehörigen as"=Implementierungen treffen.
   \end{enumerate}
 \end{proof}
 
-Die Relation\DRel{} ist somit keine Einschränkung von \ERel{} so wie \QRel{}.
+Die Relation \DRel{} ist somit keine Einschränkung von \ERel{} so wie \QRel{}.
+Diese Tatsache wird später im Satz~\ref{ZusammenhDivSatz} durch die Beispiele,
+wieso diese Relationen unvergleichbar sind noch einmal verdeutlicht.
 Es können Systeme mit einem Fehler nicht von Systemen mit Divergenz
 unterschieden werden. Da die Divergenz-Test zwischen diesen \glqq
 Fehler-Arten\grqq{} auch keine Unterscheidung machen, muss eine sinnvolle
