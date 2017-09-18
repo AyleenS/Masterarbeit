@@ -441,25 +441,25 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   \begin{itemize}
     \item Fall 1 ($w\in \ET _{12}$): Es gilt mit Satz~\ref{KommFehlerSemSatz}.1
       $w\in \cont (\prune ((\ET _1\|\EL _2)\cup (\EL _1\|\ET _2)))$. Durch die
-      Normierung können sich die Mengen \ET{} und \EL{} nicht verkleiner, sie
+      Normierung können sich die Mengen \ET{} und \EL{} nicht verkleinern, sie
       können werden nur um die Divergenz"=Traces, die zu keinen Fehlern führen
       erweitert. Mit $\ET _j \subseteq\ET _{\DF (P_j)}$ und $\EL _j \subseteq
       \EL _{\DF (P_j)}$ für $j\in \{1,2\}$ folgt $w\in \cont (\prune ((\ET
       _{\DF (P_1)}\|\EL _{\DF (P_2)})\cup (\EL _{\DF (P_1)}\|\ET _{\DF
       (P_2)})))$. Wegen Satz~\ref{KommFehlerSemSatz}.1 ist $w$ auch in $\ET
       (\DF (P_1)\|\DF (P_2))$ enthalten.
-    \item Fall 2 ($w\in \PrDT _{12}$): Es gibt eine Verländerung $v\in O_{12}$,
+    \item Fall 2 ($w\in \PrDT _{12}$): Es gibt eine Verlängerung $v\in O_{12}$,
       des Wortes $w$, so dass $wv$ in $P_{12}$ zu einem divergenten Zustand
       führt. Damit der erreichte Zustand in der Parallelkomposition divergent
       ist, muss mindestens eines der Teilsysteme Divergenz an dem in der
-      Kompositon beteiligten Zustand aufweisen. Das andere System muss nur den
-      auf sein Teilsystem projezierten Trace von $wv$ ausführen können. Die
+      Komposition beteiligten Zustand aufweisen. Das andere System muss nur den
+      auf sein Teilsystem projizierten Trace von $wv$ ausführen können. Die
       Ausführbarkeit von Traces kann durch die Normierung auf ein
       divergenz-freies System nicht verändert werden. Der divergenten Zustand
       in dem Teilsystem wird jedoch in die Menge seiner Fehler"=Zustände
       eingeführt durch die Normierung. In $\DF (P_1)\|\DF (P_2)$ werden also
       ein Trace aus der Menge \ET{} des einen und aus der Menge $L$ des anderen
-      Systems kompniert. Das Wort $wv$, dass dabei entsteht, ist also in $\ET
+      Systems komponiert. Das Wort $wv$, dass dabei entsteht, ist also in $\ET
       (\DF (P_1)\|\DF (P_2))$ enthalten. Da $v$ nur aus lokalen Aktionen
       besteht, gilt auch $w\in\ET (\DF (P_1)\|\DF (P_2))$.
   \end{itemize}
@@ -482,7 +482,7 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   die Input-kritischen Trace unverändert lässt. Für $w_j\in\cont (\PrET _{\DF
   (P_j)})$ können jedoch zwei Fälle unterschieden werden. $w_j$ kann bereits
   von der Normierung ein Trace aus der Menge $\cont (\PrET _j)$ gewesen sein
-  oder $w_j$ ist erst durch die Normierung zu einem forgesetzten gekürzten
+  oder $w_j$ ist erst durch die Normierung zu einem fortgesetzten gekürzten
   Fehler-Trace geworden und es galt davor $\cont (\PrDT _j) = \DT _j$. Für die
   hier betrachten $w_j$ gilt $w_j\in \EL _j$, wenn nach der Normierung
   $w_j\in\EL _{\DF (P_j)}$. Es kommt also nur auf die Wörter $w_j$ in den
@@ -490,11 +490,11 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   \begin{itemize}
     \item Fall 1 ($w_j\in\ET _j$): In diesem Fall kann man
       Satz~\ref{KommFehlerSemSatz}.1 anwenden und es folgt $w\in\ET _{12}$ und
-      nach der Anwendung der Konstuktion aus Definition~\ref{DivNormDef} gilt
+      nach der Anwendung der Konstruktion aus Definition~\ref{DivNormDef} gilt
       immer noch $w\in\ET _{\DF (P_{12})}$.
     \item Fall 2 ($w_j\in\DT _j$): \OBdA{} $j=1$. $w_2$ ist in der Menge $\EL
       _2$ enthalten. Wegen der präfix-Minimalität von $w$ ist die hier
-      relevante unterscheidung $w_2\in\MIT _2$ oder $w_2\in L_2$.
+      relevante Unterscheidung $w_2\in\MIT _2$ oder $w_2\in L_2$.
       \begin{itemize}
         \item Fall 2a) ($w_2\in\MIT _2$): Es gibt ein Präfix von $w_1$, dass
           zu einem divergenten Zustand führt. Falls es durch dieses Präfix von
@@ -503,11 +503,11 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
           die Parallelkomposition $P_1\|P_2$ vererbt und durch die
           Abgeschlossenheit gegenüber \cont{} folgt dann $w\in\DT _{12}
           \subseteq \ET _{\DF (P_{12})}$. Falls es jedoch zu
-          Sychnronisations"=Problemen wegen des nicht sichergestellten Input in
+          Synchronisations"=Problemen wegen des nicht sichergestellten Input in
           $P_2$ im Wort $w_2$ kommt, entsteht in der Parallelkomposition ein
           Trace aus der Menge $\ET _{12} \subseteq \ET _{\DF (P_{12})}$ durch
           Satz~\ref{KommFehlerSemSatz}.1, da dann das Präfix von $w_1$, dass zu
-          den Sychronsiations"=Problemen führt ausführbar ist und somit in der
+          den Synchronisations"=Problemen führt ausführbar ist und somit in der
           Sprache und auch der Fehler"=gefluteten Sprache enthalten ist.
         \item Fall 2b) ($w_2\in L_2$): In diesem Fall ist $w_2$ komplett
           ausführbar in $P_2$. Das Präfix von $w_1$, dass zu einem
@@ -520,12 +520,12 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   \end{itemize}
 
   (ii):
-  Man kann diese Gleichheit wieder in zwei Inklusitionen aufteilen, die jedoch
+  Man kann diese Gleichheit wieder in zwei Inklusionen aufteilen, die jedoch
   durch die das bereits in (i) gezeigte eingeschränkt werden können, dabei
   entstehen dann die beiden folgenden Inklusionen: $\StQT (\DF (P_{12}))
   \backslash \ET (\DF (P_{12})) \subseteq\QET (\DF (P_1)\|\DF (P_2))$ und
   $\StQT (\DF (P_1)\|\DF (P_2)) \backslash \ET (\DF (P_1)\|\DF (P_2))
-  \subseteq\QET (\DF (P_{12}))$. Da die Konstuktion der Normierung auf
+  \subseteq\QET (\DF (P_{12}))$. Da die Konstruktion der Normierung auf
   divergenz-freie Systeme in Definition~\ref{DivNormDef} jedoch keine
   Transitionen verändert, sondern nur die Zustands-Mengen $E$ erweitert, gilt
   sogar die Gleichheit $\StQT (\DF (P_{12})) \backslash \ET (\DF (P_{12})) =
@@ -534,7 +534,7 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   Zustand führen, da auf beiden Seiten ausgeschlossen wurde, dass das jeweilige
   Wort auch in der \ET{}-Menge enthalten ist, ist der erreicht Zustand ein
   Fehler"=Zustand. Es kann also Lemma~\ref{StilleZustLem} angewendet werden und
-  es folgt auf beiden Seiten der Gleichung, das die in den projektionen
+  es folgt auf beiden Seiten der Gleichung, das die in den Projektionen
   erreichten Zustände in $P_1$ und $P_2$ still sein müssen. Aus zwei stillen
   Zuständen in der Komposition entsteht auch immer weider ein stiller Zustand
   mit Lemma~\ref{StilleZustLem}.
@@ -542,7 +542,7 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   (iii):
   Dieser Punkt könnte analog zum letzten Punkt durch die bereits bewiesenen
   Punkte eingeschränkte Inklusionen gezeigt werden, jedoch gilt hier ebenfalls
-  bereits die Geleichheit für die Einschränkung. Es wird also direkt $L (\DF
+  bereits die Gleichheit für die Einschränkung. Es wird also direkt $L (\DF
   (P_{12})) = L (\DF (P_1)\|\DF (P_2))$ gezeigt. Die Normierung auf
   divergenz"=freie Systeme verändert die ausführbaren Traces nicht. Somit bleibt
   die Sprache gleich. Egal ob vor der Parallelkomposition normiert wurde oder
@@ -691,19 +691,25 @@ enthalten ist.
       Abbildung~\ref{UohneE} nur die $\chi$-Transitionen zu $p_{n+1}$ ergänzt
       und die Mengen unbenannt wurden, ändert sich nichts an dem Fall 2a) im
       ersten Punkt des Beweises von Lemma~\ref{KommTestVerfeinLem}. Im Fall 2b)
-      muss die Menge $O^*$ durch $(O\cup\{\chi\})^*$ ersetzt werden. Die
-      Begründungen, wieso in den beiden Fällen $\varepsilon\in\PrET (P'_1\|T)$
-      für ein $P'_1\in\asimp (P_1)$ gilt, bleibt also analog zum Beweis von
-      Lemma~\ref{KommTestVerfeinLem}. Da nun aber auch Divergenz betrachtet
-      wird, muss ein weiterer Fall ergänzt werden:
+      muss die Menge kann die Menge $O^*$ beibehalten werden, obwohl die
+      Parallelkomposition mit $T$ auch $\chi$ also Output zulassen würde. Die
+      Einschränkung, dass $u$ keine $\chi$ Transitionen enthalten darf,
+      verhindert, dass $T$ unsynchronisierte Aktionen ausführt. $T$ kann jedoch
+      trotzdem immer alle Aktionen, die $P'_1$ ausführen möchte
+      synchronisieren. Die Begründungen, wieso in den beiden Fällen
+      $\varepsilon \in\PrET (P'_1\|T)$ für ein $P'_1\in\asimp (P_1)$ gilt,
+      bleibt also analog zum Beweis von Lemma~\ref{KommTestVerfeinLem}. Da nun
+      aber auch Divergenz betrachtet wird, muss ein weiterer Fall ergänzt
+      werden:
       \begin{itemize}
         \item Fall 2c) ($w\in\PrDT _{P'_1}$): In $P'_1\|T$ erhält man
           $(p_{01},p_0) \weakmay[w] (p'',p_{n+1})\weakmay[u] (p',p_{n+1})$ für
-          $u\in (O\cup \{\chi\})^*$ und $p'\in Div_1$. Daraus folgt
-          $(p',p_{n+1})\in Div_{P'_1\|T}$ und somit $wu\in\StDT (P'_1\|F)$. Da
-          alle Aktionen aus $w$ synchronisiert werden und $I_T\cap
-          I=\emptyset$ gilt $x_1,\dots , x_n, x_{n+1}\in O_{P'_1\|T}$. Da
-          zusätzlich $u$ in $(O\cup \{\chi\}) ^*$ enthalten ist, folgt $u\in
+          $u\in O^*$ und $p'\in Div_1$. Die Einschränkung, dass $u$ keine
+          Aktionen $\chi$ enthalten darf, ist mit der gleichen Begründung wie
+          oben möglich. Daraus folgt $(p',p_{n+1})\in Div_{P'_1\|T}$ und somit
+          $wu\in\StDT (P'_1\|T)$. Da alle Aktionen aus $w$ synchronisiert
+          werden und $I_T\cap I=\emptyset$ gilt $x_1,\dots , x_n, x_{n+1}\in
+          O_{P'_1\|T}$. Da zusätzlich $u$ in $O^*$ enthalten ist, folgt $u\in
           O^*_{P'_1\|T}$. Somit ergibt sich $\varepsilon\in\PrDT (P'_1\|T)$.
       \end{itemize}
       Da $\varepsilon$ in $\PrET (P'_1\|T) \cup \PrDT (P'_1\|T)$ enthalten ist,
@@ -741,9 +747,8 @@ enthalten ist.
           von gekürzten Fehler-Traces entspricht, ist $x_1\dots x_i$ in $\EDT
           _{P'_2}$ enthalten und mit~\ref{DivSemProp}.2 ist ein Präfix von
           $w$ in $\EDT _2$ enthalten.
-        \item Fall 2iii) ($\varepsilon\in\DT (P'_2\|T)\backslash\ET
-          (P'_2\|T)$): Da $T$ nicht unendlich viele Zustände hat und auch keine
-          $\tau$-Schleifen besitzt, kann das Divergenz"=Verhalten nur von
+        \item Fall 2iii) ($\varepsilon\in\DT (P'_2\|T)$): Da $T$ keine
+          $\tau$-Transitionen besitzt, kann das Divergenz"=Verhalten nur von
           $P'_2$ geerbt sein. $T$ hat $x_1\dots x_iu$ ausgeführt mit $u\in (O
           \cup \{\chi\})^*$ und ebenso hat $P'_2$ den Weg $x_1\dots
           x_iu|_{\Sigma _2}$ ausgeführt. Durch dies hat $P'_2$ einen Zustand
@@ -817,25 +822,21 @@ enthalten ist.
   \end{center}
   \end{figure}
   Falls das betrachtete $w$ dem leeren Wort $\varepsilon$ entspricht, reduziert
-  sich der $\chi$-Partner Test $T$ auf den Zustand $p_n = p_0$ und den
-  Zustand $p$. Es ist also in diesem Fall der Startzustand gleich dem stillen
-  Zustand.\\
+  sich der $\chi$-Partner $T$ auf den Zustand $p_n = p_0$ und den Zustand $p$.
+  Es ist also in diesem Fall der Startzustand gleich dem stillen Zustand.\\
   Allgemein ist der Zustand $p_n$ aus $T$ der einzige stille Zustand in $T$. Es
   gilt wegen des ersten Punkte von Lemma~\ref{StilleZustLem}, dass auch in der
   Parallelkomposition $P'_1\|T$ ein stiller Zustand mit $w$ erreicht wird. Da
   es sich bei allen in $w$ befindlichen Aktionen um synchronisieren Aktionen
   handelt und $I_T\cap I=\emptyset$ gilt, folgt $w\in O_{P'_1\|T}$ und $w\in
   \StQT (P'_1\|T)$. Es kann also in der Parallelkomposition durch $w$ ein
-  stiller Zustand lokal erreicht werden. Da $w\notin\EDT _{P'_1}$, kann auf dem
-  Weg, der mit $w$ im Transitionssystem $P'_1$ zurück gelegt wird, kein Fehler-
-  oder Divergenz-Zustand lokal erreicht werden. Es kann weder von $P'_1$
-  noch von $T$ ein Fehler oder Divergenz auf diesem Weg geerbt werden oder neu
-  entstehen. Da ein stiller Zustand in $P'_1\|T$ lokal erreichbar ist, erfüllt
-  $P_1$ den Test $T$ nicht. Es muss also auch eine as"=Implementierung $P'_2$
-  von $P_2$ geben, für die $P'_2\|T$ einen lokal erreichbaren fehlerhaften
-  Zustand besitzt. Hier kann jedoch zunächst keine Aussage darüber getroffen
-  werden, ob das $w$ in der Parallelkomposition $P'_2\|T$ ausführbar ist und ob
-  es sich bei der Fehlerhaftigkeit um Fehler, Stille oder Divergenz handelt.
+  stiller Zustand lokal erreicht werden. Da ein stiller Zustand in $P'_1\|T$
+  lokal erreichbar ist, erfüllt $P_1$ den Test $T$ nicht. Es muss also auch
+  eine as"=Implementierung $P'_2$ von $P_2$ geben, für die $P'_2\|T$ einen
+  lokal erreichbaren fehlerhaften Zustand besitzt. Hier kann jedoch zunächst
+  keine Aussage darüber getroffen werden, ob das $w$ in der Parallelkomposition
+  $P'_2\|T$ ausführbar ist und ob es sich bei der Fehlerhaftigkeit um Fehler,
+  Stille oder Divergenz handelt.
   \begin{itemize}
     \item Fall a) ($\varepsilon \in \ET (P'_2\|T)$): Der lokal erreichbare
       fehlerhafte Zustand ist ein Fehler. Das $w$ muss somit nicht ausführbar
@@ -932,7 +933,7 @@ enthalten ist.
       hat. Wie oben bereits erwähnt, kommt Stille als Fehlerhaftigkeit nicht in
       Frage.
       \begin{itemize}
-        \item Fall 2a) \big(neuer Fehler aufgrund von $x_i\in O_T\backslash
+        \item Fall 2a) \big(neuer Fehler aufgrund von $x_j\in O_T\backslash
           \{\chi\}$ und $p_{02} \lweakmay[x_1\dots x_{j-1}] p'_2
           \nmust[x_j]$\big): Es gilt $x_1\dots x_j\in\MIT _{P'_2}$ und somit
           $w\in\EDL _{P'_2}$ Anzumerken ist, dass nur auf diesem Weg Outputs
@@ -961,16 +962,16 @@ enthalten ist.
   Aus $P_1 \DRel P_2$ folgt, dass $P_1$ $P_2$ Divergenz-verfeinert.
 \end{Satz}
 \begin{proof}
-  Ein Fehler-, stille oder Divergez-Zustand ist nach Definition genau dann in
+  Ein Fehler-, stille oder Divergenz-Zustand ist nach Definition genau dann in
   einem \MEIO{} $P$ lokal erreichbar, wenn $w\in\QDT _P$ für ein $w\in O_P^*$
   gilt.\\
   Um nachzuweisen, dass $P_1$ $P_2$ Divergenz-verfeinert, muss bewiesen werden,
   dass für alle Tests $T$ von $P_1$ bzw.\ $P_2$ $P_2\DsatAs T \Rightarrow P_1
   \DsatAs T$ gilt. Anstatt diese Aussage direkt zu beweisen, wird hier die
   äquivalente Aussage $\neg P_1\DsatAs T\Rightarrow\neg P_2\DsatAs T$ für alle
-  Test $T$ von $P_1$ und $P_2$ nachgewiesen. Sei $T$ ein belibiger Test $T$ von
+  Test $T$ von $P_1$ und $P_2$ nachgewiesen. Sei $T$ ein beliebiger Test $T$ von
   $P_1$, für den $\neg P_1\DsatAs T$ gilt. Für eine as"=Implementierung $P'_1$
-  von $P_1$ wird also ein Fehler-, stille oder Divergez-Zustand in $P'_1\|T$
+  von $P_1$ wird also ein Fehler-, stille oder Divergenz-Zustand in $P'_1\|T$
   lokal erreicht. Es muss ein $w\in O_{P'_1\|T}^*$ geben, das in der Menge
   $\QDT _{P'_1\|T}$ enthalten ist. Ein Element der Menge $\QDT _{P'_1\|T}$ kann
   in dieser enthalten sein, wenn es nach Definition~\ref{DivSemDef} Element
@@ -999,7 +1000,7 @@ enthalten ist.
       $P_2$ von $P'_2$ folgt somit also $\neg P_2\DsatAs T$.
     \item Fall 2 ($w\in\StQT _{P'_1\|T} \backslash\EDT _{P'_1\|T}$): Das Wort
       $w$ muss in $P'_1\|T$ zu einem Zustand $(p_1,p_T)$ führen, der still und
-      keine Fehler ist. Die Zustände $p_1$ und $p_T$, die in Kompositon den
+      keine Fehler ist. Die Zustände $p_1$ und $p_T$, die in Komposition den
       Zustand in $P_1\|P_T$ ergeben müssen nach Lemma~\ref{StilleZustLem}.2
       ebenfalls sill sein. Es gibt also Wörter $w_1$ und $w_T$, so dass $w_1$
       in $P'_1$ den Zustand $p_1$ und $P_t$ den Zustand $p_T$ erreicht mit
@@ -1012,7 +1013,7 @@ enthalten ist.
       Menge $\QDT _{P'_2} = \EDT _{P'_2} \cup \StQT _{P'_2}$ enthalten ist.
       \begin{itemize}
         \item Fall 2a) ($w\in\EDT _{P'_2}$): Für das Wort $w_T$ gilt $w_T\in L
-          _T\subseteq\EDL _T$, da es in $T$ ausfühbar ist. Mit
+          _T\subseteq\EDL _T$, da es in $T$ ausführbar ist. Mit
           Satz~\ref{DivSemSatz}.1 folgt $w\in\EDL _{P'_2\|T}$. Da $w$ nur aus
           Outputs besteht, ist ein Fehler- oder Divergenz-Zustand in $P'_2\|T$
           lokal erreichbar wie in Fall 1 dieses Beweises. Es folgt $\neg P_2
@@ -1023,7 +1024,7 @@ enthalten ist.
           still. Der Zustand wird durch $w_1\|w_T$ erreicht. Es gilt also
           $w\in\StQT _{P'_2\|T}$. Das $w$ besteht auch für die
           Parallelkomposition $P'_2\|T$ nur aus Outputs, da $P_1$ und $P_2$
-          nach Voraussetzung die selbe Signatur besitzten müssen. Es ist also
+          nach Voraussetzung die selbe Signatur besitzen müssen. Es ist also
           ein stiller Zustand lokal erreichbar in $P'_2\|T$. $\neg P_2\DsatAs
           T$ gilt also auch in diesem Fall.
       \end{itemize}

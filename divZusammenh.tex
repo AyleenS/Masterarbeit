@@ -82,8 +82,7 @@
   $\ET _Q$ leer, da $Q$ keine Fehler"=Zustände enthält und vorausgesetzt werden
   kann, das $I$ leer ist und es keine Input"=kritischen Traces gegen kann. Für
   $P$ ist jedoch der Startzustand ein Fehler"=Zustand und somit entspricht $\ET
-  _P$ der Menge $\Sigma ^*$. Die geforderte Inklusion gilt nicht und somit
-  kann auch die Relation \ERel{} zwischen $P$ und $Q$ nicht gelten.
+  _P$ der Menge $\Sigma ^*$.
 
   \begin{figure}[htbp]
     \begin{center}
@@ -96,7 +95,7 @@
         ;
 
         \node [initial,initial text=$P$:, rectangle, draw] (p0) at (7,0) {$p_0
-        \in E_Q \cup Div _Q$};
+        \in E_Q \cap Div _Q$};
 
         \path
         (p0) edge[loop right] node{$\tau$} (p0)
