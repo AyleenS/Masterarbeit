@@ -107,26 +107,25 @@ verläuft analog zu den Propositionen der vorangegangenen Kapitel.
       Die passende as"=Verfeinerungs"=Relation $\mathcal{R}$ ist die
       Identität-Relation. Wie bereits im Beweis zu Proposition~\ref{LImpProp}
       begründet erfüllt $\mathcal{R}$ alle Punkte der Definition~\ref{SimDef}.
-      Es wird ein $w$ aus $\StDT (P)$ betrachtet. Es gibt also einen Trace in
-      $P$ auf dem das Wort $w$ ausgeführt wird und der einen divergenten
-      Zustand erreicht. Es gilt also $\exists w' \in \Sigma _{\tau}^*, \exists
+      Es wird ein $w$ aus $\StDT (P)$ betrachtet. Es gibt also einen unendliche
+      Ablauf in $P$ auf einem endlichen Anfangsstück dieses Ablaufes wird das
+      Wort $w$ ausgeführt, danach werden nur noch $\tau$-Transitionen
+      ausgeführt. Es gilt also $\exists w' \in \Sigma _{\tau}^*, \exists
       \alpha _1, \alpha _2, \dots , \alpha _n, \exists p_1, p_2, \dots , p_n:
       \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha _n \land p_0
       \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P
-      p_n \in Div _P$. Die Identitäts"=Relation $\mathcal{R}$ setzt die
-      Zustände des Traces mit den analogen Zuständen aus $P'$ in Relation.
-      Zusätzlich mit der Implementierung aller Transitionen aus $P$ in $P'$
-      ergibt sich der selbe Trace in $P'$. Es gilt also $p'_0 \may[\alpha
-      _1]_{P'} p'_1 \may[\alpha _2]_{P'} \dots p'_{n-1} \may[\alpha _n]_{P'}
-      p'_n$ mit $(p'_j,p_j) \in \mathcal{R}$ für $0\leq j \leq n$. Da $p_n$ in
-      $Div _P$ enthalten ist, gibt es von diesem Zustand in $P$ aus die
-      Möglichkeit eine unendliche Folge an $\tau$s auszuführen. Die
-      Ausführbarkeit muss sich dabei auf mit $\tau$ beschriftete
-      may"=Transitionen in $P$ stützen. Da diese Transitionen in $P'$ alle
-      übernommen wurden, ist auch für $p'_n$ eine unendliche Folge an $\tau$s
-      ausführbar. Es gilt also $p'_n\in Div _{P'}$ und somit $w\in \StDT (P')$.
-      Insgesamt folgt also für diese $P'$ $\StDT (P) = \StDT (P')$.
-      \TODO{versuchen als ein Gesamtablauf zu formulieren}
+      p_n \in Div _P$. Nach $p_n$ hat der kann der Trace durch eine unendliche
+      $\tau$-Folge fortgesetzt werden. Die Identitäts"=Relation $\mathcal{R}$
+      setzt die Zustände des Traces mit den analogen Zuständen aus $P'$ in
+      Relation. Zusätzlich mit der Implementierung aller Transitionen aus $P$
+      in $P'$ ergibt sich der selbe Trace in $P'$. Es gilt also $p'_0
+      \may[\alpha _1]_{P'} p'_1 \may[\alpha _2]_{P'} \dots p'_{n-1} \may[\alpha
+      _n]_{P'} p'_n$ mit $(p'_j,p_j) \in \mathcal{R}$ für $0\leq j \leq n$. Da
+      alle Transitionen von $P$ in $P'$ übernommen wurden hat $p'_n$ ebenso wie
+      $p_n$ die Möglichkeit eine unendliche Folge an $\tau$s auszuführen. $P'$
+      kann also den analogen unendliche Ablauf zu $P$ ausführen. Es gilt also
+      $p'_n\in Div _{P'}$ und somit $w\in \StDT (P')$. Insgesamt folgt also für
+      diese $P'$ $\StDT (P) = \StDT (P')$.
     \item Dieser Punkt entspricht 1.\ bis auf die Anwendung der
       \prune{}-Funktion auf beiden Seiten des Inklusions-Symbols. Da $\prune{}$
       monoton ist, folgt dieser Punkt direkt auf dem letzten.
@@ -266,7 +265,39 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   wegen des zweiten Punktes der aktuellen Proposition.
 \end{proof}
 
-\TODO{Beispiel einfügen, wieso für 1. kein = gilt}
+Es fällt auf, dass für Proposition~\ref{DivSemProp}.1 nicht die Gleichheit
+sondern nur eine Inklusions-Richtung behauptet und bewiesen wird. Dies liegt
+daran, dass die andere Richtung im allgemeinen nicht gilt. Die Menge \DT{} ist
+zwar unter \cont{} abgeschlossen, jedoch werden darin keine Fehler"=Traces
+betrachtet. Es kann also das bereis erwähnte Problem auftretten, dass die
+Spezifikation einen Fehler besitzt und die as"=Implementierung kann sobald sie
+einen Zustand mit diesem Fehler"=Zustand in Relation setzt beliebiges tun kann.
+Ein Gegenbeispiel, in dem dieses Problem verdeutlich wird, ist in
+Abbildung~\ref{DTAsimpInDTGegenBsp} dargestellt. Eine
+as"=Verfeinerungs"=Relation zwischen $P'$ und $P$ ist $\mathcal{R} =
+\{(p'_0,p_0)\}$. Die Definition~\ref{SimDef} stellt an $\mathcal{R}$ keine
+Forderungen, da $p_0\in E_P$ gilt. $P'$ ist also eine as"=Implementierung von
+$P$. Die Menge $\DT (P)$ ist leer, jedoch entspricht die Menge $\DT (P')$ der
+Menge $\Sigma ^*$.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
+      \node [initial,initial text=$P'$:, rectangle, draw, dashed] (p'0) at
+      (0,0) {$p'_0 \in Div _{P'}$};
+
+      \path
+      (p'0) edge[loop right] node{$\tau$} (p'0)
+      ;
+
+      \node [initial,initial text=$P$:, rectangle, draw] (p0) at (8,0) {$p_0
+      \in E_P$};
+    \end{tikzpicture}
+    \caption{Gegenbeispiel zu $\underset{P'\in\asimp (P)} \DT (P') \subseteq
+    \DT (P)$}
+    \label{DTAsimpInDTGegenBsp}
+  \end{center}
+\end{figure}
 
 Aus der so eben bewiesenen Proposition über die Gleichheit der betrachteten
 Traces, lässt sich wie in den letzten beiden Kapiteln eine Aussage über die

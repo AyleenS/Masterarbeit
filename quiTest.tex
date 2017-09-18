@@ -173,7 +173,8 @@ entsprechenden Traces der as"=Implementierungen relevant.
     \end{aligned}$
     \item $E_{P'}=\emptyset$.
   \end{itemize}
-  \TODO{Beispiel einfügen}\\
+  In Abbildung~\ref{QuiAsImpBsp} ist für ein Beispiel dargestellt, wie die
+  as"=Implementierung $P'$ aus einem \MEIO{} $P$ entsteht.\\
   Als as"=Verfeinerungs"=Relation zwischen $P$ und $P'$ wird die Relation
   $\mathcal{R}=\{(p'_j,p_j)\mid p_j\in P\} \cup \{(p''_j,p_j)\mid p_j\in P\}$
   verwendet. Es werden in $P'$ für die Zustände mit einem Strich $p'$ werden
@@ -235,6 +236,49 @@ entsprechenden Traces der as"=Implementierungen relevant.
   der Definition ist auch erfüllt, da $E_{P'}=\emptyset$ gilt, wenn keine
   Fehler-Zustände implementiert werden.
 \end{proof}
+
+\begin{figure}[htbp]
+  \begin{center}
+    \begin{tikzpicture}[->, >=latex', auto,node distance=3cm, semithick]
+      \node [initial,initial text=$P$:] (p0) at (0,0) {$p_0$};
+      \node (p1) [right of = p0] {$p_1$};
+      \node (p2) [right of = p1] {$p_2$};
+
+      \path
+      (p0) edge[bend left=15] node{$i'?$} (p1)
+      (p0) edge[dashed, loop above] node{$i?$} (p0)
+      (p1) edge[dashed, bend left=15] node{$i''?$} (p0)
+      (p1) edge[dashed] node{$o!$} (p2)
+      (p2) edge[loop right] node{$\tau$} (p2)
+      ;
+
+      \node [initial,initial text=$P'$:] (p'0) at (0,-3) {$p'_0$};
+      \node (p'1) [right of = p'0] {$p'_1$};
+      \node (p'2) [right of = p'1] {$p'_2$};
+      \node (p''0) [below of = p'0] {$p''_0$};
+      \node (p''1) [right of = p''0] {$p''_1$};
+      \node (p''2) [right of = p''1] {$p''_2$};
+
+      \path
+      (p'0) edge[bend left=15] node{$i'?$} (p'1)
+      (p'0) edge[loop above] node{$i?$} (p'0)
+      (p'1) edge[bend left=15] node{$i''?$} (p'0)
+      (p'1) edge node{$o!$} (p'2)
+      (p'2) edge[loop right] node{$\tau$} (p'2)
+      (p'0) edge node[swap]{$i?$} (p''0)
+      (p'0) edge[out = -125, in = -150, looseness = 2] node[swap]{$i'?$} (p''1)
+      (p'1) edge node[swap]{$i''?$} (p''0)
+      (p'1) edge node[swap]{$o!$} (p''2)
+      (p'2) edge node[swap]{$\tau$} (p''2)
+      (p''0) edge node{$i'?$} (p''1)
+      (p''2) edge[loop right] node{$\tau$} (p''2)
+      ;
+    \end{tikzpicture}
+    \caption{Beispiel zur Konstuktion aus Beweis zu
+    Propositon~\ref{StilleTraceProp}}
+    \label{QuiAsImpBsp}
+  \end{center}
+\end{figure}
 
 Man hätte anstatt des hier verwendeten $P'$ mit zwei Arten von Zuständen auch
 den Ansatz des ausrollens für jeden Trace analog zu
