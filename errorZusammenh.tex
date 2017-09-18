@@ -83,14 +83,14 @@
   \begin{figure}[htbp]
     \begin{center}
       \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
-        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+        \node [initial,initial text=$P$:] (p0) at (0,0) {$p_0$};
+
+        \node [initial,initial text=$Q$:] (q0) at (6,0) {$q_0$};
         \node (q1) [right of=q0] {$q_1$};
 
         \path
         (q0) edge node{$o!$} (q1)
         ;
-
-        \node [initial,initial text=$P$:] (p0) at (7,0) {$p_0$};
       \end{tikzpicture}
       \caption{Gegenbeispiel zu $\wasRel \Leftarrow \ERel$ mit $I_P = I_Q =
       \emptyset$}

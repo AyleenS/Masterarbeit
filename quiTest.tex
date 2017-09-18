@@ -66,7 +66,17 @@ Unterschied in den Trace-Mengen aufweisen.
 \begin{figure}[htbp]
   \begin{center}
     \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
-      \node [initial above,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+      \node [initial above,initial text=$P$:] (p0) at (0,0) {$p_0$};
+      \node (p1) [below of=p0] {$p_1$};
+      \node (p2) [below of=p1] {$p_2$};
+
+      \path
+      (p0) edge node{$o$} (p1)
+      (p1) edge[loop left] node{$o$} (p1)
+      (p1) edge node{$o'$} (p2)
+      ;
+
+      \node [initial above,initial text=$Q$:] (q0) at (7,0) {$q_0$};
       \node (q11) [below left of=q0] {$q_{11}$};
       \node (q12) [below right of=q0] {$q_{12}$};
       \node (q2) [below of=q11] {$q_2$};
@@ -78,18 +88,8 @@ Unterschied in den Trace-Mengen aufweisen.
       (q11) edge[loop left] node{$o$} (q11)
       (q12) edge[loop right] node{$o$} (q12)
       ;
-
-      \node [initial above,initial text=$P$:] (p0) at (7,0) {$p_0$};
-      \node (p1) [below of=p0] {$p_1$};
-      \node (p2) [below of=p1] {$p_2$};
-
-      \path
-      (p0) edge node{$o$} (p1)
-      (p1) edge[loop left] node{$o$} (p1)
-      (p1) edge node{$o'$} (p2)
-      ;
     \end{tikzpicture}
-    \caption{}
+    \caption{Beispiel für Probleme bei Trace-Betrachtung}
     \label{QuiTracesBsp}
   \end{center}
 \end{figure}
@@ -265,6 +265,7 @@ für Stille eine neue Semantik definiert.
 \end{Prop}
 \begin{proof}\mbox{}\\
   \glqq$\subseteq$\grqq{}:
+  {\allowdisplaybreaks
   \begin{align*}
     \QET (P)&\overset{\ref{StilleSemDef}}{=} \StQT (P) \cup \ET (P)\\
     &\overset{\ref{StilleTraceProp}}{\subseteq} \left(\underset{P'\in\asimp
@@ -274,8 +275,8 @@ für Stille eine neue Semantik definiert.
     (P)}{\bigcup} \ET (P')\right)\\
     &= \underset{P'\in\asimp (P)}{\bigcup} \StQT (P') \cup \ET (P')\\
     &\overset{\ref{StilleSemDef}}{=} \underset{P'\in\asimp (P)}{\bigcup} \QET
-    (P').\\
-  \end{align*}
+    (P').
+  \end{align*}}
 
   \glqq$\supseteq$\grqq{}:\\
   Es wird hier für ein $w\in \QET (P')$ einer beliebigen as"=Implementierung

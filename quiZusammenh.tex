@@ -60,14 +60,14 @@
   \begin{figure}[htbp]
     \begin{center}
       \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
-        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+        \node [initial,initial text=$P$:, rectangle, draw, dotted] (p0) at
+        (0,0) {$p_0\in Qui _P$};
+
+        \node [initial,initial text=$Q$:] (q0) at (7,0) {$q_0$};
 
         \path
         (q0) edge[loop right] node{$\tau$} (q0)
         ;
-
-        \node [initial,initial text=$P$:, rectangle, draw, dotted] (p0) at
-        (7,0) {$p_0\in Qui _P$};
       \end{tikzpicture}
       \caption{Gegenbeispiel zu $\wasRel \Rightarrow \QRel$ mit $I_P = I_Q =
       \emptyset$}
@@ -97,19 +97,19 @@
   \begin{figure}[htbp]
     \begin{center}
       \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
-        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
+        \node [initial,initial text=$P$:] (p0) at (0,0) {$p_0$};
+
+        \path
+        (p0) edge[loop right] node{$\tau$} (p0)
+        ;
+
+        \node [initial,initial text=$Q$:] (q0) at (6,0) {$q_0$};
         \node (q1) [right of=q0] {$q_1$};
 
         \path
         (q0) edge node{$o!$} (q1)
         (q0) edge[loop above] node{$\tau$} (q0)
         (q1) edge[loop right] node{$\tau$} (q1)
-        ;
-
-        \node [initial,initial text=$P$:] (p0) at (7,0) {$p_0$};
-
-        \path
-        (p0) edge[loop right] node{$\tau$} (p0)
         ;
       \end{tikzpicture}
       \caption{Gegenbeispiel zu $\wasRel \Leftarrow \QRel$}
@@ -140,15 +140,14 @@
   \begin{figure}[htbp]
     \begin{center}
       \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
-        \node [initial,initial text=$Q$:, rectangle, draw, dotted] (q0) at
-        (0,0) {$q_0 \in Qui _Q$};
-
-        \node [initial,initial text=$P$:] (p0) at (7,0) {$p_0$};
+        \node [initial,initial text=$P$:] (p0) at (0,0) {$p_0$};
 
         \path
         (p0) edge[loop right] node{$\tau$} (p0)
         ;
 
+        \node [initial,initial text=$Q$:, rectangle, draw, dotted] (q0) at
+        (7,0) {$q_0 \in Qui _Q$};
       \end{tikzpicture}
       \caption{Gegenbeispiel zu $\QRel \Leftarrow \ERel$ mit $I_P = I_Q =
       \emptyset$}

@@ -87,20 +87,19 @@
   \begin{figure}[htbp]
     \begin{center}
       \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
-        \node [initial,initial text=$Q$:, rectangle, draw, dashed] (q0) at
-        (0,0) {$q_0 \in Div _Q$};
-
-        \path
-        (q0) edge[loop right] node{$\tau$} (q0)
-        ;
-
-        \node [initial,initial text=$P$:, rectangle, draw] (p0) at (7,0) {$p_0
+        \node [initial,initial text=$P$:, rectangle, draw] (p0) at (0,0) {$p_0
         \in E_Q \cap Div _Q$};
 
         \path
         (p0) edge[loop right] node{$\tau$} (p0)
         ;
 
+        \node [initial,initial text=$Q$:, rectangle, draw, dashed] (q0) at
+        (8,0) {$q_0 \in Div _Q$};
+
+        \path
+        (q0) edge[loop right] node{$\tau$} (q0)
+        ;
       \end{tikzpicture}
       \caption{Gegenbeispiel zu $\DRel \Rightarrow \ERel$ mit $I_P = I_Q =
       \emptyset$}
@@ -143,15 +142,14 @@
   \begin{figure}[htbp]
     \begin{center}
       \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
-        \node [initial,initial text=$Q$:] (q0) at (0,0) {$q_0$};
-
         \node [initial,initial text=$P$:, rectangle, draw, dashed] (p0) at
-        (7,0) {$p_0 \in Div _Q$};
+        (0,0) {$p_0 \in Div _Q$};
 
         \path
         (p0) edge[loop right, dashed] node{$\tau$} (p0)
         ;
 
+        \node [initial,initial text=$Q$:] (q0) at (7,0) {$q_0$};
       \end{tikzpicture}
       \caption{Gegenbeispiel zu $\wasRel \Rightarrow \DRel$}
       \label{wasDivGegenBsp}
