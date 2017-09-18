@@ -947,10 +947,35 @@ enthalten ist.
 \TODO{entsprechend der analogen Sätze in den vorangegangen Kapitel anpassen}
 \begin{Satz}
   \label{DivTestVerfSatz}
-  Falls $P_1 \DRel P_2$ gilt folgt daraus auch, dass $P_1$ $P_2$
-  Divergenz-verfeinert.
+  Aus $P_1 \DRel P_2$ folgt, dass $P_1$ $P_2$ Divergenz-verfeinert.
 \end{Satz}
 \begin{proof}
+  Ein Fehler-, stille oder Divergez-Zustand ist nach Definition genau dann in
+  einem \MEIO{} $P$ lokal erreichbar, wenn $w\in\QDT _P$ für ein $w\in O_P^*$
+  gilt.\\
+  Um nachzuweisen, dass $P_1$ $P_2$ Divergenz-verfeinert, muss bewiesen werden,
+  dass für alle Tests $T$ von $P_1$ bzw.\ $P_2$ $P_2\DsatAs T \Rightarrow P_1
+  \DsatAs T$ gilt. Anstatt diese Aussage direkt zu beweisen, wird hier die
+  äquivalente Aussage $\neg P_1\DsatAs T\Rightarrow\neg P_2\DsatAs T$ für alle
+  Test $T$ von $P_1$ und $P_2$ nachgewiesen. Sei $T$ ein belibiger Test $T$ von
+  $P_1$, für den $\neg P_1\DsatAs T$ gilt. Für eine as"=Implementierung $P'_1$
+  von $P_1$ wird also ein Fehler-, stille oder Divergez-Zustand in $P'_1\|T$
+  lokal erreicht. Es muss ein $w\in O_{P'_1\|T}^*$ geben, das in der Menge
+  $\QDT _{P'_1\|T}$ enthalten ist. Ein Element der Menge $\QDT _{P'_1\|T}$ kann
+  in dieser enthalten sein, wenn es nach Definition~\ref{DivSemDef} Element
+  einer der drei folgenden Mengen ist: $\ET _{P'_1\|T}$, $\DT _{P'_1\|T}$ oder
+  $\StQT _{P'_1\|T}$.
+  \begin{itemize}
+    \item Fall 1 ($w\in\ET _{P'_1\|T}$): Dieser Fall kann analog zu Fall 1 aus
+      Satz~\ref{StilleTestVerfSatz} auf den Beweis von
+      Satz~\ref{KommTestVerfSatz} zurückgeführt werden. Es gibt also eine
+      as"=Implementierung $P'_2$ von $P_2$, die in Komposition mit $T$ einen
+      Fehler lokal erreicht. Daraus folgt $\neg P_2\DsatAs T$.
+    \item Fall 2 ($w\in\DT _{P'_1\|T}$): \TODO{zu beweisen}
+    \item Fall 3 ($w\in\StQT _{P'_1\|T}$): \TODO{zu beweisen}
+  \end{itemize}
+
+
   Nach Definition gilt $w\in\QDT (P)$ mit $w\in O^*$ genau dann, wenn in $P$
   ein Fehler-, stiller oder Divergenz-Zustand lokal erreichbar ist. $P_1\DRel
   P_2$ impliziert, dass $w\in\QDT _2$ gilt, wenn $w\in\QDT _1$ gilt. Somit ist
