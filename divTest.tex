@@ -944,7 +944,6 @@ enthalten ist.
   \end{itemize}
 \end{proof}
 
-\TODO{entsprechend der analogen Sätze in den vorangegangen Kapitel anpassen}
 \begin{Satz}
   \label{DivTestVerfSatz}
   Aus $P_1 \DRel P_2$ folgt, dass $P_1$ $P_2$ Divergenz-verfeinert.
@@ -963,48 +962,60 @@ enthalten ist.
   lokal erreicht. Es muss ein $w\in O_{P'_1\|T}^*$ geben, das in der Menge
   $\QDT _{P'_1\|T}$ enthalten ist. Ein Element der Menge $\QDT _{P'_1\|T}$ kann
   in dieser enthalten sein, wenn es nach Definition~\ref{DivSemDef} Element
-  einer der drei folgenden Mengen ist: $\ET _{P'_1\|T}$, $\DT _{P'_1\|T}$ oder
-  $\StQT _{P'_1\|T}$.
+  einer der zwei folgenden Mengen ist: $\EDT _{P'_1\|T}$ oder $\StQT _{P'_1\|T}$.
   \begin{itemize}
-    \item Fall 1 ($w\in\ET _{P'_1\|T}$): Dieser Fall kann analog zu Fall 1 aus
-      Satz~\ref{StilleTestVerfSatz} auf den Beweis von
-      Satz~\ref{KommTestVerfSatz} zurückgeführt werden. Es gibt also eine
-      as"=Implementierung $P'_2$ von $P_2$, die in Komposition mit $T$ einen
-      Fehler lokal erreicht. Daraus folgt $\neg P_2\DsatAs T$.
-    \item Fall 2 ($w\in\DT _{P'_1\|T}$): \TODO{zu beweisen}
-    \item Fall 3 ($w\in\StQT _{P'_1\|T}$): \TODO{zu beweisen}
+    \item Fall 1 ($w\in\EDT _{P'_1\|T}$): Da $w$ nur aus Outputs besteht, muss
+      auch $\varepsilon\in\EDT _{P'_1\|T}$ gelten. Mit Satz~\ref{DivSemSatz}
+      folgt $\varepsilon\in\cont (\prune ((\EDT _{P'_1}\|\EDL _T)\cup (\EDL
+      _{P'_1}\|\EDT _T)))$. Durch Proposition~\ref{DivSemProp} und die
+      präfix-Minimalität von $\varepsilon$ folgt $\varepsilon\in\prune ((\EDT
+      _1\|\EDL _T)\cup (\EDL _1\|\EDT _T))$. Eine Verlängerung $w'\in
+      O_{P_1\|T}$ von $\varepsilon$ um lokale Aktionen muss in der Menge $\EDT
+      _1\|\EDL _T$ oder in der Menge $\EDL _1\|\EDT _T$ enthalten sein. Es muss
+      also eine Projektion des Wortes $w$ auf die einzelnen Komponenten geben,
+      so dass $w\in w_1\|w_T$ mit $w_1\in\EDT _1$ bzw.\ $w_1\in\EDL _1$ und
+      $w_T\in\EDL _T$ bzw.\ $w_T\in\EDT _T$ gilt. Mit der Voraussetzung $P_1
+      \DRel P_2$ folgt $w_1\in\EDT _2$ bzw.\ $w_1\in\EDL _2$. Wegen
+      Proposition~\ref{DivSemProp} muss es ein $P'_2$ aus $\asimp (P_2)$ geben,
+      für dass $w_1\in\EDT _{P'_2}$ bzw.\ $w_1\in\EDL _{P'_2}$ gilt. In der
+      Parallelkomposition mit $T$ gilt also $w'\in (\EDT _{P'_2}\|\EDL _T)\cup
+      (\EDL _{P'_2}\|\EDT _T)$. Da $P_1$ und $P_2$ die gleiche Signatur haben
+      gilt $w'\in O _{P'_2\|T}$ und somit $\varepsilon\in\prune ((\EDT
+      _{P'_2}\|\EDL _T)\cup (\EDL _{P'_2}\|\EDT _T))\subseteq \EDT _{P'_2\|T}$,
+      wegen Satz~\ref{DivSemSatz}. In der Parallelkomposition $P'_2\|T$ ist ein
+      Fehler- oder Divergenz-Zustand lokal erreichbar. Für die Spezifikation
+      $P_2$ von $P'_2$ folgt somit also $\neg P_2\DsatAs T$.
+    \item Fall 2 ($w\in\StQT _{P'_1\|T} \backslash\EDT _{P'_1\|T}$): Das Wort
+      $w$ muss in $P'_1\|T$ zu einem Zustand $(p_1,p_T)$ führen, der still und
+      keine Fehler ist. Die Zustände $p_1$ und $p_T$, die in Kompositon den
+      Zustand in $P_1\|P_T$ ergeben müssen nach Lemma~\ref{StilleZustLem}.2
+      ebenfalls sill sein. Es gibt also Wörter $w_1$ und $w_T$, so dass $w_1$
+      in $P'_1$ den Zustand $p_1$ und $P_t$ den Zustand $p_T$ erreicht mit
+      $w\in w_1\|w_T$. $w_1$ und $w_T$ sind also in der Menge \StQT{} ihres
+      Transitionssystems enthalten. Für $w_1$ gilt $w_1\in\StQT _{P'_1}
+      \subseteq \QDT _{P'_1}\subseteq\QDT _1$, wegen
+      Proposition~\ref{DivSemProp}. $w_1\in\QDT _2$ folgt durch die
+      Voraussetzung $P_1\DRel P_2$. Mit Proposition~\ref{DivSemProp} muss es
+      eine as"=Implementierung $P'_2$ von $P_2$ geben, für die $w_1$ in der
+      Menge $\QDT _{P'_2} = \EDT _{P'_2} \cup \StQT _{P'_2}$ enthalten ist.
+      \begin{itemize}
+        \item Fall 2a) ($w\in\EDT _{P'_2}$): Für das Wort $w_T$ gilt $w_T\in L
+          _T\subseteq\EDL _T$, da es in $T$ ausfühbar ist. Mit
+          Satz~\ref{DivSemSatz}.1 folgt $w\in\EDL _{P'_2\|T}$. Da $w$ nur aus
+          Outputs besteht, ist ein Fehler- oder Divergenz-Zustand in $P'_2\|T$
+          lokal erreichbar wie in Fall 1 dieses Beweises. Es folgt $\neg P_2
+          \DsatAs T$.
+        \item Fall 2b) ($w_1\in\StQT _{P'_2}$): Durch $w_1$ wird in $P'_2$ ein
+          stiller Zustand $p_2$ erreicht. In der Parallelkomposition ist der
+          Zustand $(p_2,p_T)$, wegen Lemma~\ref{StilleZustLem}.1, ebenfalls
+          still. Der Zustand wird durch $w_1\|w_T$ erreicht. Es gilt also
+          $w\in\StQT _{P'_2\|T}$. Das $w$ besteht auch für die
+          Parallelkomposition $P'_2\|T$ nur aus Outputs, da $P_1$ und $P_2$
+          nach Voraussetzung die selbe Signatur besitzten müssen. Es ist also
+          ein stiller Zustand lokal erreichbar in $P'_2\|T$. $\neg P_2\DsatAs
+          T$ gilt also auch in diesem Fall.
+      \end{itemize}
   \end{itemize}
-
-
-  Nach Definition gilt $w\in\QDT (P)$ mit $w\in O^*$ genau dann, wenn in $P$
-  ein Fehler-, stiller oder Divergenz-Zustand lokal erreichbar ist. $P_1\DRel
-  P_2$ impliziert, dass $w\in\QDT _2$ gilt, wenn $w\in\QDT _1$ gilt. Somit ist
-  ein Fehler-, stiller oder Divergenz-Zustand nur dann in $P_1$ lokal
-  erreichbar, wenn auch ein solcher in $P_2$ lokal erreichbar ist. Wegen
-  Korollar~\ref{lokalDivErrKor} gibt es dann auch as"=Implementierungen $P'_1$
-  und $P'_2$ von $P_1$ bzw.\ $P_2$, die analoge fehlerhafte Zustände lokal
-  erreichen. Die Parallelkomposition $P'_j\|T$ für $j\in \{1,2\}$ und einen
-  Test $T$ haben dann ebenfalls einen lokal erreichbaren Fehler-, stille oder
-  Divergenz"=Zustand. Der fehlerhafte Zustand einer as"=Implementierung $P'_1$
-  tritt in der Parallelkomposition mit $T$ auf jeden Fall auf, wenn es sich um
-  einen Fehler oder Divergenz handelt. Bei Stille zeigt sich das Fehlverhalten
-  nur bei Tests $T$, die einen analogen stillen Zustand enthalten. Mit der
-  Relation \DRel{} gibt es auch in $P_2$ und somit auch in einer
-  as"=Implementierung $P'_2$ davon einen lokal erreichbaren fehlerhaften
-  Zustand, wenn es in $P_1$ einen solchen gibt. In Parallelkompositionen von
-  $P'_2$ mit Tests $T$ zeigt sich das Fehlverhalten ebenfalls. Falls ein Fehler
-  oder Divergenz lokal erreichbar ist, gilt $\varepsilon \in \EDT _{P'_j}$. Für
-  alle Tests $T$ ist $\varepsilon$ ein Element der Sprache es gilt also
-  $\varepsilon \in\EDL _T$. Mit Satz~\ref{DivSemSatz}.1 folgt auch
-  $\varepsilon \in \EDT _{P'_j\|T}$. Falls es sich in $P_2$ und somit auch in
-  $P'_2$ nur um Stille handelt und kein Fehler oder Divergenz lokal erreichbar
-  ist, dann muss auch bereits in $P_1$ bzw.\ $P'_1$ Stille das einzige
-  Fehlverhalten gewesen sein, dass lokal erreichbar war. \DRel{} hätte
-  ansonsten auch andere fehlerhafte Zustände in $P_2$ gefordert. Es ist also
-  die Argumentation aus Satz~\ref{StilleTestVerfSatz} anwendbar. Es gilt also
-  $\neg P_1 \DsatAs T \Rightarrow \neg P_2 \DsatAs T$ für alle Test $T$. Daraus
-  ergibt sich für alle Test $T$ die Implikation $P_2 \DsatAs T \Rightarrow P_2
-  \DsatAs T$ und somit Divergenz-verfeinert $P_1$ $P_2$.
 \end{proof}
 
 Es wurde, wie in den letzten beiden Kapiteln, eine Kette an Folgerungen
@@ -1036,3 +1047,10 @@ Abbildung~\ref{FolgerungsketteDiv} dargestellt.
   \label{FolgerungsketteDiv}
   \end{center}
 \end{figure}
+
+Das nächste Korollar macht die Äquivalenz, die durch die
+Abbildung~\ref{FolgerungsketteDiv} deutlich wird, explizit.
+
+\begin{Kor}
+  Es gilt: $P_1\DRel P_2 \Leftrightarrow P_1$ Divergenz-verfeinert $P_2$.
+\end{Kor}
