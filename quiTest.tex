@@ -1,5 +1,13 @@
 \section{Testing-Ansatz}
 
+In den \EIO{}s aus z.B.~\cite{Schinko2016BA} ist ein stiller Zustand, ein
+Zustand, der keine ausgehenden Transitionen für lokale Aktionen besitzt. Im
+Fall der hier betrachteten \MEIO{}s müssen solche Zustände ebenfalls als still
+angesehen werden, jedoch bereits Zustände, die keine ausgehenden
+must"=Transitionen für Outputs und $\tau$s besitzen lassen in
+as"=Implementierungen zu, dass an dort ein Stillstand entsteht. Falls also nur
+may"=Transitionen für die lokalen Aktionen vorhanden sind, sollte der Zustand
+hier auch bereits still sein.\\
 Zustände, die keine must-Transitionen für lokale Aktionen ohne einen Input
 ausführen können, werden als in einer Art Verklemmung angesehen, da sie ohne
 Zutun von Außen den Zustand nicht mehr verlassen können, falls ein
@@ -7,7 +15,7 @@ möglicherweise vorhandener may"=Transition für lokale Aktionen nicht
 implementiert wird. So ein Zustand hat also keine
 must"=Transitions"=Möglichkeiten für einen lokale Aktion, es ist also ein
 Deadlock-Zustand, in denen das System nichts mehr tun können muss ohne einen
-Input. Diese Zustände werden in dieser Arbeit als sill bezeichnet, da wenn
+Input. Diese Zustände werden in dieser Arbeit als still bezeichnet, da wenn
 dieser Zustand erreicht wird, dass System still steht bis die Umwelt eine
 Aktion ausführt.
 

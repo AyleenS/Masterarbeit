@@ -1,5 +1,15 @@
 \section{Testing-Ansatz}
 
+Für die \EIO{} aus z.B.~\cite{Schinko2016BA} sind divergente Zustände Zustände,
+die eine unendliche Folge an $\tau$s ausführen können. Da die Definition für
+Implementierung hier das gleiche liefern soll, müssen alle Zustände, die eine
+unendliche Folge an $\tau$ Zuständen sicher Stellen müssen auf jeden Fall
+divergent sein. Jedoch lassen bereits unendliche Folgen von
+$\tau$-may-Transitionen Divergenz in einer ihrer as"=Implementierungen zu.
+Somit erscheint es sinnvoll Zustände bereits als divergent anzusehen, wenn sie
+die Möglichkeit für eine unendliche Folge von $\tau$s via may-Transitionen
+besitzen.
+
 \begin{Def}[Divergenz]
   Ein \emph{Divergenz-Zustand} ist ein Zustand in einem \MEIO{} $P$, der via
   may-Transitionen eine unendliche Folge an $\tau$s ausführen kann.\\
@@ -7,18 +17,20 @@
   $P$.
 \end{Def}
 
-Die unendliche Folge an $\tau$s kann durch eine Schleife an einem durch interne
-Aktionen erreichbaren Zustand ausführbar sein oder durch einen Weg, der mit
+Die unendliche Folge an $\tau$s kann durch einen Kreis von Zuständen, die via
+$\tau$-Transitionen verbunden sind, von einem durch interne Aktionen
+erreichbaren Zustand ausführbar sein oder durch einen unendlichen Weg, der mit
 $\tau$s ausführbar ist, der unendliche viele Zustände durchläuft. Es ist jedoch
 zu beachten, dass ein Zustand, von dem aus unendlich viele Zustände durch
-$\tau$s  erreichbar sind, nicht divergent sein muss. Es ist auch möglich, dass
-dieser Zustand eine unendliche Verzweigung hat und somit keine unendlichen
+$\tau$s  erreichbar sind, nicht divergent sein muss. Es ist auch möglich,
+dass dieser Zustand eine unendliche Verzweigung hat und somit keine unendlichen
 Folgen an $\tau$s ausführen kann.\\
-Als Erreichbarkeitsbegriff wird wieder die lokale Erreichbarkeit verwendet und
-somit eine optimistische Betrachtungsweise. Da das Divergieren eines Systems
-nicht mehr verhindert werden kann, sobald ein divergenter Zustand lokal
-erreicht werden kann, ist Divergenz als ähnlich \glqq schlimm\grqq{} zu
-bewerten wie ein Fehler-Zustand.
+Für die Relevant eines Divergenz-Zustandes in einem Transitionssystem wieder
+wieder der optimistische Ansatz der lokalen Erreichbarkeit. Auf
+Implementierungen, die den \EIO{}s in z.B.~\cite{Schinko2016BA} entsprechen,
+ist Divergenz nicht mehr verhinderbar, sobald ein divergenter Zustand lokal
+erreichbar ist. Somit wird sich auch hier herausstellen, dass Divergenz als
+ähnlich \glqq schlimm\grqq{} zu bewerten wie ein Fehler-Zustand.
 
 \begin{Def}[Test und Verfeinerung für Divergenz]
   \label{DivTestDef}
@@ -36,18 +48,18 @@ bewerten wie ein Fehler-Zustand.
 
 Da nun die grundlegenden Definitionen für Divergenz festgehalten sind, kann man
 sich einen Begriff für die Traces zu divergenten Zuständen bilden. Im letzten
-Absatz wurde bereits festgestellt, dass Divergenz als ähnlich \glqq
-schlimmes\grqq{} Fehlverhalten anzusehen ist wie Fehler und dass das
-Divergieren eines Systems nicht mehr verhinderbar ist, sobald ein divergenter
-Zustand lokal erreichbar ist, kommt für die Divergenz-Traces wieder die
-\prune{}-Funktion zum Einsatz. Ein System, das unendliche viele $\tau$s
-ausführen kann, ist von außen nicht von so einem System zu unterscheiden, das
-einen Fehler-Zustand erreicht. Somit wird in den Trace-Mengen auch nicht
-zwischen Fehler"=Traces und Divergenz"=Traces explizit unterschieden. Dadurch
-genügt es nicht mehr nur mit den Fehler"=Traces die Sprache zu fluten, sondern
-es muss sowohl mit den Fehler"=Traces wie auch den Divergenz"=Traces geflutet
-werden. Ebenso werden die strikten Stille"=Traces mit diesen beiden
-Trace-Mengen geflutet.
+Absatz wurde bereits festgestellt, dass Divergenz wohl als ähnlich \glqq
+schlimmes\grqq{} Fehlverhalten anzusehen ist wie Fehler. Da das Divergieren
+eines Systems nicht mehr verhinderbar ist, sobald ein divergenter Zustand lokal
+erreichbar ist, kommt für die Divergenz-Traces wieder die \prune{} und
+letztlich auch die \cont{}-Funktion zum Einsatz. Ein System, das unendliche
+viele $\tau$s ausführen kann, ist von außen nicht von so einem System zu
+unterscheiden, das einen Fehler-Zustand erreicht. Somit wird später semantisch
+in den Trace-Mengen auch nicht zwischen Fehler"=Traces und Divergenz"=Traces
+explizit unterschieden. Dadurch genügt es nicht mehr nur mit den Fehler"=Traces
+die Sprache zu fluten, sondern es muss sowohl mit den Fehler"=Traces wie auch
+den Divergenz"=Traces geflutet werden. Ebenso werden die strikten
+Stille"=Traces mit diesen beiden Trace-Mengen geflutet.
 
 \begin{Def}[Divergenz-Traces]
   Sei $P$ ein \MEIO{} und definiere:
@@ -92,27 +104,27 @@ verläuft analog zu den Propositionen der vorangegangenen Kapitel.
       \end{itemize}
       Die passende as"=Verfeinerungs"=Relation $\mathcal{R}$ ist die
       Identität-Relation. Wie bereits im Beweis zu Proposition~\ref{LImpProp}
-      begründet erfüllt $\mathcal{R}$ alle Punkte der Definition~\ref{SimDef}
-      um eine as"=Verfeinerungs"=Relation zu sein. Es wird ein $w$ aus $\StDT
-      (P)$ betrachtet. Es gibt also einen Trace in $P$ auf dem das Wort $w$
-      ausgeführt wird und der einen divergenten Zustand erreicht. Es gilt also
-      $\exists w' \in \Sigma _{\tau}^*, \exists \alpha _1, \alpha _2, \dots ,
-      \alpha _n, \exists p_1, p_2, \dots , p_n: \hat{w'} = w \land w' = \alpha
-      _1\alpha _2\dots\alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha
-      _2]_P \dots p_{n-1} \may[\alpha _n]_P p_n \in Div _P$. Die
-      Identitäts"=Relation $\mathcal{R}$ setzt die Zustände des Traces mit den
-      analogen Zuständen aus $P'$ in Relation. Zusätzlich mit der
-      Implementierung aller Transitionen aus $P$ in $P'$ ergibt sich der selbe
-      Trace in $P'$. Es gilt also $p'_0 \may[\alpha _1]_{P'} p'_1 \may[\alpha
-      _2]_{P'} \dots p'_{n-1} \may[\alpha _n]_{P'} p'_n$ mit $(p'_j,p_j) \in
-      \mathcal{R}$ für $0\leq j \leq n$. Da $p_n$ in $Div _P$ enthalten ist,
-      gibt es von diesem Zustand in $P$ aus die Möglichkeit eine unendliche
-      Folge an $\tau$s auszuführen. Die Ausführbarkeit muss sich dabei auf mit
-      $\tau$ beschriftete may"=Transitionen in $P$ stützen. Da diese
-      Transitionen in $P'$ alle übernommen wurden, ist auch für $p'_n$ eine
-      unendliche Folge an $\tau$s ausführbar. Es gilt also $p'_n\in Div _{P'}$
-      und somit $w\in \StDT (P')$. Insgesamt folgt also für diese $P'$ $\StDT
-      (P) = \StDT (P')$.
+      begründet erfüllt $\mathcal{R}$ alle Punkte der Definition~\ref{SimDef}.
+      Es wird ein $w$ aus $\StDT (P)$ betrachtet. Es gibt also einen Trace in
+      $P$ auf dem das Wort $w$ ausgeführt wird und der einen divergenten
+      Zustand erreicht. Es gilt also $\exists w' \in \Sigma _{\tau}^*, \exists
+      \alpha _1, \alpha _2, \dots , \alpha _n, \exists p_1, p_2, \dots , p_n:
+      \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha _n \land p_0
+      \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P
+      p_n \in Div _P$. Die Identitäts"=Relation $\mathcal{R}$ setzt die
+      Zustände des Traces mit den analogen Zuständen aus $P'$ in Relation.
+      Zusätzlich mit der Implementierung aller Transitionen aus $P$ in $P'$
+      ergibt sich der selbe Trace in $P'$. Es gilt also $p'_0 \may[\alpha
+      _1]_{P'} p'_1 \may[\alpha _2]_{P'} \dots p'_{n-1} \may[\alpha _n]_{P'}
+      p'_n$ mit $(p'_j,p_j) \in \mathcal{R}$ für $0\leq j \leq n$. Da $p_n$ in
+      $Div _P$ enthalten ist, gibt es von diesem Zustand in $P$ aus die
+      Möglichkeit eine unendliche Folge an $\tau$s auszuführen. Die
+      Ausführbarkeit muss sich dabei auf mit $\tau$ beschriftete
+      may"=Transitionen in $P$ stützen. Da diese Transitionen in $P'$ alle
+      übernommen wurden, ist auch für $p'_n$ eine unendliche Folge an $\tau$s
+      ausführbar. Es gilt also $p'_n\in Div _{P'}$ und somit $w\in \StDT (P')$.
+      Insgesamt folgt also für diese $P'$ $\StDT (P) = \StDT (P')$.
+      \TODO{versuchen als ein Gesamtablauf zu formulieren}
     \item Dieser Punkt entspricht 1.\ bis auf die Anwendung der
       \prune{}-Funktion auf beiden Seiten des Inklusions-Symbols. Da $\prune{}$
       monoton ist, folgt dieser Punkt direkt auf dem letzten.
@@ -564,26 +576,26 @@ Folgenden wird hierfür nun ein neuer Begriff definiert. Der jedoch auch bereits
 so in z.B.~\cite{Schinko2016BA} analog für \EIO{}s verwendet und definiert
 wurde.
 
-\begin{Def}[{\boldmath$\omega$}-Partner]
-  Ein \MEIO{} $P_1$ ist ein $\omega$-Partner von einem \MEIO{} $P_2$, wenn
-  $I_1=O_2$ und $O_1=I_2\cup\{\omega\}$ mit $\omega\notin I_2\cup O_2$ gilt.
+\begin{Def}[{\boldmath$\chi$}-Partner]
+  Ein \MEIO{} $P_1$ ist ein $\chi$-Partner von einem \MEIO{} $P_2$, wenn
+  $I_1=O_2$ und $O_1=I_2\cup\{\chi\}$ mit $\chi\notin I_2\cup O_2$ gilt.
 \end{Def}
 
-Ein $\omega$-Partner $P_1$ von $P_2$ unterscheidet sich von einem Partner von
-$P_2$ nur um den Output $\omega$, der nicht in der Menge $\Synch (P_1,P_2)$
+Ein $\chi$-Partner $P_1$ von $P_2$ unterscheidet sich von einem Partner von
+$P_2$ nur um den Output $\chi$, der nicht in der Menge $\Synch (P_1,P_2)$
 enthalten ist.
 
 \begin{Lem}[Testing-Verfeinerung mit Divergenz]
   \label{DivTestVerfeinLem}
   Gegeben sind zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur. Wenn
-  für alle Tests $T$, die $\omega$-Partner von $P_1$ bzw. $P_2$ sind, $P_2
+  für alle Tests $T$, die $\chi$-Partner von $P_1$ bzw. $P_2$ sind, $P_2
   \DsatAs T\Rightarrow P_1 \DsatAs T$ gilt, dann folgt daraus die Gültigkeit
   von $P_1\DRel P_2$.
 \end{Lem}
 \begin{proof}
   Da $P_1$ und $P_2$ die gleiche Signatur haben, definiert man $I:=I_1=I_2$ und
-  $O:=O_1=O_2$. Für jeden $\omega$-Partner Test $T$ gilt $I_T=O$ und
-  $O_T=I\cup\{\omega\}$ mit $\omega\notin I\cup O$.\\
+  $O:=O_1=O_2$. Für jeden $\chi$-Partner Test $T$ gilt $I_T=O$ und
+  $O_T=I\cup\{\chi\}$ mit $\chi\notin I\cup O$.\\
   Um zu zeigen, dass die Relation $P_1\DRel P_2$ gilt, müssen die folgenden
   Punkte nachgewiesen werden:
   \begin{itemize}
@@ -620,7 +632,7 @@ enthalten ist.
       Fehler oder um lokale erreichbare Divergenz in $P'_1$. Für $T$ wird ein
       Transitionssysteme verwendet, das nur aus dem Startzustand und einer
       must"=Schleife für alle Inputs $x\in I_T$ und einer must"=Schleife für
-      $\omega$ besteht. Somit kann $P'_1$ im Prinzip die gleichen Fehler- und
+      $\chi$ besteht. Somit kann $P'_1$ im Prinzip die gleichen Fehler- und
       Divergenz-Zustände wie $P'_1\|T$ lokal erreichen. $P_1$ erfüllt den Test
       $T$ nicht. $P_2$ darf $T$ somit auch nicht erfüllen. Es muss eine
       as"=Implementierung $P'_2$ von $P_2$ existieren, für die $P'_2\|T$ einen
@@ -634,7 +646,7 @@ enthalten ist.
       lokal erreichbar sein. Da $\EDT (P) =\ET (P)\cup\DT (P)$ gilt, folgt
       $w\in \EDT _{P'_2}$ und mit~\ref{DivSemProp}.2 $w\in \EDT _2$.
     \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
-      $x_{n+1}\in I$): Es wird der folgende $\omega$-Partner $T$ betrachtet
+      $x_{n+1}\in I$): Es wird der folgende $\chi$-Partner $T$ betrachtet
       (siehe auch Abbildung~\ref{TohneEmitO}):
       \begin{itemize}
         \item $T=\{p_0,p_1,\dots ,p_{n+1}\}$,
@@ -644,7 +656,7 @@ enthalten ist.
             &\cup\{(p_j,x,p_{n+1})\mid  x\in I_T\backslash\{x_{j+1}\}, 0\leq
             j\leq n\}\\
             &\cup\{(p_{n+1},x,p_{n+1})\mid  x\in I_T\}\\
-            &\cup\{(p_j,\omega ,p_{n+1})\mid 0\leq j\leq n+1\},
+            &\cup\{(p_j,\chi ,p_{n+1})\mid 0\leq j\leq n+1\},
         \end{aligned}$
         \item $E_T=\emptyset$.
       \end{itemize}
@@ -661,14 +673,14 @@ enthalten ist.
 
           \path[->, >=latex'] ($ (0) + (-1,0) $) edge (0)
                 (0) edge node {$x_1$} (1)
-                    edge [bend right] node [below, sloped] {$x?\neq x_1, \omega
+                    edge [bend right] node [below, sloped] {$x?\neq x_1, \chi
                     !$} (n1)
                 (1) edge node {$x_2$} (dots)
-                    edge node [below, sloped] {$x?\neq x_2, \omega !$} (n1)
+                    edge node [below, sloped] {$x?\neq x_2, \chi !$} (n1)
                 (dots) edge node {$x_n$} (n)
-                (n) edge node [above, sloped] {$x?\in I_T, \omega !$} (n1)
+                (n) edge node [above, sloped] {$x?\in I_T, \chi !$} (n1)
                     edge [bend left] node [sloped] {$x_{n+1}$!} (n1)
-                (n1) edge [loop below] node {$x?\in I_T, \omega !$} (n1);
+                (n1) edge [loop below] node {$x?\in I_T, \chi !$} (n1);
         \end{tikzpicture}
         \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$}
       \label{TohneEmitO}
@@ -676,10 +688,10 @@ enthalten ist.
       \end{figure}
       Die Mengen der Divergenz- und stillen Zustände des hier betrachteten $T$s
       sind leer. Da im Vergleich zum Transitionssystem in
-      Abbildung~\ref{UohneE} nur die $\omega$-Transitionen zu $p_{n+1}$ ergänzt
+      Abbildung~\ref{UohneE} nur die $\chi$-Transitionen zu $p_{n+1}$ ergänzt
       und die Mengen unbenannt wurden, ändert sich nichts an dem Fall 2a) im
       ersten Punkt des Beweises von Lemma~\ref{KommTestVerfeinLem}. Im Fall 2b)
-      muss die Menge $O^*$ durch $(O\cup\{\omega\})^*$ ersetzt werden. Die
+      muss die Menge $O^*$ durch $(O\cup\{\chi\})^*$ ersetzt werden. Die
       Begründungen, wieso in den beiden Fällen $\varepsilon\in\PrET (P'_1\|T)$
       für ein $P'_1\in\asimp (P_1)$ gilt, bleibt also analog zum Beweis von
       Lemma~\ref{KommTestVerfeinLem}. Da nun aber auch Divergenz betrachtet
@@ -687,11 +699,11 @@ enthalten ist.
       \begin{itemize}
         \item Fall 2c) ($w\in\PrDT _{P'_1}$): In $P'_1\|T$ erhält man
           $(p_{01},p_0) \weakmay[w] (p'',p_{n+1})\weakmay[u] (p',p_{n+1})$ für
-          $u\in (O\cup \{\omega\})^*$ und $p'\in Div_1$. Daraus folgt
+          $u\in (O\cup \{\chi\})^*$ und $p'\in Div_1$. Daraus folgt
           $(p',p_{n+1})\in Div_{P'_1\|T}$ und somit $wu\in\StDT (P'_1\|F)$. Da
           alle Aktionen aus $w$ synchronisiert werden und $I_T\cap
           I=\emptyset$ gilt $x_1,\dots , x_n, x_{n+1}\in O_{P'_1\|T}$. Da
-          zusätzlich $u$ in $(O\cup \{\omega\}) ^*$ enthalten ist, folgt $u\in
+          zusätzlich $u$ in $(O\cup \{\chi\}) ^*$ enthalten ist, folgt $u\in
           O^*_{P'_1\|T}$. Somit ergibt sich $\varepsilon\in\PrDT (P'_1\|T)$.
       \end{itemize}
       Da $\varepsilon$ in $\PrET (P'_1\|T) \cup \PrDT (P'_1\|T)$ enthalten ist,
@@ -699,26 +711,26 @@ enthalten ist.
       Implikation $P_2 \DsatAs T\Rightarrow P_1 \DsatAs T$ kann geschlossen
       werden, dass in der Parallelkomposition einer as"=Implementierung $P'_2$
       von $P_2$ mit dem Test $T$ ein fehlerhafter Zustand lokal erreichbar sein
-      muss. Durch die $\omega$-Transitionen an den Zuständen von $T$ kann es in
+      muss. Durch die $\chi$-Transitionen an den Zuständen von $T$ kann es in
       Komposition mit $T$ keine stillen Zustände geben. Die Fehlerhaftigkeit
       muss also ein Fehler oder Divergenz sein.
       \begin{itemize}
         \item Fall 2i) ($\varepsilon\in\ET (P'_1\|T)$ wegen neuem Fehler): Da
           jeder Zustand von $T$ alle Inputs $x\in I_T=O$ zulässt, muss ein
           lokal erreichbarer Fehler-Zustand in diesem Fall der Form sein, dass
-          ein Output $a\in O_T\backslash\{\omega\}$ von $T$ möglich ist, der
+          ein Output $a\in O_T\backslash\{\chi\}$ von $T$ möglich ist, der
           nicht mit einem passenden Input aus $P'_2$ synchronisiert werden
           kann. Durch die Konstruktion von $T$ ist in $p_{n+1}$ kein Output
-          außer $\omega$ möglich. Ein neuer Fehler muss also die Form
+          außer $\chi$ möglich. Ein neuer Fehler muss also die Form
           $(p',p_j)$ haben mit $j\leq n$, $p'\nmust[x_{i+1}]_{P'_2}$ und
-          $x_{i+1}\in O_T\backslash\{\omega\}$. Durch Projektion erhält man
+          $x_{i+1}\in O_T\backslash\{\chi\}$. Durch Projektion erhält man
           dann $p_{02} \lweakmay[x_1\dots x_i]_{P'_2} p'
           \nmust[x_{i+1}]_{P'_2}$ und damit gilt $x_1\dots x_{i+1}\in\MIT
           _{P'_2}\subseteq \ET _{P'_2}$. Somit ist ein Präfix von $w$ in $\EDT
           _{P'_2}$ enthalten. Wegen des Abschlusses unter \cont{} und wegen
           Proposition~\ref{DivSemProp}.2 gilt $w\in\EDT _2$.
         \item Fall 2ii) ($\varepsilon\in\ET (P'_2\|T)$ wegen geerbtem Fehler):
-          $T$ hat $x_1\dots x_iu$ ausgeführt mit $u\in (O\cup\{\omega\})^*$ und
+          $T$ hat $x_1\dots x_iu$ ausgeführt mit $u\in (O\cup\{\chi\})^*$ und
           ebenso hat $P'_2$ den Weg $x_1\dots x_iu|_{\Sigma _2}$ ausgeführt.
           Durch dies hat $P'_2$ einen Zustand aus $E_{P'_2}$ erreicht, da von
           $T$ kein Fehler geerbt werden kann. Es gilt dann $\prune (x_1\dots
@@ -733,7 +745,7 @@ enthalten ist.
           (P'_2\|T)$): Da $T$ nicht unendlich viele Zustände hat und auch keine
           $\tau$-Schleifen besitzt, kann das Divergenz"=Verhalten nur von
           $P'_2$ geerbt sein. $T$ hat $x_1\dots x_iu$ ausgeführt mit $u\in (O
-          \cup \{\omega\})^*$ und ebenso hat $P'_2$ den Weg $x_1\dots
+          \cup \{\chi\})^*$ und ebenso hat $P'_2$ den Weg $x_1\dots
           x_iu|_{\Sigma _2}$ ausgeführt. Durch dies hat $P'_2$ einen Zustand
           aus $Div_{P'_2}$ erreicht. Es gilt dann $\prune (x_1\dots
           x_iu|_{\Sigma _2}) = \prune (x_1\dots x_i)\in\PrDT _{P'_2} \subseteq
@@ -764,17 +776,17 @@ enthalten ist.
   $P'_1\|T$, wenn in $T$ ebenfalls ein stiller Zustand durch $w$ erreicht
   wird.\\
   Das betrachtete $w$ hat die Form $w = x_1\dots x_n\in\Sigma ^*$ mit $n\geq
-  0$. Es wird der folgende $\omega$-Partner Test $T$ betrachtet (siehe auch
+  0$. Es wird der folgende $\chi$-Partner Test $T$ betrachtet (siehe auch
   Abbildung~\ref{TohneEmitIundO}):
   \begin{itemize}
     \item $T=\{p_0,p_1,\dots ,p_n, p\}$,
     \item $p_{0T}=p_0$,
     \item $\begin{aligned}[t]
         \may _T = \must _T &= \{(p_j,x_{j+1},p_{j+1})\mid  0\leq j< n\}\\
-        &\cup\{(p_j,x,p)\mid  x\in (I_T\cup \{\omega\})\backslash\{x_{j+1}\},
+        &\cup\{(p_j,x,p)\mid  x\in (I_T\cup \{\chi\})\backslash\{x_{j+1}\},
         0\leq j< n\}\\
         &\cup\{(p_n,x,p)\mid x\in I_T\}\\
-        &\cup\{(p,x,p)\mid x\in I_T\cup\{\omega\}\},
+        &\cup\{(p,x,p)\mid x\in I_T\cup\{\chi\}\},
     \end{aligned}$
     \item $E_T=\emptyset$.
   \end{itemize}
@@ -791,13 +803,13 @@ enthalten ist.
 
       \path[->, >=latex'] ($ (0) + (-1,0) $) edge (0)
             (0) edge node {$x_1$} (1)
-                edge [bend right] node [below, sloped] {$x?\neq x_1, \omega !$}
+                edge [bend right] node [below, sloped] {$x?\neq x_1, \chi !$}
                 (p)
             (1) edge node {$x_2$} (dots)
-                edge [below, sloped] node {$x?\neq x_2, \omega !$} (p)
+                edge [below, sloped] node {$x?\neq x_2, \chi !$} (p)
             (dots) edge node {$x_n$} (n)
             (n) edge [bend left] node [below,sloped] {$x?\in I_T$} (p)
-            (q) edge [loop below] node {$x?\in I_T, \omega !$} (p);
+            (q) edge [loop below] node {$x?\in I_T, \chi !$} (p);
     \end{tikzpicture}
     \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$, $p_n$
       ist der einzige stille Zustand}
@@ -805,7 +817,7 @@ enthalten ist.
   \end{center}
   \end{figure}
   Falls das betrachtete $w$ dem leeren Wort $\varepsilon$ entspricht, reduziert
-  sich der $\omega$-Partner Test $T$ auf den Zustand $p_n = p_0$ und den
+  sich der $\chi$-Partner Test $T$ auf den Zustand $p_n = p_0$ und den
   Zustand $p$. Es ist also in diesem Fall der Startzustand gleich dem stillen
   Zustand.\\
   Allgemein ist der Zustand $p_n$ aus $T$ der einzige stille Zustand in $T$. Es
@@ -866,7 +878,7 @@ enthalten ist.
       Lemmata~\ref{KommTestVerfeinLem} und~\ref{StilleTestVerfeinLem} gilt auch
       hier, dass $\varepsilon$ immer in $\EDL _2$ enthalten ist.
     \item Fall 2 ($w = x_1\dots x_n$ mit $n \geq 1$): Die Konstruktion des
-      $\omega$-Partner Tests $T$ weicht nur durch die $\omega$-Transitionen vom
+      $\chi$-Partner Tests $T$ weicht nur durch die $\chi$-Transitionen vom
       Transitionssystem aus dem Beweis der Inklusion der Fehler-gefluteten
       Sprache \EL{} aus Lemma~\ref{KommTestVerfeinLem} ab. Der Test $T$ ist
       dann wie folgt definiert (siehe dazu auch Abbildung~\ref{TmitEundO}):
@@ -876,8 +888,8 @@ enthalten ist.
         \item $\begin{aligned}[t]
             \may _T = \must _T &= \{(p_j,x_{j+1},p_{j+1})\mid 0\leq j< n\}\\
             &\cup\{(p_j,x,p)\mid x\in I_T\backslash\{x_{j+1}\},0\leq j < n\}\\
-            &\cup\{(p_j,\omega ,p)\mid 0\leq j\leq n\}\\
-            &\cup\{(p,x ,p)\mid x\in I_T\cup \{\omega\}\},
+            &\cup\{(p_j,\chi ,p)\mid 0\leq j\leq n\}\\
+            &\cup\{(p,x ,p)\mid x\in I_T\cup \{\chi\}\},
         \end{aligned}$
         \item $E_T=\{p_n\}$.
       \end{itemize}
@@ -896,22 +908,22 @@ enthalten ist.
 
           \path[->, >=latex'] ($ (0) + (-1,0) $) edge (0)
                 (0) edge node {$x_1$} (1)
-                    edge [bend right] node [below, sloped] {$x?\neq x_1, \omega
+                    edge [bend right] node [below, sloped] {$x?\neq x_1, \chi
                     !$} (p)
                 (1) edge node {$x_2$} (dots)
-                    edge node [below, sloped] {$x?\neq x_2, \omega !$} (p)
+                    edge node [below, sloped] {$x?\neq x_2, \chi !$} (p)
                 (dots) edge node {$x_{n-1}$} (n1)
                 (n1) edge node {$x_n$} (n)
-                     edge node [below, sloped] {$x?\neq x_n, \omega !$} (p)
-                (p) edge [loop below] node {$x?\in I_T, \omega !$} (p)
-                (n) edge [bend left] node {$\omega !$} (p);
+                     edge node [below, sloped] {$x?\neq x_n, \chi !$} (p)
+                (p) edge [loop below] node {$x?\in I_T, \chi !$} (p)
+                (n) edge [bend left] node {$\chi !$} (p);
         \end{tikzpicture}
         \caption{$x?\neq x_j$ steht für alle $x\in I_T\backslash\{x_j\}$, $p_n$
           ist der einzige Fehler-Zustand}
       \label{TmitEundO}
       \end{center}
       \end{figure}
-      Durch die $\omega$-Transition an den Zuständen wird wie oben vermieden,
+      Durch die $\chi$-Transition an den Zuständen wird wie oben vermieden,
       dass es in einer Komposition mit $T$ und auch in $T$ selbst
       stille Zustände geben kann. Da $p_{01} \weakmust[w]_{P'_1} p'_1$ gilt,
       kann man schließen, dass $P'_1\|T$ einen lokal erreichbaren geerbten
@@ -921,7 +933,7 @@ enthalten ist.
       Frage.
       \begin{itemize}
         \item Fall 2a) \big(neuer Fehler aufgrund von $x_i\in O_T\backslash
-          \{\omega\}$ und $p_{02} \lweakmay[x_1\dots x_{j-1}] p'_2
+          \{\chi\}$ und $p_{02} \lweakmay[x_1\dots x_{j-1}] p'_2
           \nmust[x_j]$\big): Es gilt $x_1\dots x_j\in\MIT _{P'_2}$ und somit
           $w\in\EDL _{P'_2}$ Anzumerken ist, dass nur auf diesem Weg Outputs
           von $T$ aus der Menge $\Synch (P'_2,T)$ möglich sind, deshalb gibt es
@@ -1021,7 +1033,7 @@ enthalten ist.
 Es wurde, wie in den letzten beiden Kapiteln, eine Kette an Folgerungen
 gezeigt, die sich zu einem Ring schließt. Jedoch ändert sich an der Begründung
 für einen der Folgepfeile etwas, da in Lemma~\ref{DivTestVerfeinLem} $T$ kein
-Partner ist, sondern ein $\omega$-Partner. Die Folgerungskette ist in
+Partner ist, sondern ein $\chi$-Partner. Die Folgerungskette ist in
 Abbildung~\ref{FolgerungsketteDiv} dargestellt.
 
 \begin{figure}[h!tbp]
@@ -1029,7 +1041,7 @@ Abbildung~\ref{FolgerungsketteDiv} dargestellt.
     \begin{tikzpicture}[scale = 3]
       \matrix (m) [matrix of math nodes,row sep=2cm,column sep=4cm]{%
         P_1\DRel P_2 & P_1 \text{ verfeinert } P_2 \\
-        \substack{\forall \text{ Test } \omega\text{-Partner } T:\\P_2\DsatAs
+        \substack{\forall \text{ Test } \chi\text{-Partner } T:\\P_2\DsatAs
         T\Rightarrow P_1\DsatAs T} &
     \substack{\forall \text{ Tests } T:\\P_2\DsatAs T\Rightarrow P_1\DsatAs T} \\};
         \draw[-implies, double, double distance=1mm]
@@ -1041,7 +1053,7 @@ Abbildung~\ref{FolgerungsketteDiv} dargestellt.
           {Lemma~\ref{DivTestVerfeinLem}} (m-1-1);
         \draw[-implies, double, double distance=1mm]
           (m-2-2) -- node [below]
-          {$\substack{T \text{ Test } \omega\text{-Partner}\\\Downarrow\\ T \text{ Test}}$} (m-2-1);
+          {$\substack{T \text{ Test } \chi\text{-Partner}\\\Downarrow\\ T \text{ Test}}$} (m-2-1);
     \end{tikzpicture}
     \caption{Folgerungskette der Testing-Verfeinerung und Divergenz-Relation}
   \label{FolgerungsketteDiv}
