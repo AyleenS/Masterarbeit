@@ -566,35 +566,57 @@ unter der Voraussetzung, dass die Systeme divergenz-frei sind.
       \end{itemize}
   \end{itemize}
 
-  (ii):
-  Man kann diese Gleichheit wieder in zwei Inklusionen aufteilen, die jedoch
-  durch die das bereits in (i) gezeigte eingeschränkt werden können, dabei
-  entstehen dann die beiden folgenden Inklusionen: $\StQT (\DF (P_{12}))
-  \backslash \ET (\DF (P_{12})) \subseteq\QET (\DF (P_1)\|\DF (P_2))$ und
-  $\StQT (\DF (P_1)\|\DF (P_2)) \backslash \ET (\DF (P_1)\|\DF (P_2))
-  \subseteq\QET (\DF (P_{12}))$. Da die Konstruktion der Normierung auf
+  (ii) \glqq $\subseteq$\grqq:\\
+  Man kann diese Inklusion durch die bereits bewiesene Gleichheit der
+  \ET{}-Mengen auf $\StQT (\DF (P_{12})) \backslash \ET (\DF (P_{12}))
+  \subseteq\QET (\DF (P_1)\|\DF (P_2))$ einschränken. Für ein beliebiges $w$
+  aus $\StQT (\DF (P_{12})) \backslash \ET (\DF (P_{12}))$ wird in $\DF
+  (P_{12})$ durch diese Wort ein stille Zustand erreicht, der nicht in $E_{\DF
+  (P_{12})}$ enthalten ist. Da die Konstruktion für die Normierung
+  aus~\ref{DivNormDef} die Transitionen eines Systems unverändert lässt. Gilt
+  auch für $P_{12}$ $w\in\StQT _{12}$. Die Menge der Fehler"=Zustände
+  vergrößert sich nur durch die Konstruktion aus~\ref{DivNormDef}, der durch
+  $w$ erreichte Zustand $(p_1,p_2)$ in $P_{12}$ ist also ebenfalls nur still
+  und kein Fehler"=Zustand aus $E_{12}$. Mit Lemma~\ref{StilleZustLem}.2 folgt,
+  dass $p_1$ und $p_2$ in ihrer jeweiligen Komponente ebenfalls stille Zustände
+  sein müssen. Die Normierungen $\DF (P_1)$ und $\DF (P_2)$ enthalten die
+  Zutände $p_1$ und $p_2$ immer noch als stille Zustände. Die Transitionen um
+  diese Zustände zu erreichen verändern sich durch das Vergrößern der
+  Fehler"=Menge nicht. Der Zustand $(p_1,p_2)$ wird in $\DF (P_1)\|\DF (P_2)$
+  durch das Wort $w$ erreicht und besitzt wegen Lemma~\ref{StilleZustLem}.1
+  keine ausgehenen must"=Transitionen für lokale Aktionen. Es gilt also $w\in
+  \StQT _{\DF (P_1)\|\DF (P_2)}\subseteq\QET _{\DF (P_1)\|\DF (P_2)}$.
+
+  (ii) \glqq $\supseteq$\grqq:\\
+  Die hier zu zeigende Inklusion lässt sich auf den Beweis von $\StQT (\DF
+  (P_1)\|\DF (P_2)) \backslash \ET (\DF (P_1)\|\DF (P_2)) \subseteq\QET (\DF
+  (P_{12}))$ reduzieren. Ein beliebiges $w$ aus $\StQT (\DF (P_1)\|\DF (P_2))
+  \backslash \ET (\DF (P_1)\|\DF (P_2))$ ist die Beschriftung eines Ablaufes
+  von $\DF (P_1)\|\DF (P_2)$, der zu einem Zustand $(p_1,p_2)\in Qui _{\DF
+  (P_1)\|\DF (P_2)}\backslash E_{\DF (P_1)\|\DF (P_2)}$ führt. Die Zustände
+  $p_1$ und $p_2$ in $\DF (P_1)$ bzw.\ $\DF (P_2)$ sind still durch
+  Lemma~\ref{StilleZustLem}.2. Da die Konstruktion der Normierung auf
   divergenz-freie Systeme in Definition~\ref{DivNormDef} jedoch keine
   Transitionen verändert, sondern nur die Zustands-Mengen $E$ erweitert, gilt
-  sogar die Gleichheit $\StQT (\DF (P_{12})) \backslash \ET (\DF (P_{12})) =
-  \StQT (\DF (P_1)\|\DF (P_2)) \backslash \ET (\DF (P_1)\|\DF (P_2))$. Ein Wort
-  aus der Menge einer der \StQT{}-Mengen muss ausführbar sein zu einem stillen
-  Zustand führen, da auf beiden Seiten ausgeschlossen wurde, dass das jeweilige
-  Wort auch in der \ET{}-Menge enthalten ist, ist der erreicht Zustand ein
-  Fehler"=Zustand. Es kann also Lemma~\ref{StilleZustLem} angewendet werden und
-  es folgt auf beiden Seiten der Gleichung, das die in den Projektionen
-  erreichten Zustände in $P_1$ und $P_2$ still sein müssen. Aus zwei stillen
-  Zuständen in der Komposition entsteht auch immer weider ein stiller Zustand
-  mit Lemma~\ref{StilleZustLem}.
+  sind $p_1$ und $p_2$ in $P_1$ und $P_2$ ebenfalls still und durch die selben
+  Traces wie in den normierten Systemen erreichbar. Das Wort $w$ in $P_1\|P_2$
+  erreicht den Zustand $(p_1,p_2)$, der still ist wegen
+  Lemma~\ref{StilleZustLem}.1. Die Konstruktion aus Definition~\ref{DivNormDef}
+  verhindert nicht die Erreichbarkeit des Zustandes $(p_1,p_2)$ und verändert
+  auch nicht an den ausgehenden Transitionen dies Zustandes. Somit ist $w$ in
+  $\StQT _{\DF (P_{12})}\subseteq\QET _{\DF (P_{12})}$ enthalten.
 
   (iii):
   Dieser Punkt könnte analog zum letzten Punkt durch die bereits bewiesenen
-  Punkte eingeschränkte Inklusionen gezeigt werden, jedoch gilt hier ebenfalls
-  bereits die Gleichheit für die Einschränkung. Es wird also direkt $L (\DF
-  (P_{12})) = L (\DF (P_1)\|\DF (P_2))$ gezeigt. Die Normierung auf
-  divergenz"=freie Systeme verändert die ausführbaren Traces nicht. Somit bleibt
-  die Sprache gleich. Egal ob vor der Parallelkomposition normiert wurde oder
-  erst danach, die Traces, die in den Parallelkomposition ausführbar sind,
-  stimmen überein.
+  Punkte durch eingeschränkte Inklusionen nachgewiesen werden, jedoch gilt hier
+  bereits die Gleichheit für die eingeschränkten Trace-Mengen. Es wird also
+  direkt $L (\DF (P_{12})) = L (\DF (P_1)\|\DF (P_2))$ begründet. Die
+  Normierung auf Systeme die eine divergenz"=freie Form besitzten verändert die
+  ausführbaren Traces nicht, da die Transitionen unverändert bleiben. Somit ist
+  die Sprache vor und nach der Normierung gleich. Egal ob vor der
+  Parallelkomposition normiert wurde oder erst nach der Komposition, die
+  Traces, die in für die Systeme $\DF (P_{12})$ und $\DF (P_1)\|\DF (P_2)$
+  ausführbar sind, stimmen überein.
 \end{proof}
 
 Analog wie in den beiden vorangegangenen Kapitel, ergibt sich aus diesem Satz
