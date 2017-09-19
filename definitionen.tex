@@ -172,18 +172,38 @@ Für LTS (Labelled Transition Systems), die nach Definition keine Modalitäten
 und keine Fehler-Zustände enthalten, entspricht die as"=Verfeinerung einer
 Bisimulation. Dafür müssen die Transitionen eines LTS als must"=Transitionen
 aufgefasst werden. Man kann also auf LTS mit einer as"=Verfeinerungs"=Relation
-zwischen zwei Systemen deren Äquivalenz beweisen.\\ \TODO{falls möglich
-passendes Quellen Beispiel einfügen}\\
+zwischen zwei Systemen deren Äquivalenz beweisen. Man muss dazu einen
+Äquvialenz Begriff wie in~\cite{Milner1989} verwenden.\\
 Auf den \EIO{}, die z.B.\ in~\cite{Schinko2016BA} betrachtet wurden, lässt die
 as"=Verfeinerungs"=Relation zu, dass es in einer Verfeinerung möglicherweise
 weniger Fehler gibt und zusätzliches Verhalten, dass die Spezifikation nicht
 hatte. Die \EIO{}s entsprechen Implementierungen von \MEIO{}s, es ist also
 möglich, eine Implementierung mit Fehler durch eine andere as zu verfeinern,
 die keine Fehler enthält, aber potentiell zusätzliches Verhalten aufweist.
-\\ \textbf{TODO: Beispiel einfügen} \TODO{Beispiel einfügen}\\
+Siehe hierzu auch das Beispiel in Abbildung~\ref{ImplVerfBsp}. Die
+Implementierung $P$ ist eine Verfeinerung der Implementierung $Q$ und
+zwischischen ihnen erfüllt die as"=Verfeinerung"=Relation $\mathcal{R} =
+\{(p_0,q_0)\}$ die Definition~\ref{SimDef}. $P$ verfeinert den Fehler"=Zustand
+von $Q$ nicht mit einem Fehler sondern durch die $o$ Schlinge.\\
 Falls eine Implementierung bereits frei von Fehler"=Zuständen ist, entspricht
 sie einem LTS und kann somit nur noch durch äquivalente Implementierungen \glqq
 verfeinert\grqq{} werden.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
+      \node [initial,initial text=$P$:] (p0) at (0,0) {$p_0$};
+
+      \path
+      (p0) edge[loop right] node{$o!$} (p0)
+      ;
+
+      \node [initial,initial text=$Q$:, draw, rectangle] (q0) at (6,0) {$q_0 \in E_Q$};
+    \end{tikzpicture}
+    \caption{Beispiel für die Verfeinerung von Implementierungen}
+    \label{ImplVerfBsp}
+  \end{center}
+\end{figure}
 
 \begin{Def}[schwache alternierende Simulation]
   \label{wSimDef}
