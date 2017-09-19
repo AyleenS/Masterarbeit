@@ -365,7 +365,7 @@ Relation dies Eigenschaft auch übernehmen, so wie \DRel{} dies tut.
 \end{Satz}
 
 Man könnte diesen Satz analog zu den Sätzen~\ref{KommFehlerSemSatz}
-und~\ref{StilleSemSatz} mit durch die Mengen-Inklusionen in beide Richtungen
+und~\ref{StilleSemSatz} durch die Mengen-Inklusionen in beide Richtungen
 beweisen. Alternativ kann man jedoch alle beteiligen \MEIO{}s Normieren, so
 dass sie divergenz-frei sind, in dem Sinne, dass die \MEIO{}s keinen
 divergenten Zustand mehr enthalten, der nicht auf in der Menge der
@@ -373,24 +373,24 @@ Fehler"=Zustände enthalten ist. In für einen \MEIO{}, für den alle Zustände 
 der Menge $Div$ in die Menge $E$ eingefügt wurden, gilt $\EDT = \ET$, $\QDT =
 \QET$ und $\EDL = \EL$. Es wäre als der Satz~\ref{StilleSemSatz} anwendbar für
 die Traces der Parallelkomposition. Es wäre dann nur noch zu zeigen, dass die
-Parallelkomposition von zwei normierten \MEIO{}s die Normierung der
-Parallelkomposition ihrer unnormierten \MEIO{}-Versionen ist.
+Parallelkomposition von zwei in dieser Art normierten \MEIO{}s die Normierung
+auf eine divergenz-freie Form der Parallelkomposition ihrer unnormierten
+\MEIO{}-Versionen ist.
 
 \begin{Def}[Normierung zur Divergenz-Freiheit]
   \label{DivNormDef}
-  Ein \MEIO{} $P$ \emph{divergenz-frei}, wenn $Div _P \subseteq E_P$ gilt.
-
-  Die divergenz-frei Form von $P$ ist ein \MEIO{} $\DF (P)$, dam man aus $P$
+  Ein \MEIO{} $P$ \emph{divergenz-frei}, wenn $Div _P \subseteq E_P$ gilt.\\
+  Die divergenz-frei Form von $P$ ist ein \MEIO{} $\DF (P)$, den man aus $P$
   erhält, in dem man die Menge der Fehler"=Zustände $E_{\DF (P)}$ als die Menge
   $E_P \cup Div _P$ definiert.
 \end{Def}
 
 Die Menge $\MIT _P$, $\StQT _P$ und $L_P$ eines \MEIO{} $P$ bleiben durch die
 Konstruktion in~\ref{DivNormDef} zur divergenz-freien Form $\DF (P)$
-unverändert. Nur die Menge $\cont (\PrET) _P$ wird zur Menge $\cont (\PrET
+unverändert. Nur die Menge $\cont (\PrET _P)$ wird zur Menge $\cont (\PrET
 _{\DF (P)})$ erweitert, in dem eine Vereinigung mit $\DT _P$ vorgenommen wird.
 Semantisch ist jedoch nur die Trace-Menge \EDT{} relevant, die bereits die
-Vereinigung der Menge \ET{} und $\DT{}$ ist. Die Mengen \QDT{} und \EDL{}
+Vereinigung der Mengen \ET{} und $\DT{}$ ist. Die Mengen \QDT{} und \EDL{}
 werden für beide \MEIO{}s mit der Trace Menge \EDT{} geflutet, somit gilt für
 alle in der Semantik der Relation \DRel{} relevanten Traces die Gleichheit
 zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
@@ -402,7 +402,11 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   bezüglich der Relation \DRel{}.
 \end{Prop}
 
-\vspace{0.2cm}
+Wie schon oben erwähnt, sollen die Trace aus Satz~\ref{DivSemSatz} auf die des
+Satz~\ref{StilleSemSatz} zurück geführt werden durch die Normierung Systeme in
+divergenz-freier Form. Damit dies möglich ist, müssen die betrachteten
+Trace-Mengen gleich sein. Dies ist erfüllt, wenn die Relationen äquivalent sind
+unter der Voraussetzung, dass die Systeme divergenz-frei sind.
 
 \begin{Lem}[Relationen unter Divergenz-Freiheit]
   Für zwei \MEIO{}s $P$ und $Q$ in divergenz-freier Form gilt: $P \DRel Q
@@ -429,20 +433,20 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   in divergenz-freier Form ist ebenfalls in divergenz-freier Form.
 \end{Lem}
 \begin{proof}
-  Es gilt $Div _j \subseteq E_j$ für beide $j$-Werte. In einer
+  Es gilt $Div _j \subseteq E_j$ für beide $j\in\{1,2\}$. In einer
   Parallelkomposition entsteht ein Divergenz"=Zustand nur, wenn mindestens
   eine der beiden Komponenten bereits divergent war für den Zustand, der an der
-  Komposition des Divergenz"=Zustandes beteiligt ist. $Div _{12}$ entspricht
+  Komposition des neuen Zustandes beteiligt ist. $Div _{12}$ entspricht
   also der Menge $(Div _1 \times P_2) \cup (P_1 \times Div _2)$. Da geerbte
   Fehler"=Zustände in einer Parallelkomposition auch nur von einem der zu
-  komponierenden Zustände geerbt werden müssen, gilt analoge für die Menge der
-  Fehler"=Zustände. Es folgt also $Div _{12} \subseteq E _{12}$. $P_{12}$ ist
-  also auch in divergenz-freier Form.
+  komponierenden Zustände geerbt werden müssen, gilt eine analoge Formel für
+  die Menge der Fehler"=Zustände. Es folgt also $Div _{12} \subseteq E _{12}$.
+  $P_{12}$ ist also auch in divergenz-freier Form.
 \end{proof}
 
 \begin{proof}[Beweis zu Satz~\ref{DivSemSatz}]\mbox{}\\
   Durch Proposition~\ref{DivNormProp} kann man jeden \MEIO{} $P$ so normieren,
-  dass es divergenz-frei ist, dass Ergebnis der Normierung jedoch noch
+  dass er eine divergenz-freie Form besitzt und das Ergebnis der Normierung
   äquivalent zu $P$ ist bezüglich der Relation \DRel{}. Für einen \MEIO{} $P$
   in divergenz-freier Form gilt jedoch $\EDT _P = \ET _P$, $\QDT _P = \QET _P$
   und $\EDL _P = \EL _P$. Der hier zu beweisende Satz, würde als für \MEIO{}s
@@ -453,8 +457,8 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   (P_1)\|\DF (P_2)$ ist bezüglich der Relation \DRel{} bzw.\ bezüglich der
   Relation \QRel{}, da die Parallelkomposition von zwei \MEIO{}s in
   divergenz-freier Form auch eine divergenz-freie Form hat
-  (Lemma~\ref{DivFreiParallelLem}). Die folgenden Punkte müssen dafür
-  nachgewiesen werden:
+  (Lemma~\ref{DivFreiParallelLem}). Die folgenden Punkte müssen für den
+  Nachweis der Äquivalenz bewiesen werden:
   \begin{enumerate}[(i)]
     \item $\ET (\DF (P_{12})) = \ET (\DF (P_1)\|\DF (P_2))$,
     \item $\QET (\DF (P_{12})) = \QET (\DF (P_1)\|\DF (P_2))$,
@@ -465,33 +469,36 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   Da die \ET{}-Mengen beide unter \cont{} abgeschlossen sind, kann man ein
   beliebiges präfix-minimales Element $w\in\ET (\DF (P_{12}))$ betrachten.
   Das $w$ kann ein Input-kritischer Trace sein oder ein gekürzter
-  Fehler"=Trace. Im Fall $w\in\PrET (\DF (P_{12}))$ kann $w\in\PrET _{12}$
-  gelten oder $w\in\PrDT _{12}$. Input-kritische Traces bleiben von der
-  Normierung unberührt. Die Menge $\MIT (\DF (P_{12}))$ und $\MIT _{11}$
-  entsprechen sich also.
+  Fehler"=Trace. Der gekürzte Fehler"=Trace kann erst durch die Normierung auf
+  ein System in divergenz-freier Form entstanden sein. Falls dies der Fall ist,
+  galt vor der Normierung $w\in \PrDT _{12}$.
   \begin{itemize}
-    \item Fall 1 ($w\in \ET _{12}$): Es gilt mit Satz~\ref{KommFehlerSemSatz}.1
-      $w\in \cont (\prune ((\ET _1\|\EL _2)\cup (\EL _1\|\ET _2)))$. Durch die
+    \item Fall 1 ($w\in \ET _{12}$): Das Wort $w$ war vor der Normierung ein
+      Input-kritischer Trace, der unveränder übernommen wurde oder ein
+      geküzrter Fehler"=Trace. Mit Satz~\ref{KommFehlerSemSatz}.1 gilt $w\in
+      \cont (\prune ((\ET _1\|\EL _2)\cup (\EL _1\|\ET _2)))$. Durch die
       Normierung können sich die Mengen \ET{} und \EL{} nicht verkleinern, sie
-      können werden nur um die Divergenz"=Traces, die zu keinen Fehlern führen
-      erweitert. Mit $\ET _j \subseteq\ET _{\DF (P_j)}$ und $\EL _j \subseteq
-      \EL _{\DF (P_j)}$ für $j\in \{1,2\}$ folgt $w\in \cont (\prune ((\ET
-      _{\DF (P_1)}\|\EL _{\DF (P_2)})\cup (\EL _{\DF (P_1)}\|\ET _{\DF
-      (P_2)})))$. Wegen Satz~\ref{KommFehlerSemSatz}.1 ist $w$ auch in $\ET
-      (\DF (P_1)\|\DF (P_2))$ enthalten.
-    \item Fall 2 ($w\in \PrDT _{12}$): Es gibt eine Verlängerung $v\in O_{12}$,
-      des Wortes $w$, so dass $wv$ in $P_{12}$ zu einem divergenten Zustand
-      führt. Damit der erreichte Zustand in der Parallelkomposition divergent
-      ist, muss mindestens eines der Teilsysteme Divergenz an dem in der
-      Komposition beteiligten Zustand aufweisen. Das andere System muss nur den
-      auf sein Teilsystem projizierten Trace von $wv$ ausführen können. Die
-      Ausführbarkeit von Traces kann durch die Normierung auf ein
-      divergenz-freies System nicht verändert werden. Der divergenten Zustand
-      in dem Teilsystem wird jedoch in die Menge seiner Fehler"=Zustände
-      eingeführt durch die Normierung. In $\DF (P_1)\|\DF (P_2)$ werden also
-      ein Trace aus der Menge \ET{} des einen und aus der Menge $L$ des anderen
-      Systems komponiert. Das Wort $wv$, dass dabei entsteht, ist also in $\ET
-      (\DF (P_1)\|\DF (P_2))$ enthalten. Da $v$ nur aus lokalen Aktionen
+      können nur um die Divergenz"=Traces, die zu keinen Fehlern führen
+      erweitert werden. Es gilt also $\ET _j \subseteq\ET _{\DF (P_j)}$ und
+      $\EL _j \subseteq \EL _{\DF (P_j)}$ für $j\in \{1,2\}$. Daraus folgt
+      $w\in \cont (\prune ((\ET _{\DF (P_1)}\|\EL _{\DF (P_2)})\cup (\EL _{\DF
+      (P_1)}\|\ET _{\DF (P_2)})))$. Wegen Satz~\ref{KommFehlerSemSatz}.1 ist
+      $w$ auch in der Menge der Fehler"=Traces von $\DF (P_1)\|\DF (P_2)$
+      enthalten.
+    \item Fall 2 ($w\in \PrDT _{12}$): Es gibt eine Verlängerung $v\in
+      O_{12}$, des Wortes $w$, so dass $wv$ in $P_{12}$ zu einem divergenten
+      Zustand führt. Damit der erreichte Zustand in der Parallelkomposition
+      divergent ist, muss mindestens eines der Teilsysteme Divergenz an dem
+      in der Komposition beteiligten Zustand aufweisen. Das andere System
+      muss nur den auf sein Teilsystem projizierten Trace von $wv$ ausführen
+      können. Die Ausführbarkeit von Traces kann durch die Normierung auf ein
+      System in divergenz-freies Form nicht verändert werden. Der divergenten
+      Zustand des anderen Teilsystems wird jedoch in die Menge seiner
+      Fehler"=Zustände aufgenommen durch die Normierung. In der
+      Parallelkomposition $\DF (P_1)\|\DF (P_2)$ werden also ein Trace aus
+      der Menge \ET{} des einen und aus der Menge $L$ des anderen Systems
+      komponiert. Das Wort $wv$, dass dabei entsteht, ist somit in der Menge
+      $\ET (\DF (P_1)\|\DF (P_2))$ enthalten. Da $v$ nur aus lokalen Aktionen
       besteht, gilt auch $w\in\ET (\DF (P_1)\|\DF (P_2))$.
   \end{itemize}
 
@@ -506,47 +513,56 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
   $w_2\in\EL _{\DF (P_2)}$ bzw.\ $w_2\in\ET _{\DT (P_2)}$. Da das $w$
   präfix-minimal ist in $\DF (P_1)\|\DF (P_2)$ sind die $w_j\in \EL _{\DF
   (P_j)}$ entweder ausführbar ($w_j\in L _{\DF (P_j)}$) oder in der Menge $\MIT
-  _{\DF (P_j)}$ enthalten. Die Normierung auf ein divergenz-freies System kann
-  nichts an der Ausführbarkeit von Traces verändern. Falls das $w_j$ für
-  $j\in\{1,2\}$ in der Menge $\cont (\MIT _{\DF (P_j)})$ enthalten ist, gilt
-  auch $w_j\in\cont (\MIT _j)$, da die Normierung auf divergenz-freie Systeme
-  die Input-kritischen Trace unverändert lässt. Für $w_j\in\cont (\PrET _{\DF
-  (P_j)})$ können jedoch zwei Fälle unterschieden werden. $w_j$ kann bereits
-  von der Normierung ein Trace aus der Menge $\cont (\PrET _j)$ gewesen sein
-  oder $w_j$ ist erst durch die Normierung zu einem fortgesetzten gekürzten
-  Fehler-Trace geworden und es galt davor $\cont (\PrDT _j) = \DT _j$. Für die
-  hier betrachten $w_j$ gilt $w_j\in \EL _j$, wenn nach der Normierung
+  _{\DF (P_j)}$ enthalten. Die Normierung auf ein System in divergenz-freier
+  Form nichts an der Ausführbarkeit von Traces verändern kann. Falls das $w_j$
+  für $j\in\{1,2\}$ in der Menge $\cont (\MIT _{\DF (P_j)})$ enthalten ist,
+  gilt auch $w_j\in\cont (\MIT _j)$, da die Normierung der Systeme auf
+  ihre divergenz-freie Form die Input"=kritischen Trace unverändert lässt. Für
+  die hier betrachten $w_j$ gilt $w_j\in \EL _j$, wenn nach der Normierung
   $w_j\in\EL _{\DF (P_j)}$. Es kommt also nur auf die Wörter $w_j$ in den
-  \ET{}-Mengen an.
+  \ET{}-Mengen an. Für $w_j\in\cont (\PrET _{\DF (P_j)})$ können jedoch zwei
+  Fälle unterschieden werden. $w_j$ kann bereits von der Normierung ein Trace
+  aus der Menge $\cont (\PrET _j)$ gewesen sein oder $w_j$ ist erst durch die
+  Normierung zu einem fortgesetzten gekürzten Fehler-Trace geworden und es galt
+  davor $\cont (\PrDT _j) = \DT _j$.
   \begin{itemize}
     \item Fall 1 ($w_j\in\ET _j$): In diesem Fall kann man
       Satz~\ref{KommFehlerSemSatz}.1 anwenden und es folgt $w\in\ET _{12}$ und
       nach der Anwendung der Konstruktion aus Definition~\ref{DivNormDef} gilt
-      immer noch $w\in\ET _{\DF (P_{12})}$.
-    \item Fall 2 ($w_j\in\DT _j$): \OBdA{} $j=1$. $w_2$ ist in der Menge $\EL
-      _2$ enthalten. Wegen der präfix-Minimalität von $w$ ist die hier
-      relevante Unterscheidung $w_2\in\MIT _2$ oder $w_2\in L_2$.
+      ebenfalls $w\in\ET _{\DF (P_{12})}$.
+    \item Fall 2 ($w_j\in\DT _j$): \OBdA{} $j=1$. Das Präfix $v$ von $w_1$ führ
+      einem divergenten Zustand in $P_1$, so dass $v$ in der Menge $\PrDT _1$
+      enthalten ist. $w_2$ ist in der Menge $\EL _2$ enthalten. Wegen der
+      präfix-Minimalität von $w$ ist die hier relevante Unterscheidung
+      $w_2\in\MIT _2$ oder $w_2\in L_2$.
       \begin{itemize}
-        \item Fall 2a) ($w_2\in\MIT _2$): Es gibt ein Präfix von $w_1$, dass
-          zu einem divergenten Zustand führt. Falls es durch dieses Präfix von
-          $w_1$ noch nicht zu einem Problem mit dem fehlenden Input aus $w_2$
-          in der Komposition kommt, wird der divergente Zustand von $P_1$ an
-          die Parallelkomposition $P_1\|P_2$ vererbt und durch die
-          Abgeschlossenheit gegenüber \cont{} folgt dann $w\in\DT _{12}
-          \subseteq \ET _{\DF (P_{12})}$. Falls es jedoch zu
-          Synchronisations"=Problemen wegen des nicht sichergestellten Input in
-          $P_2$ im Wort $w_2$ kommt, entsteht in der Parallelkomposition ein
-          Trace aus der Menge $\ET _{12} \subseteq \ET _{\DF (P_{12})}$ durch
-          Satz~\ref{KommFehlerSemSatz}.1, da dann das Präfix von $w_1$, dass zu
-          den Synchronisations"=Problemen führt ausführbar ist und somit in der
-          Sprache und auch der Fehler"=gefluteten Sprache enthalten ist.
+        \item Fall 2a) ($w_2\in\MIT _2$): Es kann durch die Synchronsation von
+          $v$ mit $w_2$ zu einem neuen Fehler kommen. Dazu muss unterschieden
+          werden, ob $v$ das $a$ enthält, dass $P_2$ am Ende des Traces $w_2$
+          nicht ausführen kann. Es gibt also ein $v'\in\Sigma _2$, so dass
+          $w_2=v'a$ gilt.
+          \begin{itemize}
+            \item Fall 2a)(i) ($a\notin O _1$): Es kann in der
+              Parallelkomposition durch das $a$ zu keinem neuen Fehler kommen.
+              Das Präfix des Wortes $w$, dass $v$ in $P_1$ komplett ausgeführt
+              hat, erreicht einen divergenten Zustand. Wegen der
+              Abgeschlossenheit unter \cont{} gilt $w\in\DT _{12}\subseteq \ET
+              _{\DF (P_{12})}$.
+            \item Fall 2a)(ii) ($a\in O_1$ und $|v|_{\Synch (P_1,P_2)}| =
+              |w_2|_{\Synch (P_1,P_2)}|$): Um den divergenten Zustand in
+              $P_{12}$ zu erreichen, müsste den Output $a$ am Ende von $v$ mit
+              den nicht sichergesetllten Input am Ende von $w_2$ synchronisiert
+              werden. Es kommt also in der Parallelkomposition von $v$ und
+              $w_2$ zu einem neuen Fehler. Durch die Abgeschlossenheit
+              gegenüber \cont{} gilt $w\in\ET _{12}\subseteq \ET _{\DF
+              (P_{12})}$.
+          \end{itemize}
         \item Fall 2b) ($w_2\in L_2$): In diesem Fall ist $w_2$ komplett
-          ausführbar in $P_2$. Das Präfix von $w_1$, dass zu einem
-          Divergenz"=Zustand führt, kann also mit einem Präfix von $w_2$
-          Komponiert werden und ergibt ein Präfix von $w$ in der
-          Parallelkomposition $P_1\|P_2$, dass zu einem divergenten Zustand
-          führt. Wegen der Abgeschlossenheit bezüglich \cont{} gilt $w\in \DT
-          _{12}\subseteq \ET _{\DF (P_{12})}$.
+          ausführbar in $P_2$. Das Präfix $v$ von $w_1$ kann also mit einem
+          Präfix von $w_2$ komponiert werden und ergibt ein Präfix von $w$. Das
+          Präfix von $w$, dass sich ergibt, erreicht in der Parallelkomposition
+          von $P_1$ und $P_2$ einem divergenten Zustand. Es folt wie in Fall
+          2a(i) $w\in \DT _{12}\subseteq \ET _{\DF (P_{12})}$.
       \end{itemize}
   \end{itemize}
 
