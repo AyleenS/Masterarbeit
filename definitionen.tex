@@ -311,8 +311,8 @@ Sprach-Definition in~\cite{Schinko2016BA} verloren gegangen. Eine
 Implementierung mit Fehler-Zuständen hätte dann eine Sprache mit Wörtern, die
 sie nicht ausführen können muss.
 
-Im folgenden soll ein Operator wie in z.B.~\ref{Vogler2016MIA3}
-und~\ref{Schinko2016BA} definiert werden um Aktionen zu verbergen, dieses
+Im folgenden soll ein Operator wie in z.B.~\cite{Vogler2016MIA3}
+und~\cite{Schinko2016BA} definiert werden um Aktionen zu verbergen, dieses
 vorgehen wird Hiding genannt. Da nur die Outputs vom jeweiligen System
 kontrolliert sind, werden diese durch das verbergen als interne Aktionen
 trotzdem ausgeführt, nur nach außen hin nicht mehr sichtbar. Input werden
@@ -324,7 +324,7 @@ Transitionen, ähnlich wie der der Anwendung von Restriktionen in CCS
 in~\cite{Milner1989}. Dies würde jedoch die Transitionssysteme zu stark
 einschränken und soll deshalb hier nicht betrachtet werden. Der Hiding-Operator
 wird hier somit nur für Output-Aktionen definiert werden wie in
-z.B.~\ref{Schinko2016BA}.
+z.B.~\cite{Schinko2016BA}.
 
 \begin{Def}[Hiding-Operator]
   Für einen \MEIO{} $P = (P,I_P,O_P,\must _P, \may _P, p_{0_P}, E_P)$ ist
@@ -346,4 +346,26 @@ Die Transitionen, die mit einem Outputs beschriftet sind, der in der Menge $X$
 der zu verbergenden Aktionen enthalten ist, werden durch das Hiding zu internen
 Transitionen. Die Transitionen sind also weiterhin lokal kontrolliert
 ausführbar. Auch für schwache must- und may"=Transtionen ändert sich nur die
-Beschriftung, jedoch nicht die Ausführbarkeit.
+Beschriftung, jedoch nicht die Ausführbarkeit.\\
+Häufig werden die synchronisierten Aktionen in einer Parallelkomposition nicht
+beibehalten um mit weitern Systemen darüber noch kommunizieren zu könne,
+sondern verborgen. Dies wurde für \EIO{} in z.B.~\cite{Vogler2014EIO}
+praktiziert. Man kann diese Art der Parallelkomposition durch den
+Hiding-Operator versuchen nachzumachen und zeigen zu könnnen, dass die
+Ergebnisse auch für eine Parallelkomposition mit Internalisierung gelten.
+Der Hiding-Operator ist jedoch nur für Output-Aktionen definiert. Es können
+also nur die Outputs, die durch die Sychronsiation entstehen verborgen werden.
+Jedoch sind Input Kommunikationskanäle zu weiteren Systemen und wenn diese
+durch Synchronisation entstehen, hatten beide Komponenten die Möglichkeit über
+diesen Input zu kommunizieren. Die Systeme haben in der Parallelkomposition
+über diesen Input jedoch nicht kommuniziert. Die Kommunikation mit einem
+weiteren System über diese Inputs sollte also auch nicht unterbunden werden.
+Die Inputs sollten also auch in einer Definition einer Parallelkomposition mit
+Internalisierung nur synchronisiert und nicht verborgen werden.
+
+\begin{Def}[Parallelkomposition mit Internalisierung]
+  \label{DefParallelkompInternal}
+  Seien $P_1$ und $P_2$ komponierbare \MEIO{}s, dann ist die
+  Parallelkomposition mit Internalisierung definiert als $P_1|P_2 =
+  P_{12}/(\Synch (P_1,P_2)\cap O_{12})$.
+\end{Def}

@@ -5,11 +5,12 @@ Auswirkungen auf die Verfeinerungs-Relationen \ERel{} hat.\\
 Der relationale Zusammenhang der Basisrelation \EBRel{} bleibt unter der
 Internalisierung von Outputs erhalten. Es gilt also $P_1\EBRel P_2 \Rightarrow
 P_1/X\EBRel P_2/X$ für alle zulässigen Aktionsmengen $X$. Die Begründung ist
-analog zu der in~\ref{Schinko2016BA}. Der Operator $\cdot /\cdot$ verändert
+analog zu der in~\cite{Schinko2016BA}. Der Operator $\cdot /\cdot$ verändert
 nichts an der Fehler-Erreichbarkeit. Der Trace mit dem der Fehler erreicht
 wird, enthält nur anstatt der Outputs aus $X$ interne Aktionen.
 
 \begin{Satz}[Fehler-Präkongruenz bzgl.\ Internalisierung]
+  \label{FehlerHidingSatz}
   Seien $P_1$ und $P_2$ zwei \MEIO{}s für die $P_1\ERel P_2$ gilt, somit gilt
   auch $P_1/X\ERel P_2/X$ für alle zulässigen Aktionsmengen $X$. Daraus folge
   insbesondere, dass \ERel{} eine Präkongruenz bezüglich $\cdot /\cdot$ ist. Es
@@ -47,8 +48,28 @@ wird, enthält nur anstatt der Outputs aus $X$ interne Aktionen.
       Vereinigung von zwei Trace"=Mengen ist, können hier zwei Fälle
       unterschieden werden.
       \begin{itemize}
-        \item Fall 1 ($w'\in\PrET _P$): \TODO{zu beweisen}
-        \item Fall 2 ($w'\in\MIT _P$): \TODO{zu beweisen}
+        \item Fall 1 ($w'\in\PrET _P$): Da $w'$ in in $P$ ausführbar und ein
+          mit $w'$ beschrifteter Ablauf kann durch einen Ablauf eines $v$ aus
+          $O_P^*$ ergänzt werden, so dass durch $w'v$ ein Zustand aus der Menge
+          $E_P$ erreicht wird. Der Ablauf hat die gleiche Form wie in (i), nur
+          ist $p$ ein Fehler"=Zustand und $w'v$ entspricht $(\alpha _1\alpha
+          _2\dots\alpha _n)|_{\Sigma}$. Die Transitionen, die mit einer
+          Output-Aktion auf $X$ auf diesem Ablauf beschriftet sind, werden
+          internalisiert. Es gilt also $(w'v)|_{\Sigma\backslash X}$ ist in
+          $\StET (P/X) \subseteq\ET (P/X)$ enthalten. Da $v$ nur aus lokalen
+          Aktionen besteht, gilt auch nach der Ersetzung der
+          Transitionsbeschriftung durch das Hiding $v|_{\Sigma\backslash X}\in
+          (O_P\backslash X)^*$ und somit $w=w'|_{\Sigma\backslash X} = \prune
+          ((w'v)|_{\Sigma\backslash X})$. Das Wort $w$ ist also in der Menge
+          $\ET _{P/X}$ enthalten.
+        \item Fall 2 ($w'\in\MIT _P$): In diesem Fall wird durch das Präfix $v$
+          von $w'$ ein Zustand erreicht, in dem der Input $a$ nicht
+          sichergestellt ist, wobei $w'=va$ gilt. Es gibt also einen Ablauf wie
+          in (i) für das Präfix $v$ und für $p$ gilt $p\nmust[a]_P$. Der
+          sichtbare Teil des Ablaufes wird analog zu den vorangegangenen Fälle
+          um die Output aus $X$ durch Internalisierung reduziert. Der Wort
+          $w=w'|_{\Sigma\backslash X}$ ist also in der Menge $\MIT _{P/X}
+          \subseteq\ET _{P/X}$ enthalten.
       \end{itemize}
       Ein präfix-minimaler Trace $w$ aus $\ET _{P/X}$ kann einen Zustand, für
       den nicht alle Input"=Transitionen sichergestellt sind oder über eine
@@ -70,3 +91,14 @@ wird, enthält nur anstatt der Outputs aus $X$ interne Aktionen.
   \ERel{} bleibt also trotz Hiding erhalten. Somit ist \ERel{} eine
   Präkongruenz bezüglich des Hiding-Operators $\cdot /\cdot$.
 \end{proof}
+
+Aus Korollar~\ref{KommPraekonKor} ist bekannt, dass \ERel{} ein Präkongruenz
+bezüglich $\cdot \|\cdot$ ist, und aus Satz~\ref{FehlerHidingSatz}, dass
+\ERel{} auch eine Präkongruenz bezüglich $\cdot /\cdot$ ist. Die
+Parallelkomposition mit Internalisierung wird nach
+Definition~\ref{DefParallelkompInternal} aus diesen beiden Operatoren
+zusammengesetzt. Somit erhält man das folgende Korollar.
+
+\begin{Kor}[Fehler-Präkongruenz mit Internalisierung]
+  Die Relation \ERel{} ist eine Präkongruenz bezüglich $\cdot |\cdot$.
+\end{Kor}
