@@ -173,7 +173,7 @@ und keine Fehler-Zustände enthalten, entspricht die as"=Verfeinerung einer
 Bisimulation. Dafür müssen die Transitionen eines LTS als must"=Transitionen
 aufgefasst werden. Man kann also auf LTS mit einer as"=Verfeinerungs"=Relation
 zwischen zwei Systemen deren Äquivalenz beweisen. Man muss dazu einen
-Äquvialenz Begriff wie in~\cite{Milner1989} verwenden.\\
+Äquivalenz Begriff wie in~\cite{Milner1989} verwenden.\\
 Auf den \EIO{}, die z.B.\ in~\cite{Schinko2016BA} betrachtet wurden, lässt die
 as"=Verfeinerungs"=Relation zu, dass es in einer Verfeinerung möglicherweise
 weniger Fehler gibt und zusätzliches Verhalten, dass die Spezifikation nicht
@@ -182,7 +182,7 @@ möglich, eine Implementierung mit Fehler durch eine andere as zu verfeinern,
 die keine Fehler enthält, aber potentiell zusätzliches Verhalten aufweist.
 Siehe hierzu auch das Beispiel in Abbildung~\ref{ImplVerfBsp}. Die
 Implementierung $P$ ist eine Verfeinerung der Implementierung $Q$ und
-zwischischen ihnen erfüllt die as"=Verfeinerung"=Relation $\mathcal{R} =
+zwischen ihnen erfüllt die as"=Verfeinerung"=Relation $\mathcal{R} =
 \{(p_0,q_0)\}$ die Definition~\ref{SimDef}. $P$ verfeinert den Fehler"=Zustand
 von $Q$ nicht mit einem Fehler sondern durch die $o$ Schlinge.\\
 Falls eine Implementierung bereits frei von Fehler"=Zuständen ist, entspricht
@@ -310,3 +310,34 @@ as"=Implementierungen zu erhalten, jedoch wäre dann die Äquivalenz zur \EIO{}
 Sprach-Definition in~\cite{Schinko2016BA} verloren gegangen. Eine
 Implementierung mit Fehler-Zuständen hätte dann eine Sprache mit Wörtern, die
 sie nicht ausführen können muss.
+
+Im folgenden soll ein Operator wie in z.B.~\ref{Vogler2016MIA3}
+und~\ref{Schinko2016BA} definiert werden um Aktionen zu verbergen, dieses
+vorgehen wird Hiding genannt. Da nur die Outputs vom jeweiligen System
+kontrolliert sind, werden diese durch das verbergen als interne Aktionen
+trotzdem ausgeführt, nur nach außen hin nicht mehr sichtbar. Input werden
+hingeben ausgeführt, wenn die Umgebung das passenden Signal sendet. Wenn man
+Input verbergen würde, schließt man dadurch den Kommunikationskanal und
+blockiert die Kommunikation mit anderen Systemen, die den passenden Output
+besitzen. Das verbergen von Input verbietet die entsprechend beschrifteten
+Transitionen, ähnlich wie der der Anwendung von Restriktionen in CCS
+in~\cite{Milner1989}. Dies würde jedoch die Transitionssysteme zu stark
+einschränken und soll deshalb hier nicht betrachtet werden. Der Hiding-Operator
+wird hier somit nur für Output-Aktionen definiert werden wie in
+z.B.~\ref{Schinko2016BA}.
+
+\begin{Def}[Hiding-Operator]
+  Für einen \MEIO{} $P = (P,I_P,O_P,\must _P, \may _P, p_{0_P}, E_P)$ ist
+  $P/L$, mit dem Hiding-Operator $\cdot /\cdot$, definiert als der \MEIO{}
+  $P/L$ mit:
+  \begin{itemize}
+    \item $\tau \notin L$,
+    \item $L\cap I = \emptyset$,
+    \item $P/L = P$, $I_{P/L} = I_P$, $p_{0_{P/L}} = p_{0_P}$ und $E_{P/L} =
+      E_P$,
+    \item $\must _{P/L} = (\must _P \cup \{(p,\tau,p')\mid (p,o,p')\in \must
+      _P, o \in L\})\backslash \{(p,o,p')\mid (p,o,p')\in \must _P, o \in L\}$,
+    \item $\may _{P/L} = (\may _P \cup \{(p,\tau,p')\mid (p,o,p')\in \may _P, o
+      \in L\})\backslash \{(p,o,p')\mid (p,o,p')\in \may _P, o \in L\}$.
+  \end{itemize}
+\end{Def}
