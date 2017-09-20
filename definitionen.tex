@@ -328,16 +328,22 @@ z.B.~\ref{Schinko2016BA}.
 
 \begin{Def}[Hiding-Operator]
   Für einen \MEIO{} $P = (P,I_P,O_P,\must _P, \may _P, p_{0_P}, E_P)$ ist
-  $P/L$, mit dem Hiding-Operator $\cdot /\cdot$, definiert als der \MEIO{}
-  $P/L$ mit:
+  $P/X$, mit dem Hiding-Operator $\cdot /\cdot$, definiert als der \MEIO{}
+  $P/X$ mit:
   \begin{itemize}
-    \item $\tau \notin L$,
-    \item $L\cap I = \emptyset$,
-    \item $P/L = P$, $I_{P/L} = I_P$, $p_{0_{P/L}} = p_{0_P}$ und $E_{P/L} =
+    \item $\tau \notin X$,
+    \item $X\cap I = \emptyset$,
+    \item $P/X = P$, $I_{P/X} = I_P$, $p_{0_{P/X}} = p_{0_P}$ und $E_{P/X} =
       E_P$,
-    \item $\must _{P/L} = (\must _P \cup \{(p,\tau,p')\mid (p,o,p')\in \must
-      _P, o \in L\})\backslash \{(p,o,p')\mid (p,o,p')\in \must _P, o \in L\}$,
-    \item $\may _{P/L} = (\may _P \cup \{(p,\tau,p')\mid (p,o,p')\in \may _P, o
-      \in L\})\backslash \{(p,o,p')\mid (p,o,p')\in \may _P, o \in L\}$.
+    \item $\must _{P/X} = (\must _P \cup \{(p,\tau,p')\mid (p,o,p')\in \must
+      _P, o \in X\})\backslash \{(p,o,p')\mid (p,o,p')\in \must _P, o \in X\}$,
+    \item $\may _{P/X} = (\may _P \cup \{(p,\tau,p')\mid (p,o,p')\in \may _P, o
+      \in X\})\backslash \{(p,o,p')\mid (p,o,p')\in \may _P, o \in X\}$.
   \end{itemize}
 \end{Def}
+
+Die Transitionen, die mit einem Outputs beschriftet sind, der in der Menge $X$
+der zu verbergenden Aktionen enthalten ist, werden durch das Hiding zu internen
+Transitionen. Die Transitionen sind also weiterhin lokal kontrolliert
+ausführbar. Auch für schwache must- und may"=Transtionen ändert sich nur die
+Beschriftung, jedoch nicht die Ausführbarkeit.

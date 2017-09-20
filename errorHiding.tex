@@ -1,0 +1,72 @@
+\section{Hiding}
+
+In diesem Kapitel soll untersucht werden, ob das Hiding von Outputs
+Auswirkungen auf die Verfeinerungs-Relationen \ERel{} hat.\\
+Der relationale Zusammenhang der Basisrelation \EBRel{} bleibt unter der
+Internalisierung von Outputs erhalten. Es gilt also $P_1\EBRel P_2 \Rightarrow
+P_1/X\EBRel P_2/X$ für alle zulässigen Aktionsmengen $X$. Die Begründung ist
+analog zu der in~\ref{Schinko2016BA}. Der Operator $\cdot /\cdot$ verändert
+nichts an der Fehler-Erreichbarkeit. Der Trace mit dem der Fehler erreicht
+wird, enthält nur anstatt der Outputs aus $X$ interne Aktionen.
+
+\begin{Satz}[Fehler-Präkongruenz bzgl.\ Internalisierung]
+  Seien $P_1$ und $P_2$ zwei \MEIO{}s für die $P_1\ERel P_2$ gilt, somit gilt
+  auch $P_1/X\ERel P_2/X$ für alle zulässigen Aktionsmengen $X$. Daraus folge
+  insbesondere, dass \ERel{} eine Präkongruenz bezüglich $\cdot /\cdot$ ist. Es
+  gilt für die Sprachen und Traces:
+  \begin{enumerate}[(i)]
+    \item $L(P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in L(P):
+      w'|_{\Sigma\backslash X} = w\}$,
+    \item $\ET (P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in \ET(P):
+      w'|_{\Sigma\backslash X} = w\}$,
+    \item $\EL (P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in \EL(P):
+      w'|_{\Sigma\backslash X} = w\}$,
+  \end{enumerate}
+\end{Satz}
+\begin{proof}
+  Die Hauptaussage des Satzes folgt aus den Aussagen (i) bis (iii), somit
+  werden zunächst diese Punkte nachgewiesen.
+  \begin{enumerate}[(i)]
+    \item Für ein Wort $w'$ aus der Sprache $L_P$ gilt nach
+      Definition~\ref{LDef} $p_0 \weakmay[w'] p$ für einen Zustand $p$ aus $P$.
+      Es gibt ein $v\in \Sigma_{\tau} ^*$, für das $w' = \hat{v}$ und $v =
+      \alpha _1\alpha _2\dots \alpha _n$ gilt. In $P$ existiert also einen
+      Ablauf der Form $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots
+      p_{n-1} \may[\alpha _n]_P p$. Durch die Anwendung des Hiding-Operators
+      werden die Aktionen $\alpha _j$, die in $X$ enthalten sind, durch $\tau$s
+      ersetzt. Die Beschriftung des Ablaufes in $P/X$ lautet somit nicht mehr
+      $v$ sondern $v|_{\Sigma _{\tau}}$. Das Wort, das in $P/X$ ausgeführt
+      wird, lautet also $w=w'|_{\Sigma}$.\\
+      Für ein Wort $w$ aus der Sprache des Transitionssystems $P/X$ existiert
+      ein Ablauf wie oben. Um einen Ablauf aus $P$ daraus zu erzeugen, müssen
+      einige der $\alpha _j$, die für intere Aktionen stehen durch
+      Output-Aktion aus der Menge $X$ ersetzt werden. Man erhält dadurch den
+      Trace $w'$ in $L_P$.
+    \item Die \ET{}-Mengen sind unter \cont{} abgeschlossen. Es genügt also ein
+      präfix-minimales $w'$ aus $\ET _{P}$ zu betrachten. Da \ET{} die
+      Vereinigung von zwei Trace"=Mengen ist, können hier zwei Fälle
+      unterschieden werden.
+      \begin{itemize}
+        \item Fall 1 ($w'\in\PrET _P$): \TODO{zu beweisen}
+        \item Fall 2 ($w'\in\MIT _P$): \TODO{zu beweisen}
+      \end{itemize}
+      Ein präfix-minimaler Trace $w$ aus $\ET _{P/X}$ kann einen Zustand, für
+      den nicht alle Input"=Transitionen sichergestellt sind oder über eine
+      Verlängerung einen Fehler"=Zustand erreichen. Für das $w$ und die
+      mögliche Verlängerung existiert ein Ablauf der Form wie in (i). In dem
+      $\tau$s auf diesem Weg zur Outputs aus $X$ ersetzt werden, kann der
+      Ablauf aus $P/X$ zu einem aus $P$ erweitert werden. Falls eine
+      Verlängerung notwendig war, kann diese mit der analogen Begründung wie in
+      Fall 1 durch die Funktion \prune{} wegfallen, so dass $w'\in\ET (P)$ gilt
+      für das $w'$, dass aus $w$ durch die hinzugefügten Outputs aus $X$
+      entstanden ist.
+    \item Die Menge \EL{} ist die Vereinigung der Sprache $L$ mit der
+      Trace"=Menge \ET{}. Die Aussage dieses Punktes folgt also direkt aus den
+      bereits nachgewiesenen Punkten (i) und (ii).
+  \end{enumerate}
+  $P_1\ERel P_2$ setzt die Inklusionen $\ET _1\subseteq\ET _2$ und $\EL
+  _1\subseteq\EL _2$ voraus. Mit (ii) und (iii) folgt draus $\ET _{P_1/X}
+  \subseteq\ET _{P_2/X}$ und $\EL _{P_1/X} \subseteq\EL _{P_2/X}$. Die Relation
+  \ERel{} bleibt also trotz Hiding erhalten. Somit ist \ERel{} eine
+  Präkongruenz bezüglich des Hiding-Operators $\cdot /\cdot$.
+\end{proof}
