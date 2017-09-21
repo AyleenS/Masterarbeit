@@ -27,10 +27,9 @@ fehlerhaften Zuständen ändern.
   \end{enumerate}
 \end{Satz}
 \begin{proof}
-  Zunächst sollen hier die Aussagen (i) bis (iv) beweisen werden. Da aus $P_1
-  \QRel P_2$ nach Definition~\ref{StilleSemDef} folgt, dass auch $P_1\ERel P_2$
-  gilt, sind die Punkte (i) bis (iii) bereits in Satz~\ref{FehlerHidingSatz}
-  entsprechend nachgewiesen worden. Es muss also nur noch (iv) gezeigt werden.
+  Zunächst sollen hier die Aussagen (i) bis (iv) beweisen werden. Die Punkte
+  (i) bis (iii) wurden bereits in Satz~\ref{FehlerHidingSatz} entsprechend
+  nachgewiesen. Es muss also nur noch (iv) gezeigt werden.
   \begin{itemize}
     \item[(iv)] Dieser Punkt kann auf die Aussagen von
       Satz~\ref{FehlerHidingSatz} zurück geführt werden. Ein $w'$ aus $\QET _P$
@@ -52,10 +51,10 @@ fehlerhaften Zuständen ändern.
       erweitert werden um ein $w'$ zu erhalten, für das $w'\in\QET _P$ gilt.
   \end{itemize}
   Aus $P_1\ERel P_2$ folgt mit Satz~\ref{FehlerHidingSatz} $P_1/X\ERel P_2/X$.
-  Um die analoge Folgerung für \QRel{} zu begründen, muss also nur noch
-  nachgewiesen werden, dass $\QET _{P_1/X} \subseteq \QET _{P_2/X}$ unter der
-  Voraussetzung der Inklusion $\QET _1 \subseteq \QET _2$ gilt. Dies gilt wegen
-  der Aussage des Punktes (iv).\\
+  Um die analoge Folgerung für \QRel{} zu begründen, muss wegen
+  Definition~\ref{StilleSemDef} also nur noch nachgewiesen werden, dass $\QET
+  _{P_1/X} \subseteq \QET _{P_2/X}$ unter der Voraussetzung der Inklusion $\QET
+  _1 \subseteq \QET _2$ gilt. Dies gilt wegen der Aussage des Punktes (iv).\\
   Die Relation \QRel{} bleibt also unter der Anwendung des Hiding-Operators
   erhalten und ist somit bezüglich diesem eine Präkongruenz.
 \end{proof}
@@ -68,3 +67,7 @@ Parallelkomposition $\cdot |\cdot$ kann aus den Präkongruenz-Eigenschaften von
 $\cdot\|\cdot$ und $\cdot |\cdot$ bezüglich der Relation \QRel{} aus dem
 Korollar~\ref{StillePraekonKor} und dem Satz~\ref{StilleHidingSatz} geschlossen
 werden.
+
+\begin{Kor}[Stillstands-Präkongruenz mit Internalisierung]
+  Die Relation \QRel{} ist eine Präkongruenz bezüglich $\cdot |\cdot$.
+\end{Kor}
