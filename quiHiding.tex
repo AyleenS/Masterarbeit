@@ -1,0 +1,30 @@
+\section{Hiding}
+
+Es soll nun auch für die Relation \QRel{} die Auswirkungen des Hiding-Operators
+untersucht werden. Outputs, die dabei in der Menge $X$ enthalten sind, werden
+in interne Aktionen umgewandelt. Die Definition der stillen Zustände verlangt,
+dass keine ausgehenden must"=Transitionen für lokale Aktionen an einem Zustand
+existieren dürfen, damit er als still gilt. Die Menge $Qui$ bleibt also unter
+Hiding erhalten. Da die Trace-Definitionen lokale Erreichbarkeit für die
+Relevanz von fehlerhaften Zuständen verwenden, sollte sich unter der
+Internalisierung von Aktionen aus der Menge $X$ nicht an der Relevanz von
+fehlerhaften Zuständen ändern.
+
+\begin{Satz}[Stillstands-Präkongruenz bzgl.\ Internalisierung]
+  Seien $P_1$ und $P_2$ zwei \MEIO{}s für die $P_1\QRel P_2$ gilt, dann folgt
+  auch die Gültigkeit von $P_1/X\QRel P_2/X$. Die Relation \QRel{} ist also ein
+  Präkongruenz bezüglich $\cdot /\cdot$. Es gilt für die Sprachen und Traces:
+  \begin{enumerate}[(i)]
+    \item $L(P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in L(P):
+      w'|_{\Sigma\backslash X} = w\}$,
+    \item $\ET (P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in \ET(P):
+      w'|_{\Sigma\backslash X} = w\}$,
+    \item $\EL (P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in \EL(P):
+      w'|_{\Sigma\backslash X} = w\}$,
+    \item $\QET (P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in
+      \QET(P): w'|_{\Sigma\backslash X} = w\}$.
+  \end{enumerate}
+\end{Satz}
+\begin{proof}
+  \TODO{zu beweisen}
+\end{proof}
