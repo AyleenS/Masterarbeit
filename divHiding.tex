@@ -1,0 +1,44 @@
+\section{Hiding}
+
+Der Hiding-Operator wandelt Outputs in $\tau$s um. Somit hat das Hiding auf die
+Divergenz-Eigenschaft im Vergleich zu den betrachteten Eigenschaften aus den
+beiden vorangegangen Kapiteln deutlich größere Auswirkungen. Die Menge der
+divergenten Zustände kann sich durch das Internalisieren vergrößern. Es kann
+ein Zustand divergent werden, wenn von diesem bereits lokal ein divergenter
+Zustand aus erreichbar war oder wenn er eine unendliche Folge von Aktionen aus
+$X\cup \{\tau\}$ ausführen konnte, jedoch nur endlich viele davon $\tau$s
+waren. Durch die zusätzlichen Divergenz"=Zustände vergrößern sich alle
+Trace-Mengen, die in der Präkongruenz \DRel{} betrachtet werden.\\
+Um den Zusätzlichen Aufwand der Untersuchung möglichst gering zu halten, wird
+dieses Teilkapitel auf endliche \MEIO{}s beschränkt. Ansonsten müsste man
+sicher stellen, dass der Graph jedes \MEIO{}s, für die betrachteten Traces
+lokal endlich sein muss. Die Menge $X$ muss Teilmenge der Outputs $O$ sein, für
+einen endlichen \MEIO{} kann $X$ ebenfalls nur endlich sein. Um eine endliche
+Menge von Aktionen zu internalisieren, kann man jede Aktion einzeln aus dem
+entsprechend \MEIO{} entfernen. Der folgende Satz kann also darauf beschränkt
+werden, dass nur ein einzelnen Output verborgen werden soll. $P/o$ soll dabei
+für $P/\{o\}$ stehen. Die Menge $\EDT _{P/o}$ kann aus $\EDT _P$ konstruiert
+werden. Im allgemeinen ist die Menge $\EDT _{P/o}$ jedoch größer wie $\EDT _P$
+somit müssen die anderen Trace-Mengen mit der neuen Menge geflutet werden.
+
+
+\begin{Satz}[Divergenz-Präkongruenz bzgl.\ Internalisierung]
+  \label{DivHidingSatz}
+  Seien $P_1$ und $P_2$ zwei endliche \MEIO{}s für die $P_1\DRel P_2$ gilt,
+  dann folgt auch die Gültigkeit von $P_1/X\DRel P_2/X$. Die Relation \DRel{}
+  ist also ein Präkongruenz bezüglich $\cdot /\cdot$ für endliche \MEIO{}s. Es
+  gilt für die Sprachen und Traces:
+  \begin{enumerate}[(i)]
+    \item $L(P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in L(P):
+      w'|_{\Sigma\backslash \{o\}} = w\}$,
+    \item $\EDT (P/o) = \cont (\prune (\{w\mid \exists w':w'|_{\Sigma\backslash
+      \{o\}} = w\land \forall n\geq 0: w'o^n\in\EDL _P\}))$,
+    \item $\EDL (P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in
+      \EDL(P): w'|_{\Sigma\backslash \{o\}} = w\} \cup \EDT (P/o)$,
+    \item $\QDT (P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in
+      \QDT(P): w'|_{\Sigma\backslash \{o\}} = w\} \cup \EDT (P/o)$.
+  \end{enumerate}
+\end{Satz}
+\begin{proof}
+  \TODO{zu beweisen}
+\end{proof}
