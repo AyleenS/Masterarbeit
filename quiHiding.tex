@@ -11,6 +11,7 @@ Internalisierung von Aktionen aus der Menge $X$ nicht an der Relevanz von
 fehlerhaften Zuständen ändern.
 
 \begin{Satz}[Stillstands-Präkongruenz bzgl.\ Internalisierung]
+  \label{StilleHidingSatz}
   Seien $P_1$ und $P_2$ zwei \MEIO{}s für die $P_1\QRel P_2$ gilt, dann folgt
   auch die Gültigkeit von $P_1/X\QRel P_2/X$. Die Relation \QRel{} ist also ein
   Präkongruenz bezüglich $\cdot /\cdot$. Es gilt für die Sprachen und Traces:
@@ -26,5 +27,44 @@ fehlerhaften Zuständen ändern.
   \end{enumerate}
 \end{Satz}
 \begin{proof}
-  \TODO{zu beweisen}
+  Zunächst sollen hier die Aussagen (i) bis (iv) beweisen werden. Da aus $P_1
+  \QRel P_2$ nach Definition~\ref{StilleSemDef} folgt, dass auch $P_1\ERel P_2$
+  gilt, sind die Punkte (i) bis (iii) bereits in Satz~\ref{FehlerHidingSatz}
+  entsprechend nachgewiesen worden. Es muss also nur noch (iv) gezeigt werden.
+  \begin{itemize}
+    \item[(iv)] Dieser Punkt kann auf die Aussagen von
+      Satz~\ref{FehlerHidingSatz} zurück geführt werden. Ein $w'$ aus $\QET _P$
+      ist nach Definition in $\ET _P$ oder $\StQT _P \subseteq L_P$ enthalten.
+      Mit (i) und (ii) folgt die Zugehörigkeit von $w=w'|_{\Sigma\backslash X}$
+      zur Menge $\ET _{P/X}$ bzw. $\StQT _{P/X}$. $w\in\StQT _{P/X}$ folgt
+      jedoch nicht direkt aus (i), es wird noch eine zusätzliche Feststellung
+      benötigt. Für $w'$ in $P$ wurde im Beweis von Satz~\ref{FehlerHidingSatz}
+      (i) ein Ablauf zu einem Zustand $p$ angegeben. Durch das Internalisieren
+      der Transitionen, die mit Outputs beschriftet werden führt das
+      eingeschränkte Wort $w$ weiterhin zum Zustand $p$. $p$ muss für
+      $w'\in\StQT _P$ ein stiller Zustand sein, somit ist $w$ nicht nur in $L
+      _{P/X}$ sondern auch in $\StQT _{P/X}$ enthalten. Insgesamt folgt also
+      $w\in\QET _{P/X}$.\\
+      Für die andere Inklusionsrichtung kann man für ein $w$ aus $\QET _{P/X}$
+      analog zu den Beweisen von (i) und (ii) aus~\ref{FehlerHidingSatz}
+      $\tau$-Transitionsbeschriftungen durch Outputs aus $X$ ersetzten um einen
+      Ablauf aus $P$ zu erzeugen. Das Wort $w$ kann also um Aktionen aus $X$
+      erweitert werden um ein $w'$ zu erhalten, für das $w'\in\QET _P$ gilt.
+  \end{itemize}
+  Aus $P_1\ERel P_2$ folgt mit Satz~\ref{FehlerHidingSatz} $P_1/X\ERel P_2/X$.
+  Um die analoge Folgerung für \QRel{} zu begründen, muss also nur noch
+  nachgewiesen werden, dass $\QET _{P_1/X} \subseteq \QET _{P_2/X}$ unter der
+  Voraussetzung der Inklusion $\QET _1 \subseteq \QET _2$ gilt. Dies gilt wegen
+  der Aussage des Punktes (iv).\\
+  Die Relation \QRel{} bleibt also unter der Anwendung des Hiding-Operators
+  erhalten und ist somit bezüglich diesem eine Präkongruenz.
 \end{proof}
+
+In Definition~\ref{DefParallelkompInternal} wurde mit Hilfe des
+Hiding-Operators aus der Parallelkomposition ohne Verbergen die
+Parallelkomposition mit Internalisierung der synchronisierten Aktionen
+nachgebildet. Die Präkongruenz-Eigenschaft bezüglich \QRel{} der
+Parallelkomposition $\cdot |\cdot$ kann aus den Präkongruenz-Eigenschaften von
+$\cdot\|\cdot$ und $\cdot |\cdot$ bezüglich der Relation \QRel{} aus dem
+Korollar~\ref{StillePraekonKor} und dem Satz~\ref{StilleHidingSatz} geschlossen
+werden.
