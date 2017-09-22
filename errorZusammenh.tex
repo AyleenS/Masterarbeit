@@ -22,30 +22,31 @@
   \cont{} abgeschlossen sind. $w$ kann ein Element aus $\PrET (P)$ sein oder
   ein Element aus $\MIT (P)$.
   \begin{itemize}
-    \item Fall 1 ($w\in\PrET (P)$): Es existiert ein $v\in O_P$, sodass das
+    \item Fall 1 ($w\in\PrET (P)$): Es existiert ein $v\in O_P^*$, sodass das
       Wort $wv$ in $P$ einen Fehler-Zustand erreicht. Es gibt eine
       Transitionsfolge wie in Lemma~\ref{AblaefeSchwVerfSpezLem}, so dass $wv =
       (\alpha _1\alpha _2\dots \alpha _n)|_{\Sigma}$ gilt und der dadurch
-      erreichte Zustand $p_n$ ein Zustand aus der Menge $E_P$ ist. Falls eines
-      des $q_j$ für $0 \leq j < n$ in $E_Q$ enthalten ist, folgt mit dem Beweis
-      von Lemma~\ref{AblaefeSchwVerfSpezLem}, dass ein Präfix von $wv$ in
-      $\StET (Q)$ enthalten ist. Mit $w=\prune (wv)$ und dem Abschluss von
-      \ET{} unter \cont{} gilt dann $w\in\ET _Q$. Ansonsten gibt es in $Q$
-      einen Trace für das Wort $wv$, dass einen Zustand $q_n$ erreicht, für den
-      $p_n \mathcal{R} q_n$ gilt. Mit~\ref{wSimDef}.1 folgt, dass $q_n\in E_Q$
-      gelten muss und somit auch $w\in\ET _Q$ mit der Begründung von oben.
+      erreichte Zustand $p_n$ ein Zustand aus der Menge $E_P$ ist. Falls ein
+      Ablauf zu einem $q_k\in E_Q$ existiert wie in~\ref{AblaefeVerfSpezLem},
+      folgt, dass ein Präfix von $wv$ in $\StET (Q)$ enthalten ist. Mit
+      $w=\prune (wv)$ und dem Abschluss von \ET{} unter \cont{} gilt dann
+      $w\in\ET _Q$. Ansonsten gibt es in $Q$ einen Trace für das Wort $wv$,
+      dass einen Zustand $q_n$ erreicht, für den $p_n \mathcal{R} q_n$ gilt.
+      Mit~\ref{wSimDef}.1 folgt, dass $q_n\in E_Q$ gelten muss und somit auch
+      $w\in\ET _Q$ mit der Begründung von oben.
     \item Fall 2 ($w\in\MIT (P)$): $w$ ist in $P$ ein Input-kritischer Trace.
       Es existiert also eine Aufteilung von $w$ in $va$ mit $v\in \Sigma ^*$
       und $a\in I$, wobei $v$ in $P$ zu einem Zustand ausführbar ist, der den
-      Input $a$ nicht sicherstellt. Es gibt also ein Ablauf des Wortes $v$ wie
-      in Lemma~\ref{AblaefeSchwVerfSpezLem}, der zu einem Zustand $p_n$ führt,
-      der keine ausgehende must"=Transition für $a$ besitzt. Falls ein $q_j$
-      für $0 \leq j \leq n$ in $E_Q$ enthalten ist, folgt mit dem Beweis des
-      Lemmas~\ref{AblaefeSchwVerfSpezLem} und dem Abschluss der Menge \ET{}
-      unter \cont{} $w\in\ET _Q$. Ansonsten wird durch $v$ in $Q$ ein Zustand
-      $q_n$ erreicht, für den $p_n\mathcal{R} q_n$ gilt. Da $a$ für $p_n$ in
-      $P$ keine ausgehende must"=Transition sein kann, gilt mit~\ref{wSimDef}.2
-      auch $q_n \nmust[a]$. $w$ ist in $\MIT _Q \subseteq \ET _Q$ enthalten.
+      Input $a$ nicht sicherstellt. Es gibt also ein Ablauf des Wortes $v$ in
+      $P$ wie in Lemma~\ref{AblaefeSchwVerfSpezLem}, der zu einem Zustand $p_n$
+      führt, der keine ausgehende must"=Transition für $a$ besitzt. Falls es
+      einen Ablauf wie in~\ref{AblaefeVerfSpezLem} zu einem $q_k$ in $E_Q$
+      gibt, folgt mit dem Lemma~\ref{AblaefeSchwVerfSpezLem} und dem Abschluss
+      der Menge \ET{} unter \cont{} $w\in\ET _Q$. Ansonsten wird durch $v$ in
+      $Q$ ein Zustand $q_n$ erreicht, für den $p_n\mathcal{R} q_n$ gilt. Da $a$
+      für $p_n$ in $P$ keine ausgehende must"=Transition sein kann, gilt
+      mit~\ref{wSimDef}.2 auch $q_n \nmust[a]$. $w$ ist in $\MIT _Q \subseteq
+      \ET _Q$ enthalten.
   \end{itemize}
   Für den zweiten Punkt kann man sich auf die Inklusion $\EL _P\backslash\ET _P
   \subseteq \EL _Q$ einschränken, da der erste Punkt bereits vorausgesetzt
