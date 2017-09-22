@@ -7,7 +7,8 @@ angesehen werden, jedoch bereits Zustände, die keine ausgehenden
 must"=Transitionen für Outputs und $\tau$s besitzen lassen in
 as"=Implementierungen zu, dass an dort ein Stillstand entsteht. Falls also nur
 may"=Transitionen für die lokalen Aktionen vorhanden sind, sollte der Zustand
-hier auch bereits still sein.\\
+hier auch bereits still sein. Im folgenden wird beweisen, dass diese Idee
+richtig ist.\\
 Zustände, die keine must-Transitionen für lokale Aktionen ohne einen Input
 ausführen können, werden als in einer Art Verklemmung angesehen, da sie ohne
 Zutun von Außen den Zustand nicht mehr verlassen können, falls ein
@@ -28,77 +29,8 @@ Aktion ausführt.
 \end{Def}
 
 Der Ansatz, dass stille Zustände keine Output und keine $\tau$-Transitionen
-sicherstellen basiert auf der Definition der Stille für \EIO{}s in
-z.B.~\cite{Schinko2016BA}.\\
-Alternativ wäre es auch möglich gewesen eine andere Betrachtung zu wählen, die
-für Stille Zustände nur fordert, dass keine must"=Outputs möglich sein dürfen.
-Falls dieser Zustand die Möglichkeit für eine interne Aktion via einer
-must"=Transition hat, darf durch die $\tau$s niemals ein Zustand erreicht
-werden, von dem aus ein Output in Implementierungen sicher gestellt wird.
-Zusätzlich zu den in dieser Arbeit betrachteten Verklemmungen der Art Deadlock,
-lässt die Betrachtungsweise mit den zugelassenen $\tau$-must"=Transitionen auch
-Verklemmungen der Art Livelock zu, da diese Zustände möglicherweise beliebig
-viele interne Aktionen ausführen können, jedoch nie aus eigener Kraft einen
-wirklichen Fortschritt in Form eines Outputs bewirken können müssen. Die Menge
-der Zustände, die sich in einer Verklemmung befinden, würde also in einer
-einer alternativen Betrachtung durch $\left\{p\in P\mid \forall a\in O:
-p\nweakmust[a]_P \right\}$ beschrieben werden. Somit wären dies alle Zustände,
-die keine Möglichkeit haben ohne einen Input von Außen oder eine implementierte
-may"=Output"=Transition je wieder einen Output machen zu können. Falls man
-diese Definition verwenden würde, müsste man immer alle Zustände betrachten,
-die durch $\tau$s erreichbar sind. Es ist unklar, zu Konsequenzen dies führen
-kann. Vor allem im Bezug auf Hiding ist es schwierig, da unterschiedliche
-Transitionen in einem System zu unterschiedlichem Verhalten führen, obwohl sie
-von der Transitionsbeschriftung her nicht zu unterscheiden sind. Hierzu ist
-auch das Beispiel in Abbildung~\ref{QuiTracesBsp} zu beachten. Die Sprachen
-beider \MEIO{}s sind gleich und auch die strikten stille Traces stimmen
-überein, da jeweils durch beliebig viele $o$s (mindestens eins), die von einem
-$o'$ gefolgt werden eine ruhiger Zustand erreicht wird. Bei $P$ ist dies immer
-möglich. Falls aber in $Q$ die erste $o$ Transition nach rechts ausgeführt
-wird, kann kein stiller Zustand mehr erreicht werden. Die \MEIO{}s können also
-auf Trace-Ebenen nicht von einander unterschieden werden, jedoch können durch
-lokal Entscheidungen sehr verschiedenen Ergebnisse entstehen. Falls man das $o$
-durch Hiding in ein $\tau$ umwandelt, wäre $p_1$ sicher nicht still. $q_{12}$
-hingegen würde in der alternativen Betrachtung still werden. Die davor über die
-Trace-Mengen nicht unterscheidbaren Systeme würden durch Hiding dann einen
-Unterschied in den Trace-Mengen aufweisen.
-
-\begin{figure}[htbp]
-  \begin{center}
-    \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
-      \node [initial above,initial text=$P$:] (p0) at (0,0) {$p_0$};
-      \node (p1) [below of=p0] {$p_1$};
-      \node (p2) [below of=p1] {$p_2$};
-
-      \path
-      (p0) edge node{$o$} (p1)
-      (p1) edge[loop left] node{$o$} (p1)
-      (p1) edge node{$o'$} (p2)
-      ;
-
-      \node [initial above,initial text=$Q$:] (q0) at (7,0) {$q_0$};
-      \node (q11) [below left of=q0] {$q_{11}$};
-      \node (q12) [below right of=q0] {$q_{12}$};
-      \node (q2) [below of=q11] {$q_2$};
-
-      \path
-      (q0) edge node[swap]{$o$} (q11)
-      (q0) edge node{$o$} (q12)
-      (q11) edge node{$o'$} (q2)
-      (q11) edge[loop left] node{$o$} (q11)
-      (q12) edge[loop right] node{$o$} (q12)
-      ;
-    \end{tikzpicture}
-    \caption{Beispiel für Probleme bei Trace-Betrachtung}
-    \label{QuiTracesBsp}
-  \end{center}
-\end{figure}
-
-Im nächsten Kapitel, in dem Zustände mit Divergenz betrachtet werden, heben
-sich die Unterschiede in den Trace-Mengen, die die beiden unterschiedlichen
-Ansätze hier erzeugen würden auf. Da die Zustände die eine unendliche Folge an
-$\tau$s ausführen können als divergent betrachtet werden und die Stille als
-nicht so schlimm angesehen wird und auf Trace-Ebene somit geflutet wird.
+sicherstellen verallgemeinert die Definition der Stille für \EIO{}s in
+z.B.~\cite{Schinko2016BA}.
 
 Ob ein stiller Zustand relevant ist für einen Transitionssystem wird wie im
 letzten Kapitel für die Fehler"=Zustände ein optimistischer Ansatz der lokalen
@@ -114,13 +46,13 @@ das durch lokale Aktionen zu einem stillen Zustand führt ein Stille"=Trace.
 
 \begin{Def}[Test und Verfeinerung für Stillstand]
   \label{StilleTestDef}
-  Sei $P$ ein \MEIO{}. Ein \emph{Test} $T$ für $P$ ist eine zu $P$
-  komponierbare Implementierung. $P$ \emph{as-erfüllt} $T$ als einen
-  Stillstands-Test, falls $S\|T$ lokal fehler- und
-  stillstand-frei ist für alle $S\in \asimp (P)$. Es wird dann $P \QsatAs T$
-  geschrieben. Die Parallelkomposition $S\|T$ ist \emph{lokal fehler-} und
-  \emph{stillstand-frei}, wenn kein Fehler- und kein stiller Zustand lokal
-  erreichbar ist.\\
+  Sei $P$ ein \MEIO{}.\\
+  $P$ ist \emph{lokal fehler-} und \emph{stillstand-frei}, wenn kein Fehler-
+  und kein stiller Zustand lokal erreichbar ist.\\
+  Ein \emph{Test} $T$ für $P$ ist eine zu $P$ komponierbare Implementierung.
+  $P$ \emph{as-erfüllt} $T$ als einen Stillstands-Test, falls $S\|T$ lokal
+  fehler- und stillstand-frei ist für alle $S\in \asimp (P)$. Es wird dann $P
+  \QsatAs T$ geschrieben.\\
   Ein \MEIO{} $P$ \emph{Stille-verfeinert} $P'$, falls sie die selbe Signatur
   haben und für alle ihre Tests $T$: $P'\QsatAs T \Rightarrow P\QsatAs T$.
 \end{Def}
@@ -164,7 +96,7 @@ entsprechenden Traces der as"=Implementierungen relevant.
   $p_0$ führt.
   \begin{itemize}
     \item $P'= \{p'\mid p\in P\}\; \dot{\cup}\; \{p''\mid p\in P\}$,
-    \item $p'_0=p'_0$,
+    \item Startzustand $p'_0$,
     \item $I_{P'}=I_P$ und $O_{P'}=O_P$,
     \item $\begin{aligned}[t] \must _{P'}=\may _{P'} &=
         \left\{(p'_j,\alpha ,p'_k)\mid p_j\may[\alpha] p_k\right\}\\
@@ -329,23 +261,22 @@ für Stille eine neue Semantik definiert.
   stammt oder aus $\ET (P')$. Falls $w\in\ET (P')$ gilt, folgt mit
   Proposition~\ref{KommSemProp} bereits, dass $w\in \ET (P) \subseteq \QET (P)$
   gilt. Somit wird für den Rest des Beweises davon ausgegangen, dass $w\in\StQT
-  (P')\backslash \ET (P')$ ist. $w$ führt in $P'$ also nur zu einem stillen
-  Zustand und hat nichts mit Fehler-Zuständen in $P'$ zu tun. Der Trace, der
-  durch $w$ in $P'$ beschrieben wird, hat die folgende Form aus
-  Lemma~\ref{AblaefeVerfSpezLem}. Da $P'$ eine as"=Verfeinerung von $P$ ist,
-  gibt es auch eine as"=Verfeinerungs"=Relation $\mathcal{R}$, die zwischen den
-  beiden \MEIO{}s gilt. In $P$ führt entweder ein Präfix von $w$ zu einem
-  Fehler"=Zustand oder $w$ ist in $P$ zu einem Zustand ausführbar, für den
-  $p'_n \mathcal{R} p_n$ gilt, wegen~\ref{AblaefeVerfSpezLem}. Falls ein Präfix
-  von $w$ zu einem Fehler"=Zustand führt, gilt $w\in\ET _P\subseteq \QET _P$.
-  Andernfalls wird also durch $w$ ein Zustand $p_n$ erreicht, der mit dem
-  Zustand $p'_n$ in der starken as"=Verfeinerungs"=Relation $\mathcal{R}$
-  stehen. $p'_n$ ist still, nach Voraussetzung. Es gilt also für alle
-  $\omega\in O\cup \{\tau\}$ $p'_n\nmust[\omega]$. Da $(p'_n,p_n)
-  \in\mathcal{R}$ gilt und beide Zustände keine Fehler-Zustände sind, muss auch
-  $p_n\nmust[\omega]$ für alle $\omega\in O\cup \{\tau\}$ gelten, da
-  sonst~\ref{SimDef}.2 verletzt würde. Es gilt also in diesem Fall $w\in\StQT
-  (P)\subseteq\QET (P)$.
+  (P')\backslash \ET (P')$ ist. Der Ablauf zu $w$ führt in $P'$ also nur zu
+  einem stillen Zustand $p'_n$ und hat nichts mit Fehler-Zuständen in $P'$ zu
+  tun. Er hat die Form aus Lemma~\ref{AblaefeVerfSpezLem}. Da $P'$ eine
+  as"=Verfeinerung von $P$ ist, gibt es auch eine as"=Verfeinerungs"=Relation
+  $\mathcal{R}$, die zwischen den beiden \MEIO{}s gilt. In $P$ führt entweder
+  ein Präfix von $w$ zu einem Fehler"=Zustand oder $w$ ist in $P$ zu einem
+  Zustand $p_n$ ausführbar, für den $p'_n \mathcal{R} p_n$ gilt,
+  wegen~\ref{AblaefeVerfSpezLem}. Falls ein Präfix von $w$ zu einem
+  Fehler"=Zustand führt, gilt $w\in\ET _P\subseteq \QET _P$. Andernfalls wird
+  also durch $w$ ein Zustand $p_n$ erreicht, der mit dem Zustand $p'_n$ in der
+  starken as"=Verfeinerungs"=Relation $\mathcal{R}$ stehen. $p'_n$ ist still,
+  nach Voraussetzung. Es gilt also für alle $\omega\in O\cup \{\tau\}$
+  $p'_n\nmust[\omega]$. Da $(p'_n,p_n) \in\mathcal{R}$ gilt und beide Zustände
+  keine Fehler-Zustände sind, muss auch $p_n\nmust[\omega]$ für alle $\omega\in
+  O\cup \{\tau\}$ gelten, da sonst~\ref{SimDef}.2 verletzt würde. Es gilt also
+  in diesem Fall $w\in\StQT (P)\subseteq\QET (P)$.
 \end{proof}
 
 Wie im letzten Kapitel kann aus der vorangegangen Proposition über die
@@ -549,7 +480,7 @@ ist. Den Beweis dazu liefert das folgende Korollar.
 \end{Kor}
 \begin{proof}
   Es muss gezeigt werden: Wenn $P_1\QRel P_2$ für zwei \MEIO{}s $P_1$ und $P_2$
-  gilt, so auch $P_{31}\QRel P_{32}$ für jedes alle komponierbare Systeme
+  gilt, so auch $P_{31}\QRel P_{32}$ für alle komponierbare Systeme
   $P_3$. D.h.\ es ist zu zeigen, dass aus $P_1\ERel P_2$ und $\QET{}_1\subseteq
   \QET{}_2$ sowohl $P_{31}\ERel P_{32}$ als auch $\QET{}_{31}\subseteq
   \QET{}_{32}$ folgt, wegen der Definition von \QRel{} in~\ref{StilleSemDef}.
@@ -836,7 +767,7 @@ in~\ref{StilleTestDef}.
   gilt wegen des ersten Punktes von Lemma~\ref{StilleZustLem}, dass auch in der
   Parallelkomposition $P'_1\|T$ ein stiller Zustand mit $w$ erreicht wird. Bei
   allen in $w$ befindlichen Aktionen handelt es sich um synchronisierte
-  Aktionen und es gilt $I_T\cap I=\emptyset$. Daraus folgt $w\in O_{P'_1\|T}$
+  Aktionen und es gilt $I_T\cap I=\emptyset$. Daraus folgt $w\in O^*_{P'_1\|T}$
   und $w\in\StQT (P'_1\|T)$. Es kann also in der Parallelkomposition durch $w$
   ein stiller Zustand lokal erreicht werden. Da ein stiller Zustand in
   $P'_1\|T$ lokal erreichbar ist, muss auch in $P'_2\|T$ für eine
@@ -899,7 +830,7 @@ in~\ref{StilleTestDef}.
       Fall eintreten kann, muss das Wort $w$ in $P'_1\|T$ einen stillen
       Zustand $(p_1,p_T)$ erreichen, der nicht in $E_{P'_1\|T}$ enthalten ist.
       Mit Lemma~\ref{StilleZustLem}.2 sind auch die Zustände $p_1$ und $p_T$ in
-      den Teilsystemen still. Es gibt also eine Projektion des Wortes $w$ auf
+      den Teilsystemen still. Es gibt also Projektionen des Wortes $w$ auf
       die Teilsysteme, so dass $w\in w_1\|w_T$, $w_1\in\StQT _{P'_1}$ und
       $w_T\in\StQT _T$ gilt, wobei $w_1$ den Zustand $p_1$ in $P'_1$ und $w_T$
       den Zustand $p_T$ in $T$ erreicht. $w_1$ ist in der Menge $\StQT _{P'_1}
@@ -920,8 +851,8 @@ in~\ref{StilleTestDef}.
           zu einem Zustand $p_2$, der still ist. Wenn man also die Wörter $w_1$
           und $w_T$ in $P'_2\|T$ parallel zum Zustand $(p_2,p_T)$ ausführt, ist
           dieser Zustand durch Lemma~\ref{StilleZustLem}.1 still. Es gilt also
-          $w\in\StQT _{P'_2\|T}$ mit $w\in O_{P'_2\|T}$, da $P_1$ und $P_2$ die
-          selbe Signatur haben müssen. Ein stiller Zustand ist als in der
+          $w\in\StQT _{P'_2\|T}$ mit $w\in O^*_{P'_2\|T}$, da $P_1$ und $P_2$
+          die selbe Signatur haben müssen. Ein stiller Zustand ist als in der
           Parallelkomposition $P'_2\|T$ lokal erreichbar. Es gilt also auch in
           diesem Fall $\neg P_2\QsatAs T$.
       \end{itemize}

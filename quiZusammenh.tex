@@ -24,7 +24,7 @@
   _Q$, falls ein Fehler-Zustand in $Q$ auf einem Präfix-Trace von $w$ auftritt,
   wegen Lemma~\ref{AblaefeVerfSpezLem}. Im folgenden wird davon ausgegangen,
   das $w$ in $Q$ ohne das erreichen eines Fehler"=Zustandes ausführbar ist.
-  Wegen~\ref{AblaefeVerfSpezLem} gibt es also einen Trace für $w$ in $Q$, der
+  Wegen~\ref{AblaefeVerfSpezLem} gibt es also einen Ablauf für $w$ in $Q$, der
   im Zustand $q_n$ mit $p_n \mathcal{R} q_n$ endet. $p_n$ ist für $P$ ein
   stiller Zustand, es gilt also für alle $\omega \in (O\cup \{\tau\})$ $p_n
   \nmust[\omega]_P$. Da $\mathcal{R}$ eine starke as"=Verfeinerungs"=Relation
@@ -42,7 +42,7 @@
   $\tau$"=must"=Transitionen zulässig sind und \QRel{} keine Divergenz mit
   betrachtet. Ein entsprechenden Gegenbeispiel ist in
   Abbildung~\ref{QuiWasGegenBsp} dargestellt. Da hier nur das die strikten
-  Stille Trace das Problem erzeugen, soll $I = \emptyset$ gelten, damit die
+  Stille"=Trace das Problem erzeugen, soll $I = \emptyset$ gelten, damit die
   \MIT{}-Mengen für beide Systeme leer sind. $\mathcal{R} = \{(p_0,q_0)\}$ ist
   eine schwache as"=Verfeinerungs"=Relation zwischen $P$ und $Q$. Beides
   Transitionssysteme enthalten keine Fehler"=Zustände, $P$ besitzt keine
@@ -155,3 +155,75 @@
     \end{center}
   \end{figure}
 \end{proof}
+
+\TODO{Verbesserungen noch einarbeiten}
+Alternativ wäre es auch möglich gewesen eine andere Betrachtung zu wählen, die
+für stille Zustände zunächst nur fordert, dass keine must"=Outputs möglich sein
+dürfen. Falls dieser Zustand die Möglichkeit für eine interne Aktion via einer
+must"=Transition hat, darf durch die $\tau$s niemals ein Zustand erreicht
+werden, von dem aus ein Output in Implementierungen sicher gestellt wird. Die
+Menge der stillen Zustände würde in der alternativen Betrachtung durch
+$\left\{p\in P\mid \forall a\in O: p\nweakmust[a]_P \right\}$ beschrieben
+werden. Diese Menge ist in der hier betrachteten Menge der stillen Zustände
+$Qui (P)$ enthalten. Zusätzlich zu den in dieser Arbeit betrachteten
+Verklemmungen der Art Deadlock, lässt die Betrachtungsweise mit den
+zugelassenen $\tau$-must"=Transitionen auch Verklemmungen der Art Livelock zu,
+da diese Zustände möglicherweise beliebig viele interne Aktionen ausführen
+können, jedoch nie aus eigener Kraft einen wirklichen Fortschritt in Form eines
+Outputs bewirken können müssen. Somit wären dies alle Zustände, die keine
+Möglichkeit haben ohne einen Input von Außen oder eine implementierte
+may"=Output"=Transition je wieder einen Output machen zu können. Falls man
+diese Definition verwenden würde, müsste man immer alle Zustände betrachten,
+die durch $\tau$s erreichbar sind. Es ist unklar, zu Konsequenzen dies führen
+kann. Vor allem im Bezug auf Hiding ist es schwierig, da unterschiedliche
+Transitionen in einem System zu unterschiedlichem Verhalten führen, obwohl sie
+von der Transitionsbeschriftung her nicht zu unterscheiden sind. Hierzu ist
+auch das Beispiel in Abbildung~\ref{QuiTracesBsp} zu beachten. Die Sprachen
+beider \MEIO{}s sind gleich und auch die strikten stille Traces stimmen
+überein, da jeweils durch beliebig viele $o$s (mindestens eins), die von einem
+$o'$ gefolgt werden eine ruhiger Zustand erreicht wird. Bei $P$ ist dies immer
+möglich. Falls aber in $Q$ die erste $o$ Transition nach rechts ausgeführt
+wird, kann kein stiller Zustand mehr erreicht werden. Die \MEIO{}s können also
+auf Trace-Ebenen nicht von einander unterschieden werden, jedoch können durch
+lokal Entscheidungen sehr verschiedenen Ergebnisse entstehen. Falls man das $o$
+durch Hiding in ein $\tau$ umwandelt, wäre $p_0$ und $p_1$ sicher nicht still.
+$q_{12}$ hingegen würde in der alternativen Betrachtung still werden. Die davor
+über die Trace-Mengen nicht unterscheidbaren Systeme würden durch Hiding dann
+einen Unterschied in den Trace-Mengen aufweisen.
+
+\begin{figure}[htbp]
+  \begin{center}
+    \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
+      \node [initial above,initial text=$P$:] (p0) at (0,0) {$p_0$};
+      \node (p1) [below of=p0] {$p_1$};
+      \node (p2) [below of=p1] {$p_2$};
+
+      \path
+      (p0) edge node{$o$} (p1)
+      (p1) edge[loop left] node{$o$} (p1)
+      (p1) edge node{$o'$} (p2)
+      ;
+
+      \node [initial above,initial text=$Q$:] (q0) at (7,0) {$q_0$};
+      \node (q11) [below left of=q0] {$q_{11}$};
+      \node (q12) [below right of=q0] {$q_{12}$};
+      \node (q2) [below of=q11] {$q_2$};
+
+      \path
+      (q0) edge node[swap]{$o$} (q11)
+      (q0) edge node{$o$} (q12)
+      (q11) edge node{$o'$} (q2)
+      (q11) edge[loop left] node{$o$} (q11)
+      (q12) edge[loop right] node{$o$} (q12)
+      ;
+    \end{tikzpicture}
+    \caption{Beispiel für Probleme bei Trace-Betrachtung}
+    \label{QuiTracesBsp}
+  \end{center}
+\end{figure}
+
+Im nächsten Kapitel, in dem Zustände mit Divergenz betrachtet werden, heben
+sich die Unterschiede in den Trace-Mengen, die die beiden unterschiedlichen
+Ansätze hier erzeugen würden auf. Da die Zustände die eine unendliche Folge an
+$\tau$s ausführen können als divergent betrachtet werden und die Stille als
+nicht so schlimm angesehen wird und auf Trace-Ebene somit geflutet wird.
