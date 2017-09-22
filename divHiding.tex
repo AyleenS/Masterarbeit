@@ -10,16 +10,17 @@ $X\cup \{\tau\}$ ausführen konnte, jedoch nur endlich viele davon $\tau$s
 waren. Durch die zusätzlichen Divergenz"=Zustände vergrößern sich alle
 Trace-Mengen, die in der Präkongruenz \DRel{} betrachtet werden.\\
 Um den Zusätzlichen Aufwand der Untersuchung möglichst gering zu halten, wird
-dieses Teilkapitel auf endliche \MEIO{}s beschränkt. Ansonsten müsste man
-sicher stellen, dass der Graph jedes \MEIO{}s, für die betrachteten Traces
-lokal endlich sein muss. Die Menge $X$ muss Teilmenge der Outputs $O$ sein, für
-einen endlichen \MEIO{} kann $X$ ebenfalls nur endlich sein. Um eine endliche
-Menge von Aktionen zu internalisieren, kann man jede Aktion einzeln aus dem
-entsprechend \MEIO{} entfernen. Der folgende Satz kann also darauf beschränkt
-werden, dass nur ein einzelnen Output verborgen werden soll. $P/o$ soll dabei
-für $P/\{o\}$ stehen. Die Menge $\EDT _{P/o}$ kann aus $\EDT _P$ konstruiert
-werden. Im allgemeinen ist die Menge $\EDT _{P/o}$ jedoch größer wie $\EDT _P$
-somit müssen die anderen Trace-Mengen mit der neuen Menge geflutet werden.
+dieses Teilkapitel auf endliche \MEIO{}s beschränkt. Falls man unendlich große
+\MEIO{}s zulassen würde, müsste man an anderen Stellen
+Endlichkeits"=Voraussetzungen machen.\\
+Die Menge $X$ muss Teilmenge der Outputs $O$ sein, für einen endlichen \MEIO{}
+kann $X$ ebenfalls nur endlich sein. Um eine endliche Menge von Aktionen zu
+internalisieren, kann man jede Aktion einzeln aus dem entsprechend \MEIO{}
+entfernen. Der folgende Satz kann also darauf beschränkt werden, dass nur ein
+einzelnen Output verborgen werden soll. $P/o$ soll dabei für $P/\{o\}$ stehen.
+Die Menge $\EDT _{P/o}$ kann aus $\EDT _P$ konstruiert werden. Im allgemeinen
+ist die Menge $\EDT _{P/o}$ jedoch größer wie $\EDT _P$ somit müssen die
+anderen Trace-Mengen mit der neuen Menge geflutet werden.
 
 
 \begin{Satz}[Divergenz-Präkongruenz bzgl.\ Internalisierung]
@@ -31,8 +32,9 @@ somit müssen die anderen Trace-Mengen mit der neuen Menge geflutet werden.
   \begin{enumerate}[(i)]
     \item $L(P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in L(P):
       w'|_{\Sigma\backslash \{o\}} = w\}$,
-    \item $\EDT (P/o) = \cont (\prune (\{w\mid \exists w':w'|_{\Sigma\backslash
-      \{o\}} = w\land \forall n\geq 0: w'o^n\in\EDL _P\}))$,
+    \item $\EDT (P/o) = \cont (\prune (\{w\in (\Sigma\backslash \{o\})^*\mid
+      \exists w':w'|_{\Sigma\backslash \{o\}} = w\land \forall n\geq 0:
+      w'o^n\in\EDL (P)\}))$,
     \item $\EDL (P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in
       \EDL(P): w'|_{\Sigma\backslash \{o\}} = w\} \cup \EDT (P/o)$,
     \item $\QDT (P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in
@@ -40,6 +42,15 @@ somit müssen die anderen Trace-Mengen mit der neuen Menge geflutet werden.
   \end{enumerate}
 \end{Satz}
 \begin{proof}
+  Die Präkongruenz-Eigenschaft lässt sich wie bei den
+  Sätzen~\ref{FehlerHidingSatz} und~\ref{StilleHidingSatz} aus den Aussagen
+  über die Sprachen und Traces folgern. Somit sollen nun zunächst (i) bis (iv)
+  nachgewiesen werden. Der Punkt (i) folgt aus (i) von
+  Satz~\ref{FehlerHidingSatz} bzw.~\ref{StilleHidingSatz}.
+  \begin{enumerate}[(i)]
+    \setcounter{enumi}{1}
+    \item 
+  \end{enumerate}
   \TODO{zu beweisen}
 \end{proof}
 
