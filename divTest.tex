@@ -8,7 +8,7 @@ divergent sein. Jedoch lassen bereits unendliche Folgen von
 $\tau$-may-Transitionen Divergenz in einer ihrer as"=Implementierungen zu.
 Somit erscheint es sinnvoll Zustände bereits als divergent anzusehen, wenn sie
 die Möglichkeit für eine unendliche Folge von $\tau$s via may-Transitionen
-besitzen.
+besitzen. Die Korrektheit dieser Idee wird im folgenden nachgewiesen.
 
 \begin{Def}[Divergenz]
   Ein \emph{Divergenz-Zustand} ist ein Zustand in einem \MEIO{} $P$, der via
@@ -24,9 +24,7 @@ $\tau$s ausführbar ist, der unendliche viele Zustände durchläuft. Es ist jedo
 zu beachten, dass ein Zustand, von dem aus unendlich viele Zustände durch
 $\tau$s  erreichbar sind, nicht divergent sein muss. Es ist auch möglich,
 dass dieser Zustand eine unendliche Verzweigung hat und somit keine unendlichen
-Folgen an $\tau$s ausführen kann. Aus diesem Grund, schränkt sich diese Kapitel
-auf \MEIO{}s ein ohne unendlich Verzweigungen, die dann die Definition der
-lokalen erfüllen, dass sie lokal endlich sind.\\
+Folgen an $\tau$s ausführen kann.\\
 Für die Relevant eines Divergenz-Zustandes in einem Transitionssystem wieder
 wieder der optimistische Ansatz der lokalen Erreichbarkeit. Auf
 Implementierungen, die den \EIO{}s in z.B.~\cite{Schinko2016BA} entsprechen,
@@ -36,13 +34,13 @@ erreichbar ist. Somit wird sich auch hier herausstellen, dass Divergenz als
 
 \begin{Def}[Test und Verfeinerung für Divergenz]
   \label{DivTestDef}
-  Sei $P$ ein \MEIO{}. Ein \emph{Test} $T$ für $P$ ist eine zu $P$
-  komponierbare Implementierung. $P$ \emph{as-erfüllt} $T$ als einen
-  Divergenz-Test, falls $S\|T$ lokal fehler-, stillstand- und divergenz-frei
-  ist für alle $S\in \asimp (P)$. Es wird dann $P\DsatAs T$ geschrieben. Die
-  Parallelkomposition $S\|T$ ist \emph{lokal fehler-}, \emph{stillstand-} und
-  \emph{divergenz-frei}, wenn kein Fehler-, stiller oder Divergenz-Zustand
-  lokal erreichbar ist.\\
+  Sei $P$ ein \MEIO{}.\\
+  $P$ ist \emph{lokal fehler-}, \emph{stillstand-} und \emph{divergenz-frei},
+  wenn kein Fehler-, stiller oder Divergenz-Zustand lokal erreichbar ist.\\
+  Ein \emph{Test} $T$ für $P$ ist eine zu $P$ komponierbare Implementierung.
+  $P$ \emph{as-erfüllt} $T$ als einen Divergenz-Test, falls $S\|T$ lokal
+  fehler-, stillstand- und divergenz-frei ist für alle $S\in \asimp (P)$. Es
+  wird dann $P\DsatAs T$ geschrieben.\\
   Ein \MEIO{} $P$ \emph{Divergenz-verfeinert} $P'$, falls sie die selbe
   Signatur haben und für alle ihre Tests $T$: $P'\DsatAs T \Rightarrow P\DsatAs
   T$.
@@ -114,10 +112,10 @@ verläuft analog zu den Propositionen der vorangegangenen Kapitel.
       \alpha _1, \alpha _2, \dots , \alpha _n, \exists p_1, p_2, \dots , p_n:
       \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha _n \land p_0
       \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P
-      p_n \in Div _P$. Nach $p_n$ hat der kann der Trace durch eine unendliche
+      p_n \in Div _P$. Nach $p_n$ kann der Trace durch eine unendliche
       $\tau$-Folge fortgesetzt werden. Die Identitäts"=Relation $\mathcal{R}$
       setzt die Zustände des Traces mit den analogen Zuständen aus $P'$ in
-      Relation. Zusätzlich mit der Implementierung aller Transitionen aus $P$
+      Relation. Mit der Implementierung aller Transitionen aus $P$
       in $P'$ ergibt sich der selbe Trace in $P'$. Es gilt also $p'_0
       \may[\alpha _1]_{P'} p'_1 \may[\alpha _2]_{P'} \dots p'_{n-1} \may[\alpha
       _n]_{P'} p'_n$ mit $(p'_j,p_j) \in \mathcal{R}$ für $0\leq j \leq n$. Da
