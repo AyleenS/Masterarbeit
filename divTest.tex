@@ -365,7 +365,7 @@ Relation dies Eigenschaft auch übernehmen, so wie \DRel{} dies tut.
 Man könnte diesen Satz analog zu den Sätzen~\ref{KommFehlerSemSatz}
 und~\ref{StilleSemSatz} durch die Mengen-Inklusionen in beide Richtungen
 beweisen. Alternativ kann man jedoch alle beteiligen \MEIO{}s Normieren, so
-dass sie divergenz-frei sind, in dem Sinne, dass die \MEIO{}s keinen
+dass sie divergenz-trivial sind, in dem Sinne, dass die \MEIO{}s keinen
 divergenten Zustand mehr enthalten, der nicht auf in der Menge der
 Fehler"=Zustände enthalten ist. In für einen \MEIO{}, für den $Div\subseteq E$,
 gilt $\EDT = \ET$, $\QDT = \QET$ und $\EDL = \EL$. Es wäre als der
@@ -374,44 +374,44 @@ wäre dann nur noch zu zeigen, dass die Parallelkomposition von zwei in dieser
 Art normierten \MEIO{}s die Normierung der Parallelkomposition ihrer
 unnormierten \MEIO{}-Versionen ist.
 
-\begin{Def}[Normierung zur Divergenz-Freiheit]
+\begin{Def}[Normierung zur Divergenz-Trivialität]
   \label{DivNormDef}
-  Ein \MEIO{} $P$ \emph{divergenz-frei}, wenn $Div _P \subseteq E_P$ gilt.\\
-  Die divergenz-frei Form von $P$ ist ein \MEIO{} $\DF (P)$, das man aus $P$
+  Ein \MEIO{} $P$ ist \emph{divergenz-trivial}, wenn $Div _P \subseteq E_P$
+  gilt.\\
+  Die divergenz-trivial Form von $P$ ist ein \MEIO{} $\DF (P)$, das man aus $P$
   erhält, in dem man die Menge der Fehler"=Zustände $E_{\DF (P)}$ als die Menge
   $E_P \cup Div _P$ definiert.
-  \\ \TODO{Alternativ Benennung für divergenz-frei suchen}
 \end{Def}
 
 Die Menge $\MIT _P$, $\StQT _P$ und $L_P$ eines \MEIO{} $P$ bleiben durch die
-Konstruktion in~\ref{DivNormDef} zur divergenz-freien Form $\DF (P)$
+Konstruktion in~\ref{DivNormDef} zur divergenz-trivialen Form $\DF (P)$
 unverändert. Nur die Menge $\cont (\PrET _P)$ wird zur Menge $\cont (\PrET
 _{\DF (P)})$ erweitert, in dem eine Vereinigung mit $\DT _P$ vorgenommen wird.
 Semantisch ist jedoch nur die Trace-Menge \EDT{} relevant, die bereits die
 Vereinigung der Mengen \ET{} und $\DT{}$ ist. Die Mengen \QDT{} und \EDL{}
 werden für beide \MEIO{}s mit der Trace Menge \EDT{} geflutet, somit gilt für
 alle in der Semantik der Relation \DRel{} relevanten Traces die Gleichheit
-zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-freien Form $\DF
+zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-trivialen Form $\DF
 (P)$.
 
-\begin{Prop}[Divergenz-Freiheit]
+\begin{Prop}[Divergenz-Trivialität]
   \label{DivNormProp}
-  Jedes \MEIO{} $P$ ist äquivalent zu seiner divergenz-freien Form $\DF (P)$
+  Jedes \MEIO{} $P$ ist äquivalent zu seiner divergenz-trivialen Form $\DF (P)$
   bezüglich der Relation \DRel{}.
 \end{Prop}
 
 Wie schon oben erwähnt, sollen die Trace aus Satz~\ref{DivSemSatz} auf die des
 Satz~\ref{StilleSemSatz} zurück geführt werden durch die Normierung Systeme in
-divergenz-freier Form. Damit dies möglich ist, müssen die betrachteten
+divergenz-trivialer Form. Damit dies möglich ist, müssen die betrachteten
 Trace-Mengen gleich sein. Dies ist erfüllt, wenn die Relationen äquivalent sind
-unter der Voraussetzung, dass die Systeme divergenz-frei sind.
+unter der Voraussetzung, dass die Systeme divergenz-trivial sind.
 
-\begin{Lem}[Relationen unter Divergenz-Freiheit]
-  Für zwei \MEIO{}s $P$ und $Q$ in divergenz-freier Form gilt: $P \DRel Q
+\begin{Lem}[Relationen unter Divergenz-Trivialität]
+  Für zwei \MEIO{}s $P$ und $Q$ in divergenz-trivialer Form gilt: $P \DRel Q
   \Leftrightarrow P \QRel Q$.
 \end{Lem}
 \begin{proof}
-  Da für einen \MEIO{} $P$ in divergenz-freier Form $Div _P \subseteq E _P$
+  Da für einen \MEIO{} $P$ in divergenz-trivialer Form $Div _P \subseteq E _P$
   gilt, ist jeder strikte Divergenz-Trace von $P$ auch ein strikter
   Fehler-Trace von $P$. Auf beide Trace-Mengen wird die Kürzungs-Funktion
   \prune{} und danach die Verlängerungs"=Funktion \cont{} angewendet. In $\EDT
@@ -422,13 +422,13 @@ unter der Voraussetzung, dass die Systeme divergenz-frei sind.
   sind, gilt auch $\QDT _P = \QET _P$ und $\EDL _P = \EL _P$. Die Mengen
   Gleichheiten gelten analog auch für $Q$. Da die Mengen für die Inklusionen,
   die die Relationen \DRel{} und \QRel{} fordern, gleich sind, sind auch die
-  Relationen äquivalent für \MEIO{}s in divergenz-freier Form.
+  Relationen äquivalent für \MEIO{}s in divergenz-trivialer Form.
 \end{proof}
 
-\begin{Lem}[Divergenz-Freiheit und Parallelkomposition]
+\begin{Lem}[Divergenz-Trivialität und Parallelkomposition]
   \label{DivFreiParallelLem}
   Die Parallelkomposition $P_{12} = P_1\|P_2$ zweier \MEIO{}s $P_1$ und $P_2$
-  in divergenz-freier Form ist ebenfalls in divergenz-freier Form.
+  in divergenz-trivialer Form ist ebenfalls in divergenz-trivialer Form.
 \end{Lem}
 \begin{proof}
   Es gilt $Div _j \subseteq E_j$ für beide $j\in\{1,2\}$. In einer
@@ -439,23 +439,28 @@ unter der Voraussetzung, dass die Systeme divergenz-frei sind.
   Fehler"=Zustände in einer Parallelkomposition auch nur von einem der zu
   komponierenden Zustände geerbt werden müssen, gilt eine analoge Formel für
   die Menge der Fehler"=Zustände. Es folgt also $Div _{12} \subseteq E _{12}$.
-  $P_{12}$ ist also auch in divergenz-freier Form.
+  $P_{12}$ ist also auch in divergenz-trivialer Form.
 \end{proof}
+
+\begin{Lem}[Parallelkomposition kommuniert mit Normierung auf
+  divergenz-triviale Form]
+  \TODO{formulieren}
+\end{Lem}
 
 \begin{proof}[Beweis zu Satz~\ref{DivSemSatz}]\mbox{}\\
   \TODO{Gleichheit zeigen und Trace Mengen wie auf Blatt}
   Durch Proposition~\ref{DivNormProp} kann man jeden \MEIO{} $P$ so normieren,
-  dass er eine divergenz-freie Form besitzt und das Ergebnis der Normierung
+  dass er eine divergenz-triviale Form besitzt und das Ergebnis der Normierung
   äquivalent zu $P$ ist bezüglich der Relation \DRel{}. Für einen \MEIO{} $P$
-  in divergenz-freier Form gilt jedoch $\EDT _P = \ET _P$, $\QDT _P = \QET _P$
-  und $\EDL _P = \EL _P$. Der hier zu beweisende Satz, würde als für \MEIO{}s
-  in divergenz-freier Form dem Satz~\ref{StilleSemSatz} aus dem letzten Kapitel
-  entsprechen. Jedoch soll der Satz in diesem Kapitel nicht auf \MEIO{}s in
-  divergenz-freier Form eingeschränkt werden, sondern für alle \MEIO{}s gelten.
-  Es ist also noch zu beweisen, dass $\DF (P_{12})$ äquivalent zu $\DF
-  (P_1)\|\DF (P_2)$ ist bezüglich der Relation \DRel{} bzw.\ bezüglich der
-  Relation \QRel{}, da die Parallelkomposition von zwei \MEIO{}s in
-  divergenz-freier Form auch eine divergenz-freie Form hat
+  in divergenz-trivialer Form gilt jedoch $\EDT _P = \ET _P$, $\QDT _P = \QET
+  _P$ und $\EDL _P = \EL _P$. Der hier zu beweisende Satz, würde als für
+  \MEIO{}s in divergenz-trivialer Form dem Satz~\ref{StilleSemSatz} aus dem
+  letzten Kapitel entsprechen. Jedoch soll der Satz in diesem Kapitel nicht auf
+  \MEIO{}s in divergenz-trivialer Form eingeschränkt werden, sondern für alle
+  \MEIO{}s gelten. Es ist also noch zu beweisen, dass $\DF (P_{12})$ äquivalent
+  zu $\DF (P_1)\|\DF (P_2)$ ist bezüglich der Relation \DRel{} bzw.\ bezüglich
+  der Relation \QRel{}, da die Parallelkomposition von zwei \MEIO{}s in
+  divergenz-trivialer Form auch eine divergenz-triviale Form hat
   (Lemma~\ref{DivFreiParallelLem}). Die folgenden Punkte müssen für den
   Nachweis der Äquivalenz bewiesen werden:
   \begin{enumerate}[(i)]
@@ -469,8 +474,8 @@ unter der Voraussetzung, dass die Systeme divergenz-frei sind.
   beliebiges präfix-minimales Element $w\in\ET (\DF (P_{12}))$ betrachten.
   Das $w$ kann ein Input-kritischer Trace sein oder ein gekürzter
   Fehler"=Trace. Der gekürzte Fehler"=Trace kann erst durch die Normierung auf
-  ein System in divergenz-freier Form entstanden sein. Falls dies der Fall ist,
-  galt vor der Normierung $w\in \PrDT _{12}$.
+  ein System in divergenz-trivialer Form entstanden sein. Falls dies der Fall
+  ist, galt vor der Normierung $w\in \PrDT _{12}$.
   \begin{itemize}
     \item Fall 1 ($w\in \ET _{12}$): Das Wort $w$ war vor der Normierung ein
       Input-kritischer Trace, der unveränder übernommen wurde oder ein
@@ -491,9 +496,9 @@ unter der Voraussetzung, dass die Systeme divergenz-frei sind.
       in der Komposition beteiligten Zustand aufweisen. Das andere System
       muss nur den auf sein Teilsystem projizierten Trace von $wv$ ausführen
       können. Die Ausführbarkeit von Traces kann durch die Normierung auf ein
-      System in divergenz-freies Form nicht verändert werden. Der divergenten
-      Zustand des anderen Teilsystems wird jedoch in die Menge seiner
-      Fehler"=Zustände aufgenommen durch die Normierung. In der
+      System in divergenz-triviales Form nicht verändert werden. Der
+      divergenten Zustand des anderen Teilsystems wird jedoch in die Menge
+      seiner Fehler"=Zustände aufgenommen durch die Normierung. In der
       Parallelkomposition $\DF (P_1)\|\DF (P_2)$ werden also ein Trace aus
       der Menge \ET{} des einen und aus der Menge $L$ des anderen Systems
       komponiert. Das Wort $wv$, dass dabei entsteht, ist somit in der Menge
@@ -512,12 +517,12 @@ unter der Voraussetzung, dass die Systeme divergenz-frei sind.
   $w_2\in\EL _{\DF (P_2)}$ bzw.\ $w_2\in\ET _{\DT (P_2)}$. Da das $w$
   präfix-minimal ist in $\DF (P_1)\|\DF (P_2)$ sind die $w_j\in \EL _{\DF
   (P_j)}$ entweder ausführbar ($w_j\in L _{\DF (P_j)}$) oder in der Menge $\MIT
-  _{\DF (P_j)}$ enthalten. Die Normierung auf ein System in divergenz-freier
+  _{\DF (P_j)}$ enthalten. Die Normierung auf ein System in divergenz-trivialer
   Form nichts an der Ausführbarkeit von Traces verändern kann. Falls das $w_j$
   für $j\in\{1,2\}$ in der Menge $\cont (\MIT _{\DF (P_j)})$ enthalten ist,
   gilt auch $w_j\in\cont (\MIT _j)$, da die Normierung der Systeme auf
-  ihre divergenz-freie Form die Input"=kritischen Trace unverändert lässt. Für
-  die hier betrachten $w_j$ gilt $w_j\in \EL _j$, wenn nach der Normierung
+  ihre divergenz-triviale Form die Input"=kritischen Trace unverändert lässt.
+  Für die hier betrachten $w_j$ gilt $w_j\in \EL _j$, wenn nach der Normierung
   $w_j\in\EL _{\DF (P_j)}$. Es kommt also nur auf die Wörter $w_j$ in den
   \ET{}-Mengen an. Für $w_j\in\cont (\PrET _{\DF (P_j)})$ können jedoch zwei
   Fälle unterschieden werden. $w_j$ kann bereits von der Normierung ein Trace
@@ -595,7 +600,7 @@ unter der Voraussetzung, dass die Systeme divergenz-frei sind.
   Qui _{\DF (P_1)\|\DF (P_2)}\backslash E_{\DF (P_1)\|\DF (P_2)}$ führt. Die
   Zustände $p_1$ und $p_2$ in $\DF (P_1)$ bzw.\ $\DF (P_2)$ sind still durch
   Lemma~\ref{StilleZustLem}.2. Da die Konstruktion der Normierung auf
-  divergenz-freie Systeme in Definition~\ref{DivNormDef} jedoch keine
+  divergenz-triviale Systeme in Definition~\ref{DivNormDef} jedoch keine
   Transitionen verändert, sondern nur die Zustands-Mengen $E$ erweitert, gilt
   sind $p_1$ und $p_2$ in $P_1$ und $P_2$ ebenfalls still und durch die selben
   Traces wie in den normierten Systemen erreichbar. Das Wort $w$ in $P_1\|P_2$
