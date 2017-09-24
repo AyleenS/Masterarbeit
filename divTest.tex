@@ -442,10 +442,62 @@ unter der Voraussetzung, dass die Systeme divergenz-trivial sind.
   $P_{12}$ ist also auch in divergenz-trivialer Form.
 \end{proof}
 
-\begin{Lem}[Parallelkomposition kommuniert mit Normierung auf
-  divergenz-triviale Form]
-  \TODO{formulieren}
+\begin{Lem}[Parallelkomposition und Divergenz-Trivialität]
+  Für komponierbare \MEIO{}s $P_1$ und $P_2$ gilt $\DF (P_1\|P_2) = \DF (P_1)\|
+  \DF (P_2)$.
 \end{Lem}
+\begin{proof}
+  Die Normierung auf eine divergenz-triviale Form ändert nichts an den
+  Transtionen des Systems. Stille Zustände und Zustände, die einen Input nicht
+  sicher stellen bleiben also unverändert erhalten. Bezüglich dieser Art des
+  Fehlverhaltens der Systeme kommutiert die Parallelkomposition mit der
+  Normierungs"=Konstrunktion aus Definition~\ref{DivNormDef}. Man muss also nur
+  noch nur noch vergleichen, dass die Fehler"=Zustände in $\DF (P_1\|P_2)$ und
+  $\DF (P_1)\| \DF (P_2)$ übereinstimmen, da in beiden Systemen die
+  Divergenz"=Zustände gleichzeitig auch Fehler"=Zustände sind wegen
+  Lemma~\ref{DivFreiParallelLem}.
+
+  $E_{\DF (P_1\|P_2)} \subseteq E_{\DF (P_1)\| \DF (P_2)}$:\\
+  Sei $(p_1,p_2)$ ein beliebiger Fehler"=Zustand aus der Menge $E_{\DF
+  (P_1\|P_2)}$. Dieser Zustand kann in $P_{12}$ ein geerbter Fehler, neuer
+  Fehler oder divergenzter Zustand sein.
+  \begin{itemize}
+    \item Fall 1 ($(p_1,p_2)$ ist ein geerbter Fehler in $P_{12}$): \OBdA{} ist
+      $p_1$ in $E_1$ enthalten. Mit der Konsturktion aus
+      Definition~\ref{DivNormDef} gilt $p_1\in E_{\DF (P_1)}$. In der
+      Parallelkomposition $\DF (P_1)\|\DF (P_2)$ ist $(p_1,p_2)$ ebenfalls ein
+      geerbter Fehler.
+    \item Fall 2 ($(p_1,p_2)$ ist ein neuer Fehler in $P_{12}$): \OBdA{} stellt
+      $p_1$ einen Input nicht via must"=Transtion sicher, den $p_2$ in $P_2$
+      also Output besitzt. Da an den Transtion durch die Normierung auf $\DF
+      (P_1)$ und $\DF (P_2)$ die Transitionen unverändert bleiben. Kommt es
+      zwischen $p_1$ und $p_2$ auch in der Parallelkomposition von $\DF (P_1)$
+      und $\DF (P_2)$ zu einem neuen Fehler.
+    \item Fall 3 ($(p_1,p_2)\in Div_{12}$): Damit $(p_1,p_2)$ ein divergenter
+      Zustand ist, muss \oBdA{} $p_1$ in $P_1$ ein divergenter Zustand sein.
+      Durch die Konstruktion der divergenz-trivialen Form, wird $p_1$ in die
+      Menge $E_{\DF (P_1)}$ eingefügt. Der Zustand $(p_1,p_2)$ ist somit in
+      $\DF (P_1)\|\DF (P_2)$ ein geerbter Fehler.
+  \end{itemize}
+
+  $E_{\DF (P_1)\| \DF (P_2)} \subseteq E_{\DF (P_1\|P_2)}$:\\
+  Wähle einen belibigen Zustand $(p_1,p_2)$ aus der Menge $E_{\DF (P_1)\| \DF
+  (P_2)}$. Es kann sich bei $(p_1,p_2)$ in $\DF (P_1)\| \DF (P_2)$ um einen
+  geerbten oder neuen Fehler handeln.
+  \begin{itemize}
+    \item Fall 1 ($(p_1,p_2)$ geerbter Fehler in $\DF (P_1)\| \DF (P_2)$): Der
+      Fehler ist \oBdA{} von $P_1$ geerbt worden. Es gilt also $p_1\in E_{\DF
+      (P_1)}$. $p_1$ kann erst durch die Normierung zu einem Fehler"=Zustand
+      geworden sein oder bereits davor in $E_1$ enthalten gewesen sein.
+      \begin{itemize}
+        \item Fall 1a) ($p_1\in E_1$): In $P_{12}$ ist $(p_1,p_2)$ ein geerbter
+          Fehler. \TODO{fertig beweisen}
+        \item Fall 1b) ($p_1\in Div_1$): \TODO{zu beweisen}
+      \end{itemize}
+    \item Fall 2 ($(p_1,p_2)$ neuer Fehler in $\DF (P_1)\| \DF (P_2)$):
+      \TODO{zu beweisen}
+  \end{itemize}
+\end{proof}
 
 \begin{proof}[Beweis zu Satz~\ref{DivSemSatz}]\mbox{}\\
   \TODO{Gleichheit zeigen und Trace Mengen wie auf Blatt}
