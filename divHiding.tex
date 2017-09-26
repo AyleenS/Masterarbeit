@@ -47,10 +47,40 @@ anderen Trace-Mengen mit der neuen Menge geflutet werden.
   über die Sprachen und Traces folgern. Somit sollen nun zunächst (i) bis (iv)
   nachgewiesen werden. Der Punkt (i) folgt aus (i) von
   Satz~\ref{FehlerHidingSatz} bzw.~\ref{StilleHidingSatz}.
-  \begin{enumerate}[(i)]
-    \setcounter{enumi}{1}
-    \item 
-  \end{enumerate}
+
+  (ii) \glqq $\subseteq$\grqq{}:\\
+  Beide Seiten nicht abgeschlossen gegenüber \prune{} und \cont{}. Somit genügt
+  es ein Element $w$ aus $\StET (P/o)\cup \StDT (P/o)$ zu betrachten. Es gibt
+  also einen Ablauf in $P/o$ für das $w$, der zu einem Zustand $p$ führt, der
+  in $E_{P/o}\cup Div_{P/o}$ enthalten ist. Der selbe Zustand $p$ kann analog
+  zu den Sätzen~\ref{FehlerHidingSatz} und~\ref{StilleHidingSatz} in $P$ durch
+  ein $w'$ erreicht werden mit $w'|_{\Sigma\backslash\{o\}} = w$.\\
+  Falls $p$ in $P$ ein Fehler- oder Divergenz"=Zustand lokal erreichen kann,
+  gilt $w'\in \EDT (P)\subseteq\EDL (P)$. Da die Menge \EDL{} unter \cont{}
+  abgeschlossen ist, gilt auch $w'o^n\in\EDT (P)\subseteq\EDL (P)$ für alle
+  $n\geq 0$, falls $p$ lokal Fehler oder Divergenz erreichen kann.\\
+  Der Zustand $p$ kann jedoch in $P$ auch ein Zustand sein, der weder einen
+  lokale erreichbaren Fehler noch lokal erreichbare Divergenz aufweist. Es muss
+  also durch das Internalisieren des Outputs $o$ in $P/o$ ein Divergenz
+  entstanden sein. Da nur $o$s in $\tau$s umgewandelt wurden, muss $p$ in $P$
+  eine unendliche Folge an $o$s ausführen können, damit durch das Anwenden des
+  Hiding"=Operators neue Divergenz entstehen kann. Es muss also $w'o^n$ für
+  alle $n\geq 0$ in $P$ ausführbar sein. Somit gilt $w'o^n\in\EDL (P)$ für alle
+  $n\geq 0$.
+
+  (ii)  \glqq $\supseteq$\grqq{}:\\
+  Für ein beliebiges $w'o^n\in \EDL (P)$ können zwei Fälle unterschieden
+  werden.
+  \begin{itemize}
+    \item Fall 1 ($w'o^n\in\EDT (P)$): Es muss ein Präfix $v'$ von $w'$ geben,
+      dass in $\PrET (P)\cup \PrDT (P)$ enthalten ist. \TODO{fertig beweisen}
+    \item Fall 2 ($w'o^n\in L (P)$): \TODO{zu beweisen}
+  \end{itemize}
+
+  (iii):\\
+  \TODO{zu beweisen}
+
+  (iv):\\
   \TODO{zu beweisen}
 \end{proof}
 
