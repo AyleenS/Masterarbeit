@@ -49,42 +49,71 @@ anderen Trace-Mengen mit der neuen Menge geflutet werden.
   Satz~\ref{FehlerHidingSatz} bzw.~\ref{StilleHidingSatz}.
 
   (ii) \glqq $\subseteq$\grqq{}:\\
-  Beide Seiten nicht abgeschlossen gegenüber \prune{} und \cont{}. Somit genügt
+  Beide Seiten sind abgeschlossen gegenüber \prune{} und \cont{}. Somit genügt
   es ein Element $w$ aus $\StET (P/o)\cup \StDT (P/o)$ zu betrachten. Es gibt
   also einen Ablauf in $P/o$ für das $w$, der zu einem Zustand $p$ führt, der
   in $E_{P/o}\cup Div_{P/o}$ enthalten ist. Der selbe Zustand $p$ kann analog
-  zu den Sätzen~\ref{FehlerHidingSatz} und~\ref{StilleHidingSatz} in $P$ durch
+  zu den Sätzen~\ref{FehlerHidingSatz} und~\ref{StilleHidingSatz}, durch das
+  ersetzten von $\tau$s in dem mit $w$ beschrifteten Ablauf, in $P$ durch
   ein $w'$ erreicht werden mit $w'|_{\Sigma\backslash\{o\}} = w$.\\
   Falls $p$ in $P$ ein Fehler- oder Divergenz"=Zustand lokal erreichen kann,
   gilt $w'\in \EDT (P)\subseteq\EDL (P)$. Da die Menge \EDL{} unter \cont{}
   abgeschlossen ist, gilt auch $w'o^n\in\EDT (P)\subseteq\EDL (P)$ für alle
   $n\geq 0$, falls $p$ lokal Fehler oder Divergenz erreichen kann.\\
-  Der Zustand $p$ kann jedoch in $P$ auch ein Zustand sein, der weder einen
-  lokale erreichbaren Fehler noch lokal erreichbare Divergenz aufweist. Es muss
-  also durch das Internalisieren des Outputs $o$ in $P/o$ ein Divergenz
-  entstanden sein. Da nur $o$s in $\tau$s umgewandelt wurden, muss $p$ in $P$
-  eine unendliche Folge an $o$s ausführen können, damit durch das Anwenden des
-  Hiding"=Operators neue Divergenz entstehen kann. Es muss also $w'o^n$ für
-  alle $n\geq 0$ in $P$ ausführbar sein. Somit gilt $w'o^n\in\EDL (P)$ für alle
-  $n\geq 0$.
+  Der Zustand $p$ kann jedoch in $P$ auch ein Zustand sein, der weder Fehler
+  noch Divergenz lokal erreichen kann. Es muss also durch das Internalisieren
+  des Outputs $o$ in $P/o$ ein Divergenz"=Zustand entstanden sein. Da nur $o$s
+  in $\tau$s umgewandelt wurden, muss $p$ in $P$ eine unendliche Folge an $o$s
+  ausführen können, damit durch das Anwenden des Hiding"=Operators neue
+  Divergenz entstehen kann. Es muss also $w'o^n$ für alle $n\geq 0$ in $P$
+  ausführbar sein. Somit gilt $\forall n\geq 0: w'o^n\in\EDL (P)$.
 
   (ii)  \glqq $\supseteq$\grqq{}:\\
   Für ein beliebiges $w'o^n\in \EDL (P)$ können zwei Fälle unterschieden
   werden.
   \begin{itemize}
     \item Fall 1 ($w'o^n\in\EDT (P)$): Es muss ein Präfix $v'$ von $w'$ geben,
-      dass in $\PrET (P)\cup \PrDT (P)$ enthalten ist. \TODO{fertig beweisen}
-    \item Fall 2 ($w'o^n\in L (P)$): \TODO{zu beweisen}
+      dass in $\PrET (P)\cup \PrDT (P)$ enthalten ist. Für $v'\in\PrET (P)
+      \subseteq\ET (P)$ muss mit Satz~\ref{FehlerHidingSatz} (ii)
+      $v'|_{\Sigma\backslash\{o\}}$ in $\ET (P/o)$ enthalten sein. Mit einer
+      analogen Argumentation wie in Satz~\ref{FehlerHidingSatz} (ii) kann auch
+      für ein $v'$ aus $\PrDT (P)$ $v'|_{\Sigma\backslash\{o\}}\in\DT (P/o)$
+      gefolgert werden. Da \EDT{} unter der Fortsetzungs-Funktion \cont{}
+      abgeschlossen ist, gilt $w'|_{\Sigma\backslash\{o\}}\in\EDT (P/o)$.
+    \item Fall 2 ($w'o^n\in L (P)$): Es muss $w'o^n\in L(P)$ für alle $n\geq 0$
+      gelten, damit die Forderungen der linken Seite der Gleichung erfüllt
+      sind. Da $P$ ein endlicher \MEIO{} ist, muss für $n =|P|$ mindestens ein
+      Zustand in entlang des Ablaufes von $o^n$, der nach $w'$ ausführbar ist,
+      doppelt auftauchen. Der Zustand, der durch $w'$ in $P$ erreicht ist, ist
+      nach dem verbergen von $o$ in $P/o$ divergent. Dieser Zustand wird in
+      $P/o$ durch $w'|_{\Sigma\backslash\{o\}}$ erreicht, da analog zu den
+      Sätzen~\ref{FehlerHidingSatz} und~\ref{StilleHidingSatz} die im Ablauf
+      enthaltenen $o$-Transitionen durch $\tau$-Transitionen ersetzt werden. Es
+      gilt also $w'|_{\Sigma\backslash\{o\}}\in\EDT (P/o)$.
   \end{itemize}
 
-  (iii):\\
-  \TODO{zu beweisen}
+  (iii) und (iv):\\
+  Diese Punkte lassen sich analog zu Satz~\ref{FehlerHidingSatz}
+  und~\ref{StilleHidingSatz} beweisen, da der Punkt (ii) dieses Satzes bereits
+  nachgewiesen wurde.
 
-  (iv):\\
-  \TODO{zu beweisen}
+  Da $P_1$ und $P_2$ endliche sein müssen, gibt es auch nur endliche viele
+  Outputs, die man in ihnen verbergen kann. Die Menge $X$ muss also endlich
+  sein. Für jedes Element $o$ aus $X$ kann mit den Punkten (ii) bis (iii) aus
+  $P_1\DRel P_2$ gefolgert werden, dass auch $P_1/o\DRel P_2/o$ gilt. In dem
+  man immer ein weiteren Output Internalisiert. Folgt am Ende auch $P_1|X\DRel
+  P_2/X$ aus der Voraussetzungen $P_1\DRel P_2$ für endliche \MEIO{} $P_1$ und
+  $P_2$.\\
+  Somit bleibt die Relation \DRel{} unter Anwendung des Hiding-Operators
+  erhalten und ist somit bezüglich diesem eine Präkongruenz.
 \end{proof}
 
-\TODO{Begründung für nachfolgendes Korollar}
+Die Parallelkomposition mit Internalisierung ist auf Basis der
+Parallelkomposition $\cdot \|\cdot$ und des Hiding-Operators $\cdot /\cdot$
+definiert. Dies beiden Operatoren sind, wie in Korollar~\ref{DivPraekonKor} und
+Satz~\ref{DivHidingSatz} nachgewiesen wurde, Präkongruenzen bezüglich der
+Relation \DRel{}. Somit ist auch $\cdot |\cdot$ ein Präkongruenz bezüglich
+dieser Relation.
 
 \begin{Kor}[Divergenz-Präkongruenz mit Internalisierung]
   Die Relation \DRel{} ist eine Präkongruenz bezüglich $\cdot |\cdot$.
