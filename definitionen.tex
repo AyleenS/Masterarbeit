@@ -1,7 +1,7 @@
 \section{Definitionen}
 
 Das Definitions-Kapitel wurde auf Grundlage von~\cite{Vogler2015FailSem}
-und~\cite{Schinko2016BA} zusammengestellt und teilweise
+und~\cite{Schinko2016BA} zusammengestellt und ist teilweise
 von~\cite{Vogler2016MIA3} beeinflusst.
 
 \begin{Def}[Modal Error-I/O-Transitionssystem]
@@ -30,7 +30,7 @@ von~\cite{Vogler2016MIA3} beeinflusst.
 Implementierungen entsprechen den z.B.\ in~\cite{Schinko2016BA} behandelten
 \EIO{}s.\\
 Must-Transitionen sind Transitionen, die von einer Verfeinerung implementiert
-werden müssen. Die may-Transitionen sind hingegen die zulässigen Transitionen
+werden müssen. Die may-Transitionen hingegen sind die zulässigen Transitionen
 für eine Verfeinerung. Alle nicht vorhandenen must- und may-Transitionen dürfen
 auch in keiner Verfeinerung einer Spezifikation in \MEIO{}-Form auftauchen.
 Diese Forderungen werden in den Definitionen der Verfeinerungen in~\ref{SimDef}
@@ -70,7 +70,7 @@ $\may[a]\weakmay[\varepsilon]$ für die \emph{schwach-nachlaufende
 may-Transition}.\\
 In Grafiken wird eine Aktion $a$ als $a?$ notiert, falls $a\in I$ und $a!$,
 falls $a\in O$. Must-Transitionen (may-Transitionen) werden als durchgezogener
-Pfeil gezeichnet (gestrichelter Pfeil). Entsprechend der syntaktischen
+Pfeil (gestrichelter Pfeil) gezeichnet. Entsprechend der syntaktischen
 Konsistenz repräsentiert jede gezeichnete must-Transition auch gleichzeitig die
 zugrundeliegende may-Transitionen.
 
@@ -120,7 +120,7 @@ zugrundeliegende may-Transitionen.
   \end{itemize}
   Dabei bezeichnet $\Synch(P_1,P_2)=(I_1\cap O_2)\cup (O_1\cap I_2)\cup
   (I_1\cap I_2)$ die Menge der zu \emph{synchronisierenden Aktionen}. Die
-  synchronisierten Aktionen werden zu Inputs (im Fall $(I_1\cap I_2)$) bzw.
+  synchronisierten Aktionen werden zu Inputs (im Fall $I_1\cap I_2$) bzw.
   Outputs (alle anderen Fälle) der Komposition.\\
   $P_1$ ist ein \emph{Partner} von $P_2$, wenn $P_1$ und $P_2$ duale Signaturen
   $\Sig (P_1)=(I,O)$ und $\Sig (P_2)=(O,I)$ haben.
@@ -128,7 +128,7 @@ zugrundeliegende may-Transitionen.
 
 Die Definition der Parallelkomposition sagt aus, dass ein neuer Fehler
 entsteht, wenn eines der \MEIO{}s die Möglichkeit für einen Output hat
-(may-Transition) und das andere \MEIO{} den passenden Input nicht sicher stellt
+(may-Transition) und das andere \MEIO{} den passenden Input nicht sicherstellt
 (keine must-Transition vorhanden). Es muss also in möglichen Implementierungen
 nicht wirklich zu diesem Fehler kommen, da die Output"=Transition nicht
 zwingendermaßen implementiert werden muss und die may"=Input"=Transition
@@ -137,8 +137,8 @@ Durch die Synchronisation von Inputs kann es zu keinen neuen Fehler kommen, da
 die Inputs in beiden Transitionssystemen keine lokal kontrollierten Aktionen
 sind. Falls jedoch nur eines der Transitionssysteme einen Input sicherstellt,
 der synchronisiert wird, wird dieser Input in der Parallelkomposition nicht
-mehr sicher gestellt. Es kann also in der Kommunikation mit einem weiteren
-\MEIO{} dort zu einem neuen Fehler kommen.
+mehr sichergestellt. Es kann also in der Kommunikation mit einem weiteren
+\MEIO{} an dieser Stelle zu einem neuen Fehler kommen.
 
 \begin{Def}[alternierende Simulation]
   \label{SimDef}
@@ -153,14 +153,15 @@ mehr sicher gestellt. Es kann also in der Kommunikation mit einem weiteren
     \item falls $p\may[\alpha]_P p'$ gilt, gibt es eine Transition
       $q\may[\alpha]_Q q'$ für ein $q'$ mit $p'\mathcal{R}q'$.
   \end{enumerate}
-  Die Vereinigung \asRel{} aller dieser Simulations-Relationen wird als
-  \emph{(starke) as-Verfeinerung(-s Relation)} (auch modal Verfeinerung)
-  bezeichnet. Falls für die Startzustände von zwei \MEIO{}s $p_0\asRel q_0$
-  gilt, wird auch $P\asRel Q$ für die Transitionssysteme geschrieben. $P\asRel
-  Q$ bedeutet, dass $P$ $Q$ \emph{(stark) as-verfeinert} oder dass $P$ eine
-  \emph{(starke) as-Verfeinerung} von $Q$ ist.\\
+  Für die Vereinigung aller dieser Simulations-Relationen wird \asRel{}
+  geschrieben und sie wird als \emph{(starke) as-Verfeinerung(-s Relation)}
+  (auch modal Verfeinerung) bezeichnet. Falls für die Startzustände von zwei
+  \MEIO{}s $p_0\asRel q_0$ gilt, wird auch $P\asRel Q$ für die
+  Transitionssysteme geschrieben. $P\asRel Q$ bedeutet, dass $P$ $Q$
+  \emph{(stark) as-verfeinert} oder dass $P$ eine \emph{(starke)
+  as-Verfeinerung} von $Q$ ist.\\
   Für ein \MEIO{} $Q$ und eine Implementierung $P$ mit $P\asRel{}Q$, ist
-  $P$ eine \emph{as"=Implementierung} von $Q$ und es wird $\asimp (Q)$ für die
+  $P$ eine \emph{as"=Implementierung} von $Q$. Es wird $\asimp (Q)$ für die
   Menge aller as"=Implementierungen von $Q$ verwendet.
 \end{Def}
 
@@ -180,14 +181,15 @@ weniger Fehler gibt und zusätzliches Verhalten, dass die Spezifikation nicht
 hatte. Die \EIO{}s entsprechen Implementierungen von \MEIO{}s, es ist also
 möglich, eine Implementierung mit Fehler durch eine andere as zu verfeinern,
 die keine Fehler enthält, aber potentiell zusätzliches Verhalten aufweist.
-Siehe hierzu auch das Beispiel in Abbildung~\ref{ImplVerfBsp}. Die
+Beachte hierzu auch das Beispiel in Abbildung~\ref{ImplVerfBsp}. Die
 Implementierung $P$ ist eine Verfeinerung der Implementierung $Q$ und
 zwischen ihnen erfüllt die as"=Verfeinerung"=Relation $\mathcal{R} =
 \{(p_0,q_0)\}$ die Definition~\ref{SimDef}. $P$ verfeinert den Fehler"=Zustand
 von $Q$ nicht mit einem Fehler sondern durch die $o$ Schlinge.\\
-Falls eine Implementierung bereits frei von Fehler"=Zuständen ist, entspricht
-sie einem LTS und kann somit nur noch durch äquivalente Implementierungen \glqq
-verfeinert\grqq{} werden.
+Falls eine zusammenhängende Implementierung, in der jeder Zustand vom
+Startzustand aus erreichbar ist, bereits frei von Fehler"=Zuständen ist,
+entspricht sie einem LTS und kann somit nur noch durch äquivalente
+Implementierungen \glqq verfeinert\grqq{} werden.
 
 \begin{figure}[htbp]
   \begin{center}
@@ -209,7 +211,7 @@ verfeinert\grqq{} werden.
   \label{wSimDef}
   Eine Relation $\mathcal{R} \subseteq P  \times Q$ auf zwei \MEIO{}s $P$ und
   $Q$ mit gleicher Signatur ist eine \emph{schwache alternierende Simulation},
-  wenn für alle $(p,q) \in \mathcal{R}$ mit $q\notin E_Q$ und $i\in I$ und
+  wenn für alle $(p,q) \in \mathcal{R}$ mit $q\notin E_Q$ und alle $i\in I$,
   $\omega\in O\cup\{\tau\}$ gilt:
   \begin{enumerate}
     \item $p\notin E_P$,
@@ -227,11 +229,11 @@ verfeinert\grqq{} werden.
   verwendet und man kann auch entsprechend \emph{schwache as"=Verfeinerungen}
   definieren.\\
   Für ein \MEIO{} $Q$ und eine Implementierung $P$ mit $P\wasRel Q$, ist $P$
-  eine \emph{w"=as"=Implementierung} von $Q$ und es wird $\wasimp (Q)$ für die
+  eine \emph{w"=as"=Implementierung} von $Q$. Es wird $\wasimp (Q)$ für die
   Menge aller w"=as"=Implementierungen von $Q$ verwendet.
 \end{Def}
 
-Die schwache Simulation erlaubt interne Aktionen des \MEIO{}, das eine Aktion
+Die schwache Simulation erlaubt interne Aktionen des \MEIO{}s, das eine Aktion
 matchen muss. Jedoch ist es zwingend notwendig, dass ein Input sofort
 ausgeführt wird und erst dann interne Aktinen möglich sind, da ein Input die
 Reaktion auf eine Aktion ist, die die Umwelt auslöst, welche nicht auf das
@@ -243,7 +245,7 @@ Simulations-Relation $\mathcal{R}$ gilt $p\in E_P\Rightarrow q\in E_Q$.
 
 Wie üblich kann man zeigen, dass \asRel{} (bzw.\ \wasRel{}) eine starke (bzw.\
 schwache) alternierende Simulation ist und die Eigenschaft der Transitivität
-erfüllt. Die Beweise für diese Aussagen sollen hier entfallen.
+erfüllt. Die Beweise für diese Aussagen sollen hier jedoch entfallen.
 
 Die in der folgende Definition vorgestellte Parallelkomposition von Wörtern und
 Mengen kann z.B.\ aus~\cite{Vogler2014EIO} übernommen werden.
@@ -269,7 +271,7 @@ Trace $w_1\|w_2$ der Parallelkomposition kann also auch als Wort aufgefasst
 werden, dass verarbeitet wird während es Ablauf des Systems.
 
 Definitionen der Funktionen \prune{} und \cont{} zum Abschneiden und Verlängern
-von Traces können ebenso wie die letzte Definition aus
+von Traces können ebenso wie die vorangegangene Definition aus
 z.B.~\cite{Vogler2014EIO} übernommen werden. Hierbei ist zu beachten, dass in
 dieser Arbeit $\varepsilon$ das leere Wort und $\mathfrak{P}(M)$ die
 Potenzmenge der Menge $M$ bezeichnet.
@@ -293,13 +295,13 @@ Potenzmenge der Menge $M$ bezeichnet.
   \[L(P) := \left\{w\in \Sigma ^* \mid p_0\weakmay[w]_P \right\}.\]
 \end{Def}
 
-Somit entspricht die Sprache einer Implementierung der Definition
-aus~\cite{Schinko2016BA} für \EIO{}s. Jedoch muss die Sprache einer
-as"=Verfeinerung eines \MEIO{}s nicht mehr Teilmenge der Sprache des \MEIO{}s
-sein, da Definition~\ref{SimDef} beliebiges Verhalten nach einem Fehler-Zustand
-in dem zu verfeinernden \MEIO{} zulässt. Falls jedoch das \MEIO{} bereits frei
-von Fehler"=Zuständen ist, ist seine Sprache die Vereinigung der Sprachen all
-seine möglichen as"=Implementierungen.\\
+Somit entspricht die Sprache einer Implementierung der Sprache wie sie
+in~\cite{Schinko2016BA} für \EIO{}s definiert ist. Jedoch muss die Sprache
+einer as"=Verfeinerung eines \MEIO{}s nicht mehr Teilmenge der Sprache des
+\MEIO{}s sein, da Definition~\ref{SimDef} beliebiges Verhalten nach einem
+Fehler-Zustand in dem zu verfeinernden \MEIO{} zulässt. Falls jedoch das
+\MEIO{} bereits frei von Fehler"=Zuständen ist, ist seine Sprache die
+Vereinigung der Sprachen all seine möglichen as"=Implementierungen.\\
 Von der Sprache einer as"=Verfeinerung eines \MEIO{}s kann man nur wenig
 Rückschlüsse auf die ursprüngliche Sprache ziehen, da man nicht weiß,
 welche Fehler-Zustände in der Verfeinerung übernommen wurden und welche als
@@ -311,61 +313,64 @@ Sprach-Definition in~\cite{Schinko2016BA} verloren gegangen. Eine
 Implementierung mit Fehler-Zuständen hätte dann eine Sprache mit Wörtern, die
 sie nicht ausführen können muss.
 
-Im folgenden soll ein Operator wie in z.B.~\cite{Vogler2016MIA3}
-und~\cite{Schinko2016BA} definiert werden um Aktionen zu verbergen, dieses
-vorgehen wird Hiding genannt. Da nur die Outputs vom jeweiligen System
-kontrolliert sind, werden diese durch das verbergen als interne Aktionen
-trotzdem ausgeführt, nur nach außen hin nicht mehr sichtbar. Input werden
-hingeben ausgeführt, wenn die Umgebung das passenden Signal sendet. Wenn man
-Input verbergen würde, schließt man dadurch den Kommunikationskanal und
-blockiert die Kommunikation mit anderen Systemen, die den passenden Output
-besitzen. Das verbergen von Input verbietet die entsprechend beschrifteten
-Transitionen, ähnlich wie der der Anwendung von Restriktionen in CCS
-in~\cite{Milner1989}. Dies würde jedoch die Transitionssysteme zu stark
-einschränken und soll deshalb hier nicht betrachtet werden. Der Hiding-Operator
-wird hier somit nur für Output-Aktionen definiert werden wie in
-z.B.~\cite{Schinko2016BA}.
+Im folgenden soll ein Operator definiert werden um Aktionen zu verbergen,
+dieses vorgehen wird Hiding genannt und orientiert sich an den Definitionen
+aus~\cite{Vogler2016MIA3} und~\cite{Schinko2016BA}. Da die Outputs vom
+jeweiligen System kontrolliert sind, werden diese durch das verbergen als
+interne Aktionen, nur nach außen hin nicht mehr sichtbar, trotzdem ausgeführt.
+Inputs hingeben werden ausgeführt, wenn die Umgebung das passenden Signal
+sendet. Wenn man Inputs verbergen würde, schließt man dadurch den
+Kommunikationskanal und blockiert die Kommunikation über die entsprechenden
+Aktionen mit anderen Systemen. Das verbergen von Input verbietet die
+entsprechend beschrifteten Transitionen, ähnlich wie bei der Anwendung von
+Restriktionen in CCS in z.B.~\cite{Milner1989}. Dies würde jedoch die
+Transitionssysteme zu stark einschränken und soll deshalb hier nicht betrachtet
+werden. Der Hiding-Operator wird hier somit nur für Output-Aktionen definiert
+werden wie in z.B.~\cite{Schinko2016BA}.
 
 \begin{Def}[Hiding-Operator]
-  Für einen \MEIO{} $P = (P,I_P,O_P,\must _P, \may _P, p_{0_P}, E_P)$ ist
-  $P/X$, mit dem Hiding-Operator $\cdot /\cdot$, definiert als der \MEIO{}
-  $P/X$ mit:
+  Für einen \MEIO{} $P = (P,I_P,O_P,\must _P, \may _P,\linebreak p_{0_P},
+  E_P)$ ist $P/X$, mit dem Hiding-Operator $\cdot /\cdot$, definiert als der
+  \MEIO{} $P/X$ mit: \TODO{erzwungenen Zeilenumbruch kontrollieren}
   \begin{itemize}
     \item $\tau \notin X$,
     \item $X\cap I = \emptyset$,
     \item $P/X = P$, $I_{P/X} = I_P$, $p_{0_{P/X}} = p_{0_P}$ und $E_{P/X} =
       E_P$,
+    \item $O_{P/X} = O_P\backslash X$,
     \item $\must _{P/X} = (\must _P \cup \{(p,\tau,p')\mid (p,o,p')\in \must
-      _P, o \in X\})\backslash \{(p,o,p')\mid (p,o,p')\in \must _P, o \in X\}$,
+      _P, o \in X\})\backslash \{(p,o,p')\mid (p,o,p')\in \must _P,\linebreak o
+      \in X\}$, \TODO{erzwungen Zeilenumbruch kontrollieren}
     \item $\may _{P/X} = (\may _P \cup \{(p,\tau,p')\mid (p,o,p')\in \may _P, o
-      \in X\})\backslash \{(p,o,p')\mid (p,o,p')\in \may _P, o \in X\}$.
+      \in X\})\backslash \{(p,o,p')\mid (p,o,p')\in \may _P,\linebreak o \in
+      X\}$. \TODO{erzwungen Zeilenumbruch kontrollieren}
   \end{itemize}
 \end{Def}
 
 Die Transitionen, die mit einem Outputs beschriftet sind, der in der Menge $X$
 der zu verbergenden Aktionen enthalten ist, werden durch das Hiding zu internen
 Transitionen. Die Transitionen sind also weiterhin lokal kontrolliert
-ausführbar. Auch für schwache must- und may"=Transtionen ändert sich nur die
+ausführbar. Auch für schwache must- und may"=Transitionen ändert sich nur die
 Beschriftung, jedoch nicht die Ausführbarkeit.\\
 Häufig werden die synchronisierten Aktionen in einer Parallelkomposition nicht
-beibehalten um mit weitern Systemen darüber noch kommunizieren zu könne,
-sondern verborgen. Dies wurde für \EIO{} in z.B.~\cite{Vogler2014EIO}
-praktiziert. Man kann diese Art der Parallelkomposition durch den
-Hiding-Operator versuchen nachzumachen und zeigen zu könnnen, dass die
-Ergebnisse auch für eine Parallelkomposition mit Internalisierung gelten.
-Der Hiding-Operator ist jedoch nur für Output-Aktionen definiert. Es können
-also nur die Outputs, die durch die Sychronsiation entstehen verborgen werden.
-Jedoch sind Input Kommunikationskanäle zu weiteren Systemen und wenn diese
-durch Synchronisation entstehen, hatten beide Komponenten die Möglichkeit über
-diesen Input zu kommunizieren. Die Systeme haben in der Parallelkomposition
-über diesen Input jedoch nicht kommuniziert. Die Kommunikation mit einem
-weiteren System über diese Inputs sollte also auch nicht unterbunden werden.
-Die Inputs sollten also auch in einer Definition einer Parallelkomposition mit
+beibehalten, sondern verborgen. Dies wurde für \EIO{} in
+z.B.~\cite{Vogler2014EIO} praktiziert. Man kann diese Art der
+Parallelkomposition durch den Hiding"=Operator versuchen nachzumachen zeigen zu
+können, dass die Ergebnisse auch für eine Parallelkomposition mit
+Internalisierung gelten. Der Hiding"=Operator ist jedoch nur für
+Output"=Aktionen definiert. Es können also nur die Outputs, die durch die
+Synchronisation entstehen verborgen werden. Jedoch sind Input
+Kommunikationskanäle zu weiteren Systemen und wenn diese durch Synchronisation
+entstehen, hatten beide Komponenten die Möglichkeit über diesen Input zu
+kommunizieren. Die beiden Systeme haben in der Parallelkomposition jedoch nicht
+über diesen Input kommuniziert. Die Kommunikation mit einem weiteren System
+über diese Inputs sollte also auch nicht durch Hiding unterbunden werden. Die
+Inputs sollten also auch in einer Definition einer Parallelkomposition mit
 Internalisierung nur synchronisiert und nicht verborgen werden.
 
 \begin{Def}[Parallelkomposition mit Internalisierung]
   \label{DefParallelkompInternal}
   Seien $P_1$ und $P_2$ komponierbare \MEIO{}s, dann ist die
-  Parallelkomposition mit Internalisierung definiert als $P_1|P_2 =
+  Parallelkomposition mit Internalisierung definiert als $P_1|P_2 :=
   P_{12}/(\Synch (P_1,P_2)\cap O_{12})$.
 \end{Def}
