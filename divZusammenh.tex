@@ -75,9 +75,9 @@
   $P \DRel Q$.\\
   Für $P \ERel Q$ müsste $\ET _P \subseteq \ET _Q$ gelten. Jedoch ist die Menge
   $\ET _Q$ leer, da $Q$ keine Fehler"=Zustände enthält und vorausgesetzt werden
-  kann, das $I$ leer ist und es keine Input"=kritischen Traces gegen kann. Für
-  $P$ ist jedoch der Startzustand ein Fehler"=Zustand und somit entspricht $\ET
-  _P$ der Menge $\Sigma ^*$.
+  kann, das $I$ leer ist und es somit keine Input"=kritischen Traces gegen
+  kann. Für $P$ ist jedoch der Startzustand ein Fehler"=Zustand und somit
+  entspricht $\ET _P$ der Menge $\Sigma ^*$.
 
   \begin{figure}[htbp]
     \begin{center}
@@ -116,7 +116,8 @@
   as"=Verfeinerungs"=Relation zulässt, dass $\tau$"=Transitionen schwach
   gematched werden. Es ist also möglich, eine unendliche $\tau$-Folge ohne eine
   einzige Transition zu matchen. Das Gegenbeispiel in
-  Abbildung~\ref{wasDivGegenBsp} verdeutliche dies. $P$ und $Q$ stehen in der
+  Abbildung~\ref{wasDivGegenBsp} verdeutliche dies. Um Input-kritische-Traces
+  zu vermeiden wird $I=\emptyset$ vorausgesetzt. $P$ und $Q$ stehen in der
   schwachen as"=Verfeinerungs"=Relation $\mathcal{R}$, die nur aus dem Tupel
   $(p_0,q_0)$ besteht. Die Transitionssysteme bestehen nur aus dem
   Startzustände, die beide keine Fehler"=Zustände sind. $Q$ besitzt keine
@@ -146,7 +147,8 @@
 
         \node [initial,initial text=$Q$:] (q0) at (7,0) {$q_0$};
       \end{tikzpicture}
-      \caption{Gegenbeispiel zu $\wasRel \Rightarrow \DRel$}
+      \caption{Gegenbeispiel zu $\wasRel \Rightarrow \DRel$ mit $I_P = I_Q =
+      \emptyset$}
       \label{wasDivGegenBsp}
     \end{center}
   \end{figure}
@@ -154,14 +156,14 @@
   $P \ERel Q \not\Rightarrow P \DRel Q$:\\
   Mit der Implikation $\wasRel \Rightarrow \ERel$, die bereits in
   Satz~\ref{ZusammenhFehlerSatz} bewiesen wurde, kann gefolgert werden, dass
-  das im letzten Punkt angegebenen Beispiel aus für diese Implikation anwendbar
+  das im letzten Punkt angegebenen Beispiel auch für diese Implikation anwendbar
   ist. Es galt $P \wasRel Q$ somit gilt auch $P \ERel Q$. Die Relation \DRel{}
   hingegen ist zwischen $P$ und $Q$ nicht erfüllt. Es folgt also, dass die hier
   angegeben Implikation ebenfalls nicht gilt.
 
   $P \QRel Q \not\Rightarrow P \DRel Q$:\\
   Das Gegenbeispiel aus Abbildung~\ref{wasDivGegenBsp} funktioniert auch für
-  diese Implikation jedoch mit einer anderen Begründung. Unter der
+  diese Implikation jedoch mit einer abgewandelten Begründung. Unter der
   Voraussetzung, dass $I=\emptyset$ ist, gibt es keine Input-kritischen Traces
   in $Q$ und in $P$. Weder $Q$ noch $P$ enthalten Fehler"=Zustände somit gilt
   $\ET _P = \ET _Q = \emptyset$. Da die Zustände $q_0$ und $p_0$ beide keine
@@ -193,15 +195,15 @@
   einen Zustand $q$ erreicht, der keine ausgehenden $\tau$"=must"=Transition
   besitzt. Dies ist möglich, da $q_n$ kein divergenter Zustand sein darf, da er
   in $Q$ erreichbar ist. Man kann die $\tau$"=must"=Transitionen aus $Q$
-  schrittweise in $P$ durch $p_n\weakmust[\varepsilon] p_n$, falls in $Q$ durch
-  diese $\tau$-Transitionen keine Zustand aus $E_Q$ erreicht wird, matchen
-  durch Definition~\ref{wSimDef}.3. Falls ein Zustand auf dem Weg zu $q$
-  oder $q$ selbst in $E_Q$ enthalten ist, gilt $w\in \StET _Q \subseteq\QET
-  _Q$. Andernfalls muss mit Definition~\ref{wSimDef}.3 $p_n\mathcal{R} q$
-  gelten. Der Zustand $q$ ist in $Q$ durch $w$ erreichbar und es gilt $q
-  \nmust[\tau]$. Zusammen mit~\ref{wSimDef}.3 gilt somit für alle $\omega \in
-  (O\cup \{\tau\})$ $q \nmust[\omega]$. $q$ ist also in $Qui_Q$ enthalten und
-  damit folgt auch $w \in\StQT _Q\subseteq\QET _Q$.
+  schrittweise durch Definition~\ref{wSimDef}.3 in $P$ mit $p_n
+  \weakmust[\varepsilon] p_n$ matchen, falls in $Q$ durch die
+  $\tau$-Transitionen keine Zustand aus $E_Q$ erreicht wird. Falls ein Zustand
+  auf dem Weg zu $q$ oder $q$ selbst in $E_Q$ enthalten ist, gilt $w\in \StET
+  _Q \subseteq\QET _Q$. Andernfalls muss mit Definition~\ref{wSimDef}.3
+  $p_n\mathcal{R} q$ gelten. Der Zustand $q$ ist in $Q$ durch $w$ erreichbar
+  und es gilt $q \nmust[\tau]$. Zusammen mit~\ref{wSimDef}.3 gilt somit für
+  alle $\omega \in (O\cup \{\tau\})$ $q \nmust[\omega]$. $q$ ist also in
+  $Qui_Q$ enthalten und damit folgt auch $w \in\StQT _Q\subseteq\QET _Q$.
 
   $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$ für $Q$
   erreicht keinen divergenten Zustand:\\
@@ -209,5 +211,5 @@
   Gegenbeispiel aus Abbildung~\ref{WasQuiGegenBsp} mit einer kleinen
   Veränderung trotzdem verwendet werden. Die $\tau$-Schleifen müssen durch
   Output"=Schleifen für ein $o'\neq o$ ersetzt werden. Die Sprachen verändern
-  sich dadurch, jedoch gilt $L(P) \subset L(Q)$ auch unter der Veränderung.
+  sich dadurch, jedoch gilt $L(P) \subset L(Q)$ auch unter der Abwandlung.
 \end{proof}
