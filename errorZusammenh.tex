@@ -182,24 +182,35 @@ führen. Für die Menge $\MIT (P)\backslash\cont (\PrET (P))$ ändert sich nicht
 durch die Anwendung des ersten Schrittes auf $P$, da sich an den Zuständen ohne
 Zusammenhang zu Fehler"=Zuständen nicht ändert. $\overline{P}$ ist also
 äquivalent zu $P$ bezüglich der Relation \ERel{}.\\
-\TODO{entsprechend E-Mail umformulieren (neue \MIT{}s durch $e$ als
-Fehler-Zustand mit nur may-Inputs)}\\
 Im ersten Fall von Schritt (ii) gilt $\ET (P) = \Sigma ^* = \ET (\NF (P))$. Im
-zweiten Fall ändert der Schritt (ii) nichts an Zuständen, die keine
-Transitionen zu Zuständen in der Menge $\overline{E_P}$ besitzen. Die Traces
-in der Menge $\MIT (P)\backslash\cont (\PrET (P))$ sind also auch in $\NF (P)$
-Input-kritische Traces. Da jeweils die erste Transition, die zu einem Zustand
-in der Menge $\overline{E _P}$ führt zum Zustand $e$ umgebogen wird, sind die
-präfix-minimalen Traces, die in $\PrET (P)$ enthalten sind auch alle in $\PrET
-(\NF (P))$ enthalten und jedes Element aus $\PrET (\NF (P))$ ist ein
-präfix-minimales Element aus $\PrET (P)$. Die Menge der Fehler"=Traces \ET{}
-bleibt somit im Schritt (ii) gleich. Die Sprache des \MEIO{}s $P$ wird durch
-die Konstruktion in (ii) um die Traces in $\cont (\PrET (P)$, die nicht
+zweiten Fall von Schritt (ii) werden Zuständen, die nicht in $\overline{E_P}$
+enthalten sind und die keine Transitionen zu Zuständen in der Menge
+$\overline{E_P}$ besitzen, unverändert aus $\overline{P}$ in $\NF (P)$
+übernommen. Transitionen zwischen solchen Zuständen werden ebenfalls ohne
+Veränderungen in das Transitionssystem $\NF (P)$ übernommen. Ein Ablauf zu
+einem Traces aus der Menge $\MIT (P)\backslash\cont (\PrET (P))$ beinhaltet nur
+solche unveränderten Zustände und Transitionen. Somit ist jeder Trace aus $\MIT
+(P)\backslash\cont (\PrET (P))$ auch in $\NF (P)$ ein Input-kritische Trace und
+alle Traces $\MIT (\NF (P))\backslash\cont (\PrET (\NF (P)))$ sind auch in $P$
+Input-kritische Traces, die nicht in $\cont (\PrET (P))$ enthalten sind. Da in
+\ERel{} nur die Menge \ET{} relevant ist, müssen Traces aus $\MIT (P)\cap \PrET
+(P)$ in $\NF (P)$ keine Input-kritischen Traces sein, damit $P$ und $\NF (P)$
+äquivalent sein können bezüglich \ERel{}. Da jeweils die erste Transition, die
+zu einem Zustand in der Menge $\overline{E _P}$ führt zum Zustand $e$ umgebogen
+wird, sind die präfix-minimalen Traces, die in $\PrET (P)$ enthalten sind auch
+alle in $\PrET (\NF (P))$ enthalten und jedes Element aus $\PrET (\NF (P))$ ist
+ein präfix-minimales Element aus $\PrET (P)$. Durch das umbiegen der
+präfix-minimalen Elemente aus $\PrET (P)$ auf den Zustand $e$, bei dem der
+letzte Input nur als may"=Transition ungesetzt wird und $e$ keine ausgehenden
+Transitionen besitzt, entstehen neue Input-kritische Traces. Jedoch sind diese
+neuen Input-kritischen Traces gleichzeitig in $\MIT (\NF (P))$ und in $\cont
+(\PrET (\NF (P)))$ enthalten. Die Menge der Fehler"=Traces \ET{} bleibt somit
+im Schritt (ii) gleich. Die Sprache des \MEIO{}s $P$ wird durch die
+Konstruktion in (ii) um die Traces in $\cont (\PrET (P))$, die nicht
 präfix-minimal sind, verkleinert. Da diese Traces jedoch in der Menge \ET{}
 enthalten sind, mit denen die Sprache $L$ in \EL{} geflutet wird, spielt diese
 bezüglich der Relation \ERel{} keine Rolle. Es gilt also auch $\EL (P) = \EL
-(\NF (P))$. Somit ist $\NF (P)$ äquivalent zu $P$ bezüglich der Relation
-\ERel{}.
+(\NF (P))$. Somit ist $\NF (P)$ äquivalent zu $P$ bezüglich der Relation \ERel{}.
 
 \begin{Prop}[Normalform]
   Jedes \MEIO{} $P$ ist äquivalent zu seiner Normalform $\NF (P)$ bezüglich
