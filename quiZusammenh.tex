@@ -25,7 +25,7 @@
   wegen Lemma~\ref{AblaefeVerfSpezLem}. Im folgenden wird davon ausgegangen,
   das $w$ in $Q$ ohne das erreichen eines Fehler"=Zustandes ausführbar ist.
   Wegen~\ref{AblaefeVerfSpezLem} gibt es also einen Ablauf für $w$ in $Q$, der
-  im Zustand $q_n$ mit $p_n \mathcal{R} q_n$ endet. $p_n$ ist für $P$ ein
+  in einem Zustand $q_n$ mit $p_n \mathcal{R} q_n$ endet. $p_n$ ist für $P$ ein
   stiller Zustand, es gilt also für alle $\omega \in (O\cup \{\tau\})$ $p_n
   \nmust[\omega]_P$. Da $\mathcal{R}$ eine starke as"=Verfeinerungs"=Relation
   ist, muss wegen~\ref{SimDef}.2 auch $q_n \nmust[\omega]_Q$ gelten für alle
@@ -41,7 +41,7 @@
   Diese Implikation scheitert dran, dass für stille Zustände keine
   $\tau$"=must"=Transitionen zulässig sind und \QRel{} keine Divergenz mit
   betrachtet. Ein entsprechenden Gegenbeispiel ist in
-  Abbildung~\ref{QuiWasGegenBsp} dargestellt. Da hier nur das die strikten
+  Abbildung~\ref{QuiWasGegenBsp} dargestellt. Da hier nur die strikten
   Stille"=Trace das Problem erzeugen, soll $I = \emptyset$ gelten, damit die
   \MIT{}-Mengen für beide Systeme leer sind. $\mathcal{R} = \{(p_0,q_0)\}$ ist
   eine schwache as"=Verfeinerungs"=Relation zwischen $P$ und $Q$. Beides
@@ -53,9 +53,9 @@
   $\hat{\tau}$ jedoch $\varepsilon$ entspricht, muss es keine echte interne
   Transition in $P$ für $p_0$ geben. Die Definition~\ref{wSimDef}.3 ist also
   ebenfalls durch das bereits enthaltene Tupel $(p_0,q_0)$ erfüllt.\\
-  Für $P$ ist $\varepsilon$ ein strikten Stille"=Trace. Die Menge $\StQT (Q) =
-  \QET (Q)$ ist jedoch leer. Die Inklusion $\QET (P) \subset \QET (Q)$, die für
-  $P\QRel Q$ gelten müsste ist also nicht erfüllt.
+  Für $P$ ist $\varepsilon$ ein strikter Stille"=Trace. Die Menge $\StQT (Q) =
+  \QET (Q)$ ist jedoch leer. Die Inklusion $\QET (P) \subseteq \QET (Q)$, die
+  für $P\QRel Q$ gelten müsste ist also nicht erfüllt.
 
   \begin{figure}[htbp]
     \begin{center}
@@ -121,8 +121,8 @@
   Falls diese Implikation gelten würde, würde jedes Paar von \MEIO{}s, dass in
   der Relation \QRel{} steht auch in der Relation \asRel{} stehen. Mit
   Lemma~\ref{ZusammenhWasAsLem} würde draus folgen, dass das \MEIO{} Paar auch
-  in der Relation \wasRel{} stehen muss Dies stellt jedoch ein Widerspruch zum
-  letzten Punkte dieses Beweises dar.
+  in der Relation \wasRel{} stehen muss Dies stellt jedoch ein Widerspruch zur
+  Unvergleichbarkeit von \QRel{} und \wasRel{} dar.
 
   $P \QRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \ERel Q$:\\
   Die Relation \QRel{} stützt sich auf die Definition der Relation \ERel{}.
@@ -173,22 +173,22 @@ Outputs bewirken können müssen. Somit wären dies alle Zustände, die keine
 Möglichkeit haben ohne einen Input von Außen oder eine implementierte
 may"=Output"=Transition je wieder einen Output machen zu können. Falls man
 diese Definition verwenden würde, müsste man immer alle Zustände betrachten,
-die durch $\tau$s erreichbar sind. Es ist unklar, zu Konsequenzen dies führen
-kann. Vor allem im Bezug auf Hiding ist es schwierig, da unterschiedliche
-Transitionen in einem System zu unterschiedlichem Verhalten führen, obwohl sie
-von der Transitionsbeschriftung her nicht zu unterscheiden sind. Hierzu ist
-auch das Beispiel in Abbildung~\ref{QuiTracesBsp} zu beachten. Die Sprachen
-beider \MEIO{}s sind gleich und auch die strikten stille Traces stimmen
-überein, da jeweils durch beliebig viele $o$s (mindestens eins), die von einem
-$o'$ gefolgt werden eine ruhiger Zustand erreicht wird. Bei $P$ ist dies immer
-möglich. Falls aber in $Q$ die erste $o$ Transition nach rechts ausgeführt
-wird, kann kein stiller Zustand mehr erreicht werden. Die \MEIO{}s können also
-auf Trace-Ebenen nicht von einander unterschieden werden, jedoch können durch
-lokal Entscheidungen sehr verschiedenen Ergebnisse entstehen. Falls man das $o$
-durch Hiding in ein $\tau$ umwandelt, wäre $p_0$ und $p_1$ sicher nicht still.
-$q_{12}$ hingegen würde in der alternativen Betrachtung still werden. Die davor
-über die Trace-Mengen nicht unterscheidbaren Systeme würden durch Hiding dann
-einen Unterschied in den Trace-Mengen aufweisen.
+die durch $\tau$s erreichbar sind. Es ist unklar zu welchen Konsequenzen dies
+führen kann. Vor allem im Bezug auf Hiding ist es schwierig, da
+unterschiedliche Transitionen in einem System zu unterschiedlichem Verhalten
+führen, obwohl sie von der Transitionsbeschriftung her nicht zu unterscheiden
+sind. Hierzu ist auch das Beispiel in Abbildung~\ref{QuiTracesBsp} zu beachten.
+Die Sprachen beider \MEIO{}s sind gleich und auch die strikten stille Traces
+stimmen überein, da jeweils durch beliebig viele $o$s (mindestens eins), die
+von einem $o'$ gefolgt werden eine ruhiger Zustand erreicht wird. Bei $P$ ist
+dies immer möglich. Falls aber in $Q$ die erste $o$ Transition nach rechts
+ausgeführt wird, kann kein stiller Zustand mehr erreicht werden. Die \MEIO{}s
+können also auf Trace-Ebenen nicht von einander unterschieden werden, jedoch
+können durch lokal Entscheidungen sehr verschiedenen Ergebnisse entstehen.
+Falls man das $o$ durch Hiding in ein $\tau$ umwandelt, wäre $p_0$ und $p_1$
+sicher nicht still. $q_{12}$ hingegen würde in der alternativen Betrachtung
+still werden. Die davor über die Trace-Mengen nicht unterscheidbaren Systeme
+würden durch Hiding dann einen Unterschied in den Trace-Mengen aufweisen.
 
 \begin{figure}[htbp]
   \begin{center}

@@ -16,14 +16,14 @@ fehlerhaften Zuständen ändern.
   auch die Gültigkeit von $P_1/X\QRel P_2/X$. Die Relation \QRel{} ist also ein
   Präkongruenz bezüglich $\cdot /\cdot$. Es gilt für die Sprachen und Traces:
   \begin{enumerate}[(i)]
-    \item $L(P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in L(P):
-      w'|_{\Sigma\backslash X} = w\}$,
-    \item $\ET (P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in \ET(P):
-      w'|_{\Sigma\backslash X} = w\}$,
-    \item $\EL (P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in \EL(P):
-      w'|_{\Sigma\backslash X} = w\}$,
-    \item $\QET (P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in
-      \QET(P): w'|_{\Sigma\backslash X} = w\}$.
+    \item $L(P/X) = \left\{w\in (\Sigma\backslash X)^*\mid \exists w'\in L(P):
+      w'|_{\Sigma\backslash X} = w\right\}$,
+    \item $\ET (P/X) = \left\{w\in (\Sigma\backslash X)^*\mid \exists w'\in
+      \ET(P): w'|_{\Sigma\backslash X} = w\right\}$,
+    \item $\EL (P/X) = \left\{w\in (\Sigma\backslash X)^*\mid \exists w'\in
+      \EL(P): w'|_{\Sigma\backslash X} = w\right\}$,
+    \item $\QET (P/X) = \left\{w\in (\Sigma\backslash X)^*\mid \exists w'\in
+      \QET(P): w'|_{\Sigma\backslash X} = w\right\}$.
   \end{enumerate}
 \end{Satz}
 \begin{proof}
@@ -54,7 +54,7 @@ fehlerhaften Zuständen ändern.
   Um die analoge Folgerung für \QRel{} zu begründen, muss wegen
   Definition~\ref{StilleSemDef} also nur noch nachgewiesen werden, dass $\QET
   _{P_1/X} \subseteq \QET _{P_2/X}$ unter der Voraussetzung der Inklusion $\QET
-  _1 \subseteq \QET _2$ gilt. Dies gilt wegen der Aussage des Punktes (iv).\\
+  _1 \subseteq \QET _2$ gilt. Dies folgt aus der Aussage des Punktes (iv).\\
   Die Relation \QRel{} bleibt also unter der Anwendung des Hiding-Operators
   erhalten und ist somit bezüglich diesem eine Präkongruenz.
 \end{proof}
@@ -64,7 +64,7 @@ Hiding-Operators aus der Parallelkomposition ohne Verbergen die
 Parallelkomposition mit Internalisierung der synchronisierten Aktionen
 nachgebildet. Die Präkongruenz-Eigenschaft bezüglich \QRel{} der
 Parallelkomposition $\cdot |\cdot$ kann aus den Präkongruenz-Eigenschaften von
-$\cdot\|\cdot$ und $\cdot |\cdot$ bezüglich der Relation \QRel{} aus dem
+$\cdot\|\cdot$ und $\cdot /\cdot$ bezüglich der Relation \QRel{} aus dem
 Korollar~\ref{StillePraekonKor} und dem Satz~\ref{StilleHidingSatz} geschlossen
 werden.
 
