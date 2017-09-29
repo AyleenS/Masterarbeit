@@ -1,12 +1,12 @@
 \section{Hiding}
 
-In diesem Kapitel soll untersucht werden, ob das Hiding von Outputs
+In diesem Kapitel soll untersucht werden, ob das Verbergen von Outputs
 Auswirkungen auf die Verfeinerungs-Relationen \ERel{} hat.\\
 Der relationale Zusammenhang der Basisrelation \EBRel{} bleibt unter der
 Internalisierung von Outputs erhalten. Es gilt also $P_1\EBRel P_2 \Rightarrow
 P_1/X\EBRel P_2/X$ für alle zulässigen Aktionsmengen $X$. Die Begründung ist
 analog zu der in~\cite{Schinko2016BA}. Der Operator $\cdot /\cdot$ verändert
-nichts an der Fehler-Erreichbarkeit. Der Trace mit dem der Fehler erreicht
+nichts an der Fehler-Erreichbarkeit. Der Ablauf mit dem der Fehler erreicht
 wird, enthält nur anstatt der Outputs aus $X$ interne Aktionen.
 
 \begin{Satz}[Fehler-Präkongruenz bzgl.\ Internalisierung]
@@ -16,12 +16,12 @@ wird, enthält nur anstatt der Outputs aus $X$ interne Aktionen.
   insbesondere, dass \ERel{} eine Präkongruenz bezüglich $\cdot /\cdot$ ist. Es
   gilt für die Sprachen und Traces:
   \begin{enumerate}[(i)]
-    \item $L(P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in L(P):
-      w'|_{\Sigma\backslash X} = w\}$,
-    \item $\ET (P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in \ET(P):
-      w'|_{\Sigma\backslash X} = w\}$,
-    \item $\EL (P/X) = \{w\in (\Sigma\backslash X)^*\mid \exists w'\in \EL(P):
-      w'|_{\Sigma\backslash X} = w\}$.
+    \item $L(P/X) = \left\{w\in (\Sigma\backslash X)^*\mid \exists w'\in L(P):
+      w'|_{\Sigma\backslash X} = w\right\}$,
+    \item $\ET (P/X) = \left\{w\in (\Sigma\backslash X)^*\mid \exists w'\in
+      \ET(P): w'|_{\Sigma\backslash X} = w\right\}$,
+    \item $\EL (P/X) = \left\{w\in (\Sigma\backslash X)^*\mid \exists w'\in
+      \EL(P): w'|_{\Sigma\backslash X} = w\right\}$.
   \end{enumerate}
 \end{Satz}
 \begin{proof}
@@ -36,32 +36,31 @@ wird, enthält nur anstatt der Outputs aus $X$ interne Aktionen.
       p_{n-1} \may[\alpha _n]_P p$. Durch die Anwendung des Hiding-Operators
       werden die Aktionen $\alpha _j$, die in $X$ enthalten sind, durch $\tau$s
       ersetzt. Die Beschriftung des Ablaufes in $P/X$ lautet somit nicht mehr
-      $v$ sondern $v|_{\Sigma _{\tau}}$. Das Wort, das in $P/X$ ausgeführt
-      wird, lautet also $w=w'|_{\Sigma}$.\\
+      $v$ sondern $v|_{\Sigma _{\tau}\backslash X}$. Das Wort, das in $P/X$
+      ausgeführt wird, lautet also $w=w'|_{\Sigma\backslash X}\in L_{P/X}$.\\
       Für ein Wort $w$ aus der Sprache des Transitionssystems $P/X$ existiert
       ein Ablauf wie oben. Um einen Ablauf aus $P$ daraus zu erzeugen, müssen
       einige der $\alpha _j$, die für intere Aktionen stehen durch
       Output-Aktion aus der Menge $X$ ersetzt werden. Man erhält dadurch den
       Trace $w'$ in $L_P$.
     \item Die \ET{}-Mengen sind unter \cont{} abgeschlossen. Es genügt also ein
-      präfix-minimales $w'$ aus $\ET _{P}$ zu betrachten. Da \ET{} die
-      Vereinigung von zwei Trace"=Mengen ist, können hier zwei Fälle
-      unterschieden werden.
+      präfix-minimales $w'$ aus $\ET _{P}$ zu betrachten. Das präfix-minimale
+      $w'$ kann ein Element aus $\PrET _P$ oder $\MIT _P$ sein.
       \begin{itemize}
-        \item Fall 1 ($w'\in\PrET _P$): Da $w'$ in in $P$ ausführbar und ein
-          mit $w'$ beschrifteter Ablauf kann durch einen Ablauf eines $v$ aus
-          $O_P^*$ ergänzt werden, so dass durch $w'v$ ein Zustand aus der Menge
-          $E_P$ erreicht wird. Der Ablauf hat die gleiche Form wie in (i), nur
-          ist $p$ ein Fehler"=Zustand und $w'v$ entspricht $(\alpha _1\alpha
-          _2\dots\alpha _n)|_{\Sigma}$. Die Transitionen, die mit einer
-          Output-Aktion auf $X$ auf diesem Ablauf beschriftet sind, werden
-          internalisiert. Es gilt also $(w'v)|_{\Sigma\backslash X}$ ist in
-          $\StET (P/X) \subseteq\ET (P/X)$ enthalten. Da $v$ nur aus lokalen
-          Aktionen besteht, gilt auch nach der Ersetzung der
-          Transitionsbeschriftung durch das Hiding $v|_{\Sigma\backslash X}\in
-          (O_P\backslash X)^*$ und somit $w=w'|_{\Sigma\backslash X} = \prune
-          ((w'v)|_{\Sigma\backslash X})$. Das Wort $w$ ist also in der Menge
-          $\ET _{P/X}$ enthalten.
+        \item Fall 1 ($w'\in\PrET _P$): Da $w'$ in $P$ ausführbar ist, gibt es
+          ein mit $w'$ beschrifteter Ablauf, der durch einen mit $v$ aus
+          $O_P^*$ beschrifteten Ablauf ergänzt werden kann, so dass durch $w'v$
+          ein Zustand aus der Menge $E_P$ erreicht wird. Der Ablauf hat die
+          gleiche Form wie in (i), nur ist $p$ ein Fehler"=Zustand und $w'v$
+          entspricht $(\alpha _1\alpha _2\dots\alpha _n)|_{\Sigma}$. Die
+          Transitionen auf diesem Ablauf, die mit einer Output-Aktion aus $X$
+          beschriftet sind, werden internalisiert. Es gilt also
+          $(w'v)|_{\Sigma\backslash X}$ ist in $\StET (P/X) \subseteq\ET (P/X)$
+          enthalten. Da $v$ nur aus lokalen Aktionen besteht, gilt auch nach
+          der Ersetzung der Transitionsbeschriftung durch das Hiding
+          $v|_{\Sigma\backslash X}\in (O_P\backslash X)^*$ und somit
+          $w=w'|_{\Sigma\backslash X} = \prune ((w'v)|_{\Sigma\backslash X})$.
+          Das Wort $w$ ist also in der Menge $\ET _{P/X}$ enthalten.
         \item Fall 2 ($w'\in\MIT _P$): In diesem Fall wird durch das Präfix $v$
           von $w'$ ein Zustand erreicht, in dem der Input $a$ nicht
           sichergestellt ist, wobei $w'=va$ gilt. Es gibt also einen Ablauf wie
@@ -71,11 +70,12 @@ wird, enthält nur anstatt der Outputs aus $X$ interne Aktionen.
           $w=w'|_{\Sigma\backslash X}$ ist also in der Menge $\MIT _{P/X}
           \subseteq\ET _{P/X}$ enthalten.
       \end{itemize}
-      Ein präfix-minimaler Trace $w$ aus $\ET _{P/X}$ kann einen Zustand, für
-      den nicht alle Input"=Transitionen sichergestellt sind oder über eine
-      Verlängerung einen Fehler"=Zustand erreichen. Für das $w$ und die
+      Ein präfix-minimales $w$ aus $\ET _{P/X}$ kann ohne den letzten Input
+      einen Zustand, für den nicht alle Input"=Transitionen sichergestellt sind
+      oder über eine Verlängerung einen Fehler"=Zustand in $P/X$ erreichen. Für
+      das Präfix von $w$ ohne den letzten Input oder das gesamte $w$ und die
       mögliche Verlängerung existiert ein Ablauf der Form wie in (i). In dem
-      $\tau$s auf diesem Weg zur Outputs aus $X$ ersetzt werden, kann der
+      $\tau$s auf diesem Weg durch Outputs aus $X$ ersetzt werden, kann der
       Ablauf aus $P/X$ zu einem aus $P$ erweitert werden. Falls eine
       Verlängerung notwendig war, kann diese mit der analogen Begründung wie in
       Fall 1 durch die Funktion \prune{} wegfallen, so dass $w'\in\ET (P)$ gilt

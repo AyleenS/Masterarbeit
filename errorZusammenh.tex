@@ -27,34 +27,34 @@
       Transitionsfolge wie in Lemma~\ref{AblaefeSchwVerfSpezLem}, so dass $wv =
       (\alpha _1\alpha _2\dots \alpha _n)|_{\Sigma}$ gilt und der dadurch
       erreichte Zustand $p_n$ ein Zustand aus der Menge $E_P$ ist. Falls ein
-      Ablauf zu einem $q_k\in E_Q$ existiert wie in~\ref{AblaefeVerfSpezLem},
-      folgt, dass ein Präfix von $wv$ in $\StET (Q)$ enthalten ist. Mit
-      $w=\prune (wv)$ und dem Abschluss von \ET{} unter \cont{} gilt dann
-      $w\in\ET _Q$. Ansonsten gibt es in $Q$ einen Trace für das Wort $wv$,
-      dass einen Zustand $q_n$ erreicht, für den $p_n \mathcal{R} q_n$ gilt.
-      Mit~\ref{wSimDef}.1 folgt, dass $q_n\in E_Q$ gelten muss und somit auch
-      $w\in\ET _Q$ mit der Begründung von oben.
+      Ablauf zu einem $q_k\in E_Q$ existiert wie in
+      Lemma~\ref{AblaefeVerfSpezLem}, folgt, dass ein Präfix von $wv$ in $\StET
+      (Q)$ enthalten ist. Mit $w=\prune (wv)$ und dem Abschluss von \ET{} unter
+      \cont{} gilt dann $w\in\ET _Q$. Ansonsten gibt es in $Q$ einen Trace für
+      das Wort $wv$, der einen Zustand $q_n$ erreicht, für den $p_n \mathcal{R}
+      q_n$ gilt. Mit~\ref{wSimDef}.1 folgt, dass $q_n\in E_Q$ gelten muss und
+      somit auch $w\in\ET _Q$ mit der Begründung von oben.
     \item Fall 2 ($w\in\MIT (P)$): $w$ ist in $P$ ein Input-kritischer Trace.
       Es existiert also eine Aufteilung von $w$ in $va$ mit $v\in \Sigma ^*$
       und $a\in I$, wobei $v$ in $P$ zu einem Zustand ausführbar ist, der den
       Input $a$ nicht sicherstellt. Es gibt also ein Ablauf des Wortes $v$ in
       $P$ wie in Lemma~\ref{AblaefeSchwVerfSpezLem}, der zu einem Zustand $p_n$
       führt, der keine ausgehende must"=Transition für $a$ besitzt. Falls es
-      einen Ablauf wie in~\ref{AblaefeVerfSpezLem} zu einem $q_k$ in $E_Q$
+      einen Ablauf wie in~\ref{AblaefeSchwVerfSpezLem} zu einem $q_k$ in $E_Q$
       gibt, folgt mit dem Lemma~\ref{AblaefeSchwVerfSpezLem} und dem Abschluss
       der Menge \ET{} unter \cont{} $w\in\ET _Q$. Ansonsten wird durch $v$ in
       $Q$ ein Zustand $q_n$ erreicht, für den $p_n\mathcal{R} q_n$ gilt. Da $a$
       für $p_n$ in $P$ keine ausgehende must"=Transition sein kann, gilt
-      mit~\ref{wSimDef}.2 auch $q_n \nmust[a]$. $w$ ist in $\MIT _Q \subseteq
-      \ET _Q$ enthalten.
+      mit~\ref{wSimDef}.2 auch $q_n \nmust[a]$. Das $w$ ist in $\MIT _Q
+      \subseteq \ET _Q$ enthalten.
   \end{itemize}
   Für den zweiten Punkt kann man sich auf die Inklusion $\EL _P\backslash\ET _P
   \subseteq \EL _Q$ einschränken, da der erste Punkt bereits vorausgesetzt
   werden kann. Es soll ein beliebiges Wort $w$ aus der Menge $\EL
   _P\backslash\ET _P$ betrachtet werden. $\EL _P\backslash\ET _P$ ist eine
-  Teilmenge der Sprache $L _P$. Es gibt also einen Trace für $w$ in $P$ der
+  Teilmenge der Sprache $L _P$. Es gibt also einen Ablauf für $w$ in $P$ der
   Form, wie sie in Lemma~\ref{AblaefeSchwVerfSpezLem} vorausgesetzt wird. Falls
-  ein $q_k$ aus~\ref{AblaefeVerfSpezLem} für $0 \leq k \leq n$ in $E_Q$
+  ein $q_k$ aus~\ref{AblaefeSchwVerfSpezLem} für $0 \leq k \leq n$ in $E_Q$
   enthalten ist, gilt $w\in\ET _Q \subseteq \EL _Q$. Es wird also im Folgenden
   davon ausgegangen, dass kein $q_j$ ein Fehler-Zustand ist. Es gilt dann $q_0
   \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots
@@ -66,7 +66,7 @@
   strenger sind als Sprach Inklusionen. Das Gegenbeispiel hier ist also so
   aufgebaut, dass $\ET (P) =\ET (Q) = \emptyset$ und $L(P) \subseteq L(Q)$
   gilt, jedoch keine schwache as"=Verfeinerungs"=Relation zwischen $P$ und $Q$
-  existieren kann. $Q$ und $P$ sind in der Abbildung~\ref{WasEGegenBsp}
+  existieren kann. $P$ und $Q$ sind in der Abbildung~\ref{WasEGegenBsp}
   dargestellt. Damit $\ET (P) =\ET (Q) = \emptyset$ gilt, dürfen keine der
   Zustände Fehler-Zustände sein und es muss gefordert werden, dass die Menge
   $I$ der Inputs für die \MEIO{}s leer ist, ansonsten würde es Input-kritische
@@ -105,13 +105,13 @@ einer Parallelkomposition beibehalten bzw.\ aus dieser entstehend angesehen. Es
 werden dabei alle Transitionen, die nicht durch fehlende
 Synchronisations"=Möglichkeiten wegfallen, übernommen. In~\cite{Vogler2016MIA3}
 hingegen wird der Ansatz verfolgt alle Fehler zu entfernen und durch einen
-universal Zustand zu ersetzten, der nur eingehende may"=Input"=Transitionen
-zulässt. Dabei werden die lokalen Aktionen, die zu einem Fehler führen
-abgeschritten. Außer dem universalen Zustand gibt es in einem \MIA{} wie
-in~\cite{Vogler2016MIA3} keine anderen Fehler"=Zustände. Auf diese Normierung
-wurde hier mit Absicht verzichtete um sehen zu können, dass die Fehler einen
-Ursprung haben, den man später auch noch einsehen kann. Jedoch gibt es trotzdem
-einen Zusammenhang zwischen diesen beiden Ansätzen.\\
+universal Zustand zu ersetzten, der ausschließlich eingehende
+may"=Input"=Transitionen zulässt. Dabei werden die lokalen Aktionen, die zu
+einem Fehler führen abgeschritten. Außer dem universalen Zustand gibt es in
+einem \MIA{} wie in~\cite{Vogler2016MIA3} keine weiteren Fehler"=Zustände. Auf
+diese Normierung wurde hier mit Absicht verzichtete um sehen zu können, dass
+die Fehler einen Ursprung haben, den man später auch noch einsehen kann. Jedoch
+gibt es trotzdem einen Zusammenhang zwischen diesen beiden Ansätzen.\\
 Die Unterscheidung, die die Basisrelation \EBRel{} hier herbei führt, würde
 dort der Unterscheidung zwischen Transitionssystemen, die den universal
 Zustand $e$ als Startzustand haben und denen, die einen Startzustand ungleich
@@ -126,7 +126,8 @@ als Verfeinerung zulässig ist, der jedoch keine ausgehenden Transitionen
 besitzt. Für die Fehler"=Zustände ist in dem hier verwendeten Ansatz auf
 Trace-Ebene bzw.\ bezüglich der Verfeinerungs-Relationen beliebiges Verhalten
 möglich. In den Transitionssystemen muss es analog zu $e$ die Transitionen für
-das beliebiges Verhalten im allgemeinen nicht geben.\\
+das beliebiges Verhalten im allgemeinen nicht geben. Jedoch sind ausgehende
+Transitionen von Zuständen aus $E$ hier dennoch zulässig.\\
 Da auch der Testing-Ansatz die lokale Fehler-Erreichbarkeit verwendet,
 existiert der Zusammenhang auch dort für die Parallelkomposition mit dem
 entsprechenden Test.
@@ -137,50 +138,52 @@ in~\cite{Vogler2016MIA3} mit den \MEIO{}s verglichen werden, da die \MIA{}s
 disjunktive must"=Transitionen besitzen. Jedoch sind Modale Transitionssysteme,
 die syntaktisch Konsistent sind und einen universal Zustand haben, der die
 gleichen Voraussetzungen wie für \MIA{}s erfüllt, ebenfalls \MIA{}s nur statt
-der disjunktiven must"=Transitionen, haben die must"=Transitionen auch nur einen
-Zustand als Ziel und keine ganze Menge. Im folgenden sollen \MIA{}s Modale
-Transitionssysteme sein, die diese Voraussetzungen erfüllen. Dann zu jedem
-\MEIO{} einen äquivalenten \MIA{}.\\
+der disjunktiven must"=Transitionen, haben deren must"=Transitionen auch nur
+einen Zustand als Ziel und keine ganze Menge. Im folgenden sollen \MIA{}s
+Modale Transitionssysteme sein, die diese Voraussetzungen erfüllen. Dann gibt
+es zu jedem \MEIO{} einen äquivalenten \MIA{}.\\
 Die Relation $\sqsubseteq$ aus~\cite{Vogler2016MIA3} wurde als Grundlage für
 die Definition der schwachen Simulationen in~\ref{wSimDef} verwendet. Für
-normalisierte \MEIO{}s entspricht sie also der Relation \wasRel{}.
+normalisierte \MEIO{}s entspricht sie also der Relation \wasRel{} und es gelten
+die bereits nachgewiesenen Zusammenhänge zu den anderen Relationen.
 
 \begin{Def}[Normalform]
   \label{NFDef}
   Ein \MEIO{} $P$ ist in \emph{Normalform} (\NF{}), falls die Menge $E_P$ der
-  Fehler"=Zustände nur ein einziges Element enthält $E_P=\{e\}$ und $P$ bis auf
-  den Zustand $e$ Input-enabled ist. Zusätzlich soll für jede Transition, für
-  die $p \may[\alpha] e$ mit $p\neq e$ gilt, $\alpha$ ein Element der Menge der
-  Input"=Aktionen $I$ sein. Der Zustand $e$ soll keine ausgehenden Transitionen
-  besitzen.
+  Fehler"=Zustände nur ein einziges Element enthält $E_P=\{e\}$ und für jede
+  Transition, für die $p \may[\alpha] e$ mit $p\neq e$ gilt, $\alpha$ ein
+  Element der Menge der Input"=Aktionen $I$ ist. Der Zustand $e$ soll keine
+  ausgehenden Transitionen besitzen.
 
   Die \emph{Normalform} von $P$ ist ein \MEIO{} $\NF (P)$, das man aus $P$
   durch die nachfolgenden zwei Schritte erhält:
   \begin{enumerate}[(i)]
-    \item Definiere $\overline{E_P} = \{p \mid \exists p'\in E_P, w\in O^*:
-      p\weakmay[w]_P p'\}$ und ersetzte $E_P$ durch $\overline{E_P}$. Der
-      dadurch entstehenden \MEIO{} heißt $\overline{P}$.
-    \item Falls $p_0\in \overline{E_P}$, ist $NF(P) = (\{p_0\}, I, O, \emptyset
-      , \emptyset , p_0, \{p_0\})$.\\
+    \item Definiere $\overline{E_P} = \left\{p \mid \exists p'\in E_P, w\in
+      O^*: p\weakmay[w]_P p'\right\}$ und ersetzte $E_P$ durch
+      $\overline{E_P}$. Der dadurch entstehenden \MEIO{} heißt $\overline{P}$.
+    \item Falls $p_0\in \overline{E_P}$, ist $NF(P) = \left(\{p_0\}, I, O,
+      \emptyset , \emptyset , p_0, \{p_0\}\right)$.\\
       Ansonsten, füge einen neuen Zustand $e$ hinzu, der der einzige
       Fehler"=Zustand wird. Wann immer $p \may[\alpha]_P p'\in \overline{E_P}$
       und $p\notin \overline{E_P}$ für ein $\alpha\in \Sigma \cup \{\tau\}$
       gilt (dann gilt zwingendermaßen $\alpha \in I$), entferne alle
       $\alpha$-Transitionen, die von $P$ ausgehen und füge die Transition
       $p\may[\alpha]_{\NF (P)} e$ hinzu. Entfernen die Zustände aus der Menge
-      $\overline{E_P}$.
+      $\overline{E_P}$ aus dem Transitionssystem.
   \end{enumerate}
 \end{Def}
 
 Schritt (i) der Normalform Konstruktion verändert nicht an den Transitionen
 und auch nichts daran, ob ein Zustand einen nicht sichergestellten Input hat
 oder nicht. Die Menge \StET{} wird verändert jedoch bleibt die Menge \PrET{}
-gleich, da \StET{} mach dem Schritt (i) alle Traces enthält, die direkt oder
+gleich, da \StET{} nach dem Schritt (i) alle Traces enthält, die direkt oder
 durch lokal Aktionen zu einem Fehler"=Zustand des ursprünglichen \MEIO{}s
 führen. Für die Menge $\MIT (P)\backslash\cont (\PrET (P))$ ändert sich nichts
 durch die Anwendung des ersten Schrittes auf $P$, da sich an den Zuständen ohne
 Zusammenhang zu Fehler"=Zuständen nicht ändert. $\overline{P}$ ist also
 äquivalent zu $P$ bezüglich der Relation \ERel{}.\\
+\TODO{entsprechend E-Mail umformulieren (neue \MIT{}s durch $e$ als
+Fehler-Zustand mit nur may-Inputs)}\\
 Im ersten Fall von Schritt (ii) gilt $\ET (P) = \Sigma ^* = \ET (\NF (P))$. Im
 zweiten Fall ändert der Schritt (ii) nichts an Zuständen, die keine
 Transitionen zu Zuständen in der Menge $\overline{E_P}$ besitzen. Die Traces
@@ -196,7 +199,7 @@ präfix-minimal sind, verkleinert. Da diese Traces jedoch in der Menge \ET{}
 enthalten sind, mit denen die Sprache $L$ in \EL{} geflutet wird, spielt diese
 bezüglich der Relation \ERel{} keine Rolle. Es gilt also auch $\EL (P) = \EL
 (\NF (P))$. Somit ist $\NF (P)$ äquivalent zu $P$ bezüglich der Relation
-\ERel{}. Es gilt also die folgende Proposition.
+\ERel{}.
 
 \begin{Prop}[Normalform]
   Jedes \MEIO{} $P$ ist äquivalent zu seiner Normalform $\NF (P)$ bezüglich
