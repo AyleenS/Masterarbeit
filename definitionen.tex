@@ -317,24 +317,23 @@ Im folgenden soll ein Operator definiert werden um Aktionen zu verbergen,
 dieses vorgehen wird Hiding genannt und orientiert sich an den Definitionen
 aus~\cite{Vogler2016MIA3} und~\cite{Schinko2016BA}. Da die Outputs vom
 jeweiligen System kontrolliert sind, werden diese durch das verbergen als
-interne Aktionen, nur nach außen hin nicht mehr sichtbar, trotzdem ausgeführt.
-Inputs hingeben werden ausgeführt, wenn die Umgebung das passenden Signal
-sendet. Wenn man Inputs verbergen würde, schließt man dadurch den
-Kommunikationskanal und blockiert die Kommunikation über die entsprechenden
-Aktionen mit anderen Systemen. Das verbergen von Input verbietet die
-entsprechend beschrifteten Transitionen, ähnlich wie bei der Anwendung von
-Restriktionen in CCS in z.B.~\cite{Milner1989}. Dies würde jedoch die
-Transitionssysteme zu stark einschränken und soll deshalb hier nicht betrachtet
-werden. Der Hiding-Operator wird hier somit nur für Output-Aktionen definiert
-werden wie in z.B.~\cite{Schinko2016BA}.
+interne Aktionen, nach außen nicht mehr sichtbar, ausgeführt. Inputs hingeben
+werden ausgeführt, wenn die Umgebung das passenden Signal sendet. Wenn man
+Inputs verbergen würde, schließt man dadurch den Kommunikationskanal und
+blockiert die Kommunikation über die entsprechenden Aktionen mit anderen
+Systemen. Das verbergen von Input verbietet die entsprechend beschrifteten
+Transitionen, ähnlich wie bei der Anwendung von Restriktionen in CCS in
+z.B.~\cite{Milner1989}. Das Verbergen von Inputs wird in~\cite{Vogler2016MIA3}
+auch Restriktion genannt. Dies soll hier jedoch nicht betrachtet werden. Der
+Hiding-Operator wird hier somit nur für Output-Aktionen definiert werden wie in
+z.B.~\cite{Schinko2016BA}.
 
 \begin{Def}[Hiding-Operator]
   Für einen \MEIO{} $P = (P,I_P,O_P,\must _P, \may _P,\linebreak p_{0_P},
-  E_P)$ ist $P/X$, mit dem Hiding-Operator $\cdot /\cdot$, definiert als der
-  \MEIO{} $P/X$ mit: \TODO{erzwungenen Zeilenumbruch kontrollieren}
+  E_P)$ und eine Menge $X\subseteq O$ ist $P/X$, mit dem Hiding-Operator $\cdot
+  /\cdot$, definiert als der \MEIO{} $P/X$ mit: \TODO{erzwungenen Zeilenumbruch
+  kontrollieren}
   \begin{itemize}
-    \item $\tau \notin X$,
-    \item $X\cap I = \emptyset$,
     \item $P/X = P$, $I_{P/X} = I_P$, $p_{0_{P/X}} = p_{0_P}$ und $E_{P/X} =
       E_P$,
     \item $O_{P/X} = O_P\backslash X$,
