@@ -401,9 +401,8 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-trivialen Form $\DF
 
 Wie schon oben erwähnt, sollen die Trace aus Satz~\ref{DivSemSatz} auf die des
 Satz~\ref{StilleSemSatz} zurück geführt werden durch die Normierung Systeme in
-divergenz-triviale Form. Damit dies möglich ist, müssen die betrachteten
-Trace-Mengen gleich sein. Dies ist erfüllt, wenn die Relationen äquivalent sind
-unter der Voraussetzung, dass die Systeme divergenz-trivial sind.
+divergenz-triviale Form. Dazu müssen wir zeigen, dass die Relationen \DRel{}
+und \QRel{} für divergenz-triviale Systeme übereinstimmen.
 
 \begin{Lem}[Relationen unter Divergenz-Trivialität]
   \label{QDRelDivNormLem}
@@ -537,10 +536,10 @@ unter der Voraussetzung, dass die Systeme divergenz-trivial sind.
         &\overset{\ref{ParallDivNormKommLem}}{=} \QET _{\DF (P_1)\|\DF (P_2)}\\
         &\hspace{-0.05cm}\overset{\ref{StilleSemSatz}.2}{=} (\QET _{\DF
         (P_1)}\|\QET _{\DF (P_2)})\cup \ET _{\DF (P_1)\|\DF (P_2)}\\
-        &\hspace{0.1cm}\overset{1.}{=} (\QET _{\DF (P_1)}\|\QET _{\DF
-        (P_2)})\cup \EDT _{12}\\
+        &\overset{\ref{ParallDivNormKommLem}}{=} (\QET _{\DF (P_1)}\|\QET _{\DF
+        (P_2)})\cup \EDT _{\DF (P_{12})}\\
         &\overset{\ref{QDRelDivNormLem}}{=} (\QDT _{\DF (P_1)}\|\QDT _{\DF
-        (P_2)})\cup \EDT _{12}\\
+        (P_2)})\cup \EDT _{\DF (P_{12})}\\
         &\overset{\ref{DivNormProp}}{=} (\QDT _1\|\QDT _2)\cup \EDT _{12},
     \end{aligned}$
     \item $\begin{aligned}[t]
@@ -549,9 +548,10 @@ unter der Voraussetzung, dass die Systeme divergenz-trivial sind.
         &\overset{\ref{ParallDivNormKommLem}}{=} \EL _{\DF (P_1)\|\DF (P_2)}\\
         &\hspace{-0.05cm}\overset{\ref{StilleSemSatz}.3}{=} (\EL _{\DF
         (P_1)}\|\EL _{\DF (P_2)})\cup \ET _{\DF (P_1)\|\DF (P_2)}\\
-        &\hspace{0.1cm}\overset{1.}{=} (\EL _{\DF (P_1)}\|\EL _{\DF (P_2)})\cup
-        \EDT _{12}\\
-        &\overset{\ref{QDRelDivNormLem}}{=} (\EL _1\|\EL _2)\cup \EDT _{12}\\
+        &\overset{\ref{ParallDivNormKommLem}}{=} (\EL _{\DF (P_1)}\|\EL _{\DF
+        (P_2)})\cup \EDT _{\DF (P_{12})}\\
+        &\overset{\ref{QDRelDivNormLem}}{=} (\EL _1\|\EL _2)\cup \EDT _{\DF
+        (P_{12})}\\
         &\overset{\ref{DivNormProp}}{=} (\EL _1\|\EL _2)\cup \EDT _{12}.
     \end{aligned}$
   \end{enumerate}
