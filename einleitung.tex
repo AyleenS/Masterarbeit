@@ -1,8 +1,31 @@
 \chapter{Einleitung}
-{\large\textbf{Stand: \today{}}}
 
-\textbf{TODO}
+Durch modale Spezifikation können gesamte Systeme oder einzelne Komponenten,
+die nebenläufig zu einander ausgeführt werden sollen, modelliert werden. Die
+Modalitäten geben einem dabei die Freiheit Forderungen an potentielle
+Implementierungen zu stellen. Die Forderungen beinhalten die Spezifikation von
+Verhalten, dass zwingendermaßen umgesetzt werden muss und zusätzlich noch den
+erlaubten Spielraum.\\
+Die modalen Spezifikationen werden hier als Transitionssysteme aufgefasst.\\
+Durch nebenläufige Kommunikation zwischen unterschiedlichen Komponenten kann es
+zu Fehler kommen oder Implementierungen können bereits Fehler enthalten. In der
+Praxis ist wäre es wünschenswert nur Implementierungen zu betrachten, die
+fehler-frei sind. In dem auch in der Interaktion mit einem beliebigen System
+ein Fehler erreicht werden kann. Dies zu erreichen ist jedoch recht schwierig.
+Die Betrachtungen, die in dieser Arbeit gemacht werden, sollen jedoch dabei
+helfen, die Fehlerquellen möglichst gut einschränken zu können. Dazu müssen
+jedoch in machen Untersuchungen auch Implementierungen verwendet werden, die
+Fehler enthalten.\\
+Es wird in dieser Arbeit auch eher davon ausgegangen, dass die Kommunikation
+mit einer hilfreichen Umgebung bzw. User statt findet. Dadurch sind Systemen
+mit Fehler nicht automatisch schlecht, sondern man kann optimistisch davon
+ausgehen, dass Fehler erst ein Problem sind, wenn sie lokal erreicht werden
+können. Sobald ein Fehler jedoch lokal erreichbar ist, kann selbst eine
+hilfreiche Umgebung nicht mehr verhindern, dass der Fehler auftritt.\\
+In dem hier verwendeten Ansatz wird im Gegensatz zu den \MIA{}s
+aus~\cite{Vogler2016MIA3} auf das abscheiden von Wegen die zu Fehlern führen
+verzichtet. Dadurch können auch nach einer Kommunikation zwischen zwei Systemen
+noch Rückschlüsse auf die Quellen der Fehler gezogen werden. Dies ermöglicht es
+Spezifikationen gezielt verbessern zu können, falls dies gewünscht ist.
 
-\TODO{schreiben}
-
-\TODO{Quellen und Literarturverweise}
+\TODO{Literaturquellen einfügen und weiter schreiben}

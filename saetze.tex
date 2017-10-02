@@ -441,7 +441,7 @@ keine passende Verfeinerung gibt.
 
 \begin{figure}[htbp]
   \begin{center}
-    \begin{tikzpicture}[->, >=latex', auto,node distance=2.5cm, semithick]
+    \begin{tikzpicture}[->, >=latex', auto,node distance=2cm, semithick]
       \node [initial,initial text=$P_1$:] (p01) at (0,0) {$p_{01}$};
       \node (p1) [right of=p01] {$p_1$};
 
@@ -456,21 +456,9 @@ keine passende Verfeinerung gibt.
       (p02) edge[dashed] node{$o'!$} (p2)
       ;
 
-      \node [initial,initial text=$P'$:] (p'0) at (0,-2)
-      {$p'_{01}\|p'_{02}$};
-      \node (p'102) [right of=p'0] {$p'_1\|p'_{02}$};
-      \node (p'012) [below of=p'0] {$p'_{01}\|p'_2$};
-      \node (p'12) [below of=p'102] {$p'_1\|p'_2$};
-
-      \path
-      (p'0) edge node{$o!$} (p'102)
-      (p'012) edge node{$o!$} (p'12)
-      (p'0) edge node{$o'!$} (p'012)
-      ;
-
-      \node [initial,initial text=$P_1\|P_2$:] (p0) at (7,-2)
+      \node [initial,initial text=$P_1\|P_2$:] (p0) at (0,-1.5)
       {$p_{01}\|p_{02}$};
-      \node (p102) [right of=p0] {$p_1\|p_{02}$};
+      \node (p102) at (2.5,-1.5) {$p_1\|p_{02}$};
       \node (p012) [below of=p0] {$p_{01}\|p_2$};
       \node (p12) [below of=p102] {$p_1\|p_2$};
 
@@ -479,6 +467,18 @@ keine passende Verfeinerung gibt.
       (p012) edge node{$o!$} (p12)
       (p0) edge[dashed] node{$o'!$} (p012)
       (p102) edge[dashed] node{$o'!$} (p12)
+      ;
+
+      \node [initial,initial text=$P'$:] (p'0) at (7,-1.5)
+      {$p'_{01}\|p'_{02}$};
+      \node (p'102) at (9.5,-1.5) {$p'_1\|p'_{02}$};
+      \node (p'012) [below of=p'0] {$p'_{01}\|p'_2$};
+      \node (p'12) [below of=p'102] {$p'_1\|p'_2$};
+
+      \path
+      (p'0) edge node{$o!$} (p'102)
+      (p'012) edge node{$o!$} (p'12)
+      (p'0) edge node{$o'!$} (p'012)
       ;
     \end{tikzpicture}
     \caption{Gegenbeispiel für Umkehrung von Lemma~\ref{verfParallelKor}}
