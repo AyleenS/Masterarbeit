@@ -4,11 +4,33 @@ Interfaces werden oft verwendet um Komplexe Systeme zu entwerfen. Damit kann
 bereits während des Designs überprüft werden, wie gut die einzelnen Komponenten
 zusammenarbeiten. Durch Interfaces können nebenläufige Systeme Komponentenweise
 entworfen werden. Einige der Theorien über Interfaces basieren auf den
-Interface Automaten (IA) aus~\cite{Alfaro2004}. Dort ist eine
+Interface Automaten aus~\cite{Alfaro2004}. Dort ist eine
 Parallelkomposition auf Labelled Transitionssystemen mit Inputs und Outputs der
 charakterisierende Punkt. Wenn ein unerwarteter Input empfangen wird, wird
 dieser als Fehler aufgefasst, d.h.\ es kommt zu einem Kommunikationsfehler
-zwischen den Systemen.
+zwischen den Systemen. In so genannten pessimistischen Ansätzen wie
+in~\cite{Bauer2010} ist die Parallelkomposition zweier Systemen nicht
+definiert, wenn ein solcher Fehler durch ihre Kommunikation entstehen würde. In
+optimistischen Ansätzen, wie z.B.\ in~\cite{Luttgen2013MIA1}
+und~\cite{Vogler2016MIA3}, wird ein Kommunikationsfehler so lange als
+akzeptabel angesehen, solange die Systemumgebung verhindert, dass er erreicht
+wird. In dieser Arbeit soll auch die optimistische Sichtweise angewendet
+werden. Jedoch sollen im Gegensatz zu den \MIA{}s aus~\cite{Luttgen2013MIA1}
+und~\cite{Vogler2016MIA3} die Zustände von denen aus ein Fehler von einer
+hilfreichen Umgebung nicht mehr verhindert werden kann, nicht aus der
+Parallelkomposition entfernt werden.\\
+Für die Betrachtung der Fehler mit Hilfe von Trace-Mengen orientiert sich diese
+Arbeit an~\cite{Vogler2014EIO} und~\cite{Schinko2016BA}.\\
+Interface Automaten wurden schon in mehreren Veröffentlichungen mit Modalen
+Transitions Systemen (MTS) aus~\cite{Larsen1989} kombiniert. Die Kombination
+die hier als Grundlage dient sind die \MIA{}s aus~\cite{Luttgen2013MIA1}
+und~\cite{Vogler2016MIA3}. Die \MIA{}s enthalten disjunktive must"=Transitionen
+in ihrer Definition. Solche must"=Transitionen sollen in dieser Arbeit nicht
+betrachtet werden. Für die must- und may"=Transitionen sollen hier die gleiche
+Form besitzen, so dass via einer Transition von einem Zustand immer nur ein
+Zustand erreicht wird. Dieser Unterschied bezüglich der must"=Transitionen wird
+vor allem im Vergleich der hier verwendeten Transitionssysteme mit den~\MIA{}s
+am Ende des Kapitels~\ref{errorZusammenh} relevant.
 
 Durch modale Spezifikation können gesamte Systeme oder einzelne Komponenten,
 die nebenläufig zu einander ausgeführt werden sollen, modelliert werden. Die
@@ -37,5 +59,3 @@ aus~\cite{Vogler2016MIA3} auf das abscheiden von Wegen die zu Fehlern führen
 verzichtet. Dadurch können auch nach einer Kommunikation zwischen zwei Systemen
 noch Rückschlüsse auf die Quellen der Fehler gezogen werden. Dies ermöglicht es
 Spezifikationen gezielt verbessern zu können, falls dies gewünscht ist.
-
-\TODO{Literaturquellen einfügen und weiter schreiben}
