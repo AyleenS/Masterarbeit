@@ -50,10 +50,10 @@ betrachtet.
 Da die Basisrelation über as"=Implementierungen spricht, ist es wichtig bereits
 in den Trace-Mengen eine Beziehung zwischen der allgemeinen Definition für
 \MEIO{}s und deren as"=Implementierungen herzustellen. Die nächste Proposition
-stellt eine Teilmengen"=Beziehung zwischen den Traces eines \MEIO{}s und den
-Traces seiner as"=Implementierungen dar. Die Teilmengen"=Beziehung in die
-andere Richtung gilt im allgemeinen nicht, da as"=Verfeinerungs"=Relationen
-beliebiges Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
+beschreibt eine Teilmengen"=Beziehung zwischen den Traces eines \MEIO{}s und
+den Traces seiner as"=Implementierungen. Die umgekehrte Teilmengen"=Beziehung
+gilt im allgemeinen nicht, da as"=Verfeinerungs"=Relationen beliebiges
+Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
 
 \begin{Prop}[Kommunikationsfehler-Traces und Implementierungen]
   \label{KommTracesProp}
@@ -63,7 +63,7 @@ beliebiges Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
       \underset{P' \in\asimp (P)}{\bigcup} \StET (P')$.
     \item Für die gekürzten Fehler-Traces von $P$ gilt: $\PrET (P) \subseteq
       \underset{P' \in\asimp (P)}{\bigcup} \PrET (P')$.
-    \item Für Input-kritischen-Traces von $P$ gilt: $\MIT (P) \subseteq
+    \item Für die Input-kritischen-Traces von $P$ gilt: $\MIT (P) \subseteq
       \underset{P' \in\asimp (P)}{\bigcup} \MIT (P')$.
   \end{enumerate}
 \end{Prop}
@@ -86,7 +86,7 @@ beliebiges Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
         \item $\must _{P'} =\may _{P'} = \may _P$,
         \item $E_{P'}=E_P$.
       \end{itemize}
-      Die Tupel, die von~\ref{SimDef}.2 und 3.\ als Elemente der
+      Die Tupel, die von~\ref{SimDef}.2 und~\ref{SimDef}.3 als Elemente der
       as"=Verfeinerungs"=Relation $\mathcal{R}$ gefordert werden, sind bereits
       durch die Identitäts"=Relation garantiert, wie im Beweis
       von~\ref{LImpProp}. Für~\ref{SimDef}.1 muss für jedes in der
@@ -108,7 +108,7 @@ beliebiges Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
       strikten Fehler-Traces der as"=Implementierungen von $P$ enthalten sind.
       Wenn auf alle Wörter in beiden Mengen die \prune{}-Funktion angewendet
       wird, gilt die Inklusion der daraus entstanden Mengen weiterhin. Dies
-      entspricht der Behauptung dies Punktes.
+      entspricht der Behauptung des aktuell betrachteten Punktes.
     \item Auch für diese Inklusion wird eine starke as"=Verfeinerungs"=Relation
       $\mathcal{R}$ und eine Implementierung $P'$ angegeben. Jedoch werden
       nicht wie bei 1.\ alle Transitionen von $P$ in $P'$ implementiert. Es
@@ -143,7 +143,7 @@ beliebiges Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
         \end{aligned}$
       \item $E_{P'}=\emptyset$.
       \end{itemize}
-      Der Ablauf von $w$ aus $P$ wird in $P'$ durch $(p_0,0) \must[\alpha
+      Der Ablauf $w$ wird in $P'$ durch $(p_0,0) \must[\alpha
       _1]_{P'} (p_1,1) \must[\alpha _2]_{P'} \dots (p_{n-1},n-1) \must[\alpha
       _n]_{P'} (p_n,n)$ simuliert. $w$ ist also in $P'$ ausführbar. $a$ ist für
       $(p_n,n)$ nicht ausführbar, da in $P$ für $p_n$ $p_n\nmust[a]_P$ gilt und
@@ -171,12 +171,12 @@ beliebiges Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
       (P) := L(P) \cup \ET (P)$.
   \end{itemize}
   Für zwei \MEIO{}s $P_1,P_2$ mit der gleichen Signatur wird $P_1\ERel P_2$
-  geschrieben, wenn $\ET _1\subseteq \ET _2$ und $\EL _1 \subseteq \EL _2$
-  gilt.
+  geschrieben, wenn die Inklusionen $\ET _1\subseteq \ET _2$ und $\EL _1
+  \subseteq \EL _2$ gelten.
 \end{Def}
 
 Hierbei ist zu beachten, dass die Mengen \StET{}, \PrET{}, \MIT{}, \ET{} und
-\EL{} nur denen aus~\cite{Schinko2016BA} entsprechen, wenn $P$ bereits eine
+\EL{} nur denen aus~\cite{Schinko2016BA} entsprechen, falls $P$ bereits eine
 as"=Implementierung ist.
 
 Im weiteren Verlauf wird immer wieder eine Aussage den Zusammenhang von
@@ -204,25 +204,25 @@ folgt dann mit Lemma~\ref{ZusammenhWasAsLem}.
 \begin{proof}
   Die Existenz des Ablaufes in $Q$ soll induktiv über die einzelnen
   Transitionen des Ablaufes aus $P$ bewiesen werden.\\
-  Für $n=0$ gibt es keine $\alpha$s, die zuvor ausgeführt werden müssen, und
+  Für $n=0$ gibt es keine Transitionen, die zuvor ausgeführt werden müssen, und
   $p_0\mathcal{R} q_0$ folgt direkt aus der Voraussetzung, das $\mathcal{R}$
   eine schwache as"=Verfeinerungs"=Relation zwischen $P$ und $Q$ ist.\\
-  Die Aussage des Lemmas über die Abläufe gilt für ein $j$ mit $0\leq j<n$.
+  Die Aussage des Lemmas über die Abläufe gelte für ein $j$ mit $0\leq j<n$.
   \begin{itemize}
     \item Fall 1 ($\exists 0 \leq k < j: q_k\in E_Q \land p_k \mathcal{R}
       q_k$): Es gilt auch $k < j+1$, somit ist die Behauptung auch für $j+1$
       erfüllt.
     \item Fall 2 ($p_j\mathcal{R} q_j \land q_j\in E_Q$): Dann ist $j$ das $k <
       j+1$, für das $q_k$ ein Fehler"=Zustand ist.
-    \item Fall 3 ($p_j \mathcal{R} q_j \land q_j\notin E_Q \land \neg\exists 0
-      \leq k < j: q_k\in E_Q$): In der Verfeinerung $P$ existiert die
-      Transition $p_j \may[\alpha _{j+1}]_P p_{j+1}$. $\alpha _{j+1}$ kann ein
-      Input oder eine lokale Aktion sein. Falls $\alpha _{j+1}\in I$ gilt,
+    \item Fall 3 ($p_j \mathcal{R} q_j \land q_j\notin E_Q \land \neg\exists k:
+      0 \leq k < j \land q_k\in E_Q$): In der Verfeinerung $P$ existiert die
+      Transition $p_j \may[\alpha _{j+1}]_P p_{j+1}$. Das $\alpha _{j+1}$ kann
+      ein Input oder eine lokale Aktion sein. Falls $\alpha _{j+1}\in I$ gilt,
       folgt mit Definition~\ref{wSimDef}.4 die Transition $q_j \may[\alpha
       _{j+1}]_Q \weakmay[\varepsilon]_Q q_{j+1}$ in $Q$ für ein $q_{j+1}$ mit
-      $(p_{j+1},q_{j+1})\in\mathcal{R}$. Die schwach"=nachlaufenden
-      may"=Transition ist nur eine spezielle Form der schwachen may"=Transition
-      es gilt also auch $q_j \weakmay[\widehat{\alpha _{j+1}}]_Q q_{j+1}$.
+      $(p_{j+1},q_{j+1})\in\mathcal{R}$. Da schwach"=nachlaufende
+      may"=Transitionen eine spezielle Form von schwachen may"=Transitionen
+      sind, gilt also auch $q_j \weakmay[\widehat{\alpha _{j+1}}]_Q q_{j+1}$.
       $\alpha _{j+1}$ kann jedoch auch eine lokale Aktion sein. Mit
       Definition~\ref{wSimDef}.4 folgt dann die Existenz der Transition $q_j
       \weakmay[\widehat{\alpha _{j+1}}]_Q q_{j+1}$ in der Spezifikation $Q$ mit
