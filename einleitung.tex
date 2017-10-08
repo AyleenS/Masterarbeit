@@ -1,9 +1,11 @@
-\chapter{Einleitung}
+\chapter*{Einleitung}
+\addcontentsline{toc}{chapter}{Einleitung}
+{\large\textbf{Stand: \today}}
 
 Interfaces werden oft verwendet um komplexe Systeme zu entwerfen. Damit kann
 bereits während des Designs überprüft werden, wie gut die einzelnen Komponenten
-zusammenarbeiten. Durch Interfaces können insbesondere auch nebenläufige
-Systeme komponentenweise entworfen werden. Einige der Theorien über Interfaces
+zusammenpassen. Durch Interfaces können insbesondere auch nebenläufige
+Systeme komponentenweise modelliert werden. Einige der Theorien über Interfaces
 basieren auf den Interface Automaten (IA) aus~\cite{Alfaro2004}. Dort ist eine
 Parallelkomposition auf LTS (Labelled Transition Systems) mit Inputs und
 Outputs der charakterisierende Punkt. Wenn ein unerwarteter Input empfangen
@@ -13,7 +15,7 @@ in~\cite{Bauer2010} ist die Parallelkomposition zweier Systemen nicht
 definiert, wenn ein solcher Fehler durch ihre Kommunikation entstehen würde. In
 optimistischen Ansätzen, wie z.B.\ in~\cite{Luttgen2013MIA1}
 und~\cite{Vogler2016MIA3}, wird ein Kommunikationsfehler als akzeptabel
-angesehen, solange eine Systemumgebung verhindert kann, dass der Fehler
+angesehen, solange eine Umgebung verhindert kann, dass der Fehler
 erreicht wird. In dieser Arbeit kommt die soeben beschriebene optimistische
 Sichtweise ebenfalls zum Einsatz.\\
 Interface Automaten wurden schon in mehreren Veröffentlichungen mit Modalen
@@ -34,13 +36,13 @@ einzelnen Komponenten zu Fehler kommen. Implementierungen können jedoch auch
 bereits Fehler enthalten. In der Praxis wäre es wünschenswert nur
 Implementierungen zu betrachten, die fehler-frei sind. Fehler-frei ist hierbei
 so aufzufassen, dass auch in der Interaktion mit einem beliebigen System kein
-Fehler erreicht werden kann. Anderweit ist die Erfüllung dieser Forderung recht
-schwierig. Die Betrachtungen, die in dieser Arbeit gemacht werden, sollen
-allerdings dabei helfen, die Fehlerquellen möglichst gut einschränken zu
-können. Dazu ist es jedoch notwendig in machen Untersuchungen auch
-Implementierungen zu verwendet werden, die Fehler enthalten.\\
-Da diese Arbeit die Ideen eines optimistischen Ansatzes bezüglich der Relevant
-von Fehler aufgreift, wird davon ausgegangen, dass die Kommunikation
+Fehler erreicht werden kann. Anderseits ist die Erfüllung dieser Forderung
+recht schwierig. Die Betrachtungen, die in dieser Arbeit gemacht werden, sollen
+dabei helfen, die Fehlerquellen möglichst gut einschränken zu können. Dazu ist
+es jedoch notwendig in machen Untersuchungen auch Implementierungen zu
+verwenden, die Fehler enthalten.\\
+Da diese Arbeit die Ideen eines optimistischen Ansatzes bezüglich der Relevanz
+von Fehlern aufgreift, wird davon ausgegangen, dass die Kommunikation
 mit einer hilfreichen Umgebung bzw.\ einem hilfreichen User statt findet.
 Dadurch sind Systemen mit Fehler nicht automatisch schlecht, sondern man kann
 optimistisch davon ausgehen, dass Fehler erst ein Problem sind, wenn sie lokal
