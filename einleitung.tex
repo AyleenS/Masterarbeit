@@ -1,8 +1,7 @@
 \chapter*{Einleitung}
 \addcontentsline{toc}{chapter}{Einleitung}
-{\large\textbf{Stand: \today}}
 
-Interfaces werden oft verwendet um komplexe Systeme zu entwerfen. Damit kann
+Interfaces werden oft verwendet um komplexe Systeme zu entwerfen. Dadurch kann
 bereits während des Designs überprüft werden, wie gut die einzelnen Komponenten
 zusammenpassen. Durch Interfaces können insbesondere auch nebenläufige
 Systeme komponentenweise modelliert werden. Einige der Theorien über Interfaces
@@ -11,26 +10,25 @@ Parallelkomposition auf LTS (Labelled Transition Systems) mit Inputs und
 Outputs der charakterisierende Punkt. Wenn ein unerwarteter Input empfangen
 wird, wird dieser als Fehler aufgefasst, d.h.\ es kommt zu einem Fehler in der
 Kommunikation der Systeme. In so genannten pessimistischen Ansätzen wie
-in~\cite{Bauer2010} ist die Parallelkomposition zweier Systemen nicht
+in~\cite{Bauer2010} ist die Komposition zweier Systemen nicht
 definiert, wenn ein solcher Fehler durch ihre Kommunikation entstehen würde. In
 optimistischen Ansätzen, wie z.B.\ in~\cite{Luttgen2013MIA1}
 und~\cite{Vogler2016MIA3}, wird ein Kommunikationsfehler als akzeptabel
 angesehen, solange eine Umgebung verhindert kann, dass der Fehler
 erreicht wird. In dieser Arbeit kommt die soeben beschriebene optimistische
-Sichtweise ebenfalls zum Einsatz.\\
+Sichtweise zum Einsatz.\\
 Interface Automaten wurden schon in mehreren Veröffentlichungen mit Modalen
-Transitions Systemen (MTS) wie z.B.\ aus~\cite{Larsen1989} kombiniert. Die
-Kombination die hier als Grundlage dient sind die Modalen Interface Automaten
-(\MIA{}) aus~\cite{Luttgen2013MIA1} und~\cite{Vogler2016MIA3}.\\
-Diese Kombination aus IA und MTS ergibt eine modale Spezifikations"=Form. Mit
-dieser können gesamte Systeme oder einzelne Komponenten, die nebenläufig zu
-einander ausgeführt werden sollen, modelliert werden. Die Modalitäten geben
-einem dabei die Freiheit Forderungen an potentielle Implementierungen zu
-stellen. Die Forderungen beinhalten die Spezifikation von Verhalten, dass
-zwingendermaßen umgesetzt werden muss und zusätzlich noch den erlaubten
-Spielraum. Die hier verwendeten modalen Spezifikationen sind spezielle
-Transitionssysteme. Must"=Transitionen stellen dabei in einer Spezifikation das
-erzwungene und may"=Transitionen das erlaubte Verhalten dar.\\
+Transitions Systemen (MTS)~\cite{Larsen1989} kombiniert. Die Kombination die
+hier als Grundlage dient sind die Modalen Interface Automaten (\MIA{})
+aus~\cite{Luttgen2013MIA1} und~\cite{Vogler2016MIA3}.\\
+Diese Kombination aus IA und MTS ergibt eine modale Spezifikations"=Form. Die
+Modalitäten geben einem dabei die Freiheit Forderungen an potentielle
+Implementierungen zu stellen. Die Forderungen können die Spezifikation von
+Verhalten, dass zwingendermaßen umgesetzt werden muss, und den erlaubten
+Spielraum betreffen. Die hier verwendeten modalen Spezifikationen sind
+spezielle Transitionssysteme. Must"=Transitionen stellen dabei in einer
+Spezifikation das erzwungene und may"=Transitionen das erlaubte Verhalten
+dar.\\
 Wie bereits beschrieben kann es in einer nebenläufige Kommunikation zwischen
 einzelnen Komponenten zu Fehler kommen. Implementierungen können jedoch auch
 bereits Fehler enthalten. In der Praxis wäre es wünschenswert nur
@@ -41,43 +39,49 @@ recht schwierig. Die Betrachtungen, die in dieser Arbeit gemacht werden, sollen
 dabei helfen, die Fehlerquellen möglichst gut einschränken zu können. Dazu ist
 es jedoch notwendig in machen Untersuchungen auch Implementierungen zu
 verwenden, die Fehler enthalten.\\
+\TODO{fehler-frei eher nicht, da IA-Ansatz durch die Interfaces auch
+Anforderungen an die Umgebung spezifiziert}\\
 Da diese Arbeit die Ideen eines optimistischen Ansatzes bezüglich der Relevanz
 von Fehlern aufgreift, wird davon ausgegangen, dass die Kommunikation
 mit einer hilfreichen Umgebung bzw.\ einem hilfreichen User statt findet.
 Dadurch sind Systemen mit Fehler nicht automatisch schlecht, sondern man kann
-optimistisch davon ausgehen, dass Fehler erst ein Problem sind, wenn sie lokal
-erreicht werden können. Sobald ein Fehler jedoch lokal erreichbar ist, kann
+optimistisch davon ausgehen, dass Fehler erst ein Problem sind, wenn sie durch
+lokal kontrollierte Aktionen erreicht werden können. Sobald ein Fehler jedoch
+durch lokal kontrollierte Aktionen erreichbar ist, kann
 selbst eine hilfreiche Umgebung nicht mehr verhindern, dass der Fehler
 auftritt. Im Gegensatz zu den \MIA{}s aus~\cite{Luttgen2013MIA1}
 und~\cite{Vogler2016MIA3} sollen die Zustände, von denen aus ein Fehler von
 einer hilfreichen Umgebung nicht mehr verhindert werden kann, nicht aus der
 Parallelkomposition entfernt werden. Somit können auch nach der Komposition
-noch Rückschlüsse auf die Quellen des Fehlers gezogen werden. Dies ermöglicht
+noch Rückschlüsse auf die Quellen der Fehler gezogen werden. Dies ermöglicht
 es Spezifikationen gezielt verbessern zu können, falls dies gewünscht ist.\\
-Die \MIA{}s laut ihrer Definition enthalten disjunktive must"=Transitionen.
-Solche must"=Transitionen sollen in dieser Arbeit nicht betrachtet werden. Die
+Die \MIA{}s enthalten, laut ihrer Definition, disjunktive must"=Transitionen.
+Diese Art von must"=Transitionen werden in dieser Arbeit nicht betrachtet. Die
 must- und may"=Transitionen sollen hier die gleiche Form besitzen, so dass via
 einer Transition von einem Zustand immer nur ein Zustand erreicht wird. Dieser
 Unterschied bezüglich der must"=Transitionen wird vor allem im Vergleich der
 hier verwendeten Transitionssysteme mit den~\MIA{}s am Ende des
 Kapitels~\ref{errorZusammenh} relevant.\\
+\TODO{disjunktiv knapp erklären}\\
 Auf Basis spezieller Testsysteme wie in~\cite{Vogler2015FailSem}
-und~\cite{Vogler2017dMTS} wird hier in jedem Kapitel eine Präkongruenz für die
-unterschiedlichen Fehler-Arten nachgewiesen. Für die Kommunikationsfehler wird
-sogar analog zu~\cite{Schinko2016BA} begründet, dass die Präkongruenz sogar die
-gröbste bezüglich einer optimistische Basisrelation.\\
+und~\cite{Vogler2017dMTS} wird hier in jedem Kapitel eine beobachtbare
+Präkongruenz für die unterschiedlichen Fehler-Arten nachgewiesen. Für die
+Kommunikationsfehler wird analog zu~\cite{Schinko2016BA} sogar begründet, dass
+die Präkongruenz die gröbste bezüglich einer optimistische Basisrelation.\\
 Die unterschiedlichen Fehler"=Arten werden in den Systemen auf Basis von
 Trace"=Mengen analysiert. Dieser Ansatz orientiert an~\cite{Vogler2014EIO}
 und~\cite{Schinko2016BA}.\\
 Die hier betrachteten Fehler"=Arten sind am Anfang nur die bereits oben
-beschriebenen Kommunikationsfehler. Stillstand ist die erste Erweiterung in der
-Betrachtung des Fehlverhaltens von Systemen. Eine Komponente hat einen
-Stillstand erreicht, wenn es keinen Fortschritt mehr gibt ohne zutun von außen.
-Es handelt sich dabei also um eine Art Deadlock. Die dritte Fehler"=Art, die
-betrachtet wird, ist Divergenz. Dabei kann das jeweilige System zwar immer
-etwas tun, jedoch ist eine Kommunikation nach außen hin nicht mehr
-sichergestellt. Die betrachteten Fehler"=Arten entsprechen denen
+beschriebenen Kommunikationsfehler, auch genannt Fehler. Stillstand ist die
+erste Erweiterung in der Betrachtung des Fehlverhaltens von Systemen. Eine
+Komponente hat einen Stillstand erreicht, wenn es keinen Fortschritt mehr gibt
+ohne zutun von außen. Es handelt sich dabei also um eine Art Deadlock. Die
+dritte Fehler"=Art, die betrachtet wird, ist Divergenz. Dabei kann das
+jeweilige System zwar immer etwas tun, jedoch ist eine Kommunikation nach außen
+hin nicht mehr sichergestellt. Divergenz kann somit auch als Art Livelock
+aufgefasst werden. Die betrachteten Fehler"=Arten entsprechen denen
 aus~\cite{Schinko2016BA}. Jedoch wurden dort Interface Automaten mit
 Fehler"=Zuständen betrachtet. Somit lassen sich die Definitionen
 aus~\cite{Schinko2016BA} nicht einfach übernehmen, sondern können nur als
-Grundideen für die Erweiterung auf modale Systeme verwendet werden.
+Grundideen für die Erweiterung auf modale Systeme verwendet werden. Die Ideen,
+die sich daraus ergeben, werden in den einzelnen Kapitel überprüft.
