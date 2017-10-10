@@ -19,8 +19,13 @@ internalisieren, kann man jede Aktion einzeln aus dem entsprechend \MEIO{}
 entfernen. Der folgende Satz kann also darauf beschränkt werden, dass nur ein
 einzelnen Output verborgen werden soll. $P/o$ soll dabei für $P/\{o\}$ stehen.
 Die Menge $\EDT _{P/o}$ kann aus $\EDT _P$ konstruiert werden. Im allgemeinen
-ist die Menge $\EDT _{P/o}$ jedoch größer wie $\EDT _P$ somit müssen die
-anderen Trace-Mengen mit der neuen Menge geflutet werden.
+ist die Menge $\EDT _{P/o}$ jedoch größer wie die Menge $\{w\in
+(\Sigma\backslash \{o\})^*\mid \exists w'\in \EDT(P): w'|_{\Sigma\backslash
+\{o\}} = w\}$
+
+
+somit müssen die anderen Trace-Mengen mit der neuen Menge
+geflutet werden.
 
 
 \begin{Satz}[Divergenz-Präkongruenz bzgl.\ Internalisierung]

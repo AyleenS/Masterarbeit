@@ -7,7 +7,42 @@ Internalisierung von Outputs erhalten. Es gilt also $P_1\EBRel P_2 \Rightarrow
 P_1/X\EBRel P_2/X$ für alle zulässigen Aktionsmengen $X$. Die Begründung ist
 analog zu der in~\cite{Schinko2016BA}. Der Operator $\cdot /\cdot$ verändert
 nichts an der Fehler-Erreichbarkeit. Der Ablauf mit dem der Fehler erreicht
-wird, enthält nur anstatt der Outputs aus $X$ interne Aktionen.
+wird, enthält nur anstatt der Outputs aus $X$ interne Aktionen.\\
+Allgemein gibt es einen Zusammenhang zwischen den Traces von $P$ und den Traces
+des Systems $P/X$ mit verborgenen Outputs.
+
+\begin{Lem}[Traces unter Internalisierung]
+  \label{TraceHidingLem}
+  Für ein \MEIO{} $P$ gilt für alle zulässigen Aktionsmengen $X$: $p
+  \weakmay[w]_{P/X} p' \Leftrightarrow \exists w': w'|_{\Sigma\backslash X} = w
+  \land p \weakmay[w']_P p'$.
+\end{Lem}
+\begin{proof}
+  \glqq $\Rightarrow$\grqq{}:\\
+  Es gibt also ein $v=\alpha _1\alpha_2\dots\alpha _n\in\Sigma _{\tau}$ mit
+  $w=\hat{v}$ und in $P/X$ einen Ablauf der Form $p \may[\alpha _1]_{P/X} p_1
+  \may[\alpha _2]_{P/X} \dots p_{n-1} \may[\alpha _n]_{P/X} p'$. Dieser Ablauf
+  ist durch das Internalisieren von Output aus einem Ablauf aus $P$ entstanden,
+  da nach Definition~\ref{HidingDef} die Transitionen aus $P/X$ sich auf
+  Transitionen aus $P$ zurückführen lassen müssen. In dem man also einige
+  Aktionen $\alpha_j$, die interne Aktionen sind, durch Outputs aus $X$ ersetzt
+  erhält man ein $w'$, für das $w'|_{\Sigma\backslash X}=w$ gilt und das die
+  sichtbare Transitionsbeschriftung des Ablaufes zwischen $p$ und $p'$ in $P$
+  ist.
+
+  \glqq $\Leftarrow$\grqq{}:\\
+  Analog zur anderen Richtung gibt es auch hier ein entsprechender Ablaufs in
+  $P$ von $p$ nach $p'$, dessen sichtbare Beschriftung in diesem Fall $w'$ ist.
+  Es gibt also ein $v=\alpha _1\alpha_2\dots\alpha _n\in\Sigma _{\tau}$ mit $w'
+  = \hat{v}$ und in $P$ einen Ablauf der Form $p \may[\alpha _1]_P p_1
+  \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P p'$. Durch die Anwendung
+  des Hiding Operators werden die Aktionen $\alpha _j$, die in $X$ enthalten
+  sind, durch $\tau$s ersetzt. Die sichtbare Beschriftung des Ablaufes in $P/X$
+  lautet somit nicht mehr $w'$ sondern $w = w'|_{\Sigma\backslash X}$.
+\end{proof}
+
+Dieses Lemma kann nun dazu verwendet werden, zu zeigen, dass die Relation
+\ERel{} eine Präkongruenz bezüglich des Hiding-Operators ist.
 
 \begin{Satz}[Fehler-Präkongruenz bzgl.\ Internalisierung]
   \label{FehlerHidingSatz}
@@ -29,58 +64,67 @@ wird, enthält nur anstatt der Outputs aus $X$ interne Aktionen.
   werden zunächst diese Punkte nachgewiesen.
   \begin{enumerate}[(i)]
     \item Für ein Wort $w'$ aus der Sprache $L_P$ gilt nach
-      Definition~\ref{LDef} $p_0 \weakmay[w'] p$ für einen Zustand $p$ aus $P$.
-      Es gibt ein $v\in \Sigma_{\tau} ^*$, für das $w' = \hat{v}$ und $v =
-      \alpha _1\alpha _2\dots \alpha _n$ gilt. In $P$ existiert also einen
-      Ablauf der Form $p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots
-      p_{n-1} \may[\alpha _n]_P p$. Durch die Anwendung des Hiding-Operators
-      werden die Aktionen $\alpha _j$, die in $X$ enthalten sind, durch $\tau$s
-      ersetzt. Die Beschriftung des Ablaufes in $P/X$ lautet somit nicht mehr
-      $v$ sondern $v|_{\Sigma _{\tau}\backslash X}$. Das Wort, das in $P/X$
-      ausgeführt wird, lautet also $w=w'|_{\Sigma\backslash X}\in L_{P/X}$.\\
-      Für ein Wort $w$ aus der Sprache des Transitionssystems $P/X$ existiert
-      ein Ablauf wie oben. Um einen Ablauf aus $P$ daraus zu erzeugen, müssen
-      einige der $\alpha _j$, die für intere Aktionen stehen durch
-      Output-Aktion aus der Menge $X$ ersetzt werden. Man erhält dadurch den
-      Trace $w'$ in $L_P$.
+      Definition~\ref{LDef} $p_0 \weakmay[w']_P p$ für einen Zustand $p$ aus
+      $P$. Es kann also Lemma~\ref{TraceHidingLem} angewendet werden. Daraus
+      folgt dann, dass für $w=w'|_{\Sigma\backslash X}$ $p_0 \weakmay[w]_{P/X}
+      p$ in $P/X$ gilt. Das Wort, das in $P/X$ ausgeführt wird, lautet also
+      $w=w'|_{\Sigma\backslash X}\in L_{P/X}$.\\
+      Für ein Wort $w$ aus der Sprache des Transitionssystems $P/X$ folgt
+      ebenfalls mit Lemma~\ref{TraceHidingLem}, dass es ein $w'$ mit
+      $w'|_{\Sigma\backslash X} = w$ gibt, dass ein Wort aus $L_P$ ist.
     \item Die \ET{}-Mengen sind unter \cont{} abgeschlossen. Es genügt also ein
       präfix-minimales $w'$ aus $\ET _{P}$ zu betrachten. Das präfix-minimale
       $w'$ kann ein Element aus $\PrET _P$ oder $\MIT _P$ sein.
       \begin{itemize}
         \item Fall 1 ($w'\in\PrET _P$): Da $w'$ in $P$ ausführbar ist, gibt es
-          ein mit $w'$ beschrifteter Ablauf, der durch einen mit $v$ aus
-          $O_P^*$ beschrifteten Ablauf ergänzt werden kann, so dass durch $w'v$
-          ein Zustand aus der Menge $E_P$ erreicht wird. Der Ablauf hat die
-          gleiche Form wie in (i), nur ist $p$ ein Fehler"=Zustand und $w'v$
-          entspricht $(\alpha _1\alpha _2\dots\alpha _n)|_{\Sigma}$. Die
-          Transitionen auf diesem Ablauf, die mit einer Output-Aktion aus $X$
-          beschriftet sind, werden internalisiert. Es gilt also
-          $(w'v)|_{\Sigma\backslash X}$ ist in $\StET (P/X) \subseteq\ET (P/X)$
-          enthalten. Da $v$ nur aus lokalen Aktionen besteht, gilt auch nach
-          der Ersetzung der Transitionsbeschriftung durch das Hiding
-          $v|_{\Sigma\backslash X}\in (O_P\backslash X)^*$ und somit
-          $w=w'|_{\Sigma\backslash X} = \prune ((w'v)|_{\Sigma\backslash X})$.
+          ein $w'$ Trace, der durch einen Trace $v \in O_P^*$ ergänzt werden
+          kann, so dass durch $w'v$ ein Zustand aus der Menge $E_P$ erreicht
+          wird. Der Trace hat also die Form $p_0 \weakmay[w'v]_P p\in E_P$. Auf
+          diesen Trace kann Lemma~\ref{TraceHidingLem} angewendet werden. Es
+          ergibt sich dann der Trace $p_0 \lweakmay[(w'v)|_{\Sigma\backslash
+          X}]_{P/X} p$, der in $P/X$ ausführbar ist. Nach
+          Definition~\ref{HidingDef} werden die Fehler-Zustände aus $P$ in
+          $P/X$ übernommen. Es gilt also auch $p\in E_{P/X}$. Das Wort
+          $(w'v)|_{\Sigma\backslash X}$ ist somit in $\StET (P/X) \subseteq\ET
+          (P/X)$ enthalten. Da $v$ nur aus lokalen Aktionen besteht, gilt auch
+          nach der Ersetzung der Transitionsbeschriftung durch das Hiding
+          $v|_{\Sigma\backslash X}\in (O_P\backslash X)^*$. Daraus folgt $w =
+          w'|_{\Sigma\backslash X} = \prune ((w'v)|_{\Sigma\backslash X})$.
           Das Wort $w$ ist also in der Menge $\ET _{P/X}$ enthalten.
-        \item Fall 2 ($w'\in\MIT _P$): In diesem Fall wird durch das Präfix $v$
-          von $w'$ ein Zustand erreicht, in dem der Input $a$ nicht
-          sichergestellt ist, wobei $w'=va$ gilt. Es gibt also einen Ablauf wie
-          in (i) für das Präfix $v$ und für $p$ gilt $p\nmust[a]_P$. Der
-          sichtbare Teil des Ablaufes wird analog zu den vorangegangenen Fälle
-          um die Output aus $X$ durch Internalisierung reduziert. Der Wort
-          $w=w'|_{\Sigma\backslash X}$ ist also in der Menge $\MIT _{P/X}
+        \item Fall 2 ($w'\in\MIT _P$): In diesem Fall wird durch das Präfix
+          $v'$ von $w'$ ein Zustand erreicht, in dem der Input $a$ nicht
+          sichergestellt ist, wobei $w'=v'a$ gilt. Es gibt also einen Trace wie
+          fin Lemma~\ref{TraceHidingLem} für das Präfix $v$, wobei $p$ $p_0$
+          entspricht und für $p'$ $p'\nmust[a]_P$ gilt. In $P/X$ gibt es einen
+          mit beschrifteten Trace $v'|_{\Sigma\backslash X}$ von $p$ nach $p'$,
+          wegen Lemma~\ref{TraceHidingLem}. Es gilt mit
+          Definition~\ref{HidingDef} auch $p'\nmust[a]_{P/X}$. $w =
+          w'|_{\Sigma\backslash X}$ ist also in der Menge $\MIT _{P/X}
           \subseteq\ET _{P/X}$ enthalten.
       \end{itemize}
-      Ein präfix-minimales $w$ aus $\ET _{P/X}$ kann ohne den letzten Input
-      einen Zustand, für den nicht alle Input"=Transitionen sichergestellt sind
-      oder über eine Verlängerung einen Fehler"=Zustand in $P/X$ erreichen. Für
-      das Präfix von $w$ ohne den letzten Input oder das gesamte $w$ und die
-      mögliche Verlängerung existiert ein Ablauf der Form wie in (i). In dem
-      $\tau$s auf diesem Weg durch Outputs aus $X$ ersetzt werden, kann der
-      Ablauf aus $P/X$ zu einem aus $P$ erweitert werden. Falls eine
-      Verlängerung notwendig war, kann diese mit der analogen Begründung wie in
-      Fall 1 durch die Funktion \prune{} wegfallen, so dass $w'\in\ET (P)$ gilt
-      für das $w'$, dass aus $w$ durch die hinzugefügten Outputs aus $X$
-      entstanden ist.
+
+      Für ein präfix-minimales $w$ aus $\ET _{P/X}$ kann unterschieden werden,
+      ob $w\in\PrET _{P/X}$ oder $w\in\MIT _{P/X}$ gilt.
+      \begin{itemize}
+        \item Fall I ($w\in\PrET _{P/X}$): Analog zu Fall 1 gibt es eine
+          Verlängerung $v\in O_{P/X}^*$, sodass $wv$ in $P/X$ zu einem
+          Fehler-Zustand führt. Es gilt also $p_0 \weakmay[wv] p\in E_{P/X}$.
+          Mit Lemma~\ref{TraceHidingLem} kann begründet werden, dass es ein
+          $w'v'$ gibt mit $w'|_{\Sigma\backslash X} = w$ und
+          $v'|_{\Sigma\backslash X} = v$, das in $P$ von $p_0$ nach $p$ führt.
+          Es muss $p\in E_P$ gelten, wegen Definition~\ref{HidingDef}. Die
+          Verlängerung $v$ kann nur aus Outputs bestehen, somit gilt wegen der
+          \prune{}-Funktion $w' \in \PrET _P\subseteq\ET _P$.
+        \item Fall II ($w\in\MIT _{P/X}$): Das $w$ kann in $P/X$ ohne den
+          lezten Input $a$ zu einem Zustand ausgeführt werden, in dem der Input
+          $a$ nicht sichergestellt wird. Analog zu Fall 2 muss es wegen
+          Lemma~\ref{TraceHidingLem} eine Erweiterung $w'$ mit
+          $w'|_{\Sigma\backslash X} = w$ des Wortes $w$ auf die Menge $\Sigma$
+          geben, für dessen Präfix ohne den leztzten Input $a$ in $P$ ebenfalls
+          zu einem Zustand erreicht wird, in dem das $a$ nicht sichergestellt
+          ist. Somit ist $w'$ in $P$ ebenfalls ein Input-kritischer Trace und
+          es gilt $w'\in\ET _P$.
+      \end{itemize}
     \item Die Menge \EL{} ist die Vereinigung der Sprache $L$ mit der
       Trace"=Menge \ET{}. Die Aussage dieses Punktes folgt also direkt aus den
       bereits nachgewiesenen Punkten (i) und (ii).

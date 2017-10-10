@@ -22,33 +22,27 @@ fehlerhaften Zuständen ändern.
       \ET(P): w'|_{\Sigma\backslash X} = w\right\}$,
     \item $\EL (P/X) = \left\{w\in (\Sigma\backslash X)^*\mid \exists w'\in
       \EL(P): w'|_{\Sigma\backslash X} = w\right\}$,
+    \item $\StQT (P/X) = \left\{w\in (\Sigma\backslash X)^*\mid \exists w'\in
+      \StQT(P): w'|_{\Sigma\backslash X} = w\right\}$,
     \item $\QET (P/X) = \left\{w\in (\Sigma\backslash X)^*\mid \exists w'\in
       \QET(P): w'|_{\Sigma\backslash X} = w\right\}$.
   \end{enumerate}
 \end{Satz}
 \begin{proof}
-  Zunächst sollen hier die Aussagen (i) bis (iv) beweisen werden. Die Punkte
+  Zunächst sollen hier die Aussagen (i) bis (v) beweisen werden. Die Punkte
   (i) bis (iii) wurden bereits in Satz~\ref{FehlerHidingSatz} entsprechend
-  nachgewiesen. Es muss also nur noch (iv) gezeigt werden.
+  nachgewiesen. Es müssen also nur noch (iv) und (v) gezeigt werden.
   \begin{itemize}
-    \item[(iv)] Dieser Punkt kann auf die Aussagen von
-      Satz~\ref{FehlerHidingSatz} zurück geführt werden. Ein $w'$ aus $\QET _P$
-      ist nach Definition in $\ET _P$ oder $\StQT _P \subseteq L_P$ enthalten.
-      Mit (i) und (ii) folgt die Zugehörigkeit von $w=w'|_{\Sigma\backslash X}$
-      zur Menge $\ET _{P/X}$ bzw. $\StQT _{P/X}$. $w\in\StQT _{P/X}$ folgt
-      jedoch nicht direkt aus (i), es wird noch eine zusätzliche Feststellung
-      benötigt. Für $w'$ in $P$ wurde im Beweis von Satz~\ref{FehlerHidingSatz}
-      (i) ein Ablauf zu einem Zustand $p$ angegeben. Durch das Internalisieren
-      der Transitionen, die mit Outputs beschriftet werden führt das
-      eingeschränkte Wort $w$ weiterhin zum Zustand $p$. $p$ muss für
-      $w'\in\StQT _P$ ein stiller Zustand sein, somit ist $w$ nicht nur in $L
-      _{P/X}$ sondern auch in $\StQT _{P/X}$ enthalten. Insgesamt folgt also
-      $w\in\QET _{P/X}$.\\
-      Für die andere Inklusionsrichtung kann man für ein $w$ aus $\QET _{P/X}$
-      analog zu den Beweisen von (i) und (ii) aus~\ref{FehlerHidingSatz}
-      $\tau$-Transitionsbeschriftungen durch Outputs aus $X$ ersetzten um einen
-      Ablauf aus $P$ zu erzeugen. Das Wort $w$ kann also um Aktionen aus $X$
-      erweitert werden um ein $w'$ zu erhalten, für das $w'\in\QET _P$ gilt.
+    \item[(iv)] Jeder Trace aus \StQT{} ist vom Startzustand aus in dem
+      jeweiligen Transitionssystem ausführbar und es wird dadurch ein Zustand
+      $p$ erreicht, der keine ausgehenden must"=Transitionen für lokale
+      Aktionen besitzt. Der Hiding-Operator kann keine Transitions-Modalitäten
+      verändern. Ein stiller Zustand in $P$ bzw.\ $P/X$ muss also auch in $P/X$
+      bzw.\ $P$ still sein. Die entsprechenden Zusammenhänge der Traces in den
+      Systemen folgen analog zum Beweis von Satz~\ref{FehlerHidingSatz} aus
+      Lemma~\ref{TraceHidingLem}.
+    \item[(v)] Die Menge \QET{} ist die Vereinigung der Trace-Mengen \ET{} und
+      \StQT{}. Aus (ii) und (iv) folgt also auch die Aussage diese Punktes.
   \end{itemize}
   Aus $P_1\ERel P_2$ folgt mit Satz~\ref{FehlerHidingSatz} $P_1/X\ERel P_2/X$.
   Um die analoge Folgerung für \QRel{} zu begründen, muss wegen
