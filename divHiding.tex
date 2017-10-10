@@ -6,9 +6,9 @@ beiden vorangegangen Kapiteln deutlich größere Auswirkungen. Die Menge der
 divergenten Zustände kann sich durch das Internalisieren vergrößern. Es kann
 ein Zustand divergent werden, wenn von diesem bereits lokal ein divergenter
 Zustand aus erreichbar war oder wenn er eine unendliche Folge von Aktionen aus
-$X\cup \{\tau\}$ ausführen konnte, jedoch nur endlich viele davon $\tau$s
-waren. Durch die zusätzlichen Divergenz"=Zustände vergrößern sich alle
-Trace-Mengen, die in der Präkongruenz \DRel{} betrachtet werden.\\
+$X\cup \{\tau\}$ ausführen konnte. Durch die zusätzlichen Divergenz"=Zustände
+vergrößern sich alle Trace-Mengen, die in der Präkongruenz \DRel{} betrachtet
+werden.\\
 Um den Zusätzlichen Aufwand der Untersuchung möglichst gering zu halten, wird
 dieses Teilkapitel auf endliche \MEIO{}s beschränkt. Falls man unendlich große
 \MEIO{}s zulassen würde, müsste man an anderen Stellen
@@ -21,11 +21,10 @@ einzelnen Output verborgen werden soll. $P/o$ soll dabei für $P/\{o\}$ stehen.
 Die Menge $\EDT _{P/o}$ kann aus $\EDT _P$ konstruiert werden. Im allgemeinen
 ist die Menge $\EDT _{P/o}$ jedoch größer wie die Menge $\{w\in
 (\Sigma\backslash \{o\})^*\mid \exists w'\in \EDT(P): w'|_{\Sigma\backslash
-\{o\}} = w\}$
-
-
-somit müssen die anderen Trace-Mengen mit der neuen Menge
-geflutet werden.
+\{o\}} = w\}$, da an Zuständen, die in $P$ nicht divergent sind und von denen
+aus unendlichen Folgen von $\tau$s und $o$s mit unendlich vielen $o$s möglich
+sind, erst durch das Hiding Divergenz entsteht. Die anderen Trace-Mengen müssen
+somit mit der neuen \EDT{} Menge geflutet werden.
 
 
 \begin{Satz}[Divergenz-Präkongruenz bzgl.\ Internalisierung]
@@ -42,6 +41,8 @@ geflutet werden.
       w'o^n\in\EDL (P)\}))$,
     \item $\EDL (P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in
       \EDL(P): w'|_{\Sigma\backslash \{o\}} = w\} \cup \EDT (P/o)$,
+    \item $\StQT (P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in
+      \StQT(P): w'|_{\Sigma\backslash \{o\}} = w\}$,
     \item $\QDT (P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in
       \QDT(P): w'|_{\Sigma\backslash \{o\}} = w\} \cup \EDT (P/o)$.
   \end{enumerate}
@@ -51,17 +52,16 @@ geflutet werden.
   Sätzen~\ref{FehlerHidingSatz} und~\ref{StilleHidingSatz} aus den Aussagen
   über die Sprachen und Traces folgern. Somit sollen nun zunächst (i) bis (iv)
   nachgewiesen werden. Der Punkt (i) folgt aus (i) von
-  Satz~\ref{FehlerHidingSatz} bzw.~\ref{StilleHidingSatz}.
+  Satz~\ref{FehlerHidingSatz} und der Punkt (iv) aus (iv) von
+  Satz~\ref{StilleHidingSatz}.
 
   (ii) \glqq $\subseteq$\grqq{}:\\
   Beide Seiten sind abgeschlossen gegenüber \prune{} und \cont{}. Somit genügt
   es ein Element $w$ aus $\StET (P/o)\cup \StDT (P/o)$ zu betrachten. Es gibt
   also einen mit $w$ beschrifteten Ablauf in $P/o$, der zu einem Zustand $p$
   führt, der in $E_{P/o}\cup Div_{P/o}$ enthalten ist. Der selbe Zustand $p$
-  kann analog zu den Sätzen~\ref{FehlerHidingSatz} und~\ref{StilleHidingSatz},
-  durch das ersetzten von $\tau$s durch $o$s in dem mit $w$ beschrifteten
-  Ablauf, in $P$ durch ein $w'$ erreicht werden mit
-  $w'|_{\Sigma\backslash\{o\}} = w$.\\
+  kann wegen Lemma~\ref{TraceHidingLem} in $P$ durch ein $w'$ erreicht werden
+  mit $w'|_{\Sigma\backslash\{o\}} = w$.\\
   Falls von $p$ aus in $P$ ein Fehler- oder Divergenz"=Zustand lokal erreichbar
   ist, gilt $w'\in \EDT (P)\subseteq\EDL (P)$. Da die Menge \EDL{} unter
   \cont{} abgeschlossen ist, gilt dann auch $w'o^n\in\EDT (P)\subseteq\EDL (P)$
@@ -70,16 +70,18 @@ geflutet werden.
   ein Fehler noch Divergenz lokal erreicht werden kann. Es muss also durch das
   Internalisieren des Outputs $o$ in $P/o$ ein Divergenz"=Zustand entstanden
   sein. Da nur $o$s in $\tau$s umgewandelt wurden, muss $p$ in $P$ eine
-  unendliche Folge an $o$s ausführen können, damit durch das Anwenden des
-  Hiding"=Operators neue Divergenz entstehen kann. Es muss also alle $w'o^n$
-  für $n\in\mathbb{N}$ in $P$ ausführbar sein. Somit gilt $\forall n\geq 0:
-  w'o^n\in\EDL (P)$.
+  unendliche Folge an $o$s und $\tau$s mit unendliche vielen $o$s ausführen
+  können, damit durch das Anwenden des Hiding"=Operators neue Divergenz
+  entstehen kann. Es muss also alle $w'o^n$ für $n\in\mathbb{N}$ in $P$
+  ausführbar sein. Somit gilt $\forall n\geq 0: w'o^n\in\EDL (P)$.
 
   (ii)  \glqq $\supseteq$\grqq{}:\\
-  Für ein beliebiges $w'o^n\in \EDL (P)$ können zwei Fälle unterschieden
-  werden.
+  Für ein beliebiges $w'$ für das für alle $n\in\mathbb{N}$ $w'o^n\in \EDL (P)$
+  gilt, kann unterschieden werden, ob es ein bestimmtes $m\in\mathbb{N}$ gibt,
+  sodass $w'o^m$ in $\EDT (P)$ enthalten ist oder ob $w'o^n$ für alle $n\geq 0$
+  in der Sprache von $P$ enthalten ist.
   \begin{itemize}
-    \item Fall 1 ($w'o^n\in\EDT (P)$): Es muss ein Präfix $v'$ von $w'$ geben,
+    \item Fall 1 ($w'o^m\in\EDT (P)$): Es muss ein Präfix $v'$ von $w'$ geben,
       das in $\PrET (P)\cup \PrDT (P)$ enthalten ist. Für $v'\in\PrET (P)
       \subseteq\ET (P)$ muss mit Satz~\ref{FehlerHidingSatz} (ii)
       $v'|_{\Sigma\backslash\{o\}}$ in $\ET (P/o)$ enthalten sein. Mit einer
@@ -87,23 +89,39 @@ geflutet werden.
       für ein $v'$ aus $\PrDT (P)$ $v'|_{\Sigma\backslash\{o\}}\in\DT (P/o)$
       gefolgert werden. Da \EDT{} unter der Fortsetzungs-Funktion \cont{}
       abgeschlossen ist, gilt $w'|_{\Sigma\backslash\{o\}}\in\EDT (P/o)$.
-    \item Fall 2 ($w'o^n\in L (P)$): Es muss $w'o^n\in L(P)$ für alle $n\in
-      \mathbb{N}$ gelten, damit die Forderungen der linken Seite der Gleichung
-      erfüllt sind. Da $P$ ein endlicher \MEIO{} ist, muss für $n =|P|$
-      mindestens ein Zustand entlang des Ablaufes von $o^n$, der nach $w'$
-      ausführbar ist, doppelt auftauchen. Der Zustand, der durch $w'$ in $P$
-      erreicht ist, ist nach dem internalisieren von $o$ in $P/o$ divergent.
-      Dieser Zustand wird in $P/o$ durch $w'|_{\Sigma\backslash\{o\}}$
-      erreicht, da analog zu den Sätzen~\ref{FehlerHidingSatz}
-      und~\ref{StilleHidingSatz} die im Ablauf enthaltenen $o$-Transitionen
-      durch $\tau$-Transitionen ersetzt werden. Es gilt also
-      $w'|_{\Sigma\backslash\{o\}}\in\EDT (P/o)$.
+    \item Fall 2 ($\forall n\in\mathbb{N}: w'o^n\in L (P)$): Da $P$ ein
+      endlicher \MEIO{} ist, muss für $n = |P|$ mindestens ein Zustand entlang
+      des Ablaufes von $o^n$, der nach $w'$ ausführbar ist, doppelt auftauchen.
+      Der Zustand, der durch $w'$ in $P$ erreicht ist, ist nach dem
+      internalisieren von $o$ in $P/o$ divergent. Dieser Zustand wird in $P/o$
+      durch $w'|_{\Sigma\backslash\{o\}}$ erreicht, wegen
+      Lemma~\ref{TraceHidingLem}. Es gilt also $w'|_{\Sigma\backslash\{o\}} \in
+      \EDT (P/o)$.
   \end{itemize}
 
-  (iii) und (iv):\\
-  Diese Punkte lassen sich analog zu den Aussagen aus
-  Satz~\ref{FehlerHidingSatz} und~\ref{StilleHidingSatz} beweisen, da der Punkt
-  (ii) dieses Satzes bereits nachgewiesen wurde.
+  (iii) und (v) \glqq $\subseteq$\grqq{}:\\
+  Es gilt $\EDL = L \cup \EDT$ und $\QDT = \StQT \cup \EDT$ für $P$ und $P/X$.
+  Somit lässt sich diese Inklusionsrichtung der Punkte analog zu den Aussagen
+  aus Satz~\ref{FehlerHidingSatz} und~\ref{StilleHidingSatz} beweisen, da der
+  Punkt (ii) dieses Satzes bereits nachgewiesen wurde.
+
+  (iii) \glqq $\supseteq$\grqq{}:\\
+  $\EDT (P/o)\subseteq\EDL (P/o)$ gilt aufgrund der Definition der Menge
+  \EDL{}. Es sollen hier somit nur Elemente aus $\{w\in (\Sigma\backslash
+  \{o\})^*\mid \exists w'\in \EDL(P): w'|_{\Sigma\backslash \{o\}} = w\}$
+  betrachtet werden. Sei $w'$ ein beliebiges Element aus $\EDL _P$. Nach
+  Definition kann $w'\in L_P$ oder $w'\in\EDT _P$ gelten. Für $w'\in L_P$ folgt
+  mit (i) bereits $w = w'|_{\Sigma\backslash X}\in L_{P/X}\subseteq\EDL
+  _{P/X}$. Es wird im folgenden also davon ausgegangen, dass das $w'$ in $\EDT
+  _P$ enthalten ist. Es gibt also ein Präfix $v'$ von $w'$, dass in $\PrET_P
+  \cup \PrDT _P$ enthalten ist. Mit einer analogen Begründung wie in (ii) Fall
+  1, folgt daraus $v'|_{\Sigma\backslash\{o\}} \in \ET _{P/o}\cup \DT _{P/o}
+  \subseteq\EDT _{P/o}$.
+
+  (v) \glqq $\supseteq$\grqq{}:\\
+  Da \QDT{} die Vereinigung der Menge \StQT{} und \EDT{} ist, folgt diese
+  Inklusionsrichtung des Punktes (v) aus (iv) und der Argumentation im Beweis
+  der selben Inklusionsrichtung des Punkts (iii).
 
   Da $P_1$ und $P_2$ endliche sein müssen, gibt es auch nur endliche viele
   Outputs, die man in ihnen verbergen kann. Die Menge $X$ muss also endlich
