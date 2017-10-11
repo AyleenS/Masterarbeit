@@ -329,6 +329,7 @@ Fehler-geflutete Sprache Gleichheit und nicht nur die Inklusion.
 \end{Prop}
 \begin{proof}\mbox{}\\
   1. \glqq$\subseteq$\grqq{}:
+  {\allowdisplaybreaks
   \begin{align*}
     \ET (P)&\overset{\ref{KommFehlerSemDef}}{=} \cont (\PrET (P))\cup \cont
     (\MIT (P))\\
@@ -340,7 +341,7 @@ Fehler-geflutete Sprache Gleichheit und nicht nur die Inklusion.
     (P'))\\
     &\overset{\ref{KommFehlerSemDef}}{=} \underset{P'\in\asimp
     (P)}{\bigcup} \ET (P').
-  \end{align*}
+  \end{align*}}
 
   1. \glqq$\supseteq$\grqq{}:\\
   Da für $P$ $\ET (P) = \cont (\PrET (P)) \cup \cont (\MIT (P))$ gilt und für
@@ -619,6 +620,7 @@ Fehler-geflutete Sprache Gleichheit und nicht nur die Inklusion.
   Durch die Definitionen ist klar, dass $L_j\subseteq \EL _j$ und $\ET
   _j\subseteq \EL _j$ gilt. Die Argumentation startet auf den rechten Seite der
   Gleichung:
+  {\allowdisplaybreaks
   \begin{align*}
     (\EL{}_1\| \EL{}_2)\cup
     \ET{}_{12}&\overset{\ref{KommFehlerSemDef}}{=}\left(\left(L_1\cup
@@ -633,7 +635,7 @@ Fehler-geflutete Sprache Gleichheit und nicht nur die Inklusion.
     &=(L_1\|L_2) \cup \ET{}_{12}\\
     &\overset{\ref{LParallelProp}}{=}L_{12}\cup \ET{}_{12}\\
     &\overset{\ref{KommFehlerSemDef}}{=}\EL{}_{12}.
-  \end{align*}
+  \end{align*}}
 \end{proof}
 
 \begin{Kor}[Kommunikationsfehler-Präkongruenz]

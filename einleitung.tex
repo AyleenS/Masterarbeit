@@ -1,5 +1,6 @@
 \chapter*{Einleitung}
 \addcontentsline{toc}{chapter}{Einleitung}
+\markboth{Einleitung}{Einleitung}
 
 Interfaces werden oft verwendet um komplexe Systeme zu entwerfen. Dadurch kann
 bereits während des Designs überprüft werden, wie gut die einzelnen Komponenten
@@ -24,7 +25,7 @@ aus~\cite{Luttgen2013MIA1} und~\cite{Vogler2016MIA3}.\\
 Diese Kombination aus IA und MTS ergibt eine modale Spezifikations"=Form. Die
 Modalitäten geben einem dabei die Freiheit Forderungen an potentielle
 Implementierungen zu stellen. Die Forderungen können die Spezifikation von
-Verhalten, dass zwingendermaßen umgesetzt werden muss, und den erlaubten
+Verhalten, das zwingendermaßen umgesetzt werden muss, und den erlaubten
 Spielraum betreffen. Die hier verwendeten modalen Spezifikationen sind
 spezielle Transitionssysteme. Must"=Transitionen stellen dabei in einer
 Spezifikation das erzwungene und may"=Transitionen das erlaubte Verhalten
@@ -32,11 +33,11 @@ dar.\\
 Interfaces spezifizieren durch nicht vorhandene Transitionen auch
 Anforderungen an die Umgebung. Falls ein System an einem Zustand eine
 Input"=Transition nicht umsetzt, stellt dies die Forderung an die Umgebung,
-dass dieser Input in diesem Zustand nicht auftreten sollte. Ansonsten tritt wie
-bereits beschrieben in einer Kommunikation zwischen der Komponente und ihrer
-Umgebung ein Fehler auf. Implementierungen können jedoch auch bereits Fehler
-enthalten. In diesem Fall wird die Anforderung an die Umgebung gestellt, dass
-dieser Zustand nicht erreicht werden sollte.\\
+dass dieser Input in diesem Zustand nicht empfangen werden sollte. Ansonsten
+tritt wie bereits beschrieben in einer Kommunikation zwischen der Komponente
+und ihrer Umgebung ein Fehler auf. Implementierungen können jedoch auch bereits
+Fehler enthalten. In diesem Fall wird die Anforderung an die Umgebung gestellt,
+dass dieser Zustand nicht erreicht werden sollte.\\
 Da diese Arbeit die Ideen eines optimistischen Ansatzes bezüglich der Relevanz
 von Fehlern aufgreift, wird davon ausgegangen, dass die Kommunikation
 mit einer hilfreichen Umgebung bzw.\ einem hilfreichen User statt findet.
@@ -63,7 +64,7 @@ hier verwendeten Transitionssysteme mit den~\MIA{}s am Ende des
 Kapitels~\ref{errorZusammenh} relevant.\\
 Auf Basis spezieller Testsysteme wie in~\cite{Vogler2015FailSem}
 und~\cite{Vogler2017dMTS} wird hier in jedem Kapitel eine beobachtbare
-Präkongruenz für die unterschiedlichen Fehler-Arten nachgewiesen. Für die
+Präkongruenz für die unterschiedlichen Fehler-Arten nachgewiesen. Für
 Kommunikationsfehler wird analog zu~\cite{Schinko2016BA} zusätzlich begründet,
 dass die Präkongruenz die gröbste bezüglich einer optimistische
 Basisrelation.\\

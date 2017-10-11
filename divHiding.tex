@@ -24,7 +24,7 @@ ist die Menge $\EDT _{P/o}$ jedoch größer wie die Menge $\{w\in
 \{o\}} = w\}$, da an Zuständen, die in $P$ nicht divergent sind und von denen
 aus unendlichen Folgen von $\tau$s und $o$s mit unendlich vielen $o$s möglich
 sind, erst durch das Hiding Divergenz entsteht. Die anderen Trace-Mengen müssen
-somit mit der neuen \EDT{} Menge geflutet werden.
+deshalb mit der neuen \EDT{} Menge geflutet werden.
 
 
 \begin{Satz}[Divergenz-Präkongruenz bzgl.\ Internalisierung]
@@ -70,25 +70,26 @@ somit mit der neuen \EDT{} Menge geflutet werden.
   ein Fehler noch Divergenz lokal erreicht werden kann. Es muss also durch das
   Internalisieren des Outputs $o$ in $P/o$ ein Divergenz"=Zustand entstanden
   sein. Da nur $o$s in $\tau$s umgewandelt wurden, muss $p$ in $P$ eine
-  unendliche Folge an $o$s und $\tau$s mit unendliche vielen $o$s ausführen
-  können, damit durch das Anwenden des Hiding"=Operators neue Divergenz
-  entstehen kann. Es muss also alle $w'o^n$ für $n\in\mathbb{N}$ in $P$
-  ausführbar sein. Somit gilt $\forall n\geq 0: w'o^n\in\EDL (P)$.
+  unendliche Folge bestehend aus $o$s und $\tau$s mit unendliche vielen $o$s
+  ausführen können, damit durch das Anwenden des Hiding"=Operators neue
+  Divergenz entstehen kann. Es muss also $w'o^n$ für alle $n\in\mathbb{N}$ in
+  $P$ ausführbar sein. Somit gilt $\forall n\geq 0: w'o^n\in\EDL (P)$.
 
   (ii)  \glqq $\supseteq$\grqq{}:\\
-  Für ein beliebiges $w'$ für das für alle $n\in\mathbb{N}$ $w'o^n\in \EDL (P)$
+  Für ein beliebiges $w'$ für das $w'o^n\in \EDL (P)$ für alle $n\in\mathbb{N}$
   gilt, kann unterschieden werden, ob es ein bestimmtes $m\in\mathbb{N}$ gibt,
   sodass $w'o^m$ in $\EDT (P)$ enthalten ist oder ob $w'o^n$ für alle $n\geq 0$
   in der Sprache von $P$ enthalten ist.
   \begin{itemize}
-    \item Fall 1 ($w'o^m\in\EDT (P)$): Es muss ein Präfix $v'$ von $w'$ geben,
-      das in $\PrET (P)\cup \PrDT (P)$ enthalten ist. Für $v'\in\PrET (P)
-      \subseteq\ET (P)$ muss mit Satz~\ref{FehlerHidingSatz} (ii)
-      $v'|_{\Sigma\backslash\{o\}}$ in $\ET (P/o)$ enthalten sein. Mit einer
-      analogen Argumentation wie in Satz~\ref{FehlerHidingSatz} (ii) kann auch
-      für ein $v'$ aus $\PrDT (P)$ $v'|_{\Sigma\backslash\{o\}}\in\DT (P/o)$
-      gefolgert werden. Da \EDT{} unter der Fortsetzungs-Funktion \cont{}
-      abgeschlossen ist, gilt $w'|_{\Sigma\backslash\{o\}}\in\EDT (P/o)$.
+    \item Fall 1 ($\exists m\in\mathbb{N}: w'o^m\in\EDT (P)$): Es muss ein
+      Präfix $v'$ von $w'$ geben, das in $\PrET (P)\cup \PrDT (P)$ enthalten
+      ist. Für $v'\in\PrET (P) \subseteq\ET (P)$ muss mit
+      Satz~\ref{FehlerHidingSatz} (ii) $v'|_{\Sigma\backslash\{o\}}$ in $\ET
+      (P/o)$ enthalten sein. Mit einer analogen Argumentation wie in
+      Satz~\ref{FehlerHidingSatz} (ii) kann auch für ein $v'$ aus $\PrDT (P)$
+      $v'|_{\Sigma\backslash\{o\}}\subseteq\DT (P/o)$ gefolgert werden. Da
+      \EDT{} unter der Fortsetzungs-Funktion \cont{} abgeschlossen ist, gilt
+      $w'|_{\Sigma\backslash\{o\}}\in\EDT (P/o)$.
     \item Fall 2 ($\forall n\in\mathbb{N}: w'o^n\in L (P)$): Da $P$ ein
       endlicher \MEIO{} ist, muss für $n = |P|$ mindestens ein Zustand entlang
       des Ablaufes von $o^n$, der nach $w'$ ausführbar ist, doppelt auftauchen.
@@ -111,12 +112,12 @@ somit mit der neuen \EDT{} Menge geflutet werden.
   \{o\})^*\mid \exists w'\in \EDL(P): w'|_{\Sigma\backslash \{o\}} = w\}$
   betrachtet werden. Sei $w'$ ein beliebiges Element aus $\EDL _P$. Nach
   Definition kann $w'\in L_P$ oder $w'\in\EDT _P$ gelten. Für $w'\in L_P$ folgt
-  mit (i) bereits $w = w'|_{\Sigma\backslash X}\in L_{P/X}\subseteq\EDL
-  _{P/X}$. Es wird im folgenden also davon ausgegangen, dass das $w'$ in $\EDT
+  mit (i) bereits $w = w'|_{\Sigma\backslash \{o\}}\in L_{P/o}\subseteq\EDL
+  _{P/o}$. Es wird im folgenden also davon ausgegangen, dass das $w'$ in $\EDT
   _P$ enthalten ist. Es gibt also ein Präfix $v'$ von $w'$, dass in $\PrET_P
   \cup \PrDT _P$ enthalten ist. Mit einer analogen Begründung wie in (ii) Fall
-  1, folgt daraus $v'|_{\Sigma\backslash\{o\}} \in \ET _{P/o}\cup \DT _{P/o}
-  \subseteq\EDT _{P/o}$.
+  1, folgt daraus $w'|_{\Sigma\backslash\{o\}} \in \EDT _{P/o} \subseteq \EDL
+  _{P/o}$.
 
   (v) \glqq $\supseteq$\grqq{}:\\
   Da \QDT{} die Vereinigung der Menge \StQT{} und \EDT{} ist, folgt diese
@@ -125,9 +126,9 @@ somit mit der neuen \EDT{} Menge geflutet werden.
 
   Da $P_1$ und $P_2$ endliche sein müssen, gibt es auch nur endliche viele
   Outputs, die man in ihnen verbergen kann. Die Menge $X$ muss also endlich
-  sein. Für jedes Element $o$ aus $X$ kann mit den Punkten (ii) bis (iv) aus
+  sein. Für jedes Element $o$ aus $X$ kann mit den Punkten (ii) bis (v) aus
   $P_1\DRel P_2$ gefolgert werden, dass auch $P_1/o\DRel P_2/o$ gilt. In dem
-  man immer ein weiteren Output Internalisiert. Am Ende folgt auch $P_1/X\DRel
+  man immer ein weiteren Output internalisiert. Am Ende folgt auch $P_1/X\DRel
   P_2/X$ aus der Voraussetzungen $P_1\DRel P_2$ für endliche \MEIO{} $P_1$ und
   $P_2$.\\
   Somit bleibt die Relation \DRel{} unter Anwendung des Hiding-Operators
