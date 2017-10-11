@@ -29,18 +29,14 @@ Spielraum betreffen. Die hier verwendeten modalen Spezifikationen sind
 spezielle Transitionssysteme. Must"=Transitionen stellen dabei in einer
 Spezifikation das erzwungene und may"=Transitionen das erlaubte Verhalten
 dar.\\
-Wie bereits beschrieben kann es in einer nebenläufige Kommunikation zwischen
-einzelnen Komponenten zu Fehler kommen. Implementierungen können jedoch auch
-bereits Fehler enthalten. In der Praxis wäre es wünschenswert nur
-Implementierungen zu betrachten, die fehler-frei sind. Fehler-frei ist hierbei
-so aufzufassen, dass auch in der Interaktion mit einem beliebigen System kein
-Fehler erreicht werden kann. Anderseits ist die Erfüllung dieser Forderung
-recht schwierig. Die Betrachtungen, die in dieser Arbeit gemacht werden, sollen
-dabei helfen, die Fehlerquellen möglichst gut einschränken zu können. Dazu ist
-es jedoch notwendig in machen Untersuchungen auch Implementierungen zu
-verwenden, die Fehler enthalten.\\
-\TODO{fehler-frei eher nicht, da IA-Ansatz durch die Interfaces auch
-Anforderungen an die Umgebung spezifiziert}\\
+Interfaces spezifizieren durch nicht vorhandene Transitionen auch
+Anforderungen an die Umgebung. Falls ein System an einem Zustand eine
+Input"=Transition nicht umsetzt, stellt dies die Forderung an die Umgebung,
+dass dieser Input in diesem Zustand nicht auftreten sollte. Ansonsten tritt wie
+bereits beschrieben in einer Kommunikation zwischen der Komponente und ihrer
+Umgebung ein Fehler auf. Implementierungen können jedoch auch bereits Fehler
+enthalten. In diesem Fall wird die Anforderung an die Umgebung gestellt, dass
+dieser Zustand nicht erreicht werden sollte.\\
 Da diese Arbeit die Ideen eines optimistischen Ansatzes bezüglich der Relevanz
 von Fehlern aufgreift, wird davon ausgegangen, dass die Kommunikation
 mit einer hilfreichen Umgebung bzw.\ einem hilfreichen User statt findet.
@@ -56,18 +52,21 @@ Parallelkomposition entfernt werden. Somit können auch nach der Komposition
 noch Rückschlüsse auf die Quellen der Fehler gezogen werden. Dies ermöglicht
 es Spezifikationen gezielt verbessern zu können, falls dies gewünscht ist.\\
 Die \MIA{}s enthalten, laut ihrer Definition, disjunktive must"=Transitionen.
-Diese Art von must"=Transitionen werden in dieser Arbeit nicht betrachtet. Die
-must- und may"=Transitionen sollen hier die gleiche Form besitzen, so dass via
-einer Transition von einem Zustand immer nur ein Zustand erreicht wird. Dieser
+Dies sind Transitionen die von einem Zustand mit einer Aktion zu einer Menge
+von alternativen Zielzuständen führen. Falls diese Transition ausgeführt wird,
+wird ein beliebiger Zustand aus der Zielzustands-Menge erreicht. Diese Art von
+must"=Transitionen werden in dieser Arbeit jedoch nicht betrachtet. Die must-
+und may"=Transitionen sollen hier die gleiche Form besitzen, so dass via einer
+Transition von einem Zustand immer nur ein Zustand erreicht wird. Dieser
 Unterschied bezüglich der must"=Transitionen wird vor allem im Vergleich der
 hier verwendeten Transitionssysteme mit den~\MIA{}s am Ende des
 Kapitels~\ref{errorZusammenh} relevant.\\
-\TODO{disjunktiv knapp erklären}\\
 Auf Basis spezieller Testsysteme wie in~\cite{Vogler2015FailSem}
 und~\cite{Vogler2017dMTS} wird hier in jedem Kapitel eine beobachtbare
 Präkongruenz für die unterschiedlichen Fehler-Arten nachgewiesen. Für die
-Kommunikationsfehler wird analog zu~\cite{Schinko2016BA} sogar begründet, dass
-die Präkongruenz die gröbste bezüglich einer optimistische Basisrelation.\\
+Kommunikationsfehler wird analog zu~\cite{Schinko2016BA} zusätzlich begründet,
+dass die Präkongruenz die gröbste bezüglich einer optimistische
+Basisrelation.\\
 Die unterschiedlichen Fehler"=Arten werden in den Systemen auf Basis von
 Trace"=Mengen analysiert. Dieser Ansatz orientiert an~\cite{Vogler2014EIO}
 und~\cite{Schinko2016BA}.\\
