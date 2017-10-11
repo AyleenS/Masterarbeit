@@ -20,7 +20,7 @@
   zwischen $P'$ und $P$ gilt, ist die Identitäts-Relation zwischen den
   Zuständen der Transitionssysteme. Für~\ref{SimDef}.3 betrachten wir $(p,p)
   \in\mathcal{R}$ mit $p\may[\alpha]_{P'} p'$ in $P'$. Diese Transition muss
-  auch in $P$ existieren und da $\mathcal{R}$ die Identitäts-Relation ist musst
+  auch in $P$ existieren und da $\mathcal{R}$ die Identitäts-Relation ist, muss
   auch $(p',p')\in\mathcal{R}$ gelten. Alle must"=Transitionen in $P$ haben
   zugrunde liegende may"=Transitionen. Es gibt also zu jeder must"=Transition
   $p \must[\alpha]_P p'$ in $P$ auch die Transition $p\must[\alpha]_{P'} p'$.
@@ -38,7 +38,7 @@
   L_1\|L_2$.
 \end{Prop}
 \begin{proof}
-  Jedes Wort, dass in $L_{12}$ enthalten ist, hat einen entsprechenden Ablauf,
+  Jedes Wort, das in $L_{12}$ enthalten ist, hat einen entsprechenden Ablauf,
   der in $P_{12}$ ausführbar ist. Dieser Ablauf kann auf Abläufe von $P_1$ und
   $P_2$ projiziert werden und die Projektionen sind dann in $L_1$ und $L_2$
   enthalten.\\
@@ -63,10 +63,11 @@
   \begin{enumerate}
     \setcounter{enumi}{1}
     \item Aus der Definition der schwachen alternierenden
-      Simulation in~\ref{wSimDef} folgt, dass für diesen Punkt folgendes zeigen
-      ist: $(p_1,p_2)\must[i]_{12}(q_1,q_2)$ impliziert $(p'_1,p_2)
-      \must[i]_{P'_1\|P_2} \weakmust[\varepsilon]_{P'_1\|P_2} (q'_1,q_2)$
-      für ein $(q'_1,q_2)$ mit $((q'_1,q_2),(q_1,q_2)) \in \mathcal{R}_{12}$.\\
+      Simulation in~\ref{wSimDef} folgt, dass für diesen Punkt folgendes zu
+      zeigen ist: $(p_1,p_2)\must[i]_{12}(q_1,q_2)$ in $P_{12}$ impliziert
+      $(p'_1,p_2) \must[i]_{P'_1\|P_2} \weakmust[\varepsilon]_{P'_1\|P_2}
+      (q'_1,q_2)$ in $P'_1\|P_2$ für ein $(q'_1,q_2)$ mit
+      $((q'_1,q_2),(q_1,q_2)) \in \mathcal{R}_{12}$.\\
       Die $i$-must"=Transition in $P_1\|P_2$ kann entweder aus der
       Synchronisation von zwei must"=Inputs entstanden sein oder als
       unsynchronisierte Aktion aus einem der komponierten \MEIO{}s übernommen
@@ -77,8 +78,9 @@
           in der Parallelkomposition $P'_1\|P_2$ wie auch in $P_1\|P_2$ als
           must"=Transition vorhanden. Es gilt dann auch $p_1=q_1$ und
           $p'_1=q'_1$, da $i$ kein Input von $P_1$ ist. Die Gültigkeit der
-          geforderte Transitionsfolge und das geforderte Element der Relation
-          $\mathcal{R}_{12}$ folgen direkt durch die Voraussetzungen.\\
+          geforderten Transitionsfolge und das geforderten Elements der
+          Relation $\mathcal{R}_{12}$ folgen direkt durch die
+          Voraussetzungen.\\
           Für den Rest dieses Punktes wird davon ausgegangen, dass $i$ in $I_1$
           enthalten ist. Es muss also in $P_1$ die $i$-Transition als
           must"=Transition von $p_1$ ausgehen $\left(p_1\must[i]_1 q_1\right)$.
@@ -116,7 +118,7 @@
           $i$ in $I_2$ zu 2. Fall 1. Es sei also im folgenden $\omega$ ein
           Output oder eine interen Aktion von $P_1$. Um in der Komposition
           $P_1\|P_2$ die must"=Transition zu erhalten muss bereits für die
-          Transition in $P_1$ $p_1 \must[\omega]_1 q_1$ gelten sowie $p_2 =
+          Transition in $P_1$ $p_1 \must[\omega]_1 q_1$ gelten, sowie $p_2 =
           q_2$ in $P_2$. Mit~\ref{wSimDef}.3 kann für $\mathcal{R}_1$ gefolgert
           werden, dass $p'_1 \weakmust[\hat{\omega}]_{P'_1} q'_1$ mit
           $(q'_1,q_1)\in\mathcal{R}_1$ gilt. In der Komposition folgt dann
@@ -189,11 +191,11 @@
       synchronisierten oder aus einem unsynchronisierten $\omega$ entstanden.
       \begin{itemize}
         \item Fall 1 ($\omega\notin\Synch (P'_1,P_2)$): Im Fall $\omega$ ist
-          eine Aktion von $P_2$ folgt das zu zeigende direkt aus den
+          eine Aktion von $P_2$ folgt das zu Zeigende direkt aus den
           Voraussetzungen, ebenso wie in allen vorangegangenen Punkten. Somit
-          wird im folgenden davon ausgegangen, dass $\omega$ in $O_1$ enthalten
+          wird im Folgenden davon ausgegangen, dass $\omega$ in $O_1$ enthalten
           oder eine interne Aktion ist, die von $P'_1$ geerbt wurde. Um in
-          $P'_1\|P_2$ die may"=Transition zu erhalten muss also bereits in
+          $P'_1\|P_2$ die may"=Transition zu erhalten, muss also bereits in
           $P'_1$ die Transition $p'_1 \may[\omega]_{P'_1} q'_1$ möglich gewesen
           sein. Mit~\ref{wSimDef}.5 kann für $\mathcal{R}_1$ gefolgert werden,
           dass $p_1 \weakmay[\hat{\omega}]_1 q_1$ mit $(q'_1,q_1) \in
@@ -212,7 +214,7 @@
           \weakmay[\omega]_1 q_1$ und $q'_1\mathcal{R}_1 q_1$. Da $\omega$
           eine sichtbare Aktion ist, gilt $\omega =\hat{\omega}$. In der
           Parallelkomposition von $P_1$ und $P_2$ werden zuerst mögliche
-          internen Aktionen von $P_1$ ausgeführt, bis dort die sichtbare Aktion
+          interne Aktionen von $P_1$ ausgeführt, bis dort die sichtbare Aktion
           erreicht ist, dann wird $\omega$ synchronisiert und danach werden die
           restlichen internen Aktionen ausgeführt, bis man beim Zustand
           $q_1$ angekommen ist. Es ergibt sich also die Transitionsfolge
