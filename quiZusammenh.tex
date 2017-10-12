@@ -4,8 +4,8 @@
   Stillstands-Relation]
   \label{ZusammenhStilleSatz}
   Für \MEIO{}s $P$ und $Q$ gilt $P \asRel Q \Rightarrow P \QRel Q \Rightarrow
-  P \ERel Q$. Die Implikationen in die andere Richtung gelten jedoch nicht. Die
-  Relationen \wasRel{} und \QRel{} sind unvergleichbar.
+  P \ERel Q$. Die Implikationen in die entgegengesetzte Richtung gelten jedoch
+  nicht. Die Relationen \wasRel{} und \QRel{} sind unvergleichbar.
 \end{Satz}
 \begin{proof}\mbox{}\\
   $P \asRel Q \Rightarrow P \QRel Q$:\\
@@ -22,8 +22,8 @@
   Form wie in Lemma~\ref{AblaefeVerfSpezLem}, der mit $p_n$ einen stillen
   Zustand erreicht. Es gilt $w\in\cont (\StET _Q) \subseteq\ET _Q\subseteq\QET
   _Q$, falls ein Fehler-Zustand in $Q$ auf einem Präfix-Trace von $w$ auftritt,
-  wegen Lemma~\ref{AblaefeVerfSpezLem}. Im folgenden wird davon ausgegangen,
-  das $w$ in $Q$ ohne das erreichen eines Fehler"=Zustandes ausführbar ist.
+  wegen Lemma~\ref{AblaefeVerfSpezLem}. Im Folgenden wird davon ausgegangen,
+  das $w$ in $Q$ ohne das Erreichen eines Fehler"=Zustandes ausführbar ist.
   Wegen~\ref{AblaefeVerfSpezLem} gibt es also einen Ablauf für $w$ in $Q$, der
   in einem Zustand $q_n$ mit $p_n \mathcal{R} q_n$ endet. $p_n$ ist für $P$ ein
   stiller Zustand, es gilt also für alle $\omega \in (O\cup \{\tau\})$ $p_n
@@ -39,12 +39,12 @@
 
   $P \wasRel Q \not\Rightarrow P \QRel Q$:\\
   Diese Implikation scheitert dran, dass für stille Zustände keine
-  $\tau$"=must"=Transitionen zulässig sind und \QRel{} keine Divergenz mit
-  betrachtet. Ein entsprechenden Gegenbeispiel ist in
+  $\tau$"=must"=Transitionen zulässig sind und \QRel{} keine Divergenz
+  betrachtet. Ein entsprechendes Gegenbeispiel ist in
   Abbildung~\ref{QuiWasGegenBsp} dargestellt. Da hier nur die strikten
   Stille"=Trace das Problem erzeugen, soll $I = \emptyset$ gelten, damit die
   \MIT{}-Mengen für beide Systeme leer sind. $\mathcal{R} = \{(p_0,q_0)\}$ ist
-  eine schwache as"=Verfeinerungs"=Relation zwischen $P$ und $Q$. Beides
+  eine schwache as"=Verfeinerungs"=Relation zwischen $P$ und $Q$. Beide
   Transitionssysteme enthalten keine Fehler"=Zustände, $P$ besitzt keine
   Transitionen und $Q$ nur eine Transition für eine interne Aktion, somit sind
   die Punkt 1.,2.,4.\ und 5.\ der Definition~\ref{wSimDef} für $\mathcal{R}$
@@ -55,7 +55,7 @@
   ebenfalls durch das bereits enthaltene Tupel $(p_0,q_0)$ erfüllt.\\
   Für $P$ ist $\varepsilon$ ein strikter Stille"=Trace. Die Menge $\StQT (Q) =
   \QET (Q)$ ist jedoch leer. Die Inklusion $\QET (P) \subseteq \QET (Q)$, die
-  für $P\QRel Q$ gelten müsste ist also nicht erfüllt.
+  für $P\QRel Q$ gelten müsste, ist also nicht erfüllt.
 
   \begin{figure}[htbp]
     \begin{center}
@@ -78,7 +78,7 @@
   $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$:\\
   Wie im Gegenbeispiel für die analoge Implikation aus der Relation \ERel{}
   beruht der Grund für die nicht Gültigkeit hier auch darauf, dass Simulationen
-  strenger sind als Sprach Inklusionen. Jedoch funktioniert hier nicht das
+  strenger sind als Sprach"=Inklusionen. Jedoch funktioniert hier nicht das
   gleiche Gegenbeispiel wie im letzten Kapitel, da es zu Problemen mit den
   Stille-Traces führen würde. Um diese zu vermeiden, wird wieder die Technik
   angewendet an alle Zustände eine $\tau$-Schleife anzufügen. Das daraus
@@ -118,7 +118,7 @@
   \end{figure}
 
   $P \asRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$:\\
-  Falls diese Implikation gelten würde, würde jedes Paar von \MEIO{}s, dass in
+  Falls diese Implikation gelten würde, würde jedes Paar von \MEIO{}s, das in
   der Relation \QRel{} steht auch in der Relation \asRel{} stehen. Mit
   Lemma~\ref{ZusammenhWasAsLem} würde draus folgen, dass das \MEIO{} Paar auch
   in der Relation \wasRel{} stehen muss Dies stellt jedoch ein Widerspruch zur
@@ -126,13 +126,13 @@
 
   $P \QRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \ERel Q$:\\
   Die Relation \QRel{} stützt sich auf die Definition der Relation \ERel{}.
-  Jedoch erweitert sich die Definition noch um eine weiter Voraussetzung. Es
+  Jedoch erweitert sie die Definition noch um eine weitere Voraussetzung. Es
   muss also in einem entsprechenden Gegenbeispiel die Inklusion $\QET _P
   \subseteq \QET _Q$ verletzt sein. Das Gegenbeispiel ist in
   Abbildung~\ref{QuiEGegenBsp} dargestellt. Es wird $I = \emptyset$
   vorausgesetzt, damit keine Input-kritischen Traces auftreten. Es gilt also
-  $\ET _P = \ET _Q = \emptyset$ und $L(P) = L(Q) = \{\varepsilon\}$. Es gilt
-  also $P\ERel Q$.\\
+  $\ET _P = \ET _Q = \emptyset$ und $L(P) = L(Q) = \{\varepsilon\}$. Deshalb
+  gilt auch $P\ERel Q$.\\
   Jedoch gilt für die strikten Stille-Traces $\StQT _P = \{\varepsilon\}$ und
   $\StQT _Q = \emptyset$. Es folgt also $\QET _P \not\subseteq \QET _Q$ und
   somit ist die Relation \QRel{} zwischen $P$ und $Q$ auch nicht erfüllt.
@@ -178,7 +178,7 @@ führen kann. Vor allem im Bezug auf Hiding ist es schwierig, da
 unterschiedliche Transitionen in einem System zu unterschiedlichem Verhalten
 führen, obwohl sie von der Transitionsbeschriftung her nicht zu unterscheiden
 sind. Hierzu ist auch das Beispiel in Abbildung~\ref{QuiTracesBsp} zu beachten.
-Die Sprachen beider \MEIO{}s sind gleich und auch die strikten stille Traces
+Die Sprachen beider \MEIO{}s sind gleich und auch die strikten Stille"=Traces
 stimmen überein, da jeweils durch beliebig viele $o$s (mindestens eins), die
 von einem $o'$ gefolgt werden eine ruhiger Zustand erreicht wird. Bei $P$ ist
 dies immer möglich. Falls aber in $Q$ die erste $o$ Transition nach rechts
@@ -223,6 +223,7 @@ würden durch Hiding dann einen Unterschied in den Trace-Mengen aufweisen.
 
 Im nächsten Kapitel, in dem Zustände mit Divergenz betrachtet werden, heben
 sich die Unterschiede in den Trace-Mengen, die die beiden unterschiedlichen
-Ansätze hier erzeugen würden auf. Da die Zustände die eine unendliche Folge an
-$\tau$s ausführen können als divergent betrachtet werden und die Stille als
-nicht so schlimm angesehen wird und auf Trace-Ebene somit geflutet wird.
+Ansätze hier erzeugen würden, auf. Da die Zustände, die eine unendliche Folge
+an $\tau$s ausführen können, als divergent betrachtet werden und die Stille als
+nicht so \glqq schlimm\grqq{} angesehen wird und auf Trace-Ebene somit geflutet
+wird.
