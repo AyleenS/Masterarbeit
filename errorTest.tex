@@ -2,20 +2,20 @@
 
 Der gröbste Präkongruenz-Ansatz aus dem letzten Teil stützt sich auf die
 Parallelkomposition von \MEIO{}s, die wie bereits in
-Kapitel~\ref{saetzeKapitel} erwähnt auch anders gestaltet hätte werden können.
-Spezielle bei neuen Fehler ist dort gezeigt worden, dass es zu einem
+Kapitel~\ref{saetzeKapitel} erwähnt auch anders gestaltet werden könnte.
+Spezielle bei neuen Fehlern ist dort gezeigt worden, dass es zu einem
 ungewöhnlichen Verfeinerungs-Verhalten kommen kann, das möglicherweise gar
 nicht so gewollt ist. Deshalb ist es sinnvoll sich nur auf die Definition der
 Parallelkomposition von \EIO{} zu stützen, die hier für die Implementierungen
 gilt. Dies führt zu dem in diesem Teil behandelten Testing-Ansatz. Dieser lässt
-jedoch keine Aussage zu gröbste Präkongruenz zu, wie das im letzen Teil möglich
-war. Der Test ersetzt die Basisrelation als grundlegende Definition für den
-Ansatz. Die Präkongruenz, die sich ergibt, ist jedoch die selbe.\\
+jedoch keine Aussage zur gröbsten Präkongruenz zu, wie das im letzen Teil
+möglich war. Der Test ersetzt die Basisrelation als grundlegende Definition für
+den Ansatz. Die Präkongruenz, die sich ergibt, ist jedoch dieselbe.\\
 Der Testing-Ansatz stützt sich auf das Vorgehen, das
 in~\cite{Vogler2015FailSem} angewendet wurde. Jedoch sind Tests dort Tupel aus
 einer Implementierung und einer Menge an Aktionen, über denen synchronisiert
-werden soll. Die \MEIO{}s, die hier komponiert werden bringen die Menge
-$\Synch$ an Aktionen, die synchronisiert werden bereits mit. Es wird im
+werden soll. Die \MEIO{}s, die hier komponiert werden, bringen die Menge
+$\Synch$ an Aktionen, die synchronisiert werden, bereits mit. Es wird im
 Gegensatz zu~\cite{Vogler2015FailSem} mit Inputs und Outputs gearbeitet und
 dadurch scheint der Ansatz die gemeinsamen Aktionen zu synchronisieren
 natürlicher, wie eine Menge an Aktionen beim Test vorzugeben.\\
@@ -30,7 +30,7 @@ hilfreiche Umgebung dies nicht mehr verhindern kann.
   Implementierung. $P$ \emph{as-erfüllt} T als einen
   Kommunikationsfehler"=Test, falls $S\|T$ lokal fehler-frei ist für alle $S\in
   \asimp (P)$. Es wird dann $P \EsatAs T$ geschrieben.\\
-  Ein \MEIO{} $P$ \emph{Fehler-verfeinert} $P'$, falls sie die selbe Signaturen
+  Ein \MEIO{} $P$ \emph{Fehler-verfeinert} $P'$, falls sie dieselbe Signaturen
   haben und für alle ihre Tests $T$: $P'\EsatAs T \Rightarrow P\EsatAs T$.
 \end{Def}
 
@@ -40,7 +40,7 @@ nützlich.\\
 Die Basisrelation aus dem gröbsten Präkongruenz-Ansatz gibt es in diesem Teil
 nicht, somit kann das Lemma~\ref{KommVerfeinLem} nicht in dieser Art formuliert
 werden. Jedoch kann hier mit Tests gearbeitet werden und unter deren
-zuhilfenahme ein ähnliches Lemma formuliert werden.
+Zuhilfenahme ein ähnliches Lemma formuliert werden.
 
 \begin{Lem}[Testing-Verfeinerung mit Kommunikationsfehlern]
   \label{KommTestVerfeinLem}
@@ -50,7 +50,7 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
   P_2$.
 \end{Lem}
 \begin{proof}
-  Da $P_1$ und $P_2$ die gleichen Signaturen haben wird $I:=I_1=I_2$ und $O:=
+  Da $P_1$ und $P_2$ die gleichen Signaturen haben, wird $I:=I_1=I_2$ und $O:=
   O_1=O_2$ definiert. Für jeden Partner $T$ gilt $I_T=O$ und $O_T=I$.\\
   Um $P_1\ERel P_2$ zu zeigen, wird nachgeprüft, ob folgendes gilt:
   \begin{itemize}
@@ -64,7 +64,7 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
   Mit Proposition~\ref{KommSemProp} folgt aus $w\in\ET _1$, dass es auch eine
   as"=Implementierung $P'_1$ von $P_1$ geben muss, für die $w$ ebenfalls in
   $\ET _{P'_1}$ enthalten ist. Da $w$ für $P_1$ präfix-minimal ist, gilt $w\in
-  \PrET _1$ oder $w\in\MIT _1$ mit Proposition~\ref{KommTracesProp} kann die
+  \PrET _1$ oder $w\in\MIT _1$. Mit Proposition~\ref{KommTracesProp} kann die
   as"=Implementierung $P'_1$ sogar so gewählt werden, dass $w$ für $P'_1$
   ebenfalls präfix-minimal ist.
   \begin{itemize}
@@ -73,9 +73,9 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
       Startzustand und einer must"=Schleife für alle Inputs $x\in I_T$ besteht.
       Somit kann $P'_1$ die im Prinzip gleichen Fehler-Zustände lokal
       erreichen wie $P'_1\|T$. $P'_1$ ist in Parallelkomposition mit $T$ nicht
-      lokal fehler-frei somit gilt $P_1\EsatAs T$ nicht. Es darf also auch
+      lokal fehler-frei, somit gilt $P_1\EsatAs T$ nicht. Es darf also auch
       $P_2$ den Test $T$ nicht as"=erfüllen, wegen der Implikation $P_2\EsatAs
-      T \Rightarrow P_1\EsatAs T$. Damit $P_2$ $T$ nicht as"=erfüllt muss es
+      T \Rightarrow P_1\EsatAs T$. Damit $P_2$ $T$ nicht as"=erfüllt, muss es
       eine as"=Implementierungen $P'_2$ geben, die in Parallelkomposition mit
       $T$ einen nicht lokal fehler-freies System ergibt. Es muss also in
       $P'_2\|T$ ein Fehler lokal erreichbar sein. Durch die Definition von $T$
@@ -83,7 +83,7 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
       Fehler-Zustand nur durch interen Aktionen und Outputs erreichbar sein, da
       $T$ keine Outputs besitzt, die man mit Inputs aus $P'_2$ synchronisieren
       könnte und unsynchronisierte Aktionen sind in einer Parallelkomposition
-      von Partner nicht möglich. Somit gilt $\varepsilon\in \PrET _{P'_2}
+      von Partnern nicht möglich. Somit gilt $\varepsilon\in \PrET _{P'_2}
       \subseteq \ET _{P'_2}$. Mit Proposition~\ref{KommSemProp} folgt daraus
       $\varepsilon\in \ET _2$.
     \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
@@ -101,8 +101,8 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
         \end{aligned}$
         \item $E_T=\emptyset$.
       \end{itemize}
-      Für das präfix-minimale $w$ können nun zwei Fälle unterschieden werden,
-      für die beide $\varepsilon\in\PrET (P'_1\|T)$ folgen wird.
+      Für das präfix-minimale $w$ können nun zwei Fälle unterschieden werden.
+      In beiden Fällen wird $\varepsilon\in\PrET (P'_1\|T)$ folgen.
       \begin{itemize}
         \item Fall 2a) \big($w\in\MIT _{P'_1}$\big): In $P'_1\|T$ erhält man
           $(p'_{01},p_0) \lweakmay[x_1\dots x_n]_{P'_1\|T} (p',p_n)$ mit $p'
@@ -122,19 +122,19 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
       \end{itemize}
       Da $\varepsilon\in\PrET (P'_1\|T)$ gilt, kann durch $P_2\EsatAs T
       \Rightarrow P_1\EsatAs T$ geschlossen werden, dass auch $P_2\EsatAs T$
-      nicht gelten kann. Die Relation gilt für $P_2$ nicht, da es eine
-      as"=Implementierung $P'_2$ von $P_2$ gibt, so dass $P'_2\|T$ nicht
-      lokal fehler-frei ist.\\
+      nicht gelten kann. Die as"=Erfüllung des Tests $T$ gilt für $P_2$ nicht,
+      da es eine as"=Implementierung $P'_2$ von $P_2$ gibt, so dass $P'_2\|T$
+      nicht lokal fehler-frei ist.\\
       Der lokal erreichbar Fehler in $P'_2\|T$ kann geerbt oder neu sein. In
       beiden Fällen kann gezeigt werden, dass ein Präfix von $w$ in der Menge
       $\ET _{P'_2}$ und mit Proposition~\ref{KommSemProp} auch in der Menge
       $\ET _2$ enthalten ist.
       \begin{itemize}
         \item Fall 2i) (neuer Fehler): Da jeder Zustand von $T$ alle Inputs
-          $x\in O=I_T$ zulässt, muss ein lokal erreichbarer Fehler-Zustand der
+          $x\in I_T=O$ zulässt, muss ein lokal erreichbarer Fehler-Zustand der
           Form sein, dass ein Outputs $a\in O_T$ von $T$ möglich ist, der nicht
-          mit einem passenden Input aus $P'_2$ synchronisiert werden werden
-          kann. Durch die Konstruktion von $T$ sind in $p_{n+1}$ keine Outputs
+          mit einem passenden Input aus $P'_2$ synchronisiert werden kann.
+          Durch die Konstruktion von $T$ sind in $p_{n+1}$ keine Outputs
           möglich. Ein neuer Fehler muss also die Form $(p',p_i)$ haben mit
           $i\leq n$, $p'\nmust[x_{i+1}]_{P'_2}$ und $x_{i+1}\in O_T=I$. Durch
           Projektion erhält man dann $p_{02} \lweakmay[x_1\dots x_i]_{P'_2} p'
@@ -149,7 +149,7 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
           $\prune (x_1\dots x_iv) = \prune (x_1\dots x_i)\in\PrET _{P'_2}
           \subseteq \ET _{P'_2}$. Da $x_1\dots x_i$ ein Präfix von $w$ ist,
           führt in diesem Fall eine Verlängerung um lokale Aktionen eines
-          Präfix von $w$ zu einem Fehler-Zustand. Da \ET{} der Menge aller
+          Präfixes von $w$ zu einem Fehler-Zustand. Da \ET{} der Menge aller
           Verlängerungen von gekürzten Fehler-Traces entspricht, ist $x_1\dots
           x_i$ in $\ET _{P'_2}$ enthalten und somit ist mit
           Proposition~\ref{KommSemProp} ein Präfix von $w$ in $\ET _2$
@@ -183,12 +183,13 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
         \item $E_T=\{p_n\}$.
       \end{itemize}
       Da $p_{01} \weakmay[w]_{P'_1} p'$ gilt, kann man schließen, dass
-      $P'_1\|T$ ein lokal erreichbaren geerbten Fehler hat. Es muss also auch
+      $P'_1\|T$ einen lokal erreichbaren geerbten Fehler hat. Es muss also auch
       eine as"=Implementierung $P'_2$ von $P_2$ geben, für die $P'_2\|T$ einen
       lokal erreichbaren Fehler-Zustand hat.
       \begin{itemize}
         \item Fall 2a) \big(neuer Fehler aufgrund von $x_i\in O_T$ und $p_{02}
-          \lweakmay[x_1\dots x_{i-1}]_{P'_2}p''\nmust[x_i]_{P'_2}$\big): Es
+          \lweakmay[x_1\dots x_{i-1}]_{P'_2}p''\hspace{0.25cm} \not
+          \hspace{-0.25cm} \must[x_i]_{P'_2}$\big): Es
           gilt $x_1\dots x_i\in\MIT _{P'_2}$ und somit $w\in\EL _{P'_2}$.
           Anzumerken ist, dass nur auf diesem Weg Outputs von $T$ möglich sind,
           deshalb gibt es keine anderen Outputs von $T$, die zu einem neuen
@@ -199,7 +200,7 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
           bereits ein Fehler-Zustand ist. Da in diesem Fall der Fehler"=Zustand
           in $P'_2\|T$ erreichbar ist, besitzt der komponierte \MEIO{} einen
           geerbten Fehler und es gilt $w\in L_{P'_2}\subseteq \EL _2$, wegen
-          dem folgenden Fall 2c).
+          des folgenden Falles 2c).
         \item Fall 2c) (geerbter Fehler von $T$): Da $p_n$ der einzige
           Fehler-Zustand in $T$ ist und alle Aktionen synchronisiert sind, ist
           dies nur möglich, wenn $p_{02} \lweakmay[x_1\dots x_n]_{P'_2}$ gilt.
@@ -224,9 +225,9 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
   Für ein \MEIO{} $P$ gilt nach Definition $\varepsilon\in\ET _P$ genau dann,
   wenn ein Fehler"=Zustand lokal erreichbar ist in $P$.\\
   Um zu zeigen, dass $P_1$ eine Fehler-Verfeinerung von $P_2$ ist, muss
-  nachgewiesen werden, dass für alle ihre Test $T$ $P_2\EsatAs T \Rightarrow
+  nachgewiesen werden, dass für alle ihre Tests $T$ $P_2\EsatAs T \Rightarrow
   P_1\EsatAs T$ gilt. Diese Aussage ist analog zu der Aussage, dass für alle
-  Test $T$ von $P_1$ und $P_2$ $\neg P_1\EsatAs T \Rightarrow \neg P_2\EsatAs
+  Tests $T$ von $P_1$ und $P_2$ $\neg P_1\EsatAs T \Rightarrow \neg P_2\EsatAs
   T$ gilt. Es wird ein beliebiger Test $T$ gewählt für den $\neg P_1 \EsatAs T$
   gilt. Es muss also eine as"=Implementierung $P'_1$ von $P_1$ geben, die in
   der Parallelkomposition mit $T$ einen Fehler lokal erreicht. Es gilt also
@@ -235,14 +236,14 @@ zuhilfenahme ein ähnliches Lemma formuliert werden.
   _T\right)\cup \left(\EL _{P'_1}\|\ET _T\right)\right)\right)$. $\varepsilon$
   ist auf jeden Fall präfix-minimal, die \cont{}-Funktion hat also keinen
   Einfluss. Mit Proposition~\ref{KommSemProp} folgt $\varepsilon \in \prune
-  ((\ET _1\|\EL _T)\cup (\EL _1\|\ET _T))$. Es gibt also ein $w\in
-  O_{P_1\|T}^*$, dass in der Menge $\ET _1\|\EL _T$ oder in der Menge $\EL
-  _1\|\ET _T$ enthalten ist. Es gibt also Wörter $w_1$ und $w_T$ mit $w\in
+  ((\ET _1\|\EL _T)\cup (\EL _1\|\ET _T))$. Es existiert also ein $w\in
+  O_{P_1\|T}^*$, das in der Menge $\ET _1\|\EL _T$ oder in der Menge $\EL
+  _1\|\ET _T$ enthalten ist. Es gibt somit Wörter $w_1$ und $w_T$ mit $w\in
   w_1\|w_T$, $w_1\in \ET _1$ bzw.\ $w_1\in\EL _1$ und $w_T\in\EL _T$ bzw.\ $w_T
   \in\ET _T$. Da $P_1\ERel P_2$ gilt, folgt $w_1\in \ET _2$ bzw.\ $w_1\in \EL
-  _2$. Es gibt aufgrund von Proposition~\ref{KommSemProp} eine
+  _2$. Aufgrund von Proposition~\ref{KommSemProp} gibt es eine
   as"=Implementierung $P'_2$ von $P_2$ für die $w_1\in\ET _{P'_2}$ bzw.\
-  $w_1\in\ET _{P'_2}$ gilt. In Parallelkomposition mit $T$ ist das Wort $w$
+  $w_1\in\ET _{P'_2}$ gilt. In der Parallelkomposition mit $T$ ist das Wort $w$
   also in der Menge $\left(\ET _{P'_2}\|\EL _T\right)\cup \left(\EL
   _{P'_2}\|\ET _T\right)$ enthalten. $P_1$ und $P_2$ müssen die gleiche
   Signatur besitzen, es gilt also auch $w\in O_{P'_2\|T}^*$ und somit
@@ -278,7 +279,7 @@ Ring. Dies ist in Abbildung~\ref{KommTestFolgerungskette} dargestellt.
   \end{center}
 \end{figure}
 
-Die in Abbildung~\ref{KommTestFolgerungskette} dargestellten Zusammenhänge
+Die in Abbildung~\ref{KommTestFolgerungskette} veranschaulichten Zusammenhänge
 lassen sich zu einer Äquivalenz zusammenfassen.
 
 \begin{Kor}
