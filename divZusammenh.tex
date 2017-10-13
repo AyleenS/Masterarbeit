@@ -6,7 +6,7 @@
   Für zwei \MEIO{}s $P$ und $Q$ gilt $P \asRel Q \Rightarrow P \DRel Q$. Aus
   keiner der anderen bisher erwähnten Relationen folgt \DRel{} und auch aus der
   Relation \DRel{} kann keine der anderen Relationen gefolgert werden.\\
-  Für eine Spezifikation $Q$, die keinen Divergenten"=Zustand erreichen kann
+  Für eine Spezifikation $Q$, die keinen divergenten Zustand erreichen kann
   (durch beliebige Aktionen) gilt $P \wasRel Q \Rightarrow P \QRel Q$. Die
   umgekehrte Richtung gilt jedoch auch unter dieser Einschränkung nicht.
 \end{Satz}
@@ -23,20 +23,20 @@
     \item $\EDL _P \subseteq \EDL _Q$.
   \end{itemize}
 
-  Die Menge \EDT{} ist unter \cont{} abgeschlossen. Es reicht also für den
+  Die Menge \EDT{} ist unter \cont{} abgeschlossen. Es reicht also auf für den
   ersten Punkt zu zeigen, dass ein beliebiges präfix-minimales $w$ aus $\EDT
   _P$ auch in $\EDT _Q$ enthalten ist. Das Wort $w$ kann ein Element aus $\ET
   _P$ oder $\DT _P$ sein. Für $w$ aus $\ET _P$ folgt mit
   Satz~\ref{ZusammenhFehlerSatz} und da jede starke as"=Verfeinerung auch eine
   schwache ist (Lemma~\ref{ZusammenhWasAsLem}) bereits $w\in\ET _Q$. Es kann
-  also im folgenden davon ausgegangen werden dass $w$ ein präfix-minimales
+  also im Folgenden davon ausgegangen werden, dass $w$ ein präfix-minimales
   Elemente aus $\DT _P$ ist. Es gibt in $P$ einen Trace der Form wie in
   Lemma~\ref{AblaefeVerfSpezLem} für den der erreichte Zustand $p_n$ in $Div_P$
   enthalten ist. Mit Lemma~\ref{AblaefeVerfSpezLem} muss ein Präfix von $w$ zu
   einem Zustand in $E_Q$ führen oder es gibt einen passenden Trace in $Q$ für
   $w$. Im ersten Fall ist $w\in \ET _Q \subseteq \EDT _Q$. Es kann für den
   restlichen Beweis davon ausgegangen werden, dass das Wortes $w$ in $Q$
-  ausführbar ist. Es gibt also ein $q_n$, dass durch $w$ in $Q$ erreicht wird
+  ausführbar ist. Es gibt also ein $q_n$, das durch $w$ in $Q$ erreicht wird
   mit $(p_n,q_n)\in\mathcal{R}$, wegen Lemma~\ref{AblaefeVerfSpezLem}. Von
   $p_n$ ist eine unendliche Folge an $\tau$s ausführbar. Diese Folge kann wie
   in Korollar~\ref{unendlAblKor} als unendlicher Ablauf aufgefasst werden. Es
@@ -61,21 +61,21 @@
   $L _P\subseteq \EL _Q$ unter der Voraussetzung einer schwachen
   as"=Verfeinerungs"=Relation beweisen. Es gilt also wegen der Implikation
   $\asRel \Rightarrow \wasRel$ (Lemma~\ref{ZusammenhWasAsLem}) und wegen der
-  Inklusion $\EL _Q \subseteq \EDL _Q$ auch die hier nach zu weisende
+  Inklusion $\EL _Q \subseteq \EDL _Q$ auch die hier nachzuweisende
   Inklusion.
 
   $P \DRel Q \not\Rightarrow P \ERel Q$:\\
   Diese Implikation gilt nicht, da \DRel{} nicht zwischen Fehler und Divergenz
   unterscheiden kann, \ERel{} hingegen nur Fehler berücksichtigt und Divergenz
-  nicht als Fehlverhalten auffasst. Ein entsprechende Gegenbeispiel ist in
+  nicht als Fehlverhalten auffasst. Ein entsprechendes Gegenbeispiel ist in
   Abbildung~\ref{DivEGegenBsp} dargestellt. Die Sprachen beider
   Transitionssysteme sind gleich und bestehen nur aus dem leeren Wort. Für
   beide Systeme besteht die Menge \EDT{} aus allen Wörtern, die über dem
-  Alphabet $\Sigma$ möglich sind. Es gibt keine Stille"=Trace. Somit gilt also
+  Alphabet $\Sigma$ möglich sind. Es gibt keine Stille"=Traces. Somit gilt also
   $P \DRel Q$.\\
   Für $P \ERel Q$ müsste $\ET _P \subseteq \ET _Q$ gelten. Jedoch ist die Menge
   $\ET _Q$ leer, da $Q$ keine Fehler"=Zustände enthält und vorausgesetzt werden
-  kann, das $I$ leer ist und es somit keine Input"=kritischen Traces gegen
+  kann, dass $I$ leer ist und es somit keine Input"=kritischen Traces gegen
   kann. Für $P$ ist jedoch der Startzustand ein Fehler"=Zustand und somit
   entspricht $\ET _P$ der Menge $\Sigma ^*$.
 
@@ -119,14 +119,14 @@
   Abbildung~\ref{wasDivGegenBsp} verdeutliche dies. Um Input-kritische-Traces
   zu vermeiden wird $I=\emptyset$ vorausgesetzt. $P$ und $Q$ stehen in der
   schwachen as"=Verfeinerungs"=Relation $\mathcal{R}$, die nur aus dem Tupel
-  $(p_0,q_0)$ besteht. Die Transitionssysteme bestehen nur aus dem
-  Startzustände, die beide keine Fehler"=Zustände sind. $Q$ besitzt keine
+  $(p_0,q_0)$ besteht. Die Transitionssysteme bestehen nur aus den
+  Startzuständen, die beide keine Fehler"=Zustände sind. $Q$ besitzt keine
   Transitionen und $P$ nur eine Transition für eine interne Aktion. Es sind
-  also die Punkt 1.\ bis 4.\ der Definition~\ref{wSimDef} für $\mathcal{R}$
+  also die Punkte 1.\ bis 4.\ der Definition~\ref{wSimDef} für $\mathcal{R}$
   bereits erfüllt. Der 5. Punkt fordert, die schwache Transition $q_0
-  \weakmay[\hat{\tau}]_Q q$ mit $(p_0,q) \in \mathcal{R}$ für ein $q$ aus $Q$.
-  $\hat{\tau}$ entspricht $\varepsilon$ somit ist $q_0$ eine zulässige Wahl für
-  $q$. $\mathcal{R}$ erfüllt also auch den letzten Punkt der
+  \weakmay[\widehat{\tau}]_Q q$ mit $(p_0,q) \in \mathcal{R}$ für ein $q$ aus
+  $Q$. $\widehat{\tau}$ entspricht $\varepsilon$, somit ist $q_0$ eine
+  zulässige Wahl für $q$. $\mathcal{R}$ erfüllt also auch den letzten Punkt der
   Definition~\ref{wSimDef} und ist deshalb eine schwache
   as"=Verfeinerungs"=Relation.\\
   $Q$ enthält keine Fehler- oder Divergenz"=Zustände. Es gilt also $\EDT _Q=
@@ -156,16 +156,16 @@
   $P \ERel Q \not\Rightarrow P \DRel Q$:\\
   Mit der Implikation $\wasRel \Rightarrow \ERel$, die bereits in
   Satz~\ref{ZusammenhFehlerSatz} bewiesen wurde, kann gefolgert werden, dass
-  das im letzten Punkt angegebenen Beispiel auch für diese Implikation anwendbar
-  ist. Es galt $P \wasRel Q$ somit gilt auch $P \ERel Q$. Die Relation \DRel{}
-  hingegen ist zwischen $P$ und $Q$ nicht erfüllt. Es folgt also, dass die hier
-  angegeben Implikation ebenfalls nicht gilt.
+  das im letzten Punkt angegebenen Beispiel auch für diese Implikation
+  anwendbar ist. Es galt $P \wasRel Q$, somit gilt auch $P \ERel Q$. Die
+  Relation \DRel{} hingegen ist zwischen $P$ und $Q$ nicht erfüllt. Es folgt
+  also, dass die hier angegebene Implikation ebenfalls nicht gilt.
 
   $P \QRel Q \not\Rightarrow P \DRel Q$:\\
   Das Gegenbeispiel aus Abbildung~\ref{wasDivGegenBsp} funktioniert auch für
-  diese Implikation jedoch mit einer abgewandelten Begründung. Unter der
+  diese Implikation, jedoch mit einer abgewandelten Begründung. Unter der
   Voraussetzung, dass $I=\emptyset$ ist, gibt es keine Input-kritischen Traces
-  in $Q$ und in $P$. Weder $Q$ noch $P$ enthalten Fehler"=Zustände somit gilt
+  in $Q$ und in $P$. Weder $Q$ noch $P$ enthalten Fehler"=Zustände, somit gilt
   $\ET _P = \ET _Q = \emptyset$. Da die Zustände $q_0$ und $p_0$ beide keine
   ausgehenden must"=Transitionen besitzen, sind beide still. Es gilt also
   $\StQT _P = \StQT _Q = \{\varepsilon\}$. Die Sprachen beider \MEIO{}s
@@ -182,28 +182,29 @@
   anwendet und $\mathcal{R}$ eine schwache und keine starke
   as"=Verfeinerungs"=Relation ist. Für $p_n$ als stillen Zustand gilt ebenfalls
   $p_n \nmust[\omega]_P$ für alle $\omega\in (O\cup\{\tau\})$. Daraus folgt mit
-  der Definition der Relation \weakmust{} auch $p_n \nweakmust[\hat{\omega}]_P$
-  für alle $\omega\in O$. $\hat{\tau}$ ist für $p_n$ auf jeden Fall via \glqq
-  must"=Transitionen\grqq{} schwach ausführbar. Darin bestand das Problem, das
-  das Gegenbeispiel im Satz~\ref{ZusammenhStilleSatz} für diese Implikation
-  ohne die Einschränkung für $Q$ ausgenutzt hat. Es kann jedoch via
-  must"=Transitionen mit dem leeren Wort von $p_n$ aus kein von $p_n$
-  verschiedenen Zustand erreicht werden, da $p_n \nmust[\tau]$ gilt. Es gilt
-  also für alle Zustände $p\in P\backslash \{p_n\}$ $p_n \nweakmust[\hat{\tau}]
-  p$. Der Zustand $q_n$ darf jedoch ausgehende $\tau$"=must"=Transitionen
-  besitzen. Jedoch kann man diesen $\tau$-Transition so lange folgen, bis man
-  einen Zustand $q$ erreicht, der keine ausgehenden $\tau$"=must"=Transition
-  besitzt. Dies ist möglich, da $q_n$ kein divergenter Zustand sein darf, da er
-  in $Q$ erreichbar ist. Man kann die $\tau$"=must"=Transitionen aus $Q$
-  schrittweise durch Definition~\ref{wSimDef}.3 in $P$ mit $p_n
-  \weakmust[\varepsilon] p_n$ matchen, falls in $Q$ durch die
-  $\tau$-Transitionen keine Zustand aus $E_Q$ erreicht wird. Falls ein Zustand
-  auf dem Weg zu $q$ oder $q$ selbst in $E_Q$ enthalten ist, gilt $w\in \StET
-  _Q \subseteq\QET _Q$. Andernfalls muss mit Definition~\ref{wSimDef}.3
-  $p_n\mathcal{R} q$ gelten. Der Zustand $q$ ist in $Q$ durch $w$ erreichbar
-  und es gilt $q \nmust[\tau]$. Zusammen mit~\ref{wSimDef}.3 gilt somit für
-  alle $\omega \in (O\cup \{\tau\})$ $q \nmust[\omega]$. $q$ ist also in
-  $Qui_Q$ enthalten und damit folgt auch $w \in\StQT _Q\subseteq\QET _Q$.
+  der Definition der Relation \weakmust{} auch $p_n
+  \nweakmust[\widehat{\omega}]_P$ für alle $\omega\in O$. $\widehat{\tau}$ ist
+  für $p_n$ auf jeden Fall via \glqq must"=Transitionen\grqq{} schwach
+  ausführbar. Darin bestand das Problem, das das Gegenbeispiel im
+  Satz~\ref{ZusammenhStilleSatz} für diese Implikation ohne die Einschränkung
+  für $Q$ ausgenutzt hat. Es kann jedoch via must"=Transitionen mit dem leeren
+  Wort von $p_n$ aus kein von $p_n$ verschiedenen Zustand erreicht werden, da
+  $p_n \nmust[\tau]$ gilt. Es gilt also für alle Zustände $p\in P\backslash
+  \{p_n\}$ $p_n \nweakmust[\widehat{\tau}] p$. Der Zustand $q_n$ darf jedoch
+  ausgehende $\tau$"=must"=Transitionen besitzen. Jedoch kann man diesen
+  $\tau$-Transition so lange folgen, bis man einen Zustand $q$ erreicht, der
+  keine ausgehenden $\tau$"=must"=Transition besitzt. Dies ist möglich, da
+  $q_n$ kein divergenter Zustand sein darf, da er in $Q$ erreichbar ist. Man
+  kann die $\tau$"=must"=Transitionen aus $Q$ schrittweise durch
+  Definition~\ref{wSimDef}.3 in $P$ mit $p_n \weakmust[\varepsilon] p_n$
+  matchen, falls in $Q$ durch die $\tau$-Transitionen keine Zustand aus $E_Q$
+  erreicht wird. Falls ein Zustand auf dem Weg zu $q$ oder $q$ selbst in $E_Q$
+  enthalten ist, gilt $w\in \StET _Q \subseteq\QET _Q$. Andernfalls muss mit
+  Definition~\ref{wSimDef}.3 $p_n\mathcal{R} q$ gelten. Der Zustand $q$ ist in
+  $Q$ durch $w$ erreichbar und es gilt $q \nmust[\tau]$. Zusammen
+  mit~\ref{wSimDef}.3 gilt somit für alle $\omega \in (O\cup \{\tau\})$ $q
+  \nmust[\omega]$. $q$ ist also in $Qui_Q$ enthalten und damit folgt auch $w
+  \in\StQT _Q\subseteq\QET _Q$.
 
   $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$ für $Q$
   erreicht keinen divergenten Zustand:\\

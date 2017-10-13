@@ -2,13 +2,13 @@
 
 Für die \EIO{} aus z.B.~\cite{Schinko2016BA} sind divergente Zustände Zustände,
 die eine unendliche Folge an $\tau$s ausführen können. Da die Definition für
-Implementierung hier das gleiche liefern soll, müssen alle Zustände, die eine
-unendliche Folge an $\tau$s sicherstellen müssen auf jeden Fall divergent sein.
-Jedoch lassen bereits unendliche Folgen von $\tau$-may-Transitionen Divergenz
-in einer ihrer as"=Implementierungen zu. Somit erscheint es sinnvoll Zustände
-bereits als divergent anzusehen, wenn sie die Möglichkeit für eine unendliche
-Folge von $\tau$s via may-Transitionen besitzen. Die Korrektheit dieser Idee
-wird im folgenden nachgewiesen.
+Implementierung hier das Gleiche liefern soll, müssen alle Zustände, die eine
+unendliche Folge an $\tau$s sicherstellen auf jeden Fall divergent sein. Jedoch
+lassen bereits unendliche Folgen von $\tau$-may-Transitionen Divergenz in einer
+ihrer as"=Implementierungen zu. Somit erscheint es sinnvoll Zustände bereits
+als divergent anzusehen, wenn sie die Möglichkeit für eine unendliche Folge von
+$\tau$s via may-Transitionen besitzen. Die Korrektheit dieser Idee wird im
+Folgenden nachgewiesen.
 
 \begin{Def}[Divergenz]
   Ein \emph{Divergenz-Zustand} ist ein Zustand in einem \MEIO{} $P$, der via
@@ -25,9 +25,9 @@ zu beachten, dass ein Zustand, von dem aus unendlich viele Zustände durch
 $\tau$s  erreichbar sind, nicht divergent sein muss. Es ist auch möglich,
 dass dieser Zustand eine unendliche Verzweigung hat und somit keine unendlichen
 Folgen an $\tau$s ausführen kann.\\
-Für die Relevant eines Divergenz-Zustandes in einem Transitionssystem wieder
+Für die Relevanz eines Divergenz-Zustandes in einem Transitionssystem wird
 wieder der optimistische Ansatz der lokalen Erreichbarkeit verwendet. Auf
-Implementierungen, die den \EIO{}s in z.B.~\cite{Schinko2016BA} entsprechen,
+Implementierungen, die den \EIO{}s z.B.\ in~\cite{Schinko2016BA} entsprechen,
 ist Divergenz nicht mehr verhinderbar, sobald ein divergenter Zustand lokal
 erreichbar ist. Somit wird sich auch hier herausstellen, dass Divergenz als
 ähnlich \glqq schlimm\grqq{} zu bewerten ist wie ein Fehler-Zustand.
@@ -41,7 +41,7 @@ erreichbar ist. Somit wird sich auch hier herausstellen, dass Divergenz als
   $P$ \emph{as-erfüllt} $T$ als einen Divergenz-Test, falls $S\|T$ lokal
   fehler-, stillstand- und divergenz-frei ist für alle $S\in \asimp (P)$. Es
   wird dann $P\DsatAs T$ geschrieben.\\
-  Ein \MEIO{} $P$ \emph{Divergenz-verfeinert} $P'$, falls sie die selbe
+  Ein \MEIO{} $P$ \emph{Divergenz-verfeinert} $P'$, falls sie dieselbe
   Signatur haben und für alle ihre Tests $T$: $P'\DsatAs T \Rightarrow P\DsatAs
   T$.
 \end{Def}
@@ -105,25 +105,25 @@ verläuft analog zu den Propositionen der vorangegangenen Kapitel.
       Die passende as"=Verfeinerungs"=Relation $\mathcal{R}$ ist die
       Identität-Relation. Wie bereits im Beweis zu Proposition~\ref{LImpProp}
       begründet erfüllt $\mathcal{R}$ alle Punkte der Definition~\ref{SimDef}.
-      Es wird ein $w$ aus $\StDT (P)$ betrachtet. Es gibt also einen unendliche
-      Ablauf in $P$ auf einem endlichen Anfangsstück dieses Ablaufes wird das
-      Wort $w$ ausgeführt, danach werden nur noch $\tau$-Transitionen
-      ausgeführt. Es gilt also $\exists w' \in \Sigma _{\tau}^*, \exists
-      \alpha _1, \alpha _2, \dots , \alpha _n, \exists p_1, p_2, \dots , p_n:
-      \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha _n \land p_0
-      \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1} \may[\alpha _n]_P
-      p_n \in Div _P$. Nach $p_n$ kann der Trace durch eine unendliche
-      $\tau$-Folge fortgesetzt werden. Die Identitäts"=Relation $\mathcal{R}$
-      setzt die Zustände des Traces mit den analogen Zuständen aus $P'$ in
-      Relation. Mit der Implementierung aller Transitionen aus $P$
-      in $P'$ ergibt sich der selbe Trace in $P'$. Es gilt also $p'_0
+      Es wird ein $w$ aus $\StDT (P)$ betrachtet. Es gibt also einen
+      unendlichen Ablauf in $P$. Auf einem endlichen Anfangsstück dieses
+      Ablaufes wird das Wort $w$ ausgeführt, danach werden nur noch
+      $\tau$-Transitionen ausgeführt. Es gilt also $\exists w' \in \Sigma
+      _{\tau}^*, \exists \alpha _1, \alpha _2, \dots , \alpha _n, \exists p_1,
+      p_2, \dots , p_n: \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha
+      _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
+      \may[\alpha _n]_P p_n \in Div _P$. Nach $p_n$ kann der Trace durch eine
+      unendliche $\tau$-Folge fortgesetzt werden. Die Identitäts"=Relation
+      $\mathcal{R}$ setzt die Zustände des Traces mit den analogen Zuständen
+      aus $P'$ in Relation. Mit der Implementierung aller Transitionen aus $P$
+      in $P'$ ergibt sich derselbe Trace in $P'$. Es gilt also $p'_0
       \may[\alpha _1]_{P'} p'_1 \may[\alpha _2]_{P'} \dots p'_{n-1} \may[\alpha
       _n]_{P'} p'_n$ mit $(p'_j,p_j) \in \mathcal{R}$ für $0\leq j \leq n$. Da
-      alle Transitionen von $P$ in $P'$ übernommen wurden hat $p'_n$ ebenso wie
-      $p_n$ die Möglichkeit eine unendliche Folge an $\tau$s auszuführen. $P'$
-      kann also den analogen unendliche Ablauf zu $P$ ausführen. Es gilt also
-      $p'_n\in Div _{P'}$ und somit $w\in \StDT (P')$. Insgesamt folgt also für
-      dieses $P'$ $\StDT (P) = \StDT (P')$.
+      alle Transitionen von $P$ in $P'$ übernommen wurden, hat $p'_n$ ebenso
+      wie $p_n$ die Möglichkeit eine unendliche Folge an $\tau$s auszuführen.
+      $P'$ kann also den analogen unendliche Ablauf zu $P$ ausführen. Es gilt
+      also $p'_n\in Div _{P'}$ und somit $w\in \StDT (P')$. Insgesamt folgt
+      also für dieses $P'$ $\StDT (P) = \StDT (P')$.
     \item Dieser Punkt entspricht 1.\ bis auf die Anwendung der
       \prune{}-Funktion auf beiden Seiten des Inklusions-Symbols. Da $\prune{}$
       monoton ist, folgt dieser Punkt direkt aus dem letzten.
@@ -210,8 +210,8 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
   Mit $w=\prune (wv)$ folgt somit $w\in \ET _P \subseteq \EDT _P$. Falls in $P$
   jedoch ein mit $wv$ beschrifteter Trace ausführbar ist und kein mit $wv$
   beschrifteter Trace oder ein Präfix davon einen Fehler"=Zustand erreicht,
-  muss es ein $p_j$ in $P$ geben, dass durch einen $wv$-Trace in $P$ erreicht
-  wird und das mit einem $p'_j$ in der Relation $\mathcal{R}$ steht, dass in
+  muss es ein $p_j$ in $P$ geben, das durch einen $wv$-Trace in $P$ erreicht
+  wird und das mit einem $p'_j$ in der Relation $\mathcal{R}$ steht, das in
   dem unendlichen Ablauf von $P'$ nach der letzten sichtbaren Aktion auftritt.
   $p'_j$ ist also ein divergenter Zustand für $P'$ für den es einen unendlichen
   Ablauf gibt, der nur $\tau$-Transitionen enthält und es gilt $p'_j\mathcal{R}
@@ -264,12 +264,12 @@ Verlauf nur innerhalb der größeren Trace-Menge \EDT{} relevant sein.
 
 Es fällt auf, dass für Proposition~\ref{DivSemProp}.1 nicht die Gleichheit
 sondern nur eine Inklusions-Richtung behauptet und bewiesen wird. Dies liegt
-daran, dass die andere Richtung im allgemeinen nicht gilt. Die Menge \DT{} ist
+daran, dass die andere Richtung im Allgemeinen nicht gilt. Die Menge \DT{} ist
 zwar unter \cont{} abgeschlossen, jedoch werden darin keine Fehler"=Traces
 betrachtet. Es kann also das bereits erwähnte Problem auftreten, dass die
-Spezifikation einen Fehler besitzt und die as"=Implementierung kann sobald sie
-einen Zustand mit diesem Fehler"=Zustand in Relation setzt beliebiges tun kann.
-Ein Gegenbeispiel, in dem dieses Problem verdeutliche wird, ist in
+Spezifikation einen Fehler besitzt und die as"=Implementierung, sobald sie
+einen Zustand mit diesem Fehler"=Zustand in Relation setzt, beliebiges tun
+kann. Ein Gegenbeispiel, in dem dieses Problem verdeutliche wird, ist in
 Abbildung~\ref{DTAsimpInDTGegenBsp} dargestellt. Eine
 as"=Verfeinerungs"=Relation zwischen $P'$ und $P$ ist $\mathcal{R} =
 \{(p'_0,p_0)\}$. Die Definition~\ref{SimDef} stellt an $\mathcal{R}$ keine
@@ -296,7 +296,7 @@ Menge $\Sigma ^*$.
   \end{center}
 \end{figure}
 
-Aus der so eben bewiesenen Proposition über die Gleichheit der betrachteten
+Aus der soeben bewiesenen Proposition über die Gleichheit der betrachteten
 Traces, lässt sich wie in den letzten beiden Kapiteln eine Aussage über die
 lokale Erreichbarkeit der fehlerhaften Zustände in einer Spezifikation und den
 zugehörigen as"=Implementierungen treffen.
@@ -343,10 +343,10 @@ zugehörigen as"=Implementierungen treffen.
 
 Die Relation \DRel{} ist keine Einschränkung von \ERel{} so wie \QRel{}. Diese
 Tatsache wird später im Satz~\ref{ZusammenhDivSatz} durch die Beispiele, wieso
-diese Relationen unvergleichbar sind noch einmal verdeutlicht. Es können
+diese Relationen unvergleichbar sind, noch einmal verdeutlicht. Es können
 Systeme mit einem Fehler nicht von Systemen mit Divergenz unterschieden werden.
 Da die Divergenz-Test zwischen diesen \glqq Fehler"=Arten\grqq{} auch keine
-Unterscheidung machen, muss eine sinnvolle Relation dies Eigenschaft auch
+Unterscheidung machen, muss eine sinnvolle Relation diese Eigenschaft auch
 übernehmen, so wie \DRel{} dies tut.
 
 \begin{Satz}[Kommunikationsfehler-, Stillstands- und Divergenz-Semantik für
@@ -363,9 +363,9 @@ Unterscheidung machen, muss eine sinnvolle Relation dies Eigenschaft auch
 
 Man könnte diesen Satz analog zu den Sätzen~\ref{KommFehlerSemSatz}
 und~\ref{StilleSemSatz} durch die Mengen-Inklusionen in beide Richtungen
-beweisen. Alternativ kann man jedoch alle beteiligen \MEIO{}s Normieren, so
+beweisen. Alternativ kann man jedoch alle beteiligen \MEIO{}s normieren, so
 dass sie divergenz-trivial sind. Divergenz-trivial ist ein \MEIO{},der keinen
-divergenten Zustand mehr enthält, der nicht auch in der Menge der
+divergenten Zustand mehr enthält, der nicht zugleich in der Menge der
 Fehler"=Zustände enthalten ist. Für einen \MEIO{}, für den $Div\subseteq E$,
 gilt $\EDT = \ET$, $\QDT = \QET$ und $\EDL = \EL$. Es wäre also der
 Satz~\ref{StilleSemSatz} anwendbar für die Traces der Parallelkomposition. Dann
@@ -377,9 +377,9 @@ normierten \MEIO{}s die Normierung der Parallelkomposition ihrer unnormierten
   \label{DivNormDef}
   Ein \MEIO{} $P$ ist \emph{divergenz"=trivial}, wenn $Div _P \subseteq E_P$
   gilt.\\
-  Die divergenz-trivial Form von $P$ ist ein \MEIO{} $\DF (P)$, das man aus $P$
-  erhält, in dem man die Menge der Fehler"=Zustände $E_{\DF (P)}$ als die Menge
-  $E_P \cup Div _P$ definiert.
+  Die divergenz-triviale Form von $P$ ist ein \MEIO{} $\DF (P)$, das man aus
+  $P$ erhält, in dem man die Menge der Fehler"=Zustände $E_{\DF (P)}$ als die
+  Menge $E_P \cup Div _P$ definiert.
 \end{Def}
 
 Die Menge $\MIT _P$, $\StQT _P$ und $L_P$ eines \MEIO{} $P$ bleiben durch die
@@ -399,10 +399,10 @@ zwischen den Traces des \MEIO{}s $P$ und seiner divergenz-trivialen Form $\DF
   bezüglich der Relation \DRel{}.
 \end{Prop}
 
-Wie schon oben erwähnt, sollen die Trace aus Satz~\ref{DivSemSatz} auf die des
-Satz~\ref{StilleSemSatz} zurück geführt werden durch die Normierung Systeme in
-divergenz-triviale Form. Dazu müssen wir zeigen, dass die Relationen \DRel{}
-und \QRel{} für divergenz-triviale Systeme übereinstimmen.
+Wie schon oben erwähnt, sollen die Traces aus Satz~\ref{DivSemSatz} auf die des
+Satz~\ref{StilleSemSatz} zurück geführt werden durch die Normierung von Systeme
+auf eine divergenz-triviale Form. Dazu müssen wir zeigen, dass die Relationen
+\DRel{} und \QRel{} für divergenz-triviale Systeme übereinstimmen.
 
 \begin{Lem}[Relationen unter Divergenz-Trivialität]
   \label{QDRelDivNormLem}
@@ -459,8 +459,8 @@ und \QRel{} für divergenz-triviale Systeme übereinstimmen.
 
   $E_{\DF (P_1\|P_2)} \subseteq E_{\DF (P_1)\| \DF (P_2)}$:\\
   Sei $(p_1,p_2)$ ein beliebiger Fehler"=Zustand aus der Menge $E_{\DF
-  (P_1\|P_2)}$. Dieser Zustand kann in $P_{12}$ ein geerbter, neuer Fehler oder
-  divergenter Zustand sein.
+  (P_1\|P_2)}$. Dieser Zustand kann in $P_{12}$ ein geerbter, ein neuer Fehler
+  oder ein divergenter Zustand sein.
   \begin{itemize}
     \item Fall 1 ($(p_1,p_2)$ ist ein geerbter Fehler in $P_{12}$): \OBdA{} ist
       $p_1$ in $E_1$ enthalten. Mit der Konstruktion aus
@@ -513,9 +513,8 @@ und \QRel{} für divergenz-triviale Systeme übereinstimmen.
   dass er eine divergenz-triviale Form besitzt und das Ergebnis der Normierung
   äquivalent zu $P$ ist bezüglich der Relation \DRel{}. Für einen \MEIO{} $P$
   in divergenz-trivialer Form gilt jedoch $\EDT _P = \ET _P$, $\QDT _P = \QET
-  _P$ und $\EDL _P = \EL _P$. Somit lassen sich die hier zu beweisende Aussagen
-  auf die des Satzes~\ref{StilleSemSatz} reduzieren.
-
+  _P$ und $\EDL _P = \EL _P$. Somit lassen sich die hier zu beweisenden
+  Aussagen auf die des Satzes~\ref{StilleSemSatz} reduzieren.
   \begin{enumerate}
     \item $\begin{aligned}[t]
         \EDT _{12}&\overset{\ref{DivNormProp}}{=} \EDT _{\DF (P_{12})}\\
@@ -575,13 +574,13 @@ in~\ref{DivTestDef} vor. Es muss in diesem Lemma eine Veränderung zu den
 analogen Lemmata aus den vorangegangenen Kapitel vorgenommen werden. Die
 Einschränkung der Tests $T$ auf Partner, kann nicht mehr beibehalten werden, da
 die Strategie zur Vermeidung von Stille im Beweis aus dem letzten Kapitel hier
-zu Divergenz führen würde. Somit wird für die Stillstands-Vermeidung in
+zu Divergenz führen würde. Somit werden für die Stillstands-Vermeidung in
 diesem Kapitel Aktionen außerhalb der Menge \Synch{} benötigt, die nicht die
-interne Aktionen $\tau$ sind. Jedoch müssen trotzdem nicht alle Tests $T$
+interne Aktion $\tau$ sind. Jedoch müssen trotzdem nicht alle Tests $T$
 betrachtet werden. Es kann eine Einschränkung gemacht werden, so dass $T$ fast
-ein Partner ist. Zur Vereinfachung von umständlichen Formulierungen im
-Folgenden wird hierfür nun ein neuer Begriff definiert. Der jedoch bereits als
-$\omega$-Partner in z.B.~\cite{Schinko2016BA} analog für \EIO{}s verwendet und
+ein Partner ist. Zur Vereinfachung von umständlichen wird Formulierungen im
+Folgenden hierfür nun ein neuer Begriff definiert, der jedoch bereits als
+$\omega$-Partner z.B.\ in~\cite{Schinko2016BA} analog für \EIO{}s verwendet und
 definiert wurde.
 
 \begin{Def}[{\boldmath$\chi$}-Partner]
@@ -638,7 +637,7 @@ enthalten ist.
   \begin{itemize}
     \item Fall 1 ($w=\varepsilon$): Es handelt sich um einen lokal erreichbaren
       Fehler oder um lokale erreichbare Divergenz in $P'_1$. Für $T$ wird ein
-      Transitionssysteme verwendet, das nur aus dem Startzustand und einer
+      Transitionssystem verwendet, das nur aus dem Startzustand und einer
       must"=Schleife für alle Inputs $x\in I_T$ und einer must"=Schleife für
       $\chi$ besteht. Somit kann $P'_1$ im Prinzip die gleichen Fehler- und
       Divergenz-Zustände wie $P'_1\|T$ lokal erreichen. $P_1$ erfüllt den Test
@@ -774,10 +773,10 @@ enthalten ist.
       \end{itemize}
   \end{itemize}
 
-  Als nächstes wird nun der zweite Beweispunkt gezeigt, d.h.\ die Inklusion
+  Als Nächstes wird nun der zweite Beweispunkt gezeigt, d.h.\ die Inklusion
   $\QDT _1\subseteq\QDT _2$. Diese Inklusion kann jedoch noch, analog zum
   Beweis der Inklusion der Fehler-gefluteten Sprache aus dem Fehler-Kapitel,
-  weiter eingeschränkt werden. Da bereits bekannt ist, das $\EDT _1 \subseteq
+  weiter eingeschränkt werden. Da bereits bekannt ist, dass $\EDT _1 \subseteq
   \EDT _2$ gilt, muss nur noch $\StQT _1\backslash \EDT _1\subseteq\QDT _2$
   gezeigt werden.\\
   Es wird ein $w\in\StQT _1\backslash\EDT _1$ gewählt und gezeigt, dass dieses
@@ -837,7 +836,7 @@ enthalten ist.
   Allgemein ist der Zustand $p_n$ aus $T$ der einzige stille Zustand in $T$. Es
   gilt wegen des ersten Punktes von Lemma~\ref{StilleZustLem}, dass auch in der
   Parallelkomposition $P'_1\|T$ ein stiller Zustand mit $w$ erreicht wird. Da
-  es sich bei allen in $w$ befindlichen Aktionen um synchronisieren Aktionen
+  es sich bei allen in $w$ befindlichen Aktionen um synchronisiere Aktionen
   handelt und $I_T\cap I=\emptyset$ gilt, folgt $w\in O_{P'_1\|T}^*$ und $w\in
   \StQT (P'_1\|T)$. Es kann also in der Parallelkomposition durch $w$ ein
   stiller Zustand lokal erreicht werden. Da ein stiller Zustand in $P'_1\|T$
@@ -889,7 +888,7 @@ enthalten ist.
       Lemmata~\ref{KommTestVerfeinLem} und~\ref{StilleTestVerfeinLem} gilt auch
       hier, dass $\varepsilon$ immer in $\EDL _2$ enthalten ist.
     \item Fall 2 ($w = x_1\dots x_n$ mit $n \geq 1$): Die Konstruktion des
-      $\chi$-Partner Tests $T$ weicht nur durch die $\chi$-Transitionen vom
+      $\chi$-Partners $T$ weicht nur durch die $\chi$-Transitionen vom
       Transitionssystem aus dem Beweis der Inklusion der Fehler-gefluteten
       Sprache \EL{} aus Lemma~\ref{KommTestVerfeinLem} ab. Der Test $T$ ist
       dann wie folgt definiert (siehe dazu auch Abbildung~\ref{TmitEundO}):
@@ -948,7 +947,7 @@ enthalten ist.
         \item Fall 2a) \big(neuer Fehler aufgrund von $x_j\in O_T\backslash
           \{\chi\}$ und $p_{02} \lweakmay[x_1\dots x_{j-1}] p'_2
           \nmust[x_j]$\big): Es gilt $x_1\dots x_j\in\MIT _{P'_2}$ und somit
-          $w\in\EDL _{P'_2}$ Anzumerken ist, dass nur auf diesem Weg Outputs
+          $w\in\EDL _{P'_2}$. Anzumerken ist, dass nur auf diesem Weg Outputs
           von $T$ aus der Menge $\Synch (P'_2,T)$ möglich sind, deshalb gibt es
           keine anderen Outputs von $T$, die zu einem neuen Fehler führen
           könnten. Wegen~\ref{DivSemProp} gilt $w\in\EDL _2$.
@@ -981,13 +980,14 @@ enthalten ist.
   dass für alle Tests $T$ von $P_1$ bzw.\ $P_2$ $P_2\DsatAs T \Rightarrow P_1
   \DsatAs T$ gilt. Anstatt diese Aussage direkt zu beweisen, wird hier die
   äquivalente Aussage $\neg P_1\DsatAs T\Rightarrow\neg P_2\DsatAs T$ für alle
-  Test $T$ von $P_1$ und $P_2$ nachgewiesen. Sei $T$ ein beliebiger Test $T$ von
-  $P_1$, für den $\neg P_1\DsatAs T$ gilt. Für eine as"=Implementierung $P'_1$
-  von $P_1$ wird also ein Fehler-, stiller oder Divergenz-Zustand in $P'_1\|T$
-  lokal erreicht. Es muss ein $w\in O_{P'_1\|T}^*$ geben, das in der Menge
-  $\QDT _{P'_1\|T}$ enthalten ist. Ein Element der Menge $\QDT _{P'_1\|T}$ kann
-  in dieser enthalten sein, wenn es nach Definition~\ref{DivSemDef} Element
-  einer der zwei folgenden Mengen ist: $\EDT _{P'_1\|T}$ oder $\StQT _{P'_1\|T}$.
+  Tests $T$ von $P_1$ und $P_2$ nachgewiesen. Sei $T$ ein beliebiger Test $T$
+  von $P_1$, für den $\neg P_1\DsatAs T$ gilt. Für eine as"=Implementierung
+  $P'_1$ von $P_1$ wird also ein Fehler-, stiller oder Divergenz-Zustand in
+  $P'_1\|T$ lokal erreicht. Es muss ein $w\in O_{P'_1\|T}^*$ geben, das in der
+  Menge $\QDT _{P'_1\|T}$ enthalten ist. Ein Element der Menge $\QDT
+  _{P'_1\|T}$ kann in dieser enthalten sein, wenn es nach
+  Definition~\ref{DivSemDef} Element einer der zwei folgenden Mengen ist: $\EDT
+  _{P'_1\|T}$ oder $\StQT _{P'_1\|T}$.
   \begin{itemize}
     \item Fall 1 ($w\in\EDT _{P'_1\|T}$): Da $w$ nur aus Outputs besteht, muss
       auch $\varepsilon\in\EDT _{P'_1\|T}$ gelten. Mit Satz~\ref{DivSemSatz}.1
@@ -1002,7 +1002,7 @@ enthalten ist.
       und $w_T\in\EDL _T$ bzw.\ $w_T\in\EDT _T$ gilt. Mit der Voraussetzung
       $P_1 \DRel P_2$ folgt $w_1\in\EDT _2$ bzw.\ $w_1\in\EDL _2$. Wegen
       Proposition~\ref{DivSemProp} muss es ein $P'_2$ aus $\asimp (P_2)$ geben,
-      für dass $w_1\in\EDT _{P'_2}$ bzw.\ $w_1\in\EDL _{P'_2}$ gilt. In der
+      für das $w_1\in\EDT _{P'_2}$ bzw.\ $w_1\in\EDL _{P'_2}$ gilt. In der
       Parallelkomposition mit $T$ gilt also $w'\in (\EDT _{P'_2}\|\EDL _T)\cup
       (\EDL _{P'_2}\|\EDT _T)$. Da $P_1$ und $P_2$ die gleiche Signatur haben
       gilt $w'\in O _{P'_2\|T}^*$ und somit $\varepsilon\in\prune ((\EDT
@@ -1012,8 +1012,8 @@ enthalten ist.
       Spezifikation $P_2$ von $P'_2$ folgt somit also $\neg P_2\DsatAs T$.
     \item Fall 2 ($w\in\StQT _{P'_1\|T} \backslash\EDT _{P'_1\|T}$): Das Wort
       $w$ muss in $P'_1\|T$ zu einem Zustand $(p_1,p_T)$ führen, der still und
-      keine Fehler ist. Die Zustände $p_1$ und $p_T$, die in Komposition den
-      Zustand in $P_1\|P_T$ ergeben müssen nach Lemma~\ref{StilleZustLem}.2
+      kein Fehler ist. Die Zustände $p_1$ und $p_T$, die in der Komposition den
+      Zustand in $P_1\|P_T$ ergeben, müssen nach Lemma~\ref{StilleZustLem}.2
       ebenfalls still sein. Es gibt also Wörter $w_1$ und $w_T$, so dass $w_1$
       in $P'_1$ den Zustand $p_1$ und $P_T$ den Zustand $p_T$ erreicht mit
       $w\in w_1\|w_T$. $w_1$ und $w_T$ sind also in der Menge \StQT{} ihres
@@ -1036,7 +1036,7 @@ enthalten ist.
           still. Der Zustand wird durch $w_1\|w_T$ erreicht. Es gilt also
           $w\in\StQT _{P'_2\|T}$. Das $w$ besteht auch für die
           Parallelkomposition $P'_2\|T$ nur aus Outputs, da $P_1$ und $P_2$
-          nach Voraussetzung die selbe Signatur besitzen müssen. Es ist also
+          nach Voraussetzung dieselbe Signatur besitzen müssen. Es ist also
           ein stiller Zustand lokal erreichbar in $P'_2\|T$. Somit gilt auch in
           diesem Fall $\neg P_2\DsatAs T$.
       \end{itemize}
