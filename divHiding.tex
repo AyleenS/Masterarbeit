@@ -9,20 +9,20 @@ Zustand aus erreichbar war oder wenn er eine unendliche Folge von Aktionen aus
 $X\cup \{\tau\}$ ausführen konnte. Durch die zusätzlichen Divergenz"=Zustände
 vergrößern sich alle Trace-Mengen, die in der Präkongruenz \DRel{} betrachtet
 werden.\\
-Um den Zusätzlichen Aufwand der Untersuchung möglichst gering zu halten, wird
+Um den zusätzlichen Aufwand der Untersuchung möglichst gering zu halten, wird
 dieses Teilkapitel auf endliche \MEIO{}s beschränkt. Falls man unendlich große
 \MEIO{}s zulassen würde, müsste man an anderen Stellen
 Endlichkeits"=Voraussetzungen machen.\\
-Die Menge $X$ muss Teilmenge der Outputs $O$ sein, für einen endlichen \MEIO{}
-kann $X$ ebenfalls nur endlich sein. Um eine endliche Menge von Aktionen zu
-internalisieren, kann man jede Aktion einzeln aus dem entsprechend \MEIO{}
-entfernen. Der folgende Satz kann also darauf beschränkt werden, dass nur ein
-einzelnen Output verborgen werden soll. $P/o$ soll dabei für $P/\{o\}$ stehen.
-Die Menge $\EDT _{P/o}$ kann aus $\EDT _P$ konstruiert werden. Im allgemeinen
-ist die Menge $\EDT _{P/o}$ jedoch größer wie die Menge $\{w\in
+Die Menge $X$ muss eine Teilmenge der Outputs $O$ sein, für einen endlichen
+\MEIO{} kann $X$ ebenfalls nur endlich sein. Um eine endliche Menge von
+Aktionen zu internalisieren, kann man jede Aktion einzeln aus dem entsprechend
+\MEIO{} entfernen. Der folgende Satz kann also darauf beschränkt werden, dass
+nur ein einzelner Output verborgen werden soll. $P/o$ soll dabei für $P/\{o\}$
+stehen. Die Menge $\EDT _{P/o}$ kann aus $\EDT _P$ konstruiert werden. Im
+Allgemeinen ist die Menge $\EDT _{P/o}$ jedoch größer wie die Menge $\{w\in
 (\Sigma\backslash \{o\})^*\mid \exists w'\in \EDT(P): w'|_{\Sigma\backslash
 \{o\}} = w\}$, da an Zuständen, die in $P$ nicht divergent sind und von denen
-aus unendlichen Folgen von $\tau$s und $o$s mit unendlich vielen $o$s möglich
+aus unendliche Folgen von $\tau$s und $o$s mit unendlich vielen $o$s möglich
 sind, erst durch das Hiding Divergenz entsteht. Die anderen Trace-Mengen müssen
 deshalb mit der neuen \EDT{} Menge geflutet werden.
 
@@ -31,7 +31,7 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
   \label{DivHidingSatz}
   Seien $P_1$ und $P_2$ zwei endliche \MEIO{}s für die $P_1\DRel P_2$ gilt,
   dann folgt auch die Gültigkeit von $P_1/X\DRel P_2/X$. Die Relation \DRel{}
-  ist also ein Präkongruenz bezüglich $\cdot /\cdot$ für endliche \MEIO{}s. Es
+  ist also eine Präkongruenz bezüglich $\cdot /\cdot$ für endliche \MEIO{}s. Es
   gilt für die Sprachen und Traces:
   \begin{enumerate}[(i)]
     \item $L(P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in L(P):
@@ -59,7 +59,7 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
   Beide Seiten sind abgeschlossen gegenüber \prune{} und \cont{}. Somit genügt
   es ein Element $w$ aus $\StET (P/o)\cup \StDT (P/o)$ zu betrachten. Es gibt
   also einen mit $w$ beschrifteten Ablauf in $P/o$, der zu einem Zustand $p$
-  führt, der in $E_{P/o}\cup Div_{P/o}$ enthalten ist. Der selbe Zustand $p$
+  führt, der in $E_{P/o}\cup Div_{P/o}$ enthalten ist. Derselbe Zustand $p$
   kann wegen Lemma~\ref{TraceHidingLem} in $P$ durch ein $w'$ erreicht werden
   mit $w'|_{\Sigma\backslash\{o\}} = w$.\\
   Falls von $p$ aus in $P$ ein Fehler- oder Divergenz"=Zustand lokal erreichbar
@@ -78,8 +78,8 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
   (ii)  \glqq $\supseteq$\grqq{}:\\
   Für ein beliebiges $w'$ für das $w'o^n\in \EDL (P)$ für alle $n\in\mathbb{N}$
   gilt, kann unterschieden werden, ob es ein bestimmtes $m\in\mathbb{N}$ gibt,
-  sodass $w'o^m$ in $\EDT (P)$ enthalten ist oder ob $w'o^n$ für alle $n\geq 0$
-  in der Sprache von $P$ enthalten ist.
+  so dass $w'o^m$ in $\EDT (P)$ enthalten ist oder ob $w'o^n$ für alle $n\geq
+  0$ in der Sprache von $P$ enthalten ist.
   \begin{itemize}
     \item Fall 1 ($\exists m\in\mathbb{N}: w'o^m\in\EDT (P)$): Es muss ein
       Präfix $v'$ von $w'$ geben, das in $\PrET (P)\cup \PrDT (P)$ enthalten
@@ -94,7 +94,7 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
       endlicher \MEIO{} ist, muss für $n = |P|$ mindestens ein Zustand entlang
       des Ablaufes von $o^n$, der nach $w'$ ausführbar ist, doppelt auftauchen.
       Der Zustand, der durch $w'$ in $P$ erreicht ist, ist nach dem
-      internalisieren von $o$ in $P/o$ divergent. Dieser Zustand wird in $P/o$
+      Internalisieren von $o$ in $P/o$ divergent. Dieser Zustand wird in $P/o$
       durch $w'|_{\Sigma\backslash\{o\}}$ erreicht, wegen
       Lemma~\ref{TraceHidingLem}. Es gilt also $w'|_{\Sigma\backslash\{o\}} \in
       \EDT (P/o)$.
@@ -113,8 +113,8 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
   betrachtet werden. Sei $w'$ ein beliebiges Element aus $\EDL _P$. Nach
   Definition kann $w'\in L_P$ oder $w'\in\EDT _P$ gelten. Für $w'\in L_P$ folgt
   mit (i) bereits $w = w'|_{\Sigma\backslash \{o\}}\in L_{P/o}\subseteq\EDL
-  _{P/o}$. Es wird im folgenden also davon ausgegangen, dass das $w'$ in $\EDT
-  _P$ enthalten ist. Es gibt also ein Präfix $v'$ von $w'$, dass in $\PrET_P
+  _{P/o}$. Es wird im Folgenden also davon ausgegangen, dass das $w'$ in $\EDT
+  _P$ enthalten ist. Es gibt also ein Präfix $v'$ von $w'$, das in $\PrET_P
   \cup \PrDT _P$ enthalten ist. Mit einer analogen Begründung wie in (ii) Fall
   1, folgt daraus $w'|_{\Sigma\backslash\{o\}} \in \EDT _{P/o} \subseteq \EDL
   _{P/o}$.
@@ -128,19 +128,19 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
   Outputs, die man in ihnen verbergen kann. Die Menge $X$ muss also endlich
   sein. Für jedes Element $o$ aus $X$ kann mit den Punkten (ii) bis (v) aus
   $P_1\DRel P_2$ gefolgert werden, dass auch $P_1/o\DRel P_2/o$ gilt. In dem
-  man immer ein weiteren Output internalisiert. Am Ende folgt auch $P_1/X\DRel
+  man immer ein weiteren Output internalisiert, kann am Ende auch $P_1/X\DRel
   P_2/X$ aus der Voraussetzungen $P_1\DRel P_2$ für endliche \MEIO{} $P_1$ und
-  $P_2$.\\
+  $P_2$ gefolgert werden.\\
   Somit bleibt die Relation \DRel{} unter Anwendung des Hiding-Operators
   erhalten und ist somit bezüglich diesem eine Präkongruenz.
 \end{proof}
 
 Die Parallelkomposition mit Internalisierung ist auf Basis der
 Parallelkomposition $\cdot \|\cdot$ und des Hiding-Operators $\cdot /\cdot$
-in~\ref{DefParallelkompInternal} definiert. Dies beiden Operatoren sind, wie in
-Korollar~\ref{DivPraekonKor} und Satz~\ref{DivHidingSatz} nachgewiesen wurde,
-Präkongruenzen bezüglich der Relation \DRel{}. Somit ist auch $\cdot |\cdot$
-ein Präkongruenz bezüglich dieser Relation.
+in~\ref{DefParallelkompInternal} definiert. Diese beiden Operatoren sind, wie
+in Korollar~\ref{DivPraekonKor} und Satz~\ref{DivHidingSatz} nachgewiesen
+wurde, Präkongruenzen bezüglich der Relation \DRel{}. Somit ist auch $\cdot
+|\cdot$ eine Präkongruenz bezüglich dieser Relation.
 
 \begin{Kor}[Divergenz-Präkongruenz mit Internalisierung]
   Die Relation \DRel{} ist eine Präkongruenz bezüglich $\cdot |\cdot$.

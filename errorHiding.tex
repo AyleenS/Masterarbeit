@@ -23,7 +23,7 @@ Outputs gibt es einen allgemeinen Zusammenhang.
   Existenz eines $v=\alpha _1\alpha_2\dots\alpha _n\in\Sigma _{\tau}$ mit $w =
   \hat{v}$ und einen Ablauf der Form $p \may[\alpha _1]_{P/X} p_1 \may[\alpha
   _2]_{P/X} \dots p_{n-1} \may[\alpha _n]_{P/X} p'$ in $P/X$. Dieser Ablauf ist
-  durch das Internalisieren von Output aus einem Ablauf aus $P$ entstanden, da
+  durch das Internalisieren von Outputs aus einem Ablauf aus $P$ entstanden, da
   nach Definition~\ref{HidingDef} die Transitionen aus $P/X$ sich auf
   Transitionen aus $P$ zurückführen lassen müssen. In dem man also einige der
   Aktionen $\alpha_j$, die interne Aktionen sind, durch Outputs aus $X$ ersetzt
@@ -32,7 +32,7 @@ Outputs gibt es einen allgemeinen Zusammenhang.
   ist.
 
   \glqq $\Leftarrow$\grqq{}:\\
-  Analog zur anderen Richtung gibt es auch hier ein entsprechender Ablaufs in
+  Analog zur anderen Richtung gibt es auch hier einen entsprechenden Ablauf in
   $P$ von $p$ nach $p'$, dessen sichtbare Beschriftung in diesem Fall $w'$ ist.
   Es gibt also ein $v=\alpha _1\alpha_2\dots\alpha _n\in\Sigma _{\tau}$ mit $w'
   = \hat{v}$ und einen Ablauf der Form $p \may[\alpha _1]_P p_1 \may[\alpha
@@ -72,13 +72,13 @@ Dieses Lemma kann nun dazu verwendet werden, zu zeigen, dass die Relation
       lautet also $w=w'|_{\Sigma\backslash X}\in L_{P/X}$.\\
       Für ein Wort $w$ aus der Sprache des Transitionssystems $P/X$ folgt
       ebenfalls mit Lemma~\ref{TraceHidingLem}, dass es ein $w'$ mit
-      $w'|_{\Sigma\backslash X} = w$ gibt, dass ein Wort aus $L_P$ ist.
+      $w'|_{\Sigma\backslash X} = w$ gibt, das ein Wort aus $L_P$ ist.
     \item Die \ET{}-Mengen sind unter \cont{} abgeschlossen. Es genügt also ein
       präfix-minimales $w'$ aus $\ET _{P}$ zu betrachten. Das präfix-minimale
       $w'$ kann ein Element aus $\PrET _P$ oder $\MIT _P$ sein.
       \begin{itemize}
         \item Fall 1 ($w'\in\PrET _P$): Da $w'$ in $P$ ausführbar ist, gibt es
-          einen Trace für das $w'$, der durch einen Trace $v \in O_P^*$ ergänzt
+          einen Trace für $w'$, der durch einen Trace $v \in O_P^*$ ergänzt
           werden kann, so dass durch $w'v$ ein Zustand aus der Menge $E_P$
           erreicht wird. Der Trace hat also die Form $p_0 \weakmay[w'v]_P p\in
           E_P$. Auf diesen Trace kann Lemma~\ref{TraceHidingLem} angewendet
@@ -108,7 +108,7 @@ Dieses Lemma kann nun dazu verwendet werden, zu zeigen, dass die Relation
       ob $w\in\PrET _{P/X}$ oder $w\in\MIT _{P/X}$ gilt.
       \begin{itemize}
         \item Fall I \big($w\in\PrET _{P/X}$\big): Analog zu Fall 1 gibt es
-          eine Verlängerung $v\in O_{P/X}^*$, sodass $wv$ in $P/X$ zu einem
+          eine Verlängerung $v\in O_{P/X}^*$, so dass $wv$ in $P/X$ zu einem
           Fehler-Zustand führt. Es gibt also ein $p$, so dass $p_0 \weakmay[wv]
           p\in E_{P/X}$ gilt. Mit Lemma~\ref{TraceHidingLem} kann begründet
           werden, dass es $w'$ und $v'$ gibt mit $w'|_{\Sigma\backslash X} = w$
