@@ -51,7 +51,7 @@ sich einen Begriff für die Traces zu divergenten Zuständen bilden. Im letzten
 Absatz wurde bereits festgestellt, dass Divergenz wohl als ähnlich \glqq
 schlimmes\grqq{} Fehlverhalten anzusehen ist wie Fehler. Da das Divergieren
 eines Systems nicht mehr verhinderbar ist, sobald ein divergenter Zustand lokal
-erreichbar ist, kommt für die Divergenz-Traces wieder die \prune{} und
+erreichbar ist, kommt für die Divergenz-Traces wieder die \prune{}- und
 letztlich auch die \cont{}-Funktion zum Einsatz. Ein System, das unendliche
 viele $\tau$s ausführen kann, ist von außen nicht von so einem System zu
 unterscheiden, das einen Fehler-Zustand erreicht. Somit wird später semantisch
@@ -80,10 +80,10 @@ verläuft analog zu den Propositionen der vorangegangenen Kapitel.
   \label{DivTraceProp}
   Sei $P$ ein \MEIO{}.
   \begin{enumerate}
-    \item Für die strikten Divergenz-Traces gilt: $\StDT (P) \subseteq
+    \item Für die strikten Divergenz-Traces gilt $\StDT (P) \subseteq
       \underset{P'\in\asimp (P)}{\bigcup} \StDT (P')$.
-    \item Für die gekürzten Divergenz-Traces von $P$ gilt:
-      $\PrDT (P) \subseteq \underset{P'\in\asimp (P)}{\bigcup} \PrDT (P')$.
+    \item Für die gekürzten Divergenz-Traces von $P$ gilt $\PrDT (P) \subseteq
+      \underset{P'\in\asimp (P)}{\bigcup} \PrDT (P')$.
   \end{enumerate}
 \end{Prop}
 \begin{proof}\mbox{}
@@ -110,8 +110,8 @@ verläuft analog zu den Propositionen der vorangegangenen Kapitel.
       Ablaufes wird das Wort $w$ ausgeführt, danach werden nur noch
       $\tau$-Transitionen ausgeführt. Es gilt also $\exists w' \in \Sigma
       _{\tau}^*, \exists \alpha _1, \alpha _2, \dots , \alpha _n, \exists p_1,
-      p_2, \dots , p_n: \hat{w'} = w \land w' = \alpha _1\alpha _2\dots\alpha
-      _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
+      p_2, \dots , p_n: \widehat{w'} = w \land w' = \alpha _1\alpha _2\dots
+      \alpha _n \land p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots p_{n-1}
       \may[\alpha _n]_P p_n \in Div _P$. Nach $p_n$ kann der Trace durch eine
       unendliche $\tau$-Folge fortgesetzt werden. Die Identitäts"=Relation
       $\mathcal{R}$ setzt die Zustände des Traces mit den analogen Zuständen
@@ -364,7 +364,7 @@ Unterscheidung machen, muss eine sinnvolle Relation diese Eigenschaft auch
 Man könnte diesen Satz analog zu den Sätzen~\ref{KommFehlerSemSatz}
 und~\ref{StilleSemSatz} durch die Mengen-Inklusionen in beide Richtungen
 beweisen. Alternativ kann man jedoch alle beteiligen \MEIO{}s normieren, so
-dass sie divergenz-trivial sind. Divergenz-trivial ist ein \MEIO{},der keinen
+dass sie divergenz-trivial sind. Divergenz-trivial ist ein \MEIO{}, der keinen
 divergenten Zustand mehr enthält, der nicht zugleich in der Menge der
 Fehler"=Zustände enthalten ist. Für einen \MEIO{}, für den $Div\subseteq E$,
 gilt $\EDT = \ET$, $\QDT = \QET$ und $\EDL = \EL$. Es wäre also der
@@ -556,11 +556,11 @@ auf eine divergenz-triviale Form. Dazu müssen wir zeigen, dass die Relationen
   \end{enumerate}
 \end{proof}
 
-Analog wie in den beiden vorangegangenen Kapitel, ergibt sich aus diesem Satz
-als direkte Folgerung, dass es sich bei der Relation \DRel{} um eine
-Präkongruenz handelt. Der Beweis dafür ist analog zu den Beweisen der
-Korollare~\ref{KommPraekonKor} und~\ref{StillePraekonKor} und soll deshalb hier
-nicht wiederholt werden.
+Analog wie in den beiden vorangegangenen Kapitel, ergibt sich aus
+Satz~\ref{DivSemSatz} als direkte Folgerung, dass es sich bei der Relation
+\DRel{} um eine Präkongruenz handelt. Der Beweis dafür ist analog zu den
+Beweisen der Korollare~\ref{KommPraekonKor} und~\ref{StillePraekonKor} und soll
+deshalb hier nicht wiederholt werden.
 
 \begin{Kor}[Divergenz-Präkongruenz]
   \label{DivPraekonKor}
@@ -569,17 +569,17 @@ nicht wiederholt werden.
 
 Im nächsten Lemma soll eine Verfeinerung bezüglich guter Kommunikation
 betrachtet werden. Die Vorgaben für gute Kommunikation gibt hierbei die
-Definition der Tests und die daraus resultierende Verfeinerung
-in~\ref{DivTestDef} vor. Es muss in diesem Lemma eine Veränderung zu den
-analogen Lemmata aus den vorangegangenen Kapitel vorgenommen werden. Die
+Definition der Tests und die daraus resultierende Verfeinerung in
+Definition~\ref{DivTestDef} vor. Es muss in diesem Lemma eine Veränderung zu
+den analogen Lemmata aus den vorangegangenen Kapitel vorgenommen werden. Die
 Einschränkung der Tests $T$ auf Partner, kann nicht mehr beibehalten werden, da
 die Strategie zur Vermeidung von Stille im Beweis aus dem letzten Kapitel hier
 zu Divergenz führen würde. Somit werden für die Stillstands-Vermeidung in
 diesem Kapitel Aktionen außerhalb der Menge \Synch{} benötigt, die nicht die
 interne Aktion $\tau$ sind. Jedoch müssen trotzdem nicht alle Tests $T$
 betrachtet werden. Es kann eine Einschränkung gemacht werden, so dass $T$ fast
-ein Partner ist. Zur Vereinfachung von umständlichen wird Formulierungen im
-Folgenden hierfür nun ein neuer Begriff definiert, der jedoch bereits als
+ein Partner ist. Zur Vereinfachung von umständlichen Formulierungen im
+Folgenden wird hierfür nun ein neuer Begriff definiert, der jedoch bereits als
 $\omega$-Partner z.B.\ in~\cite{Schinko2016BA} analog für \EIO{}s verwendet und
 definiert wurde.
 
@@ -623,8 +623,8 @@ enthalten ist.
   Fehler, Stille oder Divergenz sein. Analog verhält es sich, wenn in der
   Parallelkomposition einer as"=Implementierung von $P_1$ mit einem Test $T$
   ein Divergenz- oder stiller Zustand lokal erreichbar ist. Es kann nur
-  geschlossen werden, dass $P_2$ den Test $T$ nicht erfüllen darf. Die nicht
-  Erfüllung kann jedoch auf einem beliebigen Fehlverhalten des \MEIO{}s
+  geschlossen werden, dass $P_2$ den Test $T$ nicht as"=erfüllen darf. Die
+  nicht Erfüllung kann jedoch auf einem beliebigen Fehlverhalten des \MEIO{}s
   basieren.
 
   Als Erstes wird der erste Beweispunkt gezeigt, also die Inklusion $\EDT
@@ -651,8 +651,8 @@ enthalten ist.
       neuer Fehler entstehen kann, muss der fehlerhafte Zustand von $P'_2$
       geerbt sein. Somit muss in $P'_2$ ein Fehler- oder Divergenz-Zustand
       lokal erreichbar sein. Da $\EDT (P) =\ET (P)\cup\DT (P)$ gilt, folgt
-      $\varepsilon = w\in \EDT _{P'_2}$ und mit~\ref{DivSemProp}.2 $w\in \EDT
-      _2$.
+      $\varepsilon = w\in \EDT _{P'_2}$ und mit Proposition~\ref{DivSemProp}.2
+      $w\in \EDT _2$.
     \item Fall 2 ($w=x_1\dots x_n x_{n+1}\in\Sigma ^+$ mit $n\geq 0$ und
       $x_{n+1}\in I$): Es wird der folgende $\chi$-Partner $T$ betrachtet
       (siehe auch Abbildung~\ref{TohneEmitO}):
@@ -736,40 +736,40 @@ enthalten ist.
           nicht mit einem passenden Input aus $P'_2$ synchronisiert werden
           kann. Durch die Konstruktion von $T$ ist in $p_{n+1}$ kein Output
           außer $\chi$ möglich. Ein neuer Fehler muss also die Form
-          $(p',p_j)$ haben mit $j\leq n$, $p'\nmust[x_{i+1}]_{P'_2}$ und
-          $x_{i+1}\in O_T\backslash\{\chi\}$. Durch Projektion erhält man
-          dann $p_{02} \lweakmay[x_1\dots x_i]_{P'_2} p'
-          \nmust[x_{i+1}]_{P'_2}$ und damit gilt $x_1\dots x_{i+1}\in\MIT
+          $(p',p_j)$ haben mit $j\leq n$, $p'\nmust[x_{j+1}]_{P'_2}$ und
+          $x_{j+1}\in O_T\backslash\{\chi\}$. Durch Projektion erhält man
+          dann $p_{02} \lweakmay[x_1\dots x_j]_{P'_2} p'
+          \nmust[x_{j+1}]_{P'_2}$ und damit gilt $x_1\dots x_{j+1}\in\MIT
           _{P'_2}\subseteq \ET _{P'_2}$. Somit ist ein Präfix von $w$ in $\EDT
           _{P'_2}$ enthalten. Wegen des Abschlusses unter \cont{} und wegen
           Proposition~\ref{DivSemProp}.2 gilt $w\in\EDT _2$.
         \item Fall 2ii) ($\varepsilon\in\ET (P'_2\|T)$ wegen geerbtem Fehler):
-          $T$ hat $x_1\dots x_iv$ ausgeführt mit $v\in (O\cup\{\chi\})^*$ und
-          ebenso hat $P'_2$ den Weg $x_1\dots x_iv|_{\Sigma _2}$ ausgeführt.
+          $T$ hat $x_1\dots x_j v$ ausgeführt mit $v\in (O\cup\{\chi\})^*$ und
+          ebenso hat $P'_2$ den Weg $x_1\dots x_j v|_{\Sigma _2}$ ausgeführt.
           Durch dies hat $P'_2$ einen Zustand aus $E_{P'_2}$ erreicht, da von
           $T$ kein Fehler geerbt werden kann. Es gilt dann $\prune (x_1\dots
-          x_iv| _{\Sigma _2})=\prune (x_1\dots x_i)\in\PrET _{P'_2}\subseteq
-          \ET _{P'_2}$. Da $x_1\dots x_i$ ein Präfix von $w$ ist, führt in
+          x_j v| _{\Sigma _2})=\prune (x_1\dots x_j)\in\PrET _{P'_2}\subseteq
+          \ET _{P'_2}$. Da $x_1\dots x_j$ ein Präfix von $w$ ist, führt in
           diesem Fall eine Verlängerung um lokale Aktionen von einem Präfix von
           $w$ zu einem Fehler-Zustand. Da \ET{} der Menge aller Verlängerungen
-          von gekürzten Fehler-Traces entspricht, ist $x_1\dots x_i$ in $\EDT
-          _{P'_2}$ enthalten und mit~\ref{DivSemProp}.2 ist ein Präfix von
-          $w$ in $\EDT _2$ enthalten.
+          von gekürzten Fehler-Traces entspricht, ist $x_1\dots x_j$ in $\EDT
+          _{P'_2}$ enthalten und mit Proposition~\ref{DivSemProp}.2 ist ein
+          Präfix von $w$ in $\EDT _2$ enthalten.
         \item Fall 2iii) ($\varepsilon\in\DT (P'_2\|T)$): Da $T$ keine
           $\tau$-Transitionen besitzt, kann das Divergenz"=Verhalten nur von
-          $P'_2$ geerbt sein. $T$ hat $x_1\dots x_iv$ ausgeführt mit $v\in (O
+          $P'_2$ geerbt sein. $T$ hat $x_1\dots x_j v$ ausgeführt mit $v\in (O
           \cup \{\chi\})^*$ und ebenso hat $P'_2$ den Weg $x_1\dots
-          x_iv|_{\Sigma _2}$ ausgeführt. Durch dies hat $P'_2$ einen Zustand
+          x_j v|_{\Sigma _2}$ ausgeführt. Durch dies hat $P'_2$ einen Zustand
           aus $Div_{P'_2}$ erreicht. Es gilt dann $\prune (x_1\dots
-          x_iv|_{\Sigma _2}) = \prune (x_1\dots x_i)\in\PrDT _{P'_2} \subseteq
+          x_j v|_{\Sigma _2}) = \prune (x_1\dots x_j)\in\PrDT _{P'_2} \subseteq
           \DT _{P'_2}$, da $v|_{\Sigma _2}$ in $O^*$ enthalten ist. Da
-          $x_1\dots x_i$ ein Präfix von $w$ ist, führt in diesem Fall eine
+          $x_1\dots x_j$ ein Präfix von $w$ ist, führt in diesem Fall eine
           Verlängerung um lokale Aktionen von einem Präfix von $w$ zu einem
           divergenten Zustand. Da \DT{} die Menge aller Verlängerungen von
           gekürzten Divergenz-Traces ist und $\DT _{P'_2}\subseteq \EDT
-          _{P'_2}$ gilt, ist in diesem Fall das Präfix $x_1\dots x_i$ von $w$
-          in $\EDT _{P'_2}$ enthalten. Mit~\ref{DivSemProp}.2 folgt daraus,
-          dass ein Präfix von $w$ in $\EDT _2$ enthalten ist.
+          _{P'_2}$ gilt, ist in diesem Fall das Präfix $x_1\dots x_j$ von $w$
+          in $\EDT _{P'_2}$ enthalten. Mit Proposition~\ref{DivSemProp}.2 folgt
+          daraus, dass ein Präfix von $w$ in $\EDT _2$ enthalten ist.
       \end{itemize}
   \end{itemize}
 
@@ -855,18 +855,19 @@ enthalten ist.
       Synchronisations"=Probleme auftreten können und wegen den Fällen 2i) und
       2ii) des ersten Punktes dieses Beweises ist ein Präfix von $w$ in $\EDT
       _{P'_2}$ enthalten. Da die Menge \EDT{} unter \cont{} abgeschlossen ist
-      und~\ref{DivSemProp}.2 gilt, folgt $w\in\EDT _2\subseteq\QDT _2$.
+      und Proposition~\ref{DivSemProp}.2 gilt, folgt $w\in\EDT _2\subseteq\QDT
+      _2$.
     \item Fall b) ($\varepsilon \in \DT (P'_2\|T)\backslash \ET(P'_2\|T)$): Es
       handelt sich bei dem lokal erreichbaren fehlerhaften Zustand um
       Divergenz. Die Divergenz muss von $P'_2$ geerbt sein, da $T$ keine
       Möglichkeit für eine unendliche $\tau$-Folge hat. Es gilt also, dass
       bereits in $P'_2$ ein Präfix von $w$ in $\EDT _{P'_2}$ enthalten ist,
       wegen Fall 2iii) des Beweises des ersten Punktes dieses Lemmas. Mit dem
-      Abschluss unter \cont{} und~\ref{DivSemProp}.2 folgt, dass auch $w\in
-      \EDT _2\subseteq\QDT _2$ gilt.
-    \item Fall c) (stiller Zustand lokal erreichbar in $P'_2\|T$ und $\varepsilon
-      \notin \EDT (P'_2\|T)$): Da in $T$ nur durch $w$ ein stiller Zustand
-      erreicht werden kann, muss es sich bei dem lokal erreichbaren
+      Abschluss unter \cont{} und Proposition~\ref{DivSemProp}.2 folgt, dass
+      auch $w\in \EDT _2\subseteq\QDT _2$ gilt.
+    \item Fall c) (stiller Zustand lokal erreichbar in $P'_2\|T$ und
+      $\varepsilon \notin \EDT (P'_2\|T)$): Da in $T$ nur durch $w$ ein stiller
+      Zustand erreicht werden kann, muss es sich bei dem lokal erreichbaren
       stillen Zustand in $P'_2\|T$ um einen handeln, der mit $w$ erreicht werden
       kann. Mit dem zweiten Punkt von Lemma~\ref{StilleZustLem} kann gefolgert
       werden, dass auch in $P'_2$ ein stiller Zustand mit $w$ erreichbar sein
@@ -881,7 +882,7 @@ enthalten ist.
   \EDT _1 \subseteq \EDL _2$ zu zeigen. Es wird also für ein beliebig gewähltes
   $w\in L_1\backslash \EDT _1$ gezeigt, dass es auch in $\EDL _2$ enthalten
   ist. Es gilt auch $w\in L _{P'_1}\backslash \EDL _{P'_1}$ für eine
-  as"=Implementierung $P'_1$ von $P_1$, wegen~\ref{LImpProp}
+  as"=Implementierung $P'_1$ von $P_1$, wegen der Propositionen~\ref{LImpProp}
   und~\ref{DivSemProp}.
   \begin{itemize}
     \item Fall 1 ($w = \varepsilon$): Analog zu den
@@ -950,11 +951,11 @@ enthalten ist.
           $w\in\EDL _{P'_2}$. Anzumerken ist, dass nur auf diesem Weg Outputs
           von $T$ aus der Menge $\Synch (P'_2,T)$ möglich sind, deshalb gibt es
           keine anderen Outputs von $T$, die zu einem neuen Fehler führen
-          könnten. Wegen~\ref{DivSemProp} gilt $w\in\EDL _2$.
+          könnten. Wegen Proposition~\ref{DivSemProp} gilt $w\in\EDL _2$.
       \end{itemize}
       Die restlichen Fälle sind analog zu Lemma~\ref{KommTestVerfeinLem}
-      möglich. Somit gilt für alle Fälle (2a) bis 2d)), dass $w$ in $\EDL _2$
-      enthalten ist, da $\EL _2\subseteq \EDL _2$ gilt.
+      möglich. Somit gilt für alle Fälle \big(2a) bis 2d)\big), dass $w$ in
+      $\EDL _2$ enthalten ist, da $\EL _2\subseteq \EDL _2$ gilt.
       \begin{itemize}
         \item Fall 2e) (Divergenz und kein neuer Fehler): Da $T$ keine
           Möglichkeit hat zu divergieren, muss diese Möglichkeit von $P'_2$
@@ -962,8 +963,9 @@ enthalten ist.
           \in Div _{P'_2}$ für $j\geq 0$ und $v\in O^*$. Somit ist $x_1\dots
           x_j v\in\StDT _{P'_2}$ und damit $\prune (x_1\dots x_j v) = \prune
           (x_1\dots x_j)\in\PrDT _{P'_2}\subseteq\EDT _{P'_2}$. Also folgt
-          mit~\ref{DivSemProp}.2, dass $w$ in $\EDT _2 \subseteq\EDL _2$
-          enthalten ist, da \DT{} unter \cont{} abgeschlossen ist.
+          mit Proposition~\ref{DivSemProp}.2, dass $w$ in $\EDT _2
+          \subseteq\EDL _2$ enthalten ist, da \DT{} unter \cont{} abgeschlossen
+          ist.
       \end{itemize}
   \end{itemize}
 \end{proof}
@@ -997,8 +999,8 @@ enthalten ist.
       Präfix-Minimalität von $\varepsilon$. Eine Verlängerung $w'\in
       O_{P_1\|T}^*$ von $\varepsilon$ um lokale Aktionen muss in der Menge
       $\EDT _1\|\EDL _T$ oder in der Menge $\EDL _1\|\EDT _T$ enthalten sein.
-      Es muss also Projektionen des Wortes $w$ auf die einzelnen Komponenten
-      geben, so dass $w\in w_1\|w_T$ mit $w_1\in\EDT _1$ bzw.\ $w_1\in\EDL _1$
+      Es muss also Projektionen des Wortes $w'$ auf die einzelnen Komponenten
+      geben, so dass $w'\in w_1\|w_T$ mit $w_1\in\EDT _1$ bzw.\ $w_1\in\EDL _1$
       und $w_T\in\EDL _T$ bzw.\ $w_T\in\EDT _T$ gilt. Mit der Voraussetzung
       $P_1 \DRel P_2$ folgt $w_1\in\EDT _2$ bzw.\ $w_1\in\EDL _2$. Wegen
       Proposition~\ref{DivSemProp} muss es ein $P'_2$ aus $\asimp (P_2)$ geben,
@@ -1019,10 +1021,10 @@ enthalten ist.
       $w\in w_1\|w_T$. $w_1$ und $w_T$ sind also in der Menge \StQT{} ihres
       Transitionssystems enthalten. Für $w_1$ gilt $w_1\in\StQT _{P'_1}
       \subseteq \QDT _{P'_1}\subseteq\QDT _1$, wegen
-      Proposition~\ref{DivSemProp}. $w_1\in\QDT _2$ folgt durch die
-      Voraussetzung $P_1\DRel P_2$. Mit Proposition~\ref{DivSemProp} muss es
-      eine as"=Implementierung $P'_2$ von $P_2$ geben, für die $w_1$ in der
-      Menge $\QDT _{P'_2} = \EDT _{P'_2} \cup \StQT _{P'_2}$ enthalten ist.
+      Proposition~\ref{DivSemProp}. Durch die Voraussetzung $P_1\DRel P_2$
+      folgt $w_1\in\QDT _2$. Mit Proposition~\ref{DivSemProp} muss es eine
+      as"=Implementierung $P'_2$ von $P_2$ geben, für die $w_1$ in der Menge
+      $\QDT _{P'_2} = \EDT _{P'_2} \cup \StQT _{P'_2}$ enthalten ist.
       \begin{itemize}
         \item Fall 2a) ($w\in\EDT _{P'_2}$): Für das Wort $w_T$ gilt $w_T\in L
           _T\subseteq\EDL _T$, da es in $T$ ausführbar ist. Mit
@@ -1033,7 +1035,7 @@ enthalten ist.
         \item Fall 2b) ($w_1\in\StQT _{P'_2}$): Durch $w_1$ wird in $P'_2$ ein
           stiller Zustand $p_2$ erreicht. In der Parallelkomposition ist der
           Zustand $(p_2,p_T)$, wegen Lemma~\ref{StilleZustLem}.1, ebenfalls
-          still. Der Zustand wird durch $w_1\|w_T$ erreicht. Es gilt also
+          still. Der Zustand wird durch $w\in w_1\|w_T$ erreicht. Es gilt also
           $w\in\StQT _{P'_2\|T}$. Das $w$ besteht auch für die
           Parallelkomposition $P'_2\|T$ nur aus Outputs, da $P_1$ und $P_2$
           nach Voraussetzung dieselbe Signatur besitzen müssen. Es ist also

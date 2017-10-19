@@ -23,7 +23,7 @@
     \item $\EDL _P \subseteq \EDL _Q$.
   \end{itemize}
 
-  Die Menge \EDT{} ist unter \cont{} abgeschlossen. Es reicht also auf für den
+  Die Menge \EDT{} ist unter \cont{} abgeschlossen. Es reicht also aus für den
   ersten Punkt zu zeigen, dass ein beliebiges präfix-minimales $w$ aus $\EDT
   _P$ auch in $\EDT _Q$ enthalten ist. Das Wort $w$ kann ein Element aus $\ET
   _P$ oder $\DT _P$ sein. Für $w$ aus $\ET _P$ folgt mit
@@ -40,11 +40,11 @@
   mit $(p_n,q_n)\in\mathcal{R}$, wegen Lemma~\ref{AblaefeVerfSpezLem}. Von
   $p_n$ ist eine unendliche Folge an $\tau$s ausführbar. Diese Folge kann wie
   in Korollar~\ref{unendlAblKor} als unendlicher Ablauf aufgefasst werden. Es
-  ist also entweder ein Zustand von $q_n$ aus mit $\tau$s erreichbar, der in
-  $E_Q$ enthalten ist oder von $q_n$ aus ist ebenfalls eine unendliche Folge an
-  $\tau$s ausführbar, wegen Korollar~\ref{unendlAblKor}. Es gilt also
-  entweder $w\in\ET _Q\subseteq\EDT _Q$ oder $q_n\in Div _Q$ und somit $w\in\DT
-  _Q\subseteq \EDT _Q$.
+  ist also ein Zustand von $q_n$ aus mit $\tau$s erreichbar, der in $E_Q$
+  enthalten ist oder von $q_n$ aus ist ebenfalls eine unendliche Folge an
+  $\tau$s ausführbar, wegen Korollar~\ref{unendlAblKor}. Es gilt also $w\in\ET
+  _Q\subseteq\EDT _Q$ oder $q_n\in Div _Q$ und somit $w\in\DT _Q\subseteq \EDT
+  _Q$.
 
   Da im ersten Punkt bereits die \EDT{}-Inklusion bewiesen wurde, reicht es
   für den zweiten Punkt aus zu zeigen, dass $\StQT _P\backslash \EDT _P
@@ -75,7 +75,7 @@
   $P \DRel Q$.\\
   Für $P \ERel Q$ müsste $\ET _P \subseteq \ET _Q$ gelten. Jedoch ist die Menge
   $\ET _Q$ leer, da $Q$ keine Fehler"=Zustände enthält und vorausgesetzt werden
-  kann, dass $I$ leer ist und es somit keine Input"=kritischen Traces gegen
+  kann, dass $I$ leer ist und es somit keine Input"=kritischen Traces geben
   kann. Für $P$ ist jedoch der Startzustand ein Fehler"=Zustand und somit
   entspricht $\ET _P$ der Menge $\Sigma ^*$.
 
@@ -165,7 +165,7 @@
   Das Gegenbeispiel aus Abbildung~\ref{wasDivGegenBsp} funktioniert auch für
   diese Implikation, jedoch mit einer abgewandelten Begründung. Unter der
   Voraussetzung, dass $I=\emptyset$ ist, gibt es keine Input-kritischen Traces
-  in $Q$ und in $P$. Weder $Q$ noch $P$ enthalten Fehler"=Zustände, somit gilt
+  in $Q$ und $P$. Weder $Q$ noch $P$ enthalten Fehler"=Zustände, somit gilt
   $\ET _P = \ET _Q = \emptyset$. Da die Zustände $q_0$ und $p_0$ beide keine
   ausgehenden must"=Transitionen besitzen, sind beide still. Es gilt also
   $\StQT _P = \StQT _Q = \{\varepsilon\}$. Die Sprachen beider \MEIO{}s
@@ -203,8 +203,8 @@
   Definition~\ref{wSimDef}.3 $p_n\mathcal{R} q$ gelten. Der Zustand $q$ ist in
   $Q$ durch $w$ erreichbar und es gilt $q \nmust[\tau]$. Zusammen
   mit~\ref{wSimDef}.3 gilt somit für alle $\omega \in (O\cup \{\tau\})$ $q
-  \nmust[\omega]$. $q$ ist also in $Qui_Q$ enthalten und damit folgt auch $w
-  \in\StQT _Q\subseteq\QET _Q$.
+  \nmust[\omega]$. Der Zustand $q$ ist also in $Qui_Q$ enthalten und damit
+  folgt auch $w \in\StQT _Q\subseteq\QET _Q$.
 
   $P \wasRel Q \hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P \QRel Q$ für $Q$
   erreicht keinen divergenten Zustand:\\
