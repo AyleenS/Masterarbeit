@@ -29,9 +29,9 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
 
 \begin{Satz}[Divergenz-Präkongruenz bzgl.\ Internalisierung]
   \label{DivHidingSatz}
-  Seien $P_1$ und $P_2$ zwei endliche \MEIO{}s für die $P_1\DRel P_2$ gilt,
-  dann folgt auch die Gültigkeit von $P_1/X\DRel P_2/X$. Die Relation \DRel{}
-  ist also eine Präkongruenz bezüglich $\cdot /\cdot$ für endliche \MEIO{}s. Es
+  Seien $P_1$ und $P_2$ endliche \MEIO{}s für die $P_1\DRel P_2$ gilt, dann
+  folgt auch die Gültigkeit von $P_1/X\DRel P_2/X$. Die Relation \DRel{} ist
+  also eine Präkongruenz bezüglich $\cdot /\cdot$ für endliche \MEIO{}s. Es
   gilt für die Sprachen und Traces:
   \begin{enumerate}[(i)]
     \item $L(P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in L(P):
@@ -50,13 +50,14 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
 \begin{proof}
   Die Präkongruenz-Eigenschaft lässt sich wie bei den
   Sätzen~\ref{FehlerHidingSatz} und~\ref{StilleHidingSatz} aus den Aussagen
-  über die Sprachen und Traces folgern. Somit sollen nun zunächst (i) bis (iv)
+  über die Sprachen und Traces folgern. Somit sollen nun zunächst (i) bis (v)
   nachgewiesen werden. Der Punkt (i) folgt aus (i) von
   Satz~\ref{FehlerHidingSatz} und der Punkt (iv) aus (iv) von
   Satz~\ref{StilleHidingSatz}.
 
   (ii) \glqq $\subseteq$\grqq{}:\\
-  Beide Seiten sind abgeschlossen gegenüber \prune{} und \cont{}. Somit genügt
+  Beide Seiten sind abgeschlossen gegenüber \cont{} und die rechte Seite auch
+  unter \prune{}. Somit genügt
   es ein Element $w$ aus $\MIT (P/o)\cup \StET (P/o)\cup \StDT (P/o)$ zu
   betrachten.
   \begin{itemize}
@@ -64,11 +65,12 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
       letzten Buchstaben $a\in I$, wird ein Zustand $p$ erreicht, für den $a$
       nicht sichergestellt ist. Mit Lemma~\ref{TraceHidingLem} folgt, dass der
       Zustand $p$ auch in $P$ durch ein $v'$ mit $v'|_{\Sigma\backslash\{o\}} =
-      v$ erreichbar ist. Auch in $P$ muss wegen Definition~\ref{HidingDef} $a$
-      nicht sichergestellt sein. Es gilt also $w'\in\MIT (P) \subset \EDT (P)
-      \subset \EDL (P)$ für $w' = v'a = w|_{\Sigma\backslash\{o\}}$. Wegen des
-      Abschlusses unter \cont{} der Menge \EDT{} gilt auch $w'o^n\in\EDT
-      (P)\subseteq\EDL (P)$ für alle $n\in\mathbb{N}$.
+      v$ erreichbar ist. Der Input $a$ kann wegen Definition~\ref{HidingDef}
+      auch für $P$ im Zustand $p$ nicht sichergestellt sein. Es gilt also
+      $w'\in\MIT (P) \subseteq \EDT (P) \subseteq \EDL (P)$ für $w' = v'a =
+      w|_{\Sigma\backslash\{o\}}$. Wegen des Abschlusses unter \cont{} der
+      Menge \EDT{} gilt auch $w'o^n\in\EDT (P)\subseteq\EDL (P)$ für alle $n
+      \in \mathbb{N}$.
     \item Fall 2 ($w\in \StET (P/o)\cup \StDT (P/o)$): Es gibt also einen mit
       $w$ beschrifteten Ablauf in $P/o$, der zu einem Zustand $p$ führt, der in
       $E_{P/o}\cup Div_{P/o}$ enthalten ist. Derselbe Zustand $p$ kann wegen
@@ -81,9 +83,9 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
       Der Zustand $p$ kann jedoch in $P$ auch ein Zustand sein, von dem aus
       weder ein Fehler noch Divergenz lokal erreicht werden kann. Es muss also
       durch das Internalisieren des Outputs $o$ in $P/o$ ein Divergenz"=Zustand
-      entstanden sein. Da nur $o$s in $\tau$s umgewandelt wurden, muss $p$ in
-      $P$ eine unendliche Folge bestehend aus $o$s und $\tau$s mit unendliche
-      vielen $o$s ausführen können, damit durch das Anwenden des
+      entstanden sein. Da nur $o$s in $\tau$s umgewandelt wurden, muss von $p$
+      aus in $P$ eine unendliche Folge bestehend aus $o$s und $\tau$s mit
+      unendliche vielen $o$s ausführbar sein, damit durch das Anwenden des
       Hiding"=Operators neue Divergenz entstehen kann. Es muss also $w'o^n$ für
       alle $n\in\mathbb{N}$ in $P$ ausführbar sein. Somit gilt $\forall n\geq
       0: w'o^n\in\EDL (P)$.
