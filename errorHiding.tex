@@ -13,13 +13,13 @@ Outputs gibt es einen allgemeinen Zusammenhang.
 
 \begin{Lem}[Traces unter Internalisierung]
   \label{TraceHidingLem}
-  Für ein \MEIO{} $P$ gilt für alle zulässigen Aktionsmengen $X$: $p
-  \weakmay[w]_{P/X} p' \Leftrightarrow \exists w': w'|_{\Sigma\backslash X} = w
-  \land p \weakmay[w']_P p'$.
+  Für ein \MEIO{} $P$ und alle zulässigen Aktionsmengen $X$ gilt: $p
+  \weakmay[w]_{P/X} p' \Leftrightarrow \exists w'\in \Sigma ^*:
+  w'|_{\Sigma\backslash X} = w \land p \weakmay[w']_P p'$.
 \end{Lem}
 \begin{proof}
   \glqq $\Rightarrow$\grqq{}:\\
-  Zwischen $p$ und $P'$ gibt es in $P/X$ einen Trace $w$. Somit folgt die
+  Zwischen $p$ und $p'$ gibt es in $P/X$ einen Trace $w$. Somit folgt die
   Existenz eines $v=\alpha _1\alpha_2\dots\alpha _n\in\Sigma _{\tau}$ mit $w =
   \hat{v}$ und einen Ablauf der Form $p \may[\alpha _1]_{P/X} p_1 \may[\alpha
   _2]_{P/X} \dots p_{n-1} \may[\alpha _n]_{P/X} p'$ in $P/X$. Dieser Ablauf ist
@@ -38,8 +38,9 @@ Outputs gibt es einen allgemeinen Zusammenhang.
   = \hat{v}$ und einen Ablauf der Form $p \may[\alpha _1]_P p_1 \may[\alpha
   _2]_P \dots p_{n-1} \may[\alpha _n]_P p'$ in $P$. Durch die Anwendung des
   Hiding"=Operators werden die Aktionen $\alpha _j$, die in $X$ enthalten sind,
-  durch $\tau$s ersetzt. Die sichtbare Beschriftung des Ablaufes in $P/X$
-  lautet somit nicht mehr $w'$ sondern nur noch $w = w'|_{\Sigma\backslash X}$.
+  durch $\tau$s ersetzt. Die sichtbare Beschriftung des analogen Ablaufes in
+  $P/X$ lautet somit nicht mehr $w'$ sondern nur noch $w =
+  w'|_{\Sigma\backslash X}$.
 \end{proof}
 
 Dieses Lemma kann nun dazu verwendet werden, zu zeigen, dass die Relation
@@ -87,21 +88,21 @@ Dieses Lemma kann nun dazu verwendet werden, zu zeigen, dass die Relation
           Definition~\ref{HidingDef} werden die Fehler"=Zustände aus $P$ in
           $P/X$ übernommen. Es gilt also auch $p\in E_{P/X}$. Das Wort
           $(w'v)|_{\Sigma\backslash X}$ ist somit in $\StET (P/X) \subseteq\ET
-          (P/X)$ enthalten. Da $v$ nur aus lokalen Aktionen besteht, gilt auch
-          nach der Ersetzung der Transitionsbeschriftung durch das Hiding
+          (P/X)$ enthalten. Da $v$ nur aus Outputs besteht, gilt auch nach der
+          Ersetzung der Transitionsbeschriftung durch das Hiding
           $v|_{\Sigma\backslash X}\in (O_P\backslash X)^*$. Daraus folgt $w =
           w'|_{\Sigma\backslash X} = \prune ((w'v)|_{\Sigma\backslash X})$. Das
           Wort $w$ ist also in der Menge $\ET _{P/X}$ enthalten.
         \item Fall 2 ($w'\in\MIT _P$): In diesem Fall wird durch das Präfix
           $v'$ von $w'$ ein Zustand erreicht, in dem der Input $a$ nicht
           sichergestellt ist, wobei $w'=v'a$ gilt. Es gibt also einen Trace wie
-          in Lemma~\ref{TraceHidingLem} für das Präfix $v$, wobei $p$ $p_0$
+          in Lemma~\ref{TraceHidingLem} für das Präfix $v'$, wobei $p$ $p_0$
           entspricht und $p'\nmust[a]_P$ gilt. In $P/X$ gibt es einen mit
-          $v'|_{\Sigma\backslash X}$ beschrifteten Trace von $p$ nach $p'$,
-          wegen Lemma~\ref{TraceHidingLem}. Es gilt mit
-          Definition~\ref{HidingDef} auch in $P/X$ $p'\nmust[a]_{P/X}$. $w =
-          w'|_{\Sigma\backslash X}$ ist also in der Menge $\MIT _{P/X}
-          \subseteq\ET _{P/X}$ enthalten.
+          $v'|_{\Sigma\backslash X}$ beschrifteten Trace von $p = p_0$ nach
+          $p'$, wegen Lemma~\ref{TraceHidingLem}. Es gilt mit
+          Definition~\ref{HidingDef} auch in $P/X$ $p'\nmust[a]_{P/X}$ mit
+          $a\in I_{P/X}$. $w = w'|_{\Sigma\backslash X}$ ist also in der Menge
+          $\MIT _{P/X} \subseteq\ET _{P/X}$ enthalten.
       \end{itemize}
 
       Für ein präfix-minimales $w$ aus $\ET _{P/X}$ kann unterschieden werden,
@@ -123,7 +124,7 @@ Dieses Lemma kann nun dazu verwendet werden, zu zeigen, dass die Relation
           Lemma~\ref{TraceHidingLem} eine Erweiterung $w'$ mit
           $w'|_{\Sigma\backslash X} = w$ des Wortes $w$ auf die Menge $\Sigma$
           geben, für dessen Präfix ohne den letzten Input $a$ in $P$ ebenfalls
-          ein Zustand erreicht wird, in dem das $a$ nicht sichergestellt ist.
+          der Zustand erreicht wird, in dem das $a$ nicht sichergestellt ist.
           Somit ist $w'$ in $P$ ebenfalls ein Input-kritischer Trace und es
           gilt $w'\in\ET _P$.
       \end{itemize}

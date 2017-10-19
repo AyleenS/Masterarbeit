@@ -55,12 +55,12 @@
   _P\backslash\ET _P$ betrachtet werden. $\EL _P\backslash\ET _P$ ist eine
   Teilmenge der Sprache $L _P$. Es gibt also einen Ablauf für $w$ in $P$ der
   Form, wie sie in Lemma~\ref{AblaefeSchwVerfSpezLem} vorausgesetzt wird. Falls
-  ein $q_k$ aus~\ref{AblaefeSchwVerfSpezLem} für $0 \leq k \leq n$ in $E_Q$
-  enthalten ist, gilt $w\in\ET _Q \subseteq \EL _Q$. Es wird also im Folgenden
-  davon ausgegangen, dass kein $q_j$ ein Fehler-Zustand ist. Es gilt dann $q_0
-  \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q \dots
-  q_{n-1} \weakmay[\widehat{\alpha _n}]_Q q_n$ in $Q$ mit $p_n \mathcal{R} q_n$
-  und somit $w\in L _Q\subseteq \EL _Q$.
+  ein $q_k$ aus Lemma~\ref{AblaefeSchwVerfSpezLem} für $0 \leq k \leq n$ in
+  $E_Q$ enthalten ist, gilt $w\in\ET _Q \subseteq \EL _Q$. Im Folgenden wird
+  somit davon ausgegangen, dass kein $q_j$ ein Fehler-Zustand ist. Es gilt dann
+  $q_0 \weakmay[\widehat{\alpha _1}]_Q q_1 \weakmay[\widehat{\alpha _2}]_Q
+  \dots q_{n-1} \weakmay[\widehat{\alpha _n}]_Q q_n$ in $Q$ mit $p_n
+  \mathcal{R} q_n$ und somit $w\in L _Q\subseteq \EL _Q$.
 
   $P\wasRel Q\hspace{0.1cm}\not\hspace{-0.1cm}\Leftarrow P\ERel Q$:\\
   Die nicht Gültigkeit dieser Implikation beruht darauf, dass Simulationen
@@ -118,22 +118,22 @@ dort der Unterscheidung zwischen Transitionssystemen, die den
 Universal"=Zustand $e$ als Startzustand haben und denen, die einen Startzustand
 ungleich $e$ besitzen, entsprechen. Falls hier in einer as"=Implementierung von
 $P$ ein Fehler lokal erreichbar ist, dann muss auch in $P$ ein Fehler-Zustand
-lokal erreichbar sein, wegen~\ref{lokalFehlerErrKor}~(i). Dies entspricht
-$\varepsilon \in \PrET (P)$. Das Abschneiden der lokalen Aktionen wird hier nur
-in der Trace"=Menge praktiziert, in~\cite{Vogler2016MIA3} jedoch direkt auf den
-Transitionssystemen. Im Fall der lokalen Fehler-Erreichbarkeit bleibt dort also
-nur noch der Zustand $e$ als Universal!=Zustand übrig, für den jedes Verhalten
-als Verfeinerung zulässig ist, der jedoch keine ausgehenden Transitionen
-besitzt. Für die Fehler"=Zustände ist in dem hier verwendeten Ansatz auf
-Trace-Ebene bzw.\ bezüglich der Verfeinerungs-Relationen beliebiges Verhalten
-möglich. In den Transitionssystemen muss es analog zu $e$ die Transitionen für
-das beliebige Verhalten im Allgemeinen nicht geben. Jedoch sind ausgehende
-Transitionen von Zuständen aus $E$ hier dennoch zulässig.\\
+lokal erreichbar sein, wegen Korollar~\ref{lokalFehlerErrKor}~(i). Dies
+entspricht $\varepsilon \in \PrET (P)$. Das Abschneiden der lokalen Aktionen
+wird hier nur in der Trace"=Menge praktiziert, in~\cite{Vogler2016MIA3} jedoch
+direkt auf den Transitionssystemen. Im Fall der lokalen Fehler-Erreichbarkeit
+bleibt dort also nur noch der Zustand $e$ als Universal"=Zustand übrig, für den
+jedes Verhalten als Verfeinerung zulässig ist, der jedoch keine ausgehenden
+Transitionen besitzt. Für die Fehler"=Zustände ist in dem hier verwendeten
+Ansatz auf Trace"=Ebene bzw.\ bezüglich der Verfeinerungs-Relationen beliebiges
+Verhalten möglich. In den Transitionssystemen muss es analog zu $e$ die
+Transitionen für das beliebige Verhalten im Allgemeinen nicht geben. Jedoch
+sind ausgehende Transitionen von Zuständen aus $E$ hier dennoch zulässig.\\
 Da auch der Testing-Ansatz die lokale Fehler-Erreichbarkeit verwendet,
 existiert der Zusammenhang auch dort für die Parallelkomposition mit dem
 entsprechenden Test.
 
-Jeder \MEIO{} kann normiert werden, so dass er nur noch einen Fehler"=Zustand
+Jedes \MEIO{} kann normiert werden, so dass es nur noch einen Fehler"=Zustand
 besitzt. Im Folgenden sollen nicht mehr alle \MIA{}s wie
 in~\cite{Vogler2016MIA3} mit den \MEIO{}s verglichen werden, da die \MIA{}s
 disjunktive must"=Transitionen besitzen. Jedoch sind Modale Transitionssysteme,
@@ -146,7 +146,7 @@ jedem \MEIO{} einen äquivalenten \MIA{}.\\
 Die Relation $\sqsubseteq$ aus~\cite{Vogler2016MIA3} wurde als Grundlage für
 die Definition der schwachen Simulationen in~\ref{wSimDef} verwendet. Für
 normalisierte \MEIO{}s entspricht sie also der Relation \wasRel{} und es gelten
-die bereits nachgewiesenen Zusammenhänge zu den anderen Relationen.
+die bereits nachgewiesenen Zusammenhänge mit den anderen Relationen.
 
 \begin{Def}[Normalform]
   \label{NFDef}
@@ -185,7 +185,7 @@ Zusammenhang zu Fehler"=Zuständen nichts ändert. $\overline{P}$ ist also
 äquivalent zu $P$ bezüglich der Relation \ERel{}.\\
 Im ersten Fall von Schritt (ii) gilt $\ET (P) = \Sigma ^* = \ET (\NF (P))$. Im
 zweiten Fall von Schritt (ii) werden Zustände, die nicht in $\overline{E_P}$
-enthalten sind und die keine Transitionen zu Zuständen in der Menge
+enthalten sind und die auch keine Transitionen zu Zuständen in der Menge
 $\overline{E_P}$ besitzen, unverändert aus $\overline{P}$ in $\NF (P)$
 übernommen. Transitionen zwischen solchen Zuständen werden ebenfalls ohne
 Veränderungen in das Transitionssystem $\NF (P)$ übernommen. Ein Ablauf zu
@@ -195,23 +195,24 @@ solche unveränderten Zustände und Transitionen. Somit ist jeder Trace aus $\MI
 und alle Traces $\MIT (\NF (P))\backslash\cont (\PrET (\NF (P)))$ sind auch in
 $P$ Input-kritische Traces, die nicht in $\cont (\PrET (P))$ enthalten sind. In
 \ERel{} ist nur die Menge \ET{} relevant, deshalb müssen Traces aus $\MIT
-(P)\cap \PrET (P)$ in $\NF (P)$ keine Input-kritischen Traces sein, damit $P$
+(P)\cap \PrET (P)$ in $\NF (P)$ keine Input"=kritischen Traces sein, damit $P$
 und $\NF (P)$ äquivalent sein können bezüglich \ERel{}. Da jeweils die erste
 Transition, die zu einem Zustand in der Menge $\overline{E _P}$ führt zum
-Zustand $e$ umgebogen wird, sind die präfix-minimalen Traces, die in $\PrET
+Zustand $e$ umgebogen wird, sind die präfix"=minimalen Traces, die in $\PrET
 (P)$ enthalten sind auch alle in $\PrET (\NF (P))$ enthalten und jedes Element
 aus $\PrET (\NF (P))$ ist ein präfix-minimales Element aus $\PrET (P)$. Durch
-das Umbiegen der präfix-minimalen Elemente aus $\PrET (P)$ auf den Zustand $e$,
-bei dem der letzte Input nur als may"=Transition ungesetzt wird und $e$ keine
-ausgehenden Transitionen besitzt, entstehen neue Input-kritische Traces. Jedoch
-sind diese neuen Input-kritischen Traces gleichzeitig in $\MIT (\NF (P))$ und
-in $\cont (\PrET (\NF (P)))$ enthalten. Die Menge der Fehler"=Traces \ET{}
-bleibt somit im Schritt (ii) gleich. Die Sprache des \MEIO{}s $P$ wird durch
-die Konstruktion in (ii) um die Traces in $\cont (\PrET (P))$, die nicht
-präfix-minimal sind, verkleinert. Da diese Traces jedoch in der Menge \ET{}
-enthalten sind, mit denen die Sprache $L$ in \EL{} geflutet wird, spielt diese
-bezüglich der Relation \ERel{} keine Rolle. Es gilt also auch $\EL (P) = \EL
-(\NF (P))$. Somit ist $\NF (P)$ äquivalent zu $P$ bezüglich der Relation \ERel{}.
+das Umbiegen der präfix"=minimalen Elemente aus $\PrET (P)$ auf den Zustand
+$e$, bei dem der letzte Input nur als may"=Transition ungesetzt wird und $e$
+keine ausgehenden Transitionen besitzt, entstehen neue Input"=kritische Traces.
+Jedoch sind diese neuen Input-kritischen Traces gleichzeitig in $\MIT (\NF
+(P))$ und in $\cont (\PrET (\NF (P)))$ enthalten. Die Menge der Fehler"=Traces
+\ET{} bleibt somit im Schritt (ii) gleich. Die Sprache des \MEIO{}s $P$ wird
+durch die Konstruktion in zweiten Fall von (ii) um die Traces in $\cont (\PrET
+(P))$, die nicht präfix"=minimal sind, verkleinert. Da diese Traces jedoch in
+der Menge \ET{} enthalten sind, mit denen die Sprache $L$ in \EL{} geflutet
+wird, spielt diese bezüglich der Relation \ERel{} keine Rolle. Es gilt also
+auch $\EL (P) = \EL (\NF (P))$. Somit ist $\NF (P)$ äquivalent zu $P$ bezüglich
+der Relation \ERel{}.
 
 \begin{Prop}[Normalform]
   Jedes \MEIO{} $P$ ist äquivalent zu seiner Normalform $\NF (P)$ bezüglich
@@ -219,14 +220,14 @@ bezüglich der Relation \ERel{} keine Rolle. Es gilt also auch $\EL (P) = \EL
 \end{Prop}
 
 Durch die Konstruktion in Definition~\ref{NFDef} kann man zu jedem \MEIO{} $P$
-einen bezüglich der Relation \ERel{} äquivalenten \MEIO{} in Normalform
+ein bezüglich der Relation \ERel{} äquivalentes \MEIO{} in Normalform
 konstruieren. Um zu zeigen, dass es auch immer einen bezüglich \ERel{}
 äquivalenten \MIA{} ohne disjunktive must"=Transitionen gibt, reicht es nun
-aus zu beweisen, dass ein \MEIO{} in Normalform in einem \MIA{} umgewandelt
+aus zu beweisen, dass ein \MEIO{} in Normalform in einen \MIA{} umgewandelt
 werden kann.
 
 \begin{Satz}[Existenz äquvialenter \MIA{}s]
-  Für jeden \MEIO{} $P$ gibt es einen äquivalenten \MIA{} $P'$ bezüglich der
+  Für jedes \MEIO{} $P$ gibt es einen äquivalenten \MIA{} $P'$ bezüglich der
   Relation \ERel{}.
 \end{Satz}
 \begin{proof}

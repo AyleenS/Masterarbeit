@@ -6,8 +6,8 @@ z.B.~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
 \begin{Def}[fehler-freie Kommunikation]
   Ein Fehler"=Zustand ist \emph{lokal erreichbar} in einem \MEIO{} $P$, wenn
   ein $w\in O^*$ existiert mit $p_0 \weakmay[w]_P p\in E$. Ein \MEIO{} $P$
-  ist \emph{lokal fehler-frei}, wenn $\neg\exists w\in O^*: p_0\weakmay[w]_P
-  p\in E$.\\
+  ist \emph{lokal fehler-frei}, wenn kein $w\in O^*$ existiert mit $p_0
+  \weakmay[w]_P p\in E$.\\
   Zwei \MEIO{}s $P_1$ und $P_2$ \emph{kommunizieren fehler-frei}, wenn keine
   as"=Implementierungen ihrer Parallelkomposition $P_{12}$ einen
   Fehler"=Zustand lokal erreichen kann.
@@ -16,7 +16,7 @@ z.B.~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
 \vspace{0.2cm}
 
 \begin{Def}[Kommunikationsfehler-Verfeinerungs-Basisrelation]
-  \label{EBRelDef}
+  \label{EBRelDef}\mbox{}\\
   Für zwei \MEIO{}s $P_1$ und $P_2$ mit der gleichen Signatur wird $P_1\EBRel{}
   P_2$ geschrieben, wenn nur dann ein Fehler"=Zustand in einer
   as"=Implementierung von $P_1$ lokal erreichbar ist, wenn es auch eine
@@ -26,6 +26,7 @@ z.B.~\cite{Schinko2016BA} auf die hier betrachten \MEIO{}s zu erweitern.
   \ECRel{} bezeichnet die \emph{vollständig abstrakte Präkongruenz} von
   \EBRel{} bezüglich $\cdot\|\cdot$, d.h.\ die gröbste Präkongruenz bezüglich
   $\cdot\|\cdot$, die in \EBRel{} enthalten ist.
+  \\ \TODO{Neue Zeile an Definitions-Anfang überprüfen}
 \end{Def}
 
 Für as"=Implementierungen $P_1$ und $P_2$ entspricht \EBRel{} der Basisrelation
@@ -59,11 +60,11 @@ Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
   \label{KommTracesProp}
   Sei $P$ ein \MEIO{}.
   \begin{enumerate}
-    \item Für die strikten Fehler-Traces von $P$ gilt: $\StET (P) \subseteq
+    \item Für die strikten Fehler-Traces von $P$ gilt $\StET (P) \subseteq
       \underset{P' \in\asimp (P)}{\bigcup} \StET (P')$.
-    \item Für die gekürzten Fehler-Traces von $P$ gilt: $\PrET (P) \subseteq
+    \item Für die gekürzten Fehler-Traces von $P$ gilt $\PrET (P) \subseteq
       \underset{P' \in\asimp (P)}{\bigcup} \PrET (P')$.
-    \item Für die Input-kritischen-Traces von $P$ gilt: $\MIT (P) \subseteq
+    \item Für die Input-kritischen-Traces von $P$ gilt $\MIT (P) \subseteq
       \underset{P' \in\asimp (P)}{\bigcup} \MIT (P')$.
   \end{enumerate}
 \end{Prop}
@@ -124,8 +125,8 @@ Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
       entsprechend ihrer Position im Ablauf, auf dem $w$ ausgeführt wird,
       durchnummeriert. Für ein $w$, für das $wa\in\MIT (P)$, gilt: $\exists
       w'\in\Sigma _{\tau} ^*, \exists \alpha _1,\alpha _2,\dots ,\alpha _n,
-      \exists p_1,p_2,\dots ,p_n: \hat{w'} = w\land w'=\alpha _1\alpha _2\dots
-      \alpha _n\land p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots
+      \exists p_1,p_2,\dots ,p_n: \widehat{w'} = w\land w'=\alpha _1\alpha
+      _2\dots \alpha _n\land p_0 \may[\alpha _1]_P p_1 \may[\alpha _2]_P \dots
       p_{n-1}\may[\alpha _n]_P p_n \nmust[a]_P$.
       Die starke as"=Verfeinerungs"=Relation $\mathcal{R}$ enthält in diesem
       Fall Tupel $((p,j),p)$ für alle $0\leq j \leq n$. Die entsprechende
@@ -146,12 +147,12 @@ Verhalten nach Fehler"=Zuständen in der Spezifikation zulassen.
       Der Ablauf $w$ wird in $P'$ durch $(p_0,0) \must[\alpha
       _1]_{P'} (p_1,1) \must[\alpha _2]_{P'} \dots (p_{n-1},n-1) \must[\alpha
       _n]_{P'} (p_n,n)$ simuliert. $w$ ist also in $P'$ ausführbar. $a$ ist für
-      $(p_n,n)$ nicht ausführbar, da in $P$ für $p_n$ $p_n\nmust[a]_P$ gilt und
-      für die Zustände mit der Nummer $n$ in $P'$ nur die must"=Transitionen
+      $(p_n,n)$ nicht ausführbar, da in $P$ $p_n\nmust[a]_P$ gilt und für die
+      Zustände mit der Nummer $n$ in $P'$ nur die must"=Transitionen
       implementiert werden. Die Transitionen $p\must[\alpha]_P p'$ aus $P$
       werden in $P'$ durch die Transitionen $(p,j)\must[\alpha]_{P'} (p',j)$
       gematched. Für die may-Transitionen $(p,j)\may[\alpha]_{P'} (p',j+1)$
-      (bzw. $(p',j)$) in $P'$ sind die entsprechenden matchenden Transitionen
+      (bzw.\ $(p',j)$) in $P'$ sind die entsprechenden matchenden Transitionen
       in $P$ die Transition $p \may[\alpha]_P p'$. Da zusätzlich die Menge
       $E_{P'}$ leer ist, gelten alle Bedingungen, damit $\mathcal{R}$ eine
       as"=Verfeinerungs"=Relation zwischen $P'$ und $P$ ist. Mit der Begründung
@@ -308,15 +309,15 @@ $\tau$-Abläufe bezüglich Divergenz relevant.
   Anfangsstück des Ablaufes, das in $Q$ zu einen Fehler"=Zustand führt.
 \end{Kor}
 
-Aus den Propositionen für die Sprache (\ref{LImpProp}) und die in der Menge
-\ET{} relevanten Traces (\ref{KommTracesProp}) konnte für die Vereinigung der
-gleichen Mengen über die Implementierungen immer nur eine Inklusionsrichtung
-gefolgert werden, da die Definition~\ref{SimDef} nach einem Fehler-Zustand in
-$P$ beliebiges Verhalten in dessen as"=Implementierungen zulässt. Mit dem
-Einsatz der \cont{}-Funktion zum beliebigen Fortsetzten der Fehler"=Traces kann
-dies ausgeglichen werden. Somit gilt, wie die nächste Proposition zeigt, für
-die Fehler-Traces und die Fehler-geflutete Sprache Gleichheit und nicht nur die
-Inklusion.
+Aus der Proposition für die Sprache (\ref{LImpProp}) und der Proposition über
+die in der Menge \ET{} relevanten Traces (\ref{KommTracesProp}) konnte für die
+Vereinigung der gleichen Mengen über die Implementierungen immer nur eine
+Inklusionsrichtung gefolgert werden, da die Definition~\ref{SimDef} nach einem
+Fehler"=Zustand in $P$ beliebiges Verhalten in dessen as"=Implementierungen
+zulässt. Mit dem Einsatz der \cont{}-Funktion zum beliebigen Fortsetzten der
+Fehler"=Traces kann dies ausgeglichen werden. Somit gilt, wie die nächste
+Proposition zeigt, für die Fehler"=Traces und die Fehler-geflutete Sprache
+Gleichheit und nicht nur die Inklusion.
 
 \begin{Prop}[Kommunikationsfehler-Semantik und Implementierungen]
   \label{KommSemProp}
@@ -337,8 +338,7 @@ Inklusion.
     &\overset{\ref{KommTracesProp}}{\subseteq} \cont
     \left(\underset{P'\in\asimp (P)}{\bigcup} \PrET (P')\right)\cup \cont
     \left(\underset{P'\in\asimp (P)}{\bigcup} \MIT (P')\right)\\
-    &\hspace{-0.4cm}\overset{\cont}{\overset{\text{monoton}}{=}}
-    \underset{P'\in\asimp (P)}{\bigcup} \cont (\PrET (P'))\cup \cont (\MIT
+    &= \underset{P'\in\asimp (P)}{\bigcup} \cont (\PrET (P'))\cup \cont (\MIT
     (P'))\\
     &\overset{\ref{KommFehlerSemDef}}{=} \underset{P'\in\asimp
     (P)}{\bigcup} \ET (P').
@@ -774,20 +774,20 @@ Inklusion.
           in $P_2$ nicht sichergestellt ist ($P_2$ enthält die entsprechende
           $a$ Transitionen nicht als must"=Transition). Durch die Konstruktion
           von $U$ sind in $p_{n+1}$ keine Outputs möglich. Ein neuer Fehler
-          muss also die Form $(p_i,p')$ haben mit $i\leq n,
-          p'\nmust[x_{i+1}]_2$ und $x_{i+1}\in O_U=I$. Durch Projektion erhält
-          man dann $p_{02}\lweakmay[x_1\dots x_i]_2p'\nmust[x_{i+1}]_2$ und
-          damit gilt $x_1\dots x_{i+1}\in\MIT _2\subseteq \ET _2$. Somit ist
+          muss also die Form $(p_j,p')$ haben mit $j\leq n,
+          p'\nmust[x_{j+1}]_2$ und $x_{j+1}\in O_U=I$. Durch Projektion erhält
+          man dann $p_{02}\lweakmay[x_1\dots x_j]_2p'\nmust[x_{j+1}]_2$ und
+          damit gilt $x_1\dots x_{j+1}\in\MIT _2\subseteq \ET _2$. Somit ist
           ein Präfix von $w$ in $\ET _2$ enthalten.
-        \item Fall 2ii) (geerbter Fehler): $U$ hat $x_1\dots x_iv$ mit $v\in
+        \item Fall 2ii) (geerbter Fehler): $U$ hat $x_1\dots x_jv$ mit $v\in
           I_U^*=O^*$ ausgeführt und ebenso hat $P_2$ dieses Wort abgearbeitet.
           Durch dies hat $P_2$ einen Zustand  in $E_2$ erreicht, da von $U$
           keine Fehler geerbt werden können. Es gilt dann $\prune (x_1\dots
-          x_iv) = \prune (x_1\dots x_i)\in\PrET _2\subseteq \ET _2$. Da
-          $x_1\dots x_i$ ein Präfix von $w$ ist, führt in diesem Fall eine
+          x_j v) = \prune (x_1\dots x_j)\in\PrET _2\subseteq \ET _2$. Da
+          $x_1\dots x_j$ ein Präfix von $w$ ist, führt in diesem Fall eine
           Verlängerung um lokale Aktionen eines Präfix von $w$ zu einem
           Fehler-Zustand. Da \ET{} der Menge aller Verlängerungen von gekürzten
-          Fehler-Traces entspricht, ist $x_1\dots x_i$ in $\ET
+          Fehler-Traces entspricht, ist $x_1\dots x_j$ in $\ET
           _2$ enthalten und somit gilt auch $w\in\ET _2$.
       \end{itemize}
   \end{itemize}
@@ -847,9 +847,9 @@ Inklusion.
       Korollar~\ref{lokalFehlerErrKor}~(ii) muss ebenfalls ein Fehler-Zustand
       in $U\|P_2$ lokal erreichbar sein.
       \begin{itemize}
-        \item Fall 2a) (neuer Fehler aufgrund von $x_i\in O_U$ und $p_{02}
-          \lweakmay[x_1\dots x_{i-1}]_2p''\nmust[x_i]_2$): Es gilt $x_1\dots
-          x_i\in \MIT _2$ und somit $w\in \EL_2$. Anzumerken ist, dass nur
+        \item Fall 2a) (neuer Fehler aufgrund von $x_j\in O_U$ und $p_{02}
+          \lweakmay[x_1\dots x_{j-1}]_2p''\nmust[x_j]_2$): Es gilt $x_1\dots
+          x_j\in \MIT _2$ und somit $w\in \EL_2$. Anzumerken ist, dass nur
           auf diesem Weg Outputs von $U$ möglich sind, deshalb gibt es keine
           anderen Outputs von $U$, die zu einem neuen Fehler führen könnten.
         \item Fall 2b) (neuer Fehler aufgrund von $a\in O=I_U$): Der einzige
@@ -864,9 +864,9 @@ Inklusion.
           In diesem Fall ist $w$ ausführbar und es gilt $w\in L_2\subseteq \EL
           _2$.
         \item Fall 2d) (geerbter Fehler von $P_2$): Es gilt $p_{02}
-          \lweakmay[x_1\dots x_iv]_2 p'\in E_2$ für ein $i\geq 0$ und $v\in
-          O^*$. Somit ist $x_1\dots x_iv\in\StET _2$ und damit $\prune
-          (x_1\dots x_iv) =\prune (x_1\dots x_i)\in\PrET _2\subseteq \EL _2$.
+          \lweakmay[x_1\dots x_jv]_2 p'\in E_2$ für ein $j\geq 0$ und $v\in
+          O^*$. Somit ist $x_1\dots x_j v\in\StET _2$ und damit $\prune
+          (x_1\dots x_j v) =\prune (x_1\dots x_j)\in\PrET _2\subseteq \EL _2$.
           Es gilt also $w\in\EL _2$.
       \end{itemize}
   \end{itemize}
@@ -904,7 +904,7 @@ Präkongruenz \ECRel{}.
   \glqq$\Rightarrow$\grqq: Durch die Definition von \ECRel{} als Präkongruenz
   in~\ref{EBRelDef} folgt aus $P_1\ECRel{} P_2$, dass $U\|P_1\ECRel U\|P_2$ für
   alle \MEIO{}s $U$ gilt, die mit $P_1$ komponierbar sind. Da \ECRel{} nach
-  Definition auch in \EBRel{} enthalten sein soll, folgt aus $U\|P_1\ECRel{}
+  Definition auch in \EBRel{} enthalten ist, folgt aus $U\|P_1\ECRel{}
   U\|P_2$ auch die Gültigkeit von $U\|P_1\EBRel{}U\|P_2$ für alle diese
   \MEIO{}s $U$. Mit Lemma~\ref{KommVerfeinLem} folgt dann $P_1\ERel{} P_2$.
 \end{proof}

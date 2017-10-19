@@ -10,7 +10,8 @@ Parallelkomposition von \EIO{} zu stützen, die hier für die Implementierungen
 gilt. Dies führt zu dem in diesem Teil behandelten Testing-Ansatz. Dieser lässt
 jedoch keine Aussage zur gröbsten Präkongruenz zu, wie das im letzen Teil
 möglich war. Der Test ersetzt die Basisrelation als grundlegende Definition für
-den Ansatz. Die Präkongruenz, die sich ergibt, ist jedoch dieselbe.\\
+den Ansatz. Die beobachtbare Präkongruenz, die sich ergibt, ist jedoch
+dieselbe.\\
 Der Testing-Ansatz stützt sich auf das Vorgehen, das
 in~\cite{Vogler2015FailSem} angewendet wurde. Jedoch sind Tests dort Tupel aus
 einer Implementierung und einer Menge an Aktionen, über denen synchronisiert
@@ -135,23 +136,23 @@ Zuhilfenahme ein ähnliches Lemma formuliert werden.
           Form sein, dass ein Outputs $a\in O_T$ von $T$ möglich ist, der nicht
           mit einem passenden Input aus $P'_2$ synchronisiert werden kann.
           Durch die Konstruktion von $T$ sind in $p_{n+1}$ keine Outputs
-          möglich. Ein neuer Fehler muss also die Form $(p',p_i)$ haben mit
-          $i\leq n$, $p'\nmust[x_{i+1}]_{P'_2}$ und $x_{i+1}\in O_T=I$. Durch
-          Projektion erhält man dann $p_{02} \lweakmay[x_1\dots x_i]_{P'_2} p'
-          \nmust[x_{i+1}]_{P'_2}$ und damit gilt $x_1\dots x_{i+1}\in\MIT
+          möglich. Ein neuer Fehler muss also die Form $(p',p_j)$ haben mit
+          $j\leq n$, $p'\nmust[x_{j+1}]_{P'_2}$ und $x_{j+1}\in O_T=I$. Durch
+          Projektion erhält man dann $p_{02} \lweakmay[x_1\dots x_j]_{P'_2} p'
+          \nmust[x_{j+1}]_{P'_2}$ und damit gilt $x_1\dots x_{j+1}\in\MIT
           _{P'_2} \subseteq \ET _{P'_2}$. Es ist also ein Präfix von $w$ in
           $\ET _{P'_2}$ enthalten und mit Proposition~\ref{KommSemProp} auch in
           $\ET _2$.
-        \item Fall 2ii) (geerbter Fehler): $T$ hat $x_1\dots x_i v$ mit $v\in
+        \item Fall 2ii) (geerbter Fehler): $T$ hat $x_1\dots x_j v$ mit $v\in
           I^*_T =O^*$ ausgeführt und ebenso hat $P'_2$ dieses Wort
           abgearbeitet. Durch dies hat $P'_2$ einen Zustand in $E _{P'_2}$
           erreicht, da von $T$ keine Fehler geerbt werden können. Es gilt dann
-          $\prune (x_1\dots x_iv) = \prune (x_1\dots x_i)\in\PrET _{P'_2}
-          \subseteq \ET _{P'_2}$. Da $x_1\dots x_i$ ein Präfix von $w$ ist,
+          $\prune (x_1\dots x_j v) = \prune (x_1\dots x_j)\in\PrET _{P'_2}
+          \subseteq \ET _{P'_2}$. Da $x_1\dots x_j$ ein Präfix von $w$ ist,
           führt in diesem Fall eine Verlängerung um lokale Aktionen eines
           Präfixes von $w$ zu einem Fehler-Zustand. Da \ET{} der Menge aller
           Verlängerungen von gekürzten Fehler-Traces entspricht, ist $x_1\dots
-          x_i$ in $\ET _{P'_2}$ enthalten und somit ist mit
+          x_j$ in $\ET _{P'_2}$ enthalten und somit ist mit
           Proposition~\ref{KommSemProp} ein Präfix von $w$ in $\ET _2$
           enthalten.
       \end{itemize}
@@ -187,10 +188,10 @@ Zuhilfenahme ein ähnliches Lemma formuliert werden.
       eine as"=Implementierung $P'_2$ von $P_2$ geben, für die $P'_2\|T$ einen
       lokal erreichbaren Fehler-Zustand hat.
       \begin{itemize}
-        \item Fall 2a) \big(neuer Fehler aufgrund von $x_i\in O_T$ und $p_{02}
-          \lweakmay[x_1\dots x_{i-1}]_{P'_2}p''\hspace{0.25cm} \not
-          \hspace{-0.25cm} \must[x_i]_{P'_2}$\big): Es
-          gilt $x_1\dots x_i\in\MIT _{P'_2}$ und somit $w\in\EL _{P'_2}$.
+        \item Fall 2a) \big(neuer Fehler aufgrund von $x_j\in O_T$ und $p_{02}
+          \lweakmay[x_1\dots x_{j-1}]_{P'_2}p''\hspace{0.25cm} \not
+          \hspace{-0.25cm} \must[x_j]_{P'_2}$\big): Es
+          gilt $x_1\dots x_j\in\MIT _{P'_2}$ und somit $w\in\EL _{P'_2}$.
           Anzumerken ist, dass nur auf diesem Weg Outputs von $T$ möglich sind,
           deshalb gibt es keine anderen Outputs von $T$, die zu einem neuen
           Fehler führen können. Es gilt $w\in\EL _2$ wegen
@@ -207,9 +208,9 @@ Zuhilfenahme ein ähnliches Lemma formuliert werden.
           In diesem Fall ist $w\in L_{P'_2}\subseteq \EL _{P'_2}$. Daraus
           folgt mit Proposition~\ref{KommSemProp} $w\in\EL _2$.
         \item Fall 2d) (geerbter Fehler von $P'_2$): Es gilt $p_{02}
-          \lweakmay[x_1\dots x_iv]_{P'_2} p'\in E_{P'_2}$ für ein $i\geq 0$ und
-          $v\in O^*$. Somit ist $x_1\dots x_i v\in\StET _{P'_2}$ und damit
-          $\prune (x_1\dots x_iv) =\prune (x_1\dots x_i)\in\PrET
+          \lweakmay[x_1\dots x_j v]_{P'_2} p'\in E_{P'_2}$ für ein $j\geq 0$ und
+          $v\in O^*$. Somit ist $x_1\dots x_j v\in\StET _{P'_2}$ und damit
+          $\prune (x_1\dots x_j v) =\prune (x_1\dots x_j)\in\PrET
           _{P'_2}\subseteq \EL _{P'_2}$. Mit Hilfe von
           Proposition~\ref{KommSemProp} folgt $w\in\EL _{P'_2}\subseteq \EL
           _2$.
@@ -243,13 +244,14 @@ Zuhilfenahme ein ähnliches Lemma formuliert werden.
   \in\ET _T$. Da $P_1\ERel P_2$ gilt, folgt $w_1\in \ET _2$ bzw.\ $w_1\in \EL
   _2$. Aufgrund von Proposition~\ref{KommSemProp} gibt es eine
   as"=Implementierung $P'_2$ von $P_2$ für die $w_1\in\ET _{P'_2}$ bzw.\
-  $w_1\in\ET _{P'_2}$ gilt. In der Parallelkomposition mit $T$ ist das Wort $w$
+  $w_1\in\EL _{P'_2}$ gilt. In der Parallelkomposition mit $T$ ist das Wort $w$
   also in der Menge $\left(\ET _{P'_2}\|\EL _T\right)\cup \left(\EL
   _{P'_2}\|\ET _T\right)$ enthalten. $P_1$ und $P_2$ müssen die gleiche
   Signatur besitzen, es gilt also auch $w\in O_{P'_2\|T}^*$ und somit
   $\varepsilon\in\prune \left(\left(\ET _{P'_2}\|\EL _T\right)\cup \left(\EL
   _{P'_2}\|\ET _T\right)\right) \subseteq \ET _{P'_2\|T}$. In $P'_2\|T$ ist ein
-  Fehler lokal erreichbar und es folgt für die Spezifikation $P_2$ $\neg P_2 \EsatAs T$.
+  Fehler lokal erreichbar und es folgt für die Spezifikation $P_2$ $\neg P_2
+  \EsatAs T$.
 \end{proof}
 
 Auch die in diesem Abschnitt gezeigten Folgerungen schließen sich zu einem

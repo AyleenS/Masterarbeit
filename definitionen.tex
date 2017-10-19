@@ -39,7 +39,7 @@ und~\ref{wSimDef} berücksichtigt.\\
 identifiziert und falls notwendig werden damit auch die Komponenten indiziert
 (z.B.\ $I_P$ anstatt $I$). Falls das \MEIO{} selbst bereits einen Index hat
 (z.B.\ $P_1$) kann an der Komponente die Zustandsmenge als Index wegfallen und
-nur noch der Index des gesamten Transitionssystems verwendet werden (z.B.\
+nur noch der Index des Transitionssystems verwendet werden (z.B.\
 $I_1$ anstatt $I_{P_1}$). Zusätzlich stehen $i,o,a,\omega$ und $\alpha$ für
 Buchstaben aus den Alphabeten $I,O,\Sigma ,O\cup\{\tau\}$ und $\Sigma_\tau$.\\
 Es wird die Notation $p\may[\alpha] p'$ für $(p,\alpha,p')\in\may$ und
@@ -137,9 +137,9 @@ may"=Input"=Transition trotzdem umgesetzt sein kann.\\
 Durch die Synchronisation von Inputs kann es zu keinen neuen Fehler kommen, da
 die Inputs in beiden Transitionssystemen keine lokal kontrollierten Aktionen
 sind. Falls jedoch nur eines der Transitionssysteme einen zu synchronisierenden
-Input sicherstellt, der synchronisiert wird, wird dieser Input in der
-Parallelkomposition nicht mehr garantiert. Es kann also in der Kommunikation
-mit einem weiteren \MEIO{} an dieser Stelle zu einem neuen Fehler kommen.
+Input sicherstellt, wird dieser Input in der Parallelkomposition nicht mehr
+garantiert. Es kann also in der Kommunikation mit einem weiteren \MEIO{} an
+dieser Stelle zu einem neuen Fehler kommen.
 
 \begin{Def}[alternierende Simulation]
   \label{SimDef}
@@ -148,7 +148,7 @@ mit einem weiteren \MEIO{} an dieser Stelle zu einem neuen Fehler kommen.
   für alle $(p,q)\in \mathcal{R}$ mit $q\notin E_Q$ und alle $\alpha\in\Sigma
   _\tau$ gilt:
   \begin{enumerate}
-    \item $p\notin E_P$,
+    \item $p\notin E_P$, \TODO{Formulierungen der folgenden Punkte gut?}
     \item falls $q\must[\alpha]_Q q'$, gibt es eine Transition
       $p\must[\alpha]_P p'$ für ein $p'$ mit $p'\mathcal{R}q'$,
     \item falls $p\may[\alpha]_P p'$, gibt es eine Transition
@@ -169,7 +169,8 @@ mit einem weiteren \MEIO{} an dieser Stelle zu einem neuen Fehler kommen.
 Da für zwei \MEIO{}s $P$ und $Q$ und alle möglichen Zustands-Tupel $(p,q)$ in
 einer alternierenden Simulations-Relation $\mathcal{R}$ gelten muss, dass aus
 $q\notin E_Q$ $p\notin E_P$ folgt, gilt auch die Implikation $p\in
-E_P\Rightarrow q\in E_Q$.\\
+E_P\Rightarrow q\in E_Q$.
+
 Für LTS, die nach Definition keine Modalitäten und keine Fehler-Zustände
 enthalten, entspricht die as"=Verfeinerung einer Bisimulation. Dafür müssen die
 Transitionen eines LTS als must"=Transitionen aufgefasst werden. Man kann also
@@ -186,11 +187,8 @@ Hierzu sollte auch das Beispiel aus Abbildung~\ref{ImplVerfBsp} beachtet
 werden. Die Implementierung $P$ ist eine Verfeinerung der Implementierung $Q$
 und zwischen ihnen erfüllt die as"=Verfeinerungs"=Relation $\mathcal{R} =
 \{(p_0,q_0)\}$ die Definition~\ref{SimDef}. $P$ verfeinert den Fehler"=Zustand
-von $Q$ nicht mit einem Fehler sondern durch die $o$ Schlinge.\\
-Falls eine zusammenhängende Implementierung, in der jeder Zustand vom
-Startzustand aus erreichbar ist, bereits frei von Fehler"=Zuständen ist,
-entspricht sie einem LTS und kann somit nur noch durch äquivalente
-Implementierungen \glqq verfeinert\grqq{} werden.
+von $Q$ nicht mit einem Fehler sondern durch einen Zustand mit einer
+$o$-Schlinge.
 
 \begin{figure}[htbp]
   \begin{center}
@@ -207,6 +205,11 @@ Implementierungen \glqq verfeinert\grqq{} werden.
     \label{ImplVerfBsp}
   \end{center}
 \end{figure}
+
+Falls eine zusammenhängende Implementierung, in der jeder Zustand vom
+Startzustand aus erreichbar ist, bereits frei von Fehler"=Zuständen ist,
+entspricht sie einem LTS und kann somit nur noch durch äquivalente
+Implementierungen \glqq verfeinert\grqq{} werden.
 
 \begin{Def}[schwache alternierende Simulation]
   \label{wSimDef}
@@ -264,12 +267,13 @@ Mengen kann z.B.\ aus~\cite{Vogler2014EIO} übernommen werden.
   \end{itemize}
 \end{Def}
 
-Die Wörter $w_1$ und $w_2$ sind für gewöhnlich Traces von \MEIO{}, die
-komponiert werden. Das Wort $w_1\|w_2$ ist dann eine Aktionsfolge aus Inputs
-und Outputs. Es existiert in einer Parallelkomposition eine Transitionsfolge
-vom Startzustand aus, die mit den Aktionen aus $w\in w_1\|w_2$ beschriftet ist.
-Ein Trace aus der Menge $w_1\|w_2$ der Parallelkomposition kann also auch als
-Wort aufgefasst werden, das verarbeitet wird während des Ablaufs des Systems.
+Die Wörter $w_1$ und $w_2$ sind für gewöhnlich Traces von \MEIO{}s, die
+komponiert werden. Ein Wort aus der Menge $w_1\|w_2$ ist dann eine Aktionsfolge
+aus Inputs und Outputs. Es existiert in einer Parallelkomposition eine
+Transitionsfolge vom Startzustand aus, die mit den Aktionen aus $w\in w_1\|w_2$
+beschriftet ist. Ein Trace aus der Menge $w_1\|w_2$ der Parallelkomposition
+kann also auch als Wort aufgefasst werden, das verarbeitet wird während des
+Ablaufs des Systems.
 
 Die Definitionen der Funktionen \prune{} und \cont{} zum Abschneiden und
 Verlängern von Traces können ebenso wie die vorangegangene Definition aus
