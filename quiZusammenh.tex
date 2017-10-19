@@ -9,9 +9,9 @@
 \end{Satz}
 \begin{proof}\mbox{}\\
   $P \asRel Q \Rightarrow P \QRel Q$:\\
-  Im Beweis des Satzes~\ref{ZusammenhFehlerSatz} wurde bereits bewiesen, dass
-  eine schwache as"=Verfeinerungs"=Relation $\mathcal{R}$ zwischen $P$ und $Q$
-  die Eigenschaften der Fehler"=Relation \ERel{} erfüllt. Nach
+  Im Beweis des Satzes~\ref{ZusammenhFehlerSatz} wurde bereits nachgewiesen,
+  dass jede schwache as"=Verfeinerungs"=Relation $\mathcal{R}$ zwischen $P$ und
+  $Q$ die Eigenschaften der Fehler"=Relation \ERel{} erfüllt. Nach
   Lemma~\ref{ZusammenhWasAsLem} ist jede starke as"=Verfeinerungs"=Relation
   auch eine schwache. Es fehlt also für diese Implikation nur noch der Beweis
   der Inklusion $\QET _P \subseteq \QET _Q$. Da bereits $\ET _P\subseteq \ET
@@ -24,13 +24,14 @@
   _Q$, falls ein Fehler-Zustand in $Q$ auf einem Präfix-Trace von $w$ auftritt,
   wegen Lemma~\ref{AblaefeVerfSpezLem}. Im Folgenden wird davon ausgegangen,
   das $w$ in $Q$ ohne das Erreichen eines Fehler"=Zustandes ausführbar ist.
-  Wegen~\ref{AblaefeVerfSpezLem} gibt es also einen Ablauf für $w$ in $Q$, der
-  in einem Zustand $q_n$ mit $p_n \mathcal{R} q_n$ endet. $p_n$ ist für $P$ ein
-  stiller Zustand, es gilt also für alle $\omega \in (O\cup \{\tau\})$ $p_n
-  \nmust[\omega]_P$. Da $\mathcal{R}$ eine starke as"=Verfeinerungs"=Relation
-  ist, muss wegen~\ref{SimDef}.2 auch $q_n \nmust[\omega]_Q$ gelten für alle
-  $\omega \in (O\cup \{\tau\})$. $q_n$ ist also auch ein stiller Zustand. Somit
-  ist $w$ in $\StQT _Q\subseteq\QET _Q$ enthalten.
+  Wegen Lemma~\ref{AblaefeVerfSpezLem} gibt es also einen Ablauf für $w$ in
+  $Q$, der in einem Zustand $q_n$ mit $p_n \mathcal{R} q_n$ endet. $p_n$ ist
+  für $P$ ein stiller Zustand, es gilt also für alle $\omega \in (O\cup
+  \{\tau\})$ $p_n \nmust[\omega]_P$. Da $\mathcal{R}$ eine starke
+  as"=Verfeinerungs"=Relation ist, muss wegen Definition~\ref{SimDef}.2 auch
+  $q_n \nmust[\omega]_Q$ gelten für alle $\omega \in (O\cup \{\tau\})$. $q_n$
+  ist also auch ein stiller Zustand. Somit ist $w$ in $\StQT _Q\subseteq\QET
+  _Q$ enthalten.
 
   $P \QRel Q \Rightarrow P \ERel Q$:\\
   Diese Implikation folgt direkt aus der Definition von \QRel{}
