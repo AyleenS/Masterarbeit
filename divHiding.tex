@@ -9,14 +9,13 @@ Zustand aus erreichbar war oder wenn er eine unendliche Folge von Aktionen aus
 $X\cup \{\tau\}$ ausführen konnte. Durch die zusätzlichen Divergenz"=Zustände
 vergrößern sich alle Trace-Mengen, die in der Präkongruenz \DRel{} betrachtet
 werden.\\
-Um den zusätzlichen Aufwand der Untersuchung möglichst gering zu halten, wird
-dieses Teilkapitel auf endliche \MEIO{}s beschränkt. Falls man unendlich große
-\MEIO{}s zulassen würde, müsste man an anderen Stellen
-Endlichkeits"=Voraussetzungen machen.\\
+Die Betrachtungen dieses Teilkapitels beschränken sich auf endliche \MEIO{}s.
+Falls man unendlich große \MEIO{}s zulassen würde, müsste man an anderen
+Stellen Endlichkeits"=Voraussetzungen fordern.\\
 Die Menge $X$ muss eine Teilmenge der Outputs $O$ sein, für einen endlichen
 \MEIO{} kann $X$ ebenfalls nur endlich sein. Um eine endliche Menge von
-Aktionen zu internalisieren, kann man jede Aktion einzeln aus dem entsprechend
-\MEIO{} entfernen. Der folgende Satz kann also darauf beschränkt werden, dass
+Aktionen zu internalisieren, kann man jede Aktion des \MEIO{}s einzeln
+verbergen. Der folgende Satz kann also darauf beschränkt werden, dass
 nur ein einzelner Output verborgen werden soll. $P/o$ soll dabei für $P/\{o\}$
 stehen. Die Menge $\EDT _{P/o}$ kann aus $\EDT _P$ konstruiert werden. Im
 Allgemeinen ist die Menge $\EDT _{P/o}$ jedoch größer wie die Menge $\{w\in
@@ -38,7 +37,7 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
       w'|_{\Sigma\backslash \{o\}} = w\}$,
     \item $\EDT (P/o) = \cont (\prune (\{w\in (\Sigma\backslash \{o\})^*\mid
       \exists w':w'|_{\Sigma\backslash \{o\}} = w\land \forall n\geq 0:
-      w'o^n\in\EDL (P)\}))$,
+      w'o^n\in\hspace*{2.8cm}\EDL (P)\}))$,
     \item $\EDL (P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in
       \EDL(P): w'|_{\Sigma\backslash \{o\}} = w\} \cup \EDT (P/o)$,
     \item $\StQT (P/o) = \{w\in (\Sigma\backslash \{o\})^*\mid \exists w'\in
@@ -117,7 +116,7 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
   \end{itemize}
 
   (iii) und (v) \glqq $\subseteq$\grqq{}:\\
-  Es gilt $\EDL = L \cup \EDT$ und $\QDT = \StQT \cup \EDT$ für $P$ und $P/X$.
+  Es gilt $\EDL = L \cup \EDT$ und $\QDT = \StQT \cup \EDT$ für $P$ und $P/o$.
   Somit lässt sich diese Inklusionsrichtung der Punkte analog zu den Aussagen
   aus Satz~\ref{FehlerHidingSatz} und~\ref{StilleHidingSatz} beweisen, da der
   Punkt (ii) dieses Satzes bereits nachgewiesen wurde.
@@ -132,8 +131,8 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
   _{P/o}$. Es wird im Folgenden also davon ausgegangen, dass das $w'$ in $\EDT
   _P$ enthalten ist. Es gibt also ein Präfix $v'$ von $w'$, das in $\PrET_P
   \cup \MIT _P\cup \PrDT _P$ enthalten ist. Mit einer analogen Begründung wie
-  in (ii) Fall 1, folgt daraus $w'|_{\Sigma\backslash\{o\}} \in \EDT _{P/o}
-  \subseteq \EDL _{P/o}$.
+  in (ii) \glqq $\supseteq$\grqq{} Fall 1, folgt daraus
+  $w'|_{\Sigma\backslash\{o\}} \in \EDT _{P/o} \subseteq \EDL _{P/o}$.
 
   (v) \glqq $\supseteq$\grqq{}:\\
   Da \QDT{} die Vereinigung der Menge \StQT{} und \EDT{} ist, folgt diese
@@ -144,7 +143,7 @@ deshalb mit der neuen \EDT{} Menge geflutet werden.
   Outputs, die man in ihnen verbergen kann. Die Menge $X$ muss also endlich
   sein. Für jedes Element $o$ aus $X$ kann mit den Punkten (ii) bis (v) aus
   $P_1\DRel P_2$ gefolgert werden, dass auch $P_1/o\DRel P_2/o$ gilt. In dem
-  man immer ein weiteren Output internalisiert, kann am Ende auch $P_1/X\DRel
+  man immer ein weiteren Output internalisiert, kann dadurch auch $P_1/X\DRel
   P_2/X$ aus der Voraussetzungen $P_1\DRel P_2$ für endliche \MEIO{} $P_1$ und
   $P_2$ gefolgert werden.\\
   Somit bleibt die Relation \DRel{} unter Anwendung des Hiding-Operators
